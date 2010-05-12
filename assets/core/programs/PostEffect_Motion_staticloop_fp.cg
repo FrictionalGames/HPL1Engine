@@ -1,0 +1,42 @@
+// Copyright 2006-2010 (C) - Frictional Games
+//
+// This file is part of HPL1 Engine
+//
+// For conditions of distribution and use, see copyright notice in LICENSE-shaders
+//
+
+///////////////////////////////////////////////////////
+// MOTION BLUR FRAGMENT PROGRAM WITH STATIC LOOP
+// Credits to jonathan for optimization
+///////////////////////////////////////////////////////
+
+
+void main(float4 inPos        : WPOS, //in projection space
+          float4 inVtxPos        :TEX0,
+          float4 inPrevVtxPos    :TEX1,
+                      
+          out float4 oColor : COLOR,
+          
+          uniform samplerRECT screenTex        : TEXUNIT0,
+          uniform float2 halfScreenSize)
+{
+	float2 wpos = inPos.xy;
+	float2 p1 = inVtxPos.xy / inVtxPos.w;
+	float2 p2 = inPrevVtxPos.xy / inPrevVtxPos.w;
+	
+	float2 velocity = (p2 - p1) * halfScreenSize;
+	
+	//Sample into scene texture along motion vector
+	const float samples = 16;
+	const fixed w = 1.0 / samples;  // weight
+	const float2 s = velocity / samples; // step
+	fixed4 a = 0;
+	
+	for(float i=0; i<samples; i+=1)
+	{
+		a += texRECT(screenTex, wpos) * w;
+		wpos += s;
+	}
+
+	oColor = a;
+}

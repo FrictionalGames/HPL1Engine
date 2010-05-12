@@ -1,0 +1,29 @@
+// Copyright 2006-2010 (C) - Frictional Games
+//
+// This file is part of HPL1 Engine
+//
+// For conditions of distribution and use, see copyright notice in LICENSE-shaders
+//
+
+///////////////////////////////////////////////////////
+/// DIFFUSE SPOT LIGHTING FRAGMENT PROGRAM /////////////
+///////////////////////////////////////////////////////
+
+void main(half4 pos : POSITION, //in projection space
+		  half4 lightColor		: COLOR0,
+		  half2 uv				: TEXCOORD0,
+		  half3 lightDir		: TEXCOORD1,
+		  float3 spotlightUv		: TEXCOORD2,
+		              
+		  out half4 oColor : COLOR,
+          
+		  uniform sampler1D  falloffMap			: TEXUNIT0,
+		  uniform sampler1D  spotNegRejectMap	: TEXUNIT1
+		  )
+{
+	half  attenuation =	tex1D(falloffMap,dot(lightDir,lightDir)).x;
+	half rejectNeg =	tex1D(spotNegRejectMap,spotlightUv.z + 0.5).x;
+
+	oColor.w =	attenuation * rejectNeg;
+	oColor.xyz =	0;
+}

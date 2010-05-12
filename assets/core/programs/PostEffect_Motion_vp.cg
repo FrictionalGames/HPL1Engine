@@ -1,0 +1,65 @@
+// Copyright 2006-2010 (C) - Frictional Games
+//
+// This file is part of HPL1 Engine
+//
+// For conditions of distribution and use, see copyright notice in LICENSE-shaders
+//
+
+///////////////////////////////////////////////////////
+/// SIMPLE DIFFUSE COLOR VERTEX PROGRAM ////////////
+///////////////////////////////////////////////////////
+
+void main(	float4 position			: POSITION,
+			float3 normal			: NORMAL,
+			float3 color			: COLOR,
+					  
+			out float4 oPosition	: HPOS,
+			out float3 oColor		: COLOR,
+			//out float oVelocity	:TEX0
+			out float4 oVtxPos		: TEX0,
+			out float4 oPrevVtxPos	: TEX1,
+			
+			uniform float4x4 modelView,
+			uniform float4x4 prevModelView,
+			uniform float4x4 worldViewProj,
+			uniform float4x4 prevWorldViewProj,
+			uniform float blurScale)
+{
+	//Get the positions in eye space
+	float4 pos =		mul(modelView, position);
+	float4 prevPos =	mul(prevModelView, position);
+	
+	//Transform normal to eye space
+	float3 eyeNormal = mul((float3x3) modelView, normal);
+
+	// calculate eye space motion vector
+	float3 motionVector = pos.xyz - prevPos.xyz;
+
+	//Get the positions in window space.
+	pos = mul(worldViewProj, position);
+	prevPos = mul(prevWorldViewProj, position);
+
+	//Interpolate the previous according to blurscale
+	prevPos = lerp(pos, prevPos, blurScale);
+
+	//Choose previous or current position based on dot product between motion vector and normal
+	//float flag = dot(motionVector, eyeNormal) > 0;
+	//float4 Pstretch = flag ? pos : prevPos;
+	//oPosition = Pstretch;
+	oPosition = pos;
+	
+	//Divide by W -> NDC coordinates
+	//pos.xyz = pos.xyz / pos.w;
+	//prevPos.xyz = prevPos.xyz / prevPos.w;
+	//Calculate window space velocity
+	//float3 windowVel = (prevPos.xyz - pos.xyz);// * float3(400,300,1);
+	//oVelocity = windowVel * blurScale;
+	
+	oVtxPos = pos;
+	oPrevVtxPos = prevPos;
+	
+	//oColor.xy =  0.5 + (windowVel.xy * 0.005);
+	//oColor.z = 1;
+	//oColor = (1 + eyeNormal)*0.5;
+	oColor = 0.5;
+}

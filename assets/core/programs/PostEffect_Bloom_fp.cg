@@ -1,0 +1,36 @@
+// Copyright 2006-2010 (C) - Frictional Games
+//
+// This file is part of HPL1 Engine
+//
+// For conditions of distribution and use, see copyright notice in LICENSE-shaders
+//
+
+///////////////////////////////////////////////////////
+/// BLOOOM FRAGMENT PROGRAM /////////////////
+///////////////////////////////////////////////////////
+
+
+void main(float4 pos	: POSITION, //in projection space
+		  float4 color	: COLOR0,
+		  float2 uv0	: TEXCOORD0,
+		  float2 uv1	: TEXCOORD1,
+		              
+		  out float4 oColor : COLOR,
+          
+		  uniform sampler2D blurTex		: TEXUNIT0,
+		  uniform samplerRECT screenTex : TEXUNIT1
+		  )
+{
+	float4 blurCol = tex2D(blurTex, uv0);
+	float4 screenCol = texRECT(screenTex, uv1);
+	
+	//oColor = blurCol;
+	//oColor.xyz = blurCol.xyz* blurCol.xyz * dot(screenCol.xyz,float3(0.3, 0.58, 0.12)) + screenCol.xyz;
+	
+	blurCol *= blurCol; 
+	oColor.xyz = blurCol.xyz * dot(blurCol.xyz,float3(0.3, 0.58, 0.12)) + screenCol.xyz;
+	//oColor = screenCol;
+	//oColor.xyz = blurCol.xyz* blurCol.xyz * dot(blurCol.xyz,float3(0.3, 0.58, 0.12)) + screenCol.xyz;
+	
+	//oColor.xyz = blurCol.xyz * dot(screenCol.xyz,float3(0.3,0.3,0.3)) + screenCol.xyz;
+}

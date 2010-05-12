@@ -1,0 +1,29 @@
+// Copyright 2006-2010 (C) - Frictional Games
+//
+// This file is part of HPL1 Engine
+//
+// For conditions of distribution and use, see copyright notice in LICENSE-shaders
+//
+
+///////////////////////////////////////////////////////
+/// REFRACTION FRAGMENT PROGRAM /////////////////
+///////////////////////////////////////////////////////
+
+
+void main(float4 inPos		: WPOS, //in projection space
+	  float2 uv 		: TEXCOORD0, //in object space
+	  float4 color		: COLOR,
+		              
+	  out float4 oColor		: COLOR,
+		  
+	  uniform samplerRECT screenMap		: TEXUNIT0,
+	  uniform sampler2D refractMap		: TEXUNIT1,
+	  
+	  uniform float2 screenSize,
+	  uniform float scale
+	  )
+{
+	float3 offset = ((tex2D(refractMap, uv)*2) - 1) * color.w;
+	
+	oColor = texRECT(screenMap,inPos.xy - (offset.xy*scale) / inPos.z);
+}

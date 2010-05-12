@@ -1,0 +1,27 @@
+// Copyright 2006-2010 (C) - Frictional Games
+//
+// This file is part of HPL1 Engine
+//
+// For conditions of distribution and use, see copyright notice in LICENSE-shaders
+//
+
+///////////////////////////////////////////////////////
+/// SIMPLE DIFFUSE COLOR VERTEX PROGRAM ////////////
+///////////////////////////////////////////////////////
+
+void main(half4 pos : POSITION, //in projection space
+		  half4 color : COLOR0,
+		  half2 uv	: TEXCOORD0,
+		  half fogUv	: TEXCOORD1,
+		              
+		 out half4 oColor : COLOR,
+
+		 uniform sampler2D diffuseMap			: TEXUNIT0,
+		 uniform sampler1D fogMap			: TEXUNIT1
+         )
+{
+	float4 diffuse = tex2D(diffuseMap, uv);
+	float alpha = tex1D(fogMap, fogUv).w;
+	oColor.xyz = diffuse.xyz * alpha + float3(0.5,0.5,0.5)*(1 - alpha);
+	oColor.w = diffuse.w;
+}

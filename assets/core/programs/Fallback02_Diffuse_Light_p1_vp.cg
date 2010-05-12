@@ -1,0 +1,43 @@
+// Copyright 2006-2010 (C) - Frictional Games
+//
+// This file is part of HPL1 Engine
+//
+// For conditions of distribution and use, see copyright notice in LICENSE-shaders
+//
+
+///////////////////////////////////////////////////////
+/// DIFFUSE LIGHTING VERTEX PROGRAM //////////////////
+///////////////////////////////////////////////////////
+
+
+void main(	float4 position : POSITION,
+			float3 normal : NORMAL,
+			float4 tangent : TEXCOORD1,
+					  
+			out float4 oPosition	: POSITION,
+			out float4 oColor	: COLOR,
+			
+			out float3 oLightDir	: TEXCOORD0,
+			out float3 oLightPos	: TEXCOORD1,
+			
+			uniform float4x4 worldViewProj,
+			
+			uniform float3 LightPos,
+			uniform float4 LightColor,
+			uniform float3 LightDirMul)
+{
+	oPosition = mul(worldViewProj, position);
+
+	float3 lightDir = LightPos - position.xyz;
+	oLightDir = lightDir * LightDirMul;
+	oLightPos = oLightDir *0.5 + 0.5;
+
+	//Calculate rotation for light to get it to tangent space.
+	float3 binormal = cross(normal,tangent.xyz)*tangent.w;
+	float3x3 rotation = float3x3(tangent.xyz, binormal, normal);
+	
+	//Transform the lightdir
+	oLightDir = mul(rotation, oLightDir);
+	
+    oColor = 1;
+}

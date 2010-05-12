@@ -1,0 +1,59 @@
+// Copyright 2006-2010 (C) - Frictional Games
+//
+// This file is part of HPL1 Engine
+//
+// For conditions of distribution and use, see copyright notice in LICENSE-shaders
+//
+
+///////////////////////////////////////////////////////
+/// REFRACTION FRAGMENT PROGRAM /////////////////
+///////////////////////////////////////////////////////
+
+
+void main(float4 inPos		: WPOS, //in projection space
+	  float2 uv 		: TEXCOORD0, //in object space
+	  float3 normal		: TEXCOORD1,
+	  float3 eyePos		: TEXCOORD2,
+	  float4 color		: COLOR,
+		              
+	  out float4 oColor		: COLOR,
+		  
+	  uniform samplerRECT screenMap		: TEXUNIT0,
+	  uniform sampler2D refractMap		: TEXUNIT1,
+	  uniform sampler2D diffuseMap		: TEXUNIT2,
+	  
+	  uniform float2 screenSize,
+	  uniform float scale,
+	  uniform float t
+	  )
+{
+	//t *= 1;
+	float2 uv_offset1 = uv;
+	uv_offset1.x += sin(t*0.8 + uv.y*10)*0.04;
+	uv_offset1.y += sin(t*0.8 + uv_offset1.x*10)*0.04;
+
+	float3 offset1 = ((tex2D(refractMap, uv_offset1)*2) - 1);
+	
+	float2 uv_offset2 = uv;
+	uv_offset2.x += sin(t*-2.6 + uv.y*12)*0.03;
+	uv_offset2.y += sin(t*-2.6 + uv_offset2.x*12)*0.03;
+	
+	float3 offset2 = ((tex2D(refractMap, uv_offset2)*2) - 1);
+	offset2.xy = -offset2.xy;
+		
+	float3 offset = normalize(offset1*0.7 + offset2*0.3);
+	
+	//float fresnel = saturate(dot(normalize(eyePos), normalize(normal)));
+	//fresnel = (fresnel + 0.2)*0.8;
+	
+	float3 waterColor = tex2D(diffuseMap, uv_offset1).xyz;
+	
+	float4 screenColor = texRECT(screenMap,inPos.xy + offset.xy * -scale);
+	if(screenColor.w < 0.5) screenColor = texRECT(screenMap,inPos.xy);
+	
+	oColor.xyz = screenColor.xyz * waterColor;
+
+	//oColor.y = uv.y+1 + uv_offset1.y;
+	oColor.xyz *= saturate(dot(float3(1.0/3.0, 1.0/3.0, 1.0/3.0), offset))*0.5 + 0.5;
+	oColor.xyz += pow(saturate(dot(float3(1.0/3.0, 1.0/3.0, 1.0/3.0), offset)), 8)*5;
+}

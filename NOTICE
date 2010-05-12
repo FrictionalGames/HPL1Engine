@@ -1,0 +1,21 @@
+HPL1 Engine
+
+This product includes the following 3rd party products which are covered under their respective licenses.
+
+tinyXML
+-------
+tinyXML is covered under the zlib/libpng license
+
+http://www.sourceforge.net/projects/tinyxml
+
+GLee
+----
+GLee is covered under the the Simplified BSD License
+
+http://elf-stone.com/glee.php
+
+Angelscript
+-----------
+The add_on implementations of stdstring and scriptstring implementatations for Angelscript are included
+
+http://www.angelcode.com/

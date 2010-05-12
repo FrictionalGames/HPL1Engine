@@ -1,0 +1,35 @@
+// Copyright 2006-2010 (C) - Frictional Games
+//
+// This file is part of HPL1 Engine
+//
+// For conditions of distribution and use, see copyright notice in LICENSE-shaders
+//
+
+///////////////////////////////////////////////////////
+/// DIFFUSE LIGHTING FRAGMENT PROGRAM /////////////////
+///////////////////////////////////////////////////////
+
+
+void main(float4 pos	: POSITION, //in projection space
+		  float4 color	: COLOR0,
+		  float2 uv0	: TEXCOORD0,
+		  float2 uv1	: TEXCOORD1,
+		  float2 uv2	: TEXCOORD2,
+		  float2 uv3	: TEXCOORD3,
+		              
+		  out float4 oColor : COLOR,
+          
+		  uniform samplerRECT texture0 : TEXUNIT0,
+		  uniform samplerRECT texture1 : TEXUNIT1,
+		  uniform samplerRECT texture2 : TEXUNIT2
+		  )
+{
+	//Samples
+	float4 col1 = texRECT(texture0, (uv0 + uv1)/2) * 0.3;
+	float4 col3 = texRECT(texture1, (uv2 + uv3)/2) * 0.3;		
+	
+	float4 col2 = texRECT(texture2, (uv0 + uv2)/2 ) * 0.4;
+	
+	
+	oColor = col1 + col2 + col3;
+}
