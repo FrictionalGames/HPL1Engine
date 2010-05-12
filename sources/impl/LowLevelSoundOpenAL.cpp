@@ -26,8 +26,8 @@
 
 #include "system/LowLevelSystem.h"
 
-#include "OpenAL/OAL_Funcs.h"
-#include "OpenAL/OAL_Effect_Reverb.h"
+#include "OALWrapper/OAL_Funcs.h"
+#include "OALWrapper/OAL_Effect_Reverb.h"
 
 namespace hpl {
 

@@ -22,7 +22,7 @@
 #include "sound/SoundChannel.h"
 #include "sound/SoundData.h"
 
-#include "OpenAL/OAL_Funcs.h"
+#include "OALWrapper/OAL_Funcs.h"
 
 namespace hpl {
 
