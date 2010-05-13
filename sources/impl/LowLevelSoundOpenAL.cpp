@@ -206,7 +206,7 @@ namespace hpl {
 		{
 			Log("  Trying to open hardware device...%s ",abForceGeneric ? "(Generic forced)" : "" );
 			
-			OAL_SetupLogging(mbLogSounds, eOAL_LogOutput_File, eOAL_LogVerboseLevel_High, "HPL_OpenAL_HWDevice");
+			OAL_SetupLogging(mbLogSounds, eOAL_LogOutput_File, eOAL_LogVerbose_High, "HPL_OpenAL_HWDevice");
 
 			if (abForceGeneric)
 				cInitParams.msDeviceName = "Generic Hardware";
@@ -215,7 +215,7 @@ namespace hpl {
 		{
 			Log("  Trying to open software device... ");
 
-			OAL_SetupLogging(mbLogSounds, eOAL_LogOutput_File, eOAL_LogVerboseLevel_High, "HPL_OpenAL_SWDevice");
+			OAL_SetupLogging(mbLogSounds, eOAL_LogOutput_File, eOAL_LogVerbose_High, "HPL_OpenAL_SWDevice");
 
 			cInitParams.msDeviceName = "Generic Software";
 		}
