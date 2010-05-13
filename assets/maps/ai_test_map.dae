@@ -1,0 +1,4251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
+  <asset>
+    <contributor>
+      <author>Gripen</author>
+      <authoring_tool>Maya 7.0 | ColladaMaya v0.87</authoring_tool>
+      <comments>Collada Maya Export Options: bakeTransforms=0;exportPolygonMeshes=1;bakeLighting=0;isSampling=0;
+curveConstrainSampling=0;exportCameraAsLookat=0;relativePaths=0;
+exportLights=1;exportCameras=1;exportJointsAndSkin=1;
+exportAnimations=1;exportTriangles=1;exportInvisibleNodes=0;
+exportNormals=1;exportTexCoords=1;exportVertexColors=1;exportTangents=0;
+exportTexTangents=0;exportConstraints=1;exportPhysics=1;exportXRefs=1;
+dereferenceXRefs=0;cameraXFov=0;cameraYFov=1</comments>
+      <source_data>file://E|/HPL/models/ai_test_map.mb</source_data>
+    </contributor>
+    <created>2006-03-15T17:12:22Z</created>
+    <modified>2006-03-15T17:12:22Z</modified>
+    <unit name="meter" meter="1.000000"/>
+    <up_axis>Y_UP</up_axis>
+  </asset>
+  <library_images>
+    <image id="file1-image" name="file1">
+      <init_from>file://E|/HPL/redist/textures/material_floor.jpg</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="lambert1" name="lambert1">
+      <instance_effect url="#lambert1-fx"/>
+    </material>
+    <material id="blinn1" name="blinn1">
+      <instance_effect url="#blinn1-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="lambert1-fx" name="lambert1">
+      <profile_COMMON>
+        <technique sid="standard">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="file1-image" texcoord="UVSET0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">true</wrapU>
+                    <wrapV sid="wrapV0">true</wrapV>
+                    <mirrorU sid="mirrorU0">false</mirrorU>
+                    <mirrorV sid="mirrorV0">false</mirrorV>
+                    <coverageU sid="coverageU0">1.000000</coverageU>
+                    <coverageV sid="coverageV0">1.000000</coverageV>
+                    <translateFrameU sid="translateFrameU0">0</translateFrameU>
+                    <translateFrameV sid="translateFrameV0">0</translateFrameV>
+                    <rotateFrame sid="rotateFrame0">0</rotateFrame>
+                    <stagger sid="stagger0">false</stagger>
+                    <fast sid="fast0">false</fast>
+                    <repeatU sid="repeatU0">1.000000</repeatU>
+                    <repeatV sid="repeatV0">1.000000</repeatV>
+                    <offsetU sid="offsetU0">0</offsetU>
+                    <offsetV sid="offsetV0">0</offsetV>
+                    <rotateUV sid="rotateUV0">0</rotateUV>
+                    <noiseU sid="noiseU0">0</noiseU>
+                    <noiseV sid="noiseV0">0</noiseV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <transparent>
+              <color sid="transparent">0 0 0 1.000000</color>
+            </transparent>
+            <transparency>
+              <float>1</float>
+            </transparency>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="blinn1-fx" name="blinn1">
+      <profile_COMMON>
+        <technique sid="standard">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1.000000</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">1.000000 0.046000 0.930199 1.000000</color>
+            </diffuse>
+            <transparent>
+              <color sid="transparent">0 0 0 1.000000</color>
+            </transparent>
+            <transparency>
+              <float>1</float>
+            </transparency>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="pCubeShape1-lib" name="pCubeShape1">
+      <mesh>
+        <source id="pCubeShape1-lib-Position">
+          <float_array count="24" id="pCubeShape1-lib-Position-array">
+-10.000000 -0.050000 10.000000
+10.000000 -0.050000 10.000000
+-10.000000 0.050000 10.000000
+10.000000 0.050000 10.000000
+-10.000000 0.050000 -10.000000
+10.000000 0.050000 -10.000000
+-10.000000 -0.050000 -10.000000
+10.000000 -0.050000 -10.000000
+</float_array>
+          <technique_common>
+            <accessor source="#pCubeShape1-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="pCubeShape1-lib-Normal">
+          <float_array count="72" id="pCubeShape1-lib-Normal-array">
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+</float_array>
+          <technique_common>
+            <accessor source="#pCubeShape1-lib-Normal-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+          <technique profile="MAYA">
+            <DOUBLE_SIDED>true</DOUBLE_SIDED>
+          </technique>
+        </source>
+        <source id="pCubeShape1-lib-map1" name="map1">
+          <float_array count="28" id="pCubeShape1-lib-map1-array">
+0 0
+1.000000 0
+0 1.000000
+1.000000 1.000000
+0 2.000000
+1.000000 2.000000
+0 3.000000
+1.000000 3.000000
+0 4.000000
+1.000000 4.000000
+2.000000 0
+2.000000 1.000000
+-1.000000 0
+-1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#pCubeShape1-lib-map1-array" count="14" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="pCubeShape1-lib-Vertex">
+          <input semantic="POSITION" source="#pCubeShape1-lib-Position"/>
+        </vertices>
+        <triangles material="lambert1" count="12">
+          <input semantic="VERTEX" offset="0" source="#pCubeShape1-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#pCubeShape1-lib-Normal"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#pCubeShape1-lib-map1"/>
+          <p>0 0 0 1 1 1 2 3 2 1 1 1 3 2 3 2 3 2 2 4 2 3 5 3 4 7 4 3 5 3 5 6 5 4 7 4 4 8 4 5 9 5 6 11 6 5 9 5 7 10 7 6 11 6 6 12 6 7 13 7 0 15 8 7 13 7 1 14 9 0 15 8 1 16 1 7 17 10 3 19 3 7 17 10 5 18 11 3 19 3 6 20 12 0 21 0 4 23 13 0 21 0 2 22 2 4 23 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="pCubeShape2-lib" name="pCubeShape2">
+      <mesh>
+        <source id="pCubeShape2-lib-Position">
+          <float_array count="24" id="pCubeShape2-lib-Position-array">
+-0.500000 -0.500000 0.500000
+0.500000 -0.500000 0.500000
+-0.500000 0.500000 0.500000
+0.500000 0.500000 0.500000
+-0.500000 0.500000 -0.500000
+0.500000 0.500000 -0.500000
+-0.500000 -0.500000 -0.500000
+0.500000 -0.500000 -0.500000
+</float_array>
+          <technique_common>
+            <accessor source="#pCubeShape2-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="pCubeShape2-lib-Normal">
+          <float_array count="72" id="pCubeShape2-lib-Normal-array">
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+</float_array>
+          <technique_common>
+            <accessor source="#pCubeShape2-lib-Normal-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+          <technique profile="MAYA">
+            <DOUBLE_SIDED>true</DOUBLE_SIDED>
+          </technique>
+        </source>
+        <source id="pCubeShape2-lib-map1" name="map1">
+          <float_array count="28" id="pCubeShape2-lib-map1-array">
+0 0
+1.000000 0
+0 1.000000
+1.000000 1.000000
+0 2.000000
+1.000000 2.000000
+0 3.000000
+1.000000 3.000000
+0 4.000000
+1.000000 4.000000
+2.000000 0
+2.000000 1.000000
+-1.000000 0
+-1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#pCubeShape2-lib-map1-array" count="14" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="pCubeShape2-lib-Vertex">
+          <input semantic="POSITION" source="#pCubeShape2-lib-Position"/>
+        </vertices>
+        <triangles material="lambert1" count="12">
+          <input semantic="VERTEX" offset="0" source="#pCubeShape2-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#pCubeShape2-lib-Normal"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#pCubeShape2-lib-map1"/>
+          <p>0 0 0 1 1 1 2 3 2 1 1 1 3 2 3 2 3 2 2 4 2 3 5 3 4 7 4 3 5 3 5 6 5 4 7 4 4 8 4 5 9 5 6 11 6 5 9 5 7 10 7 6 11 6 6 12 6 7 13 7 0 15 8 7 13 7 1 14 9 0 15 8 1 16 1 7 17 10 3 19 3 7 17 10 5 18 11 3 19 3 6 20 12 0 21 0 4 23 13 0 21 0 2 22 2 4 23 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="pCubeShape3-lib" name="pCubeShape3">
+      <mesh>
+        <source id="pCubeShape3-lib-Position">
+          <float_array count="24" id="pCubeShape3-lib-Position-array">
+-0.500000 -0.500000 0.500000
+0.500000 -0.500000 0.500000
+-0.500000 0.500000 0.500000
+0.500000 0.500000 0.500000
+-0.500000 0.500000 -0.500000
+0.500000 0.500000 -0.500000
+-0.500000 -0.500000 -0.500000
+0.500000 -0.500000 -0.500000
+</float_array>
+          <technique_common>
+            <accessor source="#pCubeShape3-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="pCubeShape3-lib-Normal">
+          <float_array count="72" id="pCubeShape3-lib-Normal-array">
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+</float_array>
+          <technique_common>
+            <accessor source="#pCubeShape3-lib-Normal-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+          <technique profile="MAYA">
+            <DOUBLE_SIDED>true</DOUBLE_SIDED>
+          </technique>
+        </source>
+        <source id="pCubeShape3-lib-map1" name="map1">
+          <float_array count="28" id="pCubeShape3-lib-map1-array">
+0 0
+1.000000 0
+0 1.000000
+1.000000 1.000000
+0 2.000000
+1.000000 2.000000
+0 3.000000
+1.000000 3.000000
+0 4.000000
+1.000000 4.000000
+2.000000 0
+2.000000 1.000000
+-1.000000 0
+-1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#pCubeShape3-lib-map1-array" count="14" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="pCubeShape3-lib-Vertex">
+          <input semantic="POSITION" source="#pCubeShape3-lib-Position"/>
+        </vertices>
+        <triangles material="lambert1" count="12">
+          <input semantic="VERTEX" offset="0" source="#pCubeShape3-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#pCubeShape3-lib-Normal"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#pCubeShape3-lib-map1"/>
+          <p>0 0 0 1 1 1 2 3 2 1 1 1 3 2 3 2 3 2 2 4 2 3 5 3 4 7 4 3 5 3 5 6 5 4 7 4 4 8 4 5 9 5 6 11 6 5 9 5 7 10 7 6 11 6 6 12 6 7 13 7 0 15 8 7 13 7 1 14 9 0 15 8 1 16 1 7 17 10 3 19 3 7 17 10 5 18 11 3 19 3 6 20 12 0 21 0 4 23 13 0 21 0 2 22 2 4 23 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="pCubeShape4-lib" name="pCubeShape4">
+      <mesh>
+        <source id="pCubeShape4-lib-Position">
+          <float_array count="24" id="pCubeShape4-lib-Position-array">
+-0.500000 -0.500000 0.500000
+0.500000 -0.500000 0.500000
+-0.500000 0.500000 0.500000
+0.500000 0.500000 0.500000
+-0.500000 0.500000 -0.500000
+0.500000 0.500000 -0.500000
+-0.500000 -0.500000 -0.500000
+0.500000 -0.500000 -0.500000
+</float_array>
+          <technique_common>
+            <accessor source="#pCubeShape4-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="pCubeShape4-lib-Normal">
+          <float_array count="72" id="pCubeShape4-lib-Normal-array">
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+</float_array>
+          <technique_common>
+            <accessor source="#pCubeShape4-lib-Normal-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+          <technique profile="MAYA">
+            <DOUBLE_SIDED>true</DOUBLE_SIDED>
+          </technique>
+        </source>
+        <source id="pCubeShape4-lib-map1" name="map1">
+          <float_array count="28" id="pCubeShape4-lib-map1-array">
+0 0
+1.000000 0
+0 1.000000
+1.000000 1.000000
+0 2.000000
+1.000000 2.000000
+0 3.000000
+1.000000 3.000000
+0 4.000000
+1.000000 4.000000
+2.000000 0
+2.000000 1.000000
+-1.000000 0
+-1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#pCubeShape4-lib-map1-array" count="14" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="pCubeShape4-lib-Vertex">
+          <input semantic="POSITION" source="#pCubeShape4-lib-Position"/>
+        </vertices>
+        <triangles material="lambert1" count="12">
+          <input semantic="VERTEX" offset="0" source="#pCubeShape4-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#pCubeShape4-lib-Normal"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#pCubeShape4-lib-map1"/>
+          <p>0 0 0 1 1 1 2 3 2 1 1 1 3 2 3 2 3 2 2 4 2 3 5 3 4 7 4 3 5 3 5 6 5 4 7 4 4 8 4 5 9 5 6 11 6 5 9 5 7 10 7 6 11 6 6 12 6 7 13 7 0 15 8 7 13 7 1 14 9 0 15 8 1 16 1 7 17 10 3 19 3 7 17 10 5 18 11 3 19 3 6 20 12 0 21 0 4 23 13 0 21 0 2 22 2 4 23 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="pCubeShape5-lib" name="pCubeShape5">
+      <mesh>
+        <source id="pCubeShape5-lib-Position">
+          <float_array count="24" id="pCubeShape5-lib-Position-array">
+-0.500000 -0.500000 0.500000
+0.500000 -0.500000 0.500000
+-0.500000 0.500000 0.500000
+0.500000 0.500000 0.500000
+-0.500000 0.500000 -0.500000
+0.500000 0.500000 -0.500000
+-0.500000 -0.500000 -0.500000
+0.500000 -0.500000 -0.500000
+</float_array>
+          <technique_common>
+            <accessor source="#pCubeShape5-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="pCubeShape5-lib-Normal">
+          <float_array count="72" id="pCubeShape5-lib-Normal-array">
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+</float_array>
+          <technique_common>
+            <accessor source="#pCubeShape5-lib-Normal-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+          <technique profile="MAYA">
+            <DOUBLE_SIDED>true</DOUBLE_SIDED>
+          </technique>
+        </source>
+        <source id="pCubeShape5-lib-map1" name="map1">
+          <float_array count="28" id="pCubeShape5-lib-map1-array">
+0 0
+1.000000 0
+0 1.000000
+1.000000 1.000000
+0 2.000000
+1.000000 2.000000
+0 3.000000
+1.000000 3.000000
+0 4.000000
+1.000000 4.000000
+2.000000 0
+2.000000 1.000000
+-1.000000 0
+-1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#pCubeShape5-lib-map1-array" count="14" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="pCubeShape5-lib-Vertex">
+          <input semantic="POSITION" source="#pCubeShape5-lib-Position"/>
+        </vertices>
+        <triangles material="lambert1" count="12">
+          <input semantic="VERTEX" offset="0" source="#pCubeShape5-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#pCubeShape5-lib-Normal"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#pCubeShape5-lib-map1"/>
+          <p>0 0 0 1 1 1 2 3 2 1 1 1 3 2 3 2 3 2 2 4 2 3 5 3 4 7 4 3 5 3 5 6 5 4 7 4 4 8 4 5 9 5 6 11 6 5 9 5 7 10 7 6 11 6 6 12 6 7 13 7 0 15 8 7 13 7 1 14 9 0 15 8 1 16 1 7 17 10 3 19 3 7 17 10 5 18 11 3 19 3 6 20 12 0 21 0 4 23 13 0 21 0 2 22 2 4 23 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="pCubeShape6-lib" name="pCubeShape6">
+      <mesh>
+        <source id="pCubeShape6-lib-Position">
+          <float_array count="24" id="pCubeShape6-lib-Position-array">
+-0.500000 -0.500000 0.500000
+0.500000 -0.500000 0.500000
+-0.500000 0.500000 0.500000
+0.500000 0.500000 0.500000
+-0.500000 0.500000 -0.500000
+0.500000 0.500000 -0.500000
+-0.500000 -0.500000 -0.500000
+0.500000 -0.500000 -0.500000
+</float_array>
+          <technique_common>
+            <accessor source="#pCubeShape6-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="pCubeShape6-lib-Normal">
+          <float_array count="72" id="pCubeShape6-lib-Normal-array">
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+</float_array>
+          <technique_common>
+            <accessor source="#pCubeShape6-lib-Normal-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+          <technique profile="MAYA">
+            <DOUBLE_SIDED>true</DOUBLE_SIDED>
+          </technique>
+        </source>
+        <source id="pCubeShape6-lib-map1" name="map1">
+          <float_array count="28" id="pCubeShape6-lib-map1-array">
+0 0
+1.000000 0
+0 1.000000
+1.000000 1.000000
+0 2.000000
+1.000000 2.000000
+0 3.000000
+1.000000 3.000000
+0 4.000000
+1.000000 4.000000
+2.000000 0
+2.000000 1.000000
+-1.000000 0
+-1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#pCubeShape6-lib-map1-array" count="14" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="pCubeShape6-lib-Vertex">
+          <input semantic="POSITION" source="#pCubeShape6-lib-Position"/>
+        </vertices>
+        <triangles material="lambert1" count="12">
+          <input semantic="VERTEX" offset="0" source="#pCubeShape6-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#pCubeShape6-lib-Normal"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#pCubeShape6-lib-map1"/>
+          <p>0 0 0 1 1 1 2 3 2 1 1 1 3 2 3 2 3 2 2 4 2 3 5 3 4 7 4 3 5 3 5 6 5 4 7 4 4 8 4 5 9 5 6 11 6 5 9 5 7 10 7 6 11 6 6 12 6 7 13 7 0 15 8 7 13 7 1 14 9 0 15 8 1 16 1 7 17 10 3 19 3 7 17 10 5 18 11 3 19 3 6 20 12 0 21 0 4 23 13 0 21 0 2 22 2 4 23 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="pCubeShape7-lib" name="pCubeShape7">
+      <mesh>
+        <source id="pCubeShape7-lib-Position">
+          <float_array count="24" id="pCubeShape7-lib-Position-array">
+-0.500000 -0.500000 0.500000
+0.500000 -0.500000 0.500000
+-0.500000 0.500000 0.500000
+0.500000 0.500000 0.500000
+-0.500000 0.500000 -0.500000
+0.500000 0.500000 -0.500000
+-0.500000 -0.500000 -0.500000
+0.500000 -0.500000 -0.500000
+</float_array>
+          <technique_common>
+            <accessor source="#pCubeShape7-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="pCubeShape7-lib-Normal">
+          <float_array count="72" id="pCubeShape7-lib-Normal-array">
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+</float_array>
+          <technique_common>
+            <accessor source="#pCubeShape7-lib-Normal-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+          <technique profile="MAYA">
+            <DOUBLE_SIDED>true</DOUBLE_SIDED>
+          </technique>
+        </source>
+        <source id="pCubeShape7-lib-map1" name="map1">
+          <float_array count="28" id="pCubeShape7-lib-map1-array">
+0 0
+1.000000 0
+0 1.000000
+1.000000 1.000000
+0 2.000000
+1.000000 2.000000
+0 3.000000
+1.000000 3.000000
+0 4.000000
+1.000000 4.000000
+2.000000 0
+2.000000 1.000000
+-1.000000 0
+-1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#pCubeShape7-lib-map1-array" count="14" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="pCubeShape7-lib-Vertex">
+          <input semantic="POSITION" source="#pCubeShape7-lib-Position"/>
+        </vertices>
+        <triangles material="lambert1" count="12">
+          <input semantic="VERTEX" offset="0" source="#pCubeShape7-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#pCubeShape7-lib-Normal"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#pCubeShape7-lib-map1"/>
+          <p>0 0 0 1 1 1 2 3 2 1 1 1 3 2 3 2 3 2 2 4 2 3 5 3 4 7 4 3 5 3 5 6 5 4 7 4 4 8 4 5 9 5 6 11 6 5 9 5 7 10 7 6 11 6 6 12 6 7 13 7 0 15 8 7 13 7 1 14 9 0 15 8 1 16 1 7 17 10 3 19 3 7 17 10 5 18 11 3 19 3 6 20 12 0 21 0 4 23 13 0 21 0 2 22 2 4 23 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="_node_test_pCubeShape38-lib" name="_node_test_pCubeShape38">
+      <mesh>
+        <source id="_node_test_pCubeShape38-lib-Position">
+          <float_array count="24" id="_node_test_pCubeShape38-lib-Position-array">
+-0.150000 -0.150000 0.150000
+0.150000 -0.150000 0.150000
+-0.150000 0.150000 0.150000
+0.150000 0.150000 0.150000
+-0.150000 0.150000 -0.150000
+0.150000 0.150000 -0.150000
+-0.150000 -0.150000 -0.150000
+0.150000 -0.150000 -0.150000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape38-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="_node_test_pCubeShape38-lib-Normal">
+          <float_array count="72" id="_node_test_pCubeShape38-lib-Normal-array">
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape38-lib-Normal-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+          <technique profile="MAYA">
+            <DOUBLE_SIDED>true</DOUBLE_SIDED>
+          </technique>
+        </source>
+        <source id="_node_test_pCubeShape38-lib-map1" name="map1">
+          <float_array count="28" id="_node_test_pCubeShape38-lib-map1-array">
+0 0
+1.000000 0
+0 1.000000
+1.000000 1.000000
+0 2.000000
+1.000000 2.000000
+0 3.000000
+1.000000 3.000000
+0 4.000000
+1.000000 4.000000
+2.000000 0
+2.000000 1.000000
+-1.000000 0
+-1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape38-lib-map1-array" count="14" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="_node_test_pCubeShape38-lib-Vertex">
+          <input semantic="POSITION" source="#_node_test_pCubeShape38-lib-Position"/>
+        </vertices>
+        <triangles material="blinn1" count="12">
+          <input semantic="VERTEX" offset="0" source="#_node_test_pCubeShape38-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#_node_test_pCubeShape38-lib-Normal"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#_node_test_pCubeShape38-lib-map1"/>
+          <p>0 0 0 1 1 1 2 3 2 1 1 1 3 2 3 2 3 2 2 4 2 3 5 3 4 7 4 3 5 3 5 6 5 4 7 4 4 8 4 5 9 5 6 11 6 5 9 5 7 10 7 6 11 6 6 12 6 7 13 7 0 15 8 7 13 7 1 14 9 0 15 8 1 16 1 7 17 10 3 19 3 7 17 10 5 18 11 3 19 3 6 20 12 0 21 0 4 23 13 0 21 0 2 22 2 4 23 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="_node_test_pCubeShape39-lib" name="_node_test_pCubeShape39">
+      <mesh>
+        <source id="_node_test_pCubeShape39-lib-Position">
+          <float_array count="24" id="_node_test_pCubeShape39-lib-Position-array">
+-0.150000 -0.150000 0.150000
+0.150000 -0.150000 0.150000
+-0.150000 0.150000 0.150000
+0.150000 0.150000 0.150000
+-0.150000 0.150000 -0.150000
+0.150000 0.150000 -0.150000
+-0.150000 -0.150000 -0.150000
+0.150000 -0.150000 -0.150000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape39-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="_node_test_pCubeShape39-lib-Normal">
+          <float_array count="72" id="_node_test_pCubeShape39-lib-Normal-array">
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape39-lib-Normal-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+          <technique profile="MAYA">
+            <DOUBLE_SIDED>true</DOUBLE_SIDED>
+          </technique>
+        </source>
+        <source id="_node_test_pCubeShape39-lib-map1" name="map1">
+          <float_array count="28" id="_node_test_pCubeShape39-lib-map1-array">
+0 0
+1.000000 0
+0 1.000000
+1.000000 1.000000
+0 2.000000
+1.000000 2.000000
+0 3.000000
+1.000000 3.000000
+0 4.000000
+1.000000 4.000000
+2.000000 0
+2.000000 1.000000
+-1.000000 0
+-1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape39-lib-map1-array" count="14" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="_node_test_pCubeShape39-lib-Vertex">
+          <input semantic="POSITION" source="#_node_test_pCubeShape39-lib-Position"/>
+        </vertices>
+        <triangles material="blinn1" count="12">
+          <input semantic="VERTEX" offset="0" source="#_node_test_pCubeShape39-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#_node_test_pCubeShape39-lib-Normal"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#_node_test_pCubeShape39-lib-map1"/>
+          <p>0 0 0 1 1 1 2 3 2 1 1 1 3 2 3 2 3 2 2 4 2 3 5 3 4 7 4 3 5 3 5 6 5 4 7 4 4 8 4 5 9 5 6 11 6 5 9 5 7 10 7 6 11 6 6 12 6 7 13 7 0 15 8 7 13 7 1 14 9 0 15 8 1 16 1 7 17 10 3 19 3 7 17 10 5 18 11 3 19 3 6 20 12 0 21 0 4 23 13 0 21 0 2 22 2 4 23 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="_node_test_pCubeShape40-lib" name="_node_test_pCubeShape40">
+      <mesh>
+        <source id="_node_test_pCubeShape40-lib-Position">
+          <float_array count="24" id="_node_test_pCubeShape40-lib-Position-array">
+-0.150000 -0.150000 0.150000
+0.150000 -0.150000 0.150000
+-0.150000 0.150000 0.150000
+0.150000 0.150000 0.150000
+-0.150000 0.150000 -0.150000
+0.150000 0.150000 -0.150000
+-0.150000 -0.150000 -0.150000
+0.150000 -0.150000 -0.150000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape40-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="_node_test_pCubeShape40-lib-Normal">
+          <float_array count="72" id="_node_test_pCubeShape40-lib-Normal-array">
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape40-lib-Normal-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+          <technique profile="MAYA">
+            <DOUBLE_SIDED>true</DOUBLE_SIDED>
+          </technique>
+        </source>
+        <source id="_node_test_pCubeShape40-lib-map1" name="map1">
+          <float_array count="28" id="_node_test_pCubeShape40-lib-map1-array">
+0 0
+1.000000 0
+0 1.000000
+1.000000 1.000000
+0 2.000000
+1.000000 2.000000
+0 3.000000
+1.000000 3.000000
+0 4.000000
+1.000000 4.000000
+2.000000 0
+2.000000 1.000000
+-1.000000 0
+-1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape40-lib-map1-array" count="14" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="_node_test_pCubeShape40-lib-Vertex">
+          <input semantic="POSITION" source="#_node_test_pCubeShape40-lib-Position"/>
+        </vertices>
+        <triangles material="blinn1" count="12">
+          <input semantic="VERTEX" offset="0" source="#_node_test_pCubeShape40-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#_node_test_pCubeShape40-lib-Normal"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#_node_test_pCubeShape40-lib-map1"/>
+          <p>0 0 0 1 1 1 2 3 2 1 1 1 3 2 3 2 3 2 2 4 2 3 5 3 4 7 4 3 5 3 5 6 5 4 7 4 4 8 4 5 9 5 6 11 6 5 9 5 7 10 7 6 11 6 6 12 6 7 13 7 0 15 8 7 13 7 1 14 9 0 15 8 1 16 1 7 17 10 3 19 3 7 17 10 5 18 11 3 19 3 6 20 12 0 21 0 4 23 13 0 21 0 2 22 2 4 23 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="_node_test_pCubeShape41-lib" name="_node_test_pCubeShape41">
+      <mesh>
+        <source id="_node_test_pCubeShape41-lib-Position">
+          <float_array count="24" id="_node_test_pCubeShape41-lib-Position-array">
+-0.150000 -0.150000 0.150000
+0.150000 -0.150000 0.150000
+-0.150000 0.150000 0.150000
+0.150000 0.150000 0.150000
+-0.150000 0.150000 -0.150000
+0.150000 0.150000 -0.150000
+-0.150000 -0.150000 -0.150000
+0.150000 -0.150000 -0.150000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape41-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="_node_test_pCubeShape41-lib-Normal">
+          <float_array count="72" id="_node_test_pCubeShape41-lib-Normal-array">
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape41-lib-Normal-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+          <technique profile="MAYA">
+            <DOUBLE_SIDED>true</DOUBLE_SIDED>
+          </technique>
+        </source>
+        <source id="_node_test_pCubeShape41-lib-map1" name="map1">
+          <float_array count="28" id="_node_test_pCubeShape41-lib-map1-array">
+0 0
+1.000000 0
+0 1.000000
+1.000000 1.000000
+0 2.000000
+1.000000 2.000000
+0 3.000000
+1.000000 3.000000
+0 4.000000
+1.000000 4.000000
+2.000000 0
+2.000000 1.000000
+-1.000000 0
+-1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape41-lib-map1-array" count="14" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="_node_test_pCubeShape41-lib-Vertex">
+          <input semantic="POSITION" source="#_node_test_pCubeShape41-lib-Position"/>
+        </vertices>
+        <triangles material="blinn1" count="12">
+          <input semantic="VERTEX" offset="0" source="#_node_test_pCubeShape41-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#_node_test_pCubeShape41-lib-Normal"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#_node_test_pCubeShape41-lib-map1"/>
+          <p>0 0 0 1 1 1 2 3 2 1 1 1 3 2 3 2 3 2 2 4 2 3 5 3 4 7 4 3 5 3 5 6 5 4 7 4 4 8 4 5 9 5 6 11 6 5 9 5 7 10 7 6 11 6 6 12 6 7 13 7 0 15 8 7 13 7 1 14 9 0 15 8 1 16 1 7 17 10 3 19 3 7 17 10 5 18 11 3 19 3 6 20 12 0 21 0 4 23 13 0 21 0 2 22 2 4 23 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="_node_test_pCubeShape42-lib" name="_node_test_pCubeShape42">
+      <mesh>
+        <source id="_node_test_pCubeShape42-lib-Position">
+          <float_array count="24" id="_node_test_pCubeShape42-lib-Position-array">
+-0.150000 -0.150000 0.150000
+0.150000 -0.150000 0.150000
+-0.150000 0.150000 0.150000
+0.150000 0.150000 0.150000
+-0.150000 0.150000 -0.150000
+0.150000 0.150000 -0.150000
+-0.150000 -0.150000 -0.150000
+0.150000 -0.150000 -0.150000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape42-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="_node_test_pCubeShape42-lib-Normal">
+          <float_array count="72" id="_node_test_pCubeShape42-lib-Normal-array">
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape42-lib-Normal-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+          <technique profile="MAYA">
+            <DOUBLE_SIDED>true</DOUBLE_SIDED>
+          </technique>
+        </source>
+        <source id="_node_test_pCubeShape42-lib-map1" name="map1">
+          <float_array count="28" id="_node_test_pCubeShape42-lib-map1-array">
+0 0
+1.000000 0
+0 1.000000
+1.000000 1.000000
+0 2.000000
+1.000000 2.000000
+0 3.000000
+1.000000 3.000000
+0 4.000000
+1.000000 4.000000
+2.000000 0
+2.000000 1.000000
+-1.000000 0
+-1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape42-lib-map1-array" count="14" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="_node_test_pCubeShape42-lib-Vertex">
+          <input semantic="POSITION" source="#_node_test_pCubeShape42-lib-Position"/>
+        </vertices>
+        <triangles material="blinn1" count="12">
+          <input semantic="VERTEX" offset="0" source="#_node_test_pCubeShape42-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#_node_test_pCubeShape42-lib-Normal"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#_node_test_pCubeShape42-lib-map1"/>
+          <p>0 0 0 1 1 1 2 3 2 1 1 1 3 2 3 2 3 2 2 4 2 3 5 3 4 7 4 3 5 3 5 6 5 4 7 4 4 8 4 5 9 5 6 11 6 5 9 5 7 10 7 6 11 6 6 12 6 7 13 7 0 15 8 7 13 7 1 14 9 0 15 8 1 16 1 7 17 10 3 19 3 7 17 10 5 18 11 3 19 3 6 20 12 0 21 0 4 23 13 0 21 0 2 22 2 4 23 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="_node_test_pCubeShape43-lib" name="_node_test_pCubeShape43">
+      <mesh>
+        <source id="_node_test_pCubeShape43-lib-Position">
+          <float_array count="24" id="_node_test_pCubeShape43-lib-Position-array">
+-0.150000 -0.150000 0.150000
+0.150000 -0.150000 0.150000
+-0.150000 0.150000 0.150000
+0.150000 0.150000 0.150000
+-0.150000 0.150000 -0.150000
+0.150000 0.150000 -0.150000
+-0.150000 -0.150000 -0.150000
+0.150000 -0.150000 -0.150000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape43-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="_node_test_pCubeShape43-lib-Normal">
+          <float_array count="72" id="_node_test_pCubeShape43-lib-Normal-array">
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape43-lib-Normal-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+          <technique profile="MAYA">
+            <DOUBLE_SIDED>true</DOUBLE_SIDED>
+          </technique>
+        </source>
+        <source id="_node_test_pCubeShape43-lib-map1" name="map1">
+          <float_array count="28" id="_node_test_pCubeShape43-lib-map1-array">
+0 0
+1.000000 0
+0 1.000000
+1.000000 1.000000
+0 2.000000
+1.000000 2.000000
+0 3.000000
+1.000000 3.000000
+0 4.000000
+1.000000 4.000000
+2.000000 0
+2.000000 1.000000
+-1.000000 0
+-1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape43-lib-map1-array" count="14" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="_node_test_pCubeShape43-lib-Vertex">
+          <input semantic="POSITION" source="#_node_test_pCubeShape43-lib-Position"/>
+        </vertices>
+        <triangles material="blinn1" count="12">
+          <input semantic="VERTEX" offset="0" source="#_node_test_pCubeShape43-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#_node_test_pCubeShape43-lib-Normal"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#_node_test_pCubeShape43-lib-map1"/>
+          <p>0 0 0 1 1 1 2 3 2 1 1 1 3 2 3 2 3 2 2 4 2 3 5 3 4 7 4 3 5 3 5 6 5 4 7 4 4 8 4 5 9 5 6 11 6 5 9 5 7 10 7 6 11 6 6 12 6 7 13 7 0 15 8 7 13 7 1 14 9 0 15 8 1 16 1 7 17 10 3 19 3 7 17 10 5 18 11 3 19 3 6 20 12 0 21 0 4 23 13 0 21 0 2 22 2 4 23 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="_node_test_pCubeShape44-lib" name="_node_test_pCubeShape44">
+      <mesh>
+        <source id="_node_test_pCubeShape44-lib-Position">
+          <float_array count="24" id="_node_test_pCubeShape44-lib-Position-array">
+-0.150000 -0.150000 0.150000
+0.150000 -0.150000 0.150000
+-0.150000 0.150000 0.150000
+0.150000 0.150000 0.150000
+-0.150000 0.150000 -0.150000
+0.150000 0.150000 -0.150000
+-0.150000 -0.150000 -0.150000
+0.150000 -0.150000 -0.150000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape44-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="_node_test_pCubeShape44-lib-Normal">
+          <float_array count="72" id="_node_test_pCubeShape44-lib-Normal-array">
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape44-lib-Normal-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+          <technique profile="MAYA">
+            <DOUBLE_SIDED>true</DOUBLE_SIDED>
+          </technique>
+        </source>
+        <source id="_node_test_pCubeShape44-lib-map1" name="map1">
+          <float_array count="28" id="_node_test_pCubeShape44-lib-map1-array">
+0 0
+1.000000 0
+0 1.000000
+1.000000 1.000000
+0 2.000000
+1.000000 2.000000
+0 3.000000
+1.000000 3.000000
+0 4.000000
+1.000000 4.000000
+2.000000 0
+2.000000 1.000000
+-1.000000 0
+-1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape44-lib-map1-array" count="14" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="_node_test_pCubeShape44-lib-Vertex">
+          <input semantic="POSITION" source="#_node_test_pCubeShape44-lib-Position"/>
+        </vertices>
+        <triangles material="blinn1" count="12">
+          <input semantic="VERTEX" offset="0" source="#_node_test_pCubeShape44-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#_node_test_pCubeShape44-lib-Normal"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#_node_test_pCubeShape44-lib-map1"/>
+          <p>0 0 0 1 1 1 2 3 2 1 1 1 3 2 3 2 3 2 2 4 2 3 5 3 4 7 4 3 5 3 5 6 5 4 7 4 4 8 4 5 9 5 6 11 6 5 9 5 7 10 7 6 11 6 6 12 6 7 13 7 0 15 8 7 13 7 1 14 9 0 15 8 1 16 1 7 17 10 3 19 3 7 17 10 5 18 11 3 19 3 6 20 12 0 21 0 4 23 13 0 21 0 2 22 2 4 23 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="_node_test_pCubeShape45-lib" name="_node_test_pCubeShape45">
+      <mesh>
+        <source id="_node_test_pCubeShape45-lib-Position">
+          <float_array count="24" id="_node_test_pCubeShape45-lib-Position-array">
+-0.150000 -0.150000 0.150000
+0.150000 -0.150000 0.150000
+-0.150000 0.150000 0.150000
+0.150000 0.150000 0.150000
+-0.150000 0.150000 -0.150000
+0.150000 0.150000 -0.150000
+-0.150000 -0.150000 -0.150000
+0.150000 -0.150000 -0.150000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape45-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="_node_test_pCubeShape45-lib-Normal">
+          <float_array count="72" id="_node_test_pCubeShape45-lib-Normal-array">
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape45-lib-Normal-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+          <technique profile="MAYA">
+            <DOUBLE_SIDED>true</DOUBLE_SIDED>
+          </technique>
+        </source>
+        <source id="_node_test_pCubeShape45-lib-map1" name="map1">
+          <float_array count="28" id="_node_test_pCubeShape45-lib-map1-array">
+0 0
+1.000000 0
+0 1.000000
+1.000000 1.000000
+0 2.000000
+1.000000 2.000000
+0 3.000000
+1.000000 3.000000
+0 4.000000
+1.000000 4.000000
+2.000000 0
+2.000000 1.000000
+-1.000000 0
+-1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape45-lib-map1-array" count="14" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="_node_test_pCubeShape45-lib-Vertex">
+          <input semantic="POSITION" source="#_node_test_pCubeShape45-lib-Position"/>
+        </vertices>
+        <triangles material="blinn1" count="12">
+          <input semantic="VERTEX" offset="0" source="#_node_test_pCubeShape45-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#_node_test_pCubeShape45-lib-Normal"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#_node_test_pCubeShape45-lib-map1"/>
+          <p>0 0 0 1 1 1 2 3 2 1 1 1 3 2 3 2 3 2 2 4 2 3 5 3 4 7 4 3 5 3 5 6 5 4 7 4 4 8 4 5 9 5 6 11 6 5 9 5 7 10 7 6 11 6 6 12 6 7 13 7 0 15 8 7 13 7 1 14 9 0 15 8 1 16 1 7 17 10 3 19 3 7 17 10 5 18 11 3 19 3 6 20 12 0 21 0 4 23 13 0 21 0 2 22 2 4 23 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="_node_test_pCubeShape46-lib" name="_node_test_pCubeShape46">
+      <mesh>
+        <source id="_node_test_pCubeShape46-lib-Position">
+          <float_array count="24" id="_node_test_pCubeShape46-lib-Position-array">
+-0.150000 -0.150000 0.150000
+0.150000 -0.150000 0.150000
+-0.150000 0.150000 0.150000
+0.150000 0.150000 0.150000
+-0.150000 0.150000 -0.150000
+0.150000 0.150000 -0.150000
+-0.150000 -0.150000 -0.150000
+0.150000 -0.150000 -0.150000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape46-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="_node_test_pCubeShape46-lib-Normal">
+          <float_array count="72" id="_node_test_pCubeShape46-lib-Normal-array">
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape46-lib-Normal-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+          <technique profile="MAYA">
+            <DOUBLE_SIDED>true</DOUBLE_SIDED>
+          </technique>
+        </source>
+        <source id="_node_test_pCubeShape46-lib-map1" name="map1">
+          <float_array count="28" id="_node_test_pCubeShape46-lib-map1-array">
+0 0
+1.000000 0
+0 1.000000
+1.000000 1.000000
+0 2.000000
+1.000000 2.000000
+0 3.000000
+1.000000 3.000000
+0 4.000000
+1.000000 4.000000
+2.000000 0
+2.000000 1.000000
+-1.000000 0
+-1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape46-lib-map1-array" count="14" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="_node_test_pCubeShape46-lib-Vertex">
+          <input semantic="POSITION" source="#_node_test_pCubeShape46-lib-Position"/>
+        </vertices>
+        <triangles material="blinn1" count="12">
+          <input semantic="VERTEX" offset="0" source="#_node_test_pCubeShape46-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#_node_test_pCubeShape46-lib-Normal"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#_node_test_pCubeShape46-lib-map1"/>
+          <p>0 0 0 1 1 1 2 3 2 1 1 1 3 2 3 2 3 2 2 4 2 3 5 3 4 7 4 3 5 3 5 6 5 4 7 4 4 8 4 5 9 5 6 11 6 5 9 5 7 10 7 6 11 6 6 12 6 7 13 7 0 15 8 7 13 7 1 14 9 0 15 8 1 16 1 7 17 10 3 19 3 7 17 10 5 18 11 3 19 3 6 20 12 0 21 0 4 23 13 0 21 0 2 22 2 4 23 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="_node_test_pCubeShape47-lib" name="_node_test_pCubeShape47">
+      <mesh>
+        <source id="_node_test_pCubeShape47-lib-Position">
+          <float_array count="24" id="_node_test_pCubeShape47-lib-Position-array">
+-0.150000 -0.150000 0.150000
+0.150000 -0.150000 0.150000
+-0.150000 0.150000 0.150000
+0.150000 0.150000 0.150000
+-0.150000 0.150000 -0.150000
+0.150000 0.150000 -0.150000
+-0.150000 -0.150000 -0.150000
+0.150000 -0.150000 -0.150000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape47-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="_node_test_pCubeShape47-lib-Normal">
+          <float_array count="72" id="_node_test_pCubeShape47-lib-Normal-array">
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape47-lib-Normal-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+          <technique profile="MAYA">
+            <DOUBLE_SIDED>true</DOUBLE_SIDED>
+          </technique>
+        </source>
+        <source id="_node_test_pCubeShape47-lib-map1" name="map1">
+          <float_array count="28" id="_node_test_pCubeShape47-lib-map1-array">
+0 0
+1.000000 0
+0 1.000000
+1.000000 1.000000
+0 2.000000
+1.000000 2.000000
+0 3.000000
+1.000000 3.000000
+0 4.000000
+1.000000 4.000000
+2.000000 0
+2.000000 1.000000
+-1.000000 0
+-1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape47-lib-map1-array" count="14" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="_node_test_pCubeShape47-lib-Vertex">
+          <input semantic="POSITION" source="#_node_test_pCubeShape47-lib-Position"/>
+        </vertices>
+        <triangles material="blinn1" count="12">
+          <input semantic="VERTEX" offset="0" source="#_node_test_pCubeShape47-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#_node_test_pCubeShape47-lib-Normal"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#_node_test_pCubeShape47-lib-map1"/>
+          <p>0 0 0 1 1 1 2 3 2 1 1 1 3 2 3 2 3 2 2 4 2 3 5 3 4 7 4 3 5 3 5 6 5 4 7 4 4 8 4 5 9 5 6 11 6 5 9 5 7 10 7 6 11 6 6 12 6 7 13 7 0 15 8 7 13 7 1 14 9 0 15 8 1 16 1 7 17 10 3 19 3 7 17 10 5 18 11 3 19 3 6 20 12 0 21 0 4 23 13 0 21 0 2 22 2 4 23 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="_node_test_pCubeShape48-lib" name="_node_test_pCubeShape48">
+      <mesh>
+        <source id="_node_test_pCubeShape48-lib-Position">
+          <float_array count="24" id="_node_test_pCubeShape48-lib-Position-array">
+-0.150000 -0.150000 0.150000
+0.150000 -0.150000 0.150000
+-0.150000 0.150000 0.150000
+0.150000 0.150000 0.150000
+-0.150000 0.150000 -0.150000
+0.150000 0.150000 -0.150000
+-0.150000 -0.150000 -0.150000
+0.150000 -0.150000 -0.150000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape48-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="_node_test_pCubeShape48-lib-Normal">
+          <float_array count="72" id="_node_test_pCubeShape48-lib-Normal-array">
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape48-lib-Normal-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+          <technique profile="MAYA">
+            <DOUBLE_SIDED>true</DOUBLE_SIDED>
+          </technique>
+        </source>
+        <source id="_node_test_pCubeShape48-lib-map1" name="map1">
+          <float_array count="28" id="_node_test_pCubeShape48-lib-map1-array">
+0 0
+1.000000 0
+0 1.000000
+1.000000 1.000000
+0 2.000000
+1.000000 2.000000
+0 3.000000
+1.000000 3.000000
+0 4.000000
+1.000000 4.000000
+2.000000 0
+2.000000 1.000000
+-1.000000 0
+-1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape48-lib-map1-array" count="14" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="_node_test_pCubeShape48-lib-Vertex">
+          <input semantic="POSITION" source="#_node_test_pCubeShape48-lib-Position"/>
+        </vertices>
+        <triangles material="blinn1" count="12">
+          <input semantic="VERTEX" offset="0" source="#_node_test_pCubeShape48-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#_node_test_pCubeShape48-lib-Normal"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#_node_test_pCubeShape48-lib-map1"/>
+          <p>0 0 0 1 1 1 2 3 2 1 1 1 3 2 3 2 3 2 2 4 2 3 5 3 4 7 4 3 5 3 5 6 5 4 7 4 4 8 4 5 9 5 6 11 6 5 9 5 7 10 7 6 11 6 6 12 6 7 13 7 0 15 8 7 13 7 1 14 9 0 15 8 1 16 1 7 17 10 3 19 3 7 17 10 5 18 11 3 19 3 6 20 12 0 21 0 4 23 13 0 21 0 2 22 2 4 23 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="_node_test_pCubeShape50-lib" name="_node_test_pCubeShape50">
+      <mesh>
+        <source id="_node_test_pCubeShape50-lib-Position">
+          <float_array count="24" id="_node_test_pCubeShape50-lib-Position-array">
+-0.150000 -0.150000 0.150000
+0.150000 -0.150000 0.150000
+-0.150000 0.150000 0.150000
+0.150000 0.150000 0.150000
+-0.150000 0.150000 -0.150000
+0.150000 0.150000 -0.150000
+-0.150000 -0.150000 -0.150000
+0.150000 -0.150000 -0.150000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape50-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="_node_test_pCubeShape50-lib-Normal">
+          <float_array count="72" id="_node_test_pCubeShape50-lib-Normal-array">
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape50-lib-Normal-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+          <technique profile="MAYA">
+            <DOUBLE_SIDED>true</DOUBLE_SIDED>
+          </technique>
+        </source>
+        <source id="_node_test_pCubeShape50-lib-map1" name="map1">
+          <float_array count="28" id="_node_test_pCubeShape50-lib-map1-array">
+0 0
+1.000000 0
+0 1.000000
+1.000000 1.000000
+0 2.000000
+1.000000 2.000000
+0 3.000000
+1.000000 3.000000
+0 4.000000
+1.000000 4.000000
+2.000000 0
+2.000000 1.000000
+-1.000000 0
+-1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape50-lib-map1-array" count="14" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="_node_test_pCubeShape50-lib-Vertex">
+          <input semantic="POSITION" source="#_node_test_pCubeShape50-lib-Position"/>
+        </vertices>
+        <triangles material="blinn1" count="12">
+          <input semantic="VERTEX" offset="0" source="#_node_test_pCubeShape50-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#_node_test_pCubeShape50-lib-Normal"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#_node_test_pCubeShape50-lib-map1"/>
+          <p>0 0 0 1 1 1 2 3 2 1 1 1 3 2 3 2 3 2 2 4 2 3 5 3 4 7 4 3 5 3 5 6 5 4 7 4 4 8 4 5 9 5 6 11 6 5 9 5 7 10 7 6 11 6 6 12 6 7 13 7 0 15 8 7 13 7 1 14 9 0 15 8 1 16 1 7 17 10 3 19 3 7 17 10 5 18 11 3 19 3 6 20 12 0 21 0 4 23 13 0 21 0 2 22 2 4 23 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="_node_test_pCubeShape51-lib" name="_node_test_pCubeShape51">
+      <mesh>
+        <source id="_node_test_pCubeShape51-lib-Position">
+          <float_array count="24" id="_node_test_pCubeShape51-lib-Position-array">
+-0.150000 -0.150000 0.150000
+0.150000 -0.150000 0.150000
+-0.150000 0.150000 0.150000
+0.150000 0.150000 0.150000
+-0.150000 0.150000 -0.150000
+0.150000 0.150000 -0.150000
+-0.150000 -0.150000 -0.150000
+0.150000 -0.150000 -0.150000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape51-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="_node_test_pCubeShape51-lib-Normal">
+          <float_array count="72" id="_node_test_pCubeShape51-lib-Normal-array">
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape51-lib-Normal-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+          <technique profile="MAYA">
+            <DOUBLE_SIDED>true</DOUBLE_SIDED>
+          </technique>
+        </source>
+        <source id="_node_test_pCubeShape51-lib-map1" name="map1">
+          <float_array count="28" id="_node_test_pCubeShape51-lib-map1-array">
+0 0
+1.000000 0
+0 1.000000
+1.000000 1.000000
+0 2.000000
+1.000000 2.000000
+0 3.000000
+1.000000 3.000000
+0 4.000000
+1.000000 4.000000
+2.000000 0
+2.000000 1.000000
+-1.000000 0
+-1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape51-lib-map1-array" count="14" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="_node_test_pCubeShape51-lib-Vertex">
+          <input semantic="POSITION" source="#_node_test_pCubeShape51-lib-Position"/>
+        </vertices>
+        <triangles material="blinn1" count="12">
+          <input semantic="VERTEX" offset="0" source="#_node_test_pCubeShape51-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#_node_test_pCubeShape51-lib-Normal"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#_node_test_pCubeShape51-lib-map1"/>
+          <p>0 0 0 1 1 1 2 3 2 1 1 1 3 2 3 2 3 2 2 4 2 3 5 3 4 7 4 3 5 3 5 6 5 4 7 4 4 8 4 5 9 5 6 11 6 5 9 5 7 10 7 6 11 6 6 12 6 7 13 7 0 15 8 7 13 7 1 14 9 0 15 8 1 16 1 7 17 10 3 19 3 7 17 10 5 18 11 3 19 3 6 20 12 0 21 0 4 23 13 0 21 0 2 22 2 4 23 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="_node_test_pCubeShape52-lib" name="_node_test_pCubeShape52">
+      <mesh>
+        <source id="_node_test_pCubeShape52-lib-Position">
+          <float_array count="24" id="_node_test_pCubeShape52-lib-Position-array">
+-0.150000 -0.150000 0.150000
+0.150000 -0.150000 0.150000
+-0.150000 0.150000 0.150000
+0.150000 0.150000 0.150000
+-0.150000 0.150000 -0.150000
+0.150000 0.150000 -0.150000
+-0.150000 -0.150000 -0.150000
+0.150000 -0.150000 -0.150000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape52-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="_node_test_pCubeShape52-lib-Normal">
+          <float_array count="72" id="_node_test_pCubeShape52-lib-Normal-array">
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape52-lib-Normal-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+          <technique profile="MAYA">
+            <DOUBLE_SIDED>true</DOUBLE_SIDED>
+          </technique>
+        </source>
+        <source id="_node_test_pCubeShape52-lib-map1" name="map1">
+          <float_array count="28" id="_node_test_pCubeShape52-lib-map1-array">
+0 0
+1.000000 0
+0 1.000000
+1.000000 1.000000
+0 2.000000
+1.000000 2.000000
+0 3.000000
+1.000000 3.000000
+0 4.000000
+1.000000 4.000000
+2.000000 0
+2.000000 1.000000
+-1.000000 0
+-1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape52-lib-map1-array" count="14" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="_node_test_pCubeShape52-lib-Vertex">
+          <input semantic="POSITION" source="#_node_test_pCubeShape52-lib-Position"/>
+        </vertices>
+        <triangles material="blinn1" count="12">
+          <input semantic="VERTEX" offset="0" source="#_node_test_pCubeShape52-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#_node_test_pCubeShape52-lib-Normal"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#_node_test_pCubeShape52-lib-map1"/>
+          <p>0 0 0 1 1 1 2 3 2 1 1 1 3 2 3 2 3 2 2 4 2 3 5 3 4 7 4 3 5 3 5 6 5 4 7 4 4 8 4 5 9 5 6 11 6 5 9 5 7 10 7 6 11 6 6 12 6 7 13 7 0 15 8 7 13 7 1 14 9 0 15 8 1 16 1 7 17 10 3 19 3 7 17 10 5 18 11 3 19 3 6 20 12 0 21 0 4 23 13 0 21 0 2 22 2 4 23 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="_node_test_pCubeShape53-lib" name="_node_test_pCubeShape53">
+      <mesh>
+        <source id="_node_test_pCubeShape53-lib-Position">
+          <float_array count="24" id="_node_test_pCubeShape53-lib-Position-array">
+-0.150000 -0.150000 0.150000
+0.150000 -0.150000 0.150000
+-0.150000 0.150000 0.150000
+0.150000 0.150000 0.150000
+-0.150000 0.150000 -0.150000
+0.150000 0.150000 -0.150000
+-0.150000 -0.150000 -0.150000
+0.150000 -0.150000 -0.150000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape53-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="_node_test_pCubeShape53-lib-Normal">
+          <float_array count="72" id="_node_test_pCubeShape53-lib-Normal-array">
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape53-lib-Normal-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+          <technique profile="MAYA">
+            <DOUBLE_SIDED>true</DOUBLE_SIDED>
+          </technique>
+        </source>
+        <source id="_node_test_pCubeShape53-lib-map1" name="map1">
+          <float_array count="28" id="_node_test_pCubeShape53-lib-map1-array">
+0 0
+1.000000 0
+0 1.000000
+1.000000 1.000000
+0 2.000000
+1.000000 2.000000
+0 3.000000
+1.000000 3.000000
+0 4.000000
+1.000000 4.000000
+2.000000 0
+2.000000 1.000000
+-1.000000 0
+-1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape53-lib-map1-array" count="14" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="_node_test_pCubeShape53-lib-Vertex">
+          <input semantic="POSITION" source="#_node_test_pCubeShape53-lib-Position"/>
+        </vertices>
+        <triangles material="blinn1" count="12">
+          <input semantic="VERTEX" offset="0" source="#_node_test_pCubeShape53-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#_node_test_pCubeShape53-lib-Normal"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#_node_test_pCubeShape53-lib-map1"/>
+          <p>0 0 0 1 1 1 2 3 2 1 1 1 3 2 3 2 3 2 2 4 2 3 5 3 4 7 4 3 5 3 5 6 5 4 7 4 4 8 4 5 9 5 6 11 6 5 9 5 7 10 7 6 11 6 6 12 6 7 13 7 0 15 8 7 13 7 1 14 9 0 15 8 1 16 1 7 17 10 3 19 3 7 17 10 5 18 11 3 19 3 6 20 12 0 21 0 4 23 13 0 21 0 2 22 2 4 23 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="_node_test_pCubeShape54-lib" name="_node_test_pCubeShape54">
+      <mesh>
+        <source id="_node_test_pCubeShape54-lib-Position">
+          <float_array count="24" id="_node_test_pCubeShape54-lib-Position-array">
+-0.150000 -0.150000 0.150000
+0.150000 -0.150000 0.150000
+-0.150000 0.150000 0.150000
+0.150000 0.150000 0.150000
+-0.150000 0.150000 -0.150000
+0.150000 0.150000 -0.150000
+-0.150000 -0.150000 -0.150000
+0.150000 -0.150000 -0.150000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape54-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="_node_test_pCubeShape54-lib-Normal">
+          <float_array count="72" id="_node_test_pCubeShape54-lib-Normal-array">
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape54-lib-Normal-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+          <technique profile="MAYA">
+            <DOUBLE_SIDED>true</DOUBLE_SIDED>
+          </technique>
+        </source>
+        <source id="_node_test_pCubeShape54-lib-map1" name="map1">
+          <float_array count="28" id="_node_test_pCubeShape54-lib-map1-array">
+0 0
+1.000000 0
+0 1.000000
+1.000000 1.000000
+0 2.000000
+1.000000 2.000000
+0 3.000000
+1.000000 3.000000
+0 4.000000
+1.000000 4.000000
+2.000000 0
+2.000000 1.000000
+-1.000000 0
+-1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape54-lib-map1-array" count="14" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="_node_test_pCubeShape54-lib-Vertex">
+          <input semantic="POSITION" source="#_node_test_pCubeShape54-lib-Position"/>
+        </vertices>
+        <triangles material="blinn1" count="12">
+          <input semantic="VERTEX" offset="0" source="#_node_test_pCubeShape54-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#_node_test_pCubeShape54-lib-Normal"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#_node_test_pCubeShape54-lib-map1"/>
+          <p>0 0 0 1 1 1 2 3 2 1 1 1 3 2 3 2 3 2 2 4 2 3 5 3 4 7 4 3 5 3 5 6 5 4 7 4 4 8 4 5 9 5 6 11 6 5 9 5 7 10 7 6 11 6 6 12 6 7 13 7 0 15 8 7 13 7 1 14 9 0 15 8 1 16 1 7 17 10 3 19 3 7 17 10 5 18 11 3 19 3 6 20 12 0 21 0 4 23 13 0 21 0 2 22 2 4 23 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="_node_test_pCubeShape56-lib" name="_node_test_pCubeShape56">
+      <mesh>
+        <source id="_node_test_pCubeShape56-lib-Position">
+          <float_array count="24" id="_node_test_pCubeShape56-lib-Position-array">
+-0.150000 -0.150000 0.150000
+0.150000 -0.150000 0.150000
+-0.150000 0.150000 0.150000
+0.150000 0.150000 0.150000
+-0.150000 0.150000 -0.150000
+0.150000 0.150000 -0.150000
+-0.150000 -0.150000 -0.150000
+0.150000 -0.150000 -0.150000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape56-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="_node_test_pCubeShape56-lib-Normal">
+          <float_array count="72" id="_node_test_pCubeShape56-lib-Normal-array">
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape56-lib-Normal-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+          <technique profile="MAYA">
+            <DOUBLE_SIDED>true</DOUBLE_SIDED>
+          </technique>
+        </source>
+        <source id="_node_test_pCubeShape56-lib-map1" name="map1">
+          <float_array count="28" id="_node_test_pCubeShape56-lib-map1-array">
+0 0
+1.000000 0
+0 1.000000
+1.000000 1.000000
+0 2.000000
+1.000000 2.000000
+0 3.000000
+1.000000 3.000000
+0 4.000000
+1.000000 4.000000
+2.000000 0
+2.000000 1.000000
+-1.000000 0
+-1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape56-lib-map1-array" count="14" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="_node_test_pCubeShape56-lib-Vertex">
+          <input semantic="POSITION" source="#_node_test_pCubeShape56-lib-Position"/>
+        </vertices>
+        <triangles material="blinn1" count="12">
+          <input semantic="VERTEX" offset="0" source="#_node_test_pCubeShape56-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#_node_test_pCubeShape56-lib-Normal"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#_node_test_pCubeShape56-lib-map1"/>
+          <p>0 0 0 1 1 1 2 3 2 1 1 1 3 2 3 2 3 2 2 4 2 3 5 3 4 7 4 3 5 3 5 6 5 4 7 4 4 8 4 5 9 5 6 11 6 5 9 5 7 10 7 6 11 6 6 12 6 7 13 7 0 15 8 7 13 7 1 14 9 0 15 8 1 16 1 7 17 10 3 19 3 7 17 10 5 18 11 3 19 3 6 20 12 0 21 0 4 23 13 0 21 0 2 22 2 4 23 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="_node_test_pCubeShape57-lib" name="_node_test_pCubeShape57">
+      <mesh>
+        <source id="_node_test_pCubeShape57-lib-Position">
+          <float_array count="24" id="_node_test_pCubeShape57-lib-Position-array">
+-0.150000 -0.150000 0.150000
+0.150000 -0.150000 0.150000
+-0.150000 0.150000 0.150000
+0.150000 0.150000 0.150000
+-0.150000 0.150000 -0.150000
+0.150000 0.150000 -0.150000
+-0.150000 -0.150000 -0.150000
+0.150000 -0.150000 -0.150000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape57-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="_node_test_pCubeShape57-lib-Normal">
+          <float_array count="72" id="_node_test_pCubeShape57-lib-Normal-array">
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape57-lib-Normal-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+          <technique profile="MAYA">
+            <DOUBLE_SIDED>true</DOUBLE_SIDED>
+          </technique>
+        </source>
+        <source id="_node_test_pCubeShape57-lib-map1" name="map1">
+          <float_array count="28" id="_node_test_pCubeShape57-lib-map1-array">
+0 0
+1.000000 0
+0 1.000000
+1.000000 1.000000
+0 2.000000
+1.000000 2.000000
+0 3.000000
+1.000000 3.000000
+0 4.000000
+1.000000 4.000000
+2.000000 0
+2.000000 1.000000
+-1.000000 0
+-1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape57-lib-map1-array" count="14" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="_node_test_pCubeShape57-lib-Vertex">
+          <input semantic="POSITION" source="#_node_test_pCubeShape57-lib-Position"/>
+        </vertices>
+        <triangles material="blinn1" count="12">
+          <input semantic="VERTEX" offset="0" source="#_node_test_pCubeShape57-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#_node_test_pCubeShape57-lib-Normal"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#_node_test_pCubeShape57-lib-map1"/>
+          <p>0 0 0 1 1 1 2 3 2 1 1 1 3 2 3 2 3 2 2 4 2 3 5 3 4 7 4 3 5 3 5 6 5 4 7 4 4 8 4 5 9 5 6 11 6 5 9 5 7 10 7 6 11 6 6 12 6 7 13 7 0 15 8 7 13 7 1 14 9 0 15 8 1 16 1 7 17 10 3 19 3 7 17 10 5 18 11 3 19 3 6 20 12 0 21 0 4 23 13 0 21 0 2 22 2 4 23 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="_node_test_pCubeShape58-lib" name="_node_test_pCubeShape58">
+      <mesh>
+        <source id="_node_test_pCubeShape58-lib-Position">
+          <float_array count="24" id="_node_test_pCubeShape58-lib-Position-array">
+-0.150000 -0.150000 0.150000
+0.150000 -0.150000 0.150000
+-0.150000 0.150000 0.150000
+0.150000 0.150000 0.150000
+-0.150000 0.150000 -0.150000
+0.150000 0.150000 -0.150000
+-0.150000 -0.150000 -0.150000
+0.150000 -0.150000 -0.150000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape58-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="_node_test_pCubeShape58-lib-Normal">
+          <float_array count="72" id="_node_test_pCubeShape58-lib-Normal-array">
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape58-lib-Normal-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+          <technique profile="MAYA">
+            <DOUBLE_SIDED>true</DOUBLE_SIDED>
+          </technique>
+        </source>
+        <source id="_node_test_pCubeShape58-lib-map1" name="map1">
+          <float_array count="28" id="_node_test_pCubeShape58-lib-map1-array">
+0 0
+1.000000 0
+0 1.000000
+1.000000 1.000000
+0 2.000000
+1.000000 2.000000
+0 3.000000
+1.000000 3.000000
+0 4.000000
+1.000000 4.000000
+2.000000 0
+2.000000 1.000000
+-1.000000 0
+-1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape58-lib-map1-array" count="14" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="_node_test_pCubeShape58-lib-Vertex">
+          <input semantic="POSITION" source="#_node_test_pCubeShape58-lib-Position"/>
+        </vertices>
+        <triangles material="blinn1" count="12">
+          <input semantic="VERTEX" offset="0" source="#_node_test_pCubeShape58-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#_node_test_pCubeShape58-lib-Normal"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#_node_test_pCubeShape58-lib-map1"/>
+          <p>0 0 0 1 1 1 2 3 2 1 1 1 3 2 3 2 3 2 2 4 2 3 5 3 4 7 4 3 5 3 5 6 5 4 7 4 4 8 4 5 9 5 6 11 6 5 9 5 7 10 7 6 11 6 6 12 6 7 13 7 0 15 8 7 13 7 1 14 9 0 15 8 1 16 1 7 17 10 3 19 3 7 17 10 5 18 11 3 19 3 6 20 12 0 21 0 4 23 13 0 21 0 2 22 2 4 23 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="_node_test_pCubeShape59-lib" name="_node_test_pCubeShape59">
+      <mesh>
+        <source id="_node_test_pCubeShape59-lib-Position">
+          <float_array count="24" id="_node_test_pCubeShape59-lib-Position-array">
+-0.150000 -0.150000 0.150000
+0.150000 -0.150000 0.150000
+-0.150000 0.150000 0.150000
+0.150000 0.150000 0.150000
+-0.150000 0.150000 -0.150000
+0.150000 0.150000 -0.150000
+-0.150000 -0.150000 -0.150000
+0.150000 -0.150000 -0.150000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape59-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="_node_test_pCubeShape59-lib-Normal">
+          <float_array count="72" id="_node_test_pCubeShape59-lib-Normal-array">
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape59-lib-Normal-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+          <technique profile="MAYA">
+            <DOUBLE_SIDED>true</DOUBLE_SIDED>
+          </technique>
+        </source>
+        <source id="_node_test_pCubeShape59-lib-map1" name="map1">
+          <float_array count="28" id="_node_test_pCubeShape59-lib-map1-array">
+0 0
+1.000000 0
+0 1.000000
+1.000000 1.000000
+0 2.000000
+1.000000 2.000000
+0 3.000000
+1.000000 3.000000
+0 4.000000
+1.000000 4.000000
+2.000000 0
+2.000000 1.000000
+-1.000000 0
+-1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape59-lib-map1-array" count="14" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="_node_test_pCubeShape59-lib-Vertex">
+          <input semantic="POSITION" source="#_node_test_pCubeShape59-lib-Position"/>
+        </vertices>
+        <triangles material="blinn1" count="12">
+          <input semantic="VERTEX" offset="0" source="#_node_test_pCubeShape59-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#_node_test_pCubeShape59-lib-Normal"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#_node_test_pCubeShape59-lib-map1"/>
+          <p>0 0 0 1 1 1 2 3 2 1 1 1 3 2 3 2 3 2 2 4 2 3 5 3 4 7 4 3 5 3 5 6 5 4 7 4 4 8 4 5 9 5 6 11 6 5 9 5 7 10 7 6 11 6 6 12 6 7 13 7 0 15 8 7 13 7 1 14 9 0 15 8 1 16 1 7 17 10 3 19 3 7 17 10 5 18 11 3 19 3 6 20 12 0 21 0 4 23 13 0 21 0 2 22 2 4 23 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="_node_test_pCubeShape60-lib" name="_node_test_pCubeShape60">
+      <mesh>
+        <source id="_node_test_pCubeShape60-lib-Position">
+          <float_array count="24" id="_node_test_pCubeShape60-lib-Position-array">
+-0.150000 -0.150000 0.150000
+0.150000 -0.150000 0.150000
+-0.150000 0.150000 0.150000
+0.150000 0.150000 0.150000
+-0.150000 0.150000 -0.150000
+0.150000 0.150000 -0.150000
+-0.150000 -0.150000 -0.150000
+0.150000 -0.150000 -0.150000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape60-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="_node_test_pCubeShape60-lib-Normal">
+          <float_array count="72" id="_node_test_pCubeShape60-lib-Normal-array">
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape60-lib-Normal-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+          <technique profile="MAYA">
+            <DOUBLE_SIDED>true</DOUBLE_SIDED>
+          </technique>
+        </source>
+        <source id="_node_test_pCubeShape60-lib-map1" name="map1">
+          <float_array count="28" id="_node_test_pCubeShape60-lib-map1-array">
+0 0
+1.000000 0
+0 1.000000
+1.000000 1.000000
+0 2.000000
+1.000000 2.000000
+0 3.000000
+1.000000 3.000000
+0 4.000000
+1.000000 4.000000
+2.000000 0
+2.000000 1.000000
+-1.000000 0
+-1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape60-lib-map1-array" count="14" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="_node_test_pCubeShape60-lib-Vertex">
+          <input semantic="POSITION" source="#_node_test_pCubeShape60-lib-Position"/>
+        </vertices>
+        <triangles material="blinn1" count="12">
+          <input semantic="VERTEX" offset="0" source="#_node_test_pCubeShape60-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#_node_test_pCubeShape60-lib-Normal"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#_node_test_pCubeShape60-lib-map1"/>
+          <p>0 0 0 1 1 1 2 3 2 1 1 1 3 2 3 2 3 2 2 4 2 3 5 3 4 7 4 3 5 3 5 6 5 4 7 4 4 8 4 5 9 5 6 11 6 5 9 5 7 10 7 6 11 6 6 12 6 7 13 7 0 15 8 7 13 7 1 14 9 0 15 8 1 16 1 7 17 10 3 19 3 7 17 10 5 18 11 3 19 3 6 20 12 0 21 0 4 23 13 0 21 0 2 22 2 4 23 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="_node_test_pCubeShape61-lib" name="_node_test_pCubeShape61">
+      <mesh>
+        <source id="_node_test_pCubeShape61-lib-Position">
+          <float_array count="24" id="_node_test_pCubeShape61-lib-Position-array">
+-0.150000 -0.150000 0.150000
+0.150000 -0.150000 0.150000
+-0.150000 0.150000 0.150000
+0.150000 0.150000 0.150000
+-0.150000 0.150000 -0.150000
+0.150000 0.150000 -0.150000
+-0.150000 -0.150000 -0.150000
+0.150000 -0.150000 -0.150000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape61-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="_node_test_pCubeShape61-lib-Normal">
+          <float_array count="72" id="_node_test_pCubeShape61-lib-Normal-array">
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape61-lib-Normal-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+          <technique profile="MAYA">
+            <DOUBLE_SIDED>true</DOUBLE_SIDED>
+          </technique>
+        </source>
+        <source id="_node_test_pCubeShape61-lib-map1" name="map1">
+          <float_array count="28" id="_node_test_pCubeShape61-lib-map1-array">
+0 0
+1.000000 0
+0 1.000000
+1.000000 1.000000
+0 2.000000
+1.000000 2.000000
+0 3.000000
+1.000000 3.000000
+0 4.000000
+1.000000 4.000000
+2.000000 0
+2.000000 1.000000
+-1.000000 0
+-1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape61-lib-map1-array" count="14" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="_node_test_pCubeShape61-lib-Vertex">
+          <input semantic="POSITION" source="#_node_test_pCubeShape61-lib-Position"/>
+        </vertices>
+        <triangles material="blinn1" count="12">
+          <input semantic="VERTEX" offset="0" source="#_node_test_pCubeShape61-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#_node_test_pCubeShape61-lib-Normal"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#_node_test_pCubeShape61-lib-map1"/>
+          <p>0 0 0 1 1 1 2 3 2 1 1 1 3 2 3 2 3 2 2 4 2 3 5 3 4 7 4 3 5 3 5 6 5 4 7 4 4 8 4 5 9 5 6 11 6 5 9 5 7 10 7 6 11 6 6 12 6 7 13 7 0 15 8 7 13 7 1 14 9 0 15 8 1 16 1 7 17 10 3 19 3 7 17 10 5 18 11 3 19 3 6 20 12 0 21 0 4 23 13 0 21 0 2 22 2 4 23 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="_node_test_pCubeShape62-lib" name="_node_test_pCubeShape62">
+      <mesh>
+        <source id="_node_test_pCubeShape62-lib-Position">
+          <float_array count="24" id="_node_test_pCubeShape62-lib-Position-array">
+-0.150000 -0.150000 0.150000
+0.150000 -0.150000 0.150000
+-0.150000 0.150000 0.150000
+0.150000 0.150000 0.150000
+-0.150000 0.150000 -0.150000
+0.150000 0.150000 -0.150000
+-0.150000 -0.150000 -0.150000
+0.150000 -0.150000 -0.150000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape62-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="_node_test_pCubeShape62-lib-Normal">
+          <float_array count="72" id="_node_test_pCubeShape62-lib-Normal-array">
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape62-lib-Normal-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+          <technique profile="MAYA">
+            <DOUBLE_SIDED>true</DOUBLE_SIDED>
+          </technique>
+        </source>
+        <source id="_node_test_pCubeShape62-lib-map1" name="map1">
+          <float_array count="28" id="_node_test_pCubeShape62-lib-map1-array">
+0 0
+1.000000 0
+0 1.000000
+1.000000 1.000000
+0 2.000000
+1.000000 2.000000
+0 3.000000
+1.000000 3.000000
+0 4.000000
+1.000000 4.000000
+2.000000 0
+2.000000 1.000000
+-1.000000 0
+-1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape62-lib-map1-array" count="14" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="_node_test_pCubeShape62-lib-Vertex">
+          <input semantic="POSITION" source="#_node_test_pCubeShape62-lib-Position"/>
+        </vertices>
+        <triangles material="blinn1" count="12">
+          <input semantic="VERTEX" offset="0" source="#_node_test_pCubeShape62-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#_node_test_pCubeShape62-lib-Normal"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#_node_test_pCubeShape62-lib-map1"/>
+          <p>0 0 0 1 1 1 2 3 2 1 1 1 3 2 3 2 3 2 2 4 2 3 5 3 4 7 4 3 5 3 5 6 5 4 7 4 4 8 4 5 9 5 6 11 6 5 9 5 7 10 7 6 11 6 6 12 6 7 13 7 0 15 8 7 13 7 1 14 9 0 15 8 1 16 1 7 17 10 3 19 3 7 17 10 5 18 11 3 19 3 6 20 12 0 21 0 4 23 13 0 21 0 2 22 2 4 23 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="_node_test_pCubeShape63-lib" name="_node_test_pCubeShape63">
+      <mesh>
+        <source id="_node_test_pCubeShape63-lib-Position">
+          <float_array count="24" id="_node_test_pCubeShape63-lib-Position-array">
+-0.150000 -0.150000 0.150000
+0.150000 -0.150000 0.150000
+-0.150000 0.150000 0.150000
+0.150000 0.150000 0.150000
+-0.150000 0.150000 -0.150000
+0.150000 0.150000 -0.150000
+-0.150000 -0.150000 -0.150000
+0.150000 -0.150000 -0.150000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape63-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="_node_test_pCubeShape63-lib-Normal">
+          <float_array count="72" id="_node_test_pCubeShape63-lib-Normal-array">
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape63-lib-Normal-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+          <technique profile="MAYA">
+            <DOUBLE_SIDED>true</DOUBLE_SIDED>
+          </technique>
+        </source>
+        <source id="_node_test_pCubeShape63-lib-map1" name="map1">
+          <float_array count="28" id="_node_test_pCubeShape63-lib-map1-array">
+0 0
+1.000000 0
+0 1.000000
+1.000000 1.000000
+0 2.000000
+1.000000 2.000000
+0 3.000000
+1.000000 3.000000
+0 4.000000
+1.000000 4.000000
+2.000000 0
+2.000000 1.000000
+-1.000000 0
+-1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape63-lib-map1-array" count="14" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="_node_test_pCubeShape63-lib-Vertex">
+          <input semantic="POSITION" source="#_node_test_pCubeShape63-lib-Position"/>
+        </vertices>
+        <triangles material="blinn1" count="12">
+          <input semantic="VERTEX" offset="0" source="#_node_test_pCubeShape63-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#_node_test_pCubeShape63-lib-Normal"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#_node_test_pCubeShape63-lib-map1"/>
+          <p>0 0 0 1 1 1 2 3 2 1 1 1 3 2 3 2 3 2 2 4 2 3 5 3 4 7 4 3 5 3 5 6 5 4 7 4 4 8 4 5 9 5 6 11 6 5 9 5 7 10 7 6 11 6 6 12 6 7 13 7 0 15 8 7 13 7 1 14 9 0 15 8 1 16 1 7 17 10 3 19 3 7 17 10 5 18 11 3 19 3 6 20 12 0 21 0 4 23 13 0 21 0 2 22 2 4 23 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="_node_test_pCubeShape64-lib" name="_node_test_pCubeShape64">
+      <mesh>
+        <source id="_node_test_pCubeShape64-lib-Position">
+          <float_array count="24" id="_node_test_pCubeShape64-lib-Position-array">
+-0.150000 -0.150000 0.150000
+0.150000 -0.150000 0.150000
+-0.150000 0.150000 0.150000
+0.150000 0.150000 0.150000
+-0.150000 0.150000 -0.150000
+0.150000 0.150000 -0.150000
+-0.150000 -0.150000 -0.150000
+0.150000 -0.150000 -0.150000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape64-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="_node_test_pCubeShape64-lib-Normal">
+          <float_array count="72" id="_node_test_pCubeShape64-lib-Normal-array">
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape64-lib-Normal-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+          <technique profile="MAYA">
+            <DOUBLE_SIDED>true</DOUBLE_SIDED>
+          </technique>
+        </source>
+        <source id="_node_test_pCubeShape64-lib-map1" name="map1">
+          <float_array count="28" id="_node_test_pCubeShape64-lib-map1-array">
+0 0
+1.000000 0
+0 1.000000
+1.000000 1.000000
+0 2.000000
+1.000000 2.000000
+0 3.000000
+1.000000 3.000000
+0 4.000000
+1.000000 4.000000
+2.000000 0
+2.000000 1.000000
+-1.000000 0
+-1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape64-lib-map1-array" count="14" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="_node_test_pCubeShape64-lib-Vertex">
+          <input semantic="POSITION" source="#_node_test_pCubeShape64-lib-Position"/>
+        </vertices>
+        <triangles material="blinn1" count="12">
+          <input semantic="VERTEX" offset="0" source="#_node_test_pCubeShape64-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#_node_test_pCubeShape64-lib-Normal"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#_node_test_pCubeShape64-lib-map1"/>
+          <p>0 0 0 1 1 1 2 3 2 1 1 1 3 2 3 2 3 2 2 4 2 3 5 3 4 7 4 3 5 3 5 6 5 4 7 4 4 8 4 5 9 5 6 11 6 5 9 5 7 10 7 6 11 6 6 12 6 7 13 7 0 15 8 7 13 7 1 14 9 0 15 8 1 16 1 7 17 10 3 19 3 7 17 10 5 18 11 3 19 3 6 20 12 0 21 0 4 23 13 0 21 0 2 22 2 4 23 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="_node_test_pCubeShape65-lib" name="_node_test_pCubeShape65">
+      <mesh>
+        <source id="_node_test_pCubeShape65-lib-Position">
+          <float_array count="24" id="_node_test_pCubeShape65-lib-Position-array">
+-0.150000 -0.150000 0.150000
+0.150000 -0.150000 0.150000
+-0.150000 0.150000 0.150000
+0.150000 0.150000 0.150000
+-0.150000 0.150000 -0.150000
+0.150000 0.150000 -0.150000
+-0.150000 -0.150000 -0.150000
+0.150000 -0.150000 -0.150000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape65-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="_node_test_pCubeShape65-lib-Normal">
+          <float_array count="72" id="_node_test_pCubeShape65-lib-Normal-array">
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape65-lib-Normal-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+          <technique profile="MAYA">
+            <DOUBLE_SIDED>true</DOUBLE_SIDED>
+          </technique>
+        </source>
+        <source id="_node_test_pCubeShape65-lib-map1" name="map1">
+          <float_array count="28" id="_node_test_pCubeShape65-lib-map1-array">
+0 0
+1.000000 0
+0 1.000000
+1.000000 1.000000
+0 2.000000
+1.000000 2.000000
+0 3.000000
+1.000000 3.000000
+0 4.000000
+1.000000 4.000000
+2.000000 0
+2.000000 1.000000
+-1.000000 0
+-1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape65-lib-map1-array" count="14" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="_node_test_pCubeShape65-lib-Vertex">
+          <input semantic="POSITION" source="#_node_test_pCubeShape65-lib-Position"/>
+        </vertices>
+        <triangles material="blinn1" count="12">
+          <input semantic="VERTEX" offset="0" source="#_node_test_pCubeShape65-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#_node_test_pCubeShape65-lib-Normal"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#_node_test_pCubeShape65-lib-map1"/>
+          <p>0 0 0 1 1 1 2 3 2 1 1 1 3 2 3 2 3 2 2 4 2 3 5 3 4 7 4 3 5 3 5 6 5 4 7 4 4 8 4 5 9 5 6 11 6 5 9 5 7 10 7 6 11 6 6 12 6 7 13 7 0 15 8 7 13 7 1 14 9 0 15 8 1 16 1 7 17 10 3 19 3 7 17 10 5 18 11 3 19 3 6 20 12 0 21 0 4 23 13 0 21 0 2 22 2 4 23 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="_node_test_pCubeShape66-lib" name="_node_test_pCubeShape66">
+      <mesh>
+        <source id="_node_test_pCubeShape66-lib-Position">
+          <float_array count="24" id="_node_test_pCubeShape66-lib-Position-array">
+-0.150000 -0.150000 0.150000
+0.150000 -0.150000 0.150000
+-0.150000 0.150000 0.150000
+0.150000 0.150000 0.150000
+-0.150000 0.150000 -0.150000
+0.150000 0.150000 -0.150000
+-0.150000 -0.150000 -0.150000
+0.150000 -0.150000 -0.150000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape66-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="_node_test_pCubeShape66-lib-Normal">
+          <float_array count="72" id="_node_test_pCubeShape66-lib-Normal-array">
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape66-lib-Normal-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+          <technique profile="MAYA">
+            <DOUBLE_SIDED>true</DOUBLE_SIDED>
+          </technique>
+        </source>
+        <source id="_node_test_pCubeShape66-lib-map1" name="map1">
+          <float_array count="28" id="_node_test_pCubeShape66-lib-map1-array">
+0 0
+1.000000 0
+0 1.000000
+1.000000 1.000000
+0 2.000000
+1.000000 2.000000
+0 3.000000
+1.000000 3.000000
+0 4.000000
+1.000000 4.000000
+2.000000 0
+2.000000 1.000000
+-1.000000 0
+-1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape66-lib-map1-array" count="14" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="_node_test_pCubeShape66-lib-Vertex">
+          <input semantic="POSITION" source="#_node_test_pCubeShape66-lib-Position"/>
+        </vertices>
+        <triangles material="blinn1" count="12">
+          <input semantic="VERTEX" offset="0" source="#_node_test_pCubeShape66-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#_node_test_pCubeShape66-lib-Normal"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#_node_test_pCubeShape66-lib-map1"/>
+          <p>0 0 0 1 1 1 2 3 2 1 1 1 3 2 3 2 3 2 2 4 2 3 5 3 4 7 4 3 5 3 5 6 5 4 7 4 4 8 4 5 9 5 6 11 6 5 9 5 7 10 7 6 11 6 6 12 6 7 13 7 0 15 8 7 13 7 1 14 9 0 15 8 1 16 1 7 17 10 3 19 3 7 17 10 5 18 11 3 19 3 6 20 12 0 21 0 4 23 13 0 21 0 2 22 2 4 23 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="_node_test_pCubeShape67-lib" name="_node_test_pCubeShape67">
+      <mesh>
+        <source id="_node_test_pCubeShape67-lib-Position">
+          <float_array count="24" id="_node_test_pCubeShape67-lib-Position-array">
+-0.150000 -0.150000 0.150000
+0.150000 -0.150000 0.150000
+-0.150000 0.150000 0.150000
+0.150000 0.150000 0.150000
+-0.150000 0.150000 -0.150000
+0.150000 0.150000 -0.150000
+-0.150000 -0.150000 -0.150000
+0.150000 -0.150000 -0.150000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape67-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="_node_test_pCubeShape67-lib-Normal">
+          <float_array count="72" id="_node_test_pCubeShape67-lib-Normal-array">
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape67-lib-Normal-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+          <technique profile="MAYA">
+            <DOUBLE_SIDED>true</DOUBLE_SIDED>
+          </technique>
+        </source>
+        <source id="_node_test_pCubeShape67-lib-map1" name="map1">
+          <float_array count="28" id="_node_test_pCubeShape67-lib-map1-array">
+0 0
+1.000000 0
+0 1.000000
+1.000000 1.000000
+0 2.000000
+1.000000 2.000000
+0 3.000000
+1.000000 3.000000
+0 4.000000
+1.000000 4.000000
+2.000000 0
+2.000000 1.000000
+-1.000000 0
+-1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape67-lib-map1-array" count="14" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="_node_test_pCubeShape67-lib-Vertex">
+          <input semantic="POSITION" source="#_node_test_pCubeShape67-lib-Position"/>
+        </vertices>
+        <triangles material="blinn1" count="12">
+          <input semantic="VERTEX" offset="0" source="#_node_test_pCubeShape67-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#_node_test_pCubeShape67-lib-Normal"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#_node_test_pCubeShape67-lib-map1"/>
+          <p>0 0 0 1 1 1 2 3 2 1 1 1 3 2 3 2 3 2 2 4 2 3 5 3 4 7 4 3 5 3 5 6 5 4 7 4 4 8 4 5 9 5 6 11 6 5 9 5 7 10 7 6 11 6 6 12 6 7 13 7 0 15 8 7 13 7 1 14 9 0 15 8 1 16 1 7 17 10 3 19 3 7 17 10 5 18 11 3 19 3 6 20 12 0 21 0 4 23 13 0 21 0 2 22 2 4 23 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="_node_test_pCubeShape68-lib" name="_node_test_pCubeShape68">
+      <mesh>
+        <source id="_node_test_pCubeShape68-lib-Position">
+          <float_array count="24" id="_node_test_pCubeShape68-lib-Position-array">
+-0.150000 -0.150000 0.150000
+0.150000 -0.150000 0.150000
+-0.150000 0.150000 0.150000
+0.150000 0.150000 0.150000
+-0.150000 0.150000 -0.150000
+0.150000 0.150000 -0.150000
+-0.150000 -0.150000 -0.150000
+0.150000 -0.150000 -0.150000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape68-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="_node_test_pCubeShape68-lib-Normal">
+          <float_array count="72" id="_node_test_pCubeShape68-lib-Normal-array">
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape68-lib-Normal-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+          <technique profile="MAYA">
+            <DOUBLE_SIDED>true</DOUBLE_SIDED>
+          </technique>
+        </source>
+        <source id="_node_test_pCubeShape68-lib-map1" name="map1">
+          <float_array count="28" id="_node_test_pCubeShape68-lib-map1-array">
+0 0
+1.000000 0
+0 1.000000
+1.000000 1.000000
+0 2.000000
+1.000000 2.000000
+0 3.000000
+1.000000 3.000000
+0 4.000000
+1.000000 4.000000
+2.000000 0
+2.000000 1.000000
+-1.000000 0
+-1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape68-lib-map1-array" count="14" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="_node_test_pCubeShape68-lib-Vertex">
+          <input semantic="POSITION" source="#_node_test_pCubeShape68-lib-Position"/>
+        </vertices>
+        <triangles material="blinn1" count="12">
+          <input semantic="VERTEX" offset="0" source="#_node_test_pCubeShape68-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#_node_test_pCubeShape68-lib-Normal"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#_node_test_pCubeShape68-lib-map1"/>
+          <p>0 0 0 1 1 1 2 3 2 1 1 1 3 2 3 2 3 2 2 4 2 3 5 3 4 7 4 3 5 3 5 6 5 4 7 4 4 8 4 5 9 5 6 11 6 5 9 5 7 10 7 6 11 6 6 12 6 7 13 7 0 15 8 7 13 7 1 14 9 0 15 8 1 16 1 7 17 10 3 19 3 7 17 10 5 18 11 3 19 3 6 20 12 0 21 0 4 23 13 0 21 0 2 22 2 4 23 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="_node_test_pCubeShape69-lib" name="_node_test_pCubeShape69">
+      <mesh>
+        <source id="_node_test_pCubeShape69-lib-Position">
+          <float_array count="24" id="_node_test_pCubeShape69-lib-Position-array">
+-0.150000 -0.150000 0.150000
+0.150000 -0.150000 0.150000
+-0.150000 0.150000 0.150000
+0.150000 0.150000 0.150000
+-0.150000 0.150000 -0.150000
+0.150000 0.150000 -0.150000
+-0.150000 -0.150000 -0.150000
+0.150000 -0.150000 -0.150000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape69-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="_node_test_pCubeShape69-lib-Normal">
+          <float_array count="72" id="_node_test_pCubeShape69-lib-Normal-array">
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape69-lib-Normal-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+          <technique profile="MAYA">
+            <DOUBLE_SIDED>true</DOUBLE_SIDED>
+          </technique>
+        </source>
+        <source id="_node_test_pCubeShape69-lib-map1" name="map1">
+          <float_array count="28" id="_node_test_pCubeShape69-lib-map1-array">
+0 0
+1.000000 0
+0 1.000000
+1.000000 1.000000
+0 2.000000
+1.000000 2.000000
+0 3.000000
+1.000000 3.000000
+0 4.000000
+1.000000 4.000000
+2.000000 0
+2.000000 1.000000
+-1.000000 0
+-1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape69-lib-map1-array" count="14" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="_node_test_pCubeShape69-lib-Vertex">
+          <input semantic="POSITION" source="#_node_test_pCubeShape69-lib-Position"/>
+        </vertices>
+        <triangles material="blinn1" count="12">
+          <input semantic="VERTEX" offset="0" source="#_node_test_pCubeShape69-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#_node_test_pCubeShape69-lib-Normal"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#_node_test_pCubeShape69-lib-map1"/>
+          <p>0 0 0 1 1 1 2 3 2 1 1 1 3 2 3 2 3 2 2 4 2 3 5 3 4 7 4 3 5 3 5 6 5 4 7 4 4 8 4 5 9 5 6 11 6 5 9 5 7 10 7 6 11 6 6 12 6 7 13 7 0 15 8 7 13 7 1 14 9 0 15 8 1 16 1 7 17 10 3 19 3 7 17 10 5 18 11 3 19 3 6 20 12 0 21 0 4 23 13 0 21 0 2 22 2 4 23 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="_node_test_pCubeShape70-lib" name="_node_test_pCubeShape70">
+      <mesh>
+        <source id="_node_test_pCubeShape70-lib-Position">
+          <float_array count="24" id="_node_test_pCubeShape70-lib-Position-array">
+-0.150000 -0.150000 0.150000
+0.150000 -0.150000 0.150000
+-0.150000 0.150000 0.150000
+0.150000 0.150000 0.150000
+-0.150000 0.150000 -0.150000
+0.150000 0.150000 -0.150000
+-0.150000 -0.150000 -0.150000
+0.150000 -0.150000 -0.150000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape70-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="_node_test_pCubeShape70-lib-Normal">
+          <float_array count="72" id="_node_test_pCubeShape70-lib-Normal-array">
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 0 1.000000
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 1.000000 0
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 0 -1.000000
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+0 -1.000000 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+-1.000000 0 0
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape70-lib-Normal-array" count="24" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+          <technique profile="MAYA">
+            <DOUBLE_SIDED>true</DOUBLE_SIDED>
+          </technique>
+        </source>
+        <source id="_node_test_pCubeShape70-lib-map1" name="map1">
+          <float_array count="28" id="_node_test_pCubeShape70-lib-map1-array">
+0 0
+1.000000 0
+0 1.000000
+1.000000 1.000000
+0 2.000000
+1.000000 2.000000
+0 3.000000
+1.000000 3.000000
+0 4.000000
+1.000000 4.000000
+2.000000 0
+2.000000 1.000000
+-1.000000 0
+-1.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#_node_test_pCubeShape70-lib-map1-array" count="14" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="_node_test_pCubeShape70-lib-Vertex">
+          <input semantic="POSITION" source="#_node_test_pCubeShape70-lib-Position"/>
+        </vertices>
+        <triangles material="blinn1" count="12">
+          <input semantic="VERTEX" offset="0" source="#_node_test_pCubeShape70-lib-Vertex"/>
+          <input semantic="NORMAL" offset="1" source="#_node_test_pCubeShape70-lib-Normal"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#_node_test_pCubeShape70-lib-map1"/>
+          <p>0 0 0 1 1 1 2 3 2 1 1 1 3 2 3 2 3 2 2 4 2 3 5 3 4 7 4 3 5 3 5 6 5 4 7 4 4 8 4 5 9 5 6 11 6 5 9 5 7 10 7 6 11 6 6 12 6 7 13 7 0 15 8 7 13 7 1 14 9 0 15 8 1 16 1 7 17 10 3 19 3 7 17 10 5 18 11 3 19 3 6 20 12 0 21 0 4 23 13 0 21 0 2 22 2 4 23 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_lights>
+    <light id="pointLightShape1-lib" name="pointLightShape1">
+      <technique_common>
+        <point>
+          <color sid="color">1.000000 1.000000 1.000000</color>
+          <constant_attenuation>1.000000</constant_attenuation>
+          <linear_attenuation>0</linear_attenuation>
+          <quadratic_attenuation>0</quadratic_attenuation>
+        </point>
+      </technique_common>
+      <technique profile="MAYA">
+        <intensity sid="intensity">1.000000</intensity>
+      </technique>
+    </light>
+    <light id="pointLightShape2-lib" name="pointLightShape2">
+      <technique_common>
+        <point>
+          <color sid="color">1.000000 1.000000 1.000000</color>
+          <constant_attenuation>1.000000</constant_attenuation>
+          <linear_attenuation>0</linear_attenuation>
+          <quadratic_attenuation>0</quadratic_attenuation>
+        </point>
+      </technique_common>
+      <technique profile="MAYA">
+        <intensity sid="intensity">1.000000</intensity>
+      </technique>
+    </light>
+  </library_lights>
+  <library_visual_scenes>
+    <visual_scene id="DefaultScene" name="ai_test_map">
+      <node id="pCube1" name="pCube1" sid="pCube1">
+        <translate sid="translate">0 -0.050000 0</translate>
+        <rotate sid="rotateZ">0 0 1 0</rotate>
+        <rotate sid="rotateY">0 1 0 0</rotate>
+        <rotate sid="rotateX">1 0 0 0</rotate>
+        <instance_geometry url="#pCubeShape1-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="lambert1" target="#lambert1">
+                <bind semantic="UVSET0" target="#pCubeShape1-lib-map1"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="pCube2" name="pCube2" sid="pCube2">
+        <translate sid="translate">-5.027086 0.774548 0</translate>
+        <rotate sid="rotateZ">0 0 1 0</rotate>
+        <rotate sid="rotateY">0 1 0 0</rotate>
+        <rotate sid="rotateX">1 0 0 0</rotate>
+        <scale sid="scale">6.768911 1.924059 3.016146</scale>
+        <instance_geometry url="#pCubeShape2-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="lambert1" target="#lambert1">
+                <bind semantic="UVSET0" target="#pCubeShape2-lib-map1"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="pCube3" name="pCube3" sid="pCube3">
+        <translate sid="translate">0.729693 0.806441 2.587140</translate>
+        <rotate sid="rotateZ">0 0 1 0</rotate>
+        <rotate sid="rotateY">0 1 0 0</rotate>
+        <rotate sid="rotateX">1 0 0 0</rotate>
+        <scale sid="scale">1.000000 1.692146 14.382395</scale>
+        <instance_geometry url="#pCubeShape3-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="lambert1" target="#lambert1">
+                <bind semantic="UVSET0" target="#pCubeShape3-lib-map1"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="pCube4" name="pCube4" sid="pCube4">
+        <translate sid="translate">0 1.403118 -8.262539</translate>
+        <rotate sid="rotateZ">0 0 1 0</rotate>
+        <rotate sid="rotateY">0 1 0 0</rotate>
+        <rotate sid="rotateX">1 0 0 0</rotate>
+        <scale sid="scale">8.597958 2.680325 1.000000</scale>
+        <instance_geometry url="#pCubeShape4-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="lambert1" target="#lambert1">
+                <bind semantic="UVSET0" target="#pCubeShape4-lib-map1"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="pCube5" name="pCube5" sid="pCube5">
+        <translate sid="translate">4.966626 1.228862 0.155599</translate>
+        <rotate sid="rotateZ">0 0 1 0</rotate>
+        <rotate sid="rotateY">0 1 0 0</rotate>
+        <rotate sid="rotateX">1 0 0 0</rotate>
+        <scale sid="scale">1.000000 2.404862 1.000000</scale>
+        <instance_geometry url="#pCubeShape5-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="lambert1" target="#lambert1">
+                <bind semantic="UVSET0" target="#pCubeShape5-lib-map1"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="pCube6" name="pCube6" sid="pCube6">
+        <translate sid="translate">4.966626 1.228862 5.525089</translate>
+        <rotate sid="rotateZ">0 0 1 0</rotate>
+        <rotate sid="rotateY">0 1 0 0</rotate>
+        <rotate sid="rotateX">1 0 0 0</rotate>
+        <scale sid="scale">2.054591 2.404862 1.848094</scale>
+        <instance_geometry url="#pCubeShape6-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="lambert1" target="#lambert1">
+                <bind semantic="UVSET0" target="#pCubeShape6-lib-map1"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="pCube7" name="pCube7" sid="pCube7">
+        <translate sid="translate">6.780769 0.774548 -3.884862</translate>
+        <rotate sid="rotateZ">0 0 1 0</rotate>
+        <rotate sid="rotateY">0 1 0 0</rotate>
+        <rotate sid="rotateX">1 0 0 0</rotate>
+        <scale sid="scale">6.768911 1.924059 3.016146</scale>
+        <instance_geometry url="#pCubeShape7-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="lambert1" target="#lambert1">
+                <bind semantic="UVSET0" target="#pCubeShape7-lib-map1"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="_node_test_pCube38" name="_node_test_pCube38" sid="_node_test_pCube38">
+        <translate sid="translate">7.151412 0.102488 -8.399552</translate>
+        <rotate sid="rotateZ">0 0 1 0</rotate>
+        <rotate sid="rotateY">0 1 0 0</rotate>
+        <rotate sid="rotateX">1 0 0 0</rotate>
+        <instance_geometry url="#_node_test_pCubeShape38-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="blinn1" target="#blinn1"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="_node_test_pCube39" name="_node_test_pCube39" sid="_node_test_pCube39">
+        <translate sid="translate">7.151412 0.102488 -7.071269</translate>
+        <rotate sid="rotateZ">0 0 1 0</rotate>
+        <rotate sid="rotateY">0 1 0 0</rotate>
+        <rotate sid="rotateX">1 0 0 0</rotate>
+        <instance_geometry url="#_node_test_pCubeShape39-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="blinn1" target="#blinn1"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="_node_test_pCube40" name="_node_test_pCube40" sid="_node_test_pCube40">
+        <translate sid="translate">3.812051 0.102488 -7.096738</translate>
+        <rotate sid="rotateZ">0 0 1 0</rotate>
+        <rotate sid="rotateY">0 1 0 0</rotate>
+        <rotate sid="rotateX">1 0 0 0</rotate>
+        <instance_geometry url="#_node_test_pCubeShape40-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="blinn1" target="#blinn1"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="_node_test_pCube41" name="_node_test_pCube41" sid="_node_test_pCube41">
+        <translate sid="translate">0.472689 0.102488 -7.122206</translate>
+        <rotate sid="rotateZ">0 0 1 0</rotate>
+        <rotate sid="rotateY">0 1 0 0</rotate>
+        <rotate sid="rotateX">1 0 0 0</rotate>
+        <instance_geometry url="#_node_test_pCubeShape41-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="blinn1" target="#blinn1"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="_node_test_pCube42" name="_node_test_pCube42" sid="_node_test_pCube42">
+        <translate sid="translate">-2.866672 0.102488 -7.147675</translate>
+        <rotate sid="rotateZ">0 0 1 0</rotate>
+        <rotate sid="rotateY">0 1 0 0</rotate>
+        <rotate sid="rotateX">1 0 0 0</rotate>
+        <instance_geometry url="#_node_test_pCubeShape42-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="blinn1" target="#blinn1"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="_node_test_pCube43" name="_node_test_pCube43" sid="_node_test_pCube43">
+        <translate sid="translate">-6.206034 0.102488 -4.894983</translate>
+        <rotate sid="rotateZ">0 0 1 0</rotate>
+        <rotate sid="rotateY">0 1 0 0</rotate>
+        <rotate sid="rotateX">1 0 0 0</rotate>
+        <instance_geometry url="#_node_test_pCubeShape43-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="blinn1" target="#blinn1"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="_node_test_pCube44" name="_node_test_pCube44" sid="_node_test_pCube44">
+        <translate sid="translate">-9.545395 0.102488 -7.431356</translate>
+        <rotate sid="rotateZ">0 0 1 0</rotate>
+        <rotate sid="rotateY">0 1 0 0</rotate>
+        <rotate sid="rotateX">1 0 0 0</rotate>
+        <instance_geometry url="#_node_test_pCubeShape44-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="blinn1" target="#blinn1"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="_node_test_pCube45" name="_node_test_pCube45" sid="_node_test_pCube45">
+        <translate sid="translate">-9.348217 0.102488 -4.575940</translate>
+        <rotate sid="rotateZ">0 0 1 0</rotate>
+        <rotate sid="rotateY">0 1 0 0</rotate>
+        <rotate sid="rotateX">1 0 0 0</rotate>
+        <instance_geometry url="#_node_test_pCubeShape45-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="blinn1" target="#blinn1"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="_node_test_pCube46" name="_node_test_pCube46" sid="_node_test_pCube46">
+        <translate sid="translate">-9.547230 0.102488 -0.114194</translate>
+        <rotate sid="rotateZ">0 0 1 0</rotate>
+        <rotate sid="rotateY">0 1 0 0</rotate>
+        <rotate sid="rotateX">1 0 0 0</rotate>
+        <instance_geometry url="#_node_test_pCubeShape46-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="blinn1" target="#blinn1"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="_node_test_pCube47" name="_node_test_pCube47" sid="_node_test_pCube47">
+        <translate sid="translate">-9.746244 0.102488 4.347553</translate>
+        <rotate sid="rotateZ">0 0 1 0</rotate>
+        <rotate sid="rotateY">0 1 0 0</rotate>
+        <rotate sid="rotateX">1 0 0 0</rotate>
+        <instance_geometry url="#_node_test_pCubeShape47-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="blinn1" target="#blinn1"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="_node_test_pCube48" name="_node_test_pCube48" sid="_node_test_pCube48">
+        <translate sid="translate">-9.359538 0.102488 8.809299</translate>
+        <rotate sid="rotateZ">0 0 1 0</rotate>
+        <rotate sid="rotateY">0 1 0 0</rotate>
+        <rotate sid="rotateX">1 0 0 0</rotate>
+        <instance_geometry url="#_node_test_pCubeShape48-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="blinn1" target="#blinn1"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="_node_test_pCube50" name="_node_test_pCube50" sid="_node_test_pCube50">
+        <translate sid="translate">-5.764498 0.102488 4.458522</translate>
+        <rotate sid="rotateZ">0 0 1 0</rotate>
+        <rotate sid="rotateY">0 1 0 0</rotate>
+        <rotate sid="rotateX">1 0 0 0</rotate>
+        <instance_geometry url="#_node_test_pCubeShape50-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="blinn1" target="#blinn1"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="_node_test_pCube51" name="_node_test_pCube51" sid="_node_test_pCube51">
+        <translate sid="translate">-0.818375 0.102488 0.107745</translate>
+        <rotate sid="rotateZ">0 0 1 0</rotate>
+        <rotate sid="rotateY">0 1 0 0</rotate>
+        <rotate sid="rotateX">1 0 0 0</rotate>
+        <instance_geometry url="#_node_test_pCubeShape51-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="blinn1" target="#blinn1"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="_node_test_pCube52" name="_node_test_pCube52" sid="_node_test_pCube52">
+        <translate sid="translate">-0.846209 0.102488 4.074167</translate>
+        <rotate sid="rotateZ">0 0 1 0</rotate>
+        <rotate sid="rotateY">0 1 0 0</rotate>
+        <rotate sid="rotateX">1 0 0 0</rotate>
+        <instance_geometry url="#_node_test_pCubeShape52-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="blinn1" target="#blinn1"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="_node_test_pCube53" name="_node_test_pCube53" sid="_node_test_pCube53">
+        <translate sid="translate">-0.874044 0.102488 8.040589</translate>
+        <rotate sid="rotateZ">0 0 1 0</rotate>
+        <rotate sid="rotateY">0 1 0 0</rotate>
+        <rotate sid="rotateX">1 0 0 0</rotate>
+        <instance_geometry url="#_node_test_pCubeShape53-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="blinn1" target="#blinn1"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="_node_test_pCube54" name="_node_test_pCube54" sid="_node_test_pCube54">
+        <translate sid="translate">-0.901879 0.102488 -3.545551</translate>
+        <rotate sid="rotateZ">0 0 1 0</rotate>
+        <rotate sid="rotateY">0 1 0 0</rotate>
+        <rotate sid="rotateX">1 0 0 0</rotate>
+        <instance_geometry url="#_node_test_pCubeShape54-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="blinn1" target="#blinn1"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="_node_test_pCube56" name="_node_test_pCube56" sid="_node_test_pCube56">
+        <translate sid="translate">-0.901879 0.102488 -7.230020</translate>
+        <rotate sid="rotateZ">0 0 1 0</rotate>
+        <rotate sid="rotateY">0 1 0 0</rotate>
+        <rotate sid="rotateX">1 0 0 0</rotate>
+        <instance_geometry url="#_node_test_pCubeShape56-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="blinn1" target="#blinn1"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="_node_test_pCube57" name="_node_test_pCube57" sid="_node_test_pCube57">
+        <translate sid="translate">2.071274 0.102488 -7.234031</translate>
+        <rotate sid="rotateZ">0 0 1 0</rotate>
+        <rotate sid="rotateY">0 1 0 0</rotate>
+        <rotate sid="rotateX">1 0 0 0</rotate>
+        <instance_geometry url="#_node_test_pCubeShape57-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="blinn1" target="#blinn1"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="_node_test_pCube58" name="_node_test_pCube58" sid="_node_test_pCube58">
+        <translate sid="translate">2.740631 0.102488 -3.917618</translate>
+        <rotate sid="rotateZ">0 0 1 0</rotate>
+        <rotate sid="rotateY">0 1 0 0</rotate>
+        <rotate sid="rotateX">1 0 0 0</rotate>
+        <instance_geometry url="#_node_test_pCubeShape58-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="blinn1" target="#blinn1"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="_node_test_pCube59" name="_node_test_pCube59" sid="_node_test_pCube59">
+        <translate sid="translate">2.542761 0.102488 -0.074283</translate>
+        <rotate sid="rotateZ">0 0 1 0</rotate>
+        <rotate sid="rotateY">0 1 0 0</rotate>
+        <rotate sid="rotateX">1 0 0 0</rotate>
+        <instance_geometry url="#_node_test_pCubeShape59-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="blinn1" target="#blinn1"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="_node_test_pCube60" name="_node_test_pCube60" sid="_node_test_pCube60">
+        <translate sid="translate">2.344891 0.102488 3.769052</translate>
+        <rotate sid="rotateZ">0 0 1 0</rotate>
+        <rotate sid="rotateY">0 1 0 0</rotate>
+        <rotate sid="rotateX">1 0 0 0</rotate>
+        <instance_geometry url="#_node_test_pCubeShape60-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="blinn1" target="#blinn1"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="_node_test_pCube61" name="_node_test_pCube61" sid="_node_test_pCube61">
+        <translate sid="translate">2.147021 0.102488 7.612386</translate>
+        <rotate sid="rotateZ">0 0 1 0</rotate>
+        <rotate sid="rotateY">0 1 0 0</rotate>
+        <rotate sid="rotateX">1 0 0 0</rotate>
+        <instance_geometry url="#_node_test_pCubeShape61-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="blinn1" target="#blinn1"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="_node_test_pCube62" name="_node_test_pCube62" sid="_node_test_pCube62">
+        <translate sid="translate">8.099110 0.102488 7.929401</translate>
+        <rotate sid="rotateZ">0 0 1 0</rotate>
+        <rotate sid="rotateY">0 1 0 0</rotate>
+        <rotate sid="rotateX">1 0 0 0</rotate>
+        <instance_geometry url="#_node_test_pCubeShape62-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="blinn1" target="#blinn1"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="_node_test_pCube63" name="_node_test_pCube63" sid="_node_test_pCube63">
+        <translate sid="translate">5.182953 0.102488 7.840384</translate>
+        <rotate sid="rotateZ">0 0 1 0</rotate>
+        <rotate sid="rotateY">0 1 0 0</rotate>
+        <rotate sid="rotateX">1 0 0 0</rotate>
+        <instance_geometry url="#_node_test_pCubeShape63-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="blinn1" target="#blinn1"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="_node_test_pCube64" name="_node_test_pCube64" sid="_node_test_pCube64">
+        <translate sid="translate">7.907492 0.102488 4.834314</translate>
+        <rotate sid="rotateZ">0 0 1 0</rotate>
+        <rotate sid="rotateY">0 1 0 0</rotate>
+        <rotate sid="rotateX">1 0 0 0</rotate>
+        <instance_geometry url="#_node_test_pCubeShape64-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="blinn1" target="#blinn1"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="_node_test_pCube65" name="_node_test_pCube65" sid="_node_test_pCube65">
+        <translate sid="translate">7.644285 0.102488 1.828243</translate>
+        <rotate sid="rotateZ">0 0 1 0</rotate>
+        <rotate sid="rotateY">0 1 0 0</rotate>
+        <rotate sid="rotateX">1 0 0 0</rotate>
+        <instance_geometry url="#_node_test_pCubeShape65-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="blinn1" target="#blinn1"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="_node_test_pCube66" name="_node_test_pCube66" sid="_node_test_pCube66">
+        <translate sid="translate">5.029506 0.102488 1.849290</translate>
+        <rotate sid="rotateZ">0 0 1 0</rotate>
+        <rotate sid="rotateY">0 1 0 0</rotate>
+        <rotate sid="rotateX">1 0 0 0</rotate>
+        <instance_geometry url="#_node_test_pCubeShape66-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="blinn1" target="#blinn1"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="_node_test_pCube67" name="_node_test_pCube67" sid="_node_test_pCube67">
+        <translate sid="translate">7.604369 0.102488 -0.186489</translate>
+        <rotate sid="rotateZ">0 0 1 0</rotate>
+        <rotate sid="rotateY">0 1 0 0</rotate>
+        <rotate sid="rotateX">1 0 0 0</rotate>
+        <instance_geometry url="#_node_test_pCubeShape67-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="blinn1" target="#blinn1"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="_node_test_pCube68" name="_node_test_pCube68" sid="_node_test_pCube68">
+        <translate sid="translate">5.037273 0.102488 -1.731984</translate>
+        <rotate sid="rotateZ">0 0 1 0</rotate>
+        <rotate sid="rotateY">0 1 0 0</rotate>
+        <rotate sid="rotateX">1 0 0 0</rotate>
+        <instance_geometry url="#_node_test_pCubeShape68-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="blinn1" target="#blinn1"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="_node_test_pCube69" name="_node_test_pCube69" sid="_node_test_pCube69">
+        <translate sid="translate">2.470176 0.102488 -1.751823</translate>
+        <rotate sid="rotateZ">0 0 1 0</rotate>
+        <rotate sid="rotateY">0 1 0 0</rotate>
+        <rotate sid="rotateX">1 0 0 0</rotate>
+        <instance_geometry url="#_node_test_pCubeShape69-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="blinn1" target="#blinn1"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="_node_test_pCube70" name="_node_test_pCube70" sid="_node_test_pCube70">
+        <translate sid="translate">7.650523 0.102488 -1.771663</translate>
+        <rotate sid="rotateZ">0 0 1 0</rotate>
+        <rotate sid="rotateY">0 1 0 0</rotate>
+        <rotate sid="rotateX">1 0 0 0</rotate>
+        <instance_geometry url="#_node_test_pCubeShape70-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="blinn1" target="#blinn1"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="pointLight1" name="pointLight1" sid="pointLight1">
+        <translate sid="translate">-9.631029 7.274853 10.693280</translate>
+        <rotate sid="rotateZ">0 0 1 0</rotate>
+        <rotate sid="rotateY">0 1 0 0</rotate>
+        <rotate sid="rotateX">1 0 0 0</rotate>
+        <scale sid="scale">200.000000 1.000000 1.000000</scale>
+        <instance_light url="#pointLightShape1-lib"/>
+      </node>
+      <node id="pointLight2" name="pointLight2" sid="pointLight2">
+        <translate sid="translate">11.561484 7.274853 -7.278951</translate>
+        <rotate sid="rotateZ">0 0 1 0</rotate>
+        <rotate sid="rotateY">0 1 0 0</rotate>
+        <rotate sid="rotateX">1 0 0 0</rotate>
+        <scale sid="scale">200.000000 0.000000 0.000000</scale>
+        <instance_light url="#pointLightShape2-lib"/>
+      </node>
+      <extra>
+        <technique profile="MAYA">
+          <start_time>0</start_time>
+          <end_time>6.250000</end_time>
+        </technique>
+      </extra>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#DefaultScene"/>
+  </scene>
+</COLLADA>

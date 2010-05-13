@@ -1,0 +1,44 @@
+<ENTITY>
+	<MAIN 
+		Name="TestDoor" 
+		Type="Door" 
+		Subtype="Normal" 
+	/>
+	
+	<PHYSICS
+		SubName = "pCubeShape1"
+		Collides = "true"
+		HasPhysics = "false"
+		Material="Metal"
+		Mass="0"
+		InertiaScale = "1 1 1"
+		AngularDamping = "0.1"
+		LinearDamping = "0.1"
+		BlocksSound = "true"
+	/>
+
+	<PHYSICS
+		SubName = "pCubeShape3"
+		Collides = "true"
+		HasPhysics = "false"
+		Material="Metal"
+		Mass="0"
+		InertiaScale = "1 1 1"
+		AngularDamping = "0.1"
+		LinearDamping = "0.1"
+		BlocksSound = "true"
+	/>
+	
+	<GRAPHICS
+		ModelFile = "test_door01"	
+		CastShadows = "true"	
+	/>
+	
+	<ANIMATIONS>
+		<Animation File="test_door01_open.dae" Name="Open"/>
+		<Animation File="test_door01_opening.dae" Name="Opening"/>
+		<Animation File="test_door01_closed.dae" Name="Closed"/>
+		<Animation File="test_door01_closing.dae" Name="Closing"/>
+	</ANIMATIONS>
+	
+</ENTITY>

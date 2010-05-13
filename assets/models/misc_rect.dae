@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/COLLADASchema" version="1.3.0">
+  <asset>
+    <authoring_tool>Maya 6.5 COLLADA exporter</authoring_tool>
+    <source_data>file://E:/HPL/models/Rect.mb</source_data>
+    <up_axis>Y_UP</up_axis>
+    <unit name="centimeter" meter="1.e-002"/>
+    <author>Gripen</author>
+    <modified>2005-09-23T16:29:33Z</modified>
+  </asset>
+  <library type="IMAGE">
+    <image id="file1" name="file1" source="file:///E:/HPL/redist/textures/misc_rect.jpg"/>
+  </library>
+  <library type="TEXTURE">
+    <texture id="file1-DIFFUSE">
+      <param name="DIFFUSE" type="float3" flow="OUT"/>
+      <technique profile="COMMON">
+        <input semantic="IMAGE" source="#file1"/>
+      </technique>
+      <technique profile="MAYA">
+        <param name="wrapU" type="bool" flow="IN" sid="param0">TRUE</param>
+        <param name="wrapV" type="bool" flow="IN" sid="param1">TRUE</param>
+        <param name="mirrorU" type="bool" flow="IN" sid="param2">FALSE</param>
+        <param name="mirrorV" type="bool" flow="IN" sid="param3">FALSE</param>
+        <param name="coverageU" type="float" flow="IN" sid="param4">1.</param>
+        <param name="coverageV" type="float" flow="IN" sid="param5">1.</param>
+        <param name="translateFrameU" type="float" flow="IN" sid="param6">0</param>
+        <param name="translateFrameV" type="float" flow="IN" sid="param7">0</param>
+        <param name="rotateFrame" type="float" flow="IN" sid="param8">0</param>
+        <param name="stagger" type="bool" flow="IN" sid="param9">FALSE</param>
+        <param name="fast" type="bool" flow="IN" sid="param10">FALSE</param>
+        <param name="repeatU" type="float" flow="IN" sid="param11">1.</param>
+        <param name="repeatV" type="float" flow="IN" sid="param12">1.</param>
+        <param name="offsetU" type="float" flow="IN" sid="param13">0</param>
+        <param name="offsetV" type="float" flow="IN" sid="param14">0</param>
+        <param name="rotateUV" type="float" flow="IN" sid="param15">0</param>
+        <param name="noiseU" type="float" flow="IN" sid="param16">0</param>
+        <param name="noiseV" type="float" flow="IN" sid="param17">0</param>
+        <param name="BLEND_MODE" type="blend" flow="IN">NONE</param>
+      </technique>
+    </texture>
+  </library>
+  <library type="MATERIAL">
+    <material id="blinn1" name="blinn1">
+      <shader>
+        <technique profile="COMMON">
+          <pass>
+            <input semantic="TEXTURE" source="#file1-DIFFUSE"/>
+            <program url="LAMBERT">
+              <param name="DIFFUSE" type="float3" flow="IN" sid="diffuse">1. 1. 1.</param>
+              <param name="AMBIENT" type="float3" flow="IN" sid="param1">0 0 0</param>
+              <param name="TRANSPARENT" type="float3" flow="IN" sid="transparent">0 0 0</param>
+              <param name="TRANSPARENCY" type="float" flow="IN">0</param>
+            </program>
+          </pass>
+        </technique>
+      </shader>
+    </material>
+  </library>
+  <library type="GEOMETRY">
+    <geometry id="pPlaneShape1-lib" name="pPlaneShape1">
+      <mesh>
+        <source id="pPlaneShape1-lib-Position">
+          <float_array id="pPlaneShape1-lib-Position-array" count="12">
+-1. -2.22045e-016 1.
+1. -2.22045e-016 1.
+-1. 2.22045e-016 -1.
+1. 2.22045e-016 -1.
+</float_array>
+          <technique profile="COMMON">
+            <accessor source="#pPlaneShape1-lib-Position-array" count="4" stride="3">
+              <param name="X" type="float" flow="OUT"/>
+              <param name="Y" type="float" flow="OUT"/>
+              <param name="Z" type="float" flow="OUT"/>
+            </accessor>
+          </technique>
+        </source>
+        <source id="pPlaneShape1-lib-Normal">
+          <float_array id="pPlaneShape1-lib-Normal-array" count="12">
+0 1. 2.22045e-016
+0 1. 2.22045e-016
+0 1. 2.22045e-016
+0 1. 2.22045e-016
+</float_array>
+          <technique profile="COMMON">
+            <accessor source="#pPlaneShape1-lib-Normal-array" count="4" stride="3">
+              <param name="X" type="float" flow="OUT"/>
+              <param name="Y" type="float" flow="OUT"/>
+              <param name="Z" type="float" flow="OUT"/>
+            </accessor>
+          </technique>
+          <technique profile="MAYA">
+            <param name="DOUBLE_SIDED" type="bool" flow="OUT">TRUE</param>
+          </technique>
+        </source>
+        <source id="pPlaneShape1-lib-map1" name="map1">
+          <float_array id="pPlaneShape1-lib-map1-array" count="8">
+0 0
+1. 0
+0 1.
+1. 1.
+</float_array>
+          <technique profile="COMMON">
+            <accessor source="#pPlaneShape1-lib-map1-array" count="4" stride="2">
+              <param name="S" type="float" flow="OUT"/>
+              <param name="T" type="float" flow="OUT"/>
+            </accessor>
+          </technique>
+        </source>
+        <vertices id="pPlaneShape1-lib-Vertex">
+          <input semantic="POSITION" source="#pPlaneShape1-lib-Position"/>
+          <input semantic="NORMAL" source="#pPlaneShape1-lib-Normal"/>
+        </vertices>
+        <triangles material="#blinn1" count="2">
+          <input semantic="VERTEX" idx="0" source="#pPlaneShape1-lib-Vertex"/>
+          <input semantic="TEXCOORD" idx="1" source="#pPlaneShape1-lib-map1"/>
+          <p>0 0 1 1 2 2</p>
+          <p>1 1 3 3 2 2</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library>
+  <scene name="Rect">
+    <extra>
+      <technique profile="MAYA">
+        <param name="START_TIME" type="float" flow="IN">0</param>
+        <param name="END_TIME" type="float" flow="IN">3.</param>
+      </technique>
+    </extra>
+    <node id="pPlane1" name="pPlane1">
+      <instance url="#pPlaneShape1-lib"/>
+    </node>
+  </scene>
+</COLLADA>

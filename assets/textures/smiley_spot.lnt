@@ -1,0 +1,10 @@
+<LIGHTENTITY>
+	<MAIN
+		ProjectionImage ="smiley_spot.tga"
+		Aspect = 	 "1"
+		FalloffImage = 	 "smiley_spot_falloff.png"
+		CastsShadows =   "true"
+		NearClipPlane =  "0.1"
+		Specular=	 "1"
+	/>
+</LIGHTENTITY>

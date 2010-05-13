@@ -1,0 +1,31 @@
+void main(	float4 position : POSITION,
+			float3 normal	: NORMAL,
+			float3 uv	   : TEXCOORD0,
+			float4 tangent : TEXCOORD1,
+					  
+			out float4 oPosition	: POSITION,
+			out float4 oLightColor	: COLOR0,
+			out float3 oUv	: TEXCOORD0,
+			out float3 oLightDir	: TEXCOORD1,
+						  
+			uniform float4x4 worldViewProj,	//ViewProjection matrix
+			uniform float3 LightPos,		//The lightpostion (local to model)
+			uniform float4 LightColor)		//Color of the light
+{
+	oPosition = mul(worldViewProj, position);
+
+	oUv = uv;
+
+	//The direction of the light
+	oLightDir = LightPos - position.xyz;
+	
+	//Calculate rotation for light to get it to tangent space.
+	float3 binormal = cross(normal,tangent.xyz)*tangent.w;
+	float3x3 rotation = float3x3(tangent.xyz, binormal, normal);
+		
+	//Transform the lightdir to tangent space
+	oLightDir = mul(rotation, oLightDir);
+	
+	//Set the light color
+    oLightColor = LightColor;
+}

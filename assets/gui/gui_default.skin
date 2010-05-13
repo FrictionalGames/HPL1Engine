@@ -1,0 +1,127 @@
+<GuiSkin>
+	<GfxElements>
+		<!-- PONITER GRAPHICS -->
+		<Gfx type="PointerNormal" 	file="gui_def_pointer_normal.bmp" 	offset="0 0" active_size="-1 -1" color="1 1 1 1"/>
+		<Gfx type="PointerText" 	file="gui_def_pointer_text.bmp"		offset="-7 -11" active_size="-1 -1" color="1 1 1 1"/>
+		
+		
+		<!-- WINDOW GRAPHICS -->
+		<Gfx type="WindowBorderRight" 	file="gui_def_window_border_r.bmp" 	offset="0 0" active_size="-1 -1" color="1 1 1 1"/>
+		<Gfx type="WindowBorderLeft" 	file="gui_def_window_border_l.bmp"	offset="0 0" active_size="-1 -1" color="1 1 1 1"/>
+		<Gfx type="WindowBorderUp" 	file="gui_def_window_border_u.bmp"	offset="0 -1" active_size="4 4" color="1 1 1 1"/>
+		<Gfx type="WindowBorderDown" 	file="gui_def_window_border_d.bmp"	offset="0 0" active_size="-1 -1" color="1 1 1 1"/>
+		
+		<Gfx type="WindowCornerLU" 	file="gui_def_window_corner_lu.bmp" 	offset="0 0" active_size="-1 -1" color="1 1 1 1"/>
+		<Gfx type="WindowCornerRU" 	file="gui_def_window_corner_ru.bmp" 	offset="0 0" active_size="-1 -1" color="1 1 1 1"/>
+		<Gfx type="WindowCornerRD" 	file="gui_def_window_corner_rd.bmp" 	offset="0 0" active_size="-1 -1" color="1 1 1 1"/>
+		<Gfx type="WindowCornerLD" 	file="gui_def_window_corner_ld.bmp" 	offset="0 0" active_size="-1 -1" color="1 1 1 1"/>
+		
+		<Gfx type="WindowLabel" 	file="gui_def_window_label.bmp" 	offset="0 0" active_size="-1 -1" color="0.2 0.2 1 1"/>
+		<Gfx type="WindowBackground" 	file="" 				offset="0 0" active_size="-1 -1" color="0.6 0.6 0.6 1"/>
+		
+		<!-- FRAME GRAPHICS -->
+		<Gfx type="FrameBorderRight" 	file="gui_def_frame_border_r.bmp" 	offset="0 0" active_size="-1 -1" color="1 1 1 1"/>
+		<Gfx type="FrameBorderLeft" 	file="gui_def_frame_border_l.bmp"	offset="0 0" active_size="-1 -1" color="1 1 1 1"/>
+		<Gfx type="FrameBorderUp" 	file="gui_def_frame_border_u.bmp"	offset="0 0" active_size="-1 -1" color="1 1 1 1"/>
+		<Gfx type="FrameBorderDown" 	file="gui_def_frame_border_d.bmp"	offset="0 0" active_size="-1 -1" color="1 1 1 1"/>
+		
+		<Gfx type="FrameCornerLU" 	file="gui_def_frame_corner_lu.bmp" 	offset="0 0" active_size="-1 -1" color="1 1 1 1"/>
+		<Gfx type="FrameCornerRU" 	file="gui_def_frame_corner_ru.bmp" 	offset="0 0" active_size="-1 -1" color="1 1 1 1"/>
+		<Gfx type="FrameCornerRD" 	file="gui_def_frame_corner_rd.bmp" 	offset="0 0" active_size="-1 -1" color="1 1 1 1"/>
+		<Gfx type="FrameCornerLD" 	file="gui_def_frame_corner_ld.bmp" 	offset="0 0" active_size="-1 -1" color="1 1 1 1"/>
+		
+		<Gfx type="FrameBackground" 	file="" 				offset="0 0" active_size="-1 -1" color="1 1 1 1"/>
+		
+		<!-- CHECK BOX GRAPHICS -->
+		<Gfx type="CheckBoxEnabledUnchecked" 	file="gui_def_checkbox_unchecked.bmp" 	offset="0 0" active_size="-1 -1" color="1 1 1 1"/>
+		<Gfx type="CheckBoxEnabledChecked" 	file="gui_def_checkbox_checked.bmp" 	offset="0 0" active_size="-1 -1" color="1 1 1 1"/>
+		
+		<Gfx type="CheckBoxDisabledUnchecked" 	file="gui_def_checkbox_unchecked.bmp" 	offset="0 0" active_size="-1 -1" color="1 1 1 0.4"/>
+		<Gfx type="CheckBoxDisabledChecked" 	file="gui_def_checkbox_checked.bmp" 	offset="0 0" active_size="-1 -1" color="1 1 1 0.4"/>
+				
+		
+		<!-- TEXT BOX GRAPHICS -->
+		<Gfx type="TextBoxBackground" 	file="" 				offset="0 0" active_size="-1 -1" color="1 1 1 1"/>
+		
+		<Gfx type="TextBoxSelectedTextBack" file=""				color="0.7 0.7 1 1.0" material="modulative" />
+		<Gfx type="TextBoxMarker"	file="gui_def_textbox_marker.bmp"	animated="true" anim_frame_time="0.5" anim_mode="loop"/>
+		
+		<!-- COMBO BOX GRAPHICS -->
+		<Gfx type="ComboBoxButtonIcon" 	file="gui_def_slider_vert_arrow_d.bmp" 	offset="0 0" active_size="-1 -1" color="1 1 1 1"/>
+		
+		<Gfx type="ComboBoxBorderRight" file="gui_def_combobox_border.bmp" 	offset="0 0" active_size="-1 -1" color="1 1 1 1"/>
+		<Gfx type="ComboBoxBorderLeft" 	file="gui_def_combobox_border.bmp"	offset="0 0" active_size="-1 -1" color="1 1 1 1"/>
+		<Gfx type="ComboBoxBorderUp" 	file="gui_def_combobox_border.bmp"	offset="0 0" active_size="-1 -1" color="1 1 1 1"/>
+		<Gfx type="ComboBoxBorderDown" 	file="gui_def_combobox_border.bmp"	offset="0 0" active_size="-1 -1" color="1 1 1 1"/>
+		
+		<Gfx type="ComboBoxCornerLU" 	file="gui_def_combobox_border.bmp" 	offset="0 0" active_size="-1 -1" color="1 1 1 1"/>
+		<Gfx type="ComboBoxCornerRU" 	file="gui_def_combobox_border.bmp" 	offset="0 0" active_size="-1 -1" color="1 1 1 1"/>
+		<Gfx type="ComboBoxCornerRD" 	file="gui_def_combobox_border.bmp" 	offset="0 0" active_size="-1 -1" color="1 1 1 1"/>
+		<Gfx type="ComboBoxCornerLD" 	file="gui_def_combobox_border.bmp" 	offset="0 0" active_size="-1 -1" color="1 1 1 1"/>
+		
+		<Gfx type="ComboBoxBackground" 	file="" 				offset="0 0" active_size="-1 -1" color="1 1 1 1"/>
+		
+		
+		<!-- LIST BOX GRAPHICS -->
+		<Gfx type="ListBoxBackground" 	file="" 				offset="0 0" active_size="-1 -1" color="1 1 1 1"/>
+			
+		
+		<!-- SLIDER GRAPHICS -->
+		<Gfx type="SliderVertArrowUp" 	file="gui_def_slider_vert_arrow_u.bmp" 	offset="0 0" active_size="-1 -1" color="1 1 1 1"/>
+		<Gfx type="SliderVertArrowDown" file="gui_def_slider_vert_arrow_d.bmp"	offset="0 0" active_size="-1 -1" color="1 1 1 1"/>
+		<Gfx type="SliderVertBackground" file=""				offset="0 0" active_size="-1 -1" color="0.5 0.5 0.5 1"/>
+		
+		<Gfx type="SliderHoriArrowUp" 	file="gui_def_slider_hori_arrow_u.bmp" 	offset="0 0" active_size="-1 -1" color="1 1 1 1"/>
+		<Gfx type="SliderHoriArrowDown" file="gui_def_slider_hori_arrow_d.bmp"	offset="0 0" active_size="-1 -1" color="1 1 1 1"/>
+		<Gfx type="SliderHoriBackground" file=""				offset="0 0" active_size="-1 -1" color="0.5 0.5 0.5 1"/>
+		
+		
+		<!-- BUTTON GRAPHICS -->
+		<Gfx type="ButtonUpBorderRight" file="gui_def_button_up_border_r.bmp" 	offset="0 0" active_size="-1 -1" color="0.6 0.6 0.6 1"/>
+		<Gfx type="ButtonUpBorderLeft" 	file="gui_def_button_up_border_l.bmp"	offset="0 0" active_size="-1 -1" color="1 1 1 1"/>
+		<Gfx type="ButtonUpBorderUp" 	file="gui_def_button_up_border_u.bmp"	offset="0 0" active_size="-1 -1" color="1 1 1 1"/>
+		<Gfx type="ButtonUpBorderDown" 	file="gui_def_button_up_border_d.bmp"	offset="0 0" active_size="-1 -1" color="0.6 0.6 0.6 1"/>
+		
+		<Gfx type="ButtonUpCornerLU" 	file="gui_def_button_up_corner_lu.bmp" 	offset="0 0" active_size="-1 -1" color="1 1 1 1"/>
+		<Gfx type="ButtonUpCornerRU" 	file="gui_def_button_up_corner_ru.bmp" 	offset="0 0" active_size="-1 -1" color="0.6 0.6 0.6 1"/>
+		<Gfx type="ButtonUpCornerRD" 	file="gui_def_button_up_corner_rd.bmp" 	offset="0 0" active_size="-1 -1" color="0.6 0.6 0.6 1"/>
+		<Gfx type="ButtonUpCornerLD" 	file="gui_def_button_up_corner_ld.bmp" 	offset="0 0" active_size="-1 -1" color="0.6 0.6 0.6 1"/>
+		
+		<Gfx type="ButtonUpBackground" 	file="" 				offset="0 0" active_size="-1 -1" color="0.6 0.6 0.6 1"/>
+		
+		<Gfx type="ButtonDownBorderRight" file="gui_def_button_up_border_l.bmp" offset="0 0" active_size="-1 -1" color="1 1 1 1"/>
+		<Gfx type="ButtonDownBorderLeft" file="gui_def_button_up_border_r.bmp"	offset="0 0" active_size="-1 -1" color="0.6 0.6 0.6 1"/>
+		<Gfx type="ButtonDownBorderUp" 	 file="gui_def_button_up_border_d.bmp"	offset="0 0" active_size="-1 -1" color="0.6 0.6 0.6 1"/>
+		<Gfx type="ButtonDownBorderDown" file="gui_def_button_up_border_u.bmp"	offset="0 0" active_size="-1 -1" color="1 1 1 1"/>
+		
+		<Gfx type="ButtonDownCornerLU" 	file="gui_def_button_up_corner_rd.bmp" 	offset="0 0" active_size="-1 -1" color="0.6 0.6 0.6 1"/>
+		<Gfx type="ButtonDownCornerRU" 	file="gui_def_button_down_corner_ru.bmp" offset="0 0" active_size="-1 -1" color="0.6 0.6 0.6 1" />
+		<Gfx type="ButtonDownCornerRD" 	file="gui_def_button_up_corner_lu.bmp" 	 offset="0 0" active_size="-1 -1" color="1 1 1 1"/>
+		<Gfx type="ButtonDownCornerLD" 	file="gui_def_button_down_corner_ld.bmp" offset="0 0" active_size="-1 -1" color="0.6 0.6 0.6 1"/>
+		
+		<Gfx type="ButtonDownBackground" 	file="" 				offset="0 0" active_size="-1 -1" color="0.53 0.53 0.53 1"/>
+		
+	</GfxElements>
+	
+	<Fonts>
+		<Font type="Default"		file="viewer.fnt"	size = "14 14"	color="0 0 0 1"/>
+		<Font type="Disabled"		file="viewer.fnt"	size = "14 14"	color="0.3 0.3 0.3 1"/>
+		<Font type="WindowLabel"	file="viewer.fnt"	size = "16 16"	color="1 1 1 1"/>				
+	</Fonts>
+	
+	<Attributes>
+		<Attribute type="WindowLabelTextOffset"		value="4 2"/>
+		
+		<Attribute type="ButtonPressedContentOffset" 	value="1 1"/>
+		
+		<Attribute type="SliderButtonSize" 		value="20"/>
+		
+		<Attribute type="ListBoxSliderWidth"		value="20"/>
+		
+		<Attribute type="ComboBoxButtonWidth"		value="20"/>
+		<Attribute type="ComboBoxSliderWidth"		value="20"/>
+	</Attributes>
+</GuiSkin>
+
+
+

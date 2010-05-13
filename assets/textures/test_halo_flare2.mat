@@ -1,0 +1,6 @@
+<Material>
+  <Main Type="Additive" PhysicsMaterial="" UseAlpha="False" DepthTest="False" />
+  <TextureUnits>
+    <Diffuse File="test_halo_flare2" Compress="false" Type="2D" Mipmaps="true" Wrap="Repeat" />
+  </TextureUnits>
+</Material>

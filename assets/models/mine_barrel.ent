@@ -1,0 +1,29 @@
+<ENTITY>
+	<MAIN 
+		Name="mine_barrel" 
+		Type="Object" 
+		Subtype="Normal" 
+	/>
+	
+	<PHYSICS
+		SubName = "barrelShape"
+		Collides = "true"
+		HasPhysics = "true"
+		Material="Dyn_Wood_Barrel"
+		Mass="32"
+		InertiaScale = "1 1 1"
+		AngularDamping = "0.4"
+		LinearDamping = "0.4"
+		BlocksSound = "false"
+	/>
+	
+	<GRAPHICS
+		ModelFile = "mine_barrel"	
+		CastShadows = "true"
+	/>
+	
+	<GAME
+		InteractMode = "Push"
+	/>
+	
+</ENTITY>

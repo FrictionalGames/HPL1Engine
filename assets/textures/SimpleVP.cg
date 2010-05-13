@@ -1,0 +1,26 @@
+// Basically, what this program does is that it tranforms a vertice,
+// a vertice is a postion, normal, tex coords, etc.
+// So the program below is run one time for every vertice in the vertex buffer
+
+void main(	float4 position : POSITION,		//This is the postion in vertex
+			float3 normal	: NORMAL,		//The normal 
+			float4 color	: COLOR0,		//The color
+			float2 uv		: TEXCOORD0,	//Texture coord 0
+			float4 tangent	: TEXCOORD1,	//Texture coord 1 (used here to store tangent)
+					  
+			out float4 oPosition	: POSITION,	//The transformed postion (the postion it will in screen space)
+			out float2 oUv	: TEXCOORD0,		//The transformed uv 
+			out float4 oColor : COLOR0,			//The "transformed" color
+						  
+			uniform float4x4 worldViewProj)		//This is the view-projection matrix which is basically a 
+												//multiplication of:
+												// Model matrix
+												// View (camera) matrix
+												// Projection matrix (3d -> 2d)
+{
+	oPosition = mul(worldViewProj, position);	// Transform the incoming vertex postion to screen space
+
+	oUv = uv;		//Simply just pass on the uv, do no transforming	
+
+	oColor = color;	//Simply just pass on the color
+}

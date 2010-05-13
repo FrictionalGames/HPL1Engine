@@ -1,0 +1,1381 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/COLLADASchema" version="1.3.0">
+  <asset>
+    <authoring_tool>Maya 6.5 COLLADA exporter</authoring_tool>
+    <source_data>file://E:/HPL/models/joint_multi_test.mb</source_data>
+    <up_axis>Y_UP</up_axis>
+    <unit name="meter" meter="1."/>
+    <author>Gripen</author>
+    <modified>2005-11-02T06:47:32Z</modified>
+  </asset>
+  <library type="IMAGE">
+    <image id="file2" name="file2" source="file:///E:/HPL/redist/textures/material_metal11.jpg"/>
+    <image id="file1" name="file1" source="file:///E:/HPL/redist/textures/woodbox.JPG"/>
+  </library>
+  <library type="TEXTURE">
+    <texture id="file2-DIFFUSE">
+      <param name="DIFFUSE" type="float3" flow="OUT"/>
+      <technique profile="COMMON">
+        <input semantic="IMAGE" source="#file2"/>
+      </technique>
+      <technique profile="MAYA">
+        <param name="wrapU" type="bool" flow="IN" sid="param0">TRUE</param>
+        <param name="wrapV" type="bool" flow="IN" sid="param1">TRUE</param>
+        <param name="mirrorU" type="bool" flow="IN" sid="param2">FALSE</param>
+        <param name="mirrorV" type="bool" flow="IN" sid="param3">FALSE</param>
+        <param name="coverageU" type="float" flow="IN" sid="param4">1.</param>
+        <param name="coverageV" type="float" flow="IN" sid="param5">1.</param>
+        <param name="translateFrameU" type="float" flow="IN" sid="param6">0</param>
+        <param name="translateFrameV" type="float" flow="IN" sid="param7">0</param>
+        <param name="rotateFrame" type="float" flow="IN" sid="param8">0</param>
+        <param name="stagger" type="bool" flow="IN" sid="param9">FALSE</param>
+        <param name="fast" type="bool" flow="IN" sid="param10">FALSE</param>
+        <param name="repeatU" type="float" flow="IN" sid="param11">1.</param>
+        <param name="repeatV" type="float" flow="IN" sid="param12">1.</param>
+        <param name="offsetU" type="float" flow="IN" sid="param13">0</param>
+        <param name="offsetV" type="float" flow="IN" sid="param14">0</param>
+        <param name="rotateUV" type="float" flow="IN" sid="param15">0</param>
+        <param name="noiseU" type="float" flow="IN" sid="param16">0</param>
+        <param name="noiseV" type="float" flow="IN" sid="param17">0</param>
+        <param name="BLEND_MODE" type="blend" flow="IN">NONE</param>
+      </technique>
+    </texture>
+    <texture id="file1-DIFFUSE">
+      <param name="DIFFUSE" type="float3" flow="OUT"/>
+      <technique profile="COMMON">
+        <input semantic="IMAGE" source="#file1"/>
+      </technique>
+      <technique profile="MAYA">
+        <param name="wrapU" type="bool" flow="IN" sid="param0">TRUE</param>
+        <param name="wrapV" type="bool" flow="IN" sid="param1">TRUE</param>
+        <param name="mirrorU" type="bool" flow="IN" sid="param2">FALSE</param>
+        <param name="mirrorV" type="bool" flow="IN" sid="param3">FALSE</param>
+        <param name="coverageU" type="float" flow="IN" sid="param4">1.</param>
+        <param name="coverageV" type="float" flow="IN" sid="param5">1.</param>
+        <param name="translateFrameU" type="float" flow="IN" sid="param6">0</param>
+        <param name="translateFrameV" type="float" flow="IN" sid="param7">0</param>
+        <param name="rotateFrame" type="float" flow="IN" sid="param8">0</param>
+        <param name="stagger" type="bool" flow="IN" sid="param9">FALSE</param>
+        <param name="fast" type="bool" flow="IN" sid="param10">FALSE</param>
+        <param name="repeatU" type="float" flow="IN" sid="param11">1.</param>
+        <param name="repeatV" type="float" flow="IN" sid="param12">1.</param>
+        <param name="offsetU" type="float" flow="IN" sid="param13">0</param>
+        <param name="offsetV" type="float" flow="IN" sid="param14">0</param>
+        <param name="rotateUV" type="float" flow="IN" sid="param15">0</param>
+        <param name="noiseU" type="float" flow="IN" sid="param16">0</param>
+        <param name="noiseV" type="float" flow="IN" sid="param17">0</param>
+        <param name="BLEND_MODE" type="blend" flow="IN">NONE</param>
+      </technique>
+    </texture>
+  </library>
+  <library type="MATERIAL">
+    <material id="blinn2" name="blinn2">
+      <shader>
+        <technique profile="COMMON">
+          <pass>
+            <input semantic="TEXTURE" source="#file2-DIFFUSE"/>
+            <program url="LAMBERT">
+              <param name="DIFFUSE" type="float3" flow="IN" sid="diffuse">1. 1. 1.</param>
+              <param name="AMBIENT" type="float3" flow="IN" sid="param1">0 0 0</param>
+              <param name="TRANSPARENT" type="float3" flow="IN" sid="transparent">0 0 0</param>
+              <param name="TRANSPARENCY" type="float" flow="IN">0</param>
+            </program>
+          </pass>
+        </technique>
+      </shader>
+    </material>
+    <material id="lambert1" name="lambert1">
+      <shader>
+        <technique profile="COMMON">
+          <pass>
+            <program url="LAMBERT">
+              <param name="DIFFUSE" type="float3" flow="IN" sid="diffuse">0 1. 2.35001e-002</param>
+              <param name="AMBIENT" type="float3" flow="IN" sid="param1">0 0 0</param>
+              <param name="TRANSPARENT" type="float3" flow="IN" sid="transparent">0.58678 0.58678 0.58678</param>
+              <param name="TRANSPARENCY" type="float" flow="IN">1.</param>
+            </program>
+          </pass>
+        </technique>
+      </shader>
+    </material>
+    <material id="blinn1" name="blinn1">
+      <shader>
+        <technique profile="COMMON">
+          <pass>
+            <input semantic="TEXTURE" source="#file1-DIFFUSE"/>
+            <program url="LAMBERT">
+              <param name="DIFFUSE" type="float3" flow="IN" sid="diffuse">1. 1. 1.</param>
+              <param name="AMBIENT" type="float3" flow="IN" sid="param1">0 0 0</param>
+              <param name="TRANSPARENT" type="float3" flow="IN" sid="transparent">0 0 0</param>
+              <param name="TRANSPARENCY" type="float" flow="IN">0</param>
+            </program>
+          </pass>
+        </technique>
+      </shader>
+    </material>
+  </library>
+  <library type="GEOMETRY">
+    <geometry id="pCubeShape1-lib" name="pCubeShape1">
+      <mesh>
+        <source id="pCubeShape1-lib-Position">
+          <float_array id="pCubeShape1-lib-Position-array" count="24">
+-0.5 -0.5 0.5
+0.5 -0.5 0.5
+-0.5 0.5 0.5
+0.5 0.5 0.5
+-0.5 0.5 -0.5
+0.5 0.5 -0.5
+-0.5 -0.5 -0.5
+0.5 -0.5 -0.5
+</float_array>
+          <technique profile="COMMON">
+            <accessor source="#pCubeShape1-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float" flow="OUT"/>
+              <param name="Y" type="float" flow="OUT"/>
+              <param name="Z" type="float" flow="OUT"/>
+            </accessor>
+          </technique>
+        </source>
+        <source id="pCubeShape1-lib-Normal">
+          <float_array id="pCubeShape1-lib-Normal-array" count="72">
+0 0 1.
+0 0 1.
+0 0 1.
+0 0 1.
+0 1. 0
+0 1. 0
+0 1. 0
+0 1. 0
+0 0 -1.
+0 0 -1.
+0 0 -1.
+0 0 -1.
+0 -1. 0
+0 -1. 0
+0 -1. 0
+0 -1. 0
+1. 0 0
+1. 0 0
+1. 0 0
+1. 0 0
+-1. 0 0
+-1. 0 0
+-1. 0 0
+-1. 0 0
+</float_array>
+          <technique profile="COMMON">
+            <accessor source="#pCubeShape1-lib-Normal-array" count="24" stride="3">
+              <param name="X" type="float" flow="OUT"/>
+              <param name="Y" type="float" flow="OUT"/>
+              <param name="Z" type="float" flow="OUT"/>
+            </accessor>
+          </technique>
+          <technique profile="MAYA">
+            <param name="DOUBLE_SIDED" type="bool" flow="OUT">TRUE</param>
+          </technique>
+        </source>
+        <source id="pCubeShape1-lib-map1" name="map1">
+          <float_array id="pCubeShape1-lib-map1-array" count="28">
+0 0
+1. 0
+0 1.
+1. 1.
+0 2.
+1. 2.
+0 3.
+1. 3.
+0 4.
+1. 4.
+2. 0
+2. 1.
+-1. 0
+-1. 1.
+</float_array>
+          <technique profile="COMMON">
+            <accessor source="#pCubeShape1-lib-map1-array" count="14" stride="2">
+              <param name="S" type="float" flow="OUT"/>
+              <param name="T" type="float" flow="OUT"/>
+            </accessor>
+          </technique>
+        </source>
+        <vertices id="pCubeShape1-lib-Vertex">
+          <input semantic="POSITION" source="#pCubeShape1-lib-Position"/>
+        </vertices>
+        <triangles material="#blinn2" count="12">
+          <input semantic="VERTEX" idx="0" source="#pCubeShape1-lib-Vertex"/>
+          <input semantic="NORMAL" idx="1" source="#pCubeShape1-lib-Normal"/>
+          <input semantic="TEXCOORD" idx="2" source="#pCubeShape1-lib-map1"/>
+          <p>0 0 0 1 1 1 2 3 2</p>
+          <p>1 1 1 3 2 3 2 3 2</p>
+          <p>2 4 2 3 5 3 4 7 4</p>
+          <p>3 5 3 5 6 5 4 7 4</p>
+          <p>4 8 4 5 9 5 6 11 6</p>
+          <p>5 9 5 7 10 7 6 11 6</p>
+          <p>6 12 6 7 13 7 0 15 8</p>
+          <p>7 13 7 1 14 9 0 15 8</p>
+          <p>1 16 1 7 17 10 3 19 3</p>
+          <p>7 17 10 5 18 11 3 19 3</p>
+          <p>6 20 12 0 21 0 4 23 13</p>
+          <p>0 21 0 2 22 2 4 23 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="_collider_box_pCubeShape4-lib" name="_collider_box_pCubeShape4">
+      <mesh>
+        <source id="_collider_box_pCubeShape4-lib-Position">
+          <float_array id="_collider_box_pCubeShape4-lib-Position-array" count="24">
+-0.5 -0.5 0.5
+0.5 -0.5 0.5
+-0.5 0.5 0.5
+0.5 0.5 0.5
+-0.5 0.5 -0.5
+0.5 0.5 -0.5
+-0.5 -0.5 -0.5
+0.5 -0.5 -0.5
+</float_array>
+          <technique profile="COMMON">
+            <accessor source="#_collider_box_pCubeShape4-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float" flow="OUT"/>
+              <param name="Y" type="float" flow="OUT"/>
+              <param name="Z" type="float" flow="OUT"/>
+            </accessor>
+          </technique>
+        </source>
+        <source id="_collider_box_pCubeShape4-lib-Normal">
+          <float_array id="_collider_box_pCubeShape4-lib-Normal-array" count="72">
+0 0 1.
+0 0 1.
+0 0 1.
+0 0 1.
+0 1. 0
+0 1. 0
+0 1. 0
+0 1. 0
+0 0 -1.
+0 0 -1.
+0 0 -1.
+0 0 -1.
+0 -1. 0
+0 -1. 0
+0 -1. 0
+0 -1. 0
+1. 0 0
+1. 0 0
+1. 0 0
+1. 0 0
+-1. 0 0
+-1. 0 0
+-1. 0 0
+-1. 0 0
+</float_array>
+          <technique profile="COMMON">
+            <accessor source="#_collider_box_pCubeShape4-lib-Normal-array" count="24" stride="3">
+              <param name="X" type="float" flow="OUT"/>
+              <param name="Y" type="float" flow="OUT"/>
+              <param name="Z" type="float" flow="OUT"/>
+            </accessor>
+          </technique>
+          <technique profile="MAYA">
+            <param name="DOUBLE_SIDED" type="bool" flow="OUT">TRUE</param>
+          </technique>
+        </source>
+        <source id="_collider_box_pCubeShape4-lib-map1" name="map1">
+          <float_array id="_collider_box_pCubeShape4-lib-map1-array" count="28">
+0 0
+1. 0
+0 1.
+1. 1.
+0 2.
+1. 2.
+0 3.
+1. 3.
+0 4.
+1. 4.
+2. 0
+2. 1.
+-1. 0
+-1. 1.
+</float_array>
+          <technique profile="COMMON">
+            <accessor source="#_collider_box_pCubeShape4-lib-map1-array" count="14" stride="2">
+              <param name="S" type="float" flow="OUT"/>
+              <param name="T" type="float" flow="OUT"/>
+            </accessor>
+          </technique>
+        </source>
+        <vertices id="_collider_box_pCubeShape4-lib-Vertex">
+          <input semantic="POSITION" source="#_collider_box_pCubeShape4-lib-Position"/>
+        </vertices>
+        <triangles material="#lambert1" count="12">
+          <input semantic="VERTEX" idx="0" source="#_collider_box_pCubeShape4-lib-Vertex"/>
+          <input semantic="NORMAL" idx="1" source="#_collider_box_pCubeShape4-lib-Normal"/>
+          <p>0 0 1 1 2 3</p>
+          <p>1 1 3 2 2 3</p>
+          <p>2 4 3 5 4 7</p>
+          <p>3 5 5 6 4 7</p>
+          <p>4 8 5 9 6 11</p>
+          <p>5 9 7 10 6 11</p>
+          <p>6 12 7 13 0 15</p>
+          <p>7 13 1 14 0 15</p>
+          <p>1 16 7 17 3 19</p>
+          <p>7 17 5 18 3 19</p>
+          <p>6 20 0 21 4 23</p>
+          <p>0 21 2 22 4 23</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="pCubeShape2-lib" name="pCubeShape2">
+      <mesh>
+        <source id="pCubeShape2-lib-Position">
+          <float_array id="pCubeShape2-lib-Position-array" count="24">
+-0.40621 -0.40621 0.40621
+0.40621 -0.40621 0.40621
+-0.40621 0.40621 0.40621
+0.40621 0.40621 0.40621
+-0.40621 0.40621 -0.40621
+0.40621 0.40621 -0.40621
+-0.40621 -0.40621 -0.40621
+0.40621 -0.40621 -0.40621
+</float_array>
+          <technique profile="COMMON">
+            <accessor source="#pCubeShape2-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float" flow="OUT"/>
+              <param name="Y" type="float" flow="OUT"/>
+              <param name="Z" type="float" flow="OUT"/>
+            </accessor>
+          </technique>
+        </source>
+        <source id="pCubeShape2-lib-Normal">
+          <float_array id="pCubeShape2-lib-Normal-array" count="72">
+1.2729e-008 0 1.
+1.2729e-008 0 1.
+1.2729e-008 0 1.
+1.2729e-008 0 1.
+0 1. 1.2729e-008
+0 1. 1.2729e-008
+0 1. 1.2729e-008
+0 1. 1.2729e-008
+1.2729e-008 0 -1.
+1.2729e-008 0 -1.
+1.2729e-008 0 -1.
+1.2729e-008 0 -1.
+0 -1. -1.2729e-008
+0 -1. -1.2729e-008
+0 -1. -1.2729e-008
+0 -1. -1.2729e-008
+1. -1.2729e-008 0
+1. -1.2729e-008 0
+1. -1.2729e-008 0
+1. -1.2729e-008 0
+-1. -1.2729e-008 0
+-1. -1.2729e-008 0
+-1. -1.2729e-008 0
+-1. -1.2729e-008 0
+</float_array>
+          <technique profile="COMMON">
+            <accessor source="#pCubeShape2-lib-Normal-array" count="24" stride="3">
+              <param name="X" type="float" flow="OUT"/>
+              <param name="Y" type="float" flow="OUT"/>
+              <param name="Z" type="float" flow="OUT"/>
+            </accessor>
+          </technique>
+          <technique profile="MAYA">
+            <param name="DOUBLE_SIDED" type="bool" flow="OUT">TRUE</param>
+          </technique>
+        </source>
+        <source id="pCubeShape2-lib-map1" name="map1">
+          <float_array id="pCubeShape2-lib-map1-array" count="28">
+0 0
+1. 0
+0 1.
+1. 1.
+0 2.
+1. 2.
+0 3.
+1. 3.
+0 4.
+1. 4.
+2. 0
+2. 1.
+-1. 0
+-1. 1.
+</float_array>
+          <technique profile="COMMON">
+            <accessor source="#pCubeShape2-lib-map1-array" count="14" stride="2">
+              <param name="S" type="float" flow="OUT"/>
+              <param name="T" type="float" flow="OUT"/>
+            </accessor>
+          </technique>
+        </source>
+        <vertices id="pCubeShape2-lib-Vertex">
+          <input semantic="POSITION" source="#pCubeShape2-lib-Position"/>
+        </vertices>
+        <triangles material="#blinn1" count="12">
+          <input semantic="VERTEX" idx="0" source="#pCubeShape2-lib-Vertex"/>
+          <input semantic="NORMAL" idx="1" source="#pCubeShape2-lib-Normal"/>
+          <input semantic="TEXCOORD" idx="2" source="#pCubeShape2-lib-map1"/>
+          <p>0 0 0 1 1 1 2 3 2</p>
+          <p>1 1 1 3 2 3 2 3 2</p>
+          <p>2 4 2 3 5 3 4 7 4</p>
+          <p>3 5 3 5 6 5 4 7 4</p>
+          <p>4 8 4 5 9 5 6 11 6</p>
+          <p>5 9 5 7 10 7 6 11 6</p>
+          <p>6 12 6 7 13 7 0 15 8</p>
+          <p>7 13 7 1 14 9 0 15 8</p>
+          <p>1 16 1 7 17 10 3 19 3</p>
+          <p>7 17 10 5 18 11 3 19 3</p>
+          <p>6 20 12 0 21 0 4 23 13</p>
+          <p>0 21 0 2 22 2 4 23 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="_collider_box_pCubeShape3-lib" name="_collider_box_pCubeShape3">
+      <mesh>
+        <source id="_collider_box_pCubeShape3-lib-Position">
+          <float_array id="_collider_box_pCubeShape3-lib-Position-array" count="24">
+-0.4 -0.4 0.4
+0.4 -0.4 0.4
+-0.4 0.4 0.4
+0.4 0.4 0.4
+-0.4 0.4 -0.4
+0.4 0.4 -0.4
+-0.4 -0.4 -0.4
+0.4 -0.4 -0.4
+</float_array>
+          <technique profile="COMMON">
+            <accessor source="#_collider_box_pCubeShape3-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float" flow="OUT"/>
+              <param name="Y" type="float" flow="OUT"/>
+              <param name="Z" type="float" flow="OUT"/>
+            </accessor>
+          </technique>
+        </source>
+        <source id="_collider_box_pCubeShape3-lib-Normal">
+          <float_array id="_collider_box_pCubeShape3-lib-Normal-array" count="72">
+0 0 1.
+0 0 1.
+0 0 1.
+0 0 1.
+0 1. 0
+0 1. 0
+0 1. 0
+0 1. 0
+0 0 -1.
+0 0 -1.
+0 0 -1.
+0 0 -1.
+0 -1. 0
+0 -1. 0
+0 -1. 0
+0 -1. 0
+1. 0 0
+1. 0 0
+1. 0 0
+1. 0 0
+-1. 0 0
+-1. 0 0
+-1. 0 0
+-1. 0 0
+</float_array>
+          <technique profile="COMMON">
+            <accessor source="#_collider_box_pCubeShape3-lib-Normal-array" count="24" stride="3">
+              <param name="X" type="float" flow="OUT"/>
+              <param name="Y" type="float" flow="OUT"/>
+              <param name="Z" type="float" flow="OUT"/>
+            </accessor>
+          </technique>
+          <technique profile="MAYA">
+            <param name="DOUBLE_SIDED" type="bool" flow="OUT">TRUE</param>
+          </technique>
+        </source>
+        <source id="_collider_box_pCubeShape3-lib-map1" name="map1">
+          <float_array id="_collider_box_pCubeShape3-lib-map1-array" count="28">
+0 0
+1. 0
+0 1.
+1. 1.
+0 2.
+1. 2.
+0 3.
+1. 3.
+0 4.
+1. 4.
+2. 0
+2. 1.
+-1. 0
+-1. 1.
+</float_array>
+          <technique profile="COMMON">
+            <accessor source="#_collider_box_pCubeShape3-lib-map1-array" count="14" stride="2">
+              <param name="S" type="float" flow="OUT"/>
+              <param name="T" type="float" flow="OUT"/>
+            </accessor>
+          </technique>
+        </source>
+        <vertices id="_collider_box_pCubeShape3-lib-Vertex">
+          <input semantic="POSITION" source="#_collider_box_pCubeShape3-lib-Position"/>
+        </vertices>
+        <triangles material="#lambert1" count="12">
+          <input semantic="VERTEX" idx="0" source="#_collider_box_pCubeShape3-lib-Vertex"/>
+          <input semantic="NORMAL" idx="1" source="#_collider_box_pCubeShape3-lib-Normal"/>
+          <p>0 0 1 1 2 3</p>
+          <p>1 1 3 2 2 3</p>
+          <p>2 4 3 5 4 7</p>
+          <p>3 5 5 6 4 7</p>
+          <p>4 8 5 9 6 11</p>
+          <p>5 9 7 10 6 11</p>
+          <p>6 12 7 13 0 15</p>
+          <p>7 13 1 14 0 15</p>
+          <p>1 16 7 17 3 19</p>
+          <p>7 17 5 18 3 19</p>
+          <p>6 20 0 21 4 23</p>
+          <p>0 21 2 22 4 23</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="_joint_ball_pCube1_pCube2_30_30_pobjShape1-lib" name="_joint_ball_pCube1_pCube2_30_30_pobjShape1">
+      <mesh>
+        <source id="_joint_ball_pCube1_pCube2_30_30_pobjShape1-lib-Position">
+          <float_array id="_joint_ball_pCube1_pCube2_30_30_pobjShape1-lib-Position-array" count="126">
+5.70634e-002 -0.5 -1.8541e-002
+4.8541e-002 -0.5 -3.52671e-002
+3.52671e-002 -0.5 -4.8541e-002
+1.8541e-002 -0.5 -5.70634e-002
+4.2379e-010 -0.5 -6.e-002
+-1.8541e-002 -0.5 -5.70634e-002
+-3.52671e-002 -0.5 -4.8541e-002
+-4.8541e-002 -0.5 -3.52671e-002
+-5.70634e-002 -0.5 -1.8541e-002
+-6.e-002 -0.5 -1.01928e-009
+-5.70634e-002 -0.5 1.8541e-002
+-4.8541e-002 -0.5 3.52671e-002
+-3.52671e-002 -0.5 4.8541e-002
+-1.8541e-002 -0.5 5.70634e-002
+5.95491e-010 -0.5 6.e-002
+1.8541e-002 -0.5 5.70634e-002
+3.52671e-002 -0.5 4.8541e-002
+4.8541e-002 -0.5 3.52671e-002
+5.70634e-002 -0.5 1.8541e-002
+6.e-002 -0.5 0
+5.70634e-002 0.5 -1.8541e-002
+4.8541e-002 0.5 -3.52671e-002
+3.52671e-002 0.5 -4.8541e-002
+1.8541e-002 0.5 -5.70634e-002
+4.2379e-010 0.5 -6.e-002
+-1.8541e-002 0.5 -5.70634e-002
+-3.52671e-002 0.5 -4.8541e-002
+-4.8541e-002 0.5 -3.52671e-002
+-5.70634e-002 0.5 -1.8541e-002
+-6.e-002 0.5 -1.01928e-009
+-5.70634e-002 0.5 1.8541e-002
+-4.8541e-002 0.5 3.52671e-002
+-3.52671e-002 0.5 4.8541e-002
+-1.8541e-002 0.5 5.70634e-002
+5.95491e-010 0.5 6.e-002
+1.8541e-002 0.5 5.70634e-002
+3.52671e-002 0.5 4.8541e-002
+4.8541e-002 0.5 3.52671e-002
+5.70634e-002 0.5 1.8541e-002
+6.e-002 0.5 0
+0 -0.5 0
+0 0.5 0
+</float_array>
+          <technique profile="COMMON">
+            <accessor source="#_joint_ball_pCube1_pCube2_30_30_pobjShape1-lib-Position-array" count="42" stride="3">
+              <param name="X" type="float" flow="OUT"/>
+              <param name="Y" type="float" flow="OUT"/>
+              <param name="Z" type="float" flow="OUT"/>
+            </accessor>
+          </technique>
+        </source>
+        <source id="_joint_ball_pCube1_pCube2_30_30_pobjShape1-lib-Normal">
+          <float_array id="_joint_ball_pCube1_pCube2_30_30_pobjShape1-lib-Normal-array" count="246">
+0.951057 4.97393e-010 -0.309016
+0.809017 1.03584e-009 -0.587785
+0.809017 1.03584e-009 -0.587785
+0.951057 4.97393e-010 -0.309016
+0.587785 6.03058e-010 -0.809017
+0.587785 6.03058e-010 -0.809017
+0.309017 1.47759e-010 -0.951057
+0.309017 1.47759e-010 -0.951057
+-1.05608e-007 -4.65231e-011 -1.
+-1.05608e-007 -4.65231e-011 -1.
+-0.309017 2.03572e-010 -0.951057
+-0.309017 2.03572e-010 -0.951057
+-0.587785 8.21186e-010 -0.809017
+-0.587785 8.21186e-010 -0.809017
+-0.809017 1.76396e-009 -0.587785
+-0.809017 1.76396e-009 -0.587785
+-0.951057 8.58403e-011 -0.309017
+-0.951057 8.58403e-011 -0.309017
+-1. -1.60816e-009 0
+-1. -1.60816e-009 0
+-0.951056 -8.65005e-010 0.309017
+-0.951056 -8.65005e-010 0.309017
+-0.809017 -6.56794e-010 0.587785
+-0.809017 -6.56794e-010 0.587785
+-0.587785 -5.67155e-010 0.809017
+-0.587785 -5.67155e-010 0.809017
+-0.309017 -2.25538e-010 0.951056
+-0.309017 -2.25538e-010 0.951056
+-3.77173e-008 -1.01098e-011 1.
+-3.77173e-008 -1.01098e-011 1.
+0.309017 -2.43568e-010 0.951056
+0.309017 -2.43568e-010 0.951056
+0.587785 -8.5379e-010 0.809017
+0.587785 -8.5379e-010 0.809017
+0.809017 1.35204e-010 0.587785
+0.809017 1.35204e-010 0.587785
+0.951057 1.79014e-009 0.309017
+0.951057 1.79014e-009 0.309017
+1. 9.02753e-010 6.63824e-007
+1. 9.02753e-010 6.63824e-007
+0 -1. -8.57265e-008
+0 -1. 1.02872e-006
+0 -1. 1.70115e-007
+0 -1. -4.92927e-007
+0 -1. -4.95338e-007
+0 -1. -1.73864e-007
+0 -1. -2.57179e-007
+0 -1. 2.57179e-007
+0 -1. 1.2859e-006
+0 -1. -2.57179e-007
+0 -1. -2.57179e-007
+0 -1. 6.85812e-007
+0 -1. -6.42949e-007
+0 -1. -4.71496e-007
+0 -1. 2.67646e-007
+0 -1. 6.10552e-007
+0 -1. 8.57266e-008
+0 -1. -6.00086e-007
+0 -1. 9.42992e-007
+0 -1. 1.11444e-006
+0 -1. 8.57265e-007
+0 1. -8.57264e-007
+0 1. -1.02872e-006
+0 1. -3.50961e-008
+0 1. 8.57265e-008
+0 1. -1.92885e-007
+0 1. -5.54811e-007
+0 1. 4.95338e-007
+0 1. 9.42991e-007
+0 1. 1.11444e-006
+0 1. 8.57264e-008
+0 1. 2.57179e-007
+0 1. 2.5718e-007
+0 1. -6.85812e-007
+0 1. 6.42949e-007
+0 1. 4.71496e-007
+0 1. 7.52605e-008
+0 1. -2.67646e-007
+0 1. -8.57263e-008
+0 1. 6.00086e-007
+0 1. -9.42992e-007
+0 1. -1.11444e-006
+</float_array>
+          <technique profile="COMMON">
+            <accessor source="#_joint_ball_pCube1_pCube2_30_30_pobjShape1-lib-Normal-array" count="82" stride="3">
+              <param name="X" type="float" flow="OUT"/>
+              <param name="Y" type="float" flow="OUT"/>
+              <param name="Z" type="float" flow="OUT"/>
+            </accessor>
+          </technique>
+          <technique profile="MAYA">
+            <param name="DOUBLE_SIDED" type="bool" flow="OUT">TRUE</param>
+          </technique>
+        </source>
+        <source id="_joint_ball_pCube1_pCube2_30_30_pobjShape1-lib-map1" name="map1">
+          <float_array id="_joint_ball_pCube1_pCube2_30_30_pobjShape1-lib-map1-array" count="88">
+0.1683 0
+0 5.35714e-002
+1.683e-002 5.35714e-002
+3.36599e-002 5.35714e-002
+5.04899e-002 5.35714e-002
+6.73198e-002 5.35714e-002
+8.41498e-002 5.35714e-002
+0.10098 5.35714e-002
+0.11781 5.35714e-002
+0.13464 5.35714e-002
+0.15147 5.35714e-002
+0.1683 5.35714e-002
+0.18513 5.35714e-002
+0.20196 5.35714e-002
+0.21879 5.35714e-002
+0.23562 5.35714e-002
+0.252449 5.35714e-002
+0.269279 5.35714e-002
+0.286109 5.35714e-002
+0.302939 5.35714e-002
+0.319769 5.35714e-002
+0.336599 5.35714e-002
+0 0.946429
+1.683e-002 0.946429
+3.36599e-002 0.946429
+5.04899e-002 0.946429
+6.73198e-002 0.946429
+8.41498e-002 0.946429
+0.10098 0.946429
+0.11781 0.946429
+0.13464 0.946429
+0.15147 0.946429
+0.1683 0.946429
+0.18513 0.946429
+0.20196 0.946429
+0.21879 0.946429
+0.23562 0.946429
+0.252449 0.946429
+0.269279 0.946429
+0.286109 0.946429
+0.302939 0.946429
+0.319769 0.946429
+0.336599 0.946429
+0.1683 1.
+</float_array>
+          <technique profile="COMMON">
+            <accessor source="#_joint_ball_pCube1_pCube2_30_30_pobjShape1-lib-map1-array" count="44" stride="2">
+              <param name="S" type="float" flow="OUT"/>
+              <param name="T" type="float" flow="OUT"/>
+            </accessor>
+          </technique>
+        </source>
+        <vertices id="_joint_ball_pCube1_pCube2_30_30_pobjShape1-lib-Vertex">
+          <input semantic="POSITION" source="#_joint_ball_pCube1_pCube2_30_30_pobjShape1-lib-Position"/>
+        </vertices>
+        <triangles material="#lambert1" count="80">
+          <input semantic="VERTEX" idx="0" source="#_joint_ball_pCube1_pCube2_30_30_pobjShape1-lib-Vertex"/>
+          <input semantic="NORMAL" idx="1" source="#_joint_ball_pCube1_pCube2_30_30_pobjShape1-lib-Normal"/>
+          <p>0 0 1 1 20 3</p>
+          <p>1 1 21 2 20 3</p>
+          <p>1 1 2 4 21 2</p>
+          <p>2 4 22 5 21 2</p>
+          <p>2 4 3 6 22 5</p>
+          <p>3 6 23 7 22 5</p>
+          <p>3 6 4 8 23 7</p>
+          <p>4 8 24 9 23 7</p>
+          <p>4 8 5 10 24 9</p>
+          <p>5 10 25 11 24 9</p>
+          <p>5 10 6 12 25 11</p>
+          <p>6 12 26 13 25 11</p>
+          <p>6 12 7 14 26 13</p>
+          <p>7 14 27 15 26 13</p>
+          <p>7 14 8 16 27 15</p>
+          <p>8 16 28 17 27 15</p>
+          <p>8 16 9 18 28 17</p>
+          <p>9 18 29 19 28 17</p>
+          <p>9 18 10 20 29 19</p>
+          <p>10 20 30 21 29 19</p>
+          <p>10 20 11 22 30 21</p>
+          <p>11 22 31 23 30 21</p>
+          <p>11 22 12 24 31 23</p>
+          <p>12 24 32 25 31 23</p>
+          <p>12 24 13 26 32 25</p>
+          <p>13 26 33 27 32 25</p>
+          <p>13 26 14 28 33 27</p>
+          <p>14 28 34 29 33 27</p>
+          <p>14 28 15 30 34 29</p>
+          <p>15 30 35 31 34 29</p>
+          <p>15 30 16 32 35 31</p>
+          <p>16 32 36 33 35 31</p>
+          <p>16 32 17 34 36 33</p>
+          <p>17 34 37 35 36 33</p>
+          <p>17 34 18 36 37 35</p>
+          <p>18 36 38 37 37 35</p>
+          <p>18 36 19 38 38 37</p>
+          <p>19 38 39 39 38 37</p>
+          <p>19 38 0 0 39 39</p>
+          <p>0 0 20 3 39 39</p>
+          <p>1 40 0 41 40 42</p>
+          <p>2 43 1 40 40 42</p>
+          <p>3 44 2 43 40 42</p>
+          <p>4 45 3 44 40 42</p>
+          <p>5 46 4 45 40 42</p>
+          <p>6 47 5 46 40 42</p>
+          <p>7 48 6 47 40 42</p>
+          <p>8 49 7 48 40 42</p>
+          <p>9 50 8 49 40 42</p>
+          <p>10 51 9 50 40 42</p>
+          <p>11 52 10 51 40 42</p>
+          <p>12 53 11 52 40 42</p>
+          <p>13 54 12 53 40 42</p>
+          <p>14 55 13 54 40 42</p>
+          <p>15 56 14 55 40 42</p>
+          <p>16 57 15 56 40 42</p>
+          <p>17 58 16 57 40 42</p>
+          <p>18 59 17 58 40 42</p>
+          <p>19 60 18 59 40 42</p>
+          <p>0 41 19 60 40 42</p>
+          <p>20 61 21 62 41 63</p>
+          <p>21 62 22 64 41 63</p>
+          <p>22 64 23 65 41 63</p>
+          <p>23 65 24 66 41 63</p>
+          <p>24 66 25 67 41 63</p>
+          <p>25 67 26 68 41 63</p>
+          <p>26 68 27 69 41 63</p>
+          <p>27 69 28 70 41 63</p>
+          <p>28 70 29 71 41 63</p>
+          <p>29 71 30 72 41 63</p>
+          <p>30 72 31 73 41 63</p>
+          <p>31 73 32 74 41 63</p>
+          <p>32 74 33 75 41 63</p>
+          <p>33 75 34 76 41 63</p>
+          <p>34 76 35 77 41 63</p>
+          <p>35 77 36 78 41 63</p>
+          <p>36 78 37 79 41 63</p>
+          <p>37 79 38 80 41 63</p>
+          <p>38 80 39 81 41 63</p>
+          <p>39 81 20 61 41 63</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="pCubeShape3-lib" name="pCubeShape3">
+      <mesh>
+        <source id="pCubeShape3-lib-Position">
+          <float_array id="pCubeShape3-lib-Position-array" count="24">
+-0.5 -0.5 0.5
+0.5 -0.5 0.5
+-0.5 0.5 0.5
+0.5 0.5 0.5
+-0.5 0.5 -0.5
+0.5 0.5 -0.5
+-0.5 -0.5 -0.5
+0.5 -0.5 -0.5
+</float_array>
+          <technique profile="COMMON">
+            <accessor source="#pCubeShape3-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float" flow="OUT"/>
+              <param name="Y" type="float" flow="OUT"/>
+              <param name="Z" type="float" flow="OUT"/>
+            </accessor>
+          </technique>
+        </source>
+        <source id="pCubeShape3-lib-Normal">
+          <float_array id="pCubeShape3-lib-Normal-array" count="72">
+0 0 1.
+0 0 1.
+0 0 1.
+0 0 1.
+0 1. 0
+0 1. 0
+0 1. 0
+0 1. 0
+0 0 -1.
+0 0 -1.
+0 0 -1.
+0 0 -1.
+0 -1. 0
+0 -1. 0
+0 -1. 0
+0 -1. 0
+1. 0 0
+1. 0 0
+1. 0 0
+1. 0 0
+-1. 0 0
+-1. 0 0
+-1. 0 0
+-1. 0 0
+</float_array>
+          <technique profile="COMMON">
+            <accessor source="#pCubeShape3-lib-Normal-array" count="24" stride="3">
+              <param name="X" type="float" flow="OUT"/>
+              <param name="Y" type="float" flow="OUT"/>
+              <param name="Z" type="float" flow="OUT"/>
+            </accessor>
+          </technique>
+          <technique profile="MAYA">
+            <param name="DOUBLE_SIDED" type="bool" flow="OUT">TRUE</param>
+          </technique>
+        </source>
+        <source id="pCubeShape3-lib-map1" name="map1">
+          <float_array id="pCubeShape3-lib-map1-array" count="28">
+0 0
+1. 0
+0 1.
+1. 1.
+0 2.
+1. 2.
+0 3.
+1. 3.
+0 4.
+1. 4.
+2. 0
+2. 1.
+-1. 0
+-1. 1.
+</float_array>
+          <technique profile="COMMON">
+            <accessor source="#pCubeShape3-lib-map1-array" count="14" stride="2">
+              <param name="S" type="float" flow="OUT"/>
+              <param name="T" type="float" flow="OUT"/>
+            </accessor>
+          </technique>
+        </source>
+        <vertices id="pCubeShape3-lib-Vertex">
+          <input semantic="POSITION" source="#pCubeShape3-lib-Position"/>
+        </vertices>
+        <triangles material="#blinn2" count="12">
+          <input semantic="VERTEX" idx="0" source="#pCubeShape3-lib-Vertex"/>
+          <input semantic="NORMAL" idx="1" source="#pCubeShape3-lib-Normal"/>
+          <input semantic="TEXCOORD" idx="2" source="#pCubeShape3-lib-map1"/>
+          <p>0 0 0 1 1 1 2 3 2</p>
+          <p>1 1 1 3 2 3 2 3 2</p>
+          <p>2 4 2 3 5 3 4 7 4</p>
+          <p>3 5 3 5 6 5 4 7 4</p>
+          <p>4 8 4 5 9 5 6 11 6</p>
+          <p>5 9 5 7 10 7 6 11 6</p>
+          <p>6 12 6 7 13 7 0 15 8</p>
+          <p>7 13 7 1 14 9 0 15 8</p>
+          <p>1 16 1 7 17 10 3 19 3</p>
+          <p>7 17 10 5 18 11 3 19 3</p>
+          <p>6 20 12 0 21 0 4 23 13</p>
+          <p>0 21 0 2 22 2 4 23 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="_collider_box_pCubeShape5-lib" name="_collider_box_pCubeShape5">
+      <mesh>
+        <source id="_collider_box_pCubeShape5-lib-Position">
+          <float_array id="_collider_box_pCubeShape5-lib-Position-array" count="24">
+-0.5 -0.5 0.5
+0.5 -0.5 0.5
+-0.5 0.5 0.5
+0.5 0.5 0.5
+-0.5 0.5 -0.5
+0.5 0.5 -0.5
+-0.5 -0.5 -0.5
+0.5 -0.5 -0.5
+</float_array>
+          <technique profile="COMMON">
+            <accessor source="#_collider_box_pCubeShape5-lib-Position-array" count="8" stride="3">
+              <param name="X" type="float" flow="OUT"/>
+              <param name="Y" type="float" flow="OUT"/>
+              <param name="Z" type="float" flow="OUT"/>
+            </accessor>
+          </technique>
+        </source>
+        <source id="_collider_box_pCubeShape5-lib-Normal">
+          <float_array id="_collider_box_pCubeShape5-lib-Normal-array" count="72">
+0 0 1.
+0 0 1.
+0 0 1.
+0 0 1.
+0 1. 0
+0 1. 0
+0 1. 0
+0 1. 0
+0 0 -1.
+0 0 -1.
+0 0 -1.
+0 0 -1.
+0 -1. 0
+0 -1. 0
+0 -1. 0
+0 -1. 0
+1. 0 0
+1. 0 0
+1. 0 0
+1. 0 0
+-1. 0 0
+-1. 0 0
+-1. 0 0
+-1. 0 0
+</float_array>
+          <technique profile="COMMON">
+            <accessor source="#_collider_box_pCubeShape5-lib-Normal-array" count="24" stride="3">
+              <param name="X" type="float" flow="OUT"/>
+              <param name="Y" type="float" flow="OUT"/>
+              <param name="Z" type="float" flow="OUT"/>
+            </accessor>
+          </technique>
+          <technique profile="MAYA">
+            <param name="DOUBLE_SIDED" type="bool" flow="OUT">TRUE</param>
+          </technique>
+        </source>
+        <source id="_collider_box_pCubeShape5-lib-map1" name="map1">
+          <float_array id="_collider_box_pCubeShape5-lib-map1-array" count="28">
+0 0
+1. 0
+0 1.
+1. 1.
+0 2.
+1. 2.
+0 3.
+1. 3.
+0 4.
+1. 4.
+2. 0
+2. 1.
+-1. 0
+-1. 1.
+</float_array>
+          <technique profile="COMMON">
+            <accessor source="#_collider_box_pCubeShape5-lib-map1-array" count="14" stride="2">
+              <param name="S" type="float" flow="OUT"/>
+              <param name="T" type="float" flow="OUT"/>
+            </accessor>
+          </technique>
+        </source>
+        <vertices id="_collider_box_pCubeShape5-lib-Vertex">
+          <input semantic="POSITION" source="#_collider_box_pCubeShape5-lib-Position"/>
+        </vertices>
+        <triangles material="#lambert1" count="12">
+          <input semantic="VERTEX" idx="0" source="#_collider_box_pCubeShape5-lib-Vertex"/>
+          <input semantic="NORMAL" idx="1" source="#_collider_box_pCubeShape5-lib-Normal"/>
+          <p>0 0 1 1 2 3</p>
+          <p>1 1 3 2 2 3</p>
+          <p>2 4 3 5 4 7</p>
+          <p>3 5 5 6 4 7</p>
+          <p>4 8 5 9 6 11</p>
+          <p>5 9 7 10 6 11</p>
+          <p>6 12 7 13 0 15</p>
+          <p>7 13 1 14 0 15</p>
+          <p>1 16 7 17 3 19</p>
+          <p>7 17 5 18 3 19</p>
+          <p>6 20 0 21 4 23</p>
+          <p>0 21 2 22 4 23</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="_joint_ball_pCube1_pCube3_30_30_pobjShape2-lib" name="_joint_ball_pCube1_pCube3_30_30_pobjShape2">
+      <mesh>
+        <source id="_joint_ball_pCube1_pCube3_30_30_pobjShape2-lib-Position">
+          <float_array id="_joint_ball_pCube1_pCube3_30_30_pobjShape2-lib-Position-array" count="126">
+5.70634e-002 -0.5 -1.8541e-002
+4.8541e-002 -0.5 -3.52671e-002
+3.52671e-002 -0.5 -4.8541e-002
+1.8541e-002 -0.5 -5.70634e-002
+4.2379e-010 -0.5 -6.e-002
+-1.8541e-002 -0.5 -5.70634e-002
+-3.52671e-002 -0.5 -4.8541e-002
+-4.8541e-002 -0.5 -3.52671e-002
+-5.70634e-002 -0.5 -1.8541e-002
+-6.e-002 -0.5 -1.01928e-009
+-5.70634e-002 -0.5 1.8541e-002
+-4.8541e-002 -0.5 3.52671e-002
+-3.52671e-002 -0.5 4.8541e-002
+-1.8541e-002 -0.5 5.70634e-002
+5.95491e-010 -0.5 6.e-002
+1.8541e-002 -0.5 5.70634e-002
+3.52671e-002 -0.5 4.8541e-002
+4.8541e-002 -0.5 3.52671e-002
+5.70634e-002 -0.5 1.8541e-002
+6.e-002 -0.5 0
+5.70634e-002 0.5 -1.8541e-002
+4.8541e-002 0.5 -3.52671e-002
+3.52671e-002 0.5 -4.8541e-002
+1.8541e-002 0.5 -5.70634e-002
+4.2379e-010 0.5 -6.e-002
+-1.8541e-002 0.5 -5.70634e-002
+-3.52671e-002 0.5 -4.8541e-002
+-4.8541e-002 0.5 -3.52671e-002
+-5.70634e-002 0.5 -1.8541e-002
+-6.e-002 0.5 -1.01928e-009
+-5.70634e-002 0.5 1.8541e-002
+-4.8541e-002 0.5 3.52671e-002
+-3.52671e-002 0.5 4.8541e-002
+-1.8541e-002 0.5 5.70634e-002
+5.95491e-010 0.5 6.e-002
+1.8541e-002 0.5 5.70634e-002
+3.52671e-002 0.5 4.8541e-002
+4.8541e-002 0.5 3.52671e-002
+5.70634e-002 0.5 1.8541e-002
+6.e-002 0.5 0
+0 -0.5 0
+0 0.5 0
+</float_array>
+          <technique profile="COMMON">
+            <accessor source="#_joint_ball_pCube1_pCube3_30_30_pobjShape2-lib-Position-array" count="42" stride="3">
+              <param name="X" type="float" flow="OUT"/>
+              <param name="Y" type="float" flow="OUT"/>
+              <param name="Z" type="float" flow="OUT"/>
+            </accessor>
+          </technique>
+        </source>
+        <source id="_joint_ball_pCube1_pCube3_30_30_pobjShape2-lib-Normal">
+          <float_array id="_joint_ball_pCube1_pCube3_30_30_pobjShape2-lib-Normal-array" count="246">
+0.951057 4.97393e-010 -0.309016
+0.809017 1.03584e-009 -0.587785
+0.809017 1.03584e-009 -0.587785
+0.951057 4.97393e-010 -0.309016
+0.587785 6.03058e-010 -0.809017
+0.587785 6.03058e-010 -0.809017
+0.309017 1.47759e-010 -0.951057
+0.309017 1.47759e-010 -0.951057
+-1.05608e-007 -4.65231e-011 -1.
+-1.05608e-007 -4.65231e-011 -1.
+-0.309017 2.03572e-010 -0.951057
+-0.309017 2.03572e-010 -0.951057
+-0.587785 8.21186e-010 -0.809017
+-0.587785 8.21186e-010 -0.809017
+-0.809017 1.76396e-009 -0.587785
+-0.809017 1.76396e-009 -0.587785
+-0.951057 8.58403e-011 -0.309017
+-0.951057 8.58403e-011 -0.309017
+-1. -1.60816e-009 0
+-1. -1.60816e-009 0
+-0.951056 -8.65005e-010 0.309017
+-0.951056 -8.65005e-010 0.309017
+-0.809017 -6.56794e-010 0.587785
+-0.809017 -6.56794e-010 0.587785
+-0.587785 -5.67155e-010 0.809017
+-0.587785 -5.67155e-010 0.809017
+-0.309017 -2.25538e-010 0.951056
+-0.309017 -2.25538e-010 0.951056
+-3.77173e-008 -1.01098e-011 1.
+-3.77173e-008 -1.01098e-011 1.
+0.309017 -2.43568e-010 0.951056
+0.309017 -2.43568e-010 0.951056
+0.587785 -8.5379e-010 0.809017
+0.587785 -8.5379e-010 0.809017
+0.809017 1.35204e-010 0.587785
+0.809017 1.35204e-010 0.587785
+0.951057 1.79014e-009 0.309017
+0.951057 1.79014e-009 0.309017
+1. 9.02753e-010 6.63824e-007
+1. 9.02753e-010 6.63824e-007
+0 -1. -8.57265e-008
+0 -1. 1.02872e-006
+0 -1. 1.70115e-007
+0 -1. -4.92927e-007
+0 -1. -4.95338e-007
+0 -1. -1.73864e-007
+0 -1. -2.57179e-007
+0 -1. 2.57179e-007
+0 -1. 1.2859e-006
+0 -1. -2.57179e-007
+0 -1. -2.57179e-007
+0 -1. 6.85812e-007
+0 -1. -6.42949e-007
+0 -1. -4.71496e-007
+0 -1. 2.67646e-007
+0 -1. 6.10552e-007
+0 -1. 8.57266e-008
+0 -1. -6.00086e-007
+0 -1. 9.42992e-007
+0 -1. 1.11444e-006
+0 -1. 8.57265e-007
+0 1. -8.57264e-007
+0 1. -1.02872e-006
+0 1. -3.50961e-008
+0 1. 8.57265e-008
+0 1. -1.92885e-007
+0 1. -5.54811e-007
+0 1. 4.95338e-007
+0 1. 9.42991e-007
+0 1. 1.11444e-006
+0 1. 8.57264e-008
+0 1. 2.57179e-007
+0 1. 2.5718e-007
+0 1. -6.85812e-007
+0 1. 6.42949e-007
+0 1. 4.71496e-007
+0 1. 7.52605e-008
+0 1. -2.67646e-007
+0 1. -8.57263e-008
+0 1. 6.00086e-007
+0 1. -9.42992e-007
+0 1. -1.11444e-006
+</float_array>
+          <technique profile="COMMON">
+            <accessor source="#_joint_ball_pCube1_pCube3_30_30_pobjShape2-lib-Normal-array" count="82" stride="3">
+              <param name="X" type="float" flow="OUT"/>
+              <param name="Y" type="float" flow="OUT"/>
+              <param name="Z" type="float" flow="OUT"/>
+            </accessor>
+          </technique>
+          <technique profile="MAYA">
+            <param name="DOUBLE_SIDED" type="bool" flow="OUT">TRUE</param>
+          </technique>
+        </source>
+        <source id="_joint_ball_pCube1_pCube3_30_30_pobjShape2-lib-map1" name="map1">
+          <float_array id="_joint_ball_pCube1_pCube3_30_30_pobjShape2-lib-map1-array" count="88">
+0.1683 0
+0 5.35714e-002
+1.683e-002 5.35714e-002
+3.36599e-002 5.35714e-002
+5.04899e-002 5.35714e-002
+6.73198e-002 5.35714e-002
+8.41498e-002 5.35714e-002
+0.10098 5.35714e-002
+0.11781 5.35714e-002
+0.13464 5.35714e-002
+0.15147 5.35714e-002
+0.1683 5.35714e-002
+0.18513 5.35714e-002
+0.20196 5.35714e-002
+0.21879 5.35714e-002
+0.23562 5.35714e-002
+0.252449 5.35714e-002
+0.269279 5.35714e-002
+0.286109 5.35714e-002
+0.302939 5.35714e-002
+0.319769 5.35714e-002
+0.336599 5.35714e-002
+0 0.946429
+1.683e-002 0.946429
+3.36599e-002 0.946429
+5.04899e-002 0.946429
+6.73198e-002 0.946429
+8.41498e-002 0.946429
+0.10098 0.946429
+0.11781 0.946429
+0.13464 0.946429
+0.15147 0.946429
+0.1683 0.946429
+0.18513 0.946429
+0.20196 0.946429
+0.21879 0.946429
+0.23562 0.946429
+0.252449 0.946429
+0.269279 0.946429
+0.286109 0.946429
+0.302939 0.946429
+0.319769 0.946429
+0.336599 0.946429
+0.1683 1.
+</float_array>
+          <technique profile="COMMON">
+            <accessor source="#_joint_ball_pCube1_pCube3_30_30_pobjShape2-lib-map1-array" count="44" stride="2">
+              <param name="S" type="float" flow="OUT"/>
+              <param name="T" type="float" flow="OUT"/>
+            </accessor>
+          </technique>
+        </source>
+        <vertices id="_joint_ball_pCube1_pCube3_30_30_pobjShape2-lib-Vertex">
+          <input semantic="POSITION" source="#_joint_ball_pCube1_pCube3_30_30_pobjShape2-lib-Position"/>
+        </vertices>
+        <triangles material="#lambert1" count="80">
+          <input semantic="VERTEX" idx="0" source="#_joint_ball_pCube1_pCube3_30_30_pobjShape2-lib-Vertex"/>
+          <input semantic="NORMAL" idx="1" source="#_joint_ball_pCube1_pCube3_30_30_pobjShape2-lib-Normal"/>
+          <p>0 0 1 1 20 3</p>
+          <p>1 1 21 2 20 3</p>
+          <p>1 1 2 4 21 2</p>
+          <p>2 4 22 5 21 2</p>
+          <p>2 4 3 6 22 5</p>
+          <p>3 6 23 7 22 5</p>
+          <p>3 6 4 8 23 7</p>
+          <p>4 8 24 9 23 7</p>
+          <p>4 8 5 10 24 9</p>
+          <p>5 10 25 11 24 9</p>
+          <p>5 10 6 12 25 11</p>
+          <p>6 12 26 13 25 11</p>
+          <p>6 12 7 14 26 13</p>
+          <p>7 14 27 15 26 13</p>
+          <p>7 14 8 16 27 15</p>
+          <p>8 16 28 17 27 15</p>
+          <p>8 16 9 18 28 17</p>
+          <p>9 18 29 19 28 17</p>
+          <p>9 18 10 20 29 19</p>
+          <p>10 20 30 21 29 19</p>
+          <p>10 20 11 22 30 21</p>
+          <p>11 22 31 23 30 21</p>
+          <p>11 22 12 24 31 23</p>
+          <p>12 24 32 25 31 23</p>
+          <p>12 24 13 26 32 25</p>
+          <p>13 26 33 27 32 25</p>
+          <p>13 26 14 28 33 27</p>
+          <p>14 28 34 29 33 27</p>
+          <p>14 28 15 30 34 29</p>
+          <p>15 30 35 31 34 29</p>
+          <p>15 30 16 32 35 31</p>
+          <p>16 32 36 33 35 31</p>
+          <p>16 32 17 34 36 33</p>
+          <p>17 34 37 35 36 33</p>
+          <p>17 34 18 36 37 35</p>
+          <p>18 36 38 37 37 35</p>
+          <p>18 36 19 38 38 37</p>
+          <p>19 38 39 39 38 37</p>
+          <p>19 38 0 0 39 39</p>
+          <p>0 0 20 3 39 39</p>
+          <p>1 40 0 41 40 42</p>
+          <p>2 43 1 40 40 42</p>
+          <p>3 44 2 43 40 42</p>
+          <p>4 45 3 44 40 42</p>
+          <p>5 46 4 45 40 42</p>
+          <p>6 47 5 46 40 42</p>
+          <p>7 48 6 47 40 42</p>
+          <p>8 49 7 48 40 42</p>
+          <p>9 50 8 49 40 42</p>
+          <p>10 51 9 50 40 42</p>
+          <p>11 52 10 51 40 42</p>
+          <p>12 53 11 52 40 42</p>
+          <p>13 54 12 53 40 42</p>
+          <p>14 55 13 54 40 42</p>
+          <p>15 56 14 55 40 42</p>
+          <p>16 57 15 56 40 42</p>
+          <p>17 58 16 57 40 42</p>
+          <p>18 59 17 58 40 42</p>
+          <p>19 60 18 59 40 42</p>
+          <p>0 41 19 60 40 42</p>
+          <p>20 61 21 62 41 63</p>
+          <p>21 62 22 64 41 63</p>
+          <p>22 64 23 65 41 63</p>
+          <p>23 65 24 66 41 63</p>
+          <p>24 66 25 67 41 63</p>
+          <p>25 67 26 68 41 63</p>
+          <p>26 68 27 69 41 63</p>
+          <p>27 69 28 70 41 63</p>
+          <p>28 70 29 71 41 63</p>
+          <p>29 71 30 72 41 63</p>
+          <p>30 72 31 73 41 63</p>
+          <p>31 73 32 74 41 63</p>
+          <p>32 74 33 75 41 63</p>
+          <p>33 75 34 76 41 63</p>
+          <p>34 76 35 77 41 63</p>
+          <p>35 77 36 78 41 63</p>
+          <p>36 78 37 79 41 63</p>
+          <p>37 79 38 80 41 63</p>
+          <p>38 80 39 81 41 63</p>
+          <p>39 81 20 61 41 63</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library>
+  <scene name="joint_multi_test">
+    <extra>
+      <technique profile="MAYA">
+        <param name="START_TIME" type="float" flow="IN">0</param>
+        <param name="END_TIME" type="float" flow="IN">6.25</param>
+      </technique>
+    </extra>
+    <node id="group1" name="group1">
+      <node id="pCube1" name="pCube1">
+        <translate sid="translate">0 0 0.937064</translate>
+        <instance url="#pCubeShape1-lib"/>
+      </node>
+      <node id="_collider_box_pCube4" name="_collider_box_pCube4">
+        <translate sid="translate">0 0 0.947273</translate>
+        <instance url="#_collider_box_pCubeShape4-lib"/>
+      </node>
+    </node>
+    <node id="group2" name="group2">
+      <node id="pCube2" name="pCube2">
+        <translate sid="translate">0 0 -0.980228</translate>
+        <instance url="#pCubeShape2-lib"/>
+      </node>
+      <node id="_collider_box_pCube3" name="_collider_box_pCube3">
+        <translate sid="translate">0 0 -0.995821</translate>
+        <instance url="#_collider_box_pCubeShape3-lib"/>
+      </node>
+    </node>
+    <node id="_joint_ball_pCube1_pCube2_30_30_pobj1" name="_joint_ball_pCube1_pCube2_30_30_pobj1">
+      <rotate sid="rotateX">1 0 0 90.</rotate>
+      <instance url="#_joint_ball_pCube1_pCube2_30_30_pobjShape1-lib"/>
+    </node>
+    <node id="group3" name="group3">
+      <node id="pCube3" name="pCube3">
+        <translate sid="translate">0 0 3.14266</translate>
+        <instance url="#pCubeShape3-lib"/>
+      </node>
+      <node id="_collider_box_pCube5" name="_collider_box_pCube5">
+        <translate sid="translate">0 0 3.15287</translate>
+        <instance url="#_collider_box_pCubeShape5-lib"/>
+      </node>
+    </node>
+    <node id="_joint_ball_pCube1_pCube3_30_30_pobj2" name="_joint_ball_pCube1_pCube3_30_30_pobj2">
+      <translate sid="translate">0 0 2.03281</translate>
+      <rotate sid="rotateX">1 0 0 90.</rotate>
+      <instance url="#_joint_ball_pCube1_pCube3_30_30_pobjShape2-lib"/>
+    </node>
+  </scene>
+</COLLADA>

@@ -1,0 +1,6 @@
+<Material>
+  <Main Type="Additive" PhysicsMaterial="" UseAlpha="False" DepthTest="True" Value="" />
+  <TextureUnits>
+    <Diffuse File="smallball.jpg" Compress="false" Type="2D" Mipmaps="true" Wrap="Repeat" AnimMode="" AnimFrameTime="" />
+  </TextureUnits>
+</Material>

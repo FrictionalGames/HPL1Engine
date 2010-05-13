@@ -1,0 +1,7 @@
+<Material>
+  <Main Type="Diffuse" PhysicsMaterial="" UseAlpha="False" DepthTest="True" Value="" />
+  <TextureUnits>
+    <Diffuse File="material_metal11.jpg" Compress="false" Type="2D" Mipmaps="true" Wrap="Repeat" AnimMode="" AnimFrameTime="" />
+    <Illumination File="" Compress="false" Type="2D" Mipmaps="true" Wrap="Repeat" AnimMode="None" AnimFrameTime="1" />
+  </TextureUnits>
+</Material>

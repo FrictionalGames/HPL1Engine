@@ -1,0 +1,6 @@
+<Material>
+  <Main Type="Flat" PhysicsMaterial="" />
+  <TextureUnits>
+    <Diffuse File="testar.jpg" Compress="false" Type="2D" Mipmaps="true" Wrap="Repeat" />
+  </TextureUnits>
+</Material>

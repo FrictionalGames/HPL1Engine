@@ -1,0 +1,8 @@
+<Material>
+  <Main Type="BumpSpecular" PhysicsMaterial="Dyn_Wood_Box" UseAlpha="False" DepthTest="True" />
+  <TextureUnits>
+    <Diffuse File="mine_barrel.jpg" Compress="false" Type="2D" Mipmaps="true" Wrap="Repeat" AnimMode="None" AnimFrameTime="1" />
+    <NMap File="mine_barrel_bump.tga" Compress="false" Type="2D" Mipmaps="true" Wrap="Repeat" AnimMode="None" AnimFrameTime="1" />
+    <Illumination File="" Compress="false" Type="2D" Mipmaps="true" Wrap="Repeat" AnimMode="None" AnimFrameTime="1" />
+  </TextureUnits>
+</Material>

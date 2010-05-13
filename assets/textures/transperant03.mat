@@ -1,0 +1,8 @@
+<Material>
+  <Main Type="Additive" PhysicsMaterial="Default" UseAlpha="False" DepthTest="True" Value="30" />
+  <TextureUnits>
+    <Diffuse File="transperant01.jpg" Compress="false" Type="2D" Mipmaps="true" Wrap="Repeat" AnimMode="None" AnimFrameTime="1" />
+    <Specular File="transperant01_alpha.jpg" Compress="false" Type="2D" Mipmaps="true" Wrap="Repeat" AnimMode="None" AnimFrameTime="1" />
+    <Refraction File="water_default_nmap.tga" Compress="false" Type="2D" Mipmaps="true" Wrap="Repeat" AnimMode="None" AnimFrameTime="3.1" />
+  </TextureUnits>
+</Material>

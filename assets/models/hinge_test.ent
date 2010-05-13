@@ -1,0 +1,37 @@
+<ENTITY>
+	<MAIN 
+		Name="WoodBox" 
+		Type="Object" 
+		Subtype="Normal" 
+	/>
+	
+	<PHYSICS
+		SubName = "pCubeShape1"
+		Collides = "true"
+		HasPhysics = "true"
+		Material="Metal"
+		Mass="2"
+		InertiaScale = "1 1 1"
+		AngularDamping = "0.1"
+		LinearDamping = "0.1"
+		BlocksSound = "false"
+	/>
+
+	<PHYSICS
+		SubName = "pCubeShape2"
+		Collides = "true"
+		HasPhysics = "true"
+		Material="Wood"
+		Mass="1"
+		InertiaScale = "1 1 1"
+		AngularDamping = "0.1"
+		LinearDamping = "0.1"
+		BlocksSound = "false"
+	/>
+		
+	<GRAPHICS
+		ModelFile = "hinge_test"	
+		CastShadows = "true"	
+	/>
+	
+</ENTITY>

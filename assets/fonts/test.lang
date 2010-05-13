@@ -1,0 +1,9 @@
+<LANGUAGE>
+  <RESOURCES>
+    <Directory Path="fonts/eng" />
+  </RESOURCES>
+  <CATEGORY Name="asas">
+    <Entry Name="polish">j[u281]zyk polski</Entry>
+    <Entry Name="russian">[u1091][u1089][u1089][u1082][u1080][u1081] [u1103][u1079][u1099][u1082], detta är då ryska...</Entry>
+  </CATEGORY>
+</LANGUAGE>

@@ -1,0 +1,13 @@
+void main(	float4 pos			: WPOS,
+			float4 color		: COLOR0,
+			float3 uv			: TEXCOORD0,
+			          
+			out float4 oColor	: COLOR,
+          
+			uniform samplerRECT diffuseMap		: TEXUNIT0,
+			uniform float timeCount
+		  )
+{
+	uv.y += sin(timeCount*6 + pos.x*0.04)*10;
+	oColor = texRECT(diffuseMap, uv);
+}

@@ -1,0 +1,10 @@
+<LIGHTENTITY>
+	<MAIN
+		ProjectionImage ="player_flashlight_gobo.tga"
+		Aspect = 	 "1"
+		FalloffImage = 	 "player_flashlight_falloff"
+		CastsShadows =   "true"
+		NearClipPlane =  "0.1"
+		Specular=	 "1"
+	/>
+</LIGHTENTITY>

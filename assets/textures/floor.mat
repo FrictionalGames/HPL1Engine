@@ -1,0 +1,6 @@
+<Material>
+  <Main Type="Diffuse" PhysicsMaterial="" />
+  <TextureUnits>
+    <Diffuse File="floor" Compress="false" Type="2D" Mipmaps="true" Wrap="Repeat" />
+  </TextureUnits>
+</Material>

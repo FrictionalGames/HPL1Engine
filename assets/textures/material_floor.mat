@@ -1,0 +1,8 @@
+<Material>
+  <Main Type="Diffuse" PhysicsMaterial="Default" UseAlpha="False" DepthTest="True" />
+  <TextureUnits>
+    <Diffuse File="material_floor.jpg" Compress="false" Type="2D" Mipmaps="true" Wrap="Repeat" />
+    <NMap File="material_floor_bump.jpg" Compress="false" Type="2D" Mipmaps="true" Wrap="Repeat" />
+    <Specular File="splat3.jpg" Type="2D" Mipmaps="true" Wrap="Repeat" />
+  </TextureUnits>
+</Material>

@@ -1,0 +1,6 @@
+<Material>
+  <Main Type="Additive" PhysicsMaterial="" UseAlpha="False" DepthTest="False" />
+  <TextureUnits>
+    <Diffuse File="spotbeam" Compress="false" Type="2D" Mipmaps="true" Wrap="Repeat" />
+  </TextureUnits>
+</Material>

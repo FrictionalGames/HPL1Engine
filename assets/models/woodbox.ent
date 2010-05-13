@@ -1,0 +1,24 @@
+<ENTITY>
+	<MAIN 
+		Name="WoodBox" 
+		Type="Object" 
+		Subtype="Normal" 
+	/>
+	
+	<PHYSICS
+		Collides = "true"
+		HasPhysics = "true"
+		Material="Wood"
+		Mass="1"
+		InertiaScale = "1 1 1"
+		AngularDamping = "0.1"
+		LinearDamping = "0.1"
+		BlocksSound = "false"
+	/>
+	
+	<GRAPHICS
+		ModelFile = "woodbox"	
+		CastShadows = "true"	
+	/>
+	
+</ENTITY>

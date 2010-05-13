@@ -1,0 +1,9 @@
+<BEAM>
+	<MAIN
+		Material = "spotbeam"
+		Size = "0.2 0.2"
+		TileHeight = "true"
+		StartColor = "1 1 1 1"
+		EndColor = "0.1 0.1 0.1 1"
+	/>
+</BEAM>

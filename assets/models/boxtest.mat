@@ -1,0 +1,6 @@
+<Material>
+	<Main Type="Diffuse"/>
+	<TextureUnits>
+		<Diffuse File="woodbox.jpg" Type ="2D" Mipmaps="true" Compress="false" Wrap="Repeat"/>
+	</TextureUnits>
+</Material>
