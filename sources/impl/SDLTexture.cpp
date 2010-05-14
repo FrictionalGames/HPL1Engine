@@ -608,7 +608,7 @@ namespace hpl {
 			int lOldW = mlWidth;
 			int lOldH = mlHeight;
 
-			int lSizeDiv = (int)pow((int)2,(int)mlSizeLevel);
+			int lSizeDiv = (int)pow((float)2,(int)mlSizeLevel);
 
 			mlWidth /= lSizeDiv;
 			mlHeight /= lSizeDiv;
