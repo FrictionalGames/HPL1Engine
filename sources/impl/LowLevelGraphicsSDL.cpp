@@ -23,7 +23,6 @@
 #pragma comment(lib, "Cg.lib")
 #pragma comment(lib, "CgGL.lib")
 #pragma comment(lib, "SDL_ttf.lib")
-#pragma comment(lib, "TaskKeyHook.lib")
 #endif
 
 #include <assert.h>
@@ -40,10 +39,6 @@
 #include "impl/VertexBufferVBO.h"
 
 #include "impl/OcclusionQueryOGL.h"
-
-#ifdef WIN32
-#include "impl/TaskKeyHook.h"
-#endif
 
 namespace hpl {
 
@@ -227,15 +222,6 @@ namespace hpl {
 			SetWindowCaption(asWindowCaption);
 		}
 
-		//Trap Alt tab if in fullscreen
-		#ifdef WIN32
-		if(abFullscreen)
-		{
-			//mhKeyTrapper = LoadLibrary( "keyhook.dll" );
-			//::DisableTaskKeys(true,false);
-		}
-		#endif //WIN32
-		
 		Log(" Init Glee...");
 		if(GLeeInit())
 		{

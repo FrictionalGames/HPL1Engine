@@ -525,7 +525,6 @@
 		DB4AFBE00D70773700809E03 /* Material_Water.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Material_Water.h; sourceTree = "<group>"; };
 		DB4AFBE10D70773700809E03 /* VideoStream.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = VideoStream.h; sourceTree = "<group>"; };
 		DB4AFBF10D70776800809E03 /* OpenALSoundEnvironment.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = OpenALSoundEnvironment.h; sourceTree = "<group>"; };
-		DB4AFBF20D70776800809E03 /* TaskKeyHook.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = TaskKeyHook.h; sourceTree = "<group>"; };
 		DB4AFBF40D70778200809E03 /* ActionHaptic.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = ActionHaptic.h; sourceTree = "<group>"; };
 		DB4AFBF50D70779000809E03 /* VideoManager.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = VideoManager.h; sourceTree = "<group>"; };
 		DB4AFBF60D7077A100809E03 /* SoundEnvironment.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = SoundEnvironment.h; sourceTree = "<group>"; };
@@ -868,7 +867,6 @@
 			children = (
 				DBF9A1F7119A58E600CCFDC9 /* VideoStreamTheora.h */,
 				DB4AFBF10D70776800809E03 /* OpenALSoundEnvironment.h */,
-				DB4AFBF20D70776800809E03 /* TaskKeyHook.h */,
 				DB6E15BA0B6B173800203538 /* scriptstring.h */,
 				DBCEE5D40B4B34340088A7E3 /* LowLevelSoundOpenAL.h */,
 				DBCEE5D50B4B34340088A7E3 /* OpenALSoundChannel.h */,
