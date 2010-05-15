@@ -537,7 +537,7 @@ namespace hpl {
 										pNewtonShapeA->GetNewtonCollision(), &(mtxTransposeA.m[0][0]),
 										pNewtonShapeB->GetNewtonCollision(), &(mtxTransposeB.m[0][0]),
 										mpTempPoints, mpTempNormals, mpTempDepths, 0);
-
+			
 			if(lNum<1) return false;
 			// Log("-Collisions: %d\n", lNum);
 			if(lNum > alMaxPoints )lNum = alMaxPoints;

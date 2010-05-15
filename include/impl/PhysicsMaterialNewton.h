@@ -35,7 +35,7 @@ namespace hpl {
 	{
 	public:
 		cPhysicsMaterialNewton(const tString &asName, iPhysicsWorld *apWorld, int alMatId=-1);
-		~cPhysicsMaterialNewton();
+		virtual ~cPhysicsMaterialNewton();
 
 		void SetElasticity(float afElasticity);
 		float GetElasticity() const;
@@ -56,10 +56,8 @@ namespace hpl {
 		float Combine(ePhysicsMaterialCombMode aMode, float afX, float afY);
 
 		static int BeginContactCallback(const NewtonMaterial* material,
-										const NewtonBody* apBody1, const NewtonBody* apBody2,
-										int alThreadIndex);
-		static void ProcessContactCallback(const NewtonJoint* apJoint, float afTimeStep,
-										  int alThreadIndex);
+										const NewtonBody* apBody1, const NewtonBody* apBody2, int alThreadIndex);
+		static void ProcessContactCallback(const NewtonJoint* contacts, dFloat afTimeStep, int alThreadIndex);
 
 		NewtonWorld *mpNewtonWorld;
 

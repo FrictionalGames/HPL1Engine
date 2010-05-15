@@ -435,12 +435,16 @@ namespace hpl {
 
 	void cPhysicsBodyNewton::RenderDebugGeometry(iLowLevelGraphics *apLowLevel,const cColor &aColor)
 	{
+		NewtonCollision *pCollision = NewtonBodyGetCollision(mpNewtonBody);
+		float matrix[4][4];
+		NewtonBodyGetMatrix(mpNewtonBody, &matrix[0][0]);
 		gpLowLevelGraphics = apLowLevel;
 		gDebugColor = aColor;
 		NewtonCollision* pNewtonCollision = NewtonBodyGetCollision(mpNewtonBody);
 		NewtonCollisionForEachPolygonDo(pNewtonCollision,
 										m_mtxLocalTransform.GetTranspose().m[0],
 										RenderDebugPolygon, this);
+		//NewtonCollisionForEachPolygonDo(pCollision, &matrix[0][0], RenderDebugPolygon, (void*)NULL);
 	}
 
 	//-----------------------------------------------------------------------
@@ -460,9 +464,7 @@ namespace hpl {
 	//-----------------------------------------------------------------------
 
 
-	void cPhysicsBodyNewton::OnTransformCallback(const NewtonBody* apBody,
-												 const dFloat* apMatrix,
-												 int alThreadIndex)
+	void cPhysicsBodyNewton::OnTransformCallback(const NewtonBody* apBody, const dFloat* apMatrix, int alThreadIndex)
 	{
 		cPhysicsBodyNewton* pRigidBody = (cPhysicsBodyNewton*) NewtonBodyGetUserData(apBody);
 
@@ -489,9 +491,7 @@ namespace hpl {
 		return 1;
 	}
 
-	void cPhysicsBodyNewton::OnUpdateCallback(const NewtonBody* apBody,
-											  float afTimeStep,
-											  int alThreadIndex)
+	void cPhysicsBodyNewton::OnUpdateCallback(const NewtonBody* apBody, dFloat afTimeStep, int alThreadIndex)
 	{
 		float fMass;
 		float fX,fY,fZ;

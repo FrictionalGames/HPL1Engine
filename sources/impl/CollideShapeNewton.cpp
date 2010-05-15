@@ -61,19 +61,19 @@ namespace hpl {
 		case eCollideShapeType_Null:		mpNewtonCollision = NewtonCreateNull(apNewtonWorld); break;
 
 		case eCollideShapeType_Box:			mpNewtonCollision = NewtonCreateBox(apNewtonWorld,
-												mvSize.x, mvSize.y, mvSize.z,
+												mvSize.x, mvSize.y, mvSize.z, 
 												0, pMtx); break;
-
+		
 		case eCollideShapeType_Sphere:		mpNewtonCollision = NewtonCreateSphere(apNewtonWorld,
-												mvSize.x, mvSize.y, mvSize.z,
+												mvSize.x, mvSize.y, mvSize.z, 
 												0, pMtx); break;
 
 		case eCollideShapeType_Cylinder:	mpNewtonCollision = NewtonCreateCylinder(apNewtonWorld,
-												mvSize.x, mvSize.y,
+												mvSize.x, mvSize.y, 
 												0, pMtx); break;
-
+		
 		case eCollideShapeType_Capsule:		mpNewtonCollision = NewtonCreateCapsule(apNewtonWorld,
-												mvSize.x, mvSize.y,
+												mvSize.x, mvSize.y, 
 												0, pMtx); break;
 		}
 
@@ -236,7 +236,7 @@ namespace hpl {
 		}
 
 		mpNewtonCollision = NewtonCreateCompoundCollision(mpNewtonWorld, (int)vNewtonColliders.size(),
-														  &vNewtonColliders[0], 0);
+															&vNewtonColliders[0], 0);
 
 		// Create bounding volume
 		cVector3f vFinalMax = avShapes[0]->GetBoundingVolume().GetMax();

@@ -208,6 +208,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
+
 	int cPhysicsMaterialNewton::BeginContactCallback(const NewtonMaterial* material,
 									const NewtonBody* apBody1, const NewtonBody* apBody2,
 									int alThreadIndex)
@@ -244,7 +245,9 @@ namespace hpl {
 	{
 		cPhysicsContactData ContactData;
 		int lContactNum = 0;
-		iPhysicsBody * pContactBody1 = (iPhysicsBody*) NewtonBodyGetUserData(NewtonJointGetBody0(apJoint));
+		NewtonBody *pBody0 = NewtonJointGetBody0(apJoint);
+
+		iPhysicsBody * pContactBody1 = (iPhysicsBody*) NewtonBodyGetUserData(pBody0);
 		iPhysicsBody * pContactBody2 = (iPhysicsBody*) NewtonBodyGetUserData(NewtonJointGetBody1(apJoint));
 
 		for (void* pContact = NewtonContactJointGetFirstContact(apJoint);
@@ -270,12 +273,12 @@ namespace hpl {
 
 			//Force
 			cVector3f vForce;
-			NewtonMaterialGetContactForce(pMaterial,vForce.v);
+			NewtonMaterialGetContactForce(pMaterial, pBody0, vForce.v);
 			ContactData.mvForce += vForce;
 
 			//Position and normal
 			cVector3f vPos, vNormal;
-			NewtonMaterialGetContactPositionAndNormal(pMaterial,vPos.v, vNormal.v);
+			NewtonMaterialGetContactPositionAndNormal(pMaterial, pBody0, vPos.v, vNormal.v);
 
 			ContactData.mvContactNormal += vNormal;
 			ContactData.mvContactPosition += vPos;
@@ -287,7 +290,7 @@ namespace hpl {
 			{
 				cCollidePoint collidePoint;
 				collidePoint.mfDepth = 1;
-				NewtonMaterialGetContactPositionAndNormal (pMaterial, collidePoint.mvPoint.v,
+				NewtonMaterialGetContactPositionAndNormal (pMaterial, pBody0, collidePoint.mvPoint.v,
 														   collidePoint.mvNormal.v);
 
 				pContactBody1->GetWorld()->GetContactPoints()->push_back(collidePoint);
@@ -300,6 +303,7 @@ namespace hpl {
 		//													mpContactBody2->GetName().c_str());
 
 		if(lContactNum <= 0) return;
+
 
 		iPhysicsMaterial *pMaterial1 = pContactBody1->GetMaterial();
 		iPhysicsMaterial *pMaterial2 = pContactBody2->GetMaterial();
