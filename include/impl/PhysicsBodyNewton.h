@@ -71,12 +71,6 @@ namespace hpl {
 		bool GetEnabled() const;
 		void SetAutoDisable(bool abEnabled);
 		bool GetAutoDisable() const;
-		void SetAutoDisableLinearThreshold(float afThresold);
-		float GetAutoDisableLinearThreshold() const;
-		void SetAutoDisableAngularThreshold(float afThresold);
-		float GetAutoDisableAngularThreshold() const;
-		void SetAutoDisableNumSteps(int alNum);
-		int GetAutoDisableNumSteps() const;
 		void SetContinuousCollision(bool abOn);
 		bool GetContinuousCollision();
 
@@ -95,8 +89,8 @@ namespace hpl {
 		static void SetUseCallback(bool abX){ mbUseCallback = abX;}
 	private:
 		
-		static void OnTransformCallback(const NewtonBody* apBody, const dFloat* apMatrix);
-		static void OnUpdateCallback(const NewtonBody* apBody);
+		static void OnTransformCallback(const NewtonBody* apBody, const dFloat* apMatrix, int threadIndex);
+		static void OnUpdateCallback(const NewtonBody* apBody, dFloat timestep, int threadIndex);
 
 		NewtonBody *mpNewtonBody;
 		NewtonWorld *mpNewtonWorld;
