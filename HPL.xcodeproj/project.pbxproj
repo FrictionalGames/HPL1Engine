@@ -544,6 +544,7 @@
 		DBCEE5D50B4B34340088A7E3 /* OpenALSoundChannel.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = OpenALSoundChannel.h; sourceTree = "<group>"; };
 		DBCEE5D60B4B34340088A7E3 /* OpenALSoundData.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = OpenALSoundData.h; sourceTree = "<group>"; };
 		DBCEE6250B4B35D50088A7E3 /* MeshLoaderColladaLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = MeshLoaderColladaLoader.cpp; sourceTree = "<group>"; };
+		DBF496C411A038A200C8A45D /* GLee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLee.h; sourceTree = "<group>"; };
 		DBF8484B0AC76D1A00BB15CD /* libHPL.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libHPL.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBF849480AC76D5700BB15CD /* AI.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = AI.cpp; sourceTree = "<group>"; };
 		DBF849490AC76D5700BB15CD /* AINodeContainer.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = AINodeContainer.cpp; sourceTree = "<group>"; };
@@ -1196,6 +1197,15 @@
 			name = BlackPlague;
 			sourceTree = "<group>";
 		};
+		DBF496C311A038A200C8A45D /* GL */ = {
+			isa = PBXGroup;
+			children = (
+				DBF496C411A038A200C8A45D /* GLee.h */,
+			);
+			name = GL;
+			path = include/GL;
+			sourceTree = "<group>";
+		};
 		DBF848380AC76CC500BB15CD = {
 			isa = PBXGroup;
 			children = (
@@ -1552,6 +1562,7 @@
 		DBF84CDF0AC7803700BB15CD /* CoreInclude */ = {
 			isa = PBXGroup;
 			children = (
+				DBF496C311A038A200C8A45D /* GL */,
 				DB27F0170ACB9AB90054ACA3 /* ai */,
 				DB27F01D0ACB9AB90054ACA3 /* game */,
 				DB27F0250ACB9AB90054ACA3 /* graphics */,
