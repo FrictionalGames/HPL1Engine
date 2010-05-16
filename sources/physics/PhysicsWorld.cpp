@@ -164,7 +164,7 @@ namespace hpl {
 				if(mpWorld3D) mpWorld3D->GetPortalContainer()->RemoveEntity(pBody);
 				pBody->Destroy();
 				hplDelete(pBody);
-				it = mlstBodies.erase(it);
+				mlstBodies.erase(it);
 			}
 		}
 	}
