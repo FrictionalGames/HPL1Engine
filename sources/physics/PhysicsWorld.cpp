@@ -165,6 +165,8 @@ namespace hpl {
 				pBody->Destroy();
 				hplDelete(pBody);
 				mlstBodies.erase(it);
+                // Should only be one entry in here so bail after finding it.
+                break;
 			}
 		}
 	}
