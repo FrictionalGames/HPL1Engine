@@ -7,6 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DB00EF3511A9CEA1007DFB32 /* libHPL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF8484B0AC76D1A00BB15CD /* libHPL.a */; };
+		DB00EF3811A9CEAD007DFB32 /* PhysicsTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB00EF1311A9CE84007DFB32 /* PhysicsTest.cpp */; };
+		DB00EF3E11A9CEC8007DFB32 /* SimpleCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB00EF0911A9CE84007DFB32 /* SimpleCamera.cpp */; };
+		DB00EF3F11A9CEC9007DFB32 /* stdafx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB00EF0B11A9CE84007DFB32 /* stdafx.cpp */; };
+		DB00EF6D11A9CFE1007DFB32 /* libas.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB00EF5C11A9CFD9007DFB32 /* libas.a */; };
+		DB00EF6E11A9CFE2007DFB32 /* libnewton32.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB00EF5E11A9CFD9007DFB32 /* libnewton32.a */; };
+		DB00EF7111A9CFFA007DFB32 /* libOALWrapper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB00EF5611A9CFB9007DFB32 /* libOALWrapper.a */; };
+		DB00F0C111A9D025007DFB32 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB00F0BB11A9D025007DFB32 /* OpenAL.framework */; };
+		DB00F0C211A9D025007DFB32 /* Cg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB00F0BC11A9D025007DFB32 /* Cg.framework */; };
+		DB00F0C311A9D025007DFB32 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB00F0BD11A9D025007DFB32 /* OpenGL.framework */; };
+		DB00F0C411A9D025007DFB32 /* SDL_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB00F0BE11A9D025007DFB32 /* SDL_image.framework */; };
+		DB00F0C511A9D025007DFB32 /* SDL_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB00F0BF11A9D025007DFB32 /* SDL_ttf.framework */; };
+		DB00F0C611A9D025007DFB32 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB00F0C011A9D025007DFB32 /* SDL.framework */; };
+		DB00F0C911A9D036007DFB32 /* libfltk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB00EF5D11A9CFD9007DFB32 /* libfltk.a */; };
+		DB00F0CE11A9D04D007DFB32 /* SDLMain.m in Sources */ = {isa = PBXBuildFile; fileRef = DB00F0CD11A9D04D007DFB32 /* SDLMain.m */; };
+		DB00F0D311A9D080007DFB32 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB00F0D111A9D080007DFB32 /* Carbon.framework */; };
+		DB00F0D411A9D080007DFB32 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB00F0D211A9D080007DFB32 /* Cocoa.framework */; };
+		DB00F0D711A9D096007DFB32 /* Ogg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB00EF5911A9CFD9007DFB32 /* Ogg.framework */; };
+		DB00F0D811A9D098007DFB32 /* Theora.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB00EF5A11A9CFD9007DFB32 /* Theora.framework */; };
+		DB00F0DA11A9D099007DFB32 /* Vorbis.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB00EF5B11A9CFD9007DFB32 /* Vorbis.framework */; };
+		DB00F0DD11A9D0A6007DFB32 /* ALUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB00EF5811A9CFD9007DFB32 /* ALUT.framework */; };
 		DB019B210D7462DE00FADC2C /* VideoManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB4AFB9F0D7076B200809E03 /* VideoManager.cpp */; };
 		DB294E100C11DC6E005DA55C /* CRC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB294E0F0C11DC6E005DA55C /* CRC.cpp */; };
 		DB4AFB470D7075B900809E03 /* Haptic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB4AFB450D7075B900809E03 /* Haptic.cpp */; };
@@ -238,7 +259,73 @@
 		DBFBA05B0B65EC740021DAE2 /* PBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DBF8499A0AC76D5800BB15CD /* PBuffer.cpp */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		DB00EF3611A9CEA5007DFB32 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DBF8483A0AC76CC500BB15CD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DBF8484A0AC76D1A00BB15CD /* HPL */;
+			remoteInfo = HPL;
+		};
+		DB00EF5511A9CFB9007DFB32 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DB00EF5111A9CFB9007DFB32 /* OALWrapper.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DBF9A2D9119A601600CCFDC9 /* libOALWrapper.a */;
+			remoteInfo = OALWrapper;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		DB00EF0911A9CE84007DFB32 /* SimpleCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleCamera.cpp; sourceTree = "<group>"; };
+		DB00EF0A11A9CE84007DFB32 /* SimpleCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleCamera.h; sourceTree = "<group>"; };
+		DB00EF0B11A9CE84007DFB32 /* stdafx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = stdafx.cpp; sourceTree = "<group>"; };
+		DB00EF0C11A9CE84007DFB32 /* stdafx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stdafx.h; sourceTree = "<group>"; };
+		DB00EF0E11A9CE84007DFB32 /* GuiTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GuiTest.cpp; sourceTree = "<group>"; };
+		DB00EF0F11A9CE84007DFB32 /* GuiTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuiTest.h; sourceTree = "<group>"; };
+		DB00EF1011A9CE84007DFB32 /* GuiTest.sln */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GuiTest.sln; sourceTree = "<group>"; };
+		DB00EF1111A9CE84007DFB32 /* GuiTest.vcproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = GuiTest.vcproj; sourceTree = "<group>"; };
+		DB00EF1311A9CE84007DFB32 /* PhysicsTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PhysicsTest.cpp; sourceTree = "<group>"; };
+		DB00EF1411A9CE84007DFB32 /* PhysicsTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysicsTest.h; sourceTree = "<group>"; };
+		DB00EF1511A9CE84007DFB32 /* PhysicsTest.sln */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PhysicsTest.sln; sourceTree = "<group>"; };
+		DB00EF1611A9CE84007DFB32 /* PhysicsTest.vcproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PhysicsTest.vcproj; sourceTree = "<group>"; };
+		DB00EF1811A9CE84007DFB32 /* RenderTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderTest.cpp; sourceTree = "<group>"; };
+		DB00EF1911A9CE85007DFB32 /* RenderTest.sln */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RenderTest.sln; sourceTree = "<group>"; };
+		DB00EF1A11A9CE85007DFB32 /* RenderTest.vcproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = RenderTest.vcproj; sourceTree = "<group>"; };
+		DB00EF1C11A9CE85007DFB32 /* SceneCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SceneCamera.cpp; sourceTree = "<group>"; };
+		DB00EF1D11A9CE85007DFB32 /* SceneCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneCamera.h; sourceTree = "<group>"; };
+		DB00EF1E11A9CE85007DFB32 /* SceneTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SceneTest.cpp; sourceTree = "<group>"; };
+		DB00EF1F11A9CE85007DFB32 /* SceneTest.sln */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SceneTest.sln; sourceTree = "<group>"; };
+		DB00EF2011A9CE85007DFB32 /* SceneTest.vcproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = SceneTest.vcproj; sourceTree = "<group>"; };
+		DB00EF2211A9CE85007DFB32 /* SerializeTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SerializeTest.cpp; sourceTree = "<group>"; };
+		DB00EF2311A9CE85007DFB32 /* SerializeTest.sln */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SerializeTest.sln; sourceTree = "<group>"; };
+		DB00EF2411A9CE85007DFB32 /* SerializeTest.vcproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = SerializeTest.vcproj; sourceTree = "<group>"; };
+		DB00EF2611A9CE85007DFB32 /* SpotLightTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpotLightTest.cpp; sourceTree = "<group>"; };
+		DB00EF2711A9CE85007DFB32 /* SpotLightTest.sln */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SpotLightTest.sln; sourceTree = "<group>"; };
+		DB00EF2811A9CE85007DFB32 /* SpotLightTest.vcproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = SpotLightTest.vcproj; sourceTree = "<group>"; };
+		DB00EF2A11A9CE85007DFB32 /* VideoTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VideoTest.cpp; sourceTree = "<group>"; };
+		DB00EF2B11A9CE85007DFB32 /* VideoTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoTest.h; sourceTree = "<group>"; };
+		DB00EF2C11A9CE85007DFB32 /* VideoTest.sln */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VideoTest.sln; sourceTree = "<group>"; };
+		DB00EF2D11A9CE85007DFB32 /* VideoTest.vcproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = VideoTest.vcproj; sourceTree = "<group>"; };
+		DB00EF3111A9CE93007DFB32 /* PhysicsTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = PhysicsTest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB00EF5111A9CFB9007DFB32 /* OALWrapper.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OALWrapper.xcodeproj; path = ../OALWrapper/OALWrapper.xcodeproj; sourceTree = SOURCE_ROOT; };
+		DB00EF5811A9CFD9007DFB32 /* ALUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ALUT.framework; path = lib/macosx/ALUT.framework; sourceTree = "<group>"; };
+		DB00EF5911A9CFD9007DFB32 /* Ogg.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Ogg.framework; path = lib/macosx/Ogg.framework; sourceTree = "<group>"; };
+		DB00EF5A11A9CFD9007DFB32 /* Theora.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Theora.framework; path = lib/macosx/Theora.framework; sourceTree = "<group>"; };
+		DB00EF5B11A9CFD9007DFB32 /* Vorbis.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Vorbis.framework; path = lib/macosx/Vorbis.framework; sourceTree = "<group>"; };
+		DB00EF5C11A9CFD9007DFB32 /* libas.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libas.a; path = lib/macosx/libas.a; sourceTree = "<group>"; };
+		DB00EF5D11A9CFD9007DFB32 /* libfltk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfltk.a; path = lib/macosx/libfltk.a; sourceTree = "<group>"; };
+		DB00EF5E11A9CFD9007DFB32 /* libnewton32.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libnewton32.a; path = lib/macosx/libnewton32.a; sourceTree = "<group>"; };
+		DB00F0BB11A9D025007DFB32 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = /System/Library/Frameworks/OpenAL.framework; sourceTree = "<absolute>"; };
+		DB00F0BC11A9D025007DFB32 /* Cg.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cg.framework; path = /Library/Frameworks/Cg.framework; sourceTree = "<absolute>"; };
+		DB00F0BD11A9D025007DFB32 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
+		DB00F0BE11A9D025007DFB32 /* SDL_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL_image.framework; path = /Library/Frameworks/SDL_image.framework; sourceTree = "<absolute>"; };
+		DB00F0BF11A9D025007DFB32 /* SDL_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL_ttf.framework; path = /Library/Frameworks/SDL_ttf.framework; sourceTree = "<absolute>"; };
+		DB00F0C011A9D025007DFB32 /* SDL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL.framework; path = /Library/Frameworks/SDL.framework; sourceTree = "<absolute>"; };
+		DB00F0CC11A9D04D007DFB32 /* SDLMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLMain.h; sourceTree = "<group>"; };
+		DB00F0CD11A9D04D007DFB32 /* SDLMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLMain.m; sourceTree = "<group>"; };
+		DB00F0D111A9D080007DFB32 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
+		DB00F0D211A9D080007DFB32 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		DB27F0180ACB9AB90054ACA3 /* AI.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AI.h; sourceTree = "<group>"; };
 		DB27F0190ACB9AB90054ACA3 /* AINodeContainer.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AINodeContainer.h; sourceTree = "<group>"; };
 		DB27F01A0ACB9AB90054ACA3 /* AINodeGenerator.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AINodeGenerator.h; sourceTree = "<group>"; };
@@ -747,6 +834,30 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		DB00EF2F11A9CE93007DFB32 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB00EF3511A9CEA1007DFB32 /* libHPL.a in Frameworks */,
+				DB00EF6D11A9CFE1007DFB32 /* libas.a in Frameworks */,
+				DB00EF6E11A9CFE2007DFB32 /* libnewton32.a in Frameworks */,
+				DB00EF7111A9CFFA007DFB32 /* libOALWrapper.a in Frameworks */,
+				DB00F0C111A9D025007DFB32 /* OpenAL.framework in Frameworks */,
+				DB00F0C211A9D025007DFB32 /* Cg.framework in Frameworks */,
+				DB00F0C311A9D025007DFB32 /* OpenGL.framework in Frameworks */,
+				DB00F0C411A9D025007DFB32 /* SDL_image.framework in Frameworks */,
+				DB00F0C511A9D025007DFB32 /* SDL_ttf.framework in Frameworks */,
+				DB00F0C611A9D025007DFB32 /* SDL.framework in Frameworks */,
+				DB00F0C911A9D036007DFB32 /* libfltk.a in Frameworks */,
+				DB00F0D311A9D080007DFB32 /* Carbon.framework in Frameworks */,
+				DB00F0D411A9D080007DFB32 /* Cocoa.framework in Frameworks */,
+				DB00F0D711A9D096007DFB32 /* Ogg.framework in Frameworks */,
+				DB00F0D811A9D098007DFB32 /* Theora.framework in Frameworks */,
+				DB00F0DA11A9D099007DFB32 /* Vorbis.framework in Frameworks */,
+				DB00F0DD11A9D0A6007DFB32 /* ALUT.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DBF848490AC76D1A00BB15CD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -757,12 +868,148 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		DB0809FD0E70BB0F0021AA53 /* Requiem */ = {
+		DB00EF0711A9CE84007DFB32 /* tests */ = {
 			isa = PBXGroup;
 			children = (
+				DB00F0CC11A9D04D007DFB32 /* SDLMain.h */,
+				DB00F0CD11A9D04D007DFB32 /* SDLMain.m */,
+				DB00EF0811A9CE84007DFB32 /* Common */,
+				DB00EF0D11A9CE84007DFB32 /* GuiTest */,
+				DB00EF1211A9CE84007DFB32 /* PhysicsTest */,
+				DB00EF1711A9CE84007DFB32 /* RenderTest */,
+				DB00EF1B11A9CE85007DFB32 /* SceneTest */,
+				DB00EF2111A9CE85007DFB32 /* SerializeTest */,
+				DB00EF2511A9CE85007DFB32 /* SpotLightTest */,
+				DB00EF2911A9CE85007DFB32 /* VideoTest */,
 			);
-			name = Requiem;
+			path = tests;
 			sourceTree = "<group>";
+		};
+		DB00EF0811A9CE84007DFB32 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				DB00EF0911A9CE84007DFB32 /* SimpleCamera.cpp */,
+				DB00EF0A11A9CE84007DFB32 /* SimpleCamera.h */,
+				DB00EF0B11A9CE84007DFB32 /* stdafx.cpp */,
+				DB00EF0C11A9CE84007DFB32 /* stdafx.h */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		DB00EF0D11A9CE84007DFB32 /* GuiTest */ = {
+			isa = PBXGroup;
+			children = (
+				DB00EF0E11A9CE84007DFB32 /* GuiTest.cpp */,
+				DB00EF0F11A9CE84007DFB32 /* GuiTest.h */,
+				DB00EF1011A9CE84007DFB32 /* GuiTest.sln */,
+				DB00EF1111A9CE84007DFB32 /* GuiTest.vcproj */,
+			);
+			path = GuiTest;
+			sourceTree = "<group>";
+		};
+		DB00EF1211A9CE84007DFB32 /* PhysicsTest */ = {
+			isa = PBXGroup;
+			children = (
+				DB00EF1311A9CE84007DFB32 /* PhysicsTest.cpp */,
+				DB00EF1411A9CE84007DFB32 /* PhysicsTest.h */,
+				DB00EF1511A9CE84007DFB32 /* PhysicsTest.sln */,
+				DB00EF1611A9CE84007DFB32 /* PhysicsTest.vcproj */,
+			);
+			path = PhysicsTest;
+			sourceTree = "<group>";
+		};
+		DB00EF1711A9CE84007DFB32 /* RenderTest */ = {
+			isa = PBXGroup;
+			children = (
+				DB00EF1811A9CE84007DFB32 /* RenderTest.cpp */,
+				DB00EF1911A9CE85007DFB32 /* RenderTest.sln */,
+				DB00EF1A11A9CE85007DFB32 /* RenderTest.vcproj */,
+			);
+			path = RenderTest;
+			sourceTree = "<group>";
+		};
+		DB00EF1B11A9CE85007DFB32 /* SceneTest */ = {
+			isa = PBXGroup;
+			children = (
+				DB00EF1C11A9CE85007DFB32 /* SceneCamera.cpp */,
+				DB00EF1D11A9CE85007DFB32 /* SceneCamera.h */,
+				DB00EF1E11A9CE85007DFB32 /* SceneTest.cpp */,
+				DB00EF1F11A9CE85007DFB32 /* SceneTest.sln */,
+				DB00EF2011A9CE85007DFB32 /* SceneTest.vcproj */,
+			);
+			path = SceneTest;
+			sourceTree = "<group>";
+		};
+		DB00EF2111A9CE85007DFB32 /* SerializeTest */ = {
+			isa = PBXGroup;
+			children = (
+				DB00EF2211A9CE85007DFB32 /* SerializeTest.cpp */,
+				DB00EF2311A9CE85007DFB32 /* SerializeTest.sln */,
+				DB00EF2411A9CE85007DFB32 /* SerializeTest.vcproj */,
+			);
+			path = SerializeTest;
+			sourceTree = "<group>";
+		};
+		DB00EF2511A9CE85007DFB32 /* SpotLightTest */ = {
+			isa = PBXGroup;
+			children = (
+				DB00EF2611A9CE85007DFB32 /* SpotLightTest.cpp */,
+				DB00EF2711A9CE85007DFB32 /* SpotLightTest.sln */,
+				DB00EF2811A9CE85007DFB32 /* SpotLightTest.vcproj */,
+			);
+			path = SpotLightTest;
+			sourceTree = "<group>";
+		};
+		DB00EF2911A9CE85007DFB32 /* VideoTest */ = {
+			isa = PBXGroup;
+			children = (
+				DB00EF2A11A9CE85007DFB32 /* VideoTest.cpp */,
+				DB00EF2B11A9CE85007DFB32 /* VideoTest.h */,
+				DB00EF2C11A9CE85007DFB32 /* VideoTest.sln */,
+				DB00EF2D11A9CE85007DFB32 /* VideoTest.vcproj */,
+			);
+			path = VideoTest;
+			sourceTree = "<group>";
+		};
+		DB00EF5011A9CF86007DFB32 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DB00EF5711A9CFD9007DFB32 /* dependencies */,
+				DB00EF5111A9CFB9007DFB32 /* OALWrapper.xcodeproj */,
+				DB00F0BB11A9D025007DFB32 /* OpenAL.framework */,
+				DB00F0BC11A9D025007DFB32 /* Cg.framework */,
+				DB00F0BD11A9D025007DFB32 /* OpenGL.framework */,
+				DB00F0BE11A9D025007DFB32 /* SDL_image.framework */,
+				DB00F0BF11A9D025007DFB32 /* SDL_ttf.framework */,
+				DB00F0D111A9D080007DFB32 /* Carbon.framework */,
+				DB00F0D211A9D080007DFB32 /* Cocoa.framework */,
+				DB00F0C011A9D025007DFB32 /* SDL.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DB00EF5211A9CFB9007DFB32 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DB00EF5611A9CFB9007DFB32 /* libOALWrapper.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DB00EF5711A9CFD9007DFB32 /* dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				DB00EF5811A9CFD9007DFB32 /* ALUT.framework */,
+				DB00EF5911A9CFD9007DFB32 /* Ogg.framework */,
+				DB00EF5A11A9CFD9007DFB32 /* Theora.framework */,
+				DB00EF5B11A9CFD9007DFB32 /* Vorbis.framework */,
+				DB00EF5C11A9CFD9007DFB32 /* libas.a */,
+				DB00EF5D11A9CFD9007DFB32 /* libfltk.a */,
+				DB00EF5E11A9CFD9007DFB32 /* libnewton32.a */,
+			);
+			name = dependencies;
+			path = ../dependencies;
+			sourceTree = SOURCE_ROOT;
 		};
 		DB27F0170ACB9AB90054ACA3 /* ai */ = {
 			isa = PBXGroup;
@@ -1183,20 +1430,6 @@
 			path = include/haptic;
 			sourceTree = "<group>";
 		};
-		DB4AFE980D7303E700809E03 /* Overture */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Overture;
-			sourceTree = "<group>";
-		};
-		DB4AFE9B0D73040700809E03 /* BlackPlague */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = BlackPlague;
-			sourceTree = "<group>";
-		};
 		DBF496C311A038A200C8A45D /* GL */ = {
 			isa = PBXGroup;
 			children = (
@@ -1209,9 +1442,10 @@
 		DBF848380AC76CC500BB15CD = {
 			isa = PBXGroup;
 			children = (
+				DB00EF0711A9CE84007DFB32 /* tests */,
 				DBF848500AC76D3700BB15CD /* CoreSource */,
 				DBF84CDF0AC7803700BB15CD /* CoreInclude */,
-				DBFBD2690AC8A8A50062EA6B /* Resources */,
+				DB00EF5011A9CF86007DFB32 /* Frameworks */,
 				DBF8484C0AC76D1A00BB15CD /* Products */,
 			);
 			sourceTree = "<group>";
@@ -1220,6 +1454,7 @@
 			isa = PBXGroup;
 			children = (
 				DBF8484B0AC76D1A00BB15CD /* libHPL.a */,
+				DB00EF3111A9CE93007DFB32 /* PhysicsTest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1581,19 +1816,26 @@
 			name = CoreInclude;
 			sourceTree = "<group>";
 		};
-		DBFBD2690AC8A8A50062EA6B /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				DB4AFE980D7303E700809E03 /* Overture */,
-				DB4AFE9B0D73040700809E03 /* BlackPlague */,
-				DB0809FD0E70BB0F0021AA53 /* Requiem */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		DB00EF3011A9CE93007DFB32 /* PhysicsTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DB00EF4611A9CEF2007DFB32 /* Build configuration list for PBXNativeTarget "PhysicsTest" */;
+			buildPhases = (
+				DB00EF2E11A9CE93007DFB32 /* Sources */,
+				DB00EF2F11A9CE93007DFB32 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DB00EF3711A9CEA5007DFB32 /* PBXTargetDependency */,
+			);
+			name = PhysicsTest;
+			productName = PhysicsTest;
+			productReference = DB00EF3111A9CE93007DFB32 /* PhysicsTest */;
+			productType = "com.apple.product-type.tool";
+		};
 		DBF8484A0AC76D1A00BB15CD /* HPL */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = DBF8484D0AC76D1B00BB15CD /* Build configuration list for PBXNativeTarget "HPL" */;
@@ -1621,14 +1863,42 @@
 			mainGroup = DBF848380AC76CC500BB15CD;
 			productRefGroup = DBF8484C0AC76D1A00BB15CD /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = DB00EF5211A9CFB9007DFB32 /* Products */;
+					ProjectRef = DB00EF5111A9CFB9007DFB32 /* OALWrapper.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				DBF8484A0AC76D1A00BB15CD /* HPL */,
+				DB00EF3011A9CE93007DFB32 /* PhysicsTest */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		DB00EF5611A9CFB9007DFB32 /* libOALWrapper.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libOALWrapper.a;
+			remoteRef = DB00EF5511A9CFB9007DFB32 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXSourcesBuildPhase section */
+		DB00EF2E11A9CE93007DFB32 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB00EF3811A9CEAD007DFB32 /* PhysicsTest.cpp in Sources */,
+				DB00EF3E11A9CEC8007DFB32 /* SimpleCamera.cpp in Sources */,
+				DB00EF3F11A9CEC9007DFB32 /* stdafx.cpp in Sources */,
+				DB00F0CE11A9D04D007DFB32 /* SDLMain.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DBF848480AC76D1A00BB15CD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1867,7 +2137,83 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		DB00EF3711A9CEA5007DFB32 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DBF8484A0AC76D1A00BB15CD /* HPL */;
+			targetProxy = DB00EF3611A9CEA5007DFB32 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		DB00EF3311A9CE94007DFB32 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../dependencies/lib/macosx\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				HEADER_SEARCH_PATHS = (
+					include,
+					../dependencies/include,
+				);
+				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../dependencies/lib/macosx\"",
+				);
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = PhysicsTest;
+			};
+			name = Debug;
+		};
+		DB00EF3411A9CE94007DFB32 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../dependencies/lib/macosx\"",
+				);
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				HEADER_SEARCH_PATHS = (
+					include,
+					../dependencies/include,
+				);
+				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../dependencies/lib/macosx\"",
+				);
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = PhysicsTest;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		DBF8483C0AC76CC500BB15CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1969,6 +2315,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		DB00EF4611A9CEF2007DFB32 /* Build configuration list for PBXNativeTarget "PhysicsTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB00EF3311A9CE94007DFB32 /* Debug */,
+				DB00EF3411A9CE94007DFB32 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		DBF8483B0AC76CC500BB15CD /* Build configuration list for PBXProject "HPL" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
