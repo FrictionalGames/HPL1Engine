@@ -9,7 +9,7 @@
     <modified>2005-10-19T15:32:43Z</modified>
   </asset>
   <library type="IMAGE">
-    <image id="file1" name="file1" source="file:///E:/HPL/redist/textures/woodbox.JPG"/>
+    <image id="file1" name="file1" source="floor.jpg"/>
   </library>
   <library type="TEXTURE">
     <texture id="file1-DIFFUSE">
