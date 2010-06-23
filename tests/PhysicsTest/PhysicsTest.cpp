@@ -5,8 +5,8 @@
  *
  * For conditions of distribution and use, see copyright notice in LICENSE-tests
  */
-#include <hpl.h>
-#include <impl/SDLGameSetup.h>
+#include "hpl.h"
+#include "impl/SDLGameSetup.h"
 
 #include "../Common/SimpleCamera.h"
 
@@ -119,19 +119,19 @@ public:
 		cCamera3D *pCam = static_cast<cCamera3D*>(gpGame->GetScene()->GetCamera());
 		mpLowLevelGraphics->SetMatrix(eMatrix_ModelView, pCam->GetViewMatrix());
 
-		//mpLowLevelGraphics->SetDepthTestActive(false);
+		mpLowLevelGraphics->SetDepthTestActive(false);
 		
-		//mpPhysicsWorld->RenderDebugGeometry(mpLowLevelGraphics,cColor(1,0,1,1));
+		mpPhysicsWorld->RenderDebugGeometry(mpLowLevelGraphics,cColor(1,0,1,1));
 
-		//mpLowLevelGraphics->DrawBoxMaxMin(mpFloorBody->GetBV()->GetMax(),
-		//									mpFloorBody->GetBV()->GetMin(),cColor(1,1,1,1));
-		/*for(size_t i=0; i< mvBodies.size(); i++)
-		{
-			mpLowLevelGraphics->DrawBoxMaxMin(mvBodies[i]->GetBV()->GetMax(),
-												mvBodies[i]->GetBV()->GetMin(), cColor(1,1,1,1));
-		}*/
-		
-		//mpLowLevelGraphics->SetDepthTestActive(true);
+//		mpLowLevelGraphics->DrawBoxMaxMin(mpFloorBody->GetBV()->GetMax(),
+//											mpFloorBody->GetBV()->GetMin(),cColor(1,1,1,1));
+//		for(size_t i=0; i< mvBodies.size(); i++)
+//		{
+//			mpLowLevelGraphics->DrawBoxMaxMin(mvBodies[i]->GetBV()->GetMax(),
+//												mvBodies[i]->GetBV()->GetMin(), cColor(1,1,1,1));
+//		}
+//		
+//		mpLowLevelGraphics->SetDepthTestActive(true);
 	}
 
 	
@@ -162,7 +162,7 @@ private:
 
 
 
-int WINAPI WinMain(	HINSTANCE hInstance,  HINSTANCE hPrevInstance,LPSTR	lpCmdLine, int nCmdShow)
+int hplMain(const tString& asCommandLine)
 {
 	//Init the game engine
 	gpGame = new cGame(new cSDLGameSetup(),800,600,32,false,45);
@@ -172,6 +172,7 @@ int WINAPI WinMain(	HINSTANCE hInstance,  HINSTANCE hPrevInstance,LPSTR	lpCmdLin
 	gpGame->GetResources()->AddResourceDir("textures");
 	gpGame->GetResources()->AddResourceDir("models");
 	gpGame->GetResources()->AddResourceDir("fonts");
+    gpGame->GetResources()->AddResourceDir("gui");
 
 	//Add updates
 	cSimpleUpdate Update;
@@ -185,4 +186,5 @@ int WINAPI WinMain(	HINSTANCE hInstance,  HINSTANCE hPrevInstance,LPSTR	lpCmdLin
 
 	//Delete the engine
 	delete gpGame;
+    return 0;
 }

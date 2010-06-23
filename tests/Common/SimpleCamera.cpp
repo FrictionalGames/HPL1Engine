@@ -43,7 +43,7 @@ cSimpleCamera::cSimpleCamera(cGame *apGame, float afSpeed,cVector3f avStartPos,b
 
 
 	if(abShowFPS)
-		mpFont = mpGame->GetResources()->GetFontManager()->CreateFontData("verdana.fnt",12,32,128);
+		mpFont = mpGame->GetResources()->GetFontManager()->CreateFontData("viewer.fnt",12,32,128);
 	else
 		mpFont = NULL;
 
