@@ -33,7 +33,7 @@
 #include "scene/GridMap2D.h"
 #include "scene/Light2DPoint.h"
 #include "scene/ImageEntity.h"
-#include "impl/tinyXML/tinyxml.h"
+#include "tinyxml.h"
 #include "resources/ParticleManager.h"
 #include "scene/SoundSource.h"
 #include "scene/Area2D.h"

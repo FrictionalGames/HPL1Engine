@@ -24,7 +24,7 @@
 #include "graphics/MeshCreator.h"
 #include "graphics/Material.h"
 #include "graphics/Mesh2d.h"
-#include "impl/tinyXML/tinyxml.h"
+#include "tinyxml.h"
 #include "scene/ImageEntity.h"
 #include "scene/TileSet.h"
 

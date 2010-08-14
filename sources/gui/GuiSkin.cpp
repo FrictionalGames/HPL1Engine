@@ -21,7 +21,7 @@
 #include "system/LowLevelSystem.h"
 #include "system/String.h"
 
-#include "impl/tinyXML/tinyxml.h"
+#include "tinyxml.h"
 
 #include "gui/Gui.h"
 #include "gui/GuiGfxElement.h"

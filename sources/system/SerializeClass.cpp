@@ -27,7 +27,7 @@
 #include "math/MathTypes.h"
 #include "system/Container.h"
 
-#include "impl/tinyXML/tinyxml.h"
+#include "tinyxml.h"
 
 #include <stdio.h>
 

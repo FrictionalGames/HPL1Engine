@@ -21,7 +21,7 @@
 #include "system/String.h"
 #include "scene/World3D.h"
 #include "system/LowLevelSystem.h"
-#include "impl/tinyXML/tinyxml.h"
+#include "tinyxml.h"
 
 #include "physics/PhysicsWorld.h"
 #include "physics/PhysicsBody.h"
