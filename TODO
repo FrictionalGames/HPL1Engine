@@ -1,5 +1,3 @@
 * Adjust to build off of system included libraries and headers instead of the dependency bundle
 * remove FLTK dependency
-* file file saving issue in with langage emphasis on Mac and Linux
- * http://www.frictionalgames.com/forum/thread-1515-post-25070.html#pid25070
 * Add in Bitsream Vera or other Open font.
