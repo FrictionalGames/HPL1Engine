@@ -51,6 +51,8 @@
 
 #include "system/String.h"
 
+#include <clocale>
+
 extern int hplMain(const hpl::tString &asCommandLine);
 
 #ifdef WIN32
@@ -62,6 +64,12 @@ int WINAPI WinMain(	HINSTANCE hInstance,  HINSTANCE hPrevInstance,LPSTR	lpCmdLin
 #else
 int main(int argc, char *argv[])
 {
+	if(!std::setlocale(LC_CTYPE, "")) {
+		fprintf(stderr, "Can't set the specified locale! Check LANG, LC_CTYPE, LC_ALL.\n");
+		return 1;
+	}
+
+
 	hpl::tString cmdline = "";
 	for (int i=1; i < argc; i++) {
 		if (cmdline.length()>0) {

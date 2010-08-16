@@ -33,9 +33,9 @@ namespace hpl {
 	tWString cString::To16Char(const tString &asString)
 	{
 		tWString wsTemp;
-		size_t needed = mbstowcs(NULL,&asString[0],asString.length());
+		size_t needed = mbstowcs(NULL,&asString[0],0);
 		wsTemp.resize(needed);
-		mbstowcs(&wsTemp[0],&asString[0],asString.length());
+		mbstowcs(&wsTemp[0],&asString[0],needed);
 
 		return wsTemp;
 	}
@@ -45,9 +45,9 @@ namespace hpl {
 	tString cString::To8Char(const tWString &awsString)
 	{
 		tString sTemp;
-		size_t needed = wcstombs(NULL,&awsString[0],awsString.length());
+		size_t needed = wcstombs(NULL,&awsString[0],0);
 		sTemp.resize(needed);
-		wcstombs(&sTemp[0],&awsString[0],awsString.length());
+		wcstombs(&sTemp[0],&awsString[0],needed);
 
 		return sTemp;
 	}
