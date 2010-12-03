@@ -463,9 +463,12 @@ namespace hpl {
 			cVector2f vLocalPos(pNode->GetPosition().x, pNode->GetPosition().z);
 			vLocalPos -= mvMinGridPos;
             
-            cVector2l vGridPos;
-			vGridPos.x = (int)(vLocalPos.x / mvGridSize.x);
-			vGridPos.y = (int)(vLocalPos.y / mvGridSize.y);
+             cVector2l vGridPos(0);
+			//Have checks so we are sure there is no division by zero.
+			if(mvGridSize.x >0)
+				vGridPos.x = (int)(vLocalPos.x / mvGridSize.x);
+			if(mvGridSize.y >0)
+				vGridPos.y = (int)(vLocalPos.y / mvGridSize.y);
 
 			if(false)Log("Adding node %d, world: (%s) local (%s), at %d : %d\n",i,
 												pNode->GetPosition().ToString().c_str(),

@@ -39,7 +39,7 @@
 
 namespace hpl {
 
-#define GetAdress(sStr) if(sStr[0]=='#') sStr = cString::Sub(sStr,1);
+#define GetAdress(sStr) if(sStr.length()>0 && sStr[0]=='#') sStr = cString::Sub(sStr,1);
 	//////////////////////////////////////////////////////////////////////////
 	// PRIVATE METHODS
 	//////////////////////////////////////////////////////////////////////////
