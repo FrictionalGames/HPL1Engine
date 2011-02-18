@@ -26,11 +26,6 @@
 #include <shlobj.h>
 #endif
 
-#ifndef WIN32
-// Include FLTK 
-#include "FL/fl_ask.H"
-#endif
-
 #define _UNICODE
 
 #include <stdio.h>
@@ -95,7 +90,7 @@ namespace hpl {
 	static cLogWriter gUpdateLogWriter(_W("hpl_update.log"));
 
 	//-----------------------------------------------------------------------
-	
+
 	cLogWriter::cLogWriter(const tWString& asFileName)
 	{
 		msFileName = asFileName;
@@ -109,12 +104,13 @@ namespace hpl {
 	void cLogWriter::Write(const tString& asMessage)
 	{
 		if(!mpFile) ReopenFile();
-		
+
 		if(mpFile)
 		{
-			fprintf(mpFile, asMessage.c_str());
+			fputs(asMessage.c_str(), mpFile);
 			fflush(mpFile);
 		}
+		fputs(asMessage.c_str(), stdout);
 	}
 
 	void cLogWriter::Clear()
@@ -140,8 +136,8 @@ namespace hpl {
 	void cLogWriter::ReopenFile()
 	{
 		if(mpFile) fclose(mpFile);
-		
-					
+
+
 		#ifdef WIN32
 			mpFile = _wfopen(msFileName.c_str(),_W("w"));
 		#else
@@ -152,7 +148,7 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	
+
 	//////////////////////////////////////////////////////////////////////////
 	// CONSTRUCTORS
 	//////////////////////////////////////////////////////////////////////////
@@ -162,7 +158,7 @@ namespace hpl {
 	cLowLevelSystemSDL::cLowLevelSystemSDL()
 	{
 		mpScriptEngine = asCreateScriptEngine(ANGELSCRIPT_VERSION);
-		
+
 		mpScriptOutput = hplNew( cScriptOutput, () );
 		mpScriptEngine->SetMessageCallback(asMETHOD(cScriptOutput,AddMessage), mpScriptOutput, asCALL_THISCALL);
 
@@ -182,7 +178,7 @@ namespace hpl {
 	cLowLevelSystemSDL::~cLowLevelSystemSDL()
 	{
 		/*Release all runnings contexts */
-		
+
 		mpScriptEngine->Release();
 		hplDelete(mpScriptOutput);
 
@@ -196,9 +192,9 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 	// PUBLIC METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
-		
+
 	void SetLogFile(const tWString &asFile)
 	{
 		gLogWriter.SetFileName(asFile);
@@ -209,17 +205,17 @@ namespace hpl {
 	void FatalError(const char* fmt,... )
 	{
 		char text[2048];
-		va_list ap;	
+		va_list ap;
 		if (fmt == NULL)
-			return;	
+			return;
 		va_start(ap, fmt);
 			vsprintf(text, fmt, ap);
 		va_end(ap);
-		
+
 		tString sMess = "FATAL ERROR: ";
 		sMess += text;
 		gLogWriter.Write(sMess);
-		
+
 #ifdef WIN32
 		MessageBox( NULL, cString::To16Char(text).c_str(), _W("FATAL ERROR"), MB_ICONERROR);
 #endif
@@ -230,9 +226,9 @@ namespace hpl {
 	void Error(const char* fmt, ...)
 	{
 		char text[2048];
-		va_list ap;	
+		va_list ap;
 		if (fmt == NULL)
-			return;	
+			return;
 		va_start(ap, fmt);
 			vsprintf(text, fmt, ap);
 		va_end(ap);
@@ -245,9 +241,9 @@ namespace hpl {
 	void Warning(const char* fmt, ...)
 	{
 		char text[2048];
-		va_list ap;	
+		va_list ap;
 		if (fmt == NULL)
-			return;	
+			return;
 		va_start(ap, fmt);
 			vsprintf(text, fmt, ap);
 		va_end(ap);
@@ -260,9 +256,9 @@ namespace hpl {
 	void Log(const char* fmt, ...)
 	{
 		char text[2048];
-		va_list ap;	
+		va_list ap;
 		if (fmt == NULL)
-			return;	
+			return;
 		va_start(ap, fmt);
 		vsprintf(text, fmt, ap);
 		va_end(ap);
@@ -273,7 +269,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	static bool gbUpdateLogIsActive;
 	void SetUpdateLogFile(const tWString &asFile)
 	{
@@ -297,9 +293,9 @@ namespace hpl {
 		if(!gbUpdateLogIsActive) return;
 
 		char text[2048];
-		va_list ap;	
+		va_list ap;
 		if (fmt == NULL)
-			return;	
+			return;
 		va_start(ap, fmt);
 		vsprintf(text, fmt, ap);
 		va_end(ap);
@@ -327,26 +323,26 @@ namespace hpl {
 
 		SetClipboardData(CF_UNICODETEXT, clipbuffer);
 
-		GlobalUnlock(clipbuffer); 
-		
+		GlobalUnlock(clipbuffer);
+
 		CloseClipboard();
 #endif
 	}
-	
+
 	tWString LoadTextFromClipboard()
 	{
 #ifdef WIN32
 		tWString sText=_W("");
 		OpenClipboard(NULL);
-		
+
 		HGLOBAL clipbuffer = GetClipboardData(CF_UNICODETEXT);
-		
+
 		wchar_t *pBuffer = (wchar_t*)GlobalLock(clipbuffer);
 
 		if(pBuffer != NULL) sText = pBuffer;
-		
-		GlobalUnlock(clipbuffer); 
-		
+
+		GlobalUnlock(clipbuffer);
+
 		CloseClipboard();
 
 		return sText;
@@ -354,16 +350,16 @@ namespace hpl {
 		return _W("");
 #endif
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 
 	void CreateMessageBox ( eMsgBoxType eType, const char* asCaption, const char *fmt, ...)
 	{
 		/*char text[2048];
-		va_list ap;	
+		va_list ap;
 		if (fmt == NULL)
-			return;	
+			return;
 		va_start(ap, fmt);
 		vsprintf(text, fmt, ap);
 		va_end(ap);
@@ -390,8 +386,8 @@ namespace hpl {
 		default:
 			break;
 		}
-		
-		
+
+
 		MessageBox( NULL, sMess.c_str(), asCaption, lType );
 
 		#endif*/
@@ -400,9 +396,9 @@ namespace hpl {
 	void CreateMessageBox ( const char* asCaption, const char *fmt, ...)
 	{
 		/*char text[2048];
-		va_list ap;	
+		va_list ap;
 		if (fmt == NULL)
-			return;	
+			return;
 		va_start(ap, fmt);
 		vsprintf(text, fmt, ap);
 		va_end(ap);
@@ -419,7 +415,7 @@ namespace hpl {
 		wchar_t text[2048];
 
 		if (fmt == NULL)
-			return;	
+			return;
 		vswprintf(text, 2047, fmt, ap);
 
 		tWString sMess = _W("");
@@ -443,22 +439,22 @@ namespace hpl {
 		default:
 			break;
 		}
-		
+
 		MessageBox( NULL, sMess.c_str(), asCaption, lType );
 		#else
 		sMess += asCaption;
 		sMess +=_W("\n\n");
 		sMess += text;
-		fl_alert("%ls\n\n%ls",asCaption,text);
+		fprintf(stderr, "%ls\n\n%ls",asCaption,text);
 		#endif
 	}
 
 	void CreateMessageBoxW ( eMsgBoxType eType, const wchar_t* asCaption, const wchar_t* fmt, ...)
 	{
-		va_list ap;	
+		va_list ap;
 
 		if (fmt == NULL)
-			return;	
+			return;
 		va_start(ap, fmt);
 		CreateMessageBoxW (eType, asCaption, fmt, ap);
 		va_end(ap);
@@ -466,16 +462,16 @@ namespace hpl {
 
 	void CreateMessageBoxW ( const wchar_t* asCaption, const wchar_t *fmt, ...)
 	{
-		va_list ap;	
+		va_list ap;
 		if (fmt == NULL)
-			return;	
+			return;
 		va_start(ap, fmt);
 	    CreateMessageBoxW( eMsgBoxType_Default, asCaption, fmt, ap );
 		va_end(ap);
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	static cDate DateFromGMTIme(struct tm* apClock)
 	{
 		cDate date;
@@ -506,7 +502,7 @@ namespace hpl {
 		system(asTemp.c_str());
 		#endif
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	tWString GetSystemSpecialPath(eSystemPath aPathType)
@@ -521,9 +517,9 @@ namespace hpl {
 		}
 
 		TCHAR sPath[1024];
-		if(SUCCEEDED(SHGetFolderPath(NULL, 
-			type | CSIDL_FLAG_CREATE, 
-			NULL,0,sPath))) 
+		if(SUCCEEDED(SHGetFolderPath(NULL,
+			type | CSIDL_FLAG_CREATE,
+			NULL,0,sPath)))
 		{
 			return tWString(sPath);
 		}
@@ -545,7 +541,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	bool FileExists(const tWString& asFileName)
 	{
 	#ifdef WIN32
@@ -583,7 +579,7 @@ namespace hpl {
 	#else
 		if (abFailIfExists && FileExists(asDestFileName)) {
 			return true;
-		} 
+		}
 		std::ifstream IN (cString::To8Char(asSrcFileName).c_str(), std::ios::binary);
 		std::ofstream OUT (cString::To8Char(asDestFileName).c_str(), std::ios::binary);
 		OUT << IN.rdbuf();
@@ -598,7 +594,7 @@ namespace hpl {
 	{
 	#ifdef WIN32
 		return CreateDirectory(asPath.c_str(),NULL)==TRUE;
-	#else 
+	#else
 		return mkdir(cString::To8Char(asPath).c_str(),0755)==0;
 	#endif
 	}
@@ -695,7 +691,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	bool HasWindowFocus(const tWString &asWindowCaption)
 	{
 		#ifdef WIN32
@@ -711,17 +707,17 @@ namespace hpl {
 	{
 		return SDL_GetTicks();
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cScriptOutput::AddMessage(const asSMessageInfo *msg)
 	{
 		char sMess[1024];
-		
+
 		tString type = "ERR ";
-		if( msg->type == asMSGTYPE_WARNING ) 
+		if( msg->type == asMSGTYPE_WARNING )
 			type = "WARN";
-		else if( msg->type == asMSGTYPE_INFORMATION ) 
+		else if( msg->type == asMSGTYPE_INFORMATION )
 			type = "INFO";
 
 		sprintf(sMess,"%s (%d, %d) : %s : %s\n", msg->section, msg->row, msg->col, type.c_str(), msg->message);
@@ -749,14 +745,14 @@ namespace hpl {
 	{
 		msMessage = "";
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	unsigned long cLowLevelSystemSDL::GetTime()
 	{
 		return SDL_GetTicks();
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cDate cLowLevelSystemSDL::GetDate()
@@ -767,11 +763,11 @@ namespace hpl {
 		struct tm* pClock;
 		pClock = localtime(&lTime);
 
-		return DateFromGMTIme(pClock);		
+		return DateFromGMTIme(pClock);
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	iScript* cLowLevelSystemSDL::CreateScript(const tString& asName)
 	{
 		return hplNew( cSqScript, (asName,mpScriptEngine,mpScriptOutput,mlHandleCount++) );
@@ -790,7 +786,7 @@ namespace hpl {
 
 		return true;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	bool cLowLevelSystemSDL::AddScriptVar(const tString& asVarDecl, void *pVar)
@@ -803,19 +799,19 @@ namespace hpl {
 
 		return true;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cLowLevelSystemSDL::Sleep ( const unsigned int alMillisecs )
 	{
 		SDL_Delay ( alMillisecs );
 	}
-	
+
 	//-----------------------------------------------------------------------
 	//////////////////////////////////////////////////////////////////////////
 	// PRIVATE METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
 
 	//-----------------------------------------------------------------------
@@ -824,9 +820,9 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 	// STATIC PRIVATE METHODS
 	//////////////////////////////////////////////////////////////////////////
-		
+
 	//-----------------------------------------------------------------------
-	
+
 	//-----------------------------------------------------------------------
 
 }
