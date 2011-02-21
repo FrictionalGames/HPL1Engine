@@ -32,7 +32,7 @@ public:
 		//Create a world for the game objects to be in.
 		mpWorld = gpGame->GetScene()->CreateWorld3D("Test");
 		gpGame->GetScene()->SetWorld3D(mpWorld);
-		
+
 		//Set up some variables
 		mlRenderMode = 2;
 		mbPostEffects = false;
@@ -71,7 +71,7 @@ public:
 		mpBackground = mpWorld->CreateMeshEntity("Back",pMesh,false);
 		mpBackground->SetMatrix(cMath::MatrixScale(cVector3f(4,4,4)));
 		mpBackground->SetPosition(cVector3f(0,0,0));
-		
+
 		mpBackground->SetVisible(false);
 
 		//////////////////////////////////////
@@ -99,7 +99,7 @@ public:
 		cTextureManager *pTextureManager = gpGame->GetResources()->GetTextureManager();
 
 		mpDummyTexture = pTextureManager->Create2D("testar.jpg",true);
-		
+
 		//////////////////////////////////////
 		//Create the screen buffer
 		mpScreenBuffer = mpLowLevelGraphics->CreateTexture(cVector2l(800,600),
@@ -110,7 +110,7 @@ public:
 		mpScreenBuffer->SetWrapT(eTextureWrap_ClampToEdge);
 
 		//Load a font
-		mpFont = gpGame->GetResources()->GetFontManager()->CreateFontData("verdana.ttf",12,32,128);
+		mpFont = gpGame->GetResources()->GetFontManager()->CreateFontData("viewer.fnt",12,32,128);
 
 		//2d graphics
 		mpGfxDrawer = gpGame->GetGraphics()->GetDrawer();
@@ -148,7 +148,7 @@ public:
 	}
 
 	//----------------------------------------------------------
-	
+
 	void OnDraw()
 	{
 		if(mbGraphics2D==false) return;
@@ -170,8 +170,8 @@ public:
 		//Set up the projection so we have 2D rendering
 		mpLowLevelGraphics->SetDepthTestActive(false);
 		mpLowLevelGraphics->SetIdentityMatrix(eMatrix_ModelView);
-		mpLowLevelGraphics->SetOrthoProjection(mpLowLevelGraphics->GetVirtualSize(),-1000,1000);		
-		
+		mpLowLevelGraphics->SetOrthoProjection(mpLowLevelGraphics->GetVirtualSize(),-1000,1000);
+
 		//Copy the current context (screen) to buffer texture
 		mpLowLevelGraphics->CopyContextToTexure(mpScreenBuffer,0,cVector2l(800,600));
 
@@ -186,7 +186,7 @@ public:
 		//Setup blending
 		mpLowLevelGraphics->SetBlendActive(true);
 		mpLowLevelGraphics->SetBlendFunc(eBlendFunc_One,eBlendFunc_Zero);
-		
+
 		mpLowLevelGraphics->SetTexture(0,mpScreenBuffer);
 
 		//mpSimpleProgramVP->Bind();
@@ -206,7 +206,7 @@ public:
 	{
 		//Set up the base rendering params
 		mpLowLevelGraphics->SetDepthTestActive(true);
-		
+
 		mpLowLevelGraphics->SetBlendActive(true);
 		mpLowLevelGraphics->SetBlendFunc(eBlendFunc_One,eBlendFunc_Zero);
 
@@ -245,7 +245,7 @@ public:
 		iVertexBuffer *pVtxBuffer = pSubEntity->GetVertexBuffer();
 		iMaterial *pMaterial = pSubEntity->GetMaterial();
 		iTexture *pTexture = pMaterial->GetTexture(eMaterialTexture_Diffuse);
-		
+
 		//Set matrix for the sub mesh
 		cMatrixf mtxModel = cMath::MatrixMul(pCam->GetViewMatrix(), pSubEntity->GetWorldMatrix());
 		mpLowLevelGraphics->SetMatrix(eMatrix_ModelView, mtxModel);
@@ -293,14 +293,14 @@ public:
 		//Setup rendering
 		// Normal depth buffer and turn off all color rendering (increases render speed)
 		mpLowLevelGraphics->SetDepthWriteActive(false);
-		
+
 		//Draw only to depth buffer
 		// (Test removing this, nothing will be drawn..)
 		pVtxBuffer->Draw();
 	}
 
 	//----------------------------------------------------------
-	
+
 
 	//////////////////////////////////////////////////
 	// Draw the sub mesh flat without any shading
@@ -319,7 +319,7 @@ public:
 		//mtxModel = cMath::MatrixMul(mtxModel, cMath::MatrixRotateX(cMath::ToRad(35)));
 		mpLowLevelGraphics->SetMatrix(eMatrix_ModelView, mtxModel);
 
-		
+
 		//Set the texture to be used, not setting this will only draw vertex colors.
 		mpLowLevelGraphics->SetTexture(0,pTexture);
 
@@ -331,7 +331,7 @@ public:
 		//plane.FromNormalPoint(cVector3f(0,1,0),cVector3f(0,0.35f,0));
 		//mpLowLevelGraphics->SetClipPlane(0, plane);
 		//mpLowLevelGraphics->SetClipPlaneActive(0, true);
-		
+
 		//Draw vertex buffer
 		pVtxBuffer->Bind();
 		pVtxBuffer->Draw();
@@ -362,7 +362,7 @@ public:
 
 		//Set the texture
 		mpLowLevelGraphics->SetTexture(0,pTexture);
-		
+
 		//Alpha test
 		// Here we set up a test so texels with alpha below 0.5 (1 = max) is not drawm
 		mpLowLevelGraphics->SetAlphaTestActive(true);
@@ -370,7 +370,7 @@ public:
 
 		//Bind vertex buffer
 		pVtxBuffer->Bind();
-		
+
 		////////////////////////////////////////
 		// FIRST PASS - Rendering z buffer
 
@@ -391,7 +391,7 @@ public:
 		// SECOND PASS - Rendering color
 
 		//Setup rendering
-		// No need to write to the z buffer and only draw if it is the exact same value 
+		// No need to write to the z buffer and only draw if it is the exact same value
 		// as the z buffer, this is needed for transparent areas to work and it also
 		// when you have several light sources. When you have several light sources, you simply
 		// rendered the model several times additively
@@ -399,13 +399,13 @@ public:
 		mpLowLevelGraphics->SetDepthTestFunc(eDepthTestFunc_Equal);
 		mpLowLevelGraphics->SetColorWriteActive(true,true,true,true);
 		mpLowLevelGraphics->SetAlphaTestActive(false);
-				
+
 		//Draw colors
 		pVtxBuffer->Draw();
-		
+
 		pVtxBuffer->UnBind();
 	}
-	
+
 	//----------------------------------------------------------
 
 	//////////////////////////////////////////////////
@@ -427,7 +427,7 @@ public:
 		//Set the texture
 		//Since we are binding the texture directly to the program this can be set to NULL.
 		mpLowLevelGraphics->SetTexture(0,NULL);
-		
+
 		//Bind vertex buffer
 		pVtxBuffer->Bind();
 
@@ -470,7 +470,7 @@ public:
 
 		///////////////////////////////////////////////
 		// SECOND PASS - Rendering color
-		
+
 		//Setup rendering
 		mpLowLevelGraphics->SetDepthWriteActive(false);
 		mpLowLevelGraphics->SetDepthTestFunc(eDepthTestFunc_Equal);
@@ -487,13 +487,13 @@ public:
 
 		//Set the texture directly to the fragment program using parameter name
 		//mpSimpleProgramFP->SetTexture("diffuseMap",pTexture);
-		
+
 		//Set texture direct to fragment program unit
 		mpSimpleProgramFP->SetTextureToUnit(0,pTexture);
 
 		//Draw vertex buffer
 		pVtxBuffer->Draw();
-		
+
 		//Unbinf vertex buffer
 		pVtxBuffer->UnBind();
 
@@ -534,7 +534,7 @@ public:
 		}
 
 		///////////////////////////////////////////////
-		// FIRST PASS - Rendering z buffer 
+		// FIRST PASS - Rendering z buffer
 
 		//Set up rendering
 		mpLowLevelGraphics->SetDepthWriteActive(true);
@@ -560,7 +560,7 @@ public:
 		{
 			mpLowLevelGraphics->SetAlphaTestActive(false);
 		}
-		
+
 		///////////////////////////////////////////////
 		// SECOND PASS - Rendering color
 
@@ -578,21 +578,21 @@ public:
 
 		//Setup fragment program
 		mpLightProgramFP->Bind();
-		
+
 		//Draw in color
 		pVtxBuffer->Draw();
-		
+
 		//Unbind programs
 		mpLightProgramFP->UnBind();
 		mpLightProgramVP->UnBind();
-		
+
 		//Unbind vertex buffer
 		pVtxBuffer->UnBind();
 	}
 
 	//----------------------------------------------------------
 
-	
+
 
 private:
 	cMeshEntity *mpEntity;
@@ -618,7 +618,7 @@ private:
 	int mlRenderMode;
 	bool mbPostEffects;
 	bool mbGraphics2D;
-	
+
 	iLowLevelGraphics* mpLowLevelGraphics;
 	cWorld3D* mpWorld;
 
@@ -633,17 +633,17 @@ int hplMain(const tString& asArg)
 	//Init the game engine
 	gpGame = new cGame(new cSDLGameSetup(),800,600,32,false,45);
 	gpGame->GetGraphics()->GetLowLevel()->SetVsyncActive(false);
-	
+
 	//Add resources
 	gpGame->GetResources()->AddResourceDir("textures");
 	gpGame->GetResources()->AddResourceDir("models");
 	gpGame->GetResources()->AddResourceDir("fonts");
 	gpGame->GetResources()->AddResourceDir("maps");
-	
+
 	//Add updates
 	cSimpleUpdate Update;
 	gpGame->GetUpdater()->AddUpdate("Default", &Update);
-	
+
 	cSimpleCamera cameraUpdate(gpGame,5,cVector3f(0,0,2),false);
 	gpGame->GetUpdater()->AddUpdate("Default", &cameraUpdate);
 

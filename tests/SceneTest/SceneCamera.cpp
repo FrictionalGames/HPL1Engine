@@ -7,8 +7,8 @@
  */
 #include "SceneCamera.h"
 
-cSceneCamera::cSceneCamera(cGame *apGame, float afSpeed,cVector3f avStartPos,bool abShowFPS)  : iUpdateable("SceneCamera")
-    : iUpdateable("SimpleCamera")
+cSceneCamera::cSceneCamera(cGame *apGame, float afSpeed,cVector3f avStartPos,bool abShowFPS)
+	: iUpdateable("SceneCamera")
 {
 	mpGame = apGame;
 	mfSpeed = afSpeed;
@@ -35,13 +35,13 @@ cSceneCamera::cSceneCamera(cGame *apGame, float afSpeed,cVector3f avStartPos,boo
 
 	mpCharBody->SetCamera(mpCamera);
 	mpCharBody->SetCameraPosAdd(cVector3f(0,-0.15f,0));
-	
+
 	mpCharBody->SetMaxPositiveMoveSpeed(eCharDir_Forward,4.0f);
 	mpCharBody->SetMaxNegativeMoveSpeed(eCharDir_Forward,-4.0f);
-	
+
 	mpCharBody->SetMaxPositiveMoveSpeed(eCharDir_Right,4.0f);
 	mpCharBody->SetMaxNegativeMoveSpeed(eCharDir_Right,-4.0f);
-	
+
 	mpCharBody->SetMoveAcc(eCharDir_Forward,12.0f);
 	mpCharBody->SetMoveDeacc(eCharDir_Forward,8.0f);
 	mpCharBody->SetMoveAcc(eCharDir_Right,12.0f);
@@ -50,7 +50,7 @@ cSceneCamera::cSceneCamera(cGame *apGame, float afSpeed,cVector3f avStartPos,boo
 	//mpCharBody->SetGravityActive(false);
 
 	if(abShowFPS)
-		mpFont = mpGame->GetResources()->GetFontManager()->CreateFontData("verdana",12,32,128);
+		mpFont = mpGame->GetResources()->GetFontManager()->CreateFontData("viewer.fnt",12,32,128);
 	else
 		mpFont = NULL;
 }
@@ -75,23 +75,23 @@ void cSceneCamera::Update(float afFrameTime)
 	{
 		mpCharBody->SetGravityActive(!mpCharBody->GravityIsActive());
 	}
-	
-	float fMul = mpGame->GetStepSize();	
+
+	float fMul = mpGame->GetStepSize();
 
 	mpCamera->SetPosition(mpCharBody->GetPosition() + cVector3f(0,mpCharBody->GetSize().y/2-0.15f,0));
 
-	if(mpGame->GetInput()->IsTriggerd("Forward")) 
-		mpCharBody->Move(eCharDir_Forward,1.0f,afFrameTime); 
-	else if(mpGame->GetInput()->IsTriggerd("Backward")) 
-		mpCharBody->Move(eCharDir_Forward,-1.0f,afFrameTime); 
-	
+	if(mpGame->GetInput()->IsTriggerd("Forward"))
+		mpCharBody->Move(eCharDir_Forward,1.0f,afFrameTime);
+	else if(mpGame->GetInput()->IsTriggerd("Backward"))
+		mpCharBody->Move(eCharDir_Forward,-1.0f,afFrameTime);
+
 	if(mpGame->GetInput()->IsTriggerd("Right"))
 		mpCharBody->Move(eCharDir_Right,1.0f,afFrameTime);
 	else if(mpGame->GetInput()->IsTriggerd("Left"))
 		mpCharBody->Move(eCharDir_Right,-1.0f,afFrameTime);
 
 	cVector2f vRel = mpGame->GetInput()->GetMouse()->GetRelPosition();
-	
+
 	mpCamera->AddYaw(-vRel.x * 0.003f);
 	mpCharBody->SetYaw(mpCamera->GetYaw());
 
@@ -104,9 +104,10 @@ void cSceneCamera::OnDraw()
 {
 	if(mpFont)
 	{
-		mpFont->Draw(cVector2f(5,5),12,cColor(1,1),eFontAlign_Left,"FPS: %.1f",mpGame->GetFPS());
-		mpFont->Draw(cVector2f(5,17),12,cColor(1,1),eFontAlign_Left,
-					"Vel: %s", mpCharBody->GetForceVelocity().ToString().c_str());
+		mpFont->Draw(cVector3f(5,5,5), cVector2f(12,12), cColor(1,1), eFontAlign_Left,
+					 _W("FPS: %.1f"), mpGame->GetFPS());
+		mpFont->Draw(cVector3f(5,17,5), cVector2f(12, 12), cColor(1,1), eFontAlign_Left,
+					 _W("Vel: %s"), mpCharBody->GetForceVelocity().ToString().c_str());
 	}
 }
 

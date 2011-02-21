@@ -32,7 +32,7 @@ public:
 		//gpGame->GetGraphics()->GetRenderer3D()->SetDebugFlags(eRendererDebugFlag_DrawBoundingBox);
 
 		mpLowLevelGraphics = gpGame->GetGraphics()->GetLowLevel();
-		
+
 		//Add the engine's obejct plugin.
 		gpGame->GetResources()->AddEntity3DLoader(new cEntityLoader_Object("Object"));
 
@@ -53,7 +53,7 @@ public:
 		iPhysicsBody *pBody;
 		cMesh* pMesh = gpGame->GetResources()->GetMeshManager()->CreateMesh("Woodbox.dae");
 		if(pMesh==NULL) FatalError("Couldn't load mesh\n");
-		
+
 		pEntity = mpWorld->CreateMeshEntity("Box1",pMesh);
 		pEntity->SetCastsShadows(true);
 
@@ -63,12 +63,12 @@ public:
 		pBody->SetMass(1);
 		pBody->CreateNode()->AddEntity(pEntity);*/
 
-		mpFont = gpGame->GetResources()->GetFontManager()->CreateFontData("verdana.ttf");
+		mpFont = gpGame->GetResources()->GetFontManager()->CreateFontData("viewer.fnt");
 	}
 
 	~cSimpleUpdate()
 	{
-	
+
 	}
 
 	void Update(float afFrameTime)
@@ -115,7 +115,7 @@ public:
 	bool BeforeIntersect(iPhysicsBody *pBody)
 	{
 		mlPreTested++;
-		
+
 		if(pBody->IsCharacter())return false;
 		if(!pBody->GetCollide())return false;
 		if(pBody->GetMass()== 0)return false;
@@ -124,7 +124,7 @@ public:
 		//Log("PreIntersected: '%s'\n",pBody->GetName().c_str());
 		return true;
 	}
-	
+
 	bool OnIntersect(iPhysicsBody *pBody,cPhysicsRayParams *apParams)
 	{
 		mlTested++;
@@ -144,7 +144,7 @@ public:
 	void OnDraw()
 	{
 	}
-	
+
 	void OnPostSceneDraw()
 	{
 		//return;
@@ -175,12 +175,12 @@ public:
 
 		mpLowLevelGraphics->SetDepthTestActive(true);
 		mpLowLevelGraphics->SetDepthWriteActive(true);
-				
+
 		return;
 		////////////////////////////////////////////
 		// Draw boxes around sectors and portals
 		if(mpWorld ==NULL) return;
-		
+
 		tSectorMap *pSectorMap = mpWorld->GetPortalContainer()->GetSectorMap();
 		tSectorMapIt SectorIt = pSectorMap->begin();
 		for(; SectorIt != pSectorMap->end(); SectorIt++)
@@ -198,7 +198,7 @@ public:
 
 				mpLowLevelGraphics->DrawBoxMaxMin(pPortal->GetBV()->GetMax(),pPortal->GetBV()->GetMin(),
 					cColor(0,1,1,1));
-				
+
 				cVector3f vStart = pPortal->GetBV()->GetWorldCenter();
 				cVector3f vEnd = vStart + pPortal->GetNormal()*0.1f;
 
@@ -206,12 +206,12 @@ public:
 			}
 		}
 	}
-	
-	
+
+
 private:
 	float mfLightAngle;
 	iFontData *mpFont;
-	
+
 	cWorld3D* mpWorld;
 	iLowLevelGraphics* mpLowLevelGraphics;
 
@@ -223,12 +223,12 @@ private:
 
 
 
-int WINAPI WinMain(	HINSTANCE hInstance,  HINSTANCE hPrevInstance,LPSTR	lpCmdLine, int nCmdShow)
+int hplMain(const tString &asCommandLine)
 {
 	//Init the game engine
 	gpGame = new cGame(new cSDLGameSetup(),800,600,32,false,45);
 	gpGame->GetGraphics()->GetLowLevel()->SetVsyncActive(false);
-	
+
 	//Add resources
 	gpGame->GetResources()->AddResourceDir("textures");
 	gpGame->GetResources()->AddResourceDir("models");
@@ -240,7 +240,7 @@ int WINAPI WinMain(	HINSTANCE hInstance,  HINSTANCE hPrevInstance,LPSTR	lpCmdLin
 	gpGame->GetUpdater()->AddUpdate("Default", &Update);
 	gpCameraUpdate = new cSceneCamera(gpGame,4,cVector3f(0,1.5f,0.0f),true);
 	gpGame->GetUpdater()->AddUpdate("Default", gpCameraUpdate);
-		
+
 	//Run the engine
 	gpGame->Run();
 

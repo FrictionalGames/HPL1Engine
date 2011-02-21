@@ -18,7 +18,7 @@
  */
 #include "HOECamera.h"
 
-cHOECamera::cHOECamera(cGame *apGame, float afSpeed,cVector3f avStartPos,bool abShowFPS) 
+cHOECamera::cHOECamera(cGame *apGame, float afSpeed,cVector3f avStartPos,bool abShowFPS)
 : iUpdateable("HOECamera")
 {
 	mpGame = apGame;
@@ -34,18 +34,18 @@ cHOECamera::cHOECamera(cGame *apGame, float afSpeed,cVector3f avStartPos,bool ab
 
 	//Add actions
 	mpGame->GetInput()->AddAction(new cActionKeyboard("Escape",mpGame->GetInput(),eKey_ESCAPE));
-	
+
 	mpGame->GetInput()->AddAction(new cActionMouseButton("Rotate",mpGame->GetInput(),eMButton_Left));
 	mpGame->GetInput()->AddAction(new cActionMouseButton("Zoom",mpGame->GetInput(),eMButton_Middle));
-	
-	mpGame->GetInput()->GetLowLevel()->LockInput(true);
+
+	//mpGame->GetInput()->GetLowLevel()->LockInput(true);
 
 	mpCamera = mpGame->GetScene()->CreateCamera3D(eCameraMoveMode_Fly);
 	mpGame->GetScene()->SetCamera(mpCamera);
 	mpCamera->SetPosition(avStartPos);
-	
+
 	if(abShowFPS)
-		mpFont = mpGame->GetResources()->GetFontManager()->CreateFontData("verdana",12,32,128);
+		mpFont = mpGame->GetResources()->GetFontManager()->CreateFontData("viewer.fnt",12,32,128);
 	else
 		mpFont = NULL;
 }
@@ -65,8 +65,8 @@ void cHOECamera::Update(float afFrameTime)
 	{
 		mpGame->Exit();
 	}
-	
-	/*float fMul = mpGame->GetStepSize();	
+
+	/*float fMul = mpGame->GetStepSize();
 
 	if(mpGame->GetInput()->IsTriggerd("Forward")) mpCamera->MoveForward(mfSpeed * fMul);
 	if(mpGame->GetInput()->IsTriggerd("Backward")) mpCamera->MoveForward(-mfSpeed* fMul);
@@ -78,11 +78,11 @@ void cHOECamera::Update(float afFrameTime)
 	mpCamera->AddPitch(-vRel.y * 0.003f);*/
 
 	cVector2f vRel = mpGame->GetInput()->GetMouse()->GetRelPosition();
-	
+
 	if(mpGame->GetInput()->IsTriggerd("Rotate"))
 	{
 		mvAngle += cVector3f(-vRel.y*0.005f,-vRel.x*0.005f,0);
-		
+
 		float fMaxAngle = kPi2f - 0.01f;
 		if(mvAngle.x> fMaxAngle  ) mvAngle.x=fMaxAngle;
 		if(mvAngle.x< -fMaxAngle ) mvAngle.x=-fMaxAngle;
@@ -112,7 +112,7 @@ void cHOECamera::CalculateCameraPos()
 	cVector3f vRotated;
 	cVector3f vOrigin = mvStartPos;
 
-	cMatrixf mtxRotation = cMath::MatrixMul(cMath::MatrixRotateY(mvAngle.y),cMath::MatrixRotateX(mvAngle.x)); 
+	cMatrixf mtxRotation = cMath::MatrixMul(cMath::MatrixRotateY(mvAngle.y),cMath::MatrixRotateX(mvAngle.x));
 
 	vRotated = cMath::MatrixMul(mtxRotation, vOrigin);
 

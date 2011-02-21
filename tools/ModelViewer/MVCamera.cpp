@@ -18,7 +18,7 @@
  */
 #include "MVCamera.h"
 
-cMVCamera::cMVCamera(cGame *apGame, float afSpeed,cVector3f avStartPos,bool abShowFPS) 
+cMVCamera::cMVCamera(cGame *apGame, float afSpeed,cVector3f avStartPos,bool abShowFPS)
 : iUpdateable("MVCamera")
 {
 	mpGame = apGame;
@@ -36,7 +36,7 @@ cMVCamera::cMVCamera(cGame *apGame, float afSpeed,cVector3f avStartPos,bool abSh
 
 	//Add actions
 	mpGame->GetInput()->AddAction(new cActionKeyboard("Escape",mpGame->GetInput(),eKey_ESCAPE));
-	
+
 	mpGame->GetInput()->AddAction(new cActionMouseButton("Rotate",mpGame->GetInput(),eMButton_Left));
 	mpGame->GetInput()->AddAction(new cActionMouseButton("Zoom",mpGame->GetInput(),eMButton_Middle));
 
@@ -49,13 +49,13 @@ cMVCamera::cMVCamera(cGame *apGame, float afSpeed,cVector3f avStartPos,bool abSh
 	mpGame->GetInput()->AddAction(new cActionKeyboard("Forward",mpGame->GetInput(),eKey_PAGEUP));
 	mpGame->GetInput()->AddAction(new cActionKeyboard("Backward",mpGame->GetInput(),eKey_PAGEDOWN));
 
-	
-	mpGame->GetInput()->GetLowLevel()->LockInput(true);
+
+	//mpGame->GetInput()->GetLowLevel()->LockInput(true);
 
 	mpCamera = mpGame->GetScene()->CreateCamera3D(eCameraMoveMode_Fly);
 	mpGame->GetScene()->SetCamera(mpCamera);
 	mpCamera->SetPosition(avStartPos);
-	
+
 	if(abShowFPS)
 		mpFont = mpGame->GetResources()->GetFontManager()->CreateFontData("viewer.fnt",12,32,128);
 	else
@@ -77,34 +77,34 @@ void cMVCamera::Update(float afFrameTime)
 	{
 		mpGame->Exit();
 	}
-	
+
 	if(mpGame->GetInput()->IsTriggerd("Up")){
-		mvCentre.y += afFrameTime * 3;	
+		mvCentre.y += afFrameTime * 3;
 	}
 	if(mpGame->GetInput()->IsTriggerd("Down")){
 		mvCentre.y -= afFrameTime * 3;
 	}
 
 	/*if(mpGame->GetInput()->IsTriggerd("Right")){
-		mvCentre += mpCamera->GetRight() * 3;	
+		mvCentre += mpCamera->GetRight() * 3;
 	}
 	if(mpGame->GetInput()->IsTriggerd("Left")){
 		mvCentre -= mpCamera->GetRight() * 3;
 	}
 
 	if(mpGame->GetInput()->IsTriggerd("Forward")){
-		mvCentre += mpCamera->GetForward() * 3;	
+		mvCentre += mpCamera->GetForward() * 3;
 	}
 	if(mpGame->GetInput()->IsTriggerd("Backward")){
 		mvCentre -= mpCamera->GetForward() * 3;
 	}*/
-	
+
 	cVector2f vRel = mpGame->GetInput()->GetMouse()->GetRelPosition();
-	
+
 	if(mpGame->GetInput()->IsTriggerd("Rotate"))
 	{
 		mvAngle += cVector3f(-vRel.y*0.005f,-vRel.x*0.005f,0);
-		
+
 		float fMaxAngle = kPi2f - 0.01f;
 		if(mvAngle.x> fMaxAngle  ) mvAngle.x=fMaxAngle;
 		if(mvAngle.x< -fMaxAngle ) mvAngle.x=-fMaxAngle;
@@ -134,7 +134,7 @@ void cMVCamera::CalculateCameraPos()
 	cVector3f vRotated;
 	cVector3f vOrigin = mvStartPos;
 
-	cMatrixf mtxRotation = cMath::MatrixMul(cMath::MatrixRotateY(mvAngle.y),cMath::MatrixRotateX(mvAngle.x)); 
+	cMatrixf mtxRotation = cMath::MatrixMul(cMath::MatrixRotateY(mvAngle.y),cMath::MatrixRotateX(mvAngle.x));
 	mtxRotation = cMath::MatrixMul(mtxRotation,cMath::MatrixTranslate(mvCentre));
 
 	vRotated = cMath::MatrixMul(mtxRotation, vOrigin);
