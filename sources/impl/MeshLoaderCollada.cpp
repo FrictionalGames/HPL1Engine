@@ -77,7 +77,7 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	cMeshLoaderCollada::cMeshLoaderCollada(iLowLevelGraphics *apLowLevelGraphics) 
+	cMeshLoaderCollada::cMeshLoaderCollada(iLowLevelGraphics *apLowLevelGraphics)
 		: iMeshLoader(apLowLevelGraphics)
 	{
 		mFlags =0;
@@ -124,7 +124,7 @@ namespace hpl {
 			&ColladaScene,true);
 
 		unsigned long lTime = GetApplicationTime() - lStartTime;
-		Log("Loading collada for '%s' took: %d ms\n",asFile.c_str(),lTime);
+		Log("Loading collada for '%s' took: %lu ms\n",asFile.c_str(),lTime);
 
 		if(bRet==false) return NULL;
 
@@ -474,7 +474,7 @@ namespace hpl {
 					cBoundingVolume TempBV;
 					TempBV.AddArrayPoints(&vVertexVec[0],(int)vArray.size());
 					TempBV.CreateFromPoints(3);
-                
+
 					tString sShapeType = cString::ToLowerCase(vStrings[1]);
 					eCollideShapeType ShapeType = eCollideShapeType_Box;
 					cVector3f vShapeSize = TempBV.GetSize();
@@ -538,8 +538,8 @@ namespace hpl {
 					{
 						pCollider->m_mtxOffset = pNode->m_mtxWorldTransform;
 					}
-		
-					
+
+
 					//Add scale
 					pCollider->mvSize = pCollider->mvSize * pNode->mvScale;
 
@@ -719,7 +719,7 @@ namespace hpl {
 					continue;
 				}
 			}
-			
+
 			pSubMesh->SetNodeName(pNode->msName);
 			pSubMesh->SetLocalTransform(pNode->m_mtxTransform);
 			if(pNode->pParent)
@@ -752,7 +752,7 @@ namespace hpl {
             tString sMatName = GetMaterialTextureFile(Geom.msMaterial,vColladaMaterials,vColladaTextures,
 														vColladaImages);
 			//Log("Material name: '%s'\n",sMatName.c_str());
-			iMaterial *pMaterial; 
+			iMaterial *pMaterial;
 			if(mbUseFastMaterial && msFastMaterialFile != "")
 			{
 				pMaterial = mpMaterialManager->CreateMaterial(msFastMaterialFile);
@@ -950,7 +950,7 @@ namespace hpl {
 
 			/////////////////////////////////////
 			//Check if there is any light entity file and get name.
-			
+
 			//file parameter
 			if((int)vParams.size() >= 2)
 			{
@@ -1515,7 +1515,7 @@ namespace hpl {
 			pSubMesh->Compile();
 
 			//Add material
-			iMaterial *pMaterial; 
+			iMaterial *pMaterial;
 			if(mbUseFastMaterial && msFastMaterialFile != "")
 			{
 				pMaterial = mpMaterialManager->CreateMaterial(msFastMaterialFile);
@@ -1543,7 +1543,7 @@ namespace hpl {
 			pEntity->SetStatic(true);
 			pEntity->SetIsSaved(false);
 
-		
+
 			if(HasParam(vParams,"noshadow"))
 				pEntity->SetCastsShadows(false);
 			else
@@ -1603,18 +1603,18 @@ namespace hpl {
 			{
 				pBody->SetMaterial(pPhysicsMat);
 			}
-			
+
 			//Haptic creation
 			if(cHaptic::GetIsUsed())
 			{
 				cHaptic	*pHaptic = apWorld->GetHaptic();
 				iHapticShape *pHShape = NULL;
-				
+
 				pHShape = pHaptic->GetLowLevel()->CreateMeshShape(pBody->GetName(),pVtxBuffer);
 				if(bDrawn) pHShape->SetSubMeshEntity(pEntity->GetSubMeshEntity(0));
-				
-				pBody->SetHapticShape(pHShape);	
-				
+
+				pBody->SetHapticShape(pHShape);
+
 				if(pPhysicsMat)
 				{
 					iHapticSurface *pHapticSurface = pPhysicsMat->GetSurfaceData()->GetHapticSurface();
@@ -1732,7 +1732,7 @@ namespace hpl {
 		if(sMatName!="")
 		{
 			tString sPhysicsMatName = apWorld->GetResources()->GetMaterialManager()->GetPhysicsMaterialName(sMatName);
-			
+
 			if(sPhysicsMatName!="")
 			{
 				iPhysicsMaterial *pPhysicsMat = apWorld->GetPhysicsWorld()->GetMaterialFromName(
@@ -1743,7 +1743,7 @@ namespace hpl {
 			}
 		}
 
-		
+
 		//Check if it blocks sound
 		bool bBlocksSound = false;
 		if(HasParam(vStrings,"soundblock")) bBlocksSound = true;
@@ -1962,12 +1962,12 @@ namespace hpl {
 					if(pBill)
 					{
 						pBill->SetForwardOffset(fOffset);
-						
+
 						//Old version , trying to skip because bounding box calc for this is far from
 						//optimal
 						//pBill->SetPosition(apNode->m_mtxWorldTransform.GetTranslation());
 						//pBill->SetAxis(cMath::Vector3Normalize(cMath::MatrixInverse(apNode->m_mtxWorldTransform).GetUp()));
-						
+
 						//remove scale
 						cMatrixf mtxScale = cMath::MatrixScale(apNode->mvScale);
 						cMatrixf mtxWorld = cMath::MatrixMul(apNode->m_mtxWorldTransform, cMath::MatrixInverse(mtxScale));
@@ -2011,7 +2011,7 @@ namespace hpl {
 						{
 							pBeam->SetPosition(apNode->m_mtxWorldTransform.GetTranslation());
 							pBeam->GetEnd()->SetPosition(pEndNode->m_mtxWorldTransform.GetTranslation());
-							
+
 							sFile = cString::SetFileExt(sFile,"beam");
 							pBeam->LoadXMLProperties(sFile);
 						}
@@ -2021,7 +2021,7 @@ namespace hpl {
 						Error("Couldn't find beam end '%s'!\n",sEndName.c_str());
 					}
 				}
-			
+
 			}
 			////////////////////////////////////////
 			///// PARTICLE SYSTEM //////////////////
@@ -2130,7 +2130,7 @@ namespace hpl {
 			{
 				//Get number of chars in prefix.
 				int lPrefixChars =1;
-				while(	lPrefixChars < apNode->msName.size() &&	
+				while(	lPrefixChars < apNode->msName.size() &&
 						apNode->msName[lPrefixChars]!= '_' &&
 						apNode->msName[lPrefixChars]!='\0') {
 						lPrefixChars++;
@@ -2197,7 +2197,7 @@ namespace hpl {
 							pGeom,false,
 							avColladaMaterials,
 							avColladaTextures, avColladaImages);
-						
+
 						if(pEntity)
 						{
 							apWorld->GetPortalContainer()->Add(pEntity, true);
@@ -2241,8 +2241,8 @@ namespace hpl {
 							{
 								sLightName = vParams[lParamAdd];
 							}
-			
-							
+
+
 							/////////////////////////////////////
 							//Load the specific light type
 							if(pColladaLight->msType =="point")
@@ -2360,7 +2360,7 @@ namespace hpl {
 
 				//Get number of digits
 				lDigits =1;
-				while(	apNode->msName.length() > lStartChar+4+lDigits && 
+				while(	apNode->msName.length() > lStartChar+4+lDigits &&
 						apNode->msName[lStartChar+4+lDigits] != '_' &&
 						apNode->msName.length() >= 7+lDigits &&
 						apNode->msName[7+lDigits] != 0)
@@ -2453,7 +2453,7 @@ namespace hpl {
 													pGeom, true,
 													avColladaMaterials,
 													avColladaTextures, avColladaImages);
-						
+
 						if(pEntity)
 						{
 							apWorld->GetPortalContainer()->AddToSector(pEntity, asSector);

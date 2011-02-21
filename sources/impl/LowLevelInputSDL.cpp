@@ -34,7 +34,7 @@ namespace hpl {
 	cLowLevelInputSDL::cLowLevelInputSDL(iLowLevelGraphics *apLowLevelGraphics)
 	{
 		mpLowLevelGraphics = apLowLevelGraphics;
-		LockInput(true);
+		LockInput(false);
 	}
 
 	//-----------------------------------------------------------------------
@@ -50,12 +50,12 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	void cLowLevelInputSDL::LockInput(bool abX)
 	{
 		SDL_WM_GrabInput(abX ? SDL_GRAB_ON : SDL_GRAB_OFF);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cLowLevelInputSDL::BeginInputUpdate()
@@ -69,7 +69,7 @@ namespace hpl {
 			mlstEvents.push_back(sdlEvent);
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cLowLevelInputSDL::EndInputUpdate()
@@ -78,19 +78,19 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	iMouse* cLowLevelInputSDL::CreateMouse()
 	{
 		return hplNew( cMouseSDL,(this,mpLowLevelGraphics));
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	iKeyboard* cLowLevelInputSDL::CreateKeyboard()
 	{
 		return hplNew( cKeyboardSDL,(this) );
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 }

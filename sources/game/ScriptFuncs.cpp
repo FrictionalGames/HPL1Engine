@@ -115,7 +115,7 @@ namespace hpl {
 
 	static void __stdcall Print(std::string asText)
 	{
-		Log(asText.c_str());
+		Log("%s", asText.c_str());
 	}
 	SCRIPT_DEFINE_FUNC_1(void, Print, string)
 
@@ -375,7 +375,7 @@ namespace hpl {
 	/////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	static void __stdcall SetMeshActive(std::string asName, bool abActive)
 	{
 		cMeshEntity *pEnt = gpScene->GetWorld3D()->GetMeshEntity(asName);
@@ -475,7 +475,7 @@ namespace hpl {
 	SCRIPT_DEFINE_FUNC_1(void, KillParticleSystem, string)
 
 	//-----------------------------------------------------------------------
-	
+
 	/////////////////////////////////////////////////////////////////////////
 	/////// BEAM //////////////////////////////////////////////////////
 	/////////////////////////////////////////////////////////////////////////
@@ -485,12 +485,12 @@ namespace hpl {
 
 	/**
 	 * Creates an a beam between two areas
-	 * \param asName 
-	 * \param asFile 
-	 * \param asStartArea 
-	 * \param asEndArea 
+	 * \param asName
+	 * \param asFile
+	 * \param asStartArea
+	 * \param asEndArea
 	 */
-	static void __stdcall CreateBeam(std::string asName, std::string asFile, 
+	static void __stdcall CreateBeam(std::string asName, std::string asFile,
 									std::string asStartArea, std::string asEndArea)
 	{
 		cAreaEntity* pStartArea = gpScene->GetWorld3D()->GetAreaEntity(asStartArea);
@@ -506,7 +506,7 @@ namespace hpl {
 		}
 
 		cBeam *pBeam = gpScene->GetWorld3D()->CreateBeam(asName);
-		
+
 		if(pBeam->LoadXMLProperties(asFile)==false)
 		{
 			Error("Couldn't create beam from file '%s'\n",asFile.c_str());
@@ -523,7 +523,7 @@ namespace hpl {
 
 	/**
 	 * Destroys a beam
-	 * \param asName 
+	 * \param asName
 	 */
 	static void __stdcall DestroyBeam(std::string asName)
 	{
@@ -711,7 +711,7 @@ namespace hpl {
 							abFade,afOnFadeLength,afOffFadeLength);
 	}
 	SCRIPT_DEFINE_FUNC_17(void, SetLight3DFlicker, string,
-			float, float, float, float, 
+			float, float, float, float,
 			float, float, float, string, string, float, float, string, string, bool, float, float)
 
 	//-----------------------------------------------------------------------
@@ -967,7 +967,7 @@ namespace hpl {
 	* \param asProperty Property to change, can be "DestValue"
 	* \param afValue Value to set it to.
 	**/
-	static void __stdcall SetJointControllerPropertyFloat(std::string asJointName,std::string asCtrlName, 
+	static void __stdcall SetJointControllerPropertyFloat(std::string asJointName,std::string asCtrlName,
 													std::string asProperty, float afValue)
 	{
 		iPhysicsJoint *pJoint = gpScene->GetWorld3D()->GetPhysicsWorld()->GetJoint(asJointName);
@@ -1147,7 +1147,7 @@ namespace hpl {
 		{
 			pBody->SetMass(afVal);
 			pBody->SetEnabled(true);
-			
+
 			if(afVal == 0)
 			{
 				pBody->SetLinearVelocity(0);
@@ -1502,10 +1502,10 @@ namespace hpl {
 		//Resources
 		gpSystem->GetLowLevel()->AddScriptFunc(SCRIPT_REGISTER_FUNC(PreloadSound));
 		gpSystem->GetLowLevel()->AddScriptFunc(SCRIPT_REGISTER_FUNC(Translate));
-		
+
 		//Mesh Entity
 		gpSystem->GetLowLevel()->AddScriptFunc(SCRIPT_REGISTER_FUNC(SetMeshActive));
-		
+
 		//Beams
 		gpSystem->GetLowLevel()->AddScriptFunc(SCRIPT_REGISTER_FUNC(CreateBeam));
 		gpSystem->GetLowLevel()->AddScriptFunc(SCRIPT_REGISTER_FUNC(DestroyBeam));

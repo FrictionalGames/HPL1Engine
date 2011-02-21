@@ -73,20 +73,20 @@ namespace hpl {
 	iLight3D::~iLight3D()
 	{
 		mpTextureManager->Destroy(mpFalloffMap);
-		
+
 		if(mpVisSectorCont) hplDelete(mpVisSectorCont);
-	}	
+	}
 
 	//-----------------------------------------------------------------------
 
 	//////////////////////////////////////////////////////////////////////////
 	// PUBLIC METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
 
 	void iLight3D::SetVisible(bool abVisible)
-	{ 
+	{
 		SetRendered(abVisible);
 
 		for(size_t i =0; i<mvBillboards.size(); ++i)
@@ -94,10 +94,10 @@ namespace hpl {
 			mvBillboards[i]->SetVisible(abVisible);
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
 
-	
+
 	void iLight3D::AddShadowCaster(iRenderable* apObject, cFrustum* apFrustum, bool abStatic,cRenderList *apRenderList)
 	{
 		//Log("Testing: %s\n",apObject->GetName().c_str());
@@ -114,13 +114,13 @@ namespace hpl {
 			if(apObject->IsVisible()==false) return;
 			//Does the object cast shadows?
 			if(apObject->IsShadowCaster()==false) return;
-					
+
 			//Can be material cast shadows?
 			iMaterial *pMaterial = apObject->GetMaterial();
 			if(pMaterial){
 				if(pMaterial->IsTransperant() || pMaterial->HasAlpha()) return;
 			}
-			
+
 			//Check so that the object is the right type
 			if(renderType != eRenderableType_Mesh && renderType != eRenderableType_Normal) {
 				return;
@@ -128,9 +128,9 @@ namespace hpl {
 		}
 
 		//Log("Right type!\n");
-		
+
 		//Check if the object has all ready been added
-		if(abStatic) 
+		if(abStatic)
 		{
 			if(m_setStaticCasters.find(apObject) != m_setStaticCasters.end()) return;
 		}
@@ -149,24 +149,24 @@ namespace hpl {
 		if(CheckObjectIntersection(apObject)==false) return;
 
 		//Log("Collides!\n");
-		
+
 		//Log("Shadow is in frustum!\n");
-		
+
 		////////////////////////////////////////////////////
 		// All checks passed, add the object!
 		if(renderType == eRenderableType_Mesh)
 		{
 			cMeshEntity* pMesh = static_cast<cMeshEntity*>(apObject);
-			
+
 			///Need to add shadow casted objects else shadows might get choppy.
 			if(abStatic == false){
 				pMesh->SetGlobalRenderCount(cRenderList::GetGlobalRenderCount());
 			}
-			
+
 			for(int i=0;i<pMesh->GetSubMeshEntityNum();i++)
 			{
 				cSubMeshEntity *pSub = pMesh->GetSubMeshEntity(i);
-				
+
 				if(pSub->IsVisible()==false) continue;
 				if(apObject->GetForceShadow()==false)
 				{
@@ -201,9 +201,9 @@ namespace hpl {
 
 			}
 		}
-		
+
 	}
-	
+
 	bool iLight3D::HasStaticCasters()
 	{
 		return m_setStaticCasters.empty() ? false: true;
@@ -222,7 +222,7 @@ namespace hpl {
 		//Log("------ Checking %s with light %s -----\n",apObject->GetName().c_str(), GetName().c_str());
 		//Log(" BV: min: %s max: %s\n",	apObject->GetBoundingVolume()->GetMin().ToString().c_str(),
 		//								apObject->GetBoundingVolume()->GetMax().ToString().c_str());
-		
+
 		//////////////////////////////////////////////////////////////
 		// If the lights cast shadows, cull objects that are in shadow
 		if(mbCastShadows)
@@ -237,11 +237,11 @@ namespace hpl {
 				mpVisSectorCont = CreateSectorVisibility();
 				//Log("Creating Visibility container!\n");
 			}
-			
-						
+
+
 			// Get the data list containing the sectors the object is connected to
 			tRenderContainerDataList *pDataList = apObject->GetRenderContainerDataList();
-			
+
 			//It is not attached to any room. Just use BV test.
 			if(pDataList->empty())
 			{
@@ -258,7 +258,7 @@ namespace hpl {
 					cSector* pSector = static_cast<cSector*>(*it);
 
 					//Log("Checking intersection in sector %s\n",pSector->GetId().c_str());
-					
+
 					cSectorVisibility *pVisSector = mpVisSectorCont->GetSectorVisibilty(pSector);
 					if(pVisSector)
 					{
@@ -270,11 +270,11 @@ namespace hpl {
 						}
 					}
 				}
-				
+
 				//Log("-----------------------");
 				return false;
 			}
-		
+
 
 		}
 		/////////////////////////////////////////////////
@@ -285,7 +285,7 @@ namespace hpl {
 			return CollidesWithBV(apObject->GetBoundingVolume());
 		}
 
-		
+
 	}
 
 	//-----------------------------------------------------------------------
@@ -308,7 +308,7 @@ namespace hpl {
 
 		cRect2l ClipRect;
 		bool bVisible = CreateClipRect(ClipRect, apRenderSettings,apLowLevelGraphics);
-		
+
 		if(bVisible)
 		{
 			apLowLevelGraphics->SetScissorActive(true);
@@ -322,11 +322,11 @@ namespace hpl {
 			if(apRenderSettings->mbLog)
 				Log("Cliprect entire screen\n");
 		}
-		
+
 		//////////////////////////////////////////////////////////
-		// Cast shadows 
+		// Cast shadows
         if(mbCastShadows && apRenderSettings->mShowShadows != eRendererShowShadows_None
-			&& apRenderSettings->mpVtxExtrudeProgram != NULL) 
+			&& apRenderSettings->mpVtxExtrudeProgram != NULL)
 		{
 			//Get temp index array. (Remove this when the index pool
 			// is implemented.).
@@ -336,15 +336,15 @@ namespace hpl {
 			apLowLevelGraphics->SetStencilActive(true);
 			//Do no set this when debugging.
 			apLowLevelGraphics->SetColorWriteActive(false, false, false,false);
-			
+
 			///////////////////////////////////////////////////////////////////////////
 			//Clear stencil, since scissor is set this should be fast.
 			apLowLevelGraphics->SetClearStencilActive(true);
 			apLowLevelGraphics->SetClearDepthActive(false);
 			apLowLevelGraphics->SetClearColorActive(false);
-			
+
 			apLowLevelGraphics->SetClearStencil(0);
-			
+
 			apLowLevelGraphics->ClearScreen();
 
 			apLowLevelGraphics->SetClearStencilActive(false);
@@ -355,13 +355,13 @@ namespace hpl {
 			{
 				apLowLevelGraphics->SetCullActive(false);
 			}
-			
+
 			apLowLevelGraphics->SetDepthWriteActive(false);
-			
+
 			//Setup the depth test so that shadow volume is not rendered in front
 			//off the normal graphics.
 			apLowLevelGraphics->SetDepthTestFunc(eDepthTestFunc_Less);
-			
+
 			//Resert the algo (zfail or zpass) used.
             apRenderSettings->mlLastShadowAlgo=0;
 
@@ -377,14 +377,14 @@ namespace hpl {
 				apRenderSettings->mpFragmentProgram = apRenderSettings->mpFragExtrudeProgram;
 
 			}
-		
+
 
 			//Set the vertex program.
 			if(apRenderSettings->mbLog)Log("Setting vertex program: '%s'\n",
 											apRenderSettings->mpVtxExtrudeProgram->GetName().c_str());
 			apRenderSettings->mpVtxExtrudeProgram->Bind();
 			apRenderSettings->mpVertexProgram = apRenderSettings->mpVtxExtrudeProgram;
-			
+
 			//Render shadows
 			tCasterCacheSetIt it = m_setDynamicCasters.begin();
 
@@ -402,15 +402,15 @@ namespace hpl {
 			{
 				RenderShadow(*it,apRenderSettings,apLowLevelGraphics);
 			}
-			
+
 			//Make rendering ready for the objects.
 			//apLowLevelGraphics->SetStencilTwoSideActive(false);
 
 			apLowLevelGraphics->SetDepthTestFunc(eDepthTestFunc_Equal);
-			
+
 			apLowLevelGraphics->SetColorWriteActive(true, true, true,true);
 			apLowLevelGraphics->SetCullActive(true);
-			
+
 			apLowLevelGraphics->SetStencil(eStencilFunc_Equal,0,0xFF,
 											eStencilOp_Keep,eStencilOp_Keep, eStencilOp_Keep);
 		}
@@ -420,7 +420,7 @@ namespace hpl {
 
 		return true;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void iLight3D::EndDraw(cRenderSettings *apRenderSettings,iLowLevelGraphics *apLowLevelGraphics)
@@ -432,18 +432,18 @@ namespace hpl {
 	//-----------------------------------------------------------------------
 
 	void iLight3D::SetFarAttenuation(float afX)
-	{ 
+	{
 		mfFarAttenuation = afX;
 
 		mbUpdateBoundingVolume = true;
-		
+
 		//This is so that the render container is updated.
 		SetTransformUpdated();
 	}
 	//-----------------------------------------------------------------------
 
 	void iLight3D::SetNearAttenuation(float afX)
-	{ 
+	{
 		mfNearAttenuation = afX;
 		if(mfNearAttenuation>mfFarAttenuation)
 			SetFarAttenuation(mfNearAttenuation);
@@ -463,7 +463,7 @@ namespace hpl {
 		if(mfFadeTime>0 || mbFlickering)
 		{
 			mbUpdateBoundingVolume = true;
-			
+
 			//This is so that the render container is updated.
 			SetTransformUpdated();
 		}
@@ -481,7 +481,7 @@ namespace hpl {
 
 		return &mBoundingVolume;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cMatrixf* iLight3D::GetModelMatrix(cCamera3D* apCamera)
@@ -489,16 +489,16 @@ namespace hpl {
 		mtxTemp = GetWorldMatrix();
 		return &mtxTemp;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	bool iLight3D::IsVisible()
-	{ 
-		if(mDiffuseColor.r <=0 && mDiffuseColor.g <=0 && mDiffuseColor.b <=0 && mDiffuseColor.a <=0) 
+	{
+		if(mDiffuseColor.r <=0 && mDiffuseColor.g <=0 && mDiffuseColor.b <=0 && mDiffuseColor.a <=0)
 			return false;
 		if(mfFarAttenuation <= 0) return false;
 
-		return IsRendered(); 
+		return IsRendered();
 	}
 
 	//-----------------------------------------------------------------------
@@ -515,7 +515,7 @@ namespace hpl {
 		mpFalloffMap = apTexture;
 		mpFalloffMap->SetWrapS(eTextureWrap_ClampToEdge);
 		mpFalloffMap->SetWrapT(eTextureWrap_ClampToEdge);
-		
+
 		//reset temp textures.
 		for(int i=0; i<3;++i)mvTempTextures[i]=NULL;
 	}
@@ -531,14 +531,14 @@ namespace hpl {
 			if(pDoc->LoadFile())
 			{
 				TiXmlElement *pRootElem = pDoc->RootElement();
-				
+
                 TiXmlElement *pMainElem = pRootElem->FirstChildElement("MAIN");
 				if(pMainElem!=NULL)
 				{
 					mbCastShadows = cString::ToBool(pMainElem->Attribute("CastsShadows"),mbCastShadows);
 
 					mDiffuseColor.a = cString::ToFloat(pMainElem->Attribute("Specular"),mDiffuseColor.a);
-					
+
 					tString sFalloffImage = cString::ToString(pMainElem->Attribute("FalloffImage"),"");
 					iTexture *pTexture = mpTextureManager->Create1D(sFalloffImage,false);
 					if(pTexture) SetFalloffMap(pTexture);
@@ -590,7 +590,7 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	
+
 	//////////////////////////////////////////////////////////////////////////
 	// PROTECTED METHODS
 	//////////////////////////////////////////////////////////////////////////
@@ -601,7 +601,7 @@ namespace hpl {
 				iLowLevelGraphics *apLowLevelGraphics)
 	{
 		int lIndexCount = 0;
-		
+
 		////////////////////////////////////////////////////////////////////////
 		//Check if the shadow volume collides with the frustum
 		cShadowVolumeBV *pVolume = apObject->GetBoundingVolume()->GetShadowVolume(
@@ -619,16 +619,16 @@ namespace hpl {
 				}
 			}
 		}
-		
+
 		if(apRenderSettings->mbLog) Log("Rendering shadow for '%s'\n", apObject->GetName().c_str());
 
 		cSubMeshEntity *pSubEntity = static_cast<cSubMeshEntity*>(apObject);
 		cSubMesh* pSubMesh = pSubEntity->GetSubMesh();
-		
-		//////////////////////////////////////////		
+
+		//////////////////////////////////////////
 		//Check what method to use.
 		bool bZFail = false;
-		
+
 		if(pVolume && pFrustum)
 		{
 			cBoundingVolume *pFrustumBV = pFrustum->GetOriginBV();
@@ -649,7 +649,7 @@ namespace hpl {
 		}
 		if(apRenderSettings->mbLog) Log("Rendering shadow with '%s'\n", bZFail ? "ZFail" : "ZPass");
 
-		//////////////////////////////////////////		
+		//////////////////////////////////////////
 		//Setup the stencil buffer.
 		//If two sided stencil is not supported, do the set up later on.
 		if(apLowLevelGraphics->GetCaps(eGraphicCaps_TwoSideStencil))
@@ -661,7 +661,7 @@ namespace hpl {
 					apLowLevelGraphics->SetStencilTwoSide(eStencilFunc_Always,eStencilFunc_Always,0,0x00,
 												eStencilOp_Keep,eStencilOp_DecrementWrap, eStencilOp_Keep,
 												eStencilOp_Keep,eStencilOp_IncrementWrap,eStencilOp_Keep);
-					
+
 					apRenderSettings->mlLastShadowAlgo =1;
 				}
 			}
@@ -677,11 +677,11 @@ namespace hpl {
 				}
 			}
 		}
-		
-		//////////////////////////////////////////		
+
+		//////////////////////////////////////////
 		//Check if the cache as data.
 		/* TO BE IMPLEMENTED*/
-		
+
 		///////////////////////////////////////////
 		//Get local light position
 		cVector3f vLocalLight = GetWorldPosition();
@@ -689,7 +689,7 @@ namespace hpl {
 		if(pInvModelMtx){
 			vLocalLight = cMath::MatrixMul(*pInvModelMtx, vLocalLight);
 		}
-		
+
 		/////////////////////////////////////////////
 		//Set the model matrix
 		cMatrixf *pModelMtx = apObject->GetModelMatrix(NULL);
@@ -702,7 +702,7 @@ namespace hpl {
 		{
 			apLowLevelGraphics->SetMatrix(eMatrix_ModelView, apRenderSettings->mpCamera->GetViewMatrix());
 		}
-		
+
 		/////////////////////////////////////////////////////////
 		//Get the data arrays
 		const float *pPosArray = pSubEntity->GetVertexBuffer()->GetArray(eVertexFlag_Position);
@@ -711,7 +711,7 @@ namespace hpl {
 		int lVtxStride = kvVertexElements[cMath::Log2ToInt(eVertexFlag_Position)];
 
 		const bool bDoubleSided = pSubMesh->GetDoubleSided();
-		
+
 		/////////////////////////////////////////////////////////
 		//Iterate faces and check which are facing the light.
 		cTriangleData* pTriangles = &(*pSubEntity->GetTriangleVecPtr())[0];
@@ -719,17 +719,17 @@ namespace hpl {
 		for(int tri=0, idx=0; tri< lTriNum; tri++,idx+=3)
 		{
 			cTriangleData &Tri = pTriangles[tri];
-			
+
 			const float *pPoint = &pPosArray[pIdxArray[idx]*lVtxStride];
-			
+
 			const cVector3f &vNormal = Tri.normal;
-			
+
 			//Use Dot product to check
-			Tri.facingLight =  ((pPoint[0]-vLocalLight.x) * vNormal.x + 
-								(pPoint[1]-vLocalLight.y) * vNormal.y + 
+			Tri.facingLight =  ((pPoint[0]-vLocalLight.x) * vNormal.x +
+								(pPoint[1]-vLocalLight.y) * vNormal.y +
 								(pPoint[2]-vLocalLight.z) * vNormal.z) < 0;
 		}
-		
+
 		/////////////////////////////////////////////////////////
 		//Iterate edges and find possible silhouette
 		//Get edge pointer, index pointer and offset
@@ -741,15 +741,15 @@ namespace hpl {
 		for(int edge=0; edge< lEdgeNum; edge++)
 		{
 			const cTriEdge &Edge = pEdges[edge];
-			
+
 			const cTriangleData *pTri1 = &pTriangles[Edge.tri1];
 			const cTriangleData *pTri2;
 			if(Edge.invert_tri2==false) pTri2 = &pTriangles[Edge.tri2];
 
-						
+
 			//Check if this edge has one triangle facing and one not facing the light.
 			//If the triangel is onesided (invert_tri2) then it is always a silhouette
-			if(	(Edge.invert_tri2) || 
+			if(	(Edge.invert_tri2) ||
 				(pTri1->facingLight && !pTri2->facingLight) ||
 				(pTri2->facingLight && !pTri1->facingLight) )
 			{
@@ -774,7 +774,7 @@ namespace hpl {
 					*(pCurrentIndexPos++) = Edge.point2 + lOffset;
 					lIndexCount += 6;
 				}
-				
+
 				//DEBUG:
 				/*if(!(bDoubleSided && Edge.invert_tri2==false))
 				{
@@ -790,7 +790,7 @@ namespace hpl {
 				}*/
 			}
 		}
-		
+
 		///////////////////////////////////////////////////////
 		//If Z fail is used, generate front and back cap
 		if(bZFail)
@@ -798,7 +798,7 @@ namespace hpl {
 			for(int tri=0, idx=0; tri< lTriNum; tri++,idx+=3)
 			{
 				cTriangleData &Data = pSubEntity->GetTriangle(tri);
-				
+
 				//Front cap
 				if(Data.facingLight){
 					memcpy(pCurrentIndexPos,&pIdxArray[idx],3*sizeof(unsigned int));
@@ -806,7 +806,7 @@ namespace hpl {
 					/*mpIndexArray[lIndexCount+0] = pIdxArray[idx+0];
 					mpIndexArray[lIndexCount+1] = pIdxArray[idx+1];
 					mpIndexArray[lIndexCount+2] = pIdxArray[idx+2];*/
-					
+
 					if(bDoubleSided){
 						mpIndexArray[lIndexCount+0] = pIdxArray[idx+2]+lOffset;
 						mpIndexArray[lIndexCount+1] = pIdxArray[idx+1]+lOffset;
@@ -823,22 +823,22 @@ namespace hpl {
 					mpIndexArray[lIndexCount+2] = pIdxArray[idx+2]+lOffset;
 					pCurrentIndexPos += 3; lIndexCount+=3;
 				}
-				
+
 			}
 		}
 
 		///////////////////////////////////////////////////////
 		//Draw the volume:
-		
+
 		//Set light position and model view matrix, this does not have to be set if last
 		//object was static.
 		if(pModelMtx || apRenderSettings->mbMatrixWasNULL==false)
 		{
 			apRenderSettings->mpVtxExtrudeProgram->SetVec3f("lightPosition", vLocalLight);
 			apRenderSettings->mpVtxExtrudeProgram->SetMatrixf("worldViewProj",
-																eGpuProgramMatrix_ViewProjection, 
+																eGpuProgramMatrix_ViewProjection,
 																eGpuProgramMatrixOp_Identity);
-			
+
 			//If a null matrix has been set, let other passes know.
 			if(pModelMtx)
 				apRenderSettings->mbMatrixWasNULL = false;
@@ -849,13 +849,13 @@ namespace hpl {
 		//Set vertex buffer
 		if(apRenderSettings->mpVtxBuffer != pSubEntity->GetVertexBuffer())
 		{
-			if(apRenderSettings->mbLog) 
-				Log(" Setting vertex buffer %d\n",(size_t)pSubEntity->GetVertexBuffer());
-			
+			if(apRenderSettings->mbLog)
+				Log(" Setting vertex buffer %p\n", pSubEntity->GetVertexBuffer());
+
 			pSubEntity->GetVertexBuffer()->Bind();
 			apRenderSettings->mpVtxBuffer = pSubEntity->GetVertexBuffer();
 		}
-		
+
 		//Draw vertex buffer
 		if(apLowLevelGraphics->GetCaps(eGraphicCaps_TwoSideStencil))
 		{
@@ -873,7 +873,7 @@ namespace hpl {
 				apLowLevelGraphics->SetStencil(eStencilFunc_Always,0,0x0,
 												eStencilOp_Keep,eStencilOp_DecrementWrap, eStencilOp_Keep);
 				pSubEntity->GetVertexBuffer()->DrawIndices(mpIndexArray, lIndexCount);
-				
+
 				//Back
 				apLowLevelGraphics->SetCullMode(eCullMode_Clockwise);
 				apLowLevelGraphics->SetStencil(eStencilFunc_Always,0,0x0,
@@ -893,7 +893,7 @@ namespace hpl {
 												eStencilOp_Keep,eStencilOp_Keep, eStencilOp_DecrementWrap);
 				pSubEntity->GetVertexBuffer()->DrawIndices(mpIndexArray, lIndexCount);
 			}
-			
+
 			apLowLevelGraphics->SetCullMode(eCullMode_CounterClockwise);
 		}
 
@@ -906,7 +906,7 @@ namespace hpl {
 
 
 	//-----------------------------------------------------------------------
-	
+
 	void iLight3D::OnFlickerOff()
 	{
 		//Particle system
@@ -1004,7 +1004,7 @@ namespace hpl {
 		//////////////////////////
 		// Data
 		pData->msFalloffMap = mpFalloffMap==NULL ? "" : mpFalloffMap->GetName();
-		
+
 		pData->mlstBillboardIds.Clear();
 		for(size_t i=0; i< mvBillboards.size(); ++i)
 		{
@@ -1064,7 +1064,7 @@ namespace hpl {
 			iTexture *pTex = mpTextureManager->Create1D(pData->msFalloffMap,false);
 			if(pTex) SetFalloffMap(pTex);
 		}
-		
+
 		//////////////////////////
 		// Variables
 		kSaveData_LoadFrom(mDiffuseColor);
@@ -1111,7 +1111,7 @@ namespace hpl {
 	void iLight3D::SaveDataSetup(cSaveObjectHandler *apSaveObjectHandler, cGame *apGame)
 	{
 		kSaveData_SetupBegin(iLight3D);
-		
+
 		//Get attached billboards.
 		cContainerListIterator<int> it = pData->mlstBillboardIds.GetIterator();
 		while(it.HasNext())
@@ -1121,7 +1121,7 @@ namespace hpl {
 			cBillboard *pBill = static_cast<cBillboard*>(pObject);
 
 			if(pBill==NULL){
-				Error("Couldn't find billboard id %s\n",lId);
+				Error("Couldn't find billboard id %d\n",lId);
 				continue;
 			}
 

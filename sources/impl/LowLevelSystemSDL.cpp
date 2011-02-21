@@ -737,13 +737,13 @@ namespace hpl {
 			{
 				tString sSub = msMessage.substr(0,500);
 				msMessage = msMessage.substr(500);
-				Log(sSub.c_str());
+				Log("%s", sSub.c_str());
 			}
-			Log(msMessage.c_str());
+			Log("s", msMessage.c_str());
 		}
 		else
 		{
-			Log(msMessage.c_str());
+			Log("%s", msMessage.c_str());
 		}
 	}
 	void cScriptOutput::Clear()

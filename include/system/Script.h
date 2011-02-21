@@ -23,7 +23,7 @@
 #include <angelscript.h>
 
 #ifdef __GNUC__
-	#ifdef __ppc__
+	#ifndef WIN32
 		#define __stdcall
 	#else
 		#define __stdcall __attribute__((stdcall))
@@ -115,7 +115,7 @@
 			SCRIPT_ARG_##arg8(8); \
 			SCRIPT_RETURN_CALL_##return funcname(_arg0,_arg1,_arg2,_arg3,_arg4,_arg5,_arg6,_arg7,_arg8); \
 			SCRIPT_FUNC_END(funcname,return)
-	
+
 	#define SCRIPT_DEFINE_FUNC_10(return, funcname, arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9) \
 			SCRIPT_FUNC_BEGIN(funcname, return, #arg0","#arg1","#arg2","#arg3","#arg4","#arg5","#arg6","#arg7","#arg8","#arg9) \
 			SCRIPT_ARG_##arg0(0); \
@@ -130,7 +130,7 @@
 			SCRIPT_ARG_##arg9(9); \
 			SCRIPT_RETURN_CALL_##return funcname(_arg0,_arg1,_arg2,_arg3,_arg4,_arg5,_arg6,_arg7,_arg8,_arg9); \
 			SCRIPT_FUNC_END(funcname,return)
-	
+
 	#define SCRIPT_DEFINE_FUNC_12(return, funcname, arg0, arg1, arg2, arg3, arg4, arg5, arg6, \
 				arg7, arg8, arg9, arg10, arg11) \
 			SCRIPT_FUNC_BEGIN(funcname, return, #arg0","#arg1","#arg2","#arg3","#arg4","#arg5","#arg6 \
@@ -228,20 +228,20 @@ namespace hpl {
 		bool Reload(){ return false;}
 		void Unload(){}
 		void Destroy(){}
-		
+
 		virtual bool CreateFromFile(const tString& asFile)=0;
-		
+
 		virtual int GetFuncHandle(const tString& asFunc)=0;
-		
+
 		virtual void AddArg(const tString& asArg)=0;
-		
+
 		/**
 		 * Runs a func in the script, for example "test(15)"
 		 * \param asFuncLine the line of code
 		 * \return true if everything was ok, else false
 		 */
 		virtual bool Run(const tString& asFuncLine)=0;
-		
+
 		virtual bool Run(int alHandle)=0;
 	};
 };

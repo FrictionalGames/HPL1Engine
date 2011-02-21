@@ -32,7 +32,7 @@
 
 
 namespace hpl {
-	
+
 	template<class T>
 	static int GetCompareVal(T a, T b)
 	{
@@ -43,9 +43,9 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 	// PUBLIC METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	int iRenderState::Compare(const iRenderState* apState)  const
 	{
 		switch(mType)
@@ -87,11 +87,11 @@ namespace hpl {
 		case eRenderStateType_Render:			SetRenderMode(apSettings); break;
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void iRenderState::Set(const iRenderState* apState)
-	{	
+	{
 		mType = apState->mType;
 		switch(mType)
 		{
@@ -103,53 +103,53 @@ namespace hpl {
 												break;
 		case eRenderStateType_Depth:			mfZ = apState->mfZ;
 												break;
-		
+
 		case eRenderStateType_AlphaMode:		mAlphaMode = apState->mAlphaMode;
 												break;
-		
+
 		case eRenderStateType_BlendMode:		mBlendMode = apState->mBlendMode;
 												mChannelMode = apState->mChannelMode;
 												break;
-		
+
 		case eRenderStateType_VertexProgram:	mpVtxProgram = apState->mpVtxProgram;
 												mpVtxProgramSetup = apState->mpVtxProgramSetup;
 												mbUsesEye = apState->mbUsesEye;
 												mbUsesLight = apState->mbUsesLight;
 												mpLight = apState->mpLight;
 												break;
-		
+
 		case eRenderStateType_FragmentProgram:	mpFragProgram = apState->mpFragProgram;
 												mpFragProgramSetup = apState->mpFragProgramSetup;
 												break;
-		
+
 		case eRenderStateType_Texture:			for(int i=0;i<MAX_TEXTUREUNITS;i++)
 													mpTexture[i] = apState->mpTexture[i];
 												break;
-		
+
 		case eRenderStateType_VertexBuffer:		mpVtxBuffer = apState->mpVtxBuffer;
 												break;
-		
+
 		case eRenderStateType_Matrix:			mpModelMatrix = apState->mpModelMatrix;
 												mpInvModelMatrix = apState->mpInvModelMatrix;
 												mvScale = apState->mvScale;
 												break;
-		
+
 		case eRenderStateType_Render:			mpObject = apState->mpObject;
 												break;
 		}
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	//////////////////////////////////////////////////////////////////////////
 	// PRIVATE METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
 
 	void iRenderState::SetSectorMode(cRenderSettings* apSettings)
 	{
-		if(apSettings->mbLog) Log("Sector: %d\n",mpSector);
+		if(apSettings->mbLog) Log("Sector: %p\n",mpSector);
 
 		apSettings->mpSector = mpSector;
 		if(mpSector)
@@ -164,7 +164,7 @@ namespace hpl {
 		//To make sure that new ambient is set:
 		apSettings->mpFragmentProgram = NULL;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void iRenderState::SetPassMode(cRenderSettings* apSettings)
@@ -183,13 +183,13 @@ namespace hpl {
 
 			if(apSettings->mbLog) Log("Setting depth test: %d\n",mbDepthTest?1:0);
 		}
-	}	
+	}
 	//-----------------------------------------------------------------------
-	
+
 	void iRenderState::SetDepthMode(cRenderSettings* apSettings)
 	{
-	}	
-	
+	}
+
 	//-----------------------------------------------------------------------
 
 	void iRenderState::SetAlphaMode(cRenderSettings* apSettings)
@@ -208,17 +208,17 @@ namespace hpl {
 			{
 				//apSettings->mpLowLevel->SetTextureConstantColor(cColor(0,0));
 				//apSettings->mpLowLevel->SetTextureEnv(eTextureParam_ColorSource1,eTextureSource_Constant);
-				
+
 				//apSettings->mpLowLevel->SetAlphaTestActive(false);
 				apSettings->mpLowLevel->SetAlphaTestActive(true);
 				apSettings->mpLowLevel->SetAlphaTestFunc(eAlphaTestFunc_GreaterOrEqual, 0.6f);
 				if(apSettings->mbLog)Log("Trans");
 			}
-			
+
 			if(apSettings->mbLog) Log("\n");
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void iRenderState::SetBlendMode(cRenderSettings* apSettings)
@@ -236,10 +236,10 @@ namespace hpl {
 			else
 			{
 				apSettings->mpLowLevel->SetBlendActive(true);
-			
+
 				switch(mBlendMode)
 				{
-				case eMaterialBlendMode_Add: 
+				case eMaterialBlendMode_Add:
 					apSettings->mpLowLevel->SetBlendFunc(eBlendFunc_One,eBlendFunc_One);
 					if(apSettings->mbLog)Log("Add");
 					break;
@@ -297,7 +297,7 @@ namespace hpl {
 			if(apSettings->mbLog)Log("\n");
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void iRenderState::SetVtxProgMode(cRenderSettings* apSettings)
@@ -306,12 +306,12 @@ namespace hpl {
 		{
 			if(apSettings->mbLog){
 				if(mpVtxProgram)
-					Log("Setting vertex program: '%s'/%d ",mpVtxProgram->GetName().c_str(), 
-																		(size_t)mpVtxProgram);
+					Log("Setting vertex program: '%s'/%p ",mpVtxProgram->GetName().c_str(),
+																		mpVtxProgram);
 				else
 					Log("Setting vertex program: NULL ");
 			}
-			
+
 			if(mpVtxProgram==NULL && apSettings->mpVertexProgram)
 			{
 				apSettings->mpVertexProgram->UnBind();
@@ -323,24 +323,24 @@ namespace hpl {
 			{
 				if(apSettings->mbLog)Log("Binding new ");
 				mpVtxProgram->Bind();
-				
+
 				if(mpVtxProgramSetup)
 				{
-					if(apSettings->mbLog)Log("Custom setup %d ", mpVtxProgram);
+					if(apSettings->mbLog)Log("Custom setup %p ", mpVtxProgram);
                     mpVtxProgramSetup->Setup(mpVtxProgram, apSettings);
 				}
 				apSettings->mpVtxProgramSetup = mpVtxProgramSetup;
-				
+
 				//reset this so all matrix setting are set to vertex program.
 				apSettings->mbMatrixWasNULL = false;
 
                 if(mbUsesLight)
 				{
 					if(apSettings->mbLog)Log("Setting light properites ");
-					
+
 					//mpVtxProgram->SetFloat("LightRadius",mpLight->GetFarAttenuation());
 					mpVtxProgram->SetColor4f("LightColor",mpLight->GetDiffuseColor());
-					
+
 					apSettings->mpLight = mpLight;
 				}
 				else
@@ -365,7 +365,7 @@ namespace hpl {
 			}
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void iRenderState::SetFragProgMode(cRenderSettings* apSettings)
@@ -375,15 +375,15 @@ namespace hpl {
 			if(apSettings->mbLog)
 			{
 				if(mpFragProgram)
-					Log("Setting fragment program: '%s' /%d ",mpFragProgram->GetName().c_str(),
-																		(size_t) mpFragProgram);
+					Log("Setting fragment program: '%s' /%p ",
+						mpFragProgram->GetName().c_str(), mpFragProgram);
 				else
 					Log("Setting fragment program: NULL");
 			}
-			
+
 			//if(mpFragProgram==NULL && apSettings->mpFragmentProgram) apSettings->mpFragmentProgram->UnBind();
 			if(apSettings->mpFragmentProgram) apSettings->mpFragmentProgram->UnBind();
-			
+
 			apSettings->mpFragmentProgram = mpFragProgram;
 
 			if(mpFragProgram)
@@ -396,9 +396,9 @@ namespace hpl {
 
 			if(apSettings->mbLog)Log("\n");
 		}
-		
+
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void iRenderState::SetTextureMode(cRenderSettings* apSettings)
@@ -410,10 +410,10 @@ namespace hpl {
 				if(apSettings->mbLog)
 				{
 					if(mpTexture[i]==NULL)
-						Log("Setting texture: %d / %d : NULL\n",i, (size_t)mpTexture[i]);
+						Log("Setting texture: %d / %p : NULL\n",i, mpTexture[i]);
 					else
-						Log("Setting texture: %d / %d : '%s'\n",i, (size_t)mpTexture[i], 
-																	mpTexture[i]->GetName().c_str());
+						Log("Setting texture: %d / %p : '%s'\n",i, mpTexture[i],
+							mpTexture[i]->GetName().c_str());
 				}
 
 				apSettings->mpLowLevel->SetTexture(i,mpTexture[i]);
@@ -421,14 +421,14 @@ namespace hpl {
 			}
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void iRenderState::SetVtxBuffMode(cRenderSettings* apSettings)
 	{
 		if(mpVtxBuffer != apSettings->mpVtxBuffer)
 		{
-			if(apSettings->mbLog)Log("Setting vertex buffer: %d\n",(size_t)mpVtxBuffer);
+			if(apSettings->mbLog)Log("Setting vertex buffer: %p\n", mpVtxBuffer);
 			if(apSettings->mpVtxBuffer) apSettings->mpVtxBuffer->UnBind();
 			apSettings->mpVtxBuffer = mpVtxBuffer;
 
@@ -438,7 +438,7 @@ namespace hpl {
 			}
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void iRenderState::SetMatrixMode(cRenderSettings* apSettings)
@@ -452,7 +452,7 @@ namespace hpl {
 			if(apSettings->mbLog)Log("Setting model matrix: %s ",cMath::MatrixToChar(*mpModelMatrix));
 
 			apSettings->mpLowLevel->SetMatrix(eMatrix_ModelView,mtxModel);
-						
+
 			apSettings->mbMatrixWasNULL = false;
 		}
 		//NULL matrix
@@ -462,12 +462,12 @@ namespace hpl {
 			if(apSettings->mbMatrixWasNULL)return;
 
 			if(apSettings->mbLog)Log("Setting model matrix: Identity (NULL) ");
-			
+
 			apSettings->mpLowLevel->SetMatrix(eMatrix_ModelView,apSettings->mpCamera->GetViewMatrix());
 
 			apSettings->mbMatrixWasNULL = true;
 		}
-		
+
 		if(apSettings->mpVertexProgram)
 		{
 			//Might be quicker if this is set directly
@@ -485,7 +485,7 @@ namespace hpl {
 				if(mpModelMatrix)
 				{
 					//Light position
-					cVector3f vLocalLight = cMath::MatrixMul(*mpInvModelMatrix, 
+					cVector3f vLocalLight = cMath::MatrixMul(*mpInvModelMatrix,
 													apSettings->mpLight->GetLightPosition());
                     apSettings->mpVertexProgram->SetVec3f("LightPos",vLocalLight);
 
@@ -527,7 +527,7 @@ namespace hpl {
 				if(apSettings->mbLog)Log("Eye ");
 				if(mpModelMatrix)
 				{
-					cVector3f vLocalEye =  cMath::MatrixMul(*mpInvModelMatrix, 
+					cVector3f vLocalEye =  cMath::MatrixMul(*mpInvModelMatrix,
 															apSettings->mpCamera->GetEyePosition());
 					apSettings->mpVertexProgram->SetVec3f("EyePos",vLocalEye);
 				}
@@ -546,7 +546,7 @@ namespace hpl {
 	void iRenderState::SetRenderMode(cRenderSettings* apSettings)
 	{
 		if(apSettings->mbLog)Log("Drawing\n-----------------\n");
-		
+
 		if(apSettings->mDebugFlags & eRendererDebugFlag_RenderLines)
 		{
 			apSettings->mpVtxBuffer->Draw(eVertexBufferDrawType_Lines);
@@ -562,7 +562,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 	// COMPARE METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
 
 	int iRenderState::CompareSector(const iRenderState* apState) const
@@ -584,7 +584,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	int iRenderState::CompareDepth(const iRenderState* apState) const
 	{
 		if(std::abs(mfZ - apState->mfZ) < 0.00001f) return 0;
@@ -598,7 +598,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	int iRenderState::CompareBlend(const iRenderState* apState) const
 	{
 		int lRet = GetCompareVal((int)mChannelMode,(int)apState->mChannelMode);
@@ -610,20 +610,20 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	int iRenderState::CompareVtxProg(const iRenderState* apState) const
 	{
 		return GetCompareVal(mpVtxProgram, apState->mpVtxProgram);
 	}
 	//-----------------------------------------------------------------------
-	
+
 	int iRenderState::CompareFragProg(const iRenderState* apState) const
 	{
 		return GetCompareVal(mpFragProgram, apState->mpFragProgram);
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	int iRenderState::CompareTexture(const iRenderState* apState) const
 	{
 		for(int i=0; i< MAX_TEXTUREUNITS-1;++i)
@@ -634,14 +634,14 @@ namespace hpl {
 		return GetCompareVal(mpTexture[MAX_TEXTUREUNITS-1], apState->mpTexture[MAX_TEXTUREUNITS-1]);
 	}
 	//-----------------------------------------------------------------------
-	
+
 	int iRenderState::CompareVtxBuff(const iRenderState* apState)const
 	{
 		return GetCompareVal(mpVtxBuffer, apState->mpVtxBuffer);
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	int iRenderState::CompareMatrix(const iRenderState* apState)const
 	{
 		return GetCompareVal(mpModelMatrix, apState->mpModelMatrix);

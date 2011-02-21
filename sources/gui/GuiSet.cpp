@@ -62,8 +62,8 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
-	bool cGuiRenderObjectCompare::operator()(	const cGuiRenderObject& aObjectA, 
+
+	bool cGuiRenderObjectCompare::operator()(	const cGuiRenderObject& aObjectA,
 												const cGuiRenderObject& aObjectB)
 	{
 		//Z
@@ -81,7 +81,7 @@ namespace hpl {
 		{
 			return pClipA > pClipB;
 		}
-		
+
 		//Material
 		iGuiMaterial *pMaterialA = aObjectA.mpCustomMaterial ? aObjectA.mpCustomMaterial : aObjectA.mpGfx->mpMaterial;
 		iGuiMaterial *pMaterialB = aObjectB.mpCustomMaterial ? aObjectB.mpCustomMaterial : aObjectB.mpGfx->mpMaterial;
@@ -89,7 +89,7 @@ namespace hpl {
 		{
 			return pMaterialA > pMaterialB;
 		}
-		
+
 		//Texture
 		iTexture *pTextureA = aObjectA.mpGfx->mvTextures[0];
 		iTexture *pTextureB = aObjectB.mpGfx->mvTextures[0];
@@ -97,7 +97,7 @@ namespace hpl {
 		{
 			return pTextureA > pTextureB;
 		}
-		
+
 		//Equal
 		return false;
 
@@ -106,7 +106,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 	// CLIP REGION
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
 
 	cGuiClipRegion::~cGuiClipRegion()
@@ -122,10 +122,10 @@ namespace hpl {
 	cGuiClipRegion* cGuiClipRegion::CreateChild(const cVector3f &avPos, const cVector2f &avSize)
 	{
 		cGuiClipRegion *pRegion = hplNew( cGuiClipRegion, () );
-		
+
 		if(mRect.w <0)
 		{
-			pRegion->mRect = cRect2f(cVector2f(avPos.x, avPos.y),avSize);	
+			pRegion->mRect = cRect2f(cVector2f(avPos.x, avPos.y),avSize);
 		}
 		else
 		{
@@ -134,7 +134,7 @@ namespace hpl {
 			if(pRegion->mRect.w < 0 ) pRegion->mRect.w = 0;
 			if(pRegion->mRect.h < 0 ) pRegion->mRect.h = 0;
 		}
-			
+
 
 		mlstChildren.push_back(pRegion);
 
@@ -149,15 +149,15 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	cGuiSet::cGuiSet(	const tString &asName, cGui *apGui, cGuiSkin *apSkin, 
+	cGuiSet::cGuiSet(	const tString &asName, cGui *apGui, cGuiSkin *apSkin,
 						cResources *apResources, cGraphics* apGraphics,
 						cSound *apSound, cScene *apScene)
 	{
 		mpGui = apGui;
 		mpSkin = NULL;
-		
+
 		msName = asName;
-        
+
 		mpResources = apResources;
 		mpGraphics = apGraphics;
 		mpSound = apSound;
@@ -192,7 +192,7 @@ namespace hpl {
 		mbDestroyingSet = false;
 
 		mlDrawPrio = 0;
-		
+
 		for(int i=0; i<3; ++i) mvMouseDown[i] = false;
 
 		SetSkin(apSkin);
@@ -235,7 +235,7 @@ namespace hpl {
 		for(; it != mlstWidgets.end(); ++it)
 		{
 			iWidget *pWidget = *it;
-			pWidget->Update(afTimeStep);       
+			pWidget->Update(afTimeStep);
 		}
 	}
 
@@ -249,9 +249,9 @@ namespace hpl {
 		//Draw all widgets
 		SetCurrentClipRegion(&mBaseClipRegion);
 		mpWidgetRoot->Draw(afTimeStep, &mBaseClipRegion);
-		
+
 		SetCurrentClipRegion(&mBaseClipRegion);
-		
+
 	}
 
 	//-----------------------------------------------------------------------
@@ -267,7 +267,7 @@ namespace hpl {
 
 			case eGuiMessage_KeyPress:			return OnKeyPress(aData);
 		}
-		
+
 		return false;
 	}
 
@@ -277,7 +277,7 @@ namespace hpl {
 	void cGuiSet::Render()
 	{
 		iLowLevelGraphics *pLowLevelGraphics = mpGraphics->GetLowLevel();
-	
+
 		///////////////////////////////////
 		// Init rendering
 
@@ -285,7 +285,7 @@ namespace hpl {
 		if(mbIs3D)
 		{
 			cCamera3D *pCam = static_cast<cCamera3D*>(mpScene->GetCamera());
-			
+
 			pLowLevelGraphics->SetDepthTestActive(true);
 
 			//Invert the y coordinate: = -y, this also get the gui into the correct position.
@@ -293,11 +293,11 @@ namespace hpl {
 			cMatrixf mtxPreMul = cMath::MatrixScale(cVector3f(	mv3DSize.x / mvVirtualSize.x,
 																-mv3DSize.y / mvVirtualSize.y,
 																mv3DSize.z / (mfVirtualMaxZ - mfVirtualMinZ)));
-			
+
 			//Create the final model matrix
 			cMatrixf mtxModel = cMath::MatrixMul(m_mtx3DTransform, mtxPreMul);
 			mtxModel = cMath::MatrixMul(pCam->GetViewMatrix(), mtxModel);
-			
+
 			pLowLevelGraphics->SetMatrix(eMatrix_ModelView, mtxModel);
 
 			//No need for projection matrix, should be setup, right? :)
@@ -312,10 +312,10 @@ namespace hpl {
 
 			pLowLevelGraphics->SetOrthoProjection(mvVirtualSize,mfVirtualMinZ,mfVirtualMaxZ);
 		}
-		
+
 		///////////////////////////////
 		// Render all clip regions
-		
+
 		RenderClipRegion();
 
 		///////////////////////////////
@@ -329,7 +329,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	void cGuiSet::DrawGfx(	cGuiGfxElement* apGfx, const cVector3f &avPos, const cVector2f &avSize,
 							const cColor& aColor,eGuiMaterial aMaterial)
 	{
@@ -352,10 +352,10 @@ namespace hpl {
 				gfxRect.w = avSize.x;
 				gfxRect.h = avSize.y;
 			}
-			
+
 			if(cMath::BoxCollision(mpCurrentClipRegion->mRect,gfxRect)==false) return;
 		}
-		
+
 		apGfx->Flush();
 
 		cGuiRenderObject object;
@@ -369,7 +369,7 @@ namespace hpl {
 		else				object.mvSize = avSize;
 		object.mColor = aColor;
 		if(aMaterial != eGuiMaterial_LastEnum)	object.mpCustomMaterial = mpGui->GetMaterial(aMaterial);
-		else									object.mpCustomMaterial = NULL;	
+		else									object.mpCustomMaterial = NULL;
 
 		m_setRenderObjects.insert(object);
 	}
@@ -396,7 +396,7 @@ namespace hpl {
 		while(asText[lCount] != 0)
 		{
 			wchar_t lGlyphNum = ((wchar_t)asText[lCount]);
-			if(	lGlyphNum < apFont->GetFirstChar() || 
+			if(	lGlyphNum < apFont->GetFirstChar() ||
 				lGlyphNum > apFont->GetLastChar())
 			{
 				lCount++;
@@ -410,18 +410,18 @@ namespace hpl {
 			{
 				cVector2f vOffset(pGlyph->mvOffset * avSize);
 				cVector2f vSize(pGlyph->mvSize * avSize);// *apFont->GetSizeRatio());
-				
+
 				DrawGfx(pGlyph->mpGuiGfx,vPos + vOffset,vSize,aColor,aMaterial);
 
-				vPos.x += pGlyph->mfAdvance*avSize.x; 
+				vPos.x += pGlyph->mfAdvance*avSize.x;
 			}
 			lCount++;
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
 
-	cWidgetWindow* cGuiSet::CreateWidgetWindow(	const cVector3f &avLocalPos, 
+	cWidgetWindow* cGuiSet::CreateWidgetWindow(	const cVector3f &avLocalPos,
 												const cVector2f &avSize,
 												const tWString &asText,
 												iWidget *apParent,
@@ -551,7 +551,7 @@ namespace hpl {
 		}
 		pImage->SetPosition(avLocalPos);
 
-		if(pGfx && avSize.x <0) 
+		if(pGfx && avSize.x <0)
 		{
 			pImage->SetSize(pGfx->GetImageSize());
 		}
@@ -573,7 +573,7 @@ namespace hpl {
 												iWidget *apParent,
 												const tString& asName)
 	{
-		cWidgetListBox *pListBox = hplNew( cWidgetListBox,(this,mpSkin) ); 
+		cWidgetListBox *pListBox = hplNew( cWidgetListBox,(this,mpSkin) );
 		pListBox->SetPosition(avLocalPos);
 		pListBox->SetSize(avSize);
 		pListBox->SetName(asName);
@@ -600,14 +600,14 @@ namespace hpl {
 	iWidget * cGuiSet::GetWidgetFromName(const tString& asName)
 	{
 		return (iWidget*)STLFindByName(mlstWidgets, asName);
-	}	
+	}
 
 	//-----------------------------------------------------------------------
 
 	void cGuiSet::DestroyWidget(iWidget *apWidget)
 	{
 		if(apWidget == mpFocusedWidget) mpFocusedWidget = NULL;
-		STLFindAndDelete(mlstWidgets,apWidget);		
+		STLFindAndDelete(mlstWidgets,apWidget);
 	}
 
 	//-----------------------------------------------------------------------
@@ -617,11 +617,11 @@ namespace hpl {
 								void *apCallbackObject, tGuiCallbackFunc apCallback)
 	{
 		cGuiPopUpMessageBox* pMessageBox = hplNew( cGuiPopUpMessageBox, (this, asLabel,asText,
-																asButton1,asButton2, 
+																asButton1,asButton2,
 																apCallbackObject,apCallback) );
 	}
 
-	
+
 	//-----------------------------------------------------------------------
 
 	void cGuiSet::DestroyPopUp(iGuiPopUp *apPopUp)
@@ -658,7 +658,7 @@ namespace hpl {
 		else
 			mpWidgetRoot->SetSize(0);
 	}
-	
+
 	bool cGuiSet::GetRootWidgetClips()
 	{
 		return mpWidgetRoot->GetClipActive();
@@ -681,7 +681,7 @@ namespace hpl {
 			cGuiMessageData data = cGuiMessageData(mvMousePos,0);
 			mpFocusedWidget->ProcessMessage(eGuiMessage_LostFocus, data);
 		}
-        
+
 		mpFocusedWidget = apWidget;
 		if(mpFocusedWidget) {
 			cGuiMessageData data = cGuiMessageData(mvMousePos,0);
@@ -698,7 +698,7 @@ namespace hpl {
 		mpAttentionWidget = apWidget;
 
 		//Log("Sett attn: %d\n",mpAttentionWidget);
-		
+
 		if(mpFocusedWidget && mpFocusedWidget->IsConnectedTo(mpAttentionWidget)==false)
 		{
 			//Log("Lost focus %d\n",mpFocusedWidget);
@@ -730,7 +730,7 @@ namespace hpl {
 		mv3DSize = avSize;
 	}
 
-	
+
 	void cGuiSet::Set3DTransform(const cMatrixf& a_mtxTransform)
 	{
 		m_mtx3DTransform = a_mtxTransform;
@@ -757,7 +757,7 @@ namespace hpl {
 		//if(mpSkin == apSkin) return; Remove til there is a real skin
 
 		mpSkin = apSkin;
-		
+
 		if(mpSkin)
 		{
 			mpGfxCurrentPointer = mpSkin->GetGfx(eGuiSkinGfx_PointerNormal);
@@ -766,7 +766,7 @@ namespace hpl {
 		{
 			mpGfxCurrentPointer = NULL;
 		}
-		
+
 	}
 
 	//-----------------------------------------------------------------------
@@ -775,7 +775,7 @@ namespace hpl {
 	// PRIVATE METHODS
 	//////////////////////////////////////////////////////////////////////////
 #define kLogRender (false)
-	
+
 	static void SetClipArea(iLowLevelGraphics *pLowLevelGraphics, cGuiClipRegion *apRegion)
 	{
 		cRect2f& clipRect =apRegion->mRect;
@@ -789,7 +789,7 @@ namespace hpl {
 			cVector2f vVirtualSize = pLowLevelGraphics->GetVirtualSize();
 			cVector2f vScreenSize = pLowLevelGraphics->GetScreenSize();
 
-			cRect2l vScissorRect(	(int)((clipRect.x / vVirtualSize.x) * vScreenSize.x),  (int)((clipRect.y / vVirtualSize.y) * vScreenSize.y), 
+			cRect2l vScissorRect(	(int)((clipRect.x / vVirtualSize.x) * vScreenSize.x),  (int)((clipRect.y / vVirtualSize.y) * vScreenSize.y),
 									(int)((clipRect.w / vVirtualSize.x) * vScreenSize.x),  (int)((clipRect.h / vVirtualSize.y) * vScreenSize.y) );
 
 			pLowLevelGraphics->SetScissorActive(true);
@@ -815,13 +815,13 @@ namespace hpl {
 			pLowLevelGraphics->SetClipPlane(3, plane);
 			pLowLevelGraphics->SetClipPlaneActive(3, true);*/
 
-			if(kLogRender) Log("-- Clip region: %d Clipping: x %f y %f w %f h %f\n",apRegion,
+			if(kLogRender) Log("-- Clip region: %p Clipping: x %f y %f w %f h %f\n",apRegion,
 				apRegion->mRect.x,apRegion->mRect.y,
 				apRegion->mRect.w,apRegion->mRect.h);
 		}
 		else
 		{
-			if(kLogRender)Log("-- Clip region: %d No clipping!\n",apRegion);
+			if(kLogRender)Log("-- Clip region: %p No clipping!\n",apRegion);
 		}
 	}
 
@@ -841,16 +841,16 @@ namespace hpl {
 			if(kLogRender) Log("------------------------\n");
 			return;
 		}
-		
+
 		//////////////////////////////////
 		// Graphics setup
 		pLowLevelGraphics->SetTexture(0,NULL);
 
 		//////////////////////////////////
 		// Set up variables
-		
+
 		tGuiRenderObjectSetIt it = setRenderObjects.begin();
-		
+
 		iGuiMaterial *pLastMaterial = NULL;
 		iTexture *pLastTexture = NULL;
 		cGuiClipRegion *pLastClipRegion = NULL;
@@ -879,13 +879,13 @@ namespace hpl {
 			{
 				SetClipArea(pLowLevelGraphics,pClipRegion);
 			}
-			
+
 			pLowLevelGraphics->SetTexture(0,pTexture);
-			if(kLogRender)Log("Texture %d\n",pTexture);
+			if(kLogRender)Log("Texture %p\n", pTexture);
 
 			//////////////////////////
 			//Iterate for all with same texture and material
-			do 
+			do
 			{
 				cGuiRenderObject object = *it;
 				cGuiGfxElement *pGfx = object.mpGfx;
@@ -893,9 +893,9 @@ namespace hpl {
 				if(kLogRender)
 				{
 					if(pGfx->mvImages[0])
-						Log(" gfx: %d '%s'\n",pGfx,pGfx->mvImages[0]->GetName().c_str());
+						Log(" gfx: %p '%s'\n", pGfx, pGfx->mvImages[0]->GetName().c_str());
 					else
-						Log(" gfx: %d 'null'\n");
+						Log(" gfx: %p 'null'\n", pGfx);
 				}
 
 				///////////////////////////
@@ -932,14 +932,14 @@ namespace hpl {
 				pMaterial = it->mpCustomMaterial ? it->mpCustomMaterial : pGfx->mpMaterial;
 				pTexture = it->mpGfx->mvTextures[0];
 				pClipRegion = it->mpClipRegion;
-			} 
+			}
 			while(	pTexture == pLastTexture &&
 					pMaterial == pLastMaterial &&
 					pClipRegion == pLastClipRegion);
 
 			//////////////////////////////
 			// Render batch
-			pLowLevelGraphics->FlushQuadBatch(	eVtxBatchFlag_Position | eVtxBatchFlag_Texture0 | 
+			pLowLevelGraphics->FlushQuadBatch(	eVtxBatchFlag_Position | eVtxBatchFlag_Texture0 |
 												eVtxBatchFlag_Color0,false);
 			pLowLevelGraphics->ClearBatch();
 			lIdxAdd=0;
@@ -954,22 +954,23 @@ namespace hpl {
 					//for(int i=0; i<4; ++i) pLowLevelGraphics->SetClipPlaneActive(i, false);
 				}
 			}
-			
+
 			/////////////////////////////////
 			//Material end
 			if(pLastMaterial != pMaterial || it == setRenderObjects.end())
 			{
 				pLastMaterial->AfterRender();
-				if(kLogRender)Log("Material %d '%s' after. new: %d '%s'\n",	pLastMaterial,pLastMaterial->GetName().c_str(),
-																		pMaterial,pMaterial->GetName().c_str());
+				if(kLogRender)Log("Material %p '%s' after. new: %p '%s'\n",
+								  pLastMaterial, pLastMaterial->GetName().c_str(),
+								  pMaterial, pMaterial->GetName().c_str());
 			}
 		}
-		
+
 		///////////////////////////////
 		//Clear render objects
 		m_setRenderObjects.clear();
-		  
-		if(kLogRender)Log("---------- END %d -----------\n");
+
+		if(kLogRender)Log("---------- END -----------\n");
 	}
 	//-----------------------------------------------------------------------
 
@@ -992,7 +993,7 @@ namespace hpl {
 		///////////////////////////
 		//Set up variables
 		mvMousePos = aData.mvPos;
-		
+
 		aData.mlVal = 0;
 		if(mvMouseDown[0]) aData.mlVal |= eGuiMouseButton_Left;
 		if(mvMouseDown[1]) aData.mlVal |= eGuiMouseButton_Middle;
@@ -1069,9 +1070,9 @@ namespace hpl {
 
 		return bRet;
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	bool cGuiSet::OnMouseDown(cGuiMessageData &aData)
 	{
 		///////////////////////////
@@ -1091,7 +1092,7 @@ namespace hpl {
 			iWidget *pWidget = *it;
 
 			//If these is an attention set, do send clicks to any other widgets
-			if(mpAttentionWidget && pWidget->IsConnectedTo(mpAttentionWidget)==false) 
+			if(mpAttentionWidget && pWidget->IsConnectedTo(mpAttentionWidget)==false)
 			{
 				continue;
 			}
@@ -1131,14 +1132,14 @@ namespace hpl {
 		{
 			//Log("Lost focus %d\n",pOldFocus);
 			if(pOldFocus) pOldFocus->ProcessMessage(eGuiMessage_LostFocus, aData);
-			
+
 		}
 
 		return bRet;
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	bool cGuiSet::OnMouseUp(cGuiMessageData &aData)
 	{
 		///////////////////////////
@@ -1146,11 +1147,11 @@ namespace hpl {
 		mvMouseDown[cMath::Log2ToInt(aData.mlVal)] = false;
 
 		aData.mvPos = mvMousePos;
-		
+
 		///////////////////////////
 		//Call widgets
 		bool bRet = false;
-		
+
 		if(mpFocusedWidget)
 		{
 			bRet = mpFocusedWidget->ProcessMessage(eGuiMessage_MouseUp, aData);
@@ -1164,7 +1165,7 @@ namespace hpl {
 				iWidget *pWidget = *it;
 
 				//If these is an attention set, do send clicks to any other widgets
-				if(mpAttentionWidget && pWidget->IsConnectedTo(mpAttentionWidget)==false) 
+				if(mpAttentionWidget && pWidget->IsConnectedTo(mpAttentionWidget)==false)
 				{
 					continue;
 				}
@@ -1182,7 +1183,7 @@ namespace hpl {
 
 		return bRet;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	bool cGuiSet::OnMouseDoubleClick(cGuiMessageData &aData)
@@ -1190,7 +1191,7 @@ namespace hpl {
 		///////////////////////////
 		//Set up variables
 		aData.mvPos = mvMousePos;
-		
+
 		///////////////////////////
 		//Call widgets
         bool bRet = false;
@@ -1200,7 +1201,7 @@ namespace hpl {
 			iWidget *pWidget = *it;
 
 			//If these is an attention set, do send clicks to any other widgets
-			if(mpAttentionWidget && pWidget->IsConnectedTo(mpAttentionWidget)==false) 
+			if(mpAttentionWidget && pWidget->IsConnectedTo(mpAttentionWidget)==false)
 			{
 				continue;
 			}
@@ -1229,12 +1230,12 @@ namespace hpl {
 		///////////////////////////
 		//Call widgets
 		bool bRet = false;
-		
+
 		if(mpFocusedWidget)
 		{
 			bRet = mpFocusedWidget->ProcessMessage(eGuiMessage_KeyPress, aData);
 		}
-		
+
 		if(bRet==false)
 		{
 			tWidgetListIt it = mlstWidgets.begin();
@@ -1243,7 +1244,7 @@ namespace hpl {
 				iWidget *pWidget = *it;
 
 				//If these is an attention set, do send clicks to any other widgets
-				if(mpAttentionWidget && pWidget->IsConnectedTo(mpAttentionWidget)==false) 
+				if(mpAttentionWidget && pWidget->IsConnectedTo(mpAttentionWidget)==false)
 				{
 					continue;
 				}
@@ -1265,13 +1266,13 @@ namespace hpl {
 	//-----------------------------------------------------------------------
 
 	bool cGuiSet::DrawMouse(iWidget* apWidget,cGuiMessageData& aData)
-	{	
+	{
 		if(HasFocus() && mbDrawMouse && mpGfxCurrentPointer)
 		{
 			DrawGfx(mpGfxCurrentPointer,cVector3f(mvMousePos.x,mvMousePos.y, mfMouseZ),
 				mpGfxCurrentPointer->GetImageSize(),cColor(1,1));
 		}
-		
+
 		return true;
 	}
 	kGuiCalllbackDeclaredFuncEnd(cGuiSet,DrawMouse)

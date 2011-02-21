@@ -64,7 +64,7 @@ namespace hpl {
 
 		mvGfxElements.resize(eGuiSkinGfx_LastEnum, NULL);
 		mvFonts.resize(eGuiSkinFont_LastEnum, NULL);
-		mvAttributes.resize(eGuiSkinAttribute_LastEnum, NULL);
+		mvAttributes.resize(eGuiSkinAttribute_LastEnum, 0);
 	}
 
 	//-----------------------------------------------------------------------
@@ -106,7 +106,7 @@ namespace hpl {
 		if(apString==NULL) return eGuiMaterial_Alpha;
 
 		tString sLow = cString::ToLowerCase(apString);
-				
+
 		if(sLow=="alpha") return eGuiMaterial_Alpha;
 		if(sLow=="diffuse") return eGuiMaterial_Diffuse;
 		if(sLow=="font_normal") return eGuiMaterial_FontNormal;
@@ -117,7 +117,7 @@ namespace hpl {
 
 		return eGuiMaterial_Alpha;
 	}
-	
+
 	bool cGuiSkin::LoadFromFile(const tString &asFile)
 	{
 		//////////////////////////////////
@@ -154,11 +154,11 @@ namespace hpl {
 			tFloatVec vValues;
             tString sSepp=" ";
 			cString::GetFloatVec(sValue,vValues,&sSepp);
-            
+
 			if(vValues.size()>0) vVal.x = vValues[0];
 			if(vValues.size()>1) vVal.y = vValues[1];
 			if(vValues.size()>2) vVal.z = vValues[2];
-			
+
 			mvAttributes[type] = vVal;
 		}
 
@@ -180,7 +180,7 @@ namespace hpl {
 			tString sFontFile = cString::ToString(pFontElem->Attribute("file"),"");
 			cVector2f vSize = cString::ToVector2f(pFontElem->Attribute("size"),1);
 			cColor color = cString::ToColor(pFontElem->Attribute("color"),cColor(1,1));
-			
+
 			cGuiSkinFont *pFont = hplNew( cGuiSkinFont, (mpGui) );
 
 			pFont->mpFont = mpGui->GetResources()->GetFontManager()->CreateFontData(sFontFile);
@@ -193,7 +193,7 @@ namespace hpl {
 
 		//////////////////////////////////////
 		// GFX ELEMENTS
-		
+
 		//Get gfx element
 		TiXmlElement* pGfxElementsElement = pRootElem->FirstChildElement("GfxElements");
 
@@ -202,7 +202,7 @@ namespace hpl {
 		for(; pGfxElem != NULL; pGfxElem = pGfxElem->NextSiblingElement())
 		{
 			tString sType = cString::ToString(pGfxElem->Attribute("type"),"");
-			
+
 			eGuiSkinGfx type = mpGui->GetSkinGfxFromString(sType);
 			if(type == eGuiSkinGfx_LastEnum) continue;
 
@@ -215,7 +215,7 @@ namespace hpl {
 			bool bAnimated = cString::ToBool(pGfxElem->Attribute("animated"),false);
 			float fAnimFrameTime = cString::ToFloat(pGfxElem->Attribute("anim_frame_time"),1);
 			eGuiGfxAnimationType animType = ToAnimType(pGfxElem->Attribute("anim_mode"));
-			
+
 			cGuiGfxElement *pGfx = NULL;
 			if(sFile != "")
 			{
@@ -242,10 +242,10 @@ namespace hpl {
 					pAnim->SetType(animType);
 				}
 
-				if(vSize.x >=0) 
+				if(vSize.x >=0)
 					pGfx->SetActiveSize(vSize);
 				pGfx->SetOffset(cVector3f(vOffset.x, vOffset.y,0));
-				
+
 				mvGfxElements[type] = pGfx;
 			}
 		}
@@ -278,7 +278,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	//-----------------------------------------------------------------------
 
 }

@@ -26,7 +26,7 @@ namespace hpl {
 
 	template <class T> 	class cVector3 {
 	public:
-		
+
 		union{
 			struct {
 				T x,y,z;
@@ -188,7 +188,7 @@ namespace hpl {
 			z/=aVec.z;
 			return *this;
 		}
-		
+
 		//////////////////////////////////////////
 		// Vector2 Arithmetic
 		/////////////////////////////////////////
@@ -298,9 +298,9 @@ namespace hpl {
 		}
 
 		//////////////////////////////////////////
-		// Methods 
+		// Methods
 		/////////////////////////////////////////
-		
+
 		inline void FromVec(const T *apVec)
 		{
 			x = apVec[0];
@@ -344,7 +344,7 @@ namespace hpl {
 
 		tString ToString() const{
 			char buf[512];
-			sprintf(buf,"%f : %f : %f",x,y,z);
+			sprintf(buf,"% .10f : % .10f : % .10f",x,y,z);
 			tString str = buf;
 			return str;
 		}
