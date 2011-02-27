@@ -321,18 +321,18 @@ namespace hpl {
 
 	void cPhysicsBodyNewton::SetEnabled(bool abEnabled)
 	{
-		NewtonBodySetFreezeState(mpNewtonBody, abEnabled);
+		NewtonBodySetFreezeState(mpNewtonBody, !abEnabled);
 	}
 	bool cPhysicsBodyNewton::GetEnabled() const
 	{
-		return NewtonBodyGetSleepState(mpNewtonBody) ==0?false: true;
+		return !NewtonBodyGetFreezeState(mpNewtonBody);
 	}
 
 	//-----------------------------------------------------------------------
 
 	void cPhysicsBodyNewton::SetAutoDisable(bool abEnabled)
 	{
-		NewtonBodySetAutoSleep(mpNewtonBody, abEnabled ? 1 : 0);
+		NewtonBodySetAutoSleep(mpNewtonBody, abEnabled);
 	}
 	bool cPhysicsBodyNewton::GetAutoDisable() const
 	{
