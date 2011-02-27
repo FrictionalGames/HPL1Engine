@@ -89,14 +89,17 @@ namespace hpl {
 		NewtonBody *GetNewtonBody(){ return mpNewtonBody;}
 
 		void ClearForces();
-		
+
 		void DeleteLowLevel();
 
 		static void SetUseCallback(bool abX){ mbUseCallback = abX;}
 	private:
-		
-		static void OnTransformCallback(const NewtonBody* apBody, const dFloat* apMatrix);
-		static void OnUpdateCallback(const NewtonBody* apBody);
+
+		static void OnTransformCallback(const NewtonBody* apBody,
+										const dFloat* apMatrix,
+										int alThreadIndex);
+		static void OnUpdateCallback(const NewtonBody* apBody, float afTimeStep,
+									 int alThreadIndex);
 
 		NewtonBody *mpNewtonBody;
 		NewtonWorld *mpNewtonWorld;

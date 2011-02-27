@@ -29,7 +29,7 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	cCollideShapeNewton::cCollideShapeNewton(eCollideShapeType aType, const cVector3f &avSize, 
+	cCollideShapeNewton::cCollideShapeNewton(eCollideShapeType aType, const cVector3f &avSize,
 											cMatrixf* apOffsetMtx, NewtonWorld* apNewtonWorld,
 											iPhysicsWorld *apWorld)
 	: iCollideShape(apWorld)
@@ -55,28 +55,28 @@ namespace hpl {
 
 		////////////////////////////////////////////
 		// Create Newton collision
-		
+
 		switch(aType)
 		{
 		case eCollideShapeType_Null:		mpNewtonCollision = NewtonCreateNull(apNewtonWorld); break;
-		
+
 		case eCollideShapeType_Box:			mpNewtonCollision = NewtonCreateBox(apNewtonWorld,
-												mvSize.x, mvSize.y, mvSize.z, 
-												pMtx); break;
-		
+												mvSize.x, mvSize.y, mvSize.z,
+												0, pMtx); break;
+
 		case eCollideShapeType_Sphere:		mpNewtonCollision = NewtonCreateSphere(apNewtonWorld,
-												mvSize.x, mvSize.y, mvSize.z, 
-												pMtx); break;
+												mvSize.x, mvSize.y, mvSize.z,
+												0, pMtx); break;
 
 		case eCollideShapeType_Cylinder:	mpNewtonCollision = NewtonCreateCylinder(apNewtonWorld,
-												mvSize.x, mvSize.y, 
-												pMtx); break;
-		
+												mvSize.x, mvSize.y,
+												0, pMtx); break;
+
 		case eCollideShapeType_Capsule:		mpNewtonCollision = NewtonCreateCapsule(apNewtonWorld,
-												mvSize.x, mvSize.y, 
-												pMtx); break;
+												mvSize.x, mvSize.y,
+												0, pMtx); break;
 		}
-		
+
 		////////////////////////////////////////////
 		// Calculate Bounding volume and volume.
 		if(mType == eCollideShapeType_Box)
@@ -91,11 +91,11 @@ namespace hpl {
 
 			mfVolume = (4.0f / 3.0f) * kPif * (mvSize.x*mvSize.x*mvSize.x);
 		}
-		else if(mType == eCollideShapeType_Cylinder || 
+		else if(mType == eCollideShapeType_Cylinder ||
 				mType == eCollideShapeType_Capsule)
 		{
 			mBoundingVolume.SetSize(cVector3f(mvSize.y,mvSize.x*2,mvSize.x*2));
-			
+
 			//Not gonna be correct for capsule...
 			if(mType == eCollideShapeType_Cylinder)
 				mfVolume = kPif * (mvSize.x*mvSize.x)*mvSize.y;
@@ -104,11 +104,11 @@ namespace hpl {
 				//Height of the cylinder part.
                 float fCylHeight = mvSize.y - (mvSize.x*2);
 				mfVolume =0;
-				
+
 				//The volume of the cylinder part.
 				if(fCylHeight>0)
 					mfVolume += kPif * (mvSize.x*mvSize.x)*fCylHeight;
-				
+
 				//The volume of the sphere part.
 				mfVolume += (4.0f / 3.0f) * kPif * (mvSize.x*mvSize.x*mvSize.x);
 			}
@@ -124,7 +124,7 @@ namespace hpl {
 		//Release Newton Collision
 		if(mpNewtonCollision)
 			NewtonReleaseCollision(mpNewtonWorld,mpNewtonCollision);
-		
+
 		//Release all subshapes (for compound objects)
 		for(int i=0; i < (int)mvSubShapes.size(); i++)
 		{
@@ -155,13 +155,13 @@ namespace hpl {
 		else
 			return 1;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cVector3f cCollideShapeNewton::GetInertia(float afMass)
 	{
 		cVector3f vInertia(1,1,1);
-		
+
 		// Box
 		if(mType == eCollideShapeType_Box)
 		{
@@ -215,11 +215,11 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	void cCollideShapeNewton::CreateFromShapeVec(tCollideShapeVec &avShapes)
-	{	
+	{
 		std::vector<NewtonCollision*> vNewtonColliders;
-		
+
 		vNewtonColliders.reserve(avShapes.size());
 		mvSubShapes.reserve(avShapes.size());
 
@@ -236,7 +236,7 @@ namespace hpl {
 		}
 
 		mpNewtonCollision = NewtonCreateCompoundCollision(mpNewtonWorld, (int)vNewtonColliders.size(),
-															&vNewtonColliders[0]);
+														  &vNewtonColliders[0], 0);
 
 		// Create bounding volume
 		cVector3f vFinalMax = avShapes[0]->GetBoundingVolume().GetMax();
@@ -258,11 +258,11 @@ namespace hpl {
 		}
 
 		mBoundingVolume.SetLocalMinMax(vFinalMin, vFinalMax);
-		
+
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	void cCollideShapeNewton::CreateFromVertices(const unsigned int* apIndexArray, int alIndexNum,
 										const float *apVertexArray, int alVtxStride, int alVtxNum)
 	{
@@ -272,7 +272,7 @@ namespace hpl {
 		bool bCreatedPlane = false;
 		cPlanef plane;
 
-		mpNewtonCollision = NewtonCreateTreeCollision(mpNewtonWorld, NULL);
+		mpNewtonCollision = NewtonCreateTreeCollision(mpNewtonWorld, 0);
 		//Log("-- Creating mesh collision.:\n");
 		NewtonTreeCollisionBeginBuild(mpNewtonCollision);
 		for(int tri = 0; tri < alIndexNum; tri+=3)
@@ -281,7 +281,7 @@ namespace hpl {
 			for(int idx =0; idx < 3; idx++)
 			{
 				int lVtx = apIndexArray[tri + 2-idx]*alVtxStride;
-                
+
 				vTriVec[idx*3 + 0] = apVertexArray[lVtx + 0];
 				vTriVec[idx*3 + 1] = apVertexArray[lVtx + 1];
 				vTriVec[idx*3 + 2] = apVertexArray[lVtx + 2];
@@ -293,7 +293,7 @@ namespace hpl {
 				cVector3f vP1(vTriVec[0+0],vTriVec[0+1],vTriVec[0+2]);
 				cVector3f vP2(vTriVec[1*3+0],vTriVec[1*3+1],vTriVec[1*3+2]);
 				cVector3f vP3(vTriVec[2*3+0],vTriVec[2*3+1],vTriVec[2*3+2]);
-				
+
 				tempPlane.FromPoints(vP1, vP2, vP3);
 
 				//Log("P1: %s P2: %s P3: %s\n",vP1.ToString().c_str(),vP2.ToString().c_str(),vP3.ToString().c_str());
@@ -314,7 +314,7 @@ namespace hpl {
 					}
 				}
 			}
-					    
+
             NewtonTreeCollisionAddFace(mpNewtonCollision,3,vTriVec,sizeof(float)*3,1);
 		}
 

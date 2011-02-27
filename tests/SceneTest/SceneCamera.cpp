@@ -108,6 +108,8 @@ void cSceneCamera::OnDraw()
 					 _W("FPS: %.1f"), mpGame->GetFPS());
 		mpFont->Draw(cVector3f(5,17,5), cVector2f(12, 12), cColor(1,1), eFontAlign_Left,
 					 _W("Vel: %s"), mpCharBody->GetForceVelocity().ToString().c_str());
+		mpFont->Draw(cVector3f(5, 29, 5), cVector2f(12, 12), cColor(1,1), eFontAlign_Left,
+					 _W("Pos: %s"), mpCharBody->GetPosition().ToString().c_str());
 	}
 }
 

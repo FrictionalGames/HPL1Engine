@@ -51,17 +51,17 @@ namespace hpl {
 		mbCollideCharacter = true;
 
 		mbTestCollision = true;
-		
+
 		float fRadius = cMath::Max(avSize.x, avSize.z)*0.5f;
 		cMatrixf mtxOffset = cMath::MatrixRotateZ(kPi2f);
 		iCollideShape *pCollider = NULL;
-		
+
 		if(fabs(fRadius*2.0f - avSize.y)<0.01)
 			pCollider = mpWorld->CreateSphereShape(fRadius,NULL);
 		else
 			pCollider = mpWorld->CreateCylinderShape(fRadius, avSize.y,&mtxOffset);
 			//pCollider = mpWorld->CreateCapsuleShape(fRadius, avSize.y,&mtxOffset);
-		
+
 		mpBody = mpWorld->CreateBody(asName,pCollider);
 		mpBody->SetMass(0);
 		mpBody->SetGravity(false);
@@ -83,7 +83,7 @@ namespace hpl {
 			mfMoveDeacc[i]=20;
 			mbMoving[i]=false;
 		}
-		
+
 		mvForce = cVector3f(0,0,0);
 		mvVelolcity = cVector3f(0,0,0);
 
@@ -118,11 +118,11 @@ namespace hpl {
 
 		mfGroundFriction =0.1f;
 		mfAirFriction = 0.01f;
-		
+
 		mpRayCallback = hplNew( cCharacterBodyRay, () );
 		mpCollideCallbackGravity = hplNew( cCharacterBodyCollideGravity,());
 		mpCollideCallbackPush = hplNew( cCharacterBodyCollidePush,());
-		
+
 		mpCollideCallbackGravity->mpCharBody = this;
 		mpCollideCallbackPush->mpCharBody = this;
 
@@ -159,14 +159,14 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 	// RAY CALLBACK
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
 
 	cCharacterBodyRay::cCharacterBodyRay()
 	{
-		
+
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cCharacterBodyRay::Clear()
@@ -174,12 +174,12 @@ namespace hpl {
 		mfMinDist = 10000.0f;
 		mbCollide = false;
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	bool cCharacterBodyRay::OnIntersect(iPhysicsBody *pBody,cPhysicsRayParams *apParams)
 	{
-		if(	pBody->IsCharacter()==false && pBody->GetCollideCharacter() && 
+		if(	pBody->IsCharacter()==false && pBody->GetCollideCharacter() &&
 			apParams->mfDist < mfMinDist)
 		{
 			mfMinDist = apParams->mfDist;
@@ -196,12 +196,12 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	cCharacterBodyCollideGravity::cCharacterBodyCollideGravity()
 	{
-		mpCharBody = NULL;	
+		mpCharBody = NULL;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cCharacterBodyCollideGravity::OnCollision(iPhysicsBody *apBody, cCollideData *apCollideData)
@@ -215,12 +215,12 @@ namespace hpl {
 		}
 
 		if(apBody->GetMass()==0 || apBody->GetPushedByCharacterGravity()==false) return;
-	
+
 		bool bPushDown=false;
 		cVector3f vPoint(0,0,0);
 		float fNumPoints=0;
 
-		
+
 		//Go through all of the contact points and check if any is a movement up.
 		//This means the body is below the character and should be pushed down.
 		for(int i=0; i< apCollideData->mlNumOfPoints; i++)
@@ -234,22 +234,22 @@ namespace hpl {
 				vPoint += point.mvPoint;
 			}
 		}
-        
+
 		if(bPushDown)
 		{
 			float fForceAdd =0;
-			
+
 			//Totally unrealistic force add
 			//Skip this for now and add better with more object specific stuff
 			/*if(mpCharBody->GetForceVelocity().y < 0)
 			{
 				fForceAdd = mpCharBody->GetForceVelocity().y * mpCharBody->GetMass() * 10;
 			}*/
-			
+
 			vPoint = vPoint / fNumPoints;
 			apBody->AddForceAtPosition(cVector3f(0,mpCharBody->GetMass() * -9.8f + fForceAdd,0), vPoint);
 		}
-		
+
 		if(mpCharBody->mpCallback)
 			mpCharBody->mpCallback->OnGravityCollide(mpCharBody,apBody,apCollideData);
 	}
@@ -264,7 +264,7 @@ namespace hpl {
 
 	cCharacterBodyCollidePush::cCharacterBodyCollidePush()
 	{
-		mpCharBody = NULL;	
+		mpCharBody = NULL;
 	}
 
 	//-----------------------------------------------------------------------
@@ -274,7 +274,7 @@ namespace hpl {
 		//No pushing if the player is not moving
 		if(mpCharBody->GetMoveSpeed(eCharDir_Forward)==0 &&
 			mpCharBody->GetMoveSpeed(eCharDir_Right)==0) return;
-		
+
 		//Check what bodies not to push.
 		if(apBody->GetMass()==0 || apBody->GetMass() > mpCharBody->GetMaxPushMass()) return;
 
@@ -287,7 +287,7 @@ namespace hpl {
 		for(int i=0; i< apCollideData->mlNumOfPoints; i++)
 		{
 			cCollidePoint &point = apCollideData->mvContactPoints[i];
-			
+
 			bPush = true;
 			fNumPoints+=1;
 			vPoint += point.mvPoint;
@@ -307,11 +307,11 @@ namespace hpl {
 			else
 			{
 				cVector3f vDir = cMath::Vector3Normalize(apBody->GetWorldPosition() - mpCharBody->GetPosition());
-				
+
 				apBody->AddForceAtPosition(vDir * mpCharBody->GetPushForce(), vPoint);
 			}
-		
-			
+
+
 		}
 
 	}
@@ -374,7 +374,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	int iCharacterBody::AddExtraSize(const cVector3f& avSize)
 	{
 		float fRadius = cMath::Max(avSize.x, avSize.z)*0.5f;
@@ -393,7 +393,7 @@ namespace hpl {
 
 		return (int)mvExtraBodies.size() -1;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void iCharacterBody::SetActiveSize(int alNum)
@@ -401,15 +401,15 @@ namespace hpl {
 		mpBody->SetActive(false);
 		mpBody = mvExtraBodies[alNum];
 		mpBody->SetActive(true);
-		
+
 		//Set size of the new body.
 		mvSize.y = mpBody->GetShape()->GetHeight();
 		mvSize.x = mpBody->GetShape()->GetRadius() * 2;
 		mvSize.z = mpBody->GetShape()->GetRadius() * 2;
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	void iCharacterBody::SetMaxPositiveMoveSpeed(eCharDir aDir, float afX)
 	{
 		mfMaxPosMoveSpeed[aDir] = afX;
@@ -426,7 +426,7 @@ namespace hpl {
 	{
 		return mfMaxNegMoveSpeed[aDir];
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void iCharacterBody::SetMoveSpeed(eCharDir aDir, float afX)
@@ -461,7 +461,7 @@ namespace hpl {
 	cVector3f iCharacterBody::GetVelocity(float afFrameTime)
 	{
 		if(afFrameTime <=0) return 0;
-		
+
         return (mvPosition - mvLastPosition) / afFrameTime;
 	}
 
@@ -487,7 +487,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	void iCharacterBody::SetFeetPosition(const cVector3f& avPos, bool abSmooth)
 	{
 		SetPosition(avPos + cVector3f(0,mpBody->GetShape()->GetSize().y/2,0),abSmooth);
@@ -579,41 +579,41 @@ namespace hpl {
 	{
 		return mbCustomGravity;
 	}
-	
+
 	void iCharacterBody::SetCustomGravityActive(bool abX)
 	{
 		mbCustomGravity = abX;
 	}
-	
+
 	void iCharacterBody::SetCustomGravity(const cVector3f& avCustomGravity)
 	{
 		mvCustomGravity = avCustomGravity;
 	}
-	
+
 	cVector3f iCharacterBody::GetCustomGravity()
 	{
 		return mvCustomGravity;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void iCharacterBody::SetForce(const cVector3f &avForce)
 	{
 		mvForce = avForce;
 	}
-	
+
 	void iCharacterBody::AddForce(const cVector3f &avForce)
 	{
 		mvForce += avForce;
 	}
-	
+
 	cVector3f iCharacterBody::GetForce()
 	{
 		return mvForce;
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	void iCharacterBody::Move(eCharDir aDir, float afMul, float afTimeStep)
 	{
 		mfMoveSpeed[aDir] += mfMoveAcc[aDir]*afMul*afTimeStep;
@@ -633,16 +633,16 @@ namespace hpl {
 		//Clear attached body
 		iPhysicsBody *pLastAttached = mpAttachedBody;
 		SetAttachedBody(NULL);
-		
+
 		//Update the move matrix.
-		UpdateMoveMarix();
+		UpdateMoveMatrix();
 
 		mvLastPosition = mvPosition;
 
 		/////////////////////////////
 		// Ground and air friction:
 		float fFriction = mbOnGround ? mfGroundFriction : mfAirFriction;
-	
+
 		//This is not working for some reason... Probably because it thinks its on the ground when it is really in the air.
 		/*if(mbOnGround)
 		{
@@ -666,22 +666,6 @@ namespace hpl {
 			mvVelolcity.x = vVelXZ.x * fSpeed;
 			mvVelolcity.z = vVelXZ.z * fSpeed;
 		}
-		
-				
-		////////////////////////////////
-		//Set the postion to the body
-		mpBody->SetPosition(mvPosition);
-
-		//////////////////////////
-		//Enable objects around the character
-		if(mvLastPosition != mvPosition)
-		{
-			cBoundingVolume largeBV = *mpBody->GetBV();
-			largeBV.SetSize(largeBV.GetSize()*1.02f);
-
-			mpWorld->EnableBodiesInBV(&largeBV,true);
-		}
-
 
 
 		/////////////////////////////////////////////////////
@@ -706,14 +690,14 @@ namespace hpl {
 				mbMoving[i] = false;
 			}
 		}
-		
+
 		/////////////////////////////////////////
 		//Update postion
 		if(mbClimbing)	mfCheckStepClimbCount =0;
 		else			mfCheckStepClimbCount -= afTimeStep;
-		
+
 		mbClimbing = false;
-		
+
 		cVector3f vPosAdd(0,0,0);
 
 		//Movement velocity
@@ -724,23 +708,37 @@ namespace hpl {
 		vPosAdd += vRight * mfMoveSpeed[eCharDir_Right] * afTimeStep;
 
 		//Make sure speed is not greate than max forward.
-		float fMaxStep =	mfMoveSpeed[eCharDir_Forward] >=0 ? 
-							mfMaxPosMoveSpeed[eCharDir_Forward] : 
+		float fMaxStep =	mfMoveSpeed[eCharDir_Forward] >=0 ?
+							mfMaxPosMoveSpeed[eCharDir_Forward] :
 							mfMaxNegMoveSpeed[eCharDir_Forward];
 		fMaxStep *= afTimeStep;
 		fMaxStep = cMath::Abs(fMaxStep);
-		
+
 		float fStepLength = vPosAdd.Length();
 		if(fStepLength > fMaxStep){
 			vPosAdd = vPosAdd / fStepLength;
 			vPosAdd = vPosAdd * fMaxStep;
 		}
 
+		mvPosition += vPosAdd;
+
+		//Set the postion to the body
+		mpBody->SetPosition(mvPosition);
+
+		//////////////////////////
+		//Enable objects around the character
+		if(mvLastPosition != mvPosition)
+		{
+			cBoundingVolume largeBV = *mpBody->GetBV();
+			largeBV.SetSize(largeBV.GetSize()*1.02f);
+
+			mpWorld->EnableBodiesInBV(&largeBV,true);
+		}
+
+
 		//Check if collision should be tested
 		if(mbTestCollision==false)
 		{
-			mpBody->SetPosition(mvPosition);
-			
 			UpdateCamera();
 			UpdateEntity();
 
@@ -748,12 +746,10 @@ namespace hpl {
 
 			return;
 		}
-		
+
 		/////////////////////////////////////
 		//Check for collision.
 		//Might wanna test this for x, y and z independently.
-		mvPosition += vPosAdd;
-
 		cVector3f vNewPos;
 		//vNewPos = mvPosition;
 		if(mvLastPosition.x != mvPosition.x || mvLastPosition.z != mvLastPosition.z)
@@ -765,22 +761,22 @@ namespace hpl {
 		{
 			vNewPos = mvPosition;
 		}
-				
+
 		//If the player is halted, check if there might be a step infront of him.
-		if(	(mvPosition.x != vNewPos.x || mvPosition.z != vNewPos.z || 
+		if(	(mvPosition.x != vNewPos.x || mvPosition.z != vNewPos.z ||
 			(mbGravityActive==false && mvPosition.y != vNewPos.y) ) )
 		{
 			mvPosition = vNewPos;
 
 			//Log("--- Colliding ----!\n");
-			
+
 			if(mfCheckStepClimbCount <= 0)
 			{
 				//Send a ray in front of the player.
 				cVector3f vShapeSize = mpBody->GetShape()->GetSize();
 				float fRadius = mpBody->GetShape()->GetRadius();
 				float fForwadAdd = vPosAdd.Length();
-				
+
 				//The direction of the movement.
 				cVector3f vMoveDir = cMath::Vector3Normalize(vPosAdd);
 
@@ -793,20 +789,20 @@ namespace hpl {
 				float fMinDist[3];
 				int lNumRays= 1;
 				if(mbAccurateClimbing) lNumRays = 3;
-				
+
 				/////////////////////////////////
 				//Calculate the different movements
 				vStepAdd[0] = vMoveDir*(fRadius+fForwadAdd);
-				
+
 				if(mbAccurateClimbing)
 				{
 					cVector3f vRightDir = cMath::MatrixMul(cMath::MatrixRotateY(kPi4f),vMoveDir);
 					vStepAdd[1] = (vRightDir*fRadius)+(vMoveDir*fForwadAdd);
-					
+
 					cVector3f vLeftDir = cMath::MatrixMul(cMath::MatrixRotateY(-kPi4f),vMoveDir);
 					vStepAdd[2] = (vLeftDir*fRadius)+(vMoveDir*fForwadAdd);
 				}
-				
+
 				/////////////////////////////////
 				//Shot the rays
 				for(int i=0; i< lNumRays; ++i)
@@ -819,7 +815,7 @@ namespace hpl {
 					bCollided[i] = mpRayCallback->mbCollide;
 					fMinDist[i] = mpRayCallback->mfMinDist;
 				}
-				
+
 				/////////////////////////////////7
 				// Check if the step can be climbed.
 				for(int i=0; i< lNumRays; ++i)
@@ -838,7 +834,7 @@ namespace hpl {
 						cVector3f vStepPos = mvPosition + cVector3f(0,fHeight+mfClimbHeightAdd,0)+
 							(vMoveDir*fForwadAdd*mfClimbForwardMul);
 
-						mpWorld->CheckShapeWorldCollision(&vNewPos,mpBody->GetShape(), 
+						mpWorld->CheckShapeWorldCollision(&vNewPos,mpBody->GetShape(),
 							cMath::MatrixTranslate(vStepPos),mpBody,
 							false, true,NULL,mbCollideCharacter);
 						//Log("Old pos: (%s) StepPos: (%s) NewPos: (%s)\n",mvPosition.ToString().c_str(),
@@ -857,8 +853,8 @@ namespace hpl {
 				mfCheckStepClimbCount = mfCheckStepClimbInterval;
 			}
 		}
-		
-		
+
+
 		if(mbGravityActive==false){
 			//Set the postion to the body
 			mpBody->SetPosition(mvPosition);
@@ -894,7 +890,7 @@ namespace hpl {
 		//Log(" vel2: %s\n",mvVelolcity.ToString().c_str());
 
 		mvForce = cVector3f(0,0,0);
-		
+
 		cVector3f vLastVelocity(0,0,0);
 
 		////////////////////////////
@@ -902,11 +898,11 @@ namespace hpl {
 		if(mvVelolcity.x !=0 || mvVelolcity.z!=0)
 		{
 			mvPosition += cVector3f(mvVelolcity.x, 0, mvVelolcity.z) * afTimeStep;
-			
+
 			vNewPos = mvPosition;
 			bool bCollide = mpWorld->CheckShapeWorldCollision(&vNewPos,mpBody->GetShape(), cMath::MatrixTranslate(mvPosition),
 												mpBody,false,true,NULL,mbCollideCharacter);
-				
+
 			//Set new velocity depending on collisions.
 			vLastVelocity.x = mvVelolcity.x;
 			vLastVelocity.z = mvVelolcity.z;
@@ -918,36 +914,36 @@ namespace hpl {
 			//if((vLastVelocity.x<0 && mvVelolcity.x>0) || (vLastVelocity.x>0 && mvVelolcity.x<0)) mvVelolcity.x =0;
 			//if((vLastVelocity.z<0 && mvVelolcity.z>0) || (vLastVelocity.z>0 && mvVelolcity.z<0)) mvVelolcity.z =0;
 
-					
+
 			mvPosition = vNewPos;
 			//Log("Some strange force!!\n");
 		}
-		
+
 		//if(mbGravityActive==false)return;
 		//Log("Before yforce: %s\n",mvPosition.ToString().c_str());
-		
-		
+
+
 		////////////////////////////////
 		// Check y collision, this is to be sure if the character touches the ground.
 		bool bCollide = false;
-		
+
 		//Log("VelY 2: %f\n", mvVelolcity.y);
-		
+
 		cVector3f vPosbeforeGrav = mvPosition;
 		mvPosition.y += mvVelolcity.y * afTimeStep;
 
-				
+
 		vNewPos = mvPosition;
-		bCollide = mpWorld->CheckShapeWorldCollision(&vNewPos,mpBody->GetShape(), 
+		bCollide = mpWorld->CheckShapeWorldCollision(&vNewPos,mpBody->GetShape(),
 											cMath::MatrixTranslate(mvPosition), mpBody,false,true,
 											mpCollideCallbackGravity,mbCollideCharacter);
-		
-			
+
+
 		//Set new velocity depending on collisions.
 		vLastVelocity.y = mvVelolcity.y;
 
 		//Log(" vel4: %s\n",mvVelolcity.ToString().c_str());
-		
+
 		//If climbing we don't wanna leave behind a great up speed.
 		if(mbClimbing)
 		{
@@ -965,13 +961,13 @@ namespace hpl {
 		}
 
 		//Log(" vel5: %s\n",mvVelolcity.ToString().c_str());
-		
+
 		//Log("After Velocity: %s\n--------\n",mvVelolcity.ToString().c_str());
 		//Make sure the speed doesn't change direction.Should not be needed.
 		//if((vLastVelocity.y<0 && mvVelolcity.y>0) || (vLastVelocity.y>0 && mvVelolcity.y<0)) mvVelolcity.y =0;
-		
+
 		mvPosition = vNewPos;
-		
+
 		///////////////////////////////////////////////
 		//Determine if character is on the ground.
 		if(mbClimbing)
@@ -995,18 +991,18 @@ namespace hpl {
 				mbOnGround = false;
 			}
 		}
-		
+
 		//This is so that the character does not slide down on
 		//small slopes.
 		if(mbOnGround && mvVelolcity.y<0 && mvVelolcity.y > -0.15)
 		{
 			mvPosition = vPosbeforeGrav;
 		}
-	
+
 
 		//debug:
 		//mbOnGround = true;
-				
+
 		//////////////////////////////
 		//Update attached objects
 		UpdateCamera();
@@ -1019,13 +1015,13 @@ namespace hpl {
 
 		//////////////////////////////
 		//Enable close by objects
-		
+
 		if(mbEnableNearbyBodies)
 		{
 			cWorld3D *pWorld = mpWorld->GetWorld3D();
 			cPortalContainerEntityIterator bodyIt = pWorld->GetPortalContainer()->GetEntityIterator(
 															mpBody->GetBoundingVolume());
-			
+
 			cBoundingVolume bv = *mpBody->GetBV();
 			bv.SetLocalMinMax(bv.GetLocalMin() - cVector3f(0.03f,0.03f,0.03f),bv.GetLocalMax() + cVector3f(0.03f,0.03f,0.03f));
 			float fHeadY = mpBody->GetWorldPosition().y + mpBody->GetShape()->GetSize().y/2 - 0.01f;
@@ -1036,10 +1032,10 @@ namespace hpl {
 			while(bodyIt.HasNext())
 			{
 				iPhysicsBody *pBody = static_cast<iPhysicsBody*>(bodyIt.Next());
-				
+
 				if(	pBody->IsActive() &&
-					fHeadY <= pBody->GetLocalPosition().y && 
-					pBody->GetEnabled()==false && 
+					fHeadY <= pBody->GetLocalPosition().y &&
+					pBody->GetEnabled()==false &&
 					cMath::CheckCollisionBV(*pBody->GetBV(), bv))
 				{
 					pBody->SetEnabled(true);
@@ -1047,14 +1043,14 @@ namespace hpl {
 			}
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void iCharacterBody::SetCamera(cCamera3D *apCam)
 	{
 		mpCamera = apCam;
 	}
-	
+
 	cCamera3D* iCharacterBody::GetCamera()
 	{
 		return mpCamera;
@@ -1072,7 +1068,7 @@ namespace hpl {
 	//-----------------------------------------------------------------------
 
 	iCollideShape * iCharacterBody::GetShape()
-	{ 
+	{
 		return mpBody->GetShape();
 	}
 
@@ -1125,13 +1121,13 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	
+
 	//////////////////////////////////////////////////////////////////////////
 	// PRIVATE METHODS
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	void iCharacterBody::UpdateMoveMarix()
+	void iCharacterBody::UpdateMoveMatrix()
 	{
 		m_mtxMove = cMath::MatrixRotateY(-mfYaw);
 		m_mtxMove = cMath::MatrixMul(cMath::MatrixRotateX(-mfPitch),m_mtxMove);
@@ -1146,7 +1142,7 @@ namespace hpl {
 
 		if(mlCameraSmoothPosNum <=0)
 		{
-			cVector3f vPos = (mvPosition - cVector3f(0,mpBody->GetShape()->GetSize().y/2.0f,0)) + 
+			cVector3f vPos = (mvPosition - cVector3f(0,mpBody->GetShape()->GetSize().y/2.0f,0)) +
 							cVector3f(0,mvSize.y,0);
 			mpCamera->SetPosition(vPos + mvCameraPosAdd);
 		}
@@ -1175,9 +1171,9 @@ namespace hpl {
 			cVector3f vPos = vTotalPos / fNum;
 			cVector3f vFirstSize = mvExtraBodies[0]->GetShape()->GetSize();
 
-			cVector3f vHeadPos = (vPos - cVector3f(0,mpBody->GetShape()->GetSize().y/2.0f,0)) + 
+			cVector3f vHeadPos = (vPos - cVector3f(0,mpBody->GetShape()->GetSize().y/2.0f,0)) +
 								cVector3f(0,vFirstSize.y,0);
-			
+
 			mpCamera->SetPosition(vHeadPos + mvCameraPosAdd);
 		}
 	}
@@ -1193,7 +1189,7 @@ namespace hpl {
 		{
 			cMatrixf mtxEntity = cMath::MatrixRotateY(mfYaw);
 			mtxEntity.SetTranslation(mvPosition);
-			
+
 			mpEntity->SetMatrix(cMath::MatrixMul(mtxEntity,m_mtxEntityOffset));
 		}
 		//Smooth the camera position
@@ -1222,12 +1218,12 @@ namespace hpl {
 
 			cMatrixf mtxEntity = cMath::MatrixInverse(m_mtxMove);
 			mtxEntity.SetTranslation(0);
-			
+
 			mtxEntity = cMath::MatrixMul(m_mtxEntityPostOffset,mtxEntity);
 			mtxEntity.SetTranslation(mtxEntity.GetTranslation() + vPos);
-			
+
 			mtxEntity = cMath::MatrixMul(mtxEntity,m_mtxEntityOffset);
-			
+
 			mpEntity->SetMatrix(mtxEntity);
 		}
 	}
@@ -1254,10 +1250,10 @@ namespace hpl {
 
 			mvPosition += vPosAdd;
 		}
-		
+
 		m_mtxAttachedPrevMatrix = mpAttachedBody->GetWorldMatrix();
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	//////////////////////////////////////////////////////////////////////////
@@ -1325,11 +1321,11 @@ namespace hpl {
 		iPhysicsWorld *pWorld = apGame->GetScene()->GetWorld3D()->GetPhysicsWorld();
 
 		iCharacterBody *pBody = pWorld->CreateCharacterBody(msName,mvSize);
-		
+
 		//Destroy the recently created body.
 		pWorld->DestroyBody(pBody->mpBody);
 		pBody->mvExtraBodies.clear();
-		
+
 		return pBody;
 	}
 
@@ -1364,10 +1360,10 @@ namespace hpl {
 		kSaveData_SaveTo(mbActive);
 
 		kSaveData_SaveTo(mbCollideCharacter);
-		
+
 		kSaveData_SaveTo(mvPosition);
 		kSaveData_SaveTo(mvLastPosition);
-		
+
 		kSaveData_SaveTo(mfMaxPosMoveSpeed[0]);
 		kSaveData_SaveTo(mfMaxNegMoveSpeed[0]);
 		kSaveData_SaveTo(mfMoveSpeed[0]);
@@ -1407,12 +1403,12 @@ namespace hpl {
 		kSaveData_SaveTo(mbClimbing);
 
 		kSaveData_SaveTo(mfGroundFriction);
-		
+
 
 		//////////////////////////
 		//Containers
 
-		
+
 		//////////////////////////
 		//Pointers
 		kSaveData_SaveObject(mpEntity,mlEntityId);
@@ -1437,7 +1433,7 @@ namespace hpl {
 		kSaveData_LoadFrom(mbActive);
 
 		kSaveData_LoadFrom(mbCollideCharacter);
-		
+
 		kSaveData_LoadFrom(mvPosition);
 		kSaveData_LoadFrom(mvLastPosition);
 

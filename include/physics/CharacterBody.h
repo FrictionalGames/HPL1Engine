@@ -258,13 +258,13 @@ namespace hpl {
 
 		void SetEntity(iEntity3D *apEntity);
 		iEntity3D* GetEntity();
-		
+
 		void SetEntityOffset(const cMatrixf &a_mtxOffset);
 		const cMatrixf & GetEntityOffset();
-		
+
 		void SetEntityPostOffset(const cMatrixf &a_mtxOffset);
 		const cMatrixf & GetEntityPostOffset();
-		
+
 		void SetEntitySmoothPosNum(int alNum){ mlEntitySmoothPosNum = alNum;}
 		int GetEntitySmoothPosNum(){ return mlEntitySmoothPosNum;}
 
@@ -308,9 +308,9 @@ namespace hpl {
 
 		void SetAttachedBody(iPhysicsBody *apBody);
 		iPhysicsBody* GetAttachedBody(){ return mpAttachedBody;}
-		
+
 		//O=nly sue when you know what you are doing, Update calls these
-		void UpdateMoveMarix();
+		void UpdateMoveMatrix();
 
 		void UpdateCamera();
 		void UpdateEntity();
@@ -325,7 +325,7 @@ namespace hpl {
 		virtual void SaveDataSetup(cSaveObjectHandler *apSaveObjectHandler, cGame *apGame);
 
 	protected:
-		
+
 		tString msName;
 
 		float mfMass;

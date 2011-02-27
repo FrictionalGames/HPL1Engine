@@ -7,6 +7,7 @@
  */
 #include <hpl.h>
 #include <impl/SDLGameSetup.h>
+#include <impl/PhysicsBodyNewton.h>
 
 #pragma comment(lib, "HPL.lib")
 
@@ -40,6 +41,7 @@ public:
 		gpGame->GetPhysics()->LoadSurfaceData("materials.cfg");
 
 		mpWorld = gpGame->GetResources()->GetMeshLoaderHandler()->LoadWorld("maps/maptest0_complex.dae",0);
+		mpWorld->GetPhysicsWorld()->SetAccuracyLevel(ePhysicsAccuracy_High);
 		//mpWorld = gpGame->GetResources()->GetMeshLoaderHandler()->LoadWorld("maps/simple.dae");
 		//mpWorld = gpGame->GetResources()->GetMeshLoaderHandler()->LoadWorld("maps/testlevel2.dae");
 
@@ -48,20 +50,20 @@ public:
 		gpGame->GetScene()->SetWorld3D(mpWorld);
 
 		//Create crate
-		/*cMeshEntity *pEntity;
-		iCollideShape *pShape;
-		iPhysicsBody *pBody;
-		cMesh* pMesh = gpGame->GetResources()->GetMeshManager()->CreateMesh("Woodbox.dae");
-		if(pMesh==NULL) FatalError("Couldn't load mesh\n");
+		// cMeshEntity *pEntity;
+		// iCollideShape *pShape;
+		// iPhysicsBody *pBody;
+		// cMesh* pMesh = gpGame->GetResources()->GetMeshManager()->CreateMesh("Woodbox.dae");
+		// if(pMesh==NULL) FatalError("Couldn't load mesh\n");
 
-		pEntity = mpWorld->CreateMeshEntity("Box1",pMesh);
-		pEntity->SetCastsShadows(true);
+		// pEntity = mpWorld->CreateMeshEntity("Box1",pMesh);
+		// pEntity->SetCastsShadows(true);
 
-		pShape = pMesh->CreateCollideShape(mpWorld->GetPhysicsWorld());
-		pBody = mpWorld->GetPhysicsWorld()->CreateBody("Box",pShape);
-		pBody->SetPosition(cVector3f(-0.0f,1.7f,0));
-		pBody->SetMass(1);
-		pBody->CreateNode()->AddEntity(pEntity);*/
+		// pShape = pMesh->CreateCollideShape(mpWorld->GetPhysicsWorld());
+		// pBody = mpWorld->GetPhysicsWorld()->CreateBody("Box",pShape);
+		// pBody->SetPosition(cVector3f(-0.0f,1.7f,0));
+		// pBody->SetMass(1);
+		// pBody->CreateNode()->AddEntity(pEntity);
 
 		mpFont = gpGame->GetResources()->GetFontManager()->CreateFontData("viewer.fnt");
 	}
@@ -97,8 +99,8 @@ public:
 
 			unsigned long lTime = gpGame->GetSystem()->GetLowLevel()->GetTime() - lStartTime;
 
-			Log("Time with pretest: %d tested: %d pretested: %d\n",lTime,mlTested/10000,
-																	mlPreTested/10000);
+			Log("Time with pretest: %lu tested: %d pretested: %d\n", lTime,
+				mlTested/10000, mlPreTested/10000);
 
 			mlPreTested =0;
 			mlTested =0;
@@ -108,7 +110,7 @@ public:
 				mpWorld->GetPhysicsWorld()->CastRay(this,vStart,vEnd,true,true,true,false);
 
 			lTime = gpGame->GetSystem()->GetLowLevel()->GetTime() - lStartTime;
-			Log("Time with out pretest: %d tested: %d\n",lTime,mlTested/10000);
+			Log("Time with out pretest: %lu tested: %d\n", lTime, mlTested/10000);
 		}
 	}
 
@@ -145,16 +147,47 @@ public:
 	{
 	}
 
+	cColor GetColor(iPhysicsBody *body)
+	{
+		tString name = body->GetName();
+		cCRC crc(name.length());
+		for (tString::iterator it = name.begin(); it != name.end(); ++it)
+			crc.PutByte(*it);
+
+		tCRCKey val = crc.Done();
+		//Log("CRC '%s' => '%u'\n", name.c_str(), val);
+		const float value = float(val >> 24) / 0xff;
+		const float sat = float(val >> 16 & 0xff) / 0xff;
+		const float chroma = value * sat;
+
+		float hue = float(val & 0xff) / 0xff * 6;
+		float x = chroma * (1 - fabs(fmod(hue, 2) - 1));
+		cColor col;
+		if (x < 1)
+			col = cColor(chroma, x, 0);
+		else if (x < 2)
+			col = cColor(x, chroma, 0);
+		else if (x < 3)
+			col = cColor(0, chroma, x);
+		else if (x < 4)
+			col = cColor(0, x, chroma);
+		else if (x < 5)
+			col = cColor(x, 0, chroma);
+		else
+			col = cColor(chroma, 0, x);
+		col = col + (value - chroma);
+		return col;
+	}
+
 	void OnPostSceneDraw()
 	{
-		//return;
 		cCamera3D *pCam = static_cast<cCamera3D*>(gpGame->GetScene()->GetCamera());
 		mpLowLevelGraphics->SetMatrix(eMatrix_ModelView, pCam->GetViewMatrix());
 
 		mpLowLevelGraphics->SetTexture(0,NULL);
 		mpLowLevelGraphics->SetBlendActive(false);
 
-		//mpLowLevelGraphics->SetDepthTestActive(false);
+		mpLowLevelGraphics->SetDepthTestActive(false);
 		//mpLowLevelGraphics->SetDepthWriteActive(false);
 
 		//mpWorld->GetPhysicsWorld()->RenderDebugGeometry(mpLowLevelGraphics,cColor(1,1,1));
@@ -164,14 +197,23 @@ public:
 		while(entIt.HasNext())
 		{
 			iPhysicsBody *pBody = static_cast<iPhysicsBody*>(entIt.Next());
-			if(pBody->IsCharacter()==false)
-				pBody->RenderDebugGeometry(mpLowLevelGraphics,cColor(1,1,1));
+			/*if(pBody->IsCharacter())
+				pBody->RenderDebugGeometry(mpLowLevelGraphics,cColor(1,1,0));
+			else
+			pBody->RenderDebugGeometry(mpLowLevelGraphics,cColor(1,1,1));*/
+			pBody->RenderDebugGeometry(mpLowLevelGraphics, GetColor(pBody));
+
+			/*float nmtx[16];
+			NewtonBodyGetMatrix(static_cast<cPhysicsBodyNewton *>(pBody)->GetNewtonBody(), nmtx);
+			cMatrixf mtx;
+			mtx.FromTranspose(nmtx);
+			mpLowLevelGraphics->DrawSphere(mtx.GetTranslation(), 0.7f, GetColor(pBody));*/
 		}
 
-		cVector3f vStart = cVector3f(-16,0.6,16);
+		/*cVector3f vStart = cVector3f(-16,0.6,16);
 		cVector3f vEnd = cVector3f(16,0.6,-16);
 
-		mpLowLevelGraphics->DrawLine(vStart,vEnd,cColor(1,0.5f,0,0));
+		mpLowLevelGraphics->DrawLine(vStart,vEnd,cColor(1,0.5f,0,0));*/
 
 		mpLowLevelGraphics->SetDepthTestActive(true);
 		mpLowLevelGraphics->SetDepthWriteActive(true);

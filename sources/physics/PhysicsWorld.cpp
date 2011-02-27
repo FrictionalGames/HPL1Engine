@@ -49,7 +49,7 @@ namespace hpl {
 
 	iPhysicsWorld::~iPhysicsWorld()
 	{
-		
+
 	}
 
 	//-----------------------------------------------------------------------
@@ -57,7 +57,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 	// PUBLIC METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
 
 	void iPhysicsWorld::Update(float afTimeStep)
@@ -74,11 +74,11 @@ namespace hpl {
 
 			pCtrl->Update(afTimeStep);
 		}
-		
+
 
 		////////////////////////////////////
 		//Update character bodies
-		unsigned int lTime = GetApplicationTime();			
+		unsigned int lTime = GetApplicationTime();
 		tCharacterBodyListIt CharIt = mlstCharBodies.begin();
 		for(; CharIt != mlstCharBodies.end(); ++CharIt)
 		{
@@ -91,24 +91,24 @@ namespace hpl {
 		}
 		//LogUpdate(" Updating chars took %d ms\n",mpWorld3D->GetSystem()->GetLowLevel()->GetTime() - lTime);
 
-		
+
 		////////////////////////////////////
 		//Update the rigid bodies before simulation.
 		tPhysicsBodyListIt BodyIt = mlstBodies.begin();
 		for(; BodyIt != mlstBodies.end(); ++BodyIt)
 		{
 			iPhysicsBody *pBody = *BodyIt;
-			
+
 			pBody->UpdateBeforeSimulate(afTimeStep);
-			
+
 		}
 
 		////////////////////////////////////
 		//Simulate the physics
-		lTime = GetApplicationTime();			
+		lTime = GetApplicationTime();
 		Simulate(afTimeStep);
 		//LogUpdate(" Updating lowlevel physics took %d ms\n",mpWorld3D->GetSystem()->GetLowLevel()->GetTime() - lTime);
-				
+
 		////////////////////////////////////
 		//Update the joints after simulation.
 		tPhysicsJointListIt JointIt = mlstJoints.begin();
@@ -117,7 +117,7 @@ namespace hpl {
 			iPhysicsJoint *pJoint = *JointIt;
 
 			pJoint->OnPhysicsUpdate();
-            
+
 			if(pJoint->CheckBreakage())
 			{
 				JointIt = mlstJoints.erase(JointIt);
@@ -134,11 +134,11 @@ namespace hpl {
 		for(; BodyIt != mlstBodies.end(); ++BodyIt)
 		{
 			iPhysicsBody *pBody = *BodyIt;
-			
+
 			pBody->UpdateAfterSimulate(afTimeStep);
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void iPhysicsWorld::DestroyShape(iCollideShape *apShape)
@@ -151,7 +151,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	void iPhysicsWorld::DestroyBody(iPhysicsBody* apBody)
 	{
 		//STLFindAndDelete(mlstBodies, apBody);
@@ -201,7 +201,7 @@ namespace hpl {
 		for(; BodyIt != mlstBodies.end(); ++BodyIt)
 		{
 			iPhysicsBody *pBody = *BodyIt;
-			
+
 			if(pBody->GetMass() > 0 && cMath::CheckCollisionBV(*apBV,*pBody->GetBV()))
 			{
 				//quick fix for oscillation, might skip
@@ -233,16 +233,16 @@ namespace hpl {
 
 	void iPhysicsWorld::DestroyCharacterBody(iCharacterBody* apBody)
 	{
-		STLFindAndDelete(mlstCharBodies, apBody);		
+		STLFindAndDelete(mlstCharBodies, apBody);
 	}
-		
+
 	iPhysicsBody *iPhysicsWorld::GetCharacterBody(const tString &asName)
 	{
 		return (iPhysicsBody*)STLFindByName(mlstCharBodies, asName);
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	iPhysicsMaterial* iPhysicsWorld::GetMaterialFromName(const tString &asName)
 	{
 		tPhysicsMaterialMapIt it = m_mapMaterials.find(asName);
@@ -260,7 +260,7 @@ namespace hpl {
 
 		return pMaterial;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cPhysicsMaterialIterator iPhysicsWorld::GetMaterialIterator()
@@ -269,11 +269,11 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	void iPhysicsWorld::DestroyAll()
 	{
 		STLDeleteAll(mlstCharBodies);
-		
+
 		//Bodies
 		tPhysicsBodyListIt it = mlstBodies.begin();
 		for(; it != mlstBodies.end(); ++it)
@@ -300,7 +300,7 @@ namespace hpl {
 		for(; BodyIt != mlstBodies.end(); ++BodyIt)
 		{
 			iPhysicsBody *pBody = *BodyIt;
-			
+
 			if(pBody->IsSaved())
 			{
 				iSaveData *pData =pBody->CreateSaveData();
@@ -323,7 +323,7 @@ namespace hpl {
 				apHandler->Add(pData);
 			}
 		}
-		
+
 		////////////////////////////////
 		//Add all joints
 		tPhysicsJointListIt JointIt = mlstJoints.begin();
@@ -339,7 +339,7 @@ namespace hpl {
 			}
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void iPhysicsWorld::DestroyController(iPhysicsController *apController)
@@ -356,16 +356,16 @@ namespace hpl {
 		for(size_t i=0; i < mvContactPoints.size(); i++)
 		{
 			apLowLevel->DrawSphere(mvContactPoints[i].mvPoint,0.2f, aPointColor);
-			apLowLevel->DrawLine(mvContactPoints[i].mvPoint, 
+			apLowLevel->DrawLine(mvContactPoints[i].mvPoint,
 								mvContactPoints[i].mvNormal * mvContactPoints[i].mfDepth *0.2f,
 								aLineColor);
 			//Log("Rendering\n");
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
-	bool iPhysicsWorld::CheckShapeWorldCollision(cVector3f *apNewPos, 
+
+	bool iPhysicsWorld::CheckShapeWorldCollision(cVector3f *apNewPos,
 							iCollideShape* apShape, const cMatrixf& a_mtxTransform,
 							iPhysicsBody *apSkipBody, bool abSkipStatic, bool abIsCharacter,
 							iPhysicsWorldCollisionCallback *apCallback,
@@ -380,11 +380,11 @@ namespace hpl {
 		cBoundingVolume boundingVolume = apShape->GetBoundingVolume();
 		boundingVolume.SetTransform(cMath::MatrixMul(a_mtxTransform, boundingVolume.GetTransform()));
 
-		//Log("MAIN Position: %s Size: %s\n",boundingVolume.GetWorldCenter().ToString().c_str(),
-		//	boundingVolume.GetSize().ToString().c_str());
+		// Log("MAIN Position: %s Size: %s\n",boundingVolume.GetWorldCenter().ToString().c_str(),
+		// 	boundingVolume.GetSize().ToString().c_str());
 
 		//if(abDebug)Log("--------------\n");
-		
+
 		//tPhysicsBodyListIt it = mlstBodies.begin();
 		//for(; it != mlstBodies.end(); ++it)
 		cPortalContainerEntityIterator entIt = mpWorld3D->GetPortalContainer()->GetEntityIterator(&boundingVolume);
@@ -396,8 +396,8 @@ namespace hpl {
 			//if(abDebug) Log("Checking %s\n",pBody->GetName().c_str());
 
 
-			
-			
+
+
 			if(pBody->IsCharacter() && abCollideCharacter==false) continue;
 			if(pBody->IsActive()==false)continue;
 			if(pBody == apSkipBody) continue;
@@ -411,26 +411,36 @@ namespace hpl {
 				continue;
 
 			}
-		
+
 		   	collideData.SetMaxSize(32);
-			bool bRet = CheckShapeCollision(apShape,a_mtxTransform, pBody->GetShape(),pBody->GetLocalMatrix(),
+			bool bRet = CheckShapeCollision(apShape,a_mtxTransform,
+											pBody->GetShape(),pBody->GetLocalMatrix(),
 											collideData, 32);
 
 			if(bRet)
 			{
 				//if(abDebug) Log(" Collided with '%s'\n",pBody->GetName().c_str());
-					
+
 				if(apCallback) apCallback->OnCollision(pBody, &collideData);
 
 				for(int i=0; i< collideData.mlNumOfPoints; i++)
 				{
 					cCollidePoint &point = collideData.mvContactPoints[i];
-				
-					cVector3f vPush = point.mvNormal*point.mfDepth;
 
+					// EXTREMLY FUCKING BIG HACK!
+					// You have been warned.
+					int mul = 1;
+					cVector3f iv = point.mvPoint - boundingVolume.GetWorldCenter();
+					iv.Normalise();
+					if (cMath::Vector3Dot(iv, point.mvNormal) > 0)
+						mul = -1;
+
+					cVector3f vPush = point.mvNormal * (point.mfDepth * mul);
+					// Log("Bbox %s, iv %s\n", boundingVolume.GetWorldCenter().ToString().c_str(), iv.ToString().c_str());
 					if(std::abs(vPushVec.x) < std::abs(vPush.x)) vPushVec.x = vPush.x;
 					if(std::abs(vPushVec.y) < std::abs(vPush.y)) vPushVec.y = vPush.y;
 					if(std::abs(vPushVec.z) < std::abs(vPush.z)) vPushVec.z = vPush.z;
+					//Log("xx vPush %s, vPushVec %s\n", vPush.ToString().c_str(), vPushVec.ToString().c_str());
 				}
 				bCollide = true;
 			}
