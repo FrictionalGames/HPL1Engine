@@ -1,0 +1,5 @@
+The following CMake find modules are taken from osgaudio (http://code.google.com/p/osgaudio/) and are under LGPL 2.1
+- FindALUT.cmake
+- FindOGG.cmake
+- FindVorbis.cmake
+
