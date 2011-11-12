@@ -279,7 +279,6 @@ namespace hpl {
 			//Position and normal
 			cVector3f vPos, vNormal;
 			NewtonMaterialGetContactPositionAndNormal(pMaterial, pBody0, vPos.v, vNormal.v);
-
 			ContactData.mvContactNormal += vNormal;
 			ContactData.mvContactPosition += vPos;
 

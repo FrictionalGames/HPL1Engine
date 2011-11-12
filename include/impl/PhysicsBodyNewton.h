@@ -93,7 +93,7 @@ namespace hpl {
 		static void OnUpdateCallback(const NewtonBody* apBody, dFloat afTimeStep, int alThreadIndex);
 
 		NewtonBody *mpNewtonBody;
-		NewtonWorld *mpNewtonWorld;
+		const NewtonWorld *mpNewtonWorld;
 
 		cPhysicsBodyNewtonCallback *mpCallback;
 

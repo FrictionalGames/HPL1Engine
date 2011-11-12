@@ -31,7 +31,7 @@ namespace hpl {
 	{
 	public:
 		cPhysicsWorldNewton();
-		~cPhysicsWorldNewton();
+		virtual ~cPhysicsWorldNewton();
 
 		void Simulate(float afTimeStep);
 
@@ -87,9 +87,9 @@ namespace hpl {
 
 		void RenderDebugGeometry(iLowLevelGraphics *apLowLevel, const cColor& aColor);
 
-		NewtonWorld* GetNewtonWorld(){ return mpNewtonWorld;}
+		const NewtonWorld* GetNewtonWorld(){ return mpNewtonWorld;}
 	private:
-		NewtonWorld *mpNewtonWorld;
+		const NewtonWorld *mpNewtonWorld;
 
 		float* mpTempPoints;
 		float* mpTempNormals;

@@ -29,8 +29,8 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	cCollideShapeNewton::cCollideShapeNewton(eCollideShapeType aType, const cVector3f &avSize,
-											cMatrixf* apOffsetMtx, NewtonWorld* apNewtonWorld,
+	cCollideShapeNewton::cCollideShapeNewton(eCollideShapeType aType, const cVector3f &avSize, 
+											cMatrixf* apOffsetMtx, const NewtonWorld* apNewtonWorld,
 											iPhysicsWorld *apWorld)
 	: iCollideShape(apWorld)
 	{
@@ -230,7 +230,7 @@ namespace hpl {
 			mvSubShapes.push_back(avShapes[i]);
 
 			cCollideShapeNewton *pNewtonShape = static_cast<cCollideShapeNewton*>(avShapes[i]);
-			vNewtonColliders.push_back(pNewtonShape->GetNewtonCollision());
+			vNewtonColliders.push_back(const_cast<NewtonCollision*>(pNewtonShape->GetNewtonCollision()));
 
 			mfVolume += pNewtonShape->GetVolume();
 		}

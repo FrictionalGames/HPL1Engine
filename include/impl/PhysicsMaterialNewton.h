@@ -59,7 +59,7 @@ namespace hpl {
 										const NewtonBody* apBody1, const NewtonBody* apBody2, int alThreadIndex);
 		static void ProcessContactCallback(const NewtonJoint* contacts, dFloat afTimeStep, int alThreadIndex);
 
-		NewtonWorld *mpNewtonWorld;
+		const NewtonWorld *mpNewtonWorld;
 
 		int mlMaterialId;
 
