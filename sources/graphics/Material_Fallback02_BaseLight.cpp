@@ -28,7 +28,7 @@
 #include "scene/Light3DSpot.h"
 #include "system/LowLevelSystem.h"
 
-#include <GL/GLee.h>
+#include <GLee.h>
 
 namespace hpl {
 

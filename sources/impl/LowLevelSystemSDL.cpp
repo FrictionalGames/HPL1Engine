@@ -44,8 +44,7 @@
 
 #include "SDL/SDL.h"
 
-#include "impl/stdstring.h"
-#include "impl/scriptstring.h"
+#include "impl/scriptstdstring.h"
 
 #include "system/String.h"
 

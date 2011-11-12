@@ -8,7 +8,7 @@
 #include <hpl.h>
 #include <impl/SDLGameSetup.h>
 
-#include <GL/GLee.h>
+#include <GLee.h>
 
 #include "../Common/SimpleCamera.h"
 
