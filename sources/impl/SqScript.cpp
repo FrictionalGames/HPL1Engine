@@ -51,7 +51,7 @@ namespace hpl {
 
 	cSqScript::~cSqScript()
 	{
-		mpScriptEngine->Discard(msModuleName.c_str());
+		mpScriptEngine->DiscardModule(msModuleName.c_str());
 		mpContext->Release();
 	}
 
