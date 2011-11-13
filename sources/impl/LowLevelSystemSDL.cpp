@@ -29,6 +29,9 @@
 #define _UNICODE
 
 #include <stdio.h>
+#ifdef _WCHAR_H
+#	include <wchar.h> // for vswprintf
+#endif
 #include <stdarg.h>
 #include <stdlib.h>
 #include <time.h>
@@ -416,8 +419,9 @@ namespace hpl {
 
 		if (fmt == NULL)
 			return;
+#ifdef _WCHAR_H
 		vswprintf(text, 2047, fmt, ap);
-
+#endif
 		tWString sMess = _W("");
 
 		#ifdef WIN32
@@ -445,8 +449,9 @@ namespace hpl {
 		sMess += asCaption;
 		sMess +=_W("\n\n");
 		sMess += text;
-		fprintf(stderr, "%ls\n\n%ls",asCaption,text);
+		fprintf(stderr, "%ls\n\n%ls", asCaption, text);
 		#endif
+
 	}
 
 	void CreateMessageBoxW ( eMsgBoxType eType, const wchar_t* asCaption, const wchar_t* fmt, ...)
