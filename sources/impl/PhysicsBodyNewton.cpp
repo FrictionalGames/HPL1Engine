@@ -341,49 +341,6 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	void cPhysicsBodyNewton::SetAutoDisableLinearThreshold(float afThresold)
-	{
-		mfAutoDisableLinearThreshold = afThresold;
-		Warning("NewtonBodySetFreezeTreshold not implemented!\n");
-		/*NewtonBodySetFreezeTreshold(mpNewtonBody, mfAutoDisableLinearThreshold,
-		  mfAutoDisableAngularThreshold, mlAutoDisableNumSteps);*/
-	}
-	float cPhysicsBodyNewton::GetAutoDisableLinearThreshold() const
-	{
-		return mfAutoDisableLinearThreshold;
-	}
-
-	//-----------------------------------------------------------------------
-
-	void cPhysicsBodyNewton::SetAutoDisableAngularThreshold(float afThresold)
-	{
-		mfAutoDisableAngularThreshold = afThresold;
-		Warning("NewtonBodySetFreezeTreshold not implemented!\n");
-		/*NewtonBodySetFreezeTreshold(mpNewtonBody, mfAutoDisableLinearThreshold,
-		  mfAutoDisableAngularThreshold, mlAutoDisableNumSteps);*/
-	}
-	float cPhysicsBodyNewton::GetAutoDisableAngularThreshold() const
-	{
-		return mfAutoDisableAngularThreshold;
-	}
-
-	//-----------------------------------------------------------------------
-
-	void cPhysicsBodyNewton::SetAutoDisableNumSteps(int anNum)
-	{
-		mlAutoDisableNumSteps = anNum;
-		Warning("NewtonBodySetFreezeTreshold not implemented!\n");
-		/*NewtonBodySetFreezeTreshold(mpNewtonBody, mfAutoDisableLinearThreshold,
-		  mfAutoDisableAngularThreshold, mlAutoDisableNumSteps);*/
-	}
-
-	int cPhysicsBodyNewton::GetAutoDisableNumSteps() const
-	{
-		return mlAutoDisableNumSteps;
-	}
-
-	//-----------------------------------------------------------------------
-
 	void cPhysicsBodyNewton::SetContinuousCollision(bool abOn)
 	{
 		NewtonBodySetContinuousCollisionMode(mpNewtonBody,abOn ? 1 : 0);
