@@ -309,7 +309,7 @@ namespace hpl {
 		void SetAttachedBody(iPhysicsBody *apBody);
 		iPhysicsBody* GetAttachedBody(){ return mpAttachedBody;}
 
-		//O=nly sue when you know what you are doing, Update calls these
+		//Only use when you know what you are doing, Update calls these
 		void UpdateMoveMatrix();
 
 		void UpdateCamera();
