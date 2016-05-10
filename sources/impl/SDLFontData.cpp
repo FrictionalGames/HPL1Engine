@@ -20,7 +20,7 @@
 #include "graphics/GraphicsDrawer.h"
 #include "system/LowLevelSystem.h"
 #include "impl/SDLBitmap2D.h"
-#include "impl/tinyXML/tinyxml.h"
+#include "tinyxml.h"
 
 namespace hpl {
 

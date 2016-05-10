@@ -18,7 +18,7 @@
  */
 #include "scene/Light3DSpot.h"
 
-#include "impl/tinyXML/tinyxml.h"
+#include "tinyxml.h"
 #include "math/Math.h"
 #include "math/Frustum.h"
 #include "resources/TextureManager.h"

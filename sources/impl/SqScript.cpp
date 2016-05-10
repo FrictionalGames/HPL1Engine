@@ -22,6 +22,8 @@
 #include "math/Math.h"
 #include "impl/Platform.h"
 #include <stdio.h>
+#include "impl/scriptbuilder.h"
+#include "impl/scripthelper.h"
 
 namespace hpl {
 
@@ -49,7 +51,7 @@ namespace hpl {
 
 	cSqScript::~cSqScript()
 	{
-		mpScriptEngine->Discard(msModuleName.c_str());
+		mpScriptEngine->DiscardModule(msModuleName.c_str());
 		mpContext->Release();
 	}
 
@@ -63,36 +65,27 @@ namespace hpl {
 
 	bool cSqScript::CreateFromFile(const tString& asFileName)
 	{
-		int lLength;
-		char *pCharBuffer = LoadCharBuffer(asFileName,lLength);
-		if(pCharBuffer==NULL){
-			Error("Couldn't load script '%s'!\n",asFileName.c_str());
-			return false;
-		}
+		CScriptBuilder builder;
 
-		if(mpScriptEngine->AddScriptSection(msModuleName.c_str(), "main", pCharBuffer, lLength)<0)
+		builder.StartNewModule(mpScriptEngine,msModuleName.c_str());
+
+		if(builder.AddSectionFromFile(asFileName.c_str())<0)
 		{
 			Error("Couldn't add script '%s'!\n",asFileName.c_str());
-			hplDeleteArray(pCharBuffer);
 			return false;
 		}
 
-		if(mpScriptEngine->Build(msModuleName.c_str())<0)
+		if(builder.BuildModule()<0)
 		{
 			Error("Couldn't build script '%s'!\n",asFileName.c_str());
 			Log("------- SCRIPT OUTPUT BEGIN --------------------------\n");
 			mpScriptOutput->Display();
 			mpScriptOutput->Clear();
 			Log("------- SCRIPT OUTPUT END ----------------------------\n");
-
-
-			
-			hplDeleteArray(pCharBuffer);
 			return false;
 		}
 		mpScriptOutput->Clear();
 
-		hplDeleteArray(pCharBuffer);
 		return true;
 	}
 
@@ -100,7 +93,7 @@ namespace hpl {
 
 	int cSqScript::GetFuncHandle(const tString& asFunc)
 	{
-		return mpScriptEngine->GetFunctionIDByName(msModuleName.c_str(),asFunc.c_str());
+		return mpScriptEngine->GetModule(msModuleName.c_str(),asGM_CREATE_IF_NOT_EXISTS)->GetFunctionIdByName(asFunc.c_str());
 	}
 
 	//-----------------------------------------------------------------------
@@ -114,7 +107,7 @@ namespace hpl {
 
 	bool cSqScript::Run(const tString& asFuncLine)
 	{
-		mpScriptEngine->ExecuteString(msModuleName.c_str(), asFuncLine.c_str());
+		ExecuteString(mpScriptEngine, asFuncLine.c_str(),mpScriptEngine->GetModule(msModuleName.c_str(),asGM_ONLY_IF_EXISTS),mpContext);
 
 		return true;
 	}
@@ -140,23 +133,6 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	char* cSqScript::LoadCharBuffer(const tString& asFileName, int& alLength)
-	{
-		FILE *pFile = fopen(asFileName.c_str(), "rb");
-		if(pFile==NULL){
-			return NULL;
-		}
-
-		int lLength = (int)Platform::FileLength(pFile);
-		alLength = lLength;
-
-		char *pBuffer = hplNewArray(char,lLength);
-		fread(pBuffer, lLength, 1, pFile);
-
-		fclose(pFile);
-
-		return pBuffer;
-	}
 
 	//-----------------------------------------------------------------------
 

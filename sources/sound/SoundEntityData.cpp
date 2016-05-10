@@ -22,7 +22,7 @@
 #include "resources/Resources.h"
 #include "system/String.h"
 
-#include "impl/tinyXML/tinyxml.h"
+#include "tinyxml.h"
 
 
 namespace hpl {

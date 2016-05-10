@@ -22,6 +22,11 @@
 #include "system/MemoryManager.h"
 #include "system/SystemTypes.h"
 
+#ifdef __GNUC__
+#define LOGFORMAT __attribute__((format(gnu_printf, 1, 2)))
+#else
+#define LOGFORMAT
+#endif
 
 namespace hpl {
 
@@ -41,19 +46,19 @@ namespace hpl {
 	#define START_TIMING_TAB(x)
 	#define STOP_TIMING_TAB(x)
 #endif
-	
+
 	class iScript;
 
 	extern void SetLogFile(const tWString &asFile);
-	extern void FatalError(const char* fmt,... );
-	extern void Error(const char* fmt, ...);
-	extern void Warning(const char* fmt, ...);
-	extern void Log(const char* fmt, ...);
+	extern void FatalError(const char* fmt,... ) LOGFORMAT;
+	extern void Error(const char* fmt, ...) LOGFORMAT;
+	extern void Warning(const char* fmt, ...) LOGFORMAT;
+	extern void Log(const char* fmt, ...) LOGFORMAT;
 
 	extern void SetUpdateLogFile(const tWString &asFile);
 	extern void ClearUpdateLogFile();
 	extern void SetUpdateLogActive(bool abX);
-	extern void LogUpdate(const char* fmt, ...);
+	extern void LogUpdate(const char* fmt, ...) LOGFORMAT;
 
 //	extern void CreateMessageBox ( const char* asCaption, const char *fmt, ...);
 //	extern void CreateMessageBox ( eMsgBoxType eType, const char* asCaption, const char *fmt, ...);
@@ -105,28 +110,28 @@ namespace hpl {
 		/**
 		 * Creates a ne script
 		 * \param asName name of the script.
-		 * \return 
+		 * \return
 		 */
 		virtual iScript* CreateScript(const tString& asName)=0;
 
 		/**
-		 * Add a function to the script vm. Example: "void test(float x)" 
+		 * Add a function to the script vm. Example: "void test(float x)"
 		 * \param asFuncDecl the declaration.
-		 * \return 
+		 * \return
 		 */
 		virtual bool AddScriptFunc(const tString& asFuncDecl, void* pFunc, int callConv)=0;
-		
+
 		/**
 		 * Add a variable to the script vm. Example: "int MyVar"
-		 * \param asVarDecl the declartion 
+		 * \param asVarDecl the declartion
 		 * \param *pVar the variable
-		 * \return 
+		 * \return
 		 */
 		virtual bool AddScriptVar(const tString& asVarDecl, void *pVar)=0;
 
 		/**
 		* Sets the main thread to rest for a number of milliseconds.
-		* \param alMillisecs 
+		* \param alMillisecs
 		*/
 		virtual void Sleep ( const unsigned int alMillisecs )=0 ;
 

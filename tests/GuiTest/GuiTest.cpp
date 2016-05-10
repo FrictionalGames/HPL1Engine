@@ -12,8 +12,6 @@
 
 #include "../Common/SimpleCamera.h"
 
-#include <conio.h>
-
 using namespace hpl;
 
 cGame *gpGame=NULL;
@@ -22,7 +20,7 @@ cSimpleCamera *gpSimpleCam;
 class cSimpleUpdate : public iUpdateable
 {
 public:
-	
+
 	//--------------------------------------------------
 
 	cGuiSkin *mpMainSkin;
@@ -36,7 +34,7 @@ public:
 
 	cWidgetLabel *mpLblOne;
 	cWidgetLabel *mpLblSliderVal;
-	
+
 	cWidgetSlider *mpSlidOne;
 	cWidgetSlider *mpSlidTwo;
 
@@ -45,7 +43,7 @@ public:
 	cWidgetCheckBox *mpCheckOne;
 
 	cWidgetImage *mpImgOne;
-	
+
 	cWidgetListBox *mpLstOne;
 
 	cWidgetComboBox *mpCombOne;
@@ -73,13 +71,13 @@ public:
 		//Scene Init
 		mpGui = gpGame->GetGui();
 		mpLowLevelGraphics = gpGame->GetGraphics()->GetLowLevel();
-		
+
 		cVector2f vScreenSize = mpLowLevelGraphics->GetScreenSize();
 		mpLowLevelGraphics->SetVirtualSize(cVector2f((float)vScreenSize.x, (float)vScreenSize.y));
-		
+
 		gpGame->GetGraphics()->GetRenderer3D()->SetAmbientColor(cColor(0.0f,0.0f, 0.0f, 0.0f));
 
-		
+
 		mpWorld = gpGame->GetScene()->CreateWorld3D("Test");
 		gpGame->GetScene()->SetWorld3D(mpWorld);
 
@@ -90,7 +88,7 @@ public:
 		pEntity->SetMatrix(cMath::MatrixScale(6));
 		pEntity->SetVisible(true);
 		pEntity->SetCastsShadows(false);
-		
+
 		cLight3DPoint *pLight = mpWorld->CreateLightPoint("Light1");
 		pLight->SetDiffuseColor(cColor(1,1,1,1.0f));
 		pLight->SetFarAttenuation(280.0f);
@@ -125,14 +123,14 @@ public:
 		gpGame->GetInput()->AddAction(new cActionKeyboard("Gui",gpGame->GetInput(),eKey_LSHIFT));
 		gpGame->GetInput()->AddAction(new cActionKeyboard("To3D",gpGame->GetInput(),eKey_f));
 
-		
+
 		////////////////////////////////
 		//Gui Init
 		//mpLowLevelGraphics->ShowCursor(true);
-		
+
 		//Skin
 		mpMainSkin = mpGui->CreateSkin("gui_default.skin");
-		
+
 		//Set
 		mpMainSet = mpGui->CreateSet("Test",mpMainSkin);
 		mpGui->SetFocus(mpMainSet);
@@ -146,11 +144,11 @@ public:
 
 		//Base Frame
 		//mpFrmBase = mpMainSet->CreateWidgetFrame(cVector3f(0,0,0),cVector2f(800,600),false);
-		
+
 		//Window
 		mpWndMain = mpMainSet->CreateWidgetWindow(cVector3f(0,0,0),cVector2f(600,400),_W(""),NULL);//,mpFrmBase);
 		mpWndMain->SetText(_W("My Window"));
-		
+
 		//Window Frame
 		mpFrmWindow = mpMainSet->CreateWidgetFrame(cVector3f(40,85,1),cVector2f(150,170),true,mpWndMain);
 		mpFrmWindow->SetDrawBackground(true);
@@ -165,10 +163,10 @@ public:
 		mpBtnTwo = mpMainSet->CreateWidgetButton(	cVector3f(60,120,1),cVector2f(140,40),
 													_W("Disabled"), mpFrmWindow);
 		mpBtnTwo->SetEnabled(false);
-		
+
 		//Label1
 		mpLblOne = mpMainSet->CreateWidgetLabel(	cVector3f(40,10,1),cVector2f(200,20),
-													_W("Test Label this is a test to check wordwrap and stuff like that. So text must be long."), 
+													_W("Test Label this is a test to check wordwrap and stuff like that. So text must be long."),
 														mpFrmWindow);
 		mpLblOne->SetWordWrap(true);
 
@@ -229,7 +227,7 @@ public:
 			mpCombOne->AddItem(_W("Another item... that is long long and longer!!!"));
 			mpCombOne->AddItem(_W("Yet another"));
 		}
-		
+
 
 	}
 
@@ -237,7 +235,7 @@ public:
 
 	~cSimpleUpdate()
 	{
-	
+
 	}
 
 	//--------------------------------------------------
@@ -260,8 +258,8 @@ public:
 			cKeyPress keyPress = gpGame->GetInput()->GetKeyboard()->GetKey();
 			mpGui->SendKeyPress(keyPress);
 		}
-		
-        
+
+
 		mpGui->SendMousePos(gpGame->GetInput()->GetMouse()->GetAbsPosition(),
 							gpGame->GetInput()->GetMouse()->GetRelPosition());
 
@@ -273,7 +271,7 @@ public:
 		if(gpGame->GetInput()->WasTriggerd("RightClick"))	mpGui->SendMouseClickUp(eGuiMouseButton_Right);
 		if(gpGame->GetInput()->DoubleTriggerd("RightClick",0.2f))	mpGui->SendMouseDoubleClick(eGuiMouseButton_Right);
 
-		if(	(mpMainSet->GetFocusedWidget() && 
+		if(	(mpMainSet->GetFocusedWidget() &&
 			mpMainSet->GetFocusedWidget()->GetType() == eWidgetType_Frame) ||
 			mpMainSet->GetFocusedWidget() == NULL)
 		{
@@ -288,7 +286,7 @@ public:
 			gpSimpleCam->SetActive(false);
 		}
 	}
-	
+
 	//--------------------------------------------------
 
 	bool Button_MouseDown(iWidget* apWidget,cGuiMessageData& aData)
@@ -300,25 +298,25 @@ public:
 
 		return true;
 	}
-	kGuiCalllbackFuncEnd(cSimpleUpdate,Button_MouseDown)  
+	kGuiCalllbackFuncEnd(cSimpleUpdate,Button_MouseDown)
 
 	bool Slider_Move(iWidget* apWidget,cGuiMessageData& aData)
 	{
 		mpLblSliderVal->SetText(_W("Slider: ") + cString::ToStringW(mpSlidOne->GetValue()));
 		return true;
 	}
-	kGuiCalllbackFuncEnd(cSimpleUpdate,Slider_Move)  
+	kGuiCalllbackFuncEnd(cSimpleUpdate,Slider_Move)
 
 	bool PopUpPressed(iWidget* apWidget,cGuiMessageData& aData)
 	{
 		Log("PRessed: %d\n",aData.mlVal);
 		return true;
 	}
-	kGuiCalllbackFuncEnd(cSimpleUpdate,PopUpPressed)  
+	kGuiCalllbackFuncEnd(cSimpleUpdate,PopUpPressed)
 
 
 
-    //--------------------------------------------------	
+    //--------------------------------------------------
 
 private:
 	iLowLevelGraphics* mpLowLevelGraphics;
@@ -337,7 +335,7 @@ int hplMain(const tString &asCommandline)
 	iLowLevelGameSetup *pSetup = hplNew(cSDLGameSetup,());
 	gpGame = hplNew(cGame, (pSetup,800,600,32,false,45) );
 	gpGame->GetGraphics()->GetLowLevel()->SetVsyncActive(false);
-	
+
 	//Add resources
 	gpGame->GetResources()->LoadResourceDirsFile("resources.cfg");
 
@@ -345,13 +343,13 @@ int hplMain(const tString &asCommandline)
 	//Add updates
 	cSimpleUpdate Update;
 	gpGame->GetUpdater()->AddUpdate("Default", &Update);
-	
+
 	gpSimpleCam = hplNew( cSimpleCamera, (gpGame,8,cVector3f(0,2,9),false) );
 	gpGame->GetUpdater()->AddUpdate("Default", gpSimpleCam);
 
 	//Run the engine
 	gpGame->Run();
-	
+
 	hplDelete(gpSimpleCam);
 
 	//Delete the engine

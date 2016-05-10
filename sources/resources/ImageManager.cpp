@@ -34,7 +34,7 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	cImageManager::cImageManager(cFileSearcher *apFileSearcher,iLowLevelGraphics *apLowLevelGraphics, 
+	cImageManager::cImageManager(cFileSearcher *apFileSearcher,iLowLevelGraphics *apLowLevelGraphics,
 								iLowLevelResources *apLowLevelResources,iLowLevelSystem *apLowLevelSystem)
 	: iResourceManager(apFileSearcher, apLowLevelResources,apLowLevelSystem)
 	{
@@ -61,7 +61,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	iResourceBase* cImageManager::Create(const tString& asName)
 	{
 		return CreateInFrame(asName, -1);
@@ -87,7 +87,7 @@ namespace hpl {
 					EndLoad();
 					return NULL;
 				}
-				
+
 				pImage = AddToFrame(pBmp, alFrameHandle);
 
 				hplDelete(pBmp);
@@ -95,7 +95,7 @@ namespace hpl {
 				if(pImage==NULL){
 					Error("Imagemanager couldn't create image '%s'\n", asName.c_str());
 				}
-				
+
 				if(pImage) AddResource(pImage);
  			}
 		}
@@ -113,7 +113,7 @@ namespace hpl {
 		EndLoad();
         return pImage;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cResourceImage* cImageManager::CreateImage(const tString& asName, int alFrameHandle)
@@ -139,7 +139,7 @@ namespace hpl {
 
 		return pImage;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cImageManager::Unload(iResourceBase* apResource)
@@ -157,17 +157,17 @@ namespace hpl {
 		cFrameBitmap *pBmpFrame = pImage->GetFrameBitmap();
 
 		//pImage->GetFrameBitmap()->FlushToTexture(); Not needed?
-		
-		
+
+
 		//Log("Users Before: %d\n",pImage->GetUserCount());
 		//Log("Framepics Before: %d\n",pFrame->GetPicCount());
 
 		pImage->DecUserCount();//dec frame count as well.. is that ok?
-		
+
 		//Log("---\n");
 		//Log("Destroyed Image: '%s' Users: %d\n",pImage->GetName().c_str(),pImage->GetUserCount());
 		//Log("Frame %d has left Pics: %d\n",pFrame,pFrame->GetPicCount());
-		
+
 		if(pImage->HasUsers()==false)
 		{
 			pFrame->DecPicCount(); // Doing it here now instead.
@@ -178,7 +178,7 @@ namespace hpl {
 			//Log("deleting image and dec fram to %d images!\n",pFrame->GetPicCount());
 		}
 
-		
+
 		if(pFrame->IsEmpty())
 		{
 			//Log(" Deleting frame...");
@@ -202,7 +202,7 @@ namespace hpl {
 			//Log(" Deleted frame!\n");
 		}
 		//Log("---\n");
-		
+
 	}
 
 	//-----------------------------------------------------------------------
@@ -216,9 +216,9 @@ namespace hpl {
 			it = mlstBitmapFrames.erase(it);
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	int cImageManager::FlushAll()
 	{
 		//Log("Flushing...");
@@ -249,19 +249,19 @@ namespace hpl {
 	int cImageManager::CreateFrame(cVector2l avSize)
 	{
 		cFrameBitmap *pBFrame = CreateBitmapFrame(avSize);
-		
+
 		if(pBFrame==NULL) return -1;
-		
+
 		return pBFrame->GetHandle();
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cImageManager::SetFrameLocked(int alHandle, bool abLocked)
 	{
 		tFrameBitmapListIt it = mlstBitmapFrames.begin();
 		while(it != mlstBitmapFrames.end())
-		{	
+		{
 			if((*it)->GetHandle() == alHandle){
 				(*it)->SetLocked(abLocked);
 				break;
@@ -310,7 +310,7 @@ namespace hpl {
 		if(mlstBitmapFrames.size()==0){
 			CreateBitmapFrame(mvFrameSize);
 		}
-		
+
 		if(alFrameHandle<0)
 		{
 			//Search the frames til one is find that fits the bitmap
@@ -332,7 +332,7 @@ namespace hpl {
 				//Log("No fit!\n");
 				//not 100% it fits in this one...if so maybe the bitmap size of the frame
 				//should be changed?
-				
+
 				//pImage = CreateBitmapFrame(mvFrameSize)->AddBitmap(apBmp);
 				cFrameBitmap * pFrame = CreateBitmapFrame(mvFrameSize);
 				if(pFrame)
@@ -349,10 +349,10 @@ namespace hpl {
 		{
 			tFrameBitmapListIt it = mlstBitmapFrames.begin();
 			while(it != mlstBitmapFrames.end())
-			{	
+			{
 				if((*it)->GetHandle() == alFrameHandle)
 				{
-					pImage = (*it)->AddBitmap(apBmp);			
+					pImage = (*it)->AddBitmap(apBmp);
 					break;
 				}
 				it++;
@@ -365,7 +365,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	cFrameBitmap *cImageManager::CreateBitmapFrame(cVector2l avSize)
 	{
 		iTexture *pTex = mpLowLevelGraphics->CreateTexture(false,eTextureType_Normal,eTextureTarget_2D);
@@ -374,11 +374,11 @@ namespace hpl {
 		cFrameBitmap *pBFrame = hplNew(  cFrameBitmap, (pBmp,pTFrame,mlFrameHandle) );
 
 		mlstBitmapFrames.push_back(pBFrame);
-		
+
 		std::pair<tFrameTextureMap::iterator, bool> ret = m_mapTextureFrames.insert(tFrameTextureMap::value_type(mlFrameHandle, pTFrame));
 		if(ret.second == false)
 		{
-			Error("Could not add texture frame %d with handle %d! Handle already exist!\n",pTFrame, mlFrameHandle);
+			Error("Could not add texture frame %p with handle %d! Handle already exist!\n",pTFrame, mlFrameHandle);
 		}
 		else
 		{

@@ -50,7 +50,6 @@ namespace hpl {
 		int mlHandle;
 		tString msModuleName;
 
-		char* LoadCharBuffer(const tString& asFileName, int& alLength);
 	};
 };
 #endif // HPL_SCRIPT_H

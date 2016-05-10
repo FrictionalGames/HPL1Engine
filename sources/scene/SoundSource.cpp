@@ -20,7 +20,7 @@
 #include "math/Math.h"
 #include "sound/Sound.h"
 #include "sound/SoundChannel.h"
-#include "impl/tinyXML/tinyxml.h"
+#include "tinyxml.h"
 #include "sound/SoundHandler.h"
 #include "system/String.h"
 

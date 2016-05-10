@@ -39,9 +39,9 @@ namespace hpl {
 	{
 	public:
 		cCollideShapeNewton(eCollideShapeType aType, const cVector3f &avSize,
-							cMatrixf* apOffsetMtx,NewtonWorld* apNewtonWorld,
+							cMatrixf* apOffsetMtx, const NewtonWorld* apNewtonWorld,
 							iPhysicsWorld *apWorld);
-		~cCollideShapeNewton();
+		virtual ~cCollideShapeNewton();
 
 		iCollideShape* GetSubShape(int alIdx);
 		int GetSubShapeNum();
@@ -52,11 +52,11 @@ namespace hpl {
 		void CreateFromVertices(const unsigned int* apIndexArray, int alIndexNum,
 								const float *apVertexArray, int alVtxStride, int alVtxNum);
 
-		NewtonCollision* GetNewtonCollision(){ return mpNewtonCollision;}
+		const NewtonCollision* GetNewtonCollision(){ return mpNewtonCollision;}
 
 	private:
-		NewtonCollision* mpNewtonCollision;
-		NewtonWorld *mpNewtonWorld;
+		const NewtonCollision* mpNewtonCollision;
+		const NewtonWorld *mpNewtonWorld;
 
 		tCollideShapeVec mvSubShapes;
 	};

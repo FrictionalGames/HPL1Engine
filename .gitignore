@@ -5,3 +5,9 @@
 /*.xcodeproj/*.pbxuser
 /assets/*.log
 /assets/core/cache/*collcach
+.cproject
+.project
+CMakeCache.txt
+CMakeFiles
+cmake_install.cmake
+

@@ -22,7 +22,7 @@
 
 #include <memory.h>
 
-#include <GL/GLee.h>
+#include <GLee.h>
 
 
 namespace hpl {

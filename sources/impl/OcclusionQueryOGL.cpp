@@ -18,7 +18,7 @@
  */
 #include "impl/OcclusionQueryOGL.h"
 
-#include <GL/GLee.h>
+#include <GLee.h>
 
 
 namespace hpl {

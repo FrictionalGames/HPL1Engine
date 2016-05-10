@@ -20,7 +20,7 @@
 #include "system/String.h"
 #include "physics/Body2D.h"
 #include "physics/Collider2D.h"
-#include "impl/tinyXML/tinyxml.h"
+#include "tinyxml.h"
 
 
 namespace hpl {

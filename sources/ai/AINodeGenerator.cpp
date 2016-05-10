@@ -30,7 +30,7 @@
 #include "physics/PhysicsWorld.h"
 #include "physics/PhysicsBody.h"
 
-#include "impl/tinyXML/tinyxml.h"
+#include "tinyxml.h"
 
 
 namespace hpl {

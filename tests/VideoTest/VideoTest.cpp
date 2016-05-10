@@ -5,13 +5,10 @@
  *
  * For conditions of distribution and use, see copyright notice in LICENSE-tests
  */
-#include <windows.h>
 #include <hpl.h>
 #include <impl/SDLGameSetup.h>
 
 #include "../Common/SimpleCamera.h"
-
-#include <conio.h>
 
 #pragma comment(lib, "libogg.lib")
 #pragma comment(lib, "libtheora.lib")
@@ -50,13 +47,13 @@ public:
 		////////////////////////////////
 		//Scene Init
 		mpLowLevelGraphics = gpGame->GetGraphics()->GetLowLevel();
-		
+
 		cVector2f vScreenSize = mpLowLevelGraphics->GetScreenSize();
 		mpLowLevelGraphics->SetVirtualSize(cVector2f((float)vScreenSize.x, (float)vScreenSize.y));
-		
+
 		gpGame->GetGraphics()->GetRenderer3D()->SetAmbientColor(cColor(0.0f,0.0f, 0.0f, 0.0f));
 
-		
+
 		mpWorld = gpGame->GetScene()->CreateWorld3D("Test");
 		gpGame->GetScene()->SetWorld3D(mpWorld);
 
@@ -67,7 +64,7 @@ public:
 		pEntity->SetMatrix(cMath::MatrixScale(6));
 		pEntity->SetVisible(true);
 		pEntity->SetCastsShadows(false);
-		
+
 		cLight3DPoint *pLight = mpWorld->CreateLightPoint("Light1");
 		pLight->SetDiffuseColor(cColor(1,1,1,1.0f));
 		pLight->SetFarAttenuation(280.0f);
@@ -84,8 +81,8 @@ public:
 		////////////////////////////////
 		//Theora Init
 		msFile = "textures/test_video2.ogm";
-		
-		
+
+
 		////////////////////////////////
 		//Theora Setup video texture
 		mpVideoStream = gpGame->GetResources()->GetVideoManager()->CreateVideo("test_video2.ogm");
@@ -120,7 +117,7 @@ public:
 
 	//------------------------------------------
 
-	
+
 	void Update(float afTimeStep)
 	{
 		if(mpVideoStream)
@@ -129,15 +126,15 @@ public:
 		}
 	}
 
-	
-	//--------------------------------------------------	
+
+	//--------------------------------------------------
 
 	void OnPostSceneDraw()
 	{
-		if(mpVideoStream==NULL) return;	
-		
+		if(mpVideoStream==NULL) return;
+
 		cVector2f vVideoSize((float)mpVideoStream->GetSize().x, (float)mpVideoStream->GetSize().y);
-		
+
 
 		mpLowLevelGraphics->SetMatrix(eMatrix_ModelView,cMatrixf::Identity);
 		mpLowLevelGraphics->SetOrthoProjection(mpLowLevelGraphics->GetVirtualSize(),-1000,1000);
@@ -165,8 +162,8 @@ public:
 
 		//mpLowLevelGraphics->SetMatrix(eMatrix_Projection,((cCamera3D*)gpGame->GetScene()->GetCamera())->GetProjectionMatrix());
 	}
-	
-	//--------------------------------------------------	
+
+	//--------------------------------------------------
 
 	void ArraySpeedTest()
 	{
@@ -189,7 +186,7 @@ public:
 		int y=max_val;
 		while(y)
 		{
-		vVec1[x][y] = vVec2[x][y]; 
+		vVec1[x][y] = vVec2[x][y];
 
 		x--;
 		if(!x){
@@ -211,7 +208,7 @@ public:
 				int z=max_val;
 				while(z)
 				{
-					vVec1[y][x][z] = vVec2[y][x][z]; 
+					vVec1[y][x][z] = vVec2[y][x][z];
 
 					--x;
 					if(!x){
@@ -239,7 +236,7 @@ public:
 				int maxvalpow = max_val*max_val;
 				while(z)
 				{
-					pVec1[x + y*max_val + z*maxvalpow] = pVec2[x + y*max_val + z*maxvalpow]; 
+					pVec1[x + y*max_val + z*maxvalpow] = pVec2[x + y*max_val + z*maxvalpow];
 
 					--x;
 					if(!x){
@@ -266,7 +263,7 @@ public:
 				int z=max_val;
 				while(z)
 				{
-					pVec1[x + (y<<8) + (z<<16)] = pVec2[x + (y<<8)+(z<<16)]; 
+					pVec1[x + (y<<8) + (z<<16)] = pVec2[x + (y<<8)+(z<<16)];
 
 					--x;
 					if(!x){
@@ -293,7 +290,7 @@ public:
 				int z=max_val;
 				while(z)
 				{
-					*(pVec1 +x + (y>>8) + (z>>16)) = *(pVec2 + x + (y>>8)+(z>>16)); 
+					*(pVec1 +x + (y>>8) + (z>>16)) = *(pVec2 + x + (y>>8)+(z>>16));
 
 					--x;
 					if(!x){
@@ -331,7 +328,7 @@ int hplMain(const tString &asCommandline)
 	gpGame = new cGame(new cSDLGameSetup(),1024,768,32,false,45);
 	gpGame->GetGraphics()->GetLowLevel()->SetVsyncActive(false);
 	gpGame->SetLimitFPS(false);
-	
+
 	//Add resources
 	gpGame->GetResources()->LoadResourceDirsFile("resources.cfg");
 
@@ -339,13 +336,13 @@ int hplMain(const tString &asCommandline)
 	//Add updates
 	cSimpleUpdate *pUpdate = new cSimpleUpdate();
 	gpGame->GetUpdater()->AddUpdate("Default", pUpdate);
-	
+
 	gpSimpleCam = new cSimpleCamera(gpGame,8,cVector3f(0,2,9),true);
 	gpGame->GetUpdater()->AddUpdate("Default", gpSimpleCam);
 
 	//Run the engine
 	gpGame->Run();
-	
+
 	delete pUpdate;
 	delete gpSimpleCam;
 

@@ -20,7 +20,7 @@
 #define HPL_CGPROGRAM_H
 
 //#include <windows.h>
-#include <GL/GLee.h>
+#include <GLee.h>
 #include <Cg/cg.h>
 #include <Cg/cgGL.h>
 

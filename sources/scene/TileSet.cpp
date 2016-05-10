@@ -21,7 +21,7 @@
 #include "system/LowLevelSystem.h"
 #include "resources/Resources.h"
 #include "graphics/MeshCreator.h"
-#include "impl/tinyXML/tinyxml.h"
+#include "tinyxml.h"
 #include "graphics/MaterialHandler.h"
 
 
