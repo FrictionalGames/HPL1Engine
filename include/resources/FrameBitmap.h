@@ -28,7 +28,7 @@ namespace hpl {
 	class cFrameTexture;
 	class cResourceImage;
 	class iBitmap2D;
-	
+
 	//The frames bitmap + rect class
 	class cFBitmapRect
 	{
@@ -38,7 +38,7 @@ namespace hpl {
 			mRect = cRect2l(x,y,w,h);
 			mlHandle = alHandle;
 		}
-				
+
 		cRect2l mRect;
 		int mlHandle;
 	};
@@ -47,7 +47,7 @@ namespace hpl {
 	typedef BinTreeNode<cFBitmapRect> tRectTreeNode;
 	typedef std::list<tRectTreeNode*> tRectTreeNodeList;
 	typedef tRectTreeNodeList::iterator tRectTreeNodeListIt;
-		
+
 	class cFrameBitmap : public iFrameBase
 	{
 	public:

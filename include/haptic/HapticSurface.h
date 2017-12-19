@@ -33,7 +33,7 @@ namespace hpl {
 
 		eHapticSurfaceType GetType(){ return mType;}
 		tString& GetName(){ return msName; }
-		
+
 	private:
 		eHapticSurfaceType mType;
 		tString msName;

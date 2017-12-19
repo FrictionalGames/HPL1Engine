@@ -27,11 +27,11 @@ namespace hpl {
 	class cPhysicsJointBallNewton : public iPhysicsJointNewton<iPhysicsJointBall>
 	{
 	public:
-		cPhysicsJointBallNewton(const tString &asName, iPhysicsBody *apParentBody, iPhysicsBody *apChildBody, 
+		cPhysicsJointBallNewton(const tString &asName, iPhysicsBody *apParentBody, iPhysicsBody *apChildBody,
 			iPhysicsWorld *apWorld, const cVector3f &avPivotPoint);
 		~cPhysicsJointBallNewton();
 
-        void SetConeLimits(const cVector3f& avPin, float afMaxConeAngle, float afMaxTwistAngle);		
+        void SetConeLimits(const cVector3f& avPin, float afMaxConeAngle, float afMaxTwistAngle);
 		cVector3f GetAngles();
 
 		cVector3f GetVelocity();
@@ -40,7 +40,7 @@ namespace hpl {
 
 		float GetDistance();
 		float GetAngle();
-		
+
 	private:
 	};
 };

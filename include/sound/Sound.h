@@ -22,7 +22,7 @@
 #include "game/Updateable.h"
 
 namespace hpl {
-	
+
 	class iLowLevelSound;
 	class cResources;
 	class cSoundHandler;
@@ -34,7 +34,7 @@ namespace hpl {
 		cSound(iLowLevelSound *apLowLevelSound);
 		~cSound();
 
-		void Init(	cResources *apResources, bool abUseHardware, bool abForceGeneric, bool abUseEnvAudio, int alMaxChannels, 
+		void Init(	cResources *apResources, bool abUseHardware, bool abForceGeneric, bool abUseEnvAudio, int alMaxChannels,
 						int alStreamUpdateFreq, bool abUseThreading, bool abUseVoiceManagement,
 						int alMaxMonoSourceHint, int alMaxStereoSourceHint,
 						int alStreamingBufferSize, int alStreamingBufferCount, bool abEnableLowLevelLog, tString asDeviceName);
@@ -44,7 +44,7 @@ namespace hpl {
 		iLowLevelSound* GetLowLevel(){ return mpLowLevelSound;}
 		cSoundHandler* GetSoundHandler(){ return mpSoundHandler; }
 		cMusicHandler* GetMusicHandler(){ return mpMusicHandler; }
-		
+
 	private:
 		iLowLevelSound *mpLowLevelSound;
 		cResources* mpResources;

@@ -28,7 +28,7 @@ namespace hpl {
 	class iRenderable;
 	class cFrustum;
 	class cRenderList;
-	
+
 	class iRenderableContainer
 	{
 	public:
@@ -48,13 +48,13 @@ namespace hpl {
 
 		/**
 		 * Populate the renderlist with all objects visible in a fostrum.
-		 * \param apFostrum 
-		 * \param *apRenderList 
+		 * \param apFostrum
+		 * \param *apRenderList
 		 */
 		virtual void GetVisible(cFrustum* apFostrum,cRenderList *apRenderList)=0;
-		
+
 		/**
-		* Sets up things like octrees so that the container is ready to use. 
+		* Sets up things like octrees so that the container is ready to use.
 		*/
 		virtual void Compile()=0;
 	};

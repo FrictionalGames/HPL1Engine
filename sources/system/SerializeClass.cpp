@@ -219,7 +219,7 @@ namespace hpl {
 		bool bRet = pXmlDoc->SaveFile(pFile);
 		if(bRet==false)
 			Error("Couldn't save class to '%s'\n", asFile.c_str());
-		
+
 		if(pFile) fclose(pFile);
 
 		hplDelete(pXmlDoc);
@@ -250,7 +250,7 @@ namespace hpl {
 			pClassElem = static_cast<TiXmlElement*>(apParent->InsertEndChild(XmlClassElem));
 		}
 
-		
+
 		//Set attributes
 		pClassElem->SetAttribute("type",apData->Serialize_GetTopClass().c_str());
 		pClassElem->SetAttribute("name",asName.c_str());
@@ -384,13 +384,13 @@ namespace hpl {
 	cSerializeSavedClass * cSerializeClass::GetClass(const tString &asName)
 	{
 		SetUpData();
-		
+
 		tSerializeSavedClassMapIt it = m_mapSavedClasses.find(asName);
 		if(it == m_mapSavedClasses.end()) {
 			Warning("Serialize class '%s' not found!\n",asName.c_str());
 			return NULL;
 		}
-        
+
 		return &it->second;
 	}
 

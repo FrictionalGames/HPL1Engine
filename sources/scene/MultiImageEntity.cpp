@@ -76,9 +76,9 @@ namespace hpl {
 
 		return Add(asName,pEntity,avLocalPos,alPartId);
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	bool cMultiImageEntity::Add(tString asName, cImageEntity* apEntity ,cVector3f avLocalPos,tFlag alPartId)
 	{
 		apEntity->SetPosition(avLocalPos);
@@ -99,9 +99,9 @@ namespace hpl {
             m_mapEntityParts.insert(tMultiImagePartMap::value_type(alPartId,ImagePart));
 			PartIt = m_mapEntityParts.find(alPartId);
 		}
-		
+
 		PartIt->second.mvEntity.push_back(apEntity);
-		
+
 		return true;
 	}
 	//-----------------------------------------------------------------------
@@ -122,7 +122,7 @@ namespace hpl {
 		while(PartIt !=  m_mapEntityParts.end())
 		{
 			//See if the part is among the parts to get the animation.
-			if((PartIt->second.mlId & alParts)==0) { 
+			if((PartIt->second.mlId & alParts)==0) {
 				PartIt++;
 				continue;
 			}
@@ -133,8 +133,8 @@ namespace hpl {
 				continue;
 			}
 
-			
-			//Check if the prio is lower than current last animation, if so 
+
+			//Check if the prio is lower than current last animation, if so
 			//check if this animation should be played after and continue.
 			if(PartIt->second.mlPrio > alPrio){
 				if(PartIt->second.mlNextAnimPrio <= alPrio){
@@ -143,7 +143,7 @@ namespace hpl {
                 PartIt++;
 				continue;
 			}
-						
+
 			PartIt->second.msNextAnim = pEntity->GetCurrentAnimation();
 
 			pEntity->SetAnimation(asName,abLoop);
@@ -153,25 +153,25 @@ namespace hpl {
 
 			PartIt++;
 		}
-		
+
 		return true;
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	void cMultiImageEntity::UpdateAnim()
 	{
 		tMultiImagePartMapIt PartIt = m_mapEntityParts.begin();
 		while(PartIt !=  m_mapEntityParts.end())
 		{
 			cImageEntity* pEntity = PartIt->second.mvEntity[PartIt->second.mlActiveEntity];
-			
+
 			if(pEntity->AnimationIsPlaying()==false)
 			{
 				if(PartIt->second.msNextAnim != "")
 				{
 					pEntity->SetAnimation(PartIt->second.msNextAnim);
-					
+
 					// If chosen, synch with the frame of another entity playing the animation.
 					if(PartIt->second.mbSyncFrame)
 					{
@@ -179,7 +179,7 @@ namespace hpl {
 						while(it !=  m_mapEntityParts.end())
 						{
 							cImageEntity* pTemp = it->second.mvEntity[it->second.mlActiveEntity];
-							
+
 							if(pTemp->GetCurrentAnimation() == PartIt->second.msNextAnim)
 							{
 								pEntity->SetFrameNum(pTemp->GetFrameNum());
@@ -189,7 +189,7 @@ namespace hpl {
 						}
 
 					}
-					
+
 					PartIt->second.msNextAnim = "";
 					PartIt->second.mlPrio= PartIt->second.mlNextAnimPrio;
 					PartIt->second.mlNextAnimPrio =0;
@@ -201,7 +201,7 @@ namespace hpl {
 		}
 	}
 	//-----------------------------------------------------------------------
-	
+
 	void cMultiImageEntity::SetFlipH(bool abX)
 	{
 		if(mbFlipH == abX)return;
@@ -215,7 +215,7 @@ namespace hpl {
 			{
 				PartIt->second.mvEntity[i]->SetFlipH(mbFlipH);
 				cVector3f vPos = PartIt->second.mvEntity[i]->GetLocalPosition();
-				
+
 				PartIt->second.mvEntity[i]->SetPosition(cVector3f(-vPos.x,vPos.y,vPos.z));
 			}
 
@@ -223,7 +223,7 @@ namespace hpl {
 		}
 	}
 	//-----------------------------------------------------------------------
-	
+
 	void cMultiImageEntity::SetActive(bool abX)
 	{
 		if(mbActive == abX)return;
@@ -249,7 +249,7 @@ namespace hpl {
 		if(mfAlpha == afX)return;
 
 		mfAlpha = afX;
-		
+
 		tMultiImagePartMapIt PartIt = m_mapEntityParts.begin();
 		while(PartIt !=  m_mapEntityParts.end())
 		{
@@ -261,7 +261,7 @@ namespace hpl {
 			PartIt++;
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cMultiImageEntity::SetAnimPaused(bool abX)
@@ -305,6 +305,6 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	//-----------------------------------------------------------------------
 }

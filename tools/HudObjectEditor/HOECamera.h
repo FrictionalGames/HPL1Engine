@@ -27,12 +27,12 @@ public:
 	~cHOECamera();
 
 	void Update(float afFrameTime);
-	
+
 	void OnDraw();
 
 	cCamera3D* GetCamera(){ return  mpCamera;}
 private:
-	void CalculateCameraPos();	
+	void CalculateCameraPos();
 
 	cGame *mpGame;
 	iFontData* mpFont;

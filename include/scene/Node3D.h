@@ -95,7 +95,7 @@ namespace hpl {
 		virtual void SaveToSaveData(iSaveData *apSaveData);
 		virtual void LoadFromSaveData(iSaveData *apSaveData);
 		virtual void SaveDataSetup(cSaveObjectHandler *apSaveObjectHandler, cGame *apGame);
-		
+
 		void UpdateWorldTransform();
 		void SetWorldTransformUpdated();
 	private:

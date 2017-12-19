@@ -33,26 +33,26 @@ namespace hpl {
 	class iHapticShape
 	{
 	public:
-		iHapticShape(const tString& asName ,eHapticShapeType aType) : 
-									mpSurface(NULL), mType(aType), msName(asName), 
+		iHapticShape(const tString& asName ,eHapticShapeType aType) :
+									mpSurface(NULL), mType(aType), msName(asName),
 									mpBody(NULL),mpSubMeshEntity(NULL), mlTransformCount(-1) {}
 		virtual ~iHapticShape(){}
 
 		eHapticShapeType GetType(){ return mType;}
-		const tString& GetName(){ return msName;} 
-		
+		const tString& GetName(){ return msName;}
+
 		virtual void SetEnabled(bool abX)=0;
 		virtual bool GetEnabled()=0;
 
 		virtual void SetTransform(const cMatrixf &a_mtxTransform)=0;
 		virtual cMatrixf GetTransform()=0;
-		
+
 		virtual cVector3f GetAppliedForce()=0;
 
 		virtual void SetSurface(iHapticSurface *apSurface)=0;
-		
+
 		virtual void RenderDebug(iLowLevelGraphics *apLowLevel, const cColor &aColor)=0;
-		
+
 		iHapticSurface* GetSurface()const{ return mpSurface; }
 
 		cVector3f GetSize() const{ return mvSize;}
@@ -65,7 +65,7 @@ namespace hpl {
 
 		int GetTransformCount() const{ return mlTransformCount;}
 		void SetTransformCount(int alX){ mlTransformCount = alX;}
-	
+
 	protected:
 		tString msName;
 		iHapticSurface* mpSurface;

@@ -45,7 +45,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	//TODO: Z might have to be some standard value...
 	//Has 100 right now, this should be in some global value..
 	int cLight2DPoint::Render(iLowLevelGraphics* apLowLevel, int alFirstIndex)
@@ -84,9 +84,9 @@ namespace hpl {
 
 		return idx;
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	const cRect2f& cLight2DPoint::GetBoundingBox()
 	{
 		return mBoundingBox;
@@ -101,6 +101,6 @@ namespace hpl {
 
 		return true;
 	}
-	
+
 	//-----------------------------------------------------------------------
 }

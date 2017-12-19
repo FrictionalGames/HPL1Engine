@@ -66,7 +66,7 @@ namespace hpl {
 		tVector3fList lstPositions;
 		cVector3f vScreenPos (aCollideRect.x * mvPosPercent.x - mvPos.x,
 							 aCollideRect.y * mvPosPercent.y, mvPos.z -mvPos.y);
-		
+
 		//Calulate at what positions(s) the background is to be drawn.
 		if(mbTile)
 		{
@@ -80,12 +80,12 @@ namespace hpl {
 				vStartPos.x = mvSize.x - cMath::Modulus(vScreenPos.x, mvSize.x );
 			else
 				vStartPos.x = cMath::Modulus(vScreenPos.x, mvSize.x );
-			
+
 			if(vScreenPos.y>=0)
 				vStartPos.y = mvSize.y - cMath::Modulus(vScreenPos.y, mvSize.y );
 			else
 				vStartPos.y = cMath::Modulus(vScreenPos.y, mvSize.y );
-			
+
 			//Log("Screen: %f : %f\n",vScreenPos.x, vScreenPos.y);
 			//Log("Start: %f : %f\n",vStartPos.x, vStartPos.y);
 			//Log("Pos: %f : %f\n",mvPos.x, mvPos.y);
@@ -98,7 +98,7 @@ namespace hpl {
 				vStartPos.y -= mvSize.y;
 				vNum.y++;
 			}
-			
+
             for(int x=0; x<vNum.x; x++)
 				for(int y=0; y<vNum.y; y++)
 				{
@@ -109,7 +109,7 @@ namespace hpl {
 		else
 		{
 			cRect2f Rect(vScreenPos.x, vScreenPos.y, mvSize.x, mvSize.y);
-			
+
 			if(cMath::BoxCollision(aCollideRect, Rect))
 			{
 				lstPositions.push_back(vScreenPos);
@@ -140,7 +140,7 @@ namespace hpl {
 			mvVtx[3].pos.x = it->x;
 			mvVtx[3].pos.y = it->y + mvSize.y;
 			apLowLevelGraphics->AddVertexToBatch(&mvVtx[3]);
-			
+
 			apLowLevelGraphics->AddIndexToBatch(lIdxAdd + 0);
 			apLowLevelGraphics->AddIndexToBatch(lIdxAdd + 1);
 			apLowLevelGraphics->AddIndexToBatch(lIdxAdd + 2);
@@ -149,18 +149,18 @@ namespace hpl {
 			/*apLowLevelGraphics->AddIndexToBatch(lIdxAdd + 2);
 			apLowLevelGraphics->AddIndexToBatch(lIdxAdd + 3);
 			apLowLevelGraphics->AddIndexToBatch(lIdxAdd + 0);*/
-			
+
 			lIdxAdd+=4;
 		}
 
-		do  
+		do
 		{
 			apLowLevelGraphics->FlushQuadBatch(mpMaterial->GetBatchFlags(eMaterialRenderType_Diffuse),false);
 		}
 		while(mpMaterial->NextPass(eMaterialRenderType_Diffuse));
 
 		apLowLevelGraphics->ClearBatch();
-		
+
 		mpMaterial->EndRendering(eMaterialRenderType_Diffuse);
 	}
 	//-----------------------------------------------------------------------
@@ -168,7 +168,7 @@ namespace hpl {
 	void cBackgroundImage::Update()
 	{
 		mvPos += mvVel;
-		
+
 		if(mbTile)
 		{
 			if(mvPos.x>=mvSize.x)mvPos.x = mvPos.x - mvSize.x;

@@ -35,10 +35,10 @@ namespace hpl {
 		/**
 		 * Creates a logic timer.
 		 * \param alUpdatesPerSec Frequency of the timer.
-		 * \return 
+		 * \return
 		 */
 		cLogicTimer * CreateLogicTimer(unsigned int alUpdatesPerSec);
-	
+
 	private:
         iLowLevelSystem *mpLowLevelSystem;
 	};

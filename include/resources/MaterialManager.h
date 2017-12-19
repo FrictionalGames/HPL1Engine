@@ -39,7 +39,7 @@ namespace hpl {
 		iMaterial* CreateMaterial(const tString& asName);
 
 		void Update(float afTimeStep);
-		
+
 		void Destroy(iResourceBase* apResource);
 		void Unload(iResourceBase* apResource);
 

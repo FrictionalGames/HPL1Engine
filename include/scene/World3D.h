@@ -66,13 +66,13 @@ namespace hpl {
 	class cAINodeContainer;
 	class cAStarHandler;
 	class cAINodeGeneratorParams;
-	
+
 	typedef std::list<iLight3D*> tLight3DList;
 	typedef std::list<iLight3D*>::iterator tLight3DListIt;
 
 	typedef std::list<cMeshEntity*> tMeshEntityList;
 	typedef std::list<cMeshEntity*>::iterator tMeshEntityListIt;
-	
+
 	typedef std::list<cBillboard*> tBillboardList;
 	typedef std::list<cBillboard*>::iterator tBillboardListIt;
 
@@ -81,7 +81,7 @@ namespace hpl {
 
 	typedef std::list<cParticleSystem3D*> tParticleSystem3DList;
 	typedef tParticleSystem3DList::iterator tParticleSystem3DListIt;
-	
+
 	typedef std::list<cColliderEntity*> tColliderEntityList;
 	typedef std::list<cColliderEntity*>::iterator tColliderEntityListIt;
 
@@ -104,7 +104,7 @@ namespace hpl {
 	typedef cSTLIterator<cBeam*, tBeamList, tBeamListIt> cBeamIterator;
 
 	//-------------------------------------------------------------------
-	
+
 	class cTempAiNode
 	{
 	public:
@@ -112,7 +112,7 @@ namespace hpl {
 		cVector3f mvPos;
 		tString msName;
 	};
-	
+
 	typedef std::list<cTempAiNode> tTempAiNodeList;
 	typedef std::list<cTempAiNode>::iterator tTempAiNodeListIt;
 
@@ -120,7 +120,7 @@ namespace hpl {
 	{
 	public:
 		tString msName;
-        tTempAiNodeList mlstNodes;		
+        tTempAiNodeList mlstNodes;
 	};
 
 	typedef std::map<tString,cTempNodeContainer*> tTempNodeContainerMap;
@@ -137,7 +137,7 @@ namespace hpl {
 		cMatrixf m_mtxTransform;
 		cVector3f mvSize;
 	};
-	
+
 	typedef std::map<tString, cAreaEntity*> tAreaEntityMap;
 	typedef tAreaEntityMap::iterator tAreaEntityMapIt;
 
@@ -153,18 +153,18 @@ namespace hpl {
 		cMatrixf& GetWorldMatrix(){ return m_mtxTransform;}
 		cMatrixf& GetLocalMatrix(){ return m_mtxTransform;}
 		void SetMatrix(const cMatrixf& a_mtxTrans){ m_mtxTransform = a_mtxTrans;}
-		
+
 		tString& GetName(){ return msName;}
 
 		cMatrixf m_mtxTransform;
 		tString msName;
 	};
-	
+
 	typedef std::list<cStartPosEntity*> tStartPosEntityList;
 	typedef std::list<cStartPosEntity*>::iterator tStartPosEntityListIt;
 
 	//------------------------------------------
-	
+
 	kSaveData_BaseClass(cWorld3D)
 	{
 		kSaveData_ClassInit(cWorld3D)
@@ -212,7 +212,7 @@ namespace hpl {
 		cSystem* GetSystem(){ return mpSystem;}
 		cHaptic* GetHaptic(){ return mpHaptic;}
 
-		iEntity3D* CreateEntity(const tString& asName, const cMatrixf &a_mtxTransform, 
+		iEntity3D* CreateEntity(const tString& asName, const cMatrixf &a_mtxTransform,
 								const tString& asFile, bool abLoadReferences);
 		/**
 		 * Call this when all things have been added to set up things like physics world size.
@@ -228,21 +228,21 @@ namespace hpl {
 		iPhysicsWorld* GetPhysicsWorld();
 
 		///// AREA ////////////////////////////////
-		
+
 		cAreaEntity* CreateAreaEntity(const tString &asName);
 		cAreaEntity* GetAreaEntity(const tString &asName);
 		tAreaEntityMap* GetAreaEntityMap(){return &m_mapAreaEntities;}
 
 		///// MESH ENTITY METHODS ////////////////////
-		
+
 		cMeshEntity* CreateMeshEntity(const tString &asName,cMesh *apMesh, bool abAddToContainer=true);
 		void DestroyMeshEntity(cMeshEntity* apMesh);
 		cMeshEntity* GetMeshEntity(const tString& asName);
-		
+
 		cMeshEntityIterator GetMeshEntityIterator();
 
 		void DrawMeshBoundingBoxes(const cColor &aColor, bool abStatic);
-		
+
 		///// LIGHT METHODS ////////////////////
 
 		cLight3DPoint* CreateLightPoint(const tString &asName="",bool abAddToContainer=true);
@@ -273,7 +273,7 @@ namespace hpl {
 
 		///// PARTICLE METHODS ////////////////////
 
-		cParticleSystem3D* CreateParticleSystem(const tString& asName,const tString& asType, 
+		cParticleSystem3D* CreateParticleSystem(const tString& asName,const tString& asType,
 										const cVector3f& avSize,const cMatrixf& a_mtxTransform);
 		void DestroyParticleSystem(cParticleSystem3D* apPS);
 		cParticleSystem3D* GetParticleSystem(const tString& asName);
@@ -282,14 +282,14 @@ namespace hpl {
 		cParticleSystem3DIterator GetParticleSystemIterator(){ return cParticleSystem3DIterator(&mlstParticleSystems);}
 
 		///// COllIDER METHODS ////////////////////
-		
+
 		cColliderEntity* CreateColliderEntity(const tString &asName,iPhysicsBody *apBody);
 		void DestroyColliderEntity(cColliderEntity* apCollider);
 		cColliderEntity* GetColliderEntity(const tString& asName);
 
 		///// SOUND ENTITY METHODS ////////////////////
 
-		cSoundEntity* CreateSoundEntity(const tString &asName,const tString &asSoundEntity, 
+		cSoundEntity* CreateSoundEntity(const tString &asName,const tString &asSoundEntity,
 										bool abRemoveWhenOver);
 		void DestroySoundEntity(cSoundEntity* apEntity);
 		cSoundEntity* GetSoundEntity(const tString& asName);
@@ -299,7 +299,7 @@ namespace hpl {
 		cSoundEntityIterator GetSoundEntityIterator(){ return cSoundEntityIterator(&mlstSoundEntities);}
 
 		///// START POS ENTITY METHODS ////////////////
-		
+
 		cStartPosEntity* CreateStartPos(const tString &asName);
 		cStartPosEntity* GetStartPosEntity(const tString &asName);
 		cStartPosEntity* GetFirstStartPosEntity();
@@ -308,15 +308,15 @@ namespace hpl {
 
 		void GenerateAINodes(cAINodeGeneratorParams *apParams);
 
-		cAINodeContainer* CreateAINodeContainer(const tString &asName, 
-											const tString &asNodeName, 
+		cAINodeContainer* CreateAINodeContainer(const tString &asName,
+											const tString &asNodeName,
 											const cVector3f &avSize,
-											bool abNodeIsAtCenter, 
+											bool abNodeIsAtCenter,
 											int alMinEdges, int alMaxEdges, float afMaxEdgeDistance,
 											float afMaxHeight);
 
 		cAStarHandler* CreateAStarHandler(cAINodeContainer* apContainer);
-        
+
 		void AddAINode(const tString &asName, const tString &asType, const cVector3f &avPosition);
 		tTempAiNodeList* GetAINodeList(const tString &asType);
 
@@ -348,7 +348,7 @@ namespace hpl {
 
 		iPhysicsWorld *mpPhysicsWorld;
 		bool mbAutoDeletePhysicsWorld;
-		
+
 		cVector3f mvWorldSize;
 
 		cPortalContainer* mpPortalContainer;

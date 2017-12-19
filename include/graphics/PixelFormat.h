@@ -23,7 +23,7 @@
 
 namespace hpl {
 
-	class iPixelFormat 
+	class iPixelFormat
 	{
 	public:
 		iPixelFormat(tString asType) : msType(asType){}

@@ -21,15 +21,15 @@
 #include "system/LowLevelSystem.h"
 
 namespace hpl {
-	
-	
-	
+
+
+
 	//////////////////////////////////////////////////////////////////////////
 	// SAVE GAME DATA
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//------------------------------------------------------------------------
-	
+
 	//Serialize iSaveGame
 	kBeginSerializeBaseVirtual(iSaveData)
 	kSerializeVar(mlSaveDataId, eSerializeType_Int32)
@@ -40,7 +40,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 	// SAVE GAME OBJECT
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	int iSaveObject::_mlGlobalIdCount =0;
 
 	//------------------------------------------------------------------------
@@ -52,21 +52,21 @@ namespace hpl {
 
 		mbIsSaved = true;
 	}
-	
+
 	iSaveObject::~iSaveObject()
 	{
 
 	}
 
 	//------------------------------------------------------------------------
-	
+
 	void iSaveObject::SaveToSaveData(iSaveData *apSaveData)
 	{
-		apSaveData->mlSaveDataId = mlSaveObjectId;	
+		apSaveData->mlSaveDataId = mlSaveObjectId;
 	}
 
 	//------------------------------------------------------------------------
-	
+
 	void iSaveObject::LoadFromSaveData(iSaveData *apSaveData)
 	{
 		mlSaveObjectId = apSaveData->mlSaveDataId;
@@ -79,7 +79,7 @@ namespace hpl {
 	{
 
 	}
-	
+
 	//------------------------------------------------------------------------
 
 	//////////////////////////////////////////////////////////////////////////
@@ -92,7 +92,7 @@ namespace hpl {
 	{
 
 	}
-	
+
 	cSaveObjectHandler::~cSaveObjectHandler()
 	{
 
@@ -104,7 +104,7 @@ namespace hpl {
 	{
 		m_mapSaveObjects.insert(tSaveObjectMap::value_type(pObject->GetSaveObjectId(),pObject));
 	}
-	
+
 	//------------------------------------------------------------------------
 
 	iSaveObject* cSaveObjectHandler::Get(int alId)
@@ -124,7 +124,7 @@ namespace hpl {
 	{
 		return cSaveObjectIterator(&m_mapSaveObjects);
 	}
-	
+
 	//------------------------------------------------------------------------
 
 	void cSaveObjectHandler::SetUpAll(cGame *apGame)
@@ -143,7 +143,7 @@ namespace hpl {
 
 		iSaveObject::_mlGlobalIdCount = lMaxId;
 	}
-	
+
 	//------------------------------------------------------------------------
 
 	void cSaveObjectHandler::Clear()
@@ -159,14 +159,14 @@ namespace hpl {
 	}
 
 	//------------------------------------------------------------------------
-	
+
 
 	//////////////////////////////////////////////////////////////////////////
 	// SAVE DATA CONTAINER
 	//////////////////////////////////////////////////////////////////////////
 
 	//------------------------------------------------------------------------
-	
+
 	cSaveDataHandler::cSaveDataHandler()
 	{
 
@@ -176,7 +176,7 @@ namespace hpl {
 	{
 
 	}
-	
+
 	//------------------------------------------------------------------------
 
 	void cSaveDataHandler::Add(iSaveData *pData)
@@ -198,7 +198,7 @@ namespace hpl {
 	{
 		return m_mapSaveData.size();
 	}
-	
+
 	//------------------------------------------------------------------------
 
 	void cSaveDataHandler::AddVoidPtr(void **apPtr)
@@ -219,5 +219,5 @@ namespace hpl {
 
 	//------------------------------------------------------------------------
 
-	
+
 }

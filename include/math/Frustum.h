@@ -60,23 +60,23 @@ namespace hpl {
 		cPlanef GetPlane(eFrustumPlane aType);
 
 		eFrustumCollision CollideBoundingVolume(cBoundingVolume* aBV);
-		
+
 		eFrustumCollision CollideFustrumSphere(cBoundingVolume* aBV);
 
 		eFrustumCollision CollideBVSphere(cBoundingVolume* aBV);
 		eFrustumCollision CollideBVAABB(cBoundingVolume* aBV);
-		
+
 		/**
 		* Checks intersection with a line
 		*/
 		bool CheckLineIntersection(const cVector3f& avPoint1,const cVector3f& avPoint2);
 
 		/**
-		 * Checks intersection with a quad mesh. 
-		 * \param apPoints the points of the quad mesh, every 4 points is a face. 
+		 * Checks intersection with a quad mesh.
+		 * \param apPoints the points of the quad mesh, every 4 points is a face.
 		 */
 		bool CheckQuadMeshIntersection(tVector3fVec *apPoints);
-		
+
 
 		bool CheckVolumeIntersection(cShadowVolumeBV *apVolume);
 
@@ -91,7 +91,7 @@ namespace hpl {
 		void Draw(iLowLevelGraphics *apLowLevelGraphics);
 
 	private:
-		
+
 		void UpdatePlanes();
 		void UpdateSphere();
 		void UpdateEndPoints();

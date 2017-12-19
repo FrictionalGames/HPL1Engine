@@ -24,7 +24,7 @@
 namespace hpl {
 
 	//-----------------------------------------
-	
+
 	class cGuiMaterial_Diffuse : public iGuiMaterial
 	{
 	public:

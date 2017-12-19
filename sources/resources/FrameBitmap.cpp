@@ -52,7 +52,7 @@ namespace hpl {
 		hplDelete(mpBitmap);
 		mpBitmap = NULL;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	//////////////////////////////////////////////////////////////////////////
@@ -68,15 +68,15 @@ namespace hpl {
 		cResourceImage *pImage=NULL;
 		//source size
 		//+2 because we are gonna have a border to get rid if some antialiasing problems
-		int lSW = apSrc->GetWidth()+2; 
+		int lSW = apSrc->GetWidth()+2;
 		int lSH = apSrc->GetHeight()+2;
-		
+
 		//destination size
 		int lDW = mpBitmap->GetWidth();
 		int lDH = mpBitmap->GetHeight();
 
 		cVector2l vPos;
-		
+
 		bool bFoundEmptyNode = false;
 		bool bFoundNode = false;
 		//Debug
@@ -92,19 +92,19 @@ namespace hpl {
 			if(DEBUG_BTREE)Log("Checking node %d:\n",node++);
 			tRectTreeNode *TopNode = *it;
 			cFBitmapRect* pData = TopNode->GetData();
-			
+
 			//Check if the space is free
 			if(pData->mlHandle<0)
 			{
 				if(DEBUG_BTREE)Log("Found free node\n");
 				bFoundEmptyNode = true; //An empty node was found.. bitmap not full yet.
-				
+
 				//Check if the Image fits in the rect
 				cRect2l NewRect = cRect2l(pData->mRect.x,pData->mRect.y,lSW, lSH);
 				if(DEBUG_BTREE)Log("Fit: [%d:%d:%d:%d] in [%d:%d:%d:%d]\n",
 						NewRect.x,NewRect.y,NewRect.w,NewRect.h,
 						pData->mRect.x,pData->mRect.y,pData->mRect.w,pData->mRect.h);
-				
+
 				if(cMath::BoxFit(NewRect, pData->mRect))
 				{
 					if(DEBUG_BTREE)Log("The node fits!\n");
@@ -127,7 +127,7 @@ namespace hpl {
 						UpperNode = mRects.InsertAt(cFBitmapRect(NewRect.x,NewRect.y,
 													pData->mRect.w,NewRect.h,-2),TopNode,
 													eBinTreeNode_Left);
-						
+
 						//Lower
 						mRects.InsertAt(cFBitmapRect(NewRect.x,NewRect.y+NewRect.h,
 										pData->mRect.w,pData->mRect.h-NewRect.h,-3),TopNode,
@@ -139,15 +139,15 @@ namespace hpl {
 						mRects.InsertAt(cFBitmapRect(NewRect.x,NewRect.y,
 										NewRect.w,NewRect.h,2),UpperNode,
 										eBinTreeNode_Left);
-						
+
 						//Lower split, this is empty
 						mRects.InsertAt(cFBitmapRect(NewRect.x+NewRect.w,NewRect.y,
 										pData->mRect.w-NewRect.w,NewRect.h,-4),UpperNode,
 										eBinTreeNode_Right);
 					}
-					
-					vPos = cVector2l(NewRect.x+1,NewRect.y+1);//+1 for the right pos		            
-					
+
+					vPos = cVector2l(NewRect.x+1,NewRect.y+1);//+1 for the right pos
+
 					//Draw 4 times so we get a nice extra border
 					for(int i=0;i<2;i++)for(int j=0;j<2;j++){
 						apSrc->DrawToBitmap(mpBitmap,cVector2l(NewRect.x+i*2,NewRect.y+j*2));
@@ -159,8 +159,8 @@ namespace hpl {
 					}
 					//Draw the final
 					apSrc->DrawToBitmap(mpBitmap,cVector2l(NewRect.x+1,NewRect.y+1));
-					
-					
+
+
 					mlPicCount++;
 					mpFrameTexture->SetPicCount(mlPicCount);
 					break;
@@ -175,7 +175,7 @@ namespace hpl {
 				cRect2l(vPos,cVector2l(lSW-2,lSH-2)),//-2 to get the correct size.
 				cVector2l(mpBitmap->GetWidth(),mpBitmap->GetHeight()),
 				mlHandle) );
-			
+
 			if(!bFoundEmptyNode)
 			{
 				mbIsFull = true;
@@ -217,7 +217,7 @@ namespace hpl {
 			Log("-----------------\n");
 		}
 
-		
+
 		return pImage;
 	}
 
@@ -243,7 +243,7 @@ namespace hpl {
 	{
 		return mbIsFull;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	bool cFrameBitmap::FlushToTexture()
@@ -263,6 +263,6 @@ namespace hpl {
 			return false;
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
 }

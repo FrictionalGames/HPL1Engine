@@ -25,7 +25,7 @@
 namespace hpl {
 
 	//------------------------------------
-	
+
 	class cAllocatedPointer
 	{
 	public:
@@ -41,7 +41,7 @@ namespace hpl {
 
 	typedef std::map<void*, cAllocatedPointer> tAllocatedPointerMap;
 	typedef tAllocatedPointerMap::iterator tAllocatedPointerMapIt;
-	
+
 	//------------------------------------
 
 	class cMemoryManager
@@ -53,7 +53,7 @@ namespace hpl {
 		static bool RemovePointer(void *apData);
 
 		static void LogResults();
-		
+
 		static 	tAllocatedPointerMap m_mapPointers;
 		static size_t mlTotalMemoryUsage;
 
@@ -61,21 +61,21 @@ namespace hpl {
 
 		template<class T>
 		static T* DeleteAndReturn(T* apData)
-		{ 
+		{
 			delete apData;
 			return apData;
 		}
 
 		template<class T>
 		static T* DeleteArrayAndReturn(T* apData)
-		{ 
+		{
 			delete [] apData;
 			return apData;
 		}
 
 		template<class T>
 		static T* FreeAndReturn(T* apData)
-		{ 
+		{
 			free(apData);
 			return apData;
 		}
@@ -91,10 +91,10 @@ namespace hpl {
 	};
 
 	//------------------------------------
-	
+
 //#define MEMORY_MANAGER_ACTIVE
 #ifdef MEMORY_MANAGER_ACTIVE
-    
+
 	#define hplNew(classType, constructor) \
 			( classType *)hpl::cMemoryManager::AddPointer(hpl::cAllocatedPointer(new classType constructor ,__FILE__,__LINE__,sizeof(classType)))
 
@@ -107,8 +107,8 @@ namespace hpl {
 	#define hplDelete(data){ \
 			if(hpl::cMemoryManager::RemovePointer(hpl::cMemoryManager::DeleteAndReturn(data))==false) hpl::Log("Deleting at '%s' %d\n",__FILE__,__LINE__); \
 			}//delete data;
-				
-		
+
+
 	#define hplDeleteArray(data){ \
 			if(hpl::cMemoryManager::RemovePointer(hpl::cMemoryManager::DeleteArrayAndReturn(data))==false) hpl::Log("Deleting at '%s' %d\n",__FILE__,__LINE__); \
 			}//delete [] data;
@@ -117,17 +117,17 @@ namespace hpl {
 			if(hpl::cMemoryManager::RemovePointer(hpl::cMemoryManager::FreeAndReturn(data))==false) hpl::Log("Deleting at '%s' %d\n",__FILE__,__LINE__); \
 			}//free(data);
 
-		
+
 #else
 	#define hplNew(classType, constructor) \
 			new classType constructor
-	
+
 	#define hplNewArray(classType, amount) \
-			new classType [ amount ] 
-	
+			new classType [ amount ]
+
 	#define hplMalloc(amount) \
 			malloc( amount )
-	
+
 	#define hplDelete(data) \
 		delete data;
 

@@ -27,7 +27,7 @@
 #include "haptic/HapticTypes.h"
 
 namespace hpl {
-	
+
 	class iLowLevelPhysics;
 	class iPhysicsWorld;
 	class cSurfaceData;
@@ -93,7 +93,7 @@ namespace hpl {
 
 		void SetDebugLog(bool abX){ mbLog = abX;}
 		bool GetDebugLog(){ return mbLog;}
-	
+
 	private:
 		eHapticSurfaceType GetHapticSurface(const char *apName);
 

@@ -41,8 +41,8 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	cWidgetSlider::cWidgetSlider(cGuiSet *apSet, cGuiSkin *apSkin, 
-								eWidgetSliderOrientation aOrientation) 
+	cWidgetSlider::cWidgetSlider(cGuiSet *apSet, cGuiSkin *apSkin,
+								eWidgetSliderOrientation aOrientation)
 					: iWidget(eWidgetType_Slider,apSet, apSkin)
 	{
 		mOrientation = aOrientation;
@@ -78,9 +78,9 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	void cWidgetSlider::SetValue(int alValue)
-	{ 
+	{
 		if(mlValue == alValue) return;
 
 		mlValue = alValue;
@@ -93,7 +93,7 @@ namespace hpl {
 	}
 
 	void cWidgetSlider::SetMaxValue(int alMax)
-	{ 
+	{
 		if(mlMaxValue == alMax) return;
 
 		mlMaxValue = alMax;
@@ -105,12 +105,12 @@ namespace hpl {
 	}
 
 	void cWidgetSlider::SetButtonValueAdd(int alAdd)
-	{ 
+	{
 		mlButtonValueAdd = alAdd;
 	}
 
 	void cWidgetSlider::SetBarValueSize(int alSize)
-	{ 
+	{
 		if(mlBarValueSize == alSize) return;
 
 		mlBarValueSize  = alSize;
@@ -125,7 +125,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 	// PROTECTED METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
 
 	void cWidgetSlider::UpdateBarProperties()
@@ -136,7 +136,7 @@ namespace hpl {
 		{
 			mfSliderSize = mvSize.y-mfButtonSize*2;
 
-			mvBarSize = cVector2f(mvSize.x, 
+			mvBarSize = cVector2f(mvSize.x,
 				((float)mlBarValueSize / (float)(mlMaxValue+1))*(mfSliderSize));
 
 			float fMinSize = mvGfxCorners[0]->GetActiveSize().y + mvGfxCorners[3]->GetActiveSize().y + 2;
@@ -170,31 +170,31 @@ namespace hpl {
 
 			mvBarPos = cVector3f(mfButtonSize + mfValueStep*(float)mlValue,0,0.2f);
 		}
-		
+
 		mBarRect.x = GetGlobalPosition().x + mvBarPos.x;
 		mBarRect.y = GetGlobalPosition().y + mvBarPos.y;
 		mBarRect.w = mvBarSize.x;
 		mBarRect.h = mvBarSize.y;
 
-		
+
 		mfMaxPos = mfButtonSize + mfValueStep * (float)(mlMaxValue);
 		mfMinPos = mfButtonSize;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	bool cWidgetSlider::ArrowButtonDown(iWidget* apWidget,cGuiMessageData& aData)
-	{	
+	{
 		int i;
 		for(i=0; i<2; ++i) if(mvButtons[i] == apWidget) break;
 
 		if(i==0) SetValue(mlValue-1);
 		if(i==1) SetValue(mlValue+1);
-		
+
 		//Call callbacks.
 		cGuiMessageData data = cGuiMessageData(mlValue);
 		ProcessMessage(eGuiMessage_SliderMove, data);
-		
+
 		return true;
 	}
 	kGuiCalllbackDeclaredFuncEnd(cWidgetSlider,ArrowButtonDown)
@@ -209,13 +209,13 @@ namespace hpl {
 		for(int i=0; i<2;i++)
 		{
 			mvButtons[i]->SetImage(mvGfxArrow[i],false);
-			
+
 			mvButtons[i]->AddCallback(eGuiMessage_MouseDown,this,kGuiCallback(ArrowButtonDown));
 		}
 
 		OnChangeSize();
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cWidgetSlider::OnLoadGraphics()
@@ -233,7 +233,7 @@ namespace hpl {
 		mvGfxCorners[1] = mpSkin->GetGfx(eGuiSkinGfx_ButtonUpCornerRU);
 		mvGfxCorners[2] = mpSkin->GetGfx(eGuiSkinGfx_ButtonUpCornerRD);
 		mvGfxCorners[3] = mpSkin->GetGfx(eGuiSkinGfx_ButtonUpCornerLD);
-		
+
 		//////////////////////////
 		// Vertical
 		if(mOrientation == eWidgetSliderOrientation_Vertical)
@@ -259,14 +259,14 @@ namespace hpl {
 	void cWidgetSlider::OnChangeSize()
 	{
 		if(mvButtons[0] == NULL || mvButtons[1] == NULL) return;
-		
+
 		//////////////////////////
 		// Vertical
 		if(mOrientation == eWidgetSliderOrientation_Vertical)
 		{
 			mvButtons[0]->SetPosition(cVector3f(0,0,0.2f));
 			mvButtons[0]->SetSize(cVector2f(mvSize.x, mfButtonSize));
-			
+
 			mvButtons[1]->SetPosition(cVector3f(0,mvSize.y-mfButtonSize,0.2f));
 			mvButtons[1]->SetSize(cVector2f(mvSize.x, mfButtonSize));
 		}
@@ -283,7 +283,7 @@ namespace hpl {
 
 		UpdateBarProperties();
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cWidgetSlider::OnChangePosition()
@@ -294,38 +294,38 @@ namespace hpl {
 	//-----------------------------------------------------------------------
 
 	void cWidgetSlider::OnDraw(float afTimeStep, cGuiClipRegion *apClipRegion)
-	{	
+	{
 		////////////////////////////////
 		// Background
 
 		// Vertical
 		if(mOrientation == eWidgetSliderOrientation_Vertical)
 		{
-			mpSet->DrawGfx(mpGfxBackground, GetGlobalPosition() + 
+			mpSet->DrawGfx(mpGfxBackground, GetGlobalPosition() +
 							cVector3f(0,mfButtonSize,0.1f),
 							cVector2f(mvSize.x,mvSize.y - mfButtonSize*2));
 		}
 		// Horizontal
 		else
 		{
-			mpSet->DrawGfx(mpGfxBackground, GetGlobalPosition() + 
+			mpSet->DrawGfx(mpGfxBackground, GetGlobalPosition() +
 				cVector3f(mfButtonSize,0,0.1f),
 				cVector2f(mvSize.x - mfButtonSize*2,mvSize.y));
 		}
 
 		////////////////////////////////
 		// Borders and button background
-		DrawBordersAndCorners(	mpGfxButtonBackground, mvGfxBorders, mvGfxCorners, 
+		DrawBordersAndCorners(	mpGfxButtonBackground, mvGfxBorders, mvGfxCorners,
 								GetGlobalPosition() + mvBarPos, mvBarSize);
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	bool cWidgetSlider::OnMouseMove(cGuiMessageData &aData)
 	{
 		if(mbPressed)
 		{
-			
+
 
 			int lVal;
 			// Vertical
@@ -350,8 +350,8 @@ namespace hpl {
 				mBarRect.x = GetGlobalPosition().x + mvBarPos.x;
 				lVal = (int)((mvBarPos.x-mfButtonSize) / mfValueStep + 0.5f);
 			}
-			
-			
+
+
 			if(lVal>mlMaxValue)lVal = mlMaxValue;
 			if(lVal<0)lVal = 0;
 			if(lVal != mlValue)
@@ -361,7 +361,7 @@ namespace hpl {
 				ProcessMessage(eGuiMessage_SliderMove, data);
 			}
 		}
-		
+
 		/*if(mbPressed && cMath::PointBoxCollision(aData.mvPos,mBarRect)==false)
 		{
 			mbPressed = false;
@@ -381,7 +381,7 @@ namespace hpl {
 			mvRelMousePos.x = vRel.x;
 			mvRelMousePos.y = vRel.y;
 		}
-				
+
 		return true;
 	}
 
@@ -394,7 +394,7 @@ namespace hpl {
 			mbPressed = false;
 			UpdateBarProperties();
 		}
-		
+
 		return true;
 	}
 
@@ -404,12 +404,12 @@ namespace hpl {
 	{
 		return false;
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	bool cWidgetSlider::OnMouseLeave(cGuiMessageData &aData)
 	{
-		
+
 
 		return false;
 	}

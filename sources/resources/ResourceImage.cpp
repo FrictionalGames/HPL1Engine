@@ -31,7 +31,7 @@ namespace hpl {
 
 #define kContractSize (0.001f)
 
-	cResourceImage::cResourceImage(tString asName,cFrameTexture *apFrameTex, 
+	cResourceImage::cResourceImage(tString asName,cFrameTexture *apFrameTex,
 		cFrameBitmap *apFrameBmp, cRect2l aRect,
 		cVector2l avSrcSize, int alHandle) : iResourceBase(asName,0)
 	{
@@ -41,24 +41,24 @@ namespace hpl {
 		mvSourceSize = avSrcSize;
 		mlHandle = alHandle;
 
-		cVector2f vTexSize = cVector2f((float)mRect.w,(float)mRect.h ) / 
+		cVector2f vTexSize = cVector2f((float)mRect.w,(float)mRect.h ) /
 								cVector2f((float)mvSourceSize.x,(float)mvSourceSize.y);
-		cVector2f vTexPos = cVector2f((float)mRect.x,(float)mRect.y ) / 
+		cVector2f vTexPos = cVector2f((float)mRect.x,(float)mRect.y ) /
 								cVector2f((float)mvSourceSize.x,(float)mvSourceSize.y);
 
 		mvVtx.push_back(cVertex(cVector3f(0,0,0),
 						cVector3f(vTexPos.x+kContractSize, vTexPos.y+kContractSize,0), cColor(1)));
-		
+
 		mvVtx.push_back(cVertex(cVector3f((float)mRect.w,0,0),
-						cVector3f(vTexPos.x+vTexSize.x-kContractSize, vTexPos.y+kContractSize,0), 
+						cVector3f(vTexPos.x+vTexSize.x-kContractSize, vTexPos.y+kContractSize,0),
 						cColor(1)));
-		
+
 		mvVtx.push_back(cVertex(cVector3f((float)mRect.w,(float)mRect.h,0),
 						cVector3f(vTexPos.x+vTexSize.x-kContractSize, vTexPos.y+vTexSize.y-kContractSize,0),
 						cColor(1)));
-		
+
 		mvVtx.push_back(cVertex(cVector3f(0,(float)mRect.h,0),
-						cVector3f(vTexPos.x+kContractSize, vTexPos.y+vTexSize.y-kContractSize,0), 
+						cVector3f(vTexPos.x+kContractSize, vTexPos.y+vTexSize.y-kContractSize,0),
 						cColor(1)));
 	}
 
@@ -77,17 +77,17 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 	// PUBLIC METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
 
 	iTexture *cResourceImage::GetTexture()const{return mpFrameTexture->GetTexture();}
 
 	//-----------------------------------------------------------------------
-	
+
 	tVertexVec cResourceImage::GetVertexVecCopy(const cVector2f &avPos, const cVector2f &avSize)
 	{
 		tVertexVec vTmpVtx = mvVtx;
-		
+
 		if(avSize == cVector2f(-1,-1)) {
 			vTmpVtx[1].pos.x = mvVtx[0].pos.x + mRect.w;
 			vTmpVtx[2].pos.x = mvVtx[0].pos.x + mRect.w;
@@ -106,26 +106,26 @@ namespace hpl {
 
 		return vTmpVtx;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	bool cResourceImage::Reload()
 	{
 		return false;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cResourceImage::Unload()
 	{
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cResourceImage::Destroy()
 	{
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 }

@@ -32,9 +32,9 @@ namespace hpl {
 			eMaterialPicture aPicture, cRenderer3D *apRenderer3D);
 
 		virtual ~cMaterial_Water();
-		
+
 		tTextureTypeList GetTextureTypes();
-		
+
 		bool UsesType(eMaterialRenderType aType);
 
 		void Update(float afTimeStep);
@@ -72,7 +72,7 @@ namespace hpl {
 		bool NextPass(eMaterialRenderType aType){return false;}
 		bool HasMultiplePasses(eMaterialRenderType aType){return false;}
 		eMaterialType GetType(eMaterialRenderType aType){ return eMaterialType_Diffuse;}
-		void EditVertexes(eMaterialRenderType aType, iCamera* apCam, iLight *pLight, 
+		void EditVertexes(eMaterialRenderType aType, iCamera* apCam, iLight *pLight,
 			tVertexVec *apVtxVec,cVector3f *apTransform,unsigned int alIndexAdd){}
 
 	private:
@@ -87,7 +87,7 @@ namespace hpl {
 	class cMaterialType_Water : public iMaterialType
 	{
 	public:
-		bool IsCorrect(tString asName){ 
+		bool IsCorrect(tString asName){
 			return cString::ToLowerCase(asName)=="water";
 		}
 

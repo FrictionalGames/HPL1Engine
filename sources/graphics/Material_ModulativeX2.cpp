@@ -127,7 +127,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 	// PUBLIC METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
 
 	iGpuProgram* cMaterial_ModulativeX2::GetVertexProgram(eMaterialRenderType aType, int alPass, iLight3D *apLight)
@@ -210,7 +210,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	bool cMaterial_ModulativeX2::UsesType(eMaterialRenderType aType)
 	{
 		if(aType == eMaterialRenderType_Diffuse) return true;
@@ -218,9 +218,9 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	tTextureTypeList cMaterial_ModulativeX2::GetTextureTypes()
-	{ 
+	{
 		tTextureTypeList vTypes;
 		vTypes.push_back(cTextureType("",eMaterialTexture_Diffuse));
 		vTypes.push_back(cTextureType("_ref",eMaterialTexture_Refraction));

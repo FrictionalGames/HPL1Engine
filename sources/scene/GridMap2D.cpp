@@ -64,7 +64,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	iGridMap2DIt* cGridMap2D::GetRectIterator(const cRect2f& aRect)
 	{
 		cVector2l vPos = cVector2l((int)floor(aRect.x/(float)mvGridSize.x),
@@ -81,17 +81,17 @@ namespace hpl {
 
 		return hplNew( cGridMap2DRectIt, (this,vPos,vSize) );
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	bool cGridMap2D::AddEntity(iEntity2D* apEntity)
 	{
         cGrid2DObject *pObject = hplNew( cGrid2DObject, (apEntity,this,mlHandleCount) );
 		apEntity->SetGrid2DObject(pObject);
-		
+
 		//Insert into the all map.
 		m_mapAllObjects.insert(tGrid2DObjectMap::value_type(mlHandleCount, pObject));
-		
+
 		mlHandleCount++;
 		return true;
 	}
@@ -105,7 +105,7 @@ namespace hpl {
 
 		pObject->Destroy();
 		m_mapAllObjects.erase(pObject->GetHandle());
-		
+
 		hplDelete(pObject);
 		apEntity->SetGrid2DObject(NULL);
 
@@ -120,7 +120,7 @@ namespace hpl {
 
 		return &mvGrids[alX + alY*mvGridNum.x];
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cGridMap2D::DrawGrid(iLowLevelGraphics *apLowLevel, float afZ,cColor aCol)
@@ -133,7 +133,7 @@ namespace hpl {
 
 			}
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cGridMap2D::DrawEntityGrids(iLowLevelGraphics *apLowLevel,cVector2f avWorldPos,float afZ,cColor aCol)
@@ -156,7 +156,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 	// GRIDMAP PUBLIC METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
 
 	cGridMap2DRectIt::cGridMap2DRectIt(cGridMap2D* apGridMap,  cVector2l avPos,  cVector2l avSize)
@@ -171,7 +171,7 @@ namespace hpl {
 		mlGridRowCount=0;
 		mbUpdated = false;
 
-		
+
 		//Increase the counter so you can load all objects.
 		mpGridMap->mlGlobalCount++;
 
@@ -179,7 +179,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	bool cGridMap2DRectIt::HasNext()
 	{
 		if(!mbUpdated){
@@ -190,7 +190,7 @@ namespace hpl {
 		if(mpObject) return true;
 		else return false;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	iEntity2D* cGridMap2DRectIt::Next()
@@ -200,7 +200,7 @@ namespace hpl {
 			GetGridObject();
 			mbUpdated=true;
 		}
-		
+
 		if(mpObject){
 			pEntity =  mpObject->GetEntity();
 			mIt++;
@@ -212,7 +212,7 @@ namespace hpl {
 	//-----------------------------------------------------------------------
 	/////////////////////////// PRIVATE //////////////////////////////////////
 	//-----------------------------------------------------------------------
-	
+
     void cGridMap2DRectIt::GetGridObject()
 	{
 		bool bEnd=false;
@@ -229,7 +229,7 @@ namespace hpl {
 					//Log("Reached end of global\n");
 					mlType=1;
 					//Check if the coord is in an outer bound
-					if(mvPos.x<0 || mvPos.y<0 || 
+					if(mvPos.x<0 || mvPos.y<0 ||
 						mvPos.x+mvSize.x> mpGridMap->mvGridNum.x ||
 						mvPos.y+mvSize.y> mpGridMap->mvGridNum.y)
 					{
@@ -275,7 +275,7 @@ namespace hpl {
 					//Pos below (0,0):
 					if(mvPos.x<0){mvSize.x+=mvPos.x; mvPos.x=0;}
 					if(mvPos.y<0){mvSize.y+=mvPos.y; mvPos.y=0;}
-					
+
 					//Size large than grid map
 					if(mvPos.x + mvSize.x > mpGridMap->mvGridNum.x){
 						mvSize.x -= (mvPos.x + mvSize.x) - (mpGridMap->mvGridNum.x);
@@ -295,7 +295,7 @@ namespace hpl {
 
 					//Log("Num: %d Add: %d Row: %d Col: %d\n",mlGridNum,mlGridAdd,
 					//		mlGridRowCount,mlGridColCount);
-                    
+
 					//Rect is outsize of map.
 					if(mvSize.x<=0 || mvSize.y<=0){
 						mlGridNum =0;
@@ -347,7 +347,7 @@ namespace hpl {
 					else
 					{
 						mpObject = mIt->second;
-						
+
 						//Check if object allready have been loaded.
 						if(mpObject->FirstTime(mpGridMap->mlGlobalCount)){
 							//Log("Found the object in grid[%d]!\n",mlGridNum);
@@ -369,7 +369,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 	// GRIDOBJECT PUBLIC METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
 
 	cGrid2DObject::cGrid2DObject(iEntity2D *apEntity,cGridMap2D* apGridMap,unsigned int alHandle)
@@ -380,7 +380,7 @@ namespace hpl {
 		mvGridParents.resize(mpGridMap->GetMaxArraySize());
 		for(int i=0;i<(int)mvGridParents.size();i++)
 			mvGridParents[i] = NULL;
-		
+
 		mvPosition= cVector2l(-1000);
 		mvGridSpan = cVector2l(-1,-1);
 		mlHandle = alHandle;
@@ -394,7 +394,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	void cGrid2DObject::Destroy()
 	{
 		//Remove all old grids. This should only remove stuff that are necessary.
@@ -421,7 +421,7 @@ namespace hpl {
 
 	/**
 	 * \todo This function should be as optimized as possible.
-	 * \param &aRect 
+	 * \param &aRect
 	 */
 	void cGrid2DObject::Update(const cRect2f &aRect)
 	{
@@ -435,18 +435,18 @@ namespace hpl {
 		//Log("Rect: %f:%f:%f:%f\n",aRect.x,aRect.y,aRect.w,aRect.h);
 		//Log("GSize: %f:%f\n",vGSize.x,vGSize.y);
 		//Log("Pos: %d:%d\n",vPos.x,vPos.y);
-				
+
 		//Test if the rect is to large or has negative size.
 		//If so put it in the global map.
 		//TODO: this is a long test and it would good to skip it for most stuff
 		// Fix that!
-		if(	aRect.h<0 || aRect.w<0 || vGridSpan.x>=mpGridMap->GetMaxGridSpan().x || 
+		if(	aRect.h<0 || aRect.w<0 || vGridSpan.x>=mpGridMap->GetMaxGridSpan().x ||
 			vGridSpan.y>=mpGridMap->GetMaxGridSpan().y)
 		{
 			if(mbIsInGLobal==false)
 			{
 				mbIsInGLobal = true;
-				
+
 				//Erase old positions
 				for(int x=0; x<mvGridSpan.x; x++)
 				for(int y=0; y<mvGridSpan.y; y++){
@@ -456,22 +456,22 @@ namespace hpl {
 						mvGridParents[lNum] = NULL;
 					}
 				}
-				
+
 				mpGridMap->m_mapGlobalObjects.insert(tGrid2DObjectMap::value_type(mlHandle, this));
 				//Log("Added to global\n");
 			}
 
 			return;
 		}
-		
+
 		//The amount not covered in the span calc above
 		//Then check if this piece is out side of the last grid.
 		if(aRect.x+aRect.w>=(vPos.x+vGridSpan.x)*vGSize.x)vGridSpan.x++;
 		if(aRect.y+aRect.h>=(vPos.y+vGridSpan.y)*vGSize.y)vGridSpan.y++;
 
-		
+
 		//Log("GridSpan: %d:%d\n",vGridSpan.x,vGridSpan.y);
-		
+
 		if(vPos != mvPosition || vGridSpan != mvGridSpan)
 		{
 			//Remove all old grids. This should only remove stuff that are necessary.
@@ -495,9 +495,9 @@ namespace hpl {
 				mpGridMap->m_mapOuterObjects.erase(mlHandle);
 				mbIsInOuter = false;
 			}
-			
+
 			mvGridSpan = vGridSpan;
-			
+
 			cGrid2D *pGrid=NULL;
 			for(int x=0; x<mvGridSpan.x; x++)
 				for(int y=0; y<mvGridSpan.y; y++)
@@ -509,7 +509,7 @@ namespace hpl {
 																	mlHandle,this));
 							mbIsInOuter = true;
 						}
-						
+
 					}
 					else {
 						pGrid->Add(this);

@@ -31,7 +31,7 @@ namespace hpl {
 	public:
 		iGuiPopUp(cGuiSet *apSet);
 		virtual ~iGuiPopUp();
-		
+
 	protected:
 		void SelfDestruct();
 

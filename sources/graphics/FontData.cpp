@@ -37,7 +37,7 @@ namespace hpl {
 	// CONSTRUCTORS
 	//////////////////////////////////////////////////////////////////////////
 
-	
+
 	//-----------------------------------------------------------------------
 
 	cGlyph::cGlyph(	cGfxObject *apObject, cGuiGfxElement *apGuiGfx,const cVector2f &avOffset,
@@ -49,24 +49,24 @@ namespace hpl {
 		mvSize = avSize;
 		mfAdvance = afAdvance;
 	}
-		
+
 
 
 	cGlyph::~cGlyph()
-	{ 
+	{
 		if(mpGfxObject) hplDelete(mpGfxObject);
 		if(mpGuiGfx) hplDelete(mpGuiGfx);
-	
+
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	iFontData::iFontData(const tString &asName,iLowLevelGraphics* apLowLevelGraphics)
 	: iResourceBase(asName,0)
 	{
 		mpLowLevelGraphics = apLowLevelGraphics;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	iFontData::~iFontData()
@@ -77,7 +77,7 @@ namespace hpl {
 		}
 	}
 
-	
+
 	//-----------------------------------------------------------------------
 
 	//////////////////////////////////////////////////////////////////////////
@@ -85,13 +85,13 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	void iFontData::Draw(const cVector3f& avPos,const cVector2f& avSize, const cColor& aCol,
 						eFontAlign aAlign,	const wchar_t* fmt,...)
 	{
 		wchar_t sText[256];
-		va_list ap;	
-		if (fmt == NULL) return;	
+		va_list ap;
+		if (fmt == NULL) return;
 		va_start(ap, fmt);
 		vswprintf(sText, 255, fmt, ap);
 		va_end(ap);
@@ -127,12 +127,12 @@ namespace hpl {
 
 				mpGraphicsDrawer->DrawGfxObject(pGlyph->mpGfxObject,vPos + vOffset,vSize,aCol);
 
-				vPos.x += pGlyph->mfAdvance*avSize.x; 
+				vPos.x += pGlyph->mfAdvance*avSize.x;
 			}
 			lCount++;
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	int iFontData::DrawWordWrap(cVector3f avPos,float afLength,float afFontHeight,cVector2f avSize,const cColor& aCol,
@@ -145,7 +145,7 @@ namespace hpl {
 		unsigned int last_space=0;
 
 		tUIntList RowLengthList;
-		
+
 		float fTextLength;
 
 		for(pos = 0; pos < asString.size();pos++)
@@ -194,7 +194,7 @@ namespace hpl {
 		{
 			first_letter=0;
 			unsigned int i=0;
-			
+
 			for(tUIntListIt it = RowLengthList.begin();it != RowLengthList.end();++it)
 			{
 				Draw(cVector3f(avPos.x,avPos.y + i*afFontHeight,avPos.z),avSize,aCol,aAlign,
@@ -232,7 +232,7 @@ namespace hpl {
 			{
 				tWString temp = asString.substr(first_letter, pos-first_letter);
 				fTextLength =  GetLength(avSize,temp.c_str());
-				
+
 				//Log("r:%d p:%d f:%d l:%d Temp:'%s'\n",rows,pos,first_letter,last_space,
 													//temp.c_str());
 				bool nothing = true;
@@ -285,9 +285,9 @@ namespace hpl {
 
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	float iFontData::GetLength(const cVector2f& avSize,const wchar_t* sText)
 	{
 		int lCount=0;
@@ -309,22 +309,22 @@ namespace hpl {
 				cVector2f vOffset(pGlyph->mvOffset * avSize);
 				cVector2f vSize(pGlyph->mvSize * avSize);
 
-				fLength += pGlyph->mfAdvance*avSize.x; 
+				fLength += pGlyph->mfAdvance*avSize.x;
 			}
 			lCount++;
 		}
 
 		return fLength;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
-	
+
 	float iFontData::GetLengthFmt(const cVector2f& avSize,const wchar_t* fmt,...)
 	{
 		wchar_t sText[256];
-		va_list ap;	
-		if (fmt == NULL) return 0;	
+		va_list ap;
+		if (fmt == NULL) return 0;
 		va_start(ap, fmt);
 		vswprintf(sText, 255, fmt, ap);
 		va_end(ap);
@@ -332,18 +332,18 @@ namespace hpl {
 		return GetLength(avSize, sText);
 	}
 	//-----------------------------------------------------------------------
-	
+
 	//////////////////////////////////////////////////////////////////////////
 	// PRIVATE METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	cGlyph* iFontData::CreateGlyph(iBitmap2D* apBmp, const cVector2l &avOffset,const cVector2l &avSize,
 								const cVector2l& avFontSize, int alAdvance)
 	{
 		//Here the bitmap should be saved to diskk for faster loading.
-		
+
 		//////////////////////////
 		//Gfx object
 		cGfxObject* pObject = mpGraphicsDrawer->CreateGfxObject(apBmp,"fontnormal",false);
@@ -354,7 +354,7 @@ namespace hpl {
 		cResourceImage *pImage = pObject->GetMaterial()->GetImage(eMaterialTexture_Diffuse);
 		pImage->IncUserCount();
 		pGuiGfx->AddImage(pImage);
-		
+
 		//////////////////////////
 		//Sizes
 		cVector2f vSize;
@@ -364,22 +364,22 @@ namespace hpl {
 		cVector2f vOffset;
 		vOffset.x = ((float)avOffset.x)/((float)avFontSize.x);
 		vOffset.y = ((float)avOffset.y)/((float)avFontSize.y);
-		
+
         float fAdvance = ((float)alAdvance)/((float)avFontSize.x) * mvSizeRatio.x;
-		
+
 		cGlyph* pGlyph = hplNew( cGlyph,(pObject,pGuiGfx,vOffset,vSize,fAdvance));
 
 		return pGlyph;
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	void iFontData::AddGlyph(cGlyph *apGlyph)
 	{
 		mvGlyphs.push_back(apGlyph);
 	}
 
-	
+
 
 	//-----------------------------------------------------------------------
 

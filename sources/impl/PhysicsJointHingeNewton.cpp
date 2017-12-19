@@ -33,8 +33,8 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	cPhysicsJointHingeNewton::cPhysicsJointHingeNewton(const tString &asName, 
-		iPhysicsBody *apParentBody, iPhysicsBody *apChildBody, 
+	cPhysicsJointHingeNewton::cPhysicsJointHingeNewton(const tString &asName,
+		iPhysicsBody *apParentBody, iPhysicsBody *apChildBody,
 		iPhysicsWorld *apWorld,const cVector3f &avPivotPoint, const cVector3f avPinDir)
 		: iPhysicsJointNewton<iPhysicsJointHinge>(asName,apParentBody,apChildBody,apWorld,avPivotPoint)
 	{
@@ -68,7 +68,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	void cPhysicsJointHingeNewton::SetMaxAngle(float afAngle)
 	{
 		mfMaxAngle = afAngle;
@@ -95,7 +95,7 @@ namespace hpl {
 	cVector3f cPhysicsJointHingeNewton::GetAngularVelocity()
 	{
 		float fSpeed = NewtonHingeGetJointOmega(mpNewtonJoint);
-		return mvPinDir * fSpeed; 
+		return mvPinDir * fSpeed;
 	}
 	cVector3f cPhysicsJointHingeNewton::GetForce()
 	{
@@ -115,9 +115,9 @@ namespace hpl {
 		return NewtonHingeGetJointAngle(mpNewtonJoint);
 	}
 
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	//////////////////////////////////////////////////////////////////////////
 	// STATIC CALLBACKS
 	//////////////////////////////////////////////////////////////////////////
@@ -133,7 +133,7 @@ namespace hpl {
 		if(pHingeJoint->mfMaxAngle == 0 && pHingeJoint->mfMinAngle == 0) return 0;
 
         float fAngle = NewtonHingeGetJointAngle (pHinge);
-		
+
 		//Avoid oscillation
 		CheckLimitAutoSleep(pHingeJoint, pHingeJoint->mfMinAngle,pHingeJoint->mfMaxAngle,fAngle);
 
@@ -147,7 +147,7 @@ namespace hpl {
 
 			pDesc->m_accel = NewtonHingeCalculateStopAlpha (pHinge, pDesc, pHingeJoint->mfMaxAngle);
 			pDesc->m_maxFriction =0;
-			
+
 			pHingeJoint->mfPreviousAngle = fAngle;
 			return 1;
 		}
@@ -167,7 +167,7 @@ namespace hpl {
 			if(pHingeJoint->mpParentBody ==NULL || pHingeJoint->mpParentBody->GetMass()==0)
 			{
 				if(	(pHingeJoint->mfStickyMaxDistance != 0 &&
-					fabs(fAngle - pHingeJoint->mfMaxAngle) < pHingeJoint->mfStickyMaxDistance) 
+					fabs(fAngle - pHingeJoint->mfMaxAngle) < pHingeJoint->mfStickyMaxDistance)
 					||
 					(pHingeJoint->mfStickyMinDistance != 0 &&
 					fabs(fAngle - pHingeJoint->mfMinAngle) < pHingeJoint->mfStickyMinDistance)
@@ -180,7 +180,7 @@ namespace hpl {
 
 			pHingeJoint->OnNoLimit();
 		}
-		
+
 		pHingeJoint->mfPreviousAngle = fAngle;
 		return 0;
 	}

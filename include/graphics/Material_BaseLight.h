@@ -41,16 +41,16 @@ namespace hpl {
 	public:
 		iMaterial_BaseLight(const tString& asLightVertexProgram,
 							const tString& asLightFragmentProgram,
-			
+
 			const tString& asName,iLowLevelGraphics* apLowLevelGraphics,
 			cImageManager* apImageManager, cTextureManager *apTextureManager,
 			cRenderer2D* apRenderer, cGpuProgramManager* apProgramManager,
 			eMaterialPicture aPicture, cRenderer3D *apRenderer3D);
 
 		virtual ~iMaterial_BaseLight();
-		
+
 		tTextureTypeList GetTextureTypes();
-		
+
 		bool UsesType(eMaterialRenderType aType);
 
 		iGpuProgram* GetVertexProgram(eMaterialRenderType aType, int alPass, iLight3D *apLight);
@@ -78,7 +78,7 @@ namespace hpl {
 		bool NextPass(eMaterialRenderType aType){return false;}
 		bool HasMultiplePasses(eMaterialRenderType aType){return false;}
 		eMaterialType GetType(eMaterialRenderType aType){ return eMaterialType_Diffuse;}
-		void EditVertexes(eMaterialRenderType aType, iCamera* apCam, iLight *pLight, 
+		void EditVertexes(eMaterialRenderType aType, iCamera* apCam, iLight *pLight,
 			tVertexVec *apVtxVec,cVector3f *apTransform,unsigned int alIndexAdd){}
 
 	protected:

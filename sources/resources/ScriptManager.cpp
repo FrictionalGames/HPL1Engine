@@ -62,7 +62,7 @@ namespace hpl {
 		tString asNewName;
 
 		BeginLoad(asName);
-		
+
 		asNewName = cString::SetFileExt(asName,"hps");
 
 		pScript = static_cast<iScript*>(this->FindLoadedResource(asNewName,sPath));
@@ -70,19 +70,19 @@ namespace hpl {
 		if(pScript==NULL && sPath!="")
 		{
 			pScript = mpSystem->GetLowLevel()->CreateScript(asNewName);
-			
+
 			if(pScript->CreateFromFile(sPath)==false){
 				hplDelete(pScript);
 				EndLoad();
 				return NULL;
 			}
-			
+
 			AddResource(pScript);
 		}
 
 		if(pScript)pScript->IncUserCount();
 		else Error("Couldn't create script '%s'\n",asNewName.c_str());
-		
+
 		EndLoad();
 		return pScript;
 	}

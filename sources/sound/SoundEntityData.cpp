@@ -68,7 +68,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	bool cSoundEntityData::CreateFromFile(const tString &asFile)
 	{
 		TiXmlDocument *pDoc = hplNew( TiXmlDocument, () );
@@ -78,9 +78,9 @@ namespace hpl {
 			hplDelete(pDoc);
 			return false;
 		}
-		
+
 		TiXmlElement *pRootElem = pDoc->FirstChildElement();
-		
+
 		////////////////////////////////////////////////
 		// MAIN
 		TiXmlElement *pMainElem = pRootElem->FirstChildElement("MAIN");
@@ -106,17 +106,17 @@ namespace hpl {
 		mbUse3D = cString::ToBool(pPropElem->Attribute("Use3D"),true);
 		mbLoop = cString::ToBool(pPropElem->Attribute("Loop"),true);
 		mbStream = cString::ToBool(pPropElem->Attribute("Stream"),true);
-		
+
 		mbBlockable = cString::ToBool(pPropElem->Attribute("Blockable"),false);
 		mfBlockVolumeMul = cString::ToFloat(pPropElem->Attribute("BlockVolumeMul"),0.6f);
 
 		mfVolume = cString::ToFloat(pPropElem->Attribute("Volume"),1);
 		mfMaxDistance = cString::ToFloat(pPropElem->Attribute("MaxDistance"),1);
 		mfMinDistance = cString::ToFloat(pPropElem->Attribute("MinDistance"),1);
-		
+
 		mbFadeStart = cString::ToBool(pPropElem->Attribute("FadeStart"),true);
 		mbFadeStop = cString::ToBool(pPropElem->Attribute("FadeStop"),true);
-		
+
 		mfRandom = cString::ToFloat(pPropElem->Attribute("Random"),1);
 		mfInterval = cString::ToFloat(pPropElem->Attribute("Interval"),0);
 
@@ -127,7 +127,7 @@ namespace hpl {
         return true;
 	}
 
-	
+
 	//-----------------------------------------------------------------------
 
 }

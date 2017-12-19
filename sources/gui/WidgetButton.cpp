@@ -62,7 +62,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	void cWidgetButton::SetImage(cGuiGfxElement *apImage, bool abDestroyImage)
 	{
 		mpImage = apImage;
@@ -121,7 +121,7 @@ namespace hpl {
 		if(mpImage)
 		{
 			mpSet->DrawGfx(	mpImage,GetGlobalPosition()+
-							cVector3f(	mvSize.x/2 - mpImage->GetImageSize().x/2, 
+							cVector3f(	mvSize.x/2 - mpImage->GetImageSize().x/2,
 										mvSize.y/2 - mpImage->GetImageSize().y/2,0.2f) + vOffset
 							);
 		}
@@ -140,24 +140,24 @@ namespace hpl {
 						cVector3f(mvSize.x/2, mvSize.y/2 - mvDefaultFontSize.y/2,0.5f)+vOffset,
 						eFontAlign_Center);
 		}
-		
+
 
 		////////////////////////////////
 		// Borders and background
 		if(mbPressed)
 		{
-			DrawBordersAndCorners(	mpGfxBackgroundDown, mvGfxBordersDown, mvGfxCornersDown, 
+			DrawBordersAndCorners(	mpGfxBackgroundDown, mvGfxBordersDown, mvGfxCornersDown,
 									GetGlobalPosition(), mvSize);
 		}
 		else
 		{
-			DrawBordersAndCorners(	mpGfxBackgroundUp, mvGfxBordersUp, mvGfxCornersUp, 
+			DrawBordersAndCorners(	mpGfxBackgroundUp, mvGfxBordersUp, mvGfxCornersUp,
 									GetGlobalPosition(), mvSize);
 		}
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	bool cWidgetButton::OnMouseMove(cGuiMessageData &aData)
 	{
 		return true;
@@ -180,7 +180,7 @@ namespace hpl {
 		if(mbPressed) ProcessMessage(eGuiMessage_ButtonPressed,aData);
 
 		mbPressed = false;
-			
+
 
 		return true;
 	}
@@ -191,9 +191,9 @@ namespace hpl {
 	{
 		return false;
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	bool cWidgetButton::OnMouseLeave(cGuiMessageData &aData)
 	{
 		mbPressed = false;

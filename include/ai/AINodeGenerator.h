@@ -28,16 +28,16 @@
 namespace hpl {
 
 	class cWorld3D;
-	
+
 	//-------------------------------
 
 	class cAINodeGeneratorParams
 	{
 	public:
 		cAINodeGeneratorParams();
-		
+
 		tString msNodeType;
-		
+
 		float mfHeightFromGround;
 		float mfMinWallDist;
 

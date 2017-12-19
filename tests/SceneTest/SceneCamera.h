@@ -16,7 +16,7 @@ public:
 	~cSceneCamera();
 
 	void Update(float afFrameTime);
-	
+
 	void OnDraw();
 
 	cGame *mpGame;

@@ -47,7 +47,7 @@ namespace hpl {
 
 		float mfCost;
 		float mfDistance;
-		
+
 		cAStarNode *mpParent;
 		cAINode *mpAINode;
 	};
@@ -69,7 +69,7 @@ namespace hpl {
 	{
 	public:
 		virtual ~iAStarCallback(){}
-		
+
 		virtual bool CanAddNode(cAINode *apParentNode,cAINode *apChildNode)=0;
 	};
 
@@ -80,7 +80,7 @@ namespace hpl {
 	public:
 		cAStarHandler(cAINodeContainer *apContainer);
 		~cAStarHandler();
-		
+
 		bool GetPath(const cVector3f& avStart, const cVector3f& avGoal, tAINodeList *apNodeList);
 
 		/**
@@ -97,12 +97,12 @@ namespace hpl {
 		void AddOpenNode(cAINode *apAINode, cAStarNode *apParent, float afDistance);
 
 		cAStarNode* GetBestNode();
-		
+
 		float Cost(float afDistance, cAINode *apAINode, cAStarNode *apParent);
 		float Heuristic(const cVector3f& avStart, const cVector3f& avGoal);
 
 		bool IsGoalNode(cAINode *apAINode);
-		
+
 		cVector3f mvGoal;
 
         cAStarNode* mpGoalNode;

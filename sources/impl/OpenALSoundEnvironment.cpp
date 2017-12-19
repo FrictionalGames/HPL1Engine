@@ -22,8 +22,8 @@
 namespace hpl
 {
 
-	cOpenALSoundEnvironment::cOpenALSoundEnvironment ( ) /*:	
-										mfDensity(1.0f), 
+	cOpenALSoundEnvironment::cOpenALSoundEnvironment ( ) /*:
+										mfDensity(1.0f),
 										mfDiffusion(1.0f),
 										mfGain(0.32f),
 										mfGainHF(0.89f),
@@ -50,7 +50,7 @@ namespace hpl
 	cOpenALSoundEnvironment::~cOpenALSoundEnvironment()
 	{
 	}
-		
+
 	bool cOpenALSoundEnvironment::CreateFromFile(const tString &asFile)
 	{
 		tString strType;
@@ -80,7 +80,7 @@ namespace hpl
 		mfDiffusion = cString::ToFloat(pParams->Attribute("Diffusion"),0);
 		mfGain = cString::ToFloat(pParams->Attribute("Gain"),0);
 		mfGainHF = cString::ToFloat(pParams->Attribute("GainHF"),0);
-		mfGainLF = cString::ToFloat(pParams->Attribute("GainLF"),0); 
+		mfGainLF = cString::ToFloat(pParams->Attribute("GainLF"),0);
 		mfDecayTime = cString::ToFloat(pParams->Attribute("DecayTime"),0);
 		mfDecayHFRatio = cString::ToFloat (pParams->Attribute("DecayHFRatio"),0);
 		mfDecayLFRatio = cString::ToFloat (pParams->Attribute("DecayLFRatio"),0);
@@ -105,7 +105,7 @@ namespace hpl
 		mfLFReference = cString::ToFloat(pParams->Attribute("LFReference"),0);
 		mfRoomRolloffFactor =cString::ToFloat(pParams->Attribute("RoomRolloffFactor"),0);
 		mbDecayHFLimit = cString::ToInt(pParams->Attribute("DecayHFLimit"),0);
-		
+
 		doc.Clear();
 		pParams = NULL;
 

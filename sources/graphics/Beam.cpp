@@ -48,22 +48,22 @@ namespace hpl {
 		mpMaterialManager = apResources->GetMaterialManager();
 		mpFileSearcher = apResources->GetFileSearcher();
 		mpLowLevelGraphics = apGraphics->GetLowLevel();
-		
+
 		msFileName = "";
 
 		mvSize = 1;
 
 		mbTileHeight = true;
-		
+
 		mColor = cColor(1,1,1,1);
 
 		mpMaterial = NULL;
 
 		mlLastRenderCount = -1;
-		
+
 
 		mpVtxBuffer = mpLowLevelGraphics->CreateVertexBuffer(
-								eVertexFlag_Position | eVertexFlag_Color0 | eVertexFlag_Texture0 |	
+								eVertexFlag_Position | eVertexFlag_Color0 | eVertexFlag_Texture0 |
 								eVertexFlag_Normal,
 								eVertexBufferDrawType_Tri, eVertexBufferUsageType_Dynamic,4,6);
 
@@ -94,7 +94,7 @@ namespace hpl {
 
 		mpEnd = hplNew( cBeamEnd, (asName + "_end",this));
 		mpEnd->AddCallback(&mEndCallback);
-		
+
 		//Some temp setup
 		mBoundingVolume.SetSize(cVector3f(mvSize.x, mvSize.y, mvSize.x));
 
@@ -122,7 +122,7 @@ namespace hpl {
 	{
 		mvSize = avSize;
 		mBoundingVolume.SetSize(cVector3f(mvSize.x, mvSize.y, mvSize.x));
-		
+
 		SetTransformUpdated();
 	}
 
@@ -231,7 +231,7 @@ namespace hpl {
 		////////////////////////////////
 		//Get Axis
 		mvAxis = mpEnd->GetWorldPosition() - GetWorldPosition();
-        
+
 		mvMidPosition =GetWorldPosition() + mvAxis*0.5f;
 		float fDist = mvAxis.Length();
 
@@ -285,8 +285,8 @@ namespace hpl {
 		{
 			mpVtxBuffer->UpdateData(eVertexFlag_Position | eVertexFlag_Texture0,false);
 		}
-		
-		
+
+
 
 	}
 
@@ -304,7 +304,7 @@ namespace hpl {
 
 		vUp = mvAxis;//cMath::MatrixMul(GetWorldMatrix().GetRotation(),mvAxis);
 		//vUp.Normalise();
-			
+
 		if(vUp == vForward)
 		{
 			vRight = cMath::Vector3Cross(vUp, vCameraForward);
@@ -364,13 +364,13 @@ namespace hpl {
 				{
 					tString sMaterial = cString::ToString(pMainElem->Attribute("Material"),"");
 					cVector2f vSize = cString::ToVector2f(pMainElem->Attribute("Size"),1);
-					
+
 					bool bTileHeight = cString::ToBool(pMainElem->Attribute("TileHeight"),true);
 					bool bMultiplyAlphaWithColor = cString::ToBool(pMainElem->Attribute("MultiplyAlphaWithColor"),false);
 
 					cColor StartColor = cString::ToColor(pMainElem->Attribute("StartColor"),cColor(1,1));
 					cColor EndColor = cString::ToColor(pMainElem->Attribute("EndColor"),cColor(1,1));
-					
+
 
 					SetSize(vSize);
 					SetTileHeight(bTileHeight);
@@ -407,7 +407,7 @@ namespace hpl {
 			Error("Couldn't find file '%s'\n",sNewFile.c_str());
 			return false;
 		}
-		
+
 		return true;
 	}
 
@@ -427,7 +427,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	void cBeamEnd_UpdateCallback::OnTransformUpdate(iEntity3D * apEntity)
 	{
 		cBeamEnd *pEnd = static_cast<cBeamEnd*>(apEntity);
@@ -443,7 +443,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	void cBeamEnd::SetColor(const cColor &aColor)
 	{
 		if(mColor == aColor) return;
@@ -451,7 +451,7 @@ namespace hpl {
 		mColor = aColor;
 
 		float *pColors = mpBeam->mpVtxBuffer->GetArray(eVertexFlag_Color0);
-		
+
 		//Change "upper colors"
 		pColors+= 4*2;
 		if(mpBeam->mbMultiplyAlphaWithColor)

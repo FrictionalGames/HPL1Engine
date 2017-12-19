@@ -30,7 +30,7 @@ namespace hpl {
 	{
 	public:
 		cSqScript(const tString& asName, asIScriptEngine *apScriptEngine,
-					cScriptOutput *apScriptOutput, int alHandle); 
+					cScriptOutput *apScriptOutput, int alHandle);
 		~cSqScript();
 
 		bool CreateFromFile(const tString& asFileName);
@@ -46,7 +46,7 @@ namespace hpl {
 		cScriptOutput *mpScriptOutput;
 
 		asIScriptContext *mpContext;
-		
+
 		int mlHandle;
 		tString msModuleName;
 

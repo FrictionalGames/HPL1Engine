@@ -27,10 +27,10 @@ namespace hpl {
 	class cPhysicsJointSliderNewton : public iPhysicsJointNewton<iPhysicsJointSlider>
 	{
 	public:
-		cPhysicsJointSliderNewton(const tString &asName, iPhysicsBody *apParentBody, iPhysicsBody *apChildBody, 
+		cPhysicsJointSliderNewton(const tString &asName, iPhysicsBody *apParentBody, iPhysicsBody *apChildBody,
 							iPhysicsWorld *apWorld,const cVector3f &avPivotPoint, const cVector3f avPinDir) ;
 		~cPhysicsJointSliderNewton();
-		
+
 		void SetMaxDistance(float afX);
 		void SetMinDistance(float afX);
 		float GetMaxDistance();

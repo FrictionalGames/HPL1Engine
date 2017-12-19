@@ -44,7 +44,7 @@ namespace hpl {
 		mpResources = apResources;
 		mpGraphics = apGraphics;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cParticleSystemData3D::~cParticleSystemData3D()
@@ -96,7 +96,7 @@ namespace hpl {
 			hplDelete(pXmlDoc);
 			return false;
 		}
-		
+
 		TiXmlElement *pRootElem = pXmlDoc->RootElement();
 
 		TiXmlElement *pEmitterElem = pRootElem->FirstChildElement("ParticleEmitter");
@@ -106,7 +106,7 @@ namespace hpl {
 																	mpResources,mpGraphics) );
 
             pPE->LoadFromElement(pEmitterElem);
-			
+
 			mvEmitterData.push_back(pPE);
 		}
 
@@ -124,7 +124,7 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	cParticleSystem3D::cParticleSystem3D(const tString asName, 
+	cParticleSystem3D::cParticleSystem3D(const tString asName,
 										cParticleSystemData3D *apData,
 										cResources *apResources, cGraphics *apGraphics)
 		: iEntity3D(asName)
@@ -153,7 +153,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 	// PUBLIC METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
 
 	void cParticleSystem3D::SetVisible(bool abVisible)
@@ -161,14 +161,14 @@ namespace hpl {
 		if(mbIsVisible == abVisible) return;
 
 		mbIsVisible = abVisible;
-		
+
 		for(size_t i=0; i< mvEmitters.size(); ++i)
 		{
 			mvEmitters[i]->SetVisible(mbIsVisible);
 		}
-		
+
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	bool cParticleSystem3D::IsDead()
@@ -215,7 +215,7 @@ namespace hpl {
 			pPE->Kill();
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cParticleSystem3D::KillInstantly()
@@ -230,7 +230,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	void cParticleSystem3D::UpdateLogic(float afTimeStep)
 	{
 		if(IsActive()==false) return;
@@ -244,7 +244,7 @@ namespace hpl {
 			if(mbFirstUpdate)
 			{
 				iParticleEmitterData *pData =  mpData->GetEmitterData((int)i);
-				
+
 				if(pData->GetWarmUpTime() >0)
 				{
 					float fTime = pData->GetWarmUpTime();
@@ -258,7 +258,7 @@ namespace hpl {
 				}
 				mbFirstUpdate = false;
 			}
-			
+
 			//////////////////////////
 			//Update
 			pPE->UpdateLogic(afTimeStep);
@@ -273,14 +273,14 @@ namespace hpl {
 
 		AddChild(apEmitter);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	iParticleEmitter3D* cParticleSystem3D::GetEmitter(int alIdx)
 	{
 		return mvEmitters[alIdx];
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	int cParticleSystem3D::GetEmitterNum()
@@ -295,7 +295,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	//-----------------------------------------------------------------------
 
 	//////////////////////////////////////////////////////////////////////////
@@ -355,7 +355,7 @@ namespace hpl {
 		for(int i=0; i< GetEmitterNum(); ++i)
 		{
 			iParticleEmitter3D *pPE = GetEmitter(i);
-			
+
 			pData->mvEmitters[i].mbDying = pPE->IsDying();
 			pData->mvEmitters[i].mbActive = pPE->IsActive();
 		}
@@ -369,7 +369,7 @@ namespace hpl {
 
 		kSaveData_LoadFrom(msDataName);
 		kSaveData_LoadFrom(mvDataSize);
-		
+
 		if(GetEmitterNum() != pData->mvEmitters.Size())
 		{
 			Error("Saved emitter number in %s/%d does not match loaded, killing system!\n",

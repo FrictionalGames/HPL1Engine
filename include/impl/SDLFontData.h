@@ -32,7 +32,7 @@ namespace hpl {
 		cSDLFontData(const tString &asName, iLowLevelGraphics* apLowLevelGraphics);
 		cSDLFontData();
 
-		bool CreateFromFontFile(const tString &asFileName, int alSize,unsigned short alFirstChar, 
+		bool CreateFromFontFile(const tString &asFileName, int alSize,unsigned short alFirstChar,
 								unsigned short alLastChar);
 		bool CreateFromBitmapFile(const tString &asFileName);
 

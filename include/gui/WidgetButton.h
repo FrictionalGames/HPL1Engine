@@ -33,12 +33,12 @@ namespace hpl {
 
 		void SetImage(cGuiGfxElement *apImage, bool abDestroyImage=true);
 		cGuiGfxElement *GetImage(){return mpImage;}
-		
+
 	protected:
 		/////////////////////////
 		// Implemented functions
 		void OnLoadGraphics();
-		
+
 		void OnDraw(float afTimeStep, cGuiClipRegion *apClipRegion);
 
 		bool OnMouseMove(cGuiMessageData &aData);

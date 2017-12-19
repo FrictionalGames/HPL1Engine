@@ -35,25 +35,25 @@
 #include "scene/PortalContainer.h"
 
 namespace hpl {
-	
+
 	static const cMatrixf g_mtxTextureUnitFix(	0.5f,0,   0,   0.5f,
 												0,   -0.5f,0,   0.5f,
 												0,   0,   0.5f,0.5f,
 												0,   0,   0,   1.0f
 												);
-			
+
 	//////////////////////////////////////////////////////////////////////////
 	// CONSTRUCTORS
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	cLight3DSpot::cLight3DSpot(tString asName, cResources *apResources) : iLight3D(asName,apResources)
 	{
 		mbProjectionUpdated = true;
 		mbViewProjUpdated = true;
 		mbFrustumUpdated = true;
-		
+
         mLightType = eLight3DType_Spot;
 
 		mpFrustum = hplNew( cFrustum, () );
@@ -68,26 +68,26 @@ namespace hpl {
 		mfAspect = 1.0f;
 		mfFarAttenuation = 100.0f;
 		mfNearClipPlane = 0.1f;
-		
+
 		m_mtxView = cMatrixf::Identity;
 		m_mtxViewProj = cMatrixf::Identity;
 		m_mtxProjection = cMatrixf::Identity;
 
 		UpdateBoundingVolume();
 	}
-	
+
 	cLight3DSpot::~cLight3DSpot()
 	{
 		if(mpTexture) mpTextureManager->Destroy(mpTexture);
 		hplDelete(mpFrustum);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	//////////////////////////////////////////////////////////////////////////
 	// PUBLIC METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
 
 	void cLight3DSpot::SetTexture(iTexture *apTexture)
@@ -99,18 +99,18 @@ namespace hpl {
 		mpTexture->SetWrapS(eTextureWrap_ClampToBorder);
 		mpTexture->SetWrapT(eTextureWrap_ClampToBorder);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	iTexture* cLight3DSpot::GetTexture()
 	{
-		return mpTexture;	
+		return mpTexture;
 	}
 
 	//-----------------------------------------------------------------------
 
 	void cLight3DSpot::SetFarAttenuation(float afX)
-	{ 
+	{
 		mfFarAttenuation = afX;
 
 		UpdateBoundingVolume();
@@ -122,14 +122,14 @@ namespace hpl {
 	//-----------------------------------------------------------------------
 
 	void cLight3DSpot::SetNearAttenuation(float afX)
-	{ 
+	{
 		mfNearAttenuation = afX;
 		if(mfNearAttenuation>mfFarAttenuation)
 			SetFarAttenuation(mfNearAttenuation);
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	const cMatrixf& cLight3DSpot::GetViewMatrix()
 	{
 		if(mlViewMatrixCount != GetTransformUpdateCount())
@@ -160,17 +160,17 @@ namespace hpl {
 			float D = -1.0f;
 			float C = -(2.0f*fFar*fNear) / (fFar - fNear);
 			float Z = -(fFar + fNear)/(fFar - fNear);
-			
+
 			float X = 0;
 			float Y = 0;
-			
+
 			m_mtxProjection = cMatrixf(
 				A,0,X,0,
 				0,B,Y,0,
 				0,0,Z,C,
 				0,0,D,0);
 
-			mbProjectionUpdated = false;	
+			mbProjectionUpdated = false;
 			mbViewProjUpdated = true;
 			mbFrustumUpdated = true;
 		}
@@ -179,14 +179,14 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	const cMatrixf& cLight3DSpot::GetViewProjMatrix()
 	{
 		if(mlViewProjMatrixCount != GetTransformUpdateCount() || mbViewProjUpdated || mbProjectionUpdated)
 		{
 			m_mtxViewProj = cMath::MatrixMul(GetProjectionMatrix(),GetViewMatrix());
 			m_mtxViewProj = cMath::MatrixMul(g_mtxTextureUnitFix, m_mtxViewProj);
-			
+
 			mlViewProjMatrixCount = GetTransformUpdateCount();
 			mbViewProjUpdated = false;
 		}
@@ -225,7 +225,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 	// PRIVATE METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
 
 	cSectorVisibilityContainer* cLight3DSpot::CreateSectorVisibility()
@@ -234,7 +234,7 @@ namespace hpl {
 	}
 	//-----------------------------------------------------------------------
 
-	
+
 	static eTextureAnimMode GetAnimMode(const tString& asType)
 	{
 		if(cString::ToLowerCase(asType) == "none") return eTextureAnimMode_None;
@@ -262,8 +262,8 @@ namespace hpl {
 		{
 			pTex = mpTextureManager->Create2D(sTexture,true);
 		}
-		
-		
+
+
 		if(pTex)
 		{
 			SetTexture(pTex);
@@ -288,9 +288,9 @@ namespace hpl {
 	{
 		cVector2f vScreenSize = apLowLevelGraphics->GetScreenSize();
 		bool bVisible = cMath::GetClipRectFromBV(aClipRect,*GetBoundingVolume(),
-												apRenderSettings->mpCamera->GetViewMatrix(), 
+												apRenderSettings->mpCamera->GetViewMatrix(),
 												apRenderSettings->mpCamera->GetProjectionMatrix(),
-												apRenderSettings->mpCamera->GetNearClipPlane(), 
+												apRenderSettings->mpCamera->GetNearClipPlane(),
 												cVector2l((int)vScreenSize.x,(int)vScreenSize.y));
 		return bVisible;
 	}
@@ -371,7 +371,7 @@ namespace hpl {
 	void cLight3DSpot::SaveDataSetup(cSaveObjectHandler *apSaveObjectHandler, cGame *apGame)
 	{
 		kSaveData_SetupBegin(cLight3DSpot);
-		
+
 		//Make sure all is updated.
 		SetTransformUpdated();
 		mbProjectionUpdated = true;

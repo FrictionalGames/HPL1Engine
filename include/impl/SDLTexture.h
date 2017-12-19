@@ -52,7 +52,7 @@ namespace hpl {
 
 		bool CreateFromArray(unsigned char *apPixelData, int alChannels, const cVector3l &avSize);
 
-		void SetPixels2D(	int alLevel, const cVector2l& avOffset, const cVector2l& avSize, 
+		void SetPixels2D(	int alLevel, const cVector2l& avOffset, const cVector2l& avSize,
 							eColorDataFormat aDataFormat, void *apPixelData);
 
 

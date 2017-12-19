@@ -37,7 +37,7 @@ namespace hpl {
 
 		void SetPaused(bool abX);
 		void SetSpeed(float afSpeed);
-		void SetVolume (float afVolume); 
+		void SetVolume (float afVolume);
 		void SetLooping (bool abLoop);
 		void SetPan (float afPan);
 		void Set3D(bool ab3D);
@@ -48,9 +48,9 @@ namespace hpl {
 		void SetPositionRelative(bool abRelative);
 		void SetPosition(const cVector3f &avPos);
 		void SetVelocity(const cVector3f &avVel);
-		
+
 		void SetMinDistance(float fMin);
-		void SetMaxDistance(float fMax); 
+		void SetMaxDistance(float fMax);
 
 		bool IsPlaying();
 
@@ -62,7 +62,7 @@ namespace hpl {
 		void SetFiltering ( bool abEnabled, int alFlags);
 		void SetFilterGain(float afGain);
 		void SetFilterGainHF(float afGainHF);
-	
+
 	private:
 		int mlChannel;
 		int mlDefaultFreq;

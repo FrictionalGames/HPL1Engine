@@ -55,10 +55,10 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	cMesh* cMeshCreator::CreateBox(const tString &asName,cVector3f avSize, const tString &asMaterial)
 	{
-		cMesh *pMesh = hplNew( cMesh, (asName, mpResources->GetMaterialManager(), 
+		cMesh *pMesh = hplNew( cMesh, (asName, mpResources->GetMaterialManager(),
 										mpResources->GetAnimationManager()) );
 
 		cSubMesh *pSubMesh = pMesh->CreateSubMesh("Main");
@@ -78,7 +78,7 @@ namespace hpl {
 		iVertexBuffer* pSkyBox = mpLowLevelGraphics->CreateVertexBuffer(
 										eVertexFlag_Color0 | eVertexFlag_Position | eVertexFlag_Texture0,
 										eVertexBufferDrawType_Quad,eVertexBufferUsageType_Static);
-					
+
 		float fSize = afSize;
 
 		for(int x=-1; x<=1;x++)
@@ -128,7 +128,7 @@ namespace hpl {
 						pSkyBox->AddColor(eVertexFlag_Color0, cColor(1,1,1,1));
 						pSkyBox->AddVertex(eVertexFlag_Position, (vDir+vAdd[idx])*fSize);
 						pSkyBox->AddVertex(eVertexFlag_Texture0, vDir+vAdd[idx]);
-                        
+
 						vSide = vDir+vAdd[idx];
 						//Log("%d: (%.1f : %.1f : %.1f) ", i,vSide.x,  vSide.y,vSide.z);
 					}
@@ -136,7 +136,7 @@ namespace hpl {
 				}
 
 		for(int i=0;i<24;i++) pSkyBox->AddIndex(i);
-		
+
 		if(!pSkyBox->Compile(0))
 		{
 			hplDelete(pSkyBox);
@@ -144,13 +144,13 @@ namespace hpl {
 		}
 		return pSkyBox;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	iVertexBuffer* cMeshCreator::CreateBoxVertexBuffer(cVector3f avSize)
 	{
 		iVertexBuffer* pBox = mpLowLevelGraphics->CreateVertexBuffer(
-			eVertexFlag_Color0 | eVertexFlag_Position | eVertexFlag_Texture0 | 
+			eVertexFlag_Color0 | eVertexFlag_Position | eVertexFlag_Texture0 |
 			eVertexFlag_Texture1 | eVertexFlag_Normal,
 			eVertexBufferDrawType_Tri,eVertexBufferUsageType_Static);
 
@@ -168,7 +168,7 @@ namespace hpl {
 					//Direction (could say inverse normal) of the quad.
 					cVector3f vDir;
 					cVector3f vSide;
-					
+
 					cVector3f vAdd[4];
 					if(std::abs(x)){
 						vDir.x = (float)x;
@@ -201,7 +201,7 @@ namespace hpl {
 					{
 						int idx = GetBoxIdx(i,x,y,z);
 						cVector3f vTex = GetBoxTex(i,x,y,z,vAdd);
-						
+
 						pBox->AddColor(eVertexFlag_Color0, cColor(1,1,1,1));
 						pBox->AddVertex(eVertexFlag_Position, (vDir+vAdd[idx])*avSize);
 						pBox->AddVertex(eVertexFlag_Normal, vDir);
@@ -209,7 +209,7 @@ namespace hpl {
 						//texture coord
 						cVector3f vCoord = cVector3f((vTex.x+1)*0.5f,(vTex.y+1)*0.5f,0);
 						pBox->AddVertex(eVertexFlag_Texture0,vCoord);
-						
+
 						vSide = vDir+vAdd[idx];
 						//Log("%d: Tex: (%.1f : %.1f : %.1f) ", i,vTex.x,  vTex.y,vTex.z);
 						//Log("%d: (%.1f : %.1f : %.1f) ", i,vSide.x,  vSide.y,vSide.z);
@@ -224,7 +224,7 @@ namespace hpl {
 
 					//Log("\n");
 				}
-		
+
 		if(!pBox->Compile(eVertexCompileFlag_CreateTangents))
 		{
 			hplDelete(pBox);
@@ -249,7 +249,7 @@ namespace hpl {
 			vTex.x = vAdd[i].x;
 			vTex.y = vAdd[i].y;
 		}
-		
+
 		//Inverse for negative directions
 		if(x+y+z <0)
 		{
@@ -274,7 +274,7 @@ namespace hpl {
 		int i;
 		tString sMeshName = cString::ToLowerCase(asName);
 		cMesh2D* pMesh;
-		
+
 		/// SQUARE ///////////////////////
 		if(sMeshName == "square")
 		{
@@ -303,7 +303,7 @@ namespace hpl {
 				pMesh->AddEdgeIndex(i);
 				pMesh->AddIndex(i);
 			}
-		
+
 			return pMesh;
 		}
 		/// OTHER PRIMITIVE ///////////////////////

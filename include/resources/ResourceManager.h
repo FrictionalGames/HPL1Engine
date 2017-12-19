@@ -49,7 +49,7 @@ namespace hpl {
 		virtual ~iResourceManager(){}
 
 		virtual iResourceBase* Create(const tString& asName)=0;
-		
+
 		iResourceBase* GetByName(const tString& asName);
 		iResourceBase* GetByHandle(unsigned long alHandle);
 
@@ -61,9 +61,9 @@ namespace hpl {
 		virtual void DestroyAll();
 
 		virtual void Unload(iResourceBase* apResource)=0;
-		
+
 		virtual void Update(float afTimeStep){}
-		
+
 	protected:
 		unsigned long mlHandleCount;
 		tResourceNameMap m_mapNameResources;
@@ -75,7 +75,7 @@ namespace hpl {
 
 		void BeginLoad(const tString& asFile);
 		void EndLoad();
-		
+
 		unsigned long mlTimeStart;
 
 		/**
@@ -89,7 +89,7 @@ namespace hpl {
 		void RemoveResource(iResourceBase* apResource);
 
 		unsigned long GetHandle();
-		
+
 		tString GetTabs();
 		static int mlTabCount;
 

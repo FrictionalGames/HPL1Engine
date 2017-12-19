@@ -27,9 +27,9 @@
 namespace hpl {
 
 	class cResourceImage;
-	
+
 	//////////////////////////////////////////////////////
-	/////////////// PARTICLE SYSTEM ////////////////////// 
+	/////////////// PARTICLE SYSTEM //////////////////////
 	//////////////////////////////////////////////////////
 
 	class cGraphics;
@@ -37,7 +37,7 @@ namespace hpl {
 	class iParticleSystem2D : public iParticleSystem,public iEntity2D, public iRenderObject2DRenderer
 	{
 	public:
-		iParticleSystem2D(tString asName,tMaterialVec* avMaterials,unsigned int alMaxParticles, 
+		iParticleSystem2D(tString asName,tMaterialVec* avMaterials,unsigned int alMaxParticles,
 						cVector3f avSize, cGraphics* apGraphics);
 		virtual ~iParticleSystem2D();
 
@@ -60,10 +60,10 @@ namespace hpl {
 		cVector2f mvDrawSize;
 
         void RenderToBatch(eMaterialRenderType aRenderType,	unsigned int &aIdxAdd);
-		
+
 		virtual void RenderParticles(eMaterialRenderType aRenderType, unsigned int &aIdxAdd);
 	};
-	
+
 	typedef std::list<iParticleSystem2D*> tParticleSystem2DList;
 	typedef tParticleSystem2DList::iterator tParticleSystem2DListIt;
 };

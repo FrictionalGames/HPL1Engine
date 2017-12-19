@@ -30,7 +30,7 @@
 #include "resources/MeshLoader.h"
 
 namespace hpl {
-	
+
 	class cAI;
 	class cGraphics;
 	class cResources;
@@ -44,10 +44,10 @@ namespace hpl {
 	class cUpdater;
 	class cWorld3D;
 	class cWorld2D;
-		
+
 	typedef std::list<iCamera*> tCameraList;
 	typedef tCameraList::iterator tCameraListIt;
-	
+
 	typedef std::list<cWorld3D*> tWorld3DList;
 	typedef tWorld3DList::iterator tWorld3DListIt;
 
@@ -59,7 +59,7 @@ namespace hpl {
 		~cScene();
 
 		void Reset();
-		
+
 		/**
 		* Called by cGame
 		*/
@@ -89,18 +89,18 @@ namespace hpl {
 		cScriptVar* CreateGlobalVar(const tString& asName);
 		cScriptVar* GetGlobalVar(const tString& asName);
 		tScriptVarMap* GetGlobalVarMap();
-		
+
 		///// CAMERA 2D METHODS ////////////////////
 
-		
+
 		cCamera2D* CreateCamera2D(unsigned int alW,unsigned int alH);
 		cCamera3D* CreateCamera3D(eCameraMoveMode aMoveMode);
 
 		void DestroyCamera(iCamera* apCam);
-		
+
 		/**
 		 * This sets the current camera, depending on this one is 2D or 3D a 2D or 3D world will be rendered.
-		 * \param pCam 
+		 * \param pCam
 		 */
 		void SetCamera(iCamera* pCam);
 		iCamera* GetCamera(){ return mpActiveCamera; }
@@ -114,7 +114,7 @@ namespace hpl {
 		cWorld3D* LoadWorld3D(const tString& asFile, bool abLoadScript, tWorldLoadFlag aFlags);
 		cWorld3D* CreateWorld3D(const tString& asName);
 		void DestroyWorld3D(cWorld3D* apWorld);
-		
+
 		void SetWorld3D(cWorld3D* apWorld);
 		cWorld3D* GetWorld3D(){ return mpCurrentWorld3D;}
 
@@ -144,7 +144,7 @@ namespace hpl {
 
 		tWorld3DList mlstWorld3D;
 		cWorld3D* mpCurrentWorld3D;
-        
+
 		cWorld2D* mpCurrentWorld2D;
 		tCameraList mlstCamera;
 		iCamera *mpActiveCamera;

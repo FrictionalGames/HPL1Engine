@@ -86,7 +86,7 @@ namespace hpl {
 
 		if(pIEData)pIEData->IncUserCount();
 		else Error("Couldn't load image entity data '%s'\n",asNewName.c_str());
-		
+
 		EndLoad();
 		return pIEData;
 	}
@@ -95,7 +95,7 @@ namespace hpl {
 
 	cImageEntityData* cImageEntityManager::CreateData(const tString& asName)
 	{
-		return 	static_cast<cImageEntityData*>(Create(asName));	
+		return 	static_cast<cImageEntityData*>(Create(asName));
 	}
 
 	//-----------------------------------------------------------------------

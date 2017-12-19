@@ -37,7 +37,7 @@ namespace hpl {
 	long Platform::FileLength(FILE *pFile)
 	{
 		return (long)_filelength(_fileno(pFile));
-	} 
+	}
 
 	void Platform::FindFileInDir(tWStringList &alstStrings,tWString asDir, tWString asMask)
 	{

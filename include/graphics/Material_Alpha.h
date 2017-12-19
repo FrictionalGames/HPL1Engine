@@ -32,9 +32,9 @@ namespace hpl {
 			eMaterialPicture aPicture, cRenderer3D *apRenderer3D);
 
 		virtual ~cMaterial_Alpha();
-		
+
 		tTextureTypeList GetTextureTypes();
-		
+
 		bool UsesType(eMaterialRenderType aType);
 
 		iGpuProgram* GetVertexProgram(eMaterialRenderType aType, int alPass, iLight3D *apLight);
@@ -62,7 +62,7 @@ namespace hpl {
 		bool NextPass(eMaterialRenderType aType){return false;}
 		bool HasMultiplePasses(eMaterialRenderType aType){return false;}
 		eMaterialType GetType(eMaterialRenderType aType){ return eMaterialType_Diffuse;}
-		void EditVertexes(eMaterialRenderType aType, iCamera* apCam, iLight *pLight, 
+		void EditVertexes(eMaterialRenderType aType, iCamera* apCam, iLight *pLight,
 			tVertexVec *apVtxVec,cVector3f *apTransform,unsigned int alIndexAdd){}
 	private:
 		iGpuProgram *mpFogVtxProg;
@@ -72,7 +72,7 @@ namespace hpl {
 	class cMaterialType_Alpha : public iMaterialType
 	{
 	public:
-		bool IsCorrect(tString asName){ 
+		bool IsCorrect(tString asName){
 			return cString::ToLowerCase(asName)=="alpha";
 		}
 

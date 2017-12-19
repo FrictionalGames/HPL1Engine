@@ -55,12 +55,12 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 	// PUBLIC METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 
 	const cQuaternion cQuaternion::Identity = cQuaternion(1.0f,0.0f,0.0f,0.0f);
 
 	//-----------------------------------------------------------------------
-	
+
 	void cQuaternion::Normalise()
 	{
 		float fLen = w*w + v.x*v.x + v.y*v.y + v.z*v.z;
@@ -70,7 +70,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	void cQuaternion::ToRotationMatrix(cMatrixf &a_mtxDest) const
 	{
 		cMatrixf mtxA;
@@ -138,7 +138,7 @@ namespace hpl {
 			*apkQuat[k] = (a_mtxRot.m[k][i]+a_mtxRot.m[i][k])*fRoot;
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cQuaternion::FromAngleAxis(float afAngle, const cVector3f &avAxis)
@@ -167,7 +167,7 @@ namespace hpl {
 		return qOut;
 	}
 	//-----------------------------------------------------------------------
-	
+
 	cQuaternion cQuaternion::operator-(const cQuaternion &aqB) const
 	{
 		cQuaternion qOut;
@@ -180,12 +180,12 @@ namespace hpl {
 	cQuaternion cQuaternion::operator*(const cQuaternion &aqB) const
 	{
 		cQuaternion qOut;
-		
+
 		qOut.w = w * aqB.w - v.x * aqB.v.x - v.y * aqB.v.y - v.z * aqB.v.z;
 		qOut.v.x = w * aqB.v.x + v.x * aqB.w + v.y * aqB.v.z - v.z * aqB.v.y;
 		qOut.v.y = w * aqB.v.y + v.y * aqB.w + v.z * aqB.v.x - v.x * aqB.v.z;
 		qOut.v.z = w * aqB.v.z + v.z * aqB.w + v.x * aqB.v.y - v.y * aqB.v.x;
-		
+
 		return qOut;
 	}
 	//-----------------------------------------------------------------------

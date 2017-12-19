@@ -33,7 +33,7 @@ namespace hpl {
 	//-----------------------------------------------------------------------
 
 	iParticleSystem2D::iParticleSystem2D(tString asName,tMaterialVec *avMaterials,
-									unsigned int alMaxParticles, cVector3f avSize,cGraphics *apGraphics) 
+									unsigned int alMaxParticles, cVector3f avSize,cGraphics *apGraphics)
 	: iEntity2D(asName), iParticleSystem(avMaterials, alMaxParticles,avSize,apGraphics)
 	{
 		//have this in data perhaps?
@@ -43,7 +43,7 @@ namespace hpl {
 		for(int i=0;i<(int)avMaterials->size();i++)
 		{
 			vVtx = (*avMaterials)[i]->GetImage(eMaterialTexture_Diffuse)->GetVertexVecCopy(0,1);
-			
+
 			for(int j=0;j<4;j++){
 				mpVtx[i*4 + j] = vVtx[j];
 			}
@@ -56,22 +56,22 @@ namespace hpl {
 	{
 		hplDeleteArray(mpVtx);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
-	
-	
+
+
 	//////////////////////////////////////////////////////////////////////////
 	// PUBLIC METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
 
 	void iParticleSystem2D::UpdateLogic(float afTimeStep)
 	{
 		Update(afTimeStep);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void iParticleSystem2D::Render()
@@ -92,7 +92,7 @@ namespace hpl {
 	{
 		return mBoundingBox;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	bool iParticleSystem2D::UpdateBoundingBox()
@@ -116,7 +116,7 @@ namespace hpl {
 
 	void iParticleSystem2D::RenderToBatch(eMaterialRenderType aRenderType, unsigned int &aIdxAdd)
 	{
-		RenderParticles(aRenderType, aIdxAdd);	
+		RenderParticles(aRenderType, aIdxAdd);
 	}
 
 	//-----------------------------------------------------------------------
@@ -128,19 +128,19 @@ namespace hpl {
 			lFrame = (int)mfFrame;
 			if(lFrame>=mvMaterials->size())lFrame = (unsigned int)mvMaterials->size()-1;
 		}
-		
+
 		cVertex* pVtx = &mpVtx[lFrame*4];
-		
+
 		for(int i=0;i<(int)mlNumOfParticles;i++)
 		{
 			cParticle *pParticle = mvParticles[i];
-			
+
 			pVtx[0].pos = pParticle->mvPos;
 			pVtx[0].pos.x -= mvDrawSize.x;
 			pVtx[0].pos.y -= mvDrawSize.y;
 			pVtx[0].col = pParticle->mColor;
 			mpGraphics->GetLowLevel()->AddVertexToBatch(&pVtx[0]);
-			
+
 			pVtx[1].pos = pParticle->mvPos;
 			pVtx[1].pos.x += mvDrawSize.x;
 			pVtx[1].pos.y -= mvDrawSize.y;
@@ -153,7 +153,7 @@ namespace hpl {
 			pVtx[2].col = pParticle->mColor;
 			mpGraphics->GetLowLevel()->AddVertexToBatch(&pVtx[2]);
 
-			
+
 			pVtx[3].pos = pParticle->mvPos;
 			pVtx[3].pos.x -= mvDrawSize.x;
 			pVtx[3].pos.y += mvDrawSize.y;

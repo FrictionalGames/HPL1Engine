@@ -46,7 +46,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	iNode* cNode2D::CreateChild()
 	{
 		cNode2D *pNode = hplNew( cNode2D, () );
@@ -55,9 +55,9 @@ namespace hpl {
 
 		return pNode;
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	cNode2D* cNode2D::CreateChild2D()
 	{
 		return static_cast<cNode2D*>(CreateChild());
@@ -69,12 +69,12 @@ namespace hpl {
 	{
 		cVector3f vPosAdd = avPos - mvPosition;
 		mvPosition = avPos;
-		
+
 		//Update all the entities
 		for(tEntityListIt it = mlstEntity.begin();it != mlstEntity.end();it++)
 		{
 			iEntity2D* pEntity = static_cast<iEntity2D*>(*it);
-			
+
 			pEntity->SetPosition(pEntity->GetLocalPosition());
 			//call an update??
 		}
@@ -86,15 +86,15 @@ namespace hpl {
 			pNode->SetPosition(pNode->mvPosition + vPosAdd);
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	void cNode2D::SetRotation(cVector3f avRot)
 	{
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	void cNode2D::SetScale(cVector3f avScale)
 	{
 	}

@@ -59,7 +59,7 @@ namespace hpl {
 	{
 		if(mpSet->IsDestroyingSet()==false)
 		{
-			mpSet->DestroyWidget(mpSlider);			
+			mpSet->DestroyWidget(mpSlider);
 		}
 	}
 
@@ -69,7 +69,7 @@ namespace hpl {
 	// PUBLIC METHODS
 	//////////////////////////////////////////////////////////////////////////
 
-	
+
 	void cWidgetListBox::SetSelectedItem(int alX, bool abMoveList)
 	{
 		if(mlSelectedItem == alX) return;
@@ -97,27 +97,27 @@ namespace hpl {
 		cGuiMessageData data = cGuiMessageData(mlSelectedItem);
 		ProcessMessage(eGuiMessage_SelectionChange,data);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 
 	//////////////////////////////////////////////////////////////////////////
 	// PROTECTED METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	bool cWidgetListBox::DrawText(iWidget* apWidget,cGuiMessageData& aData)
 	{
 		cVector3f vPosition = GetGlobalPosition() + cVector3f(3,2,0);
 		for(int i=mlFirstItem; i < (int)mvItems.size(); ++i)
 		{
 			if(i-mlFirstItem > mlMaxItems) break;
-		
+
 			if(i == mlSelectedItem)
 			{
 				mpSet->DrawGfx(	mpGfxSelection,vPosition  - cVector3f(3,0,0),
 								cVector2f(mvSize.x,mvDefaultFontSize.y));
 			}
-			
+
 			DrawDefaultText(mvItems[i],vPosition,eFontAlign_Left);
 			vPosition.y += mvDefaultFontSize.y +2;
 		}
@@ -135,13 +135,13 @@ namespace hpl {
 		return true;
 	}
 	kGuiCalllbackDeclaredFuncEnd(cWidgetListBox,MoveSlider)
-	
+
 	//-----------------------------------------------------------------------
 
 	void cWidgetListBox::UpdateProperties()
 	{
 		mlMaxItems = (int)(mvSize.y /(mvDefaultFontSize.y +2));
-		
+
 		if((int)mvItems.size() > mlMaxItems)
 		{
 			mpSlider->SetBarValueSize(mlMaxItems);
@@ -153,7 +153,7 @@ namespace hpl {
 			mpSlider->SetBarValueSize(1);
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cWidgetListBox::OnInit()
@@ -162,7 +162,7 @@ namespace hpl {
 		mpSlider->AddCallback(eGuiMessage_SliderMove,this,kGuiCallback(MoveSlider));
 
 		AddCallback(eGuiMessage_OnDraw,this,kGuiCallback(DrawText));
-		
+
 		OnChangeSize();
 	}
 
@@ -206,20 +206,20 @@ namespace hpl {
 		// Background
 		mpSet->DrawGfx(	mpGfxBackground,GetGlobalPosition() +cVector3f(0,0,mfBackgroundZ),
 						mvSize);
-		
-		
+
+
 		////////////////////////////////
 		// Borders
-		DrawBordersAndCorners(	NULL, mvGfxBorders, mvGfxCorners, 
-								GetGlobalPosition() - 
+		DrawBordersAndCorners(	NULL, mvGfxBorders, mvGfxCorners,
+								GetGlobalPosition() -
 									cVector3f(	mvGfxCorners[0]->GetActiveSize().x,
-												mvGfxCorners[0]->GetActiveSize().y,0), 
-									mvSize +	mvGfxCorners[0]->GetActiveSize() + 
+												mvGfxCorners[0]->GetActiveSize().y,0),
+									mvSize +	mvGfxCorners[0]->GetActiveSize() +
 												mvGfxCorners[2]->GetActiveSize());
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	bool cWidgetListBox::OnMouseMove(cGuiMessageData &aData)
 	{
 		return true;
@@ -256,9 +256,9 @@ namespace hpl {
 	{
 		return false;
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	bool cWidgetListBox::OnMouseLeave(cGuiMessageData &aData)
 	{
 		return false;
@@ -278,7 +278,7 @@ namespace hpl {
 		{
 			if(mlSelectedItem <(int)mvItems.size()-1)SetSelectedItem(mlSelectedItem+1,true);
 		}
-		
+
 		return true;
 	}
 

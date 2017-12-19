@@ -27,9 +27,9 @@ class TiXmlElement;
 
 namespace hpl {
 
-	class cSound;	
+	class cSound;
 	class iSoundChannel;
-	
+
 	class cSoundSource : public iEntity2D
 	{
 	public:
@@ -37,13 +37,13 @@ namespace hpl {
 		~cSoundSource();
 
 		tString GetEntityType(){ return "SoundSource";}
-		
+
 		void UpdateLogic(float afTimeStep);
 
 		bool LoadData(TiXmlElement* apRootElem);
 
 		bool IsDead();
-		
+
 		void SetInterval(int alX){mlInterval = alX;}
 		void SetLoop(bool abX){mbLoop = abX;}
 		void SetRelative(bool abX){mbRelative = abX;}
@@ -53,13 +53,13 @@ namespace hpl {
 		void SetVolume(float afX){mfVolume = afX;}
 
 		iSoundChannel* GetSoundChannel(){ return mpSoundChannel;}
-	
-				
+
+
 		const cRect2f& GetBoundingBox();
 		bool UpdateBoundingBox();
 
 		void Stop();
-	
+
 	private:
 		cSound* mpSound;
 		bool mbVolatile;

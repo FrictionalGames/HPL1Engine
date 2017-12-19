@@ -32,14 +32,14 @@ namespace hpl {
 	public:
 		iEntity2D(tString asName);
 		virtual ~iEntity2D(){}
-		
+
 		virtual const cRect2f& GetBoundingBox()=0;
 		virtual bool UpdateBoundingBox()=0;
-				
+
 		cVector3f& GetLocalPosition(){ return mvPosition; }
 		cVector3f& GetLocalRotation(){ return mvRotation; }
 		cVector3f& GetLocalScale(){ return mvScale; }
-		
+
 		cVector3f GetWorldPosition();
 		cVector3f GetWorldRotation();
 		cVector3f GetWorldScale();
@@ -47,14 +47,14 @@ namespace hpl {
 		void SetPosition(const cVector3f& avPos);
 		void SetRotation(const cVector3f& avRot);
 		void SetScale(const cVector3f& avScale);
-		
+
 		cGrid2DObject* GetGrid2DObject(){ return mpGridObject;}
 		void SetGrid2DObject(cGrid2DObject* apGrid){ mpGridObject = apGrid;}
 		bool HasGrid2DObject(){ return mpGridObject!=NULL;}
 
-		
+
 	protected:
-		cGrid2DObject* mpGridObject; 
+		cGrid2DObject* mpGridObject;
 
 		cVector3f mvPosition;
 		cVector3f mvRotation;

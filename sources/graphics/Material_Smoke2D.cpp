@@ -42,7 +42,7 @@ namespace hpl {
 
 	cMaterial_Smoke2D::~cMaterial_Smoke2D()
 	{
-		
+
 	}
 
 	//-----------------------------------------------------------------------
@@ -57,7 +57,7 @@ namespace hpl {
 	{
 
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	bool cMaterial_Smoke2D::StartRendering(eMaterialRenderType aType,iCamera* apCam,iLight *pLight)
@@ -73,14 +73,14 @@ namespace hpl {
 			//mpLowLevelGraphics->SetTextureEnv(eTextureParam_ColorFunc, eTextureFunc_Modulate);
 			mpLowLevelGraphics->SetTextureEnv(eTextureParam_ColorOp1,eTextureOp_Color);
 			mpLowLevelGraphics->SetTextureEnv(eTextureParam_ColorFunc, eTextureFunc_Modulate);
-			
+
 			return true;
 		}
 		return false;
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	void cMaterial_Smoke2D::EndRendering(eMaterialRenderType aType)
 	{
 		if(aType == eMaterialRenderType_Diffuse)
@@ -91,7 +91,7 @@ namespace hpl {
 		}
 
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	tVtxBatchFlag cMaterial_Smoke2D::GetBatchFlags(eMaterialRenderType aType)
@@ -122,7 +122,7 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	void cMaterial_Smoke2D::EditVertexes(eMaterialRenderType aType, iCamera* apCam, iLight *pLight, 
+	void cMaterial_Smoke2D::EditVertexes(eMaterialRenderType aType, iCamera* apCam, iLight *pLight,
 		tVertexVec *apVtxVec,cVector3f *apTransform,unsigned int alIndexAdd)
 	{
 

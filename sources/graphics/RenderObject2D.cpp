@@ -29,7 +29,7 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	cRenderObject2D::cRenderObject2D(iMaterial* apMaterial, tVertexVec* apVtxVec,tUIntVec* apIdxVec, 
+	cRenderObject2D::cRenderObject2D(iMaterial* apMaterial, tVertexVec* apVtxVec,tUIntVec* apIdxVec,
 							ePrimitiveType aType,float afZ,cRect2f& aRect,
 							cMatrixf *apMtx, cVector3f *avTransform)
 	{
@@ -44,7 +44,7 @@ namespace hpl {
 		mpCustomRenderer = NULL;
 	}
 
-	cRenderObject2D::cRenderObject2D(iMaterial* apMaterial, iRenderObject2DRenderer* apRenderer, 
+	cRenderObject2D::cRenderObject2D(iMaterial* apMaterial, iRenderObject2DRenderer* apRenderer,
 		ePrimitiveType aType,float afZ)
 	{
 		mpMaterial = apMaterial;

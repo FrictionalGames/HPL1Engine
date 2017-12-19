@@ -86,11 +86,11 @@ namespace hpl {
 		tString sPath;
 		cSoundEntityData* pSoundEntity;
 		tString asNewName;
-		
+
 		BeginLoad(asName);
 
 		asNewName = cString::SetFileExt(asName,"snt");
-		
+
 		pSoundEntity = static_cast<cSoundEntityData*>(this->FindLoadedResource(asNewName,sPath));
 
 		if(pSoundEntity==NULL && sPath!="")
@@ -107,10 +107,10 @@ namespace hpl {
 				pSoundEntity =NULL;
 			}
 		}
-		
+
 		if(pSoundEntity)pSoundEntity->IncUserCount();
 		else Error("Couldn't create SoundEntity '%s'\n",asNewName.c_str());
-		
+
 		EndLoad();
 		return pSoundEntity;
 	}

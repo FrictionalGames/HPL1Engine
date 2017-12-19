@@ -26,7 +26,7 @@
 #include "system/MemoryManager.h"
 
 namespace hpl {
-	
+
 	//---------------------------------
 
 	class iContainerIterator
@@ -47,7 +47,7 @@ namespace hpl {
 		virtual size_t Size()=0;
 		virtual void Clear()=0;
 	protected:
-		
+
 		virtual void AddVoidPtr(void **apPtr)=0;
 		virtual void AddVoidClass(void *apClass)=0;
 
@@ -60,21 +60,21 @@ namespace hpl {
 	{
 	public:
 		virtual size_t Size()=0;
-		
+
 		virtual void AddVoidPtr(void *apKey, void **apClass)=0;
 		virtual void AddVoidClass(void *apKey, void *apClass)=0;
 	};
 
 	//---------------------------------
 
-	
+
 	template<class T>
 	class cContainerVecIterator : public iContainerIterator
 	{
 		void* NextPtr(){
 			return &Next();
 		}
-	
+
 	public:
 		cContainerVecIterator(std::vector<T> *apVec)
 		{
@@ -111,7 +111,7 @@ namespace hpl {
 	};
 
 	////////////////////////////
-	
+
 	template<class T>
 	class cContainerVec : public iContainer
 	{
@@ -131,7 +131,7 @@ namespace hpl {
 
 	public:
 		cContainerVec(){}
-		
+
 		//////////////////////
 		size_t Size()
 		{
@@ -154,7 +154,7 @@ namespace hpl {
 		{
 			mvVector.resize(alSize);
 		}
-		
+
 		void Add(T aVal)
 		{
 			mvVector.push_back(aVal);

@@ -29,13 +29,13 @@ class TiXmlElement;
 
 namespace hpl {
 
-	#define kMaxTileFrameWidth (9) 
-	
+	#define kMaxTileFrameWidth (9)
+
 	typedef std::vector<iTileData*> tTileDataVec;
 	typedef tTileDataVec::iterator tTileDataVecIt;
 
 	class cResources;
-	
+
 	class cTileSet : public iResourceBase
 	{
 	public:
@@ -51,7 +51,7 @@ namespace hpl {
 		iTileData* Get(int alNum);
 
 		bool CreateFromFile(const tString &asFile);
-	        	
+
 	private:
 		float mfTileSize;
 		tTileDataVec mvData;
@@ -61,7 +61,7 @@ namespace hpl {
 		int mlNum;
 		int mvImageHandle[eMaterialTexture_LastEnum];
 		cVector2l mvFrameSize;
-        
+
 		bool LoadData(TiXmlElement *pElement);
 		void GetTileNum(TiXmlElement *apElement);
 	};

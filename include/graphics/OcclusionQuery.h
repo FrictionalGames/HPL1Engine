@@ -25,7 +25,7 @@ namespace hpl {
 	{
 	public:
 		virtual ~iOcclusionQuery(){}
-		
+
 		/**
 		 * Starts the query. Must be followed by an End().
 		 */

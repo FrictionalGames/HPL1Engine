@@ -22,7 +22,7 @@
 #include "system/SystemTypes.h"
 
 namespace hpl {
-	
+
 	class iUpdateable
 	{
 	public:
@@ -37,13 +37,13 @@ namespace hpl {
 		virtual void OnPostBufferSwap(){}
 
 		virtual void OnStart(){}
-		
+
 		virtual void Update(float afTimeStep){}
-		
+
 		virtual void OnExit(){}
 
 		virtual void Reset(){}
-		
+
 		const tString& GetName(){ return msName;}
 
 	private:

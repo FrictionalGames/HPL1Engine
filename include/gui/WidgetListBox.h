@@ -39,24 +39,24 @@ namespace hpl {
 
 		void SetSelectedItem(int alX,bool abMoveList=false);
 		int GetSelectedItem(){ return mlSelectedItem;}
-        		
+
 	protected:
 		/////////////////////////
 		// Own functions
 		void UpdateProperties();
 
 		bool DrawText(iWidget* apWidget,cGuiMessageData& aData);
-		kGuiCalllbackDeclarationEnd(DrawText);	
+		kGuiCalllbackDeclarationEnd(DrawText);
 
 		bool MoveSlider(iWidget* apWidget,cGuiMessageData& aData);
-		kGuiCalllbackDeclarationEnd(MoveSlider);	
+		kGuiCalllbackDeclarationEnd(MoveSlider);
 
 		/////////////////////////
 		// Implemented functions
 		void OnLoadGraphics();
 		void OnInit();
 		void OnChangeSize();
-		
+
 		void OnDraw(float afTimeStep, cGuiClipRegion *apClipRegion);
 
 		bool OnMouseMove(cGuiMessageData &aData);
@@ -80,7 +80,7 @@ namespace hpl {
 		cGuiGfxElement *mpGfxBackground;
 
 		cGuiGfxElement *mpGfxSelection;
-		
+
 		cGuiGfxElement *mvGfxBorders[4];
 		cGuiGfxElement *mvGfxCorners[4];
 

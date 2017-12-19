@@ -31,14 +31,14 @@ namespace hpl {
 			cRenderer2D* apRenderer, cGpuProgramManager* apProgramManager,
 			eMaterialPicture aPicture, cRenderer3D *apRenderer3D);
 		~cMaterial_BumpSpec();
-		
+
 	private:
 	};
 
 	class cMaterialType_BumpSpec : public iMaterialType
 	{
 	public:
-		bool IsCorrect(tString asName){ 
+		bool IsCorrect(tString asName){
 			return cString::ToLowerCase(asName)=="bumpspecular";
 		}
 

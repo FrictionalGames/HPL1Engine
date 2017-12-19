@@ -66,7 +66,7 @@ namespace hpl {
 		tString asNewName = cString::ToLowerCase(asName);
 
 		BeginLoad(asName);
-		
+
 		//asNewName = cString::SetFileExt(asName,"ttf");
 
 		pFont = static_cast<iFontData*>(this->FindLoadedResource(asNewName,sPath));
@@ -75,7 +75,7 @@ namespace hpl {
 		{
 			pFont = mpGraphics->GetLowLevel()->CreateFontData(asNewName);
 			pFont->SetUp(mpGraphics->GetDrawer(),mpLowLevelResources,mpGui);
-			
+
 			tString sExt = cString::ToLowerCase(cString::GetFileExt(asName));
 
 			//True Type Font
@@ -103,14 +103,14 @@ namespace hpl {
 				EndLoad();
 				return NULL;
 			}
-			
+
 			//mpResources->GetImageManager()->FlushAll();
 			AddResource(pFont);
 		}
 
 		if(pFont)pFont->IncUserCount();
 		else Error("Couldn't create font '%s'\n",asNewName.c_str());
-		
+
 		EndLoad();
 		return pFont;
 	}

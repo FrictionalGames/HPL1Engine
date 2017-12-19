@@ -41,16 +41,16 @@ namespace hpl {
 		bool HasMultiplePasses(eMaterialRenderType mType);
 
 		eMaterialType GetType(eMaterialRenderType mType);
-		void EditVertexes(eMaterialRenderType mType, iCamera* apCam, iLight *pLight, 
+		void EditVertexes(eMaterialRenderType mType, iCamera* apCam, iLight *pLight,
 			tVertexVec *apVtxVec,cVector3f *apTransform,unsigned int alIndexAdd);
-	
+
 	private:
 	};
 
 	class cMaterialType_DiffuseAlpha2D : public iMaterialType
 	{
 	public:
-		bool IsCorrect(tString asName){ 
+		bool IsCorrect(tString asName){
 			return cString::ToLowerCase(asName)=="diffalpha2d";
 		}
 

@@ -30,9 +30,9 @@ namespace hpl {
 	{
 	public:
 		cCRCTable () : mKey (0) {}
-		
+
 		void Init (tCRCKey key);
-		
+
 		tCRCKey operator [] (unsigned i){return mTable [i];}
 
 	private:
@@ -49,7 +49,7 @@ namespace hpl {
 		{
 			mTable.Init (key);
 		}
-		
+
 		void PutByte (unsigned aByte);
 
 		tCRCKey Done ()
@@ -61,7 +61,7 @@ namespace hpl {
 
 	private:
 		static cCRCTable mTable;
-		tCRCKey mKey;	
+		tCRCKey mKey;
 		tCRCKey mRegister;
 	};
 

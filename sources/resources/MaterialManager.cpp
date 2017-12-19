@@ -93,7 +93,7 @@ namespace hpl {
 
 		if(pMaterial)pMaterial->IncUserCount();
 		else Error("Couldn't create material '%s'\n",asNewName.c_str());
-		
+
 		EndLoad();
 		return pMaterial;
 	}
@@ -143,7 +143,7 @@ namespace hpl {
 	{
 		if(aFilter == mTextureFilter) return;
 		mTextureFilter = aFilter;
-		
+
 		tResourceHandleMapIt it = m_mapHandleResources.begin();
 		for(; it != m_mapHandleResources.end(); ++it)
 		{
@@ -158,7 +158,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	void cMaterialManager::SetTextureAnisotropy(float afX)
 	{
 		if(afX <1.0 || mpGraphics->GetLowLevel()->GetCaps(eGraphicCaps_AnisotropicFiltering)==0)
@@ -243,7 +243,7 @@ namespace hpl {
 		}
 
 		TiXmlElement *pRoot = pDoc->RootElement();
-		
+
 		///////////////////////////
 		//Main
 		TiXmlElement *pMain = pRoot->FirstChildElement("Main");
@@ -252,7 +252,7 @@ namespace hpl {
 			Error("Main child not found.\n");
 			return NULL;
 		}
-		
+
 		const char* sType = pMain->Attribute("Type");
 		if(sType ==NULL){
 			hplDelete(pDoc);
@@ -276,8 +276,8 @@ namespace hpl {
 		pMat->SetDepthTest(bDepthTest);
 		pMat->SetValue(fValue);
 		pMat->SetPhysicsMaterial(sPhysicsMatName);
-        
-		
+
+
 		///////////////////////////
 		//Textures
 		TiXmlElement *pTexRoot = pRoot->FirstChildElement("TextureUnits");
@@ -286,7 +286,7 @@ namespace hpl {
 			Error("TextureUnits child not found.\n");
 			return NULL;
 		}
-		
+
 		tTextureTypeList lstTexTypes = pMat->GetTextureTypes();
 		tTextureTypeListIt it = lstTexTypes.begin();
 		for(;it != lstTexTypes.end();it++)
@@ -300,7 +300,7 @@ namespace hpl {
 				return NULL;*/
 				continue;
 			}
-            
+
 			eTextureTarget target = GetTarget(cString::ToString(pTexChild->Attribute("Type"),""));
 			tString sFile = cString::ToString(pTexChild->Attribute("File"),"");
 			bool bMipMaps = cString::ToBool(pTexChild->Attribute("Mipmaps"),true);
@@ -309,7 +309,7 @@ namespace hpl {
 
 			eTextureAnimMode animMode = GetAnimMode(cString::ToString(pTexChild->Attribute("AnimMode"),"None"));
 			float fFrameTime = cString::ToFloat(pTexChild->Attribute("AnimFrameTime"),1.0f);
-			
+
 			if(sFile=="")
 			{
 				continue;
@@ -345,7 +345,7 @@ namespace hpl {
 
 			pTex->SetFrameTime(fFrameTime);
 			pTex->SetAnimMode(animMode);
-			
+
 			if(pTex==NULL){
 				hplDelete(pDoc);
 				hplDelete(pMat);
@@ -364,9 +364,9 @@ namespace hpl {
 		///////////////////////////
 		//Custom
 		pMat->LoadData(pRoot);
-		
+
 		hplDelete(pDoc);
-			
+
 		pMat->Compile();
 
 		return pMat;
@@ -384,7 +384,7 @@ namespace hpl {
 		return eTextureTarget_2D;
 	}
 	//-----------------------------------------------------------------------
-	
+
 	tString cMaterialManager::GetTextureString(eMaterialTexture aType)
 	{
 		switch(aType)
@@ -400,7 +400,7 @@ namespace hpl {
 
 		return "";
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	eTextureWrap cMaterialManager::GetWrap(const tString& asType)

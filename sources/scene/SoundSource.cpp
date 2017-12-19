@@ -33,7 +33,7 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	cSoundSource::cSoundSource(const tString& asName,const tString& asSoundName, cSound* apSound, bool abVolatile) 
+	cSoundSource::cSoundSource(const tString& asName,const tString& asSoundName, cSound* apSound, bool abVolatile)
 	: iEntity2D(asName)
 	{
 		UpdateBoundingBox();
@@ -71,7 +71,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	void cSoundSource::UpdateLogic(float afTimeStep)
 	{
 		if(mbIsActive && !mbPlaying)
@@ -80,7 +80,7 @@ namespace hpl {
 			{
 				Play();
 			}
-			else 
+			else
 			{
 				if(mlCounter>=mlInterval)
 				{
@@ -106,7 +106,7 @@ namespace hpl {
 			}
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	bool cSoundSource::IsDead()
@@ -118,7 +118,7 @@ namespace hpl {
 		return false;
 	}
 
-	
+
 	//-----------------------------------------------------------------------
 
 	bool cSoundSource::LoadData(TiXmlElement* apRootElem)
@@ -153,27 +153,27 @@ namespace hpl {
 		return true;
 	}
 
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	const cRect2f& cSoundSource::GetBoundingBox()
 	{
 		return mBoundingBox;
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	bool cSoundSource::UpdateBoundingBox()
 	{
 		return true;
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	void cSoundSource::Stop()
 	{
 		mpSound->GetSoundHandler()->Stop(msSoundName);
-		
+
 		mbIsActive = false;
 		mbPlaying = false;
 		mlCounter = 0;
@@ -186,21 +186,21 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	void cSoundSource::Play()
 	{
 		cVector3f vPos;
 		if(mbRelative) vPos = GetWorldPosition();
 		else vPos = GetLocalPosition();
-		
+
 		mpSoundChannel = mpSound->GetSoundHandler()->Play(msSoundName,mbLoop,mfVolume,vPos,mfMinDist,mfMaxDist,
 										eSoundDest_World,mbRelative);
-		
+
 		mbPlaying = true;
 
 		if(!mbLoop)mbIsActive=false;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 }

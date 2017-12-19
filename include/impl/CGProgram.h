@@ -59,7 +59,7 @@ namespace hpl {
 		bool SetTexture(const tString& asName,iTexture* apTexture, bool abAutoDisable=true);
 		bool SetTextureToUnit(int alUnit, iTexture* apTexture);
 
-		
+
 		/// CG SPECIFIC //////////////////////
 
 		CGprogram GetProgram(){ return mProgram;}

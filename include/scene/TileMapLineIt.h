@@ -30,11 +30,11 @@ namespace hpl {
 	public:
 		/**
 		 *
-		 * \param avPos 
-		 * \param avSize 
-		 * \param apTileMap 
+		 * \param avPos
+		 * \param avSize
+		 * \param apTileMap
 		 * \param alLayer The layer that is to be iterated. -1 = All layers (hiding tiles behind solid ones)
-		 * \return 
+		 * \return
 		 */
 		cTileMapLineIt(cVector2f avStartPos, cVector2f avEndPos, cTileMap* apTileMap, int alLayer);
 		~cTileMapLineIt();
@@ -48,21 +48,21 @@ namespace hpl {
 
 	private:
 		cVector2l mvEndPos;
-		
+
 		cVector2f mvPos;
 		cVector2f mvPosAdd;
-        cVector2l mvTilePos;	
-		
+        cVector2l mvTilePos;
+
 		int mlLayer;
 		int mlLayerCount;
 		int mlCurrentLayer;
 		int mlTileNum;
-		
+
 		bool mbUpdated;
-		
+
 		bool mbAtLastTile;
 		bool mbAddNext;
-		
+
 		cTileMap* mpTileMap;
         cTile* mpTile;
 

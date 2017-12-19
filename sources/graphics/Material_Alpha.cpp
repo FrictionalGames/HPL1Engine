@@ -85,7 +85,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 	// PUBLIC METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
 
 	iGpuProgram* cMaterial_Alpha::GetVertexProgram(eMaterialRenderType aType, int alPass, iLight3D *apLight)
@@ -148,7 +148,7 @@ namespace hpl {
 		{
 			return mpRenderer3D->GetFogAlphaTexture();
 		}
-		
+
 		return NULL;
 	}
 
@@ -158,7 +158,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	bool cMaterial_Alpha::UsesType(eMaterialRenderType aType)
 	{
 		if(aType == eMaterialRenderType_Diffuse) return true;
@@ -166,9 +166,9 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	tTextureTypeList cMaterial_Alpha::GetTextureTypes()
-	{ 
+	{
 		tTextureTypeList vTypes;
 		vTypes.push_back(cTextureType("",eMaterialTexture_Diffuse));
 		vTypes.push_back(cTextureType("_ref",eMaterialTexture_Refraction));

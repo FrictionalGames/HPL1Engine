@@ -48,7 +48,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	void cFileSearcher::AddDirectory(tString asPath, tString asMask)
 	{
 		tWStringList lstFileNames;
@@ -63,7 +63,7 @@ namespace hpl {
 
 			mpLowLevelResources->FindFilesInDir(lstFileNames,cString::To16Char(asPath),
 												cString::To16Char(asMask));
-			
+
 			for(tWStringListIt it = lstFileNames.begin();it!=lstFileNames.end();it++)
 			{
 				tString sFile = cString::To8Char(*it);
@@ -81,7 +81,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	tString cFileSearcher::GetFilePath(tString asName)
 	{
 		tFilePathMapIt it = m_mapFiles.find(cString::ToLowerCase(asName));

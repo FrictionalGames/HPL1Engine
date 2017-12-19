@@ -55,7 +55,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 	// PUBLIC METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	cMaterialType_Diffuse::cMaterialType_Diffuse()
 	{
 		mlTechLevel =0;
@@ -87,7 +87,7 @@ namespace hpl {
 		{
 			return hplNew( cMaterial_Fallback02_Diffuse, (asName,apLowLevelGraphics,
 				apImageManager,apTextureManager,apRenderer,
-				apProgramManager,aPicture,apRenderer3D) );	
+				apProgramManager,aPicture,apRenderer3D) );
 		}
 		else
 		{
@@ -96,6 +96,6 @@ namespace hpl {
 				apProgramManager,aPicture,apRenderer3D) );
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
 }

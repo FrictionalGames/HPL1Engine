@@ -34,20 +34,20 @@ namespace hpl {
 		mpTile = NULL;
 
 		mvPos = avStartPos;
-		
+
 		mlLayer = alLayer;
 		mlLayerCount =0;
 		mlCurrentLayer = 0;
 
 		mbAtLastTile = false;
 		mbAddNext = true;
-		
+
 		float fAngle = cMath::GetAngleFromPoints2D(avStartPos, avEndPos);
 		float fDist = sqrt(mpTileMap->GetTileSize()*mpTileMap->GetTileSize());
 
 		mvPosAdd = cMath::GetVectorFromAngle2D(fAngle,fDist);
 		mvPos = avStartPos;
-		
+
 		//Get the current tile
 		mvTilePos = cVector2l((int)floor(avStartPos.x/apTileMap->GetTileSize()),
 							(int)floor(avStartPos.y/apTileMap->GetTileSize()));
@@ -58,10 +58,10 @@ namespace hpl {
 
 		if(mvEndPos == mvTilePos)mbAtLastTile = true;
 
-		
+
 		/*Log("Start: %d %d\n", mvTilePos.x,mvTilePos.y);
 		Log("End: %d %d\n", mvEndPos.x,mvEndPos.y);
-		Log("End: %f : %f\n",avEndPos.x,avEndPos.y);	
+		Log("End: %f : %f\n",avEndPos.x,avEndPos.y);
 		Log("Pos: %s\n",mvPos.ToString().c_str());
 		Log("Add: %s\n",mvPosAdd.ToString().c_str());
 		Log("Angle: %f\n\n",(fAngle/k2Pif)*360);
@@ -74,7 +74,7 @@ namespace hpl {
 		{
 			mlLayerCount = (int)mpTileMap->mvTileLayer.size();
 		}
-		
+
 		mbUpdated = false;
 	}
 
@@ -91,7 +91,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	bool cTileMapLineIt::HasNext()
 	{
 		GetTile();
@@ -108,14 +108,14 @@ namespace hpl {
       	mbUpdated = false;
 		return mpTile;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 
 	cTile* cTileMapLineIt::PeekNext()
 	{
 		GetTile();
-		
+
 		return mpTile;
 	}
 
@@ -138,7 +138,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 	// PUBLIC METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
 
 	void cTileMapLineIt::GetTile()
@@ -156,35 +156,35 @@ namespace hpl {
 					mpTile = NULL;
 					break;
 				}
-				
+
 				//add pos so we go to the next tile.
 				if(mbAddNext)
 				{
 					mvPos += mvPosAdd;
-				
+
 					//Get the current tile
 					cVector2l vLastTilePos = mvTilePos;
 					mvTilePos =  cVector2l((int)floor(mvPos.x/mpTileMap->GetTileSize()),
 										(int)floor(mvPos.y/mpTileMap->GetTileSize()));
-					
+
 					//if there has been a change on both x and y then I tile has been missed
 					if(mvTilePos.x != vLastTilePos.x && mvTilePos.y != vLastTilePos.y)
 					{
 						cVector2l vAdd = mvTilePos - vLastTilePos;
-						
+
 						//Log("Too big jump!\n");
 						cVector2f vIntersectX, vIntersectY;
 						cVector2f vOldPos = mvPos - mvPosAdd;
-						
+
 						GetXYIntersection(vOldPos,&vIntersectX, &vIntersectY);
 
 						if(cMath::SqrDist2D(vOldPos,vIntersectX) < cMath::SqrDist2D(vOldPos,vIntersectY))
 							mvTilePos = cVector2l(vLastTilePos.x, vLastTilePos.y + vAdd.y);
 						else
 							mvTilePos = cVector2l(vLastTilePos.x + vAdd.x, vLastTilePos.y);
-						
+
 						mbAddNext = false;
-					}		
+					}
 				}
 				else
 				{
@@ -206,12 +206,12 @@ namespace hpl {
 				{
 					mlLayerCount =0;
 				}
-				
+
 				mlTileNum = mvTilePos.x +mvTilePos.y*mpTileMap->mvSize.x;
 
 				//Log("Next: %d %d\n", mvTilePos.x,mvTilePos.y);
 				//Log("Pos: %s\n",mvPos.ToString().c_str());
-				
+
 				if(mvTilePos == mvEndPos){
 					mbAtLastTile = true;
 				}
@@ -226,9 +226,9 @@ namespace hpl {
 					mpTile = mpTileMap->mvTileLayer[mlLayer]->mvTile[mlTileNum];
 					mlCurrentLayer = mlLayer;
 				}
-				
+
 				mlLayerCount++;
-                
+
 				if(mpTile!=NULL){
 					iTileData* pData = mpTile->GetTileData();
 					if(pData && pData->IsSolid()){
@@ -241,8 +241,8 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
-	void cTileMapLineIt::GetXYIntersection(const cVector2f& avPosA, 
+
+	void cTileMapLineIt::GetXYIntersection(const cVector2f& avPosA,
 											cVector2f* avXIntersect,cVector2f* avYIntersect)
 	{
 		//Calculate DX
@@ -252,7 +252,7 @@ namespace hpl {
 		else
 			fDx = floor(avPosA.x/mpTileMap->GetTileSize())*mpTileMap->GetTileSize();
 		fDx = fDx - avPosA.x;
-		
+
 		//Calculate DY
 		float fDy;
 		if(mvPosAdd.y>0)
@@ -260,7 +260,7 @@ namespace hpl {
 		else
 			fDy = floor(avPosA.y/mpTileMap->GetTileSize())*mpTileMap->GetTileSize();
 		fDy = fDy - avPosA.y;
-		
+
         //Get Y Intersection
 		float fDiv = mvPosAdd.x==0?0.00001f : mvPosAdd.x;//Handle div by 0
 		float fInterY = (fDx/fDiv)*mvPosAdd.y;
@@ -273,7 +273,7 @@ namespace hpl {
 		float fInterX = (fDy/fDiv)*mvPosAdd.x;
 		avXIntersect->y = avPosA.y + fDy;
 		avXIntersect->x = avPosA.x + fInterX;
-		
+
 		//Log("fDx: %0.2f  fDy: %0.2f\n",fDx,fDy);
 		//Log("Intersections: X: %0.2f %0.2f  Y: %0.2f %0.2f\n",avXIntersect->x,avXIntersect->y,
 		//			avYIntersect->x,avYIntersect->y);

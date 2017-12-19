@@ -37,7 +37,7 @@ namespace hpl {
 	};
 
 	//----------------------------------------------------
-	
+
 	/**
 	 * Represent the visibility for one portal
 	 */
@@ -156,9 +156,9 @@ namespace hpl {
 		tString GetTabs();
 
 		cPortalContainer *mpContainer;
-		
+
 		tSectorSet m_setStartSectors;
-		
+
 		tSectorVisibilityMap m_mapSectors;
 		eSectorVisibilityType mType;
 

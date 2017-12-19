@@ -40,7 +40,7 @@ namespace hpl {
 
 	cSkeleton::~cSkeleton()
 	{
-		//All bones are deleted in this call. 
+		//All bones are deleted in this call.
 		//No need to delete the bones in the containers.
 		hplDelete(mpRootBone);
 	}
@@ -52,7 +52,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	void cSkeleton::AddBone(cBone* apBone)
 	{
 		mvBones.push_back(apBone);
@@ -81,7 +81,7 @@ namespace hpl {
 								mvBones[i]->GetName(),i));
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cBone* cSkeleton::GetRootBone()
@@ -95,15 +95,15 @@ namespace hpl {
 	{
 		return mvBones[alIndex];
 	}
-	
+
 	cBone* cSkeleton::GetBoneByName(const tString &asName)
 	{
 		int alIdx = GetBoneIndexByName(asName);
 		if(alIdx <0) return NULL;
-		
+
 		return mvBones[alIdx];
 	}
-	
+
 	int cSkeleton::GetBoneIndexByName(const tString &asName)
 	{
 		tBoneIdxNameMapIt it = m_mapBonesIdxByName.find(asName);

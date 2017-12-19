@@ -31,8 +31,8 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	cPhysicsJointSliderNewton::cPhysicsJointSliderNewton(const tString &asName, 
-		iPhysicsBody *apParentBody, iPhysicsBody *apChildBody, 
+	cPhysicsJointSliderNewton::cPhysicsJointSliderNewton(const tString &asName,
+		iPhysicsBody *apParentBody, iPhysicsBody *apChildBody,
 		iPhysicsWorld *apWorld,const cVector3f &avPivotPoint, const cVector3f avPinDir)
 		: iPhysicsJointNewton<iPhysicsJointSlider>(asName,apParentBody,apChildBody,apWorld,avPivotPoint)
 	{
@@ -65,7 +65,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	void cPhysicsJointSliderNewton::SetMaxDistance(float afX)
 	{
 		mfMaxDistance = afX;
@@ -82,7 +82,7 @@ namespace hpl {
 	{
 		return mfMinDistance;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cVector3f cPhysicsJointSliderNewton::GetVelocity()
@@ -111,9 +111,9 @@ namespace hpl {
 	{
 		return 0;
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	//////////////////////////////////////////////////////////////////////////
 	// STATIC CALLBACKS
 	//////////////////////////////////////////////////////////////////////////
@@ -123,9 +123,9 @@ namespace hpl {
 	unsigned cPhysicsJointSliderNewton::LimitCallback(const NewtonJoint* pSlider, NewtonHingeSliderUpdateDesc* pDesc)
 	{
 		cPhysicsJointSliderNewton* pSliderJoint = (cPhysicsJointSliderNewton*)NewtonJointGetUserData(pSlider);
-		
+
 		//pSliderJoint->OnPhysicsUpdate();
-		
+
 		float fDistance = NewtonSliderGetJointPosit (pSlider);
 		//Log("Dist: %f\n",fDistance);
 
@@ -144,11 +144,11 @@ namespace hpl {
 			//Log("Under Min. Acc: %f Dist %f\n",pDesc->m_accel,fDistance);
 
 			return 1;
-		} 
+		}
 		else if (fDistance > pSliderJoint->mfMaxDistance)
 		{
 			pSliderJoint->OnMaxLimit();
-			
+
 			pDesc->m_accel = NewtonSliderCalculateStopAccel (pSlider, pDesc, pSliderJoint->mfMaxDistance);
 			pDesc->m_maxFriction =0;
 
@@ -160,7 +160,7 @@ namespace hpl {
 			if(pSliderJoint->mpParentBody ==NULL || pSliderJoint->mpParentBody->GetMass()==0)
 			{
 				if(	(pSliderJoint->mfStickyMaxDistance != 0 &&
-					 fabs(fDistance - pSliderJoint->mfMaxDistance) < pSliderJoint->mfStickyMaxDistance) 
+					 fabs(fDistance - pSliderJoint->mfMaxDistance) < pSliderJoint->mfStickyMaxDistance)
 					 ||
 					(pSliderJoint->mfStickyMinDistance != 0 &&
 					 fabs(fDistance - pSliderJoint->mfMinDistance) < pSliderJoint->mfStickyMinDistance)

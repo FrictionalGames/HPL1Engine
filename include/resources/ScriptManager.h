@@ -22,7 +22,7 @@
 #include "resources/ResourceManager.h"
 
 namespace hpl {
-	
+
 	class cSystem;
 	class cResources;
 	class iScript;
@@ -37,7 +37,7 @@ namespace hpl {
 		/**
 		 * Create a new script.
 		 * \param asName name of the script.
-		 * \return 
+		 * \return
 		 */
 		iScript* CreateScript(const tString& asName);
 

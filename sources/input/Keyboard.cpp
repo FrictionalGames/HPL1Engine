@@ -28,7 +28,7 @@ namespace hpl
 
 	iKeyboard::iKeyboard(tString asName) : iInputDevice(asName, eInputDeviceType_Keyboard)
 	{
-	
+
 	}
 
 	//-----------------------------------------------------------------------

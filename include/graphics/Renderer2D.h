@@ -30,7 +30,7 @@
 #include "graphics/Mesh2d.h"
 
 namespace hpl {
-	
+
 	#define MAX_SHADOW_POINTS (100)
 	#define MAX_ONSCREEN_SHADOWCASTERS (100)
 
@@ -78,7 +78,7 @@ namespace hpl {
 
 		void RenderObjects(cCamera2D *apCamera, cGridMap2D *apMapLights,cWorld2D* apWorld);
 		void AddObject(cRenderObject2D &aObject);
-		
+
 		void SetShadowZ(float afZ){ mfShadowZ = afZ;}
 		float GetShadowZ(){ return mfShadowZ;}
 
@@ -87,7 +87,7 @@ namespace hpl {
 
 		iTexture* GetLightMap(int alNum){
 			if(alNum<0 || alNum>1)return NULL;
-            return mpLightMap[alNum];			
+            return mpLightMap[alNum];
 		}
 
 	private:
@@ -101,14 +101,14 @@ namespace hpl {
 
 		/////// LIGHTING  ///////////////////////
 		iTexture* mpLightMap[2];
-		
+
 		cColor mAmbientLight;
 
 		cRect2f mPrevLightRect;
 
 		int mvShadowPoints[MAX_SHADOW_POINTS][2];
 		int mlShadowPointSize;
-				
+
 		float mfShadowZ;
 
         tLightList mlstLights;
@@ -126,9 +126,9 @@ namespace hpl {
 
 		inline cVector2f CalcLineEnd(cVector3f avLight,cVector3f avPoint, float afRadius,
 									cVector2f &avSide, cVector2f avClipPos);
-		
+
 		inline void FindShadowPoints(tMesh2DEdgeVec* apEdgeVec, cVector2f avLightPos, cVector2f avTilePos);
-		
+
 		inline int CreateVertexes(cVector2f vLightPos,cRect2f LightRect, float fRadius, bool bNonFit,
 			cVector2f vTilePos,tVertexVec* apVtxVec,cColor ShadowColor,int lFirstIndex,float fSourceSize);
 

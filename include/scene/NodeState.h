@@ -30,7 +30,7 @@ namespace hpl {
 	public:
 		cNodeState(const tString& asName);
 		~cNodeState();
-		
+
 	private:
 	};
 

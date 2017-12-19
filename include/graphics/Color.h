@@ -39,12 +39,12 @@ namespace hpl {
 
 		cColor operator*(float afVal) const;
 		cColor operator/(float afVal) const;
-		
+
 		cColor operator+(const cColor &aCol) const;
 		cColor operator-(const cColor &aCol) const;
 		cColor operator*(const cColor &aCol) const;
 		cColor operator/(const cColor &aCol) const;
-		
+
 		bool operator==(cColor aCol) const;
 
 		tString ToString() const;

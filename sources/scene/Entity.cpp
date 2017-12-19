@@ -44,14 +44,14 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	kBeginSerializeVirtual(cSaveData_iEntity, iSaveData)
 	kSerializeVar(mlParentNodeId, eSerializeType_Int32)
 	kSerializeVar(msName, eSerializeType_String)
 	kSerializeVar(mbIsVisible, eSerializeType_Bool)
 	kSerializeVar(mbIsActive, eSerializeType_Bool)
 	kEndSerialize()
-	
+
 	//-----------------------------------------------------------------------
 
 	iSaveData* iEntity::CreateSaveData()
@@ -60,15 +60,15 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	void iEntity::SaveToSaveData(iSaveData *apSaveData)
 	{
 		kSaveData_SaveToBegin(iEntity);
-		
+
 		kSaveData_SaveTo(mbIsActive);
 		kSaveData_SaveTo(mbIsVisible);
 		kSaveData_SaveTo(msName);
-		
+
 		kSaveData_SaveObject(mpParentNode,mlParentNodeId);
 	}
 
@@ -77,7 +77,7 @@ namespace hpl {
 	void iEntity::LoadFromSaveData(iSaveData *apSaveData)
 	{
 		kSaveData_LoadFromBegin(iEntity);
-		
+
 		kSaveData_LoadFrom(mbIsActive);
 		kSaveData_LoadFrom(mbIsVisible);
 		kSaveData_LoadFrom(msName);

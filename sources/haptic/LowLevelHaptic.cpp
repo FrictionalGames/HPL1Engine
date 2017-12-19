@@ -82,7 +82,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 	// PRIVATE METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
 
 	bool iLowLevelHaptic::Init(cResources *apResources)
@@ -99,7 +99,7 @@ namespace hpl {
 
 		return true;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void iLowLevelHaptic::Update(float afTimeStep)
@@ -128,7 +128,7 @@ namespace hpl {
 			vProjPos = cMath::MatrixMulDivideW(mpCamera->GetProjectionMatrix(),vProjPos);
 
 			cVector2f vPos2D(	(vProjPos.x+1) * 0.5f, (-vProjPos.y+1)* 0.5f);
-			
+
 			mvCurrentScreenPos = vPos2D;
 
 			if(mbScreenPosFirstTime)
@@ -183,7 +183,7 @@ namespace hpl {
 	{
 		return mvCurrentScreenPos * avScreenSize;
 	}
-	
+
 	cVector2f iLowLevelHaptic::GetProxyScreenDeltaPos(const cVector2f& avScreenSize)
 	{
 		return (mvCurrentScreenPos - mvPreviousScreenPos) * avScreenSize;
@@ -205,7 +205,7 @@ namespace hpl {
 	cVector2f iLowLevelHaptic::GetVirtualMousePos()
 	{
 		//Log("Pos: %f %f\n", mvCurrentHardwarePos.x,mvCurrentHardwarePos.y);
-		cVector2f vPos =	(cVector2f(mvCurrentHardwarePos.x,mvCurrentHardwarePos.y) - mvMinMousePos) / 
+		cVector2f vPos =	(cVector2f(mvCurrentHardwarePos.x,mvCurrentHardwarePos.y) - mvMinMousePos) /
 							(mvMaxMousePos - mvMinMousePos);
 		vPos.y = 1 - vPos.y;
 		vPos = vPos * mvScreenSize;
@@ -219,7 +219,7 @@ namespace hpl {
 		mvScreenSize = avScreenSize;
 	}
 
-    
+
 	//-----------------------------------------------------------------------
 
 	void iLowLevelHaptic::DestroyShape(iHapticShape* apShape)
@@ -278,7 +278,7 @@ namespace hpl {
 		STLDeleteAll(mlstForces);
 		STLDeleteAll(mlstShapes);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 }

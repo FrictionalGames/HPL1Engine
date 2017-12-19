@@ -23,7 +23,7 @@
 
 namespace hpl {
 
-	template <class T> 
+	template <class T>
 	class cSpring
 	{
 	public:

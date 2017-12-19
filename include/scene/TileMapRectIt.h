@@ -30,11 +30,11 @@ namespace hpl {
 	public:
 		/**
 		 *
-		 * \param avPos 
-		 * \param avSize 
-		 * \param apTileMap 
+		 * \param avPos
+		 * \param avSize
+		 * \param apTileMap
 		 * \param alLayer The layer that is to be iterated. -1 = All layers (hiding tiles behind solid ones)
-		 * \return 
+		 * \return
 		 */
 		cTileMapRectIt(cVector2l avPos, cVector2l avSize, cTileMap* apTileMap, int alLayer);
 		~cTileMapRectIt();
@@ -54,11 +54,11 @@ namespace hpl {
 		int mlTileColAdd;
 		int mlTileRowCount;
 		int mlTileColCount;
-		
+
 		int mlCurrentLayer;
 
 		bool mbUpdated;
-		
+
 		cTileMap* mpTileMap;
         cTile* mpTile;
 

@@ -102,7 +102,7 @@ namespace hpl {
 		cMeshEntity(const tString asName,cMesh* apMesh, cMaterialManager* apMaterialManager,
 					cMeshManager* apMeshManager, cAnimationManager *apAnimationManager);
 		~cMeshEntity();
-	
+
 		void SetWorld(cWorld3D *apWorld){ mpWorld = apWorld;}
 		cWorld3D* GetWorld(){ return mpWorld;}
 
@@ -147,7 +147,7 @@ namespace hpl {
 		void SetSkeletonPhysicsWeight(float afX);
 
 		void FadeSkeletonPhysicsWeight(float afTime);
-		
+
 		void SetSkeletonCollidersActive(bool abX);
 		bool GetSkeletonCollidersActive();
 
@@ -249,7 +249,7 @@ namespace hpl {
 
 		bool mbSkeletonPhysicsSleeping;
 		bool mbSkeletonPhysicsCanSleep;
-		
+
 		bool mbSkeletonColliders;
 
 		bool mbUpdatedBones;

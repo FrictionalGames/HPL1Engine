@@ -86,7 +86,7 @@ namespace hpl {
 			Log("------- SCRIPT OUTPUT END ----------------------------\n");
 
 
-			
+
 			hplDeleteArray(pCharBuffer);
 			return false;
 		}

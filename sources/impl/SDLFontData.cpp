@@ -34,8 +34,8 @@ namespace hpl {
 	cSDLFontData::cSDLFontData(const tString &asName,iLowLevelGraphics* apLowLevelGraphics)
 		: iFontData(asName,apLowLevelGraphics)
 	{
-	
-	
+
+
 	}
 
 	//-----------------------------------------------------------------------
@@ -53,7 +53,7 @@ namespace hpl {
 		////////////////////////////////////////////
 		// Load xml file
 		TiXmlDocument *pXmlDoc = hplNew( TiXmlDocument,(asFileName.c_str()) );
-		
+
 		if(pXmlDoc->LoadFile()==false)
 		{
 			Error("Couldn't load angle code font file '%s'\n",asFileName.c_str());
@@ -83,7 +83,7 @@ namespace hpl {
 		////////////////////////////////////////////
 		// Load bitmaps
 		std::vector<cSDLBitmap2D *> vBitmaps;
-		
+
 		TiXmlElement *pPagesRootElem = pRootElem->FirstChildElement("pages");
 
 		TiXmlElement *pPageElem = pPagesRootElem->FirstChildElement("page");
@@ -106,7 +106,7 @@ namespace hpl {
 		////////////////////////////////////////////
 		// Load glyphs
 		TiXmlElement *pCharsRootElem = pRootElem->FirstChildElement("chars");
-		
+
 		TiXmlElement *pCharElem = pCharsRootElem->FirstChildElement("char");
 		for(; pCharElem != NULL; pCharElem = pCharElem->NextSiblingElement("char"))
 		{
@@ -127,11 +127,11 @@ namespace hpl {
 
 			//Get the bitmap where the character graphics is
 			cSDLBitmap2D *pSourceBitmap = vBitmaps[lPage];
-			
+
 			//Create a bitmap for the character.
 			cVector2l vSize(lW, lH);
 			cSDLBitmap2D *pBmp = static_cast<cSDLBitmap2D*>(mpLowLevelGraphics->CreateBitmap2D(vSize,32));
-			
+
             //Copy from source to character bitmap
 			SDL_Rect srcRect;
 			srcRect.x = lX; srcRect.y = lY;
@@ -145,7 +145,7 @@ namespace hpl {
 			for(unsigned int y=0;y<pBmp->GetHeight();y++)
 				for(unsigned int x=0;x<pBmp->GetWidth();x++) {
 					unsigned char* Pix = &PixBuffer[y*pBmp->GetWidth()*lBmpSize + x*lBmpSize];
-					Pix[3] = Pix[0];	
+					Pix[3] = Pix[0];
 				}
 
 			//Create glyph and place it correctly.
@@ -161,47 +161,47 @@ namespace hpl {
 
 		//Destroy bitmaps
 		STLDeleteAll(vBitmaps);
-	
+
         //Destroy XML
 		hplDelete(pXmlDoc);
 		return true;
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
-	bool cSDLFontData::CreateFromFontFile(const tString &asFileName, int alSize, unsigned short alFirstChar, 
+
+	bool cSDLFontData::CreateFromFontFile(const tString &asFileName, int alSize, unsigned short alFirstChar,
 		unsigned short alLastChar)
 	{
 		cGlyph* pGlyph=NULL;
 
 		mlFirstChar = alFirstChar;
 		mlLastChar = alLastChar;
-		
+
 		TTF_Font* pFont = TTF_OpenFont(asFileName.c_str(), alSize);
 		if(pFont==NULL){
 			Error("Error when opening '%s': %s\n",asFileName.c_str(),TTF_GetError());
 			return false;
 		}
-		
+
 		//Create bitmaps from all of the characters and create
-		//Images from those. 
+		//Images from those.
 		for(int i=alFirstChar; i<=alLastChar;i++)
 		{
 			unsigned short lUniCode = i;
 			/*char c = (char)i;
-			
+
 			if(c == 'ö')lUniCode = 'o';
 			else if(c == 'Ö')lUniCode = 'O';*/
 
             pGlyph = RenderGlyph(pFont, lUniCode, alSize);
 			AddGlyph(pGlyph);
 		}
-		
+
 		//Get the properties
 		mfHeight = (float)TTF_FontHeight(pFont);
 
 		mvSizeRatio = 1;
-		
+
 		//Cleanup
 		TTF_CloseFont(pFont);
 
@@ -215,27 +215,27 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	cGlyph* cSDLFontData::RenderGlyph(TTF_Font* apFont,unsigned short aChar, int alFontSize)
 	{
 		//If the font is saved to disk, then load the bitmap from disk instead.
-		
+
 		cVector2l vMin;
 		cVector2l vMax;
 		int lAdvance=0;
-		
+
 		TTF_GlyphMetrics(apFont, aChar, &vMin.x, &vMax.x, &vMin.y, &vMax.y, &lAdvance);
 
 		//Create the bitmap we want to draw upon
 		cVector2l vSize = vMax - vMin;
 		cSDLBitmap2D *pBmp = static_cast<cSDLBitmap2D*>(mpLowLevelGraphics->CreateBitmap2D(vSize,32));
-				
+
 		pBmp->FillRect(cRect2l(),cColor(0,1));
-		
+
 		//create a surface with the glyph
 		SDL_Color Col;Col.r=255;Col.g=255;Col.b=255;
 		SDL_Surface* pGlyphSurface = TTF_RenderGlyph_Blended(apFont,aChar,Col);
-        
+
 		//Blit the surface using blending. This way it should create a nice
 		//b&w image where the font is white.
 		SDL_SetAlpha(pBmp->GetSurface(),0,0);
@@ -247,20 +247,20 @@ namespace hpl {
 		//So we get some alpha bledning.
 		int lBmpSize = pBmp->GetSurface()->format->BytesPerPixel;
 		unsigned char* PixBuffer = (unsigned char*)pBmp->GetSurface()->pixels;
-		
+
 		for(unsigned int y=0;y<pBmp->GetHeight();y++)
 			for(unsigned int x=0;x<pBmp->GetWidth();x++)
 			{
-				unsigned char* Pix = &PixBuffer[y*pBmp->GetWidth()*lBmpSize + 
+				unsigned char* Pix = &PixBuffer[y*pBmp->GetWidth()*lBmpSize +
 					x*lBmpSize];
 
-				Pix[3] = Pix[0];	
+				Pix[3] = Pix[0];
 			}
 
 		//Create the Glyph
 		int lHeight = TTF_FontHeight(apFont);
 		cVector2l vOffset = cVector2l(vMin.x, alFontSize - vMax.y);//(lHeight - vSize.y) - vMin.y);
-		
+
 		cGlyph* pGlyph = CreateGlyph(pBmp,vOffset,vSize,alFontSize,lAdvance);
 
 		hplDelete(pBmp);

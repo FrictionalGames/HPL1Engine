@@ -16,9 +16,9 @@ public:
 	~cSimpleCamera();
 
 	void Update(float afFrameTime);
-	
+
 	void OnDraw();
-	
+
 	void SetActive(bool abX){ mbActive = abX;}
 
 	cMatrixf m_mtxLastView;

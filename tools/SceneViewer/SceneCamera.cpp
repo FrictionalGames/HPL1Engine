@@ -61,8 +61,8 @@ void cSceneCamera::Update(float afFrameTime)
 	{
 		mpGame->Exit();
 	}
-	
-	float fMul = mpGame->GetStepSize();	
+
+	float fMul = mpGame->GetStepSize();
 
 	if(mpGame->GetInput()->IsTriggerd("Forward")) mpCamera->MoveForward(mfSpeed * fMul);
 	if(mpGame->GetInput()->IsTriggerd("Backward")) mpCamera->MoveForward(-mfSpeed* fMul);

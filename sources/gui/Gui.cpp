@@ -57,17 +57,17 @@ namespace hpl {
 	{
 		Log("Exiting Gui Module\n");
 		Log("--------------------------------------------------------\n");
-		
+
 		STLMapDeleteAll(m_mapSets);
 		STLMapDeleteAll(m_mapSkins);
-		
+
 		STLDeleteAll(mlstGfxElements);
 
-		for(int i=0; i< eGuiMaterial_LastEnum; ++i) 
+		for(int i=0; i< eGuiMaterial_LastEnum; ++i)
 		{
 			if(mvMaterials[i]) hplDelete(mvMaterials[i]);
 		}
-		
+
 		Log("--------------------------------------------------------\n\n");
 	}
 
@@ -159,7 +159,7 @@ namespace hpl {
 			if(pSet->Is3D()) pSet->Render();
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cGui::OnPostGUIDraw()
@@ -257,10 +257,10 @@ namespace hpl {
 		cGuiSet *pSet = hplNew( cGuiSet, (asName,this,apSkin,mpResources, mpGraphics, mpSound,mpScene) );
 
 		m_mapSets.insert(tGuiSetMap::value_type(asName, pSet));
-        
+
 		return pSet;
 	}
-	
+
 	cGuiSet* cGui::GetSetFromName(const tString& asName)
 	{
 		tGuiSetMapIt it = m_mapSets.find(asName);
@@ -268,7 +268,7 @@ namespace hpl {
 
 		return it->second;
 	}
-	
+
 	void cGui::SetFocus(cGuiSet* apSet)
 	{
 		if(mpSetInFocus == apSet) return;
@@ -277,13 +277,13 @@ namespace hpl {
 
 		mpSetInFocus = apSet;
 	}
-	
+
 	void cGui::SetFocusByName(const tString& asSetName)
 	{
 		cGuiSet *pSet = GetSetFromName(asSetName);
 		if(pSet) SetFocus(pSet);
 	}
-	
+
 	void cGui::DestroySet(cGuiSet *apSet)
 	{
 		if(apSet==NULL) return;
@@ -355,7 +355,7 @@ namespace hpl {
 			Error("Could not load texture '%s'!\n",asFile.c_str());
 			return NULL;
 		}
-		
+
 		/////////////////////////////
 		// Create element
 		cGuiGfxElement *pGfxElem = hplNew( cGuiGfxElement, (this) );
@@ -440,7 +440,7 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	
+
 	bool cGui::SendMousePos(const cVector2f &avPos, const cVector2f &avRel)
 	{
 		if(mpSetInFocus==NULL) return false;
@@ -448,7 +448,7 @@ namespace hpl {
 		cGuiMessageData data = cGuiMessageData(avPos,avRel);
         return mpSetInFocus->SendMessage(eGuiMessage_MouseMove,data);
 	}
-	
+
 	bool cGui::SendMouseClickDown(eGuiMouseButton aButton)
 	{
 		if(mpSetInFocus==NULL)return false;
@@ -456,7 +456,7 @@ namespace hpl {
 		cGuiMessageData data = cGuiMessageData(aButton);
 		return mpSetInFocus->SendMessage(eGuiMessage_MouseDown,data);
 	}
-	
+
 	bool cGui::SendMouseClickUp(eGuiMouseButton aButton)
 	{
 		if(mpSetInFocus==NULL)return false;
@@ -468,7 +468,7 @@ namespace hpl {
 	bool cGui::SendMouseDoubleClick(eGuiMouseButton aButton)
 	{
 		if(mpSetInFocus==NULL)return false;
-		
+
 		cGuiMessageData data = cGuiMessageData(aButton);
 		return mpSetInFocus->SendMessage(eGuiMessage_MouseDoubleClick,data);
 	}
@@ -482,11 +482,11 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	/*bool cGui::SentArrowKey(eGuiArrowKey aDir)
 	{
 		if(mpSetInFocus==NULL)return false;
-		
+
 		return false;
 	}*/
 
@@ -526,7 +526,7 @@ namespace hpl {
 		// Pointer Graphics
 		AddGfx(PointerNormal);
 		AddGfx(PointerText);
-		
+
 		///////////////////////
 		// Window Graphics
 		AddGfx(WindowBorderRight);
@@ -569,7 +569,7 @@ namespace hpl {
 		AddGfx(TextBoxBackground);
 		AddGfx(TextBoxSelectedTextBack);
 		AddGfx(TextBoxMarker);
-		
+
 		///////////////////////////////////
 		// List box Graphics
 		AddGfx(ListBoxBackground);

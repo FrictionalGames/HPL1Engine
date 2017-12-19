@@ -67,7 +67,7 @@ public:
 	cB()
 	{
 		for(int i=0; i<10; i++)	mvValues[i] =0;
-		
+
 		for(int i=0; i<3;i++) mvPigs[i] = NULL;
 		mpPig = NULL;
 
@@ -130,10 +130,10 @@ public:
 		//gpGame->GetGraphics()->GetRenderer3D()->SetDebugFlags(eRendererDebugFlag_DrawBoundingBox);
 
 		mpLowLevelGraphics = gpGame->GetGraphics()->GetLowLevel();
-		
+
 		///////////////////////////////////////////////////
 		// Container Test
-		
+
 		cContainerVec<int> vVals;
 
 		/*vVals.Add(1);
@@ -164,13 +164,13 @@ public:
 		testSaveB.mCol = cColor(1,0,1,0);
 		testSaveB.mtxTest = cMatrixf::Identity;
 		for(int i=0; i<10; i++) testSaveB.mvValues[i] = (float)i+1;
-		
+
 		for(int i=0; i<3; i++) {
 			testSaveB.mvPigs[i] = new cPiggy();
 			testSaveB.mvPigs[i]->mlLegs =0;
 			testSaveB.mvPigs[i]->msName = "DeadOne";
 		}
-		
+
 		testSaveB.mpPig = new cPiggy();
 		testSaveB.mpPig->mlLegs = 2;
 		testSaveB.mpPig->msName = "TwoLegs";
@@ -179,14 +179,14 @@ public:
 		testSaveB.mvVals.Add(new cPiggy(2));
 		testSaveB.mvVals.Add(new cPiggy(6));
 		testSaveB.mvVals.Add(new cPiggy(7));
-		
+
 		Log("Saaaaaaving!\n");
 		cSerializeClass::SaveToFile(&testSaveB,_W("TestSave.txt"),"TestSave");
 		cB testSaveB2;
 		cSerializeClass::LoadFromFile(&testSaveB2,_W("TestSave.txt"));
 		cSerializeClass::SaveToFile(&testSaveB2,_W("TestSave2.txt"),"TestSave2");
-		
-				
+
+
 		//Add the engine's object plugin.
 		/*gpGame->GetResources()->AddEntity3DLoader(new cEntityLoader_Object("Object"));
 
@@ -195,7 +195,7 @@ public:
 
 		gpGame->GetScene()->SetWorld3D(mpWorld);
 
-		
+
 		mpFont = gpGame->GetResources()->GetFontManager()->CreateFontData("verdana.ttf");*/
 
 		gpGame->Exit();
@@ -203,7 +203,7 @@ public:
 
 	~cSimpleUpdate()
 	{
-	
+
 	}
 
 	void Update(float afFrameTime)
@@ -214,20 +214,20 @@ public:
 	void OnDraw()
 	{
 	}
-	
+
 	void OnPostSceneDraw()
 	{
 		return;
 		cCamera3D *pCam = static_cast<cCamera3D*>(gpGame->GetScene()->GetCamera());
 		mpLowLevelGraphics->SetMatrix(eMatrix_ModelView, pCam->GetViewMatrix());
-		
+
 	}
-	
-	
+
+
 private:
 	float mfLightAngle;
 	iFontData *mpFont;
-	
+
 	cWorld3D* mpWorld;
 	iLowLevelGraphics* mpLowLevelGraphics;
 };
@@ -238,7 +238,7 @@ int hplMain(const tString &asCommandLine) {
 	//Init the game engine
 	gpGame = new cGame(new cSDLGameSetup(),800,600,32,false,45);
 	gpGame->GetGraphics()->GetLowLevel()->SetVsyncActive(false);
-	
+
 	//Add resources
 	gpGame->GetResources()->AddResourceDir("textures");
 	gpGame->GetResources()->AddResourceDir("models");
@@ -248,11 +248,11 @@ int hplMain(const tString &asCommandLine) {
 	//Add updates
    	cSimpleUpdate Update;
 	gpGame->GetUpdater()->AddUpdate("Default", &Update);
-	
+
 	cSimpleCamera cameraUpdate(gpGame,8,cVector3f(0,1,0),true);
 	gpGame->GetUpdater()->AddUpdate("Default", &cameraUpdate);
 
-		
+
 	//Run the engine
 	gpGame->Run();
 

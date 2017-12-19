@@ -87,10 +87,10 @@ namespace hpl {
 	{
 		cVector2l vPos = cVector2l((int)floor(aRect.x/mfTileSize),
 									(int)floor(aRect.y/mfTileSize));
-		
+
 		cVector2l vSize = cVector2l((int)(aRect.w/mfTileSize)+1,
 									(int)(aRect.h/mfTileSize)+1);
-        
+
 		//Check if we need yet another grid for x and y
 		if(aRect.x+aRect.w>=(vPos.x+vSize.x)*mfTileSize)vSize.x++;
 		if(aRect.y+aRect.h>=(vPos.y+vSize.y)*mfTileSize)vSize.y++;
@@ -100,7 +100,7 @@ namespace hpl {
 
 		return hplNew( cTileMapRectIt, (vPos,vSize,this,alLayer) );
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	iTileMapIt* cTileMap::GetLineIterator(const cVector2f& avStart,const cVector2f& avEnd , int alLayer)
@@ -110,7 +110,7 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	
+
 	cVector2f cTileMap::GetWorldPos(cVector2f avScreenPos, cCamera2D* apCam)
 	{
 		cVector2f vWorldPos;
@@ -120,12 +120,12 @@ namespace hpl {
 
 		vWorldPos.x = Rect.x + Rect.w*(avScreenPos.x/((float)vVirtSize.x));
 		vWorldPos.y = Rect.y + Rect.h*(avScreenPos.y/((float)vVirtSize.y));
-		
+
 		return vWorldPos;
 	}
-	
-	//-----------------------------------------------------------------------	
-	
+
+	//-----------------------------------------------------------------------
+
 	cTile* cTileMap::GetScreenTile(cVector2f avPos, int alLayer, cCamera2D* apCam)
 	{
 		return GetWorldTile(GetWorldPos(avPos,apCam), alLayer);
@@ -133,13 +133,13 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	void cTileMap::SetScreenTileData(cVector2f avPos, int alLayer,cCamera2D* apCam, 
+	void cTileMap::SetScreenTileData(cVector2f avPos, int alLayer,cCamera2D* apCam,
 									int alTileSet, int alTileNum)
 	{
 		cVector2f vWorldPos = GetWorldPos(avPos,apCam);
-		
+
 		cTile* pOldTile = GetWorldTile(vWorldPos,alLayer);
-		
+
 		iTileData* pData=NULL;
 		if(alTileSet>=0)
 		{
@@ -148,24 +148,24 @@ namespace hpl {
 			pData = pSet->Get(alTileNum);
 			if(pData==NULL)return;
 		}
-		
+
 		cVector2l vTilePos = cVector2l((int)floor(vWorldPos.x/mfTileSize), (int)floor(vWorldPos.y/mfTileSize));
 		if(vTilePos.x<0 || vTilePos.y<0 || vTilePos.x>=mvSize.x || vTilePos.y>=mvSize.y)return;
 
 		if(alLayer<0 || alLayer>=(int)mvTileLayer.size())return;
-		
+
 		cVector3f vTileWorldPos(vTilePos.x*mfTileSize, vTilePos.y*mfTileSize, mvTileLayer[alLayer]->GetZ());
-		
+
 		int lAngle = 0;
 		if(pOldTile)lAngle = pOldTile->GetAngle();
-		
+
 		cTile* pTile=NULL;
 		if(pData)
 			pTile = hplNew( cTile, (pData,(eTileRotation)lAngle,vTileWorldPos,mfTileSize,NULL) );
-		
+
 		mvTileLayer[alLayer]->SetTile(vTilePos.x, vTilePos.y,pTile);
     }
-	
+
 	//-----------------------------------------------------------------------
 
 	void cTileMap::SetScreenTileAngle(cVector2f avPos, int alLayer,cCamera2D* apCam, int alAngle)
@@ -187,7 +187,7 @@ namespace hpl {
 	cTile* cTileMap::GetWorldTile(cVector2f avPos, int alLayer)
 	{
 		if(alLayer<0 || alLayer>=(int)mvTileLayer.size())return NULL;
-		
+
 		return mvTileLayer[alLayer]->GetAt((int)floor(avPos.x/mfTileSize),
 											(int)floor(avPos.y/mfTileSize));
 	}
@@ -196,8 +196,8 @@ namespace hpl {
 
 	/**
 	 *
-	 * \param alTileNum 
-	 * \param alLayer 
+	 * \param alTileNum
+	 * \param alLayer
 	 * \param avDir 0=left, 1=right, 2=up, 3 = down
 	 * \return num of neighbours
 	 */
@@ -207,7 +207,7 @@ namespace hpl {
 		cTileLayer* pLayer = mvTileLayer[alLayer];
 		int lX = alTileNum%mvSize.x;
 		int lY = alTileNum/mvSize.x;
-		
+
 		/*avDir[0] = pLayer->GetAt(lX-1,lY)!=NULL?true:false;
 		avDir[1] = pLayer->GetAt(lX+1,lY)!=NULL?true:false;
 		avDir[2] = pLayer->GetAt(lX,lY-1)!=NULL?true:false;
@@ -215,9 +215,9 @@ namespace hpl {
 
 		cTile *pTile;
 		cTileDataNormal *pData;
-		
+
 		cVector2l vAdd[4] = {cVector2l(-1,0),cVector2l(+1,0),cVector2l(0,-1),cVector2l(0,+1)};
-		
+
 		for(int i=0;i<4;i++)
 		{
 			pTile = pLayer->GetAt(lX+vAdd[i].x,lY + vAdd[i].y);
@@ -230,14 +230,14 @@ namespace hpl {
 				avDir[i] = false;
 			}
 		}
-		
+
 		for(int i=0;i<4;i++)if(avDir[i]==true)lCount++;
-				
+
 		return lCount;
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	void cTileMap::AddTileLayerFront(cTileLayer *apLayer)
 	{
 		if(mvTileLayer.size()<1)
@@ -245,7 +245,7 @@ namespace hpl {
 			mvTileLayer.push_back(apLayer);
 		}
 		else
-		{	
+		{
 			mvTileLayer.push_back(NULL);
 			for(int i=(int)mvTileLayer.size()-2;i>=0;i--)
 			{
@@ -254,15 +254,15 @@ namespace hpl {
 			mvTileLayer[0] = apLayer;
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	//////////////////////////////////////////////////////////////////////////
 	// PRIVATE METHODS
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	void cTileMap::RenderTileData(cTile* apTile, int alLayer)
 	{
 		static int count=0;
@@ -273,15 +273,15 @@ namespace hpl {
 								apTile->GetPosition().y-mfTileSize/2, mfTileSize,mfTileSize);
 		cRenderObject2D _obj2 = cRenderObject2D(pData->GetMaterial(),
 								pData->GetVertexVec(apTile->GetAngle()),
-								pData->GetIndexVec(apTile->GetAngle()), 
+								pData->GetIndexVec(apTile->GetAngle()),
 								ePrimitiveType_Quad, apTile->GetPosition().z,
 								_obj,
 								NULL,apTile->GetPositionPtr());
-		mpGraphics->GetRenderer2D()->AddObject(_obj2);		
+		mpGraphics->GetRenderer2D()->AddObject(_obj2);
 
 		count++;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 }

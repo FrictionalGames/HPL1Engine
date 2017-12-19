@@ -26,7 +26,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	iNode::~iNode()
 	{
 		for(tEntityListIt it = mlstEntity.begin();it != mlstEntity.end();it++)
@@ -69,7 +69,7 @@ namespace hpl {
 	bool iNode::AddEntity(iEntity* apEntity)
 	{
 		if(apEntity->HasParent())return false;
-				
+
 		mlstEntity.push_back(apEntity);
 		apEntity->SetParent(this);
 
@@ -100,7 +100,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	cNodeIterator iNode::GetChildIterator()
 	{
 		return cNodeIterator(&mlstNode);
@@ -109,7 +109,7 @@ namespace hpl {
 	cEntityIterator iNode::GetEntityIterator()
 	{
 		return cEntityIterator(&mlstEntity);
-	}	
+	}
 	//-----------------------------------------------------------------------
 
 	//////////////////////////////////////////////////////////////////////////
@@ -117,12 +117,12 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	kBeginSerializeVirtual(cSaveData_iNode, iSaveData)
 	kSerializeVarContainer(mlstEntities, eSerializeType_Int32)
 	kSerializeVarContainer(mlstNodes, eSerializeType_Int32)
 	kEndSerialize()
-	
+
 	//-----------------------------------------------------------------------
 
 	void iNode::SaveToSaveData(iSaveData *apSaveData)

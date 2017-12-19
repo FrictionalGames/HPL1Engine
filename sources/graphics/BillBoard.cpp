@@ -132,7 +132,7 @@ namespace hpl {
 		mBoundingVolume.SetSize(cVector3f(mvSize.x, mvSize.y, mvSize.x));
 
 		float *pPos = mpVtxBuffer->GetArray(eVertexFlag_Position);
-		
+
 		cVector3f vCoords[4] = {cVector3f((mvSize.x/2),-(mvSize.y/2),0),
 								cVector3f(-(mvSize.x/2),-(mvSize.y/2),0),
 								cVector3f(-(mvSize.x/2),(mvSize.y/2),0),
@@ -168,13 +168,13 @@ namespace hpl {
 	{
 		mvAxis = avAxis;
 		mvAxis.Normalise();
-		
+
 		//This is a quick fix so the bounding box is correct for non up-pointing axises
 		if(mType == eBillboardType_Axis && mvAxis != cVector3f(0,1,0))
 		{
 			float fMax = mvSize.x;
 			if(fMax < mvSize.y) fMax = mvSize.y;
-			
+
 			fMax *= kSqrt2f;
 
 			mBoundingVolume.SetSize(fMax);
@@ -336,7 +336,7 @@ namespace hpl {
 		{
 			vUp = cMath::MatrixMul(GetWorldMatrix().GetRotation(),mvAxis);
 			vUp.Normalise();
-			
+
 			if(vUp == vForward)
 			{
 				vRight = cMath::Vector3Cross(vUp, vCameraForward);

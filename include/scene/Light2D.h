@@ -27,22 +27,22 @@
 namespace hpl {
 
 	class iLowLevelGraphics;
-	
+
 	class iLight2D : public iEntity2D, public iLight
 	{
 	public:
 		iLight2D(tString asName);
 		virtual ~iLight2D(){}
-		
+
 		tString GetEntityType(){ return "iLight2D";}
-		
+
 		void UpdateLogic(float afTimeStep);
 
 		void SetFarAttenuation(float afX);
 		void SetNearAttenuation(float afX);
-		
+
 		cVector3f GetLightPosition();
-		
+
 		virtual int Render(iLowLevelGraphics* apLowLevel, int alFirstIndex)=0;
 
 	protected:

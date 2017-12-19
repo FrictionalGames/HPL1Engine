@@ -96,14 +96,14 @@ namespace hpl {
 	eMaterialBlendMode cMaterial_Flat::GetBlendMode(eMaterialRenderType aType, int alPass, iLight3D *apLight)
 	{
 		if(aType == eMaterialRenderType_Z) return eMaterialBlendMode_None;
-		
+
 		if(alPass ==1)	return eMaterialBlendMode_Add;
 		else			return eMaterialBlendMode_Replace;
 	}
 
 	eMaterialChannelMode cMaterial_Flat::GetChannelMode(eMaterialRenderType aType, int alPass, iLight3D *apLight)
 	{
-		if(aType == eMaterialRenderType_Z) return eMaterialChannelMode_Z; 
+		if(aType == eMaterialRenderType_Z) return eMaterialChannelMode_Z;
 		return eMaterialChannelMode_RGBA;
 	}
 
@@ -122,7 +122,7 @@ namespace hpl {
             if(alPass ==0)	return mvTexture[eMaterialTexture_Diffuse];
 			else			return mvTexture[eMaterialTexture_Illumination];
 		}
-		
+
 		return NULL;
 	}
 
@@ -140,7 +140,7 @@ namespace hpl {
 	}
 
 	int cMaterial_Flat::GetNumOfPasses(eMaterialRenderType aType, iLight3D *apLight)
-	{ 
+	{
 		if(mvTexture[eMaterialTexture_Illumination]) return 2;
 		return 1;
 	}
@@ -148,7 +148,7 @@ namespace hpl {
 	//-----------------------------------------------------------------------
 
 	tTextureTypeList cMaterial_Flat::GetTextureTypes()
-	{ 
+	{
 		tTextureTypeList vTypes;
 		vTypes.push_back(cTextureType("",eMaterialTexture_Diffuse));
 		vTypes.push_back(cTextureType("",eMaterialTexture_Illumination));

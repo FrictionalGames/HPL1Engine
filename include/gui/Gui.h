@@ -27,7 +27,7 @@
 #include "system/SystemTypes.h"
 
 namespace hpl {
-	
+
 	class cResources;
 	class cGraphics;
 	class cSound;
@@ -48,7 +48,7 @@ namespace hpl {
 
 	typedef std::map<tString, cGuiSkin*> tGuiSkinMap;
 	typedef tGuiSkinMap::iterator tGuiSkinMapIt;
-	
+
 	//-------------------------------------
 
 	typedef std::map<tString, eGuiSkinGfx> tGuiSkinGfxMap;
@@ -79,13 +79,13 @@ namespace hpl {
 
 		void OnPostSceneDraw();
 		void OnPostGUIDraw();
-		
+
 		iGuiMaterial* GetMaterial(eGuiMaterial aType);
 
 		///////////////////////////////
 		// Skins
 		cGuiSkin* CreateSkin(const tString& asFile);
-		
+
 		eGuiSkinGfx GetSkinGfxFromString(const tString& asType);
 		eGuiSkinFont GetSkinFontFromString(const tString& asType);
 		eGuiSkinAttribute GetSkinAttributeFromString(const tString& asType);
@@ -112,9 +112,9 @@ namespace hpl {
 		cGuiGfxElement* CreateGfxImageBuffer(	const tString &asFile,eGuiMaterial aMaterial,
 												bool abCreateAnimation=true,
 												const cColor& aColor=cColor(1,1), bool abAddToList=true);
-		
+
 		void DestroyGfx(cGuiGfxElement* apGfx);
-		
+
 		///////////////////////////////
 		// Input sending
 		bool SendMousePos(const cVector2f &avPos, const cVector2f &avRel);
@@ -126,7 +126,7 @@ namespace hpl {
 
 		//bool SentArrowKey(eGuiArrowKey aDir);
 
-		
+
 		///////////////////////////////
 		// Properties
 		cResources* GetResources(){ return mpResources;}

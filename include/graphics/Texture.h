@@ -79,7 +79,7 @@ namespace hpl {
 	};
 
 	//-----------------------------------------
-	
+
 	class iLowLevelGraphics;
 
 	class iTexture : public iLowLevelPicture, public iResourceBase
@@ -91,7 +91,7 @@ namespace hpl {
 			: iLowLevelPicture(asType), iResourceBase(asName,0),
 				mType(aType), mbUseMipMaps(abUseMipMaps),
 				mpLowLevelGraphics(apLowLevelGraphics), mbCompress(abCompress),
-				mTarget(aTarget), 
+				mTarget(aTarget),
 				mWrapS(eTextureWrap_Repeat), mWrapT(eTextureWrap_Repeat),mWrapR(eTextureWrap_Repeat),
 				mfFrameTime(1), mAnimMode(eTextureAnimMode_Loop), mlSizeLevel(0), mvMinLevelSize(16,16),
 				mfAnisotropyDegree(1.0f),mFilter(eTextureFilter_Bilinear){}
@@ -107,23 +107,23 @@ namespace hpl {
 
 		/**
 		 * Create a texture from a bitmap, work only for 1D, 2D and Rect targets. Doesn't work with render targets.
-		 * \param pBmp 
-		 * \return 
+		 * \param pBmp
+		 * \return
 		 */
 		virtual bool CreateFromBitmap(iBitmap2D* pBmp)=0;
 		/**
 		 * Create a cube map texture from a vector of bitmaps. Doesn't work with render targets.
 		 * All bitmaps most be square, a power of 2 and the same same. The order must be: posX, negX, posY, negY, posZ and negZ.
 		 * \param *avBitmaps a vector with at least 6 bitmaps
-		 * \return 
+		 * \return
 		 */
 		virtual bool CreateCubeFromBitmapVec(tBitmap2DVec *avBitmaps)=0;
 		/**
 		 * Create a texture with color, works with all target types. Works with render targets.
-		 * \param alWidth 
-		 * \param alHeight 
-		 * \param aCol 
-		 * \return 
+		 * \param alWidth
+		 * \param alHeight
+		 * \param aCol
+		 * \return
 		 */
 		virtual bool Create(unsigned int alWidth, unsigned int alHeight, cColor aCol)=0;
 
@@ -133,14 +133,14 @@ namespace hpl {
 
 		virtual void Update(float afTimeStep)=0;
 
-		virtual void SetPixels2D(int alLevel, const cVector2l& avOffset, const cVector2l& avSize, 
+		virtual void SetPixels2D(int alLevel, const cVector2l& avOffset, const cVector2l& avSize,
 								eColorDataFormat aDataFormat, void *apPixelData)=0;
 
 		virtual void SetFilter(eTextureFilter aFilter)=0;
 		virtual void SetAnisotropyDegree(float afX)=0;
 		eTextureFilter GetFilter(){ return mFilter;}
 		float GetAnisotropyDegree(float afX){ return mfAnisotropyDegree;}
-		
+
 		virtual float GetGamma()=0;
 		virtual void SetGamma(float afGamma)=0;
 		virtual int GetHandle()=0;
@@ -163,7 +163,7 @@ namespace hpl {
 
 		eTextureType GetTextureType(){ return mType; }
 		bool UsesMipMaps(){ return mbUseMipMaps; }
-		void SetMipMapUse(bool abX){mbUseMipMaps = abX;} 
+		void SetMipMapUse(bool abX){mbUseMipMaps = abX;}
 		eTextureTarget GetTarget(){ return mTarget;}
 
 		virtual bool HasAnimation()=0;
@@ -182,7 +182,7 @@ namespace hpl {
 		eTextureWrap mWrapR;
 		eTextureFilter mFilter;
 		float mfAnisotropyDegree;
-		
+
 		bool mbUseMipMaps;
 		bool mbCompress;
 		iLowLevelGraphics* mpLowLevelGraphics;

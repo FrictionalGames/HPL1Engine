@@ -45,7 +45,7 @@ namespace hpl {
 		/////////////////////////
 		// Implemented functions
 		void OnLoadGraphics();
-		
+
 		void OnDraw(float afTimeStep, cGuiClipRegion *apClipRegion);
 
 		bool OnMouseMove(cGuiMessageData &aData);

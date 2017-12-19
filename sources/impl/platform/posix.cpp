@@ -85,7 +85,7 @@ namespace hpl {
 			if (stat(cString::To8Char(sSpec).c_str(),&statbuff) ==-1) continue;
 			// skip directories
 			if (S_ISDIR(statbuff.st_mode)) continue;
-			
+
 			fileentry.assign(cString::To16Char(_entry->d_name));
 
 			if (!patiMatch(asMask.c_str(),fileentry.c_str())) continue;

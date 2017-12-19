@@ -32,7 +32,7 @@ namespace hpl {
 	class iLowLevelResources;
 	class iLowLevelGraphics;
 	class cMeshCreator;
-	class cMaterialHandler;	
+	class cMaterialHandler;
 
 	class cGraphics
 	{
@@ -48,10 +48,10 @@ namespace hpl {
 		 * \return pointer to the low level class
 		 */
 		iLowLevelGraphics* GetLowLevel();
-		
+
 		/**
 		 * Get the drawer
-		 * \return 
+		 * \return
 		 */
 		cGraphicsDrawer* GetDrawer();
 
@@ -60,7 +60,7 @@ namespace hpl {
 		cRendererPostEffects* GetRendererPostEffects(){ return mpRendererPostEffects;}
 		cMeshCreator* GetMeshCreator(){return mpMeshCreator;}
 		cMaterialHandler* GetMaterialHandler(){return mpMaterialHandler;}
-	
+
 	private:
 		iLowLevelGraphics *mpLowLevelGraphics;
 		iLowLevelResources *mpLowLevelResources;

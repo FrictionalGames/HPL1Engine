@@ -68,7 +68,7 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	iTexture* cTextureManager::Create1D(const tString& asName,bool abUseMipMaps, bool abCompress, 
+	iTexture* cTextureManager::Create1D(const tString& asName,bool abUseMipMaps, bool abCompress,
 									eTextureType aType, unsigned int alTextureSizeLevel)
 	{
 		return CreateFlatTexture(asName,abUseMipMaps,abCompress,aType, eTextureTarget_1D,alTextureSizeLevel);
@@ -76,7 +76,7 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	iTexture* cTextureManager::Create2D(const tString& asName,bool abUseMipMaps,bool abCompress, 
+	iTexture* cTextureManager::Create2D(const tString& asName,bool abUseMipMaps,bool abCompress,
 									eTextureType aType, unsigned int alTextureSizeLevel, eTextureTarget aTarget)
 	{
 		return CreateFlatTexture(asName,abUseMipMaps,abCompress,aType, aTarget,alTextureSizeLevel);
@@ -84,11 +84,11 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	iTexture* cTextureManager::CreateAnim2D(const tString& asName,bool abUseMipMaps, bool abCompress, 
+	iTexture* cTextureManager::CreateAnim2D(const tString& asName,bool abUseMipMaps, bool abCompress,
 									eTextureType aType, unsigned int alTextureSizeLevel)
 	{
 		BeginLoad(asName);
-        
+
 		iTexture* pTexture = static_cast<iTexture*>(GetByName(asName));
 
 		if(pTexture==NULL)
@@ -105,7 +105,7 @@ namespace hpl {
 			while(true)
 			{
 				tString sPath = mpFileSearcher->GetFilePath(sTest);
-                
+
 				if(sPath == "")
 				{
 					break;
@@ -117,39 +117,39 @@ namespace hpl {
 						sTest = sFileName + "0"+cString::ToString(lNum)+"."+sFileExt;
 					else
 						sTest = sFileName + cString::ToString(lNum)+"."+sFileExt;
-					
+
 					++lNum;
 				}
 			}
 
-			if(vPaths.empty()) 
+			if(vPaths.empty())
 			{
 				Error("No textures found for animation %s\n",asName.c_str());
 				Error("Couldn't texture '%s'\n",asName.c_str());
 				EndLoad();
 				return NULL;
 			}
-			
+
 			tBitmap2DVec vBitmaps;
 			for(size_t i =0; i< vPaths.size(); ++i)
 			{
 				iBitmap2D* pBmp = mpResources->GetLowLevel()->LoadBitmap2D(vPaths[i]);
 				if(pBmp==NULL){
 					Error("Couldn't load bitmap '%s'!\n",vPaths[i].c_str());
-					
+
 					for(int j=0;j<(int)vBitmaps.size();j++) hplDelete(vBitmaps[j]);
-					
+
 					EndLoad();
 					return NULL;
 				}
 
 				vBitmaps.push_back(pBmp);
 			}
-			
+
 			//Create the animated texture
 			pTexture = mpGraphics->GetLowLevel()->CreateTexture(asName,abUseMipMaps,aType,
 															eTextureTarget_2D);
-			
+
 			pTexture->SetSizeLevel(alTextureSizeLevel);
 
 			if(pTexture->CreateAnimFromBitmapVec(&vBitmaps)==false)
@@ -169,14 +169,14 @@ namespace hpl {
 
 		if(pTexture)pTexture->IncUserCount();
 		else Error("Couldn't texture '%s'\n",asName.c_str());
-		
+
 		EndLoad();
 		return pTexture;
 	}
 
 	//-----------------------------------------------------------------------
-	
-	iTexture* cTextureManager::CreateCubeMap(const tString& asPathName,bool abUseMipMaps, 
+
+	iTexture* cTextureManager::CreateCubeMap(const tString& asPathName,bool abUseMipMaps,
 											bool abCompress, eTextureType aType,
 											unsigned int alTextureSizeLevel)
 	{
@@ -185,7 +185,7 @@ namespace hpl {
 		iTexture* pTexture = static_cast<iTexture*>(GetByName(sName));
 
 		BeginLoad(asPathName);
-				
+
 		if(pTexture==NULL)
 		{
 			//See if files for all faces exist
@@ -197,10 +197,10 @@ namespace hpl {
 				{
 					tString sNewName = sName + mvCubeSideSuffixes[i] + "." + *it;
 					sPath = mpFileSearcher->GetFilePath(sNewName);
-	               
+
 					if(sPath!="")break;
 				}
-				
+
 				if(sPath=="")
 				{
 					tString sNewName = sName + mvCubeSideSuffixes[i];
@@ -210,7 +210,7 @@ namespace hpl {
 
 				vPaths.push_back(sPath);
 			}
-			
+
 			//Load bitmaps for all faces
 			tBitmap2DVec vBitmaps;
 			for(int i=0;i<6; i++)
@@ -222,7 +222,7 @@ namespace hpl {
 					EndLoad();
 					return NULL;
 				}
-				
+
 				vBitmaps.push_back(pBmp);
 			}
 
@@ -242,13 +242,13 @@ namespace hpl {
 
 			//Bitmaps no longer needed.
 			for(int j=0;j<(int)vBitmaps.size();j++)	hplDelete(vBitmaps[j]);
-			
+
 			AddResource(pTexture);
 		}
 
 		if(pTexture)pTexture->IncUserCount();
 		else Error("Couldn't texture '%s'\n",sName.c_str());
-		
+
 		EndLoad();
 		return pTexture;
 	}
@@ -304,9 +304,9 @@ namespace hpl {
 		tString sName = cString::ToLowerCase(asFallOffName);
 		tTextureAttenuationMapIt it = m_mapAttenuationTextures.find(sName);
 		if(it !=  m_mapAttenuationTextures.end()) return it->second;
-		
+
         tString sPath="";
-		
+
 		if(cString::GetFileExt(asFallOffName)!="")
 		{
 			sPath = mpFileSearcher->GetFilePath(asFallOffName);
@@ -352,7 +352,7 @@ namespace hpl {
 		for(int y=0;y<lSize;++y)
 		for(int x=0;x<lSize;++x)
 		{
-			cVector3f vPos((float)x, (float)y,(float)z);			
+			cVector3f vPos((float)x, (float)y,(float)z);
 			vPos = vPos - vCentre;
 
 			float fDist = vPos.Length();
@@ -363,7 +363,7 @@ namespace hpl {
 			int lTexPos = (int) (fNormDist*(float)lWidth);
 			if(lTexPos>=lWidth)lTexPos = lWidth-1;
 			unsigned char val = pPixels[lTexPos*lBmpChannels];
-			
+
 			for(int i=0; i< lAttChannels;++i)
 			{
 				vAttenMap[z*lSize*lSize*lAttChannels + y*lSize*lAttChannels + x*lAttChannels+i] = val;
@@ -374,7 +374,7 @@ namespace hpl {
 		pTexture->SetWrapS(eTextureWrap_ClampToBorder);
 		pTexture->SetWrapT(eTextureWrap_ClampToBorder);
 		pTexture->SetWrapR(eTextureWrap_ClampToBorder);
-		
+
 		hplDelete(pBmp);
 
 		m_mapAttenuationTextures.insert(tTextureAttenuationMap::value_type(sName,pTexture));
@@ -390,13 +390,13 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	iTexture* cTextureManager::CreateFlatTexture(const tString& asName,bool abUseMipMaps, 
+	iTexture* cTextureManager::CreateFlatTexture(const tString& asName,bool abUseMipMaps,
 										bool abCompress, eTextureType aType, eTextureTarget aTarget,
 										unsigned int alTextureSizeLevel)
 	{
 		tString sPath;
 		iTexture* pTexture;
-		
+
 		BeginLoad(asName);
 
 		pTexture = FindTexture2D(asName,sPath);
@@ -433,13 +433,13 @@ namespace hpl {
 
 		if(pTexture)pTexture->IncUserCount();
 		else Error("Couldn't texture '%s'\n",asName.c_str());
-		
+
 		EndLoad();
 		return pTexture;
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	iTexture* cTextureManager::FindTexture2D(const tString &asName, tString &asFilePath)
 	{
 		iTexture *pTexture=NULL;

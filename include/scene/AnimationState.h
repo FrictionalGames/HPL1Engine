@@ -61,7 +61,7 @@ namespace hpl {
 	};
 
 	//---------------------------------------------
-	
+
 	class cAnimationEvent
 	{
 	public:

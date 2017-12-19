@@ -28,7 +28,7 @@ namespace hpl {
 
 	#define MAX_TEXTUREUNITS (8)
 	#define MAX_NUM_OF_LIGHTS (30)
-	
+
 	enum eMatrix
 	{
 		eMatrix_ModelView,
@@ -52,13 +52,13 @@ namespace hpl {
 		ePrimitiveType_Quad,
 		ePrimitiveType_LastEnum
 	};
-	
+
 	typedef tFlag tAnimTransformFlag;
 
 	#define eAnimTransformFlag_Translate	(0x00000001)
 	#define eAnimTransformFlag_Scale		(0x00000002)
 	#define eAnimTransformFlag_Rotate		(0x00000004)
-	
+
 	#define klNumOfAnimTransformFlags (3)
 
 	const tAnimTransformFlag kvAnimTransformFlags[] = {eAnimTransformFlag_Translate,
@@ -133,7 +133,7 @@ namespace hpl {
 
 	typedef std::vector<cVertexBonePair> tVertexBonePairVec;
 	typedef tVertexBonePairVec::iterator tVertexBonePairVecIt;
-	
+
 	//---------------------------------------
 
 	class cVertex
@@ -146,7 +146,7 @@ namespace hpl {
 			tex = avTex;
 			col = aCol;
 		}
-		
+
 		cVertex(const cVector3f &avPos,const cColor &aCol )
 		{
 			pos = avPos;
@@ -159,10 +159,10 @@ namespace hpl {
 		cVector3f norm;
         cColor col;
 	};
-	
+
 	typedef std::list<cVertex> tVertexList;
 	typedef tVertexList::iterator tVertexListIt;
-	
+
 	typedef std::vector<cVertex> tVertexVec;
 	typedef tVertexVec::iterator tVertexVecIt;
 }

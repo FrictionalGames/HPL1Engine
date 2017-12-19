@@ -32,7 +32,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	cAnimationState::cAnimationState(cAnimation* apAnimation, const tString &asName,
 									cAnimationManager *apAnimationManager)
 	{
@@ -59,7 +59,7 @@ namespace hpl {
 
 		mfFadeStep=0;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cAnimationState::~cAnimationState()
@@ -87,7 +87,7 @@ namespace hpl {
 		if(mfFadeStep!=0)
 		{
 			mfWeight += mfFadeStep*afTimeStep;
-			
+
 			if(mfFadeStep<0 && mfWeight<=0)
 			{
 				mfWeight =0;
@@ -109,9 +109,9 @@ namespace hpl {
 		return mfFadeStep!=0;
 	}
 
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	bool cAnimationState::IsOver()
 	{
 		if(mbLoop) return false;
@@ -130,14 +130,14 @@ namespace hpl {
 	{
 		mfFadeStep = -1.0f / std::abs(afTime);
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	void cAnimationState::SetLength(float afLength)
 	{
 		mfLength = afLength;
 	}
-	
+
 	float cAnimationState::GetLength()
 	{
 		return mfLength;
@@ -165,7 +165,7 @@ namespace hpl {
 	{
 		return mfSpeed;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cAnimationState::SetBaseSpeed(float afSpeed)
@@ -212,7 +212,7 @@ namespace hpl {
 	{
 		return mfTimePos / mfLength;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	bool cAnimationState::IsActive()
@@ -222,7 +222,7 @@ namespace hpl {
 	void cAnimationState::SetActive(bool abActive)
 	{
 		if(mbActive == abActive) return;
-		
+
 		mbActive = abActive;
 
 		//Should this really be here?
@@ -231,7 +231,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	bool cAnimationState::IsLooping()
 	{
 		return mbLoop;
@@ -244,10 +244,10 @@ namespace hpl {
 	//-----------------------------------------------------------------------
 
 	bool cAnimationState::IsPaused()
-	{	
+	{
 		return mbPaused;
 	}
-	
+
 	void cAnimationState::SetPaused(bool abPaused)
 	{
 		mbPaused = abPaused;
@@ -259,10 +259,10 @@ namespace hpl {
 	{
 		return mfTimePos > mfSpecialEventTime;
 	}
-	
+
 	bool cAnimationState::IsBeforeSpecialEvent()
 	{
-		return mfTimePos < mfSpecialEventTime;	
+		return mfTimePos < mfSpecialEventTime;
 	}
 
 	//-----------------------------------------------------------------------
@@ -270,14 +270,14 @@ namespace hpl {
 	void cAnimationState::AddTimePosition(float afAdd)
 	{
 		if(mbPaused) return;
-		
+
 		mfPrevTimePos = mfTimePos;
 
 		mfTimePos += afAdd*mfSpeed*mfBaseSpeed;
 
 		SetTimePosition(mfTimePos);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cAnimation* cAnimationState::GetAnimation()
@@ -302,12 +302,12 @@ namespace hpl {
 	{
 		return mvEvents[alIdx];
 	}
-	
+
 	int cAnimationState::GetEventNum()
 	{
 		return (int)mvEvents.size();
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	//////////////////////////////////////////////////////////////////////////
@@ -385,7 +385,7 @@ namespace hpl {
 		kSaveData_LoadFromBegin(cAnimationState);
 
 		kSaveData_LoadFrom(msName);
-		
+
 		kSaveData_LoadFrom(mfLength);
 		kSaveData_LoadFrom(mfWeight);
 		kSaveData_LoadFrom(mfSpeed);

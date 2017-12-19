@@ -25,7 +25,7 @@
 #include "system/SerializeClass.h"
 
 namespace hpl {
-	
+
 	class iLowLevelGraphics;
 	class cBoundingVolume;
 
@@ -68,7 +68,7 @@ namespace hpl {
 		kSerializableClassInit(cBoundingVolume)
 	public:
 		cBoundingVolume();
-		
+
 		cVector3f GetMax();
 		cVector3f GetMin();
 
@@ -76,10 +76,10 @@ namespace hpl {
 		cVector3f GetLocalMin();
 
 		void SetLocalMinMax(const cVector3f& mvMin,const cVector3f& mvMax);
-		
+
 		void SetPosition(const cVector3f& avPos);
 		cVector3f GetPosition();
-		
+
 		void SetSize(const cVector3f& avSize);
 		cVector3f GetSize();
 
@@ -90,7 +90,7 @@ namespace hpl {
 		cVector3f GetWorldCenter();
 
 		float GetRadius();
-		
+
 		void AddArrayPoints(const float *apArray, int alNumOfVectors);
 		void CreateFromPoints(int alStride);
 
@@ -99,24 +99,24 @@ namespace hpl {
 		//Debug:
 		void DrawEdges(const cVector3f& avLightPos,float afLightRange, iLowLevelGraphics *apLowLevelGraphics);
 		void UpdateSize();
-		
+
 		cMatrixf m_mtxTransform;
 
 		cVector3f mvLocalMax;
 		cVector3f mvLocalMin;
-		
+
 		cVector3f mvMax;
 		cVector3f mvMin;
 
 		cVector3f mvPivot;
-		
+
 		cVector3f mvWorldMax;
 		cVector3f mvWorldMin;
-		
+
 		cVector3f mvPosition;
 		cVector3f mvSize;
 		float mfRadius;
-	
+
 	private:
 		bool mbPositionUpdated;
 		bool mbSizeUpdated;

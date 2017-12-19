@@ -59,7 +59,7 @@ namespace hpl {
 	//-----------------------------------------------------------------------
 
 	cMeshEntity::cMeshEntity(const tString asName,cMesh* apMesh, cMaterialManager* apMaterialManager,
-							cMeshManager* apMeshManager, cAnimationManager *apAnimationManager) : 
+							cMeshManager* apMeshManager, cAnimationManager *apAnimationManager) :
 	iRenderable(asName)
 	{
 		mpMaterialManager = apMaterialManager;
@@ -83,10 +83,10 @@ namespace hpl {
 		mfSkeletonPhysicsWeight = 1.0f;
 		mbSkeletonPhysicsFading = false;
 		mfSkeletonPhysicsFadeSpeed = 1.0f;
-		
+
 		mbSkeletonPhysicsSleeping = false;
 		mbSkeletonPhysicsCanSleep = true;
-		
+
 		mbSkeletonColliders = false;
 
 		mbUpdatedBones = false;
@@ -94,7 +94,7 @@ namespace hpl {
 		mlStartSleepCount =0;
 		mlUpdateCount =0;
 		mfTimeStepAccum =0;
-		
+
 		////////////////////////////////////////////////
 		//Create sub entities
 		for(int i=0;i<mpMesh->GetSubMeshNum();i++)
@@ -106,22 +106,22 @@ namespace hpl {
 
 			mvSubMeshes.push_back(pSub);
 			m_mapSubMeshes.insert(tSubMeshEntityMap::value_type(mpMesh->GetSubMesh(i)->GetName(), pSub));
-			
+
 			iVertexBuffer *pVtxBuffer = mpMesh->GetSubMesh(i)->GetVertexBuffer();
-			
+
 			if(mpMesh->GetNodeNum()<=0)
 			{
-				mBoundingVolume.AddArrayPoints(pVtxBuffer->GetArray(eVertexFlag_Position), 
+				mBoundingVolume.AddArrayPoints(pVtxBuffer->GetArray(eVertexFlag_Position),
 												pVtxBuffer->GetVertexNum());
 			}
 			else
 			{
-				pSub->mBoundingVolume.AddArrayPoints(pVtxBuffer->GetArray(eVertexFlag_Position), 
+				pSub->mBoundingVolume.AddArrayPoints(pVtxBuffer->GetArray(eVertexFlag_Position),
 														pVtxBuffer->GetVertexNum());
 				pSub->mBoundingVolume.CreateFromPoints(kvVertexElements[cMath::Log2ToInt(eVertexFlag_Position)]);
 			}
 		}
-		
+
 		if(mpMesh->GetNodeNum()<=0)
 		{
 			mBoundingVolume.CreateFromPoints(kvVertexElements[cMath::Log2ToInt(eVertexFlag_Position)]);
@@ -136,7 +136,7 @@ namespace hpl {
 		for(int i=0; i<  mpMesh->GetAnimationNum(); i++)
 		{
 			cAnimation* pAnimation = mpMesh->GetAnimation(i);
-			
+
 			cAnimationState* pAnimState = hplNew( cAnimationState, (pAnimation,pAnimation->GetName(),NULL) );
 
 			mvAnimationStates.push_back(pAnimState);
@@ -148,20 +148,20 @@ namespace hpl {
 		////////////////////////////////////////////////
 		// Create Nodes
 		mbHasNodes = false;
-		if(	mpMesh->GetNodeNum()>0 && 
-			(mpMesh->GetPhysicsJointNum()<=0 || mpMesh->GetSkeleton()==NULL) && 
+		if(	mpMesh->GetNodeNum()>0 &&
+			(mpMesh->GetPhysicsJointNum()<=0 || mpMesh->GetSkeleton()==NULL) &&
 			mpMesh->GetAnimationNum() >0)
 		{
 			mbHasNodes = true;
 			mvNodeStates.reserve(mpMesh->GetNodeNum());
-			
+
 			//Create the root node and attach all node without parents to this.
 			mpRootNode = hplNew( cNode3D, ("NodeRoot",false) );
 
 			//Create the root callback
 			mpRootCallback = hplNew( cMeshEntityRootNodeUpdate, () );
 			this->AddCallback(mpRootCallback);
-			
+
 			//Fill the node array.
 			for(int i=0; i< mpMesh->GetNodeNum(); i++)
 			{
@@ -186,7 +186,7 @@ namespace hpl {
 					pSubEntity->SetLocalNode(pNode);
 				}
 			}
-			
+
 			//Set parents and children of the nodes in the array
 			for(int i=0; i< (int)mvNodeStates.size();i++)
 			{
@@ -199,7 +199,7 @@ namespace hpl {
 					cNode3D* pParentNode = GetNodeStateFromName(pMeshNode->GetParent()->GetName());
 					if(pParentNode)
 						pStateNode->SetParent(pParentNode);
-					else 
+					else
 						pStateNode->SetParent(mpRootNode);
 				}
 				//If not set root node as parent.
@@ -216,7 +216,7 @@ namespace hpl {
 					pStateNode->AddChild(GetNodeStateFromName(pChildNode->GetName()));
 				}
 			}
-			
+
 			//make sure all nodes are updated.
 			mpRootNode->SetMatrix(cMatrixf::Identity);
 
@@ -229,7 +229,7 @@ namespace hpl {
 		else if(mpMesh->GetPhysicsJointNum()>0 || mpMesh->HasSeveralBodies())
 		{
 			mbHasNodes = true;
-            
+
 			//Fill the node array.
 			for(int i=0; i< mpMesh->GetNodeNum(); i++)
 			{
@@ -238,14 +238,14 @@ namespace hpl {
 				//Log("MeshNode %s\n local: (%s)\n world: (%s)\n",pMeshNode->GetName(),
 				//									pMeshNode->GetLocalPosition().ToString().c_str(),
 				//									pMeshNode->GetWorldPosition().ToString().c_str());
-				
+
 				//Set the sub entity with the mesh node world matrix
 				cSubMeshEntity *pSubEntity = GetSubMeshEntityName(pMeshNode->GetSource());
 				if(pSubEntity)
 				{
 					cSubMesh *pSubMesh = pSubEntity->GetSubMesh();
 					cMatrixf mtxSub = pMeshNode->GetWorldMatrix();
-	
+
 					pSubEntity->SetMatrix(mtxSub);
 
 					//Log(" SubEnity: %s\n",pSubEntity->GetWorldPosition().ToString().c_str());
@@ -257,10 +257,10 @@ namespace hpl {
 
 		////////////////////////////////////////////////
 		// Create Skeleton
-		
+
 		//Create the node states from skeleton
 		cSkeleton *pSkeleton = mpMesh->GetSkeleton();
-		
+
 		//Create bones states if there is a skeleton.
 		if(pSkeleton)
 		{
@@ -271,14 +271,14 @@ namespace hpl {
 			{
 				//Create the root node and attach all node without parents to this.
 				mpRootNode = hplNew( cNode3D, ("NodeRoot",false) );
-				
+
 				//Create the root callback
 				mpRootCallback = hplNew( cMeshEntityRootNodeUpdate, () );
 				this->AddCallback(mpRootCallback);
 			}
-			
+
 			mvBoneStates.reserve(pSkeleton->GetBoneNum());
-            			
+
 			//Fill the state array with the bones so
 			//that each state has the same index as the bones.
 			for(int i=0; i< pSkeleton->GetBoneNum(); i++)
@@ -321,7 +321,7 @@ namespace hpl {
 				{
 					pState->SetParent(mpRootNode);
 				}
-							
+
 				//Add children if there are any.
 				/*cBoneIterator it = pBone->GetChildIterator();
 				while(it.HasNext())
@@ -355,7 +355,7 @@ namespace hpl {
 				mvTempBoneStates[i] = hplNew( cBoneState,(mvBoneStates[i]->GetName(),false));
 			}
 		}
-		
+
 		////////////////////////////////////////////////////
 		//If it has no nodes, attach the sub entities to the
 		//main mesh
@@ -385,9 +385,9 @@ namespace hpl {
 
 		if(mpRootNode) hplDelete(mpRootNode);
 		if(mpRootCallback) hplDelete(mpRootCallback);
-		
+
 		mpMeshManager->Destroy(mpMesh);
-		
+
 		STLDeleteAll(mvNodeStates);
 		STLDeleteAll(mvBoneStates);
 
@@ -401,11 +401,11 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 	// ROOT NODE UDPATE CALLBACK
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	void cMeshEntityRootNodeUpdate::OnTransformUpdate(iEntity3D * apEntity)
 	{
 		cMeshEntity *pMeshEntity = static_cast<cMeshEntity*>(apEntity);
-		
+
 		pMeshEntity->mpRootNode->SetMatrix(apEntity->GetWorldMatrix());
 	}
 
@@ -413,9 +413,9 @@ namespace hpl {
 	// PUBLIC METHODS
 	//////////////////////////////////////////////////////////////////////////
 
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	//Ths functions sets the matrices of the bones according the matrices of
 	//the body that is attached to each bone.
 	//To get max speed all this is doen recursivly from the root and then down.
@@ -423,7 +423,7 @@ namespace hpl {
 	void cMeshEntity::SetBoneMatrixFromBodyRec(const cMatrixf& a_mtxParentWorld,cBoneState *apBoneState)
 	{
 		iPhysicsBody *pBody = apBoneState->GetBody();
-		
+
 		if(pBody)
 		{
 			cMatrixf mtxBoneWorld = cMath::MatrixMul(pBody->GetWorldMatrix(),apBoneState->GetInvBodyMatrix());
@@ -442,7 +442,7 @@ namespace hpl {
 		{
 			apBoneState->UpdateWorldTransform();
 			const cMatrixf &mtxBoneWorld = apBoneState->GetWorldMatrix();
-			
+
 			cNodeIterator BoneIt = apBoneState->GetChildIterator();
 			while(BoneIt.HasNext())
 			{
@@ -454,7 +454,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	//int glDebugTabs=0;
 	void cMeshEntity::UpdateNodeMatrixRec(const cMatrixf& a_mtxParentWorld,cNode3D *apNode)
 	{
@@ -479,20 +479,20 @@ namespace hpl {
 
 		//glDebugTabs--;
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	void cMeshEntity::UpdateLogic(float afTimeStep)
-	{	
+	{
 		//LogUpdate("---- Start mesh update ----------------------\n");
-		
+
 		//if(!IsStatic()){START_TIMING_TAB(Skeleton);}
 
 		/////////////////////////////////////////////////////
 		//If not rendered the previous frame then we do not update as often.
 		bool bRegularUpdate = GetGlobalRenderCount() == cRenderList::GetGlobalRenderCount();
 
-		//Check if any skeleton  child has been rendered. 
+		//Check if any skeleton  child has been rendered.
 		if(mpMesh->GetSkeleton() && bRegularUpdate == false)
 		{
 			for(size_t i=0; i<mvBoneStates.size(); ++i)
@@ -522,7 +522,7 @@ namespace hpl {
 		{
 			mlStartSleepCount =0;
 		}
-        
+
 		if(mlStartSleepCount >= lMaxSleepCount)
 		{
 			++mlUpdateCount;
@@ -557,7 +557,7 @@ namespace hpl {
 				SetSkeletonPhysicsActive(false);
 			}
 		}
-		
+
 		//LogUpdate(" -skeleton physics\n");
 		/////////////////////////////////////////////
 		//Check if all bodies connected to the skeleton is at rest,
@@ -571,7 +571,7 @@ namespace hpl {
 			{
 				cBoneState *pState = GetBoneState(bone);
 				iPhysicsBody *pBody = pState->GetBody();
-				
+
 				if(pBody && pBody->GetEnabled()){
 					bEnabled = true;
 					break;
@@ -581,13 +581,13 @@ namespace hpl {
 				//mbSkeletonPhysicsSleeping = true;
 			}
 		}
-		
+
 		//if(!IsStatic()){STOP_TIMING_TAB(Skeleton);}
 
 
 		/////////////////////////////////////////////
 		//Update animations
-		
+
 		//////////////////////////////////////
 		// Check if it has nodes, then use special animation update,
 		// else it as skepetn which needs another update.
@@ -602,7 +602,7 @@ namespace hpl {
 					if(pState->IsActive()) pState->SetMatrix(cMatrixf::Identity);
 				}
 			}
-			
+
 			/////////////////////////
 			//Go through all animations states and set the node's
 			//temporary states
@@ -619,14 +619,14 @@ namespace hpl {
 					for(int i=0; i<pAnim->GetTrackNum(); i++)
 					{
 						cAnimationTrack *pTrack = pAnim->GetTrack(i);
-						
+
 						if(pTrack->GetNodeIndex()<0)
 						{
                             pTrack->SetNodeIndex(GetNodeStateIndex(pTrack->GetName()));
 						}
 						cNode3D* pNodeState = GetNodeState(pTrack->GetNodeIndex());
-						
-						if(pNodeState->IsActive()) 
+
+						if(pNodeState->IsActive())
 							pTrack->ApplyToNode(pNodeState,pAnimState->GetTimePosition(),pAnimState->GetWeight());
 					}
 
@@ -647,7 +647,7 @@ namespace hpl {
 					UpdateNodeMatrixRec(mpRootNode->GetWorldMatrix(),pBoneState);
 				}
 			}
-			
+
 			//////////////////////
 			//Call callback to be run after animation
 			if(mpCallback)mpCallback->AfterAnimationUpdate(this,afTimeStep);
@@ -673,7 +673,7 @@ namespace hpl {
 					break;
 				}
 			}
-			
+
 			//////////
 			//Reset all bones states
 			//LogUpdate(" -reset bones\n");
@@ -688,7 +688,7 @@ namespace hpl {
 					{
 						pState->SetMatrix(pBone->GetLocalTransform(),false);
 					}
-					
+
 					//can optimize this by doing it in the order of the tree
 					//and using recursive. (should be enough as is...)
 					if(mbSkeletonPhysics && mfSkeletonPhysicsWeight!=1.0f)
@@ -708,20 +708,20 @@ namespace hpl {
 				while(BoneIt.HasNext())
 				{
 					cBoneState *pBoneState = static_cast<cBoneState*>(BoneIt.Next());
-                    
+
 					SetBoneMatrixFromBodyRec(mpRootNode->GetWorldMatrix(),pBoneState);
 				}
-				
+
 				//Interpolate matrices
 				if(mfSkeletonPhysicsWeight!=1.0f)
-				{	
+				{
 					for(size_t i=0;i < mvBoneStates.size(); i++)
 					{
 						cMatrixf mtxMixLocal = cMath::MatrixSlerp(	mfSkeletonPhysicsWeight,
 																	mvTempBoneStates[i]->GetLocalMatrix(),
 																	mvBoneStates[i]->GetLocalMatrix(),
 																	true);
-						
+
 						mvBoneStates[i]->SetMatrix(mtxMixLocal, false);
 					}
 				}
@@ -731,7 +731,7 @@ namespace hpl {
 
 			//if(!IsStatic()){START_TIMING_TAB(Bones);}
 			//////////////////////////////////
-			//Go through all animations states and update the bones 
+			//Go through all animations states and update the bones
 			//LogUpdate(" -animation states\n");
 			for(size_t i=0; i< mvAnimationStates.size(); i++)
 			{
@@ -748,9 +748,9 @@ namespace hpl {
 						cAnimationTrack *pTrack = pAnim->GetTrack(i);
 
 						cNode3D* pState = GetBoneState(pTrack->GetNodeIndex());
-											
+
 						//Log("Animating bone %s\n",pState->GetName());
-						
+
 						if(pState->IsActive())
 							pTrack->ApplyToNode(pState,pAnimState->GetTimePosition(),pAnimState->GetWeight());
 					}
@@ -761,7 +761,7 @@ namespace hpl {
 				}
 			}
 			//if(!IsStatic()){STOP_TIMING_TAB(Bones);}
-			
+
 			//if(!IsStatic()){START_TIMING_TAB(States);}
 			//////////////////////////////////
 			//Go through all states and update the matrices (and thereby adding the animations together).
@@ -779,7 +779,7 @@ namespace hpl {
 				//Entities are updated after BV is calculated, as the entity has the rootnode attached to it.
 			}
 			//if(!IsStatic()){STOP_TIMING_TAB(States);}
-			
+
 			//if(!IsStatic()){START_TIMING_TAB(Colliders);}
 			//////////////////////////////////
 			//Update the colliders if they are active
@@ -803,16 +803,16 @@ namespace hpl {
 
 			//Call callback
 			if(mpCallback)mpCallback->AfterAnimationUpdate(this,afTimeStep);
-			
+
 			///////////////////////////
 			//Update bounding volume
 			//LogUpdate(" -BV update\n");
 			UpdateBVFromSubs();
-			
+
 			//Update the entity transform, this so that the portal info, attached entities, callbacks and stuff is updated.
 			SetTransformUpdated(true);
 		}
-		
+
 		//if(!IsStatic()){START_TIMING_TAB(SubEntities);}
 		/////////////////////////////////////////
 		/// Update sub entities
@@ -854,9 +854,9 @@ namespace hpl {
 	cAnimationState* cMeshEntity::AddAnimation(cAnimation *apAnimation,const tString &asName, float afBaseSpeed)
 	{
 		cAnimationState* pAnimState = hplNew( cAnimationState, (apAnimation,asName,mpAnimationManager) );
-		
+
 		pAnimState->SetBaseSpeed(afBaseSpeed);
-		
+
 		mvAnimationStates.push_back(pAnimState);
 
 		tAnimationStateIndexMap::value_type value(pAnimState->GetName(), (int)mvAnimationStates.size()-1);
@@ -931,7 +931,7 @@ namespace hpl {
 		}
 	}
 
-	
+
 	void cMeshEntity::Stop()
 	{
 		for(size_t i=0; i< mvAnimationStates.size(); i++)
@@ -940,7 +940,7 @@ namespace hpl {
 			mvAnimationStates[i]->SetTimePosition(0);
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cBoneState* cMeshEntity::GetBoneState(int alIndex)
@@ -979,7 +979,7 @@ namespace hpl {
 	}
 
 	//----------------------------------------------------------------------
-	
+
 	void cMeshEntity::SetSkeletonPhysicsActive(bool abX)
 	{
 		mbSkeletonPhysics = abX;
@@ -1055,7 +1055,7 @@ namespace hpl {
 	//----------------------------------------------------------------------
 
 	void cMeshEntity::SetSkeletonCollidersActive(bool abX)
-	{		
+	{
 		mbSkeletonColliders = abX;
 
 		//Set active to the correct state.
@@ -1127,7 +1127,7 @@ namespace hpl {
 		vRootBoneOffset = cMath::MatrixMul(mtxTransform,vRootBoneOffset);
 
 		mtxTransform.SetTranslation(pBoneState->GetWorldPosition());// - vRootBoneOffset);
-		
+
 		if(apPostion) *apPostion = pBoneState->GetWorldPosition();// - vRootBoneOffset;
 		if(apAngles) *apAngles = cVector3f(0,fYAngle,0);
 
@@ -1152,7 +1152,7 @@ namespace hpl {
 
 			cMatrixf mtxBody = cMath::MatrixMul(pState->GetWorldMatrix(), pState->GetBodyMatrix());
 			pBody->SetMatrix(mtxBody);
-			
+
 			bool bRet = apWorld->CheckShapeCollision(pBody->GetShape(),
 												pBody->GetLocalMatrix(),
 												apShape,a_mtxShape,
@@ -1167,7 +1167,7 @@ namespace hpl {
 				if(apNumList) apNumList->push_back((int)i);
 			}
 		}
-		
+
 		return bCollision;
 	}
 
@@ -1234,7 +1234,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	cSubMeshEntity* cMeshEntity::GetSubMeshEntity(unsigned int alIdx)
 	{
 		if(alIdx >= mvSubMeshes.size()) return NULL;
@@ -1276,14 +1276,14 @@ namespace hpl {
 			{
 				cBone *pBone = pSkeleton->GetBoneByIndex(i);
 				cNode3D* pState = mvBoneStates[i];
-                
+
 				//Transform the movement of the bone into the
 				//Bind pose's local space.
 				cMatrixf mtxLocal = cMath::MatrixMul(*pInvWorldMtx,pState->GetWorldMatrix());
 
 				mvBoneMatrices[i] = cMath::MatrixMul(mtxLocal,pBone->GetInvWorldTransform());
 			}
-			
+
 			//Set back the matrix.
 			/*if(mpRootNode){
 				mpRootNode->SetMatrix(mtxTemp);
@@ -1300,7 +1300,7 @@ namespace hpl {
 	bool cMeshEntity::AttachEntityToParent(iEntity3D *apEntity, const tString& asParent)
 	{
 		mlstAttachedEntities.push_back(apEntity);
-		
+
 		//If no parent is specified add to first sub entity.
 		if(asParent=="")
 		{
@@ -1358,7 +1358,7 @@ namespace hpl {
 		SetGlobalRenderCount(cRenderList::GetGlobalRenderCount());
 		mlStartSleepCount = 0;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	iMaterial *cMeshEntity::GetMaterial()
@@ -1394,7 +1394,7 @@ namespace hpl {
 		mtxTemp = GetWorldMatrix();
 		return &mtxTemp;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	int cMeshEntity::GetMatrixUpdateCount()
@@ -1414,7 +1414,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 	// PRIAVTE METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
 
 	void cMeshEntity::HandleAnimationEvent(cAnimationEvent *apEvent)
@@ -1443,9 +1443,9 @@ namespace hpl {
 			}
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	void cMeshEntity::UpdateBVFromSubs()
 	{
 		/////////////////////////////////////
@@ -1464,7 +1464,7 @@ namespace hpl {
 
 					iVertexBuffer *pVtxBuffer = pSub->GetVertexBuffer();
 
-					mBoundingVolume.AddArrayPoints(pVtxBuffer->GetArray(eVertexFlag_Position), 
+					mBoundingVolume.AddArrayPoints(pVtxBuffer->GetArray(eVertexFlag_Position),
 																	pVtxBuffer->GetVertexNum());
 				}
 				mBoundingVolume.CreateFromPoints(kvVertexElements[cMath::Log2ToInt(eVertexFlag_Position)]);
@@ -1489,7 +1489,7 @@ namespace hpl {
 					if(vMin.y > vPos.y) vMin.y = vPos.y;
 					if(vMin.z > vPos.z) vMin.z = vPos.z;
 				}
-				
+
 				//Add 10 percent to the box borders.
 				vMin -= (vMax - vMin)*0.1f + 0.1f;
 				vMax += (vMax - vMin)*0.1f + 0.1f;
@@ -1512,15 +1512,15 @@ namespace hpl {
 				mtxTemp = mpRootNode->GetWorldMatrix();
 				mpRootNode->SetMatrix(cMatrixf::Identity);
 			}
-		
+
 			cVector3f vFinalMin = mvSubMeshes[0]->mBoundingVolume.GetMin();
 			cVector3f vFinalMax = mvSubMeshes[0]->mBoundingVolume.GetMax();
-			
+
 			for(int i=1; i< (int)mvSubMeshes.size(); i++)
 			{
 				cVector3f vMin = mvSubMeshes[i]->mBoundingVolume.GetMin();
 				cVector3f vMax = mvSubMeshes[i]->mBoundingVolume.GetMax();
-				
+
 				if(vFinalMin.x > vMin.x)vFinalMin.x = vMin.x;
 				if(vFinalMax.x < vMax.x)vFinalMax.x = vMax.x;
 
@@ -1530,7 +1530,7 @@ namespace hpl {
 				if(vFinalMin.z > vMin.z)vFinalMin.z = vMin.z;
 				if(vFinalMax.z < vMax.z)vFinalMax.z = vMax.z;
 			}
-			
+
 			mBoundingVolume.SetLocalMinMax(vFinalMin,vFinalMax);
 
 			if(mpRootNode){
@@ -1550,22 +1550,22 @@ namespace hpl {
 
 	kBeginSerialize(cSaveData_cMeshEntity,cSaveData_iRenderable)
 	kSerializeVar(msMeshName, eSerializeType_String)
-	
+
 	kSerializeVar(mbCastShadows, eSerializeType_Bool)
-	
+
 	kSerializeVar(mlBodyId, eSerializeType_Int32)
-	
+
 	kSerializeClassContainer(mvSubEntities, cSaveData_cSubMeshEntity,eSerializeType_Class)
 	kSerializeClassContainer(mvAnimStates, cSaveData_cAnimationState, eSerializeType_Class)
 	kEndSerialize()
-	
+
 	//-----------------------------------------------------------------------
 
 	iSaveObject* cSaveData_cMeshEntity::CreateSaveObject(cSaveObjectHandler *apSaveObjectHandler,cGame *apGame)
 	{
 		cResources *pResources = apGame->GetResources();
 		cWorld3D *pWorld = apGame->GetScene()->GetWorld3D();
-		
+
 		cMeshLoaderHandler *pMeshLoadHandler = pResources->GetMeshLoaderHandler();
 		cFileSearcher *pFileSearcher = pResources->GetFileSearcher();
 
@@ -1581,11 +1581,11 @@ namespace hpl {
 		/*if(pMesh->GetAnimationNum()<=1 && mvAnimStates.Size()>1)
 		{
 			pMesh->ClearAnimations(true);
-			
+
 			for(size_t i=0; i< mvAnimStates.Size(); ++i)
 			{
 				cAnimation *pAnimation = pResources->GetAnimationManager()->CreateAnimation(mvAnimStates[i].msAnimationName);
-				
+
 				pAnimation->SetAnimationName(mvAnimStates[i].msName);
 				pAnimation->SetDefaultSpeed(mvAnimStates[i].mfDefaultSpeed);
 
@@ -1602,7 +1602,7 @@ namespace hpl {
 		for(int sub=0; sub <pEntity->GetSubMeshEntityNum(); ++sub)
 		{
 			cSubMeshEntity *pSub = pEntity->GetSubMeshEntity(sub);
-			
+
 			pSub->LoadFromSaveData(&mvSubEntities[sub]);
 			apSaveObjectHandler->Add(pSub);
 		}
@@ -1612,7 +1612,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	int cSaveData_cMeshEntity::GetSaveCreatePrio()
 	{
 		return 2;
@@ -1630,18 +1630,18 @@ namespace hpl {
 	void cMeshEntity::SaveToSaveData(iSaveData *apSaveData)
 	{
 		kSaveData_SaveToBegin(cMeshEntity);
-		
+
 		////////////////////////////
 		//Set the name of the data
 		pData->msMeshName = mpMesh->GetName();
-		
+
 		////////////////////////////
 		//Sub Entities
 		pData->mvSubEntities.Resize(GetSubMeshEntityNum());
 		for(int i=0; i<GetSubMeshEntityNum(); i++)
 		{
 			cSubMeshEntity *pSubEntity = GetSubMeshEntity(i);
-            
+
 			pSubEntity->SaveToSaveData(&pData->mvSubEntities[i]);
 		}
 
@@ -1659,7 +1659,7 @@ namespace hpl {
 		////////////////////////////
 		//Variables
 		kSaveData_SaveTo(mbCastShadows);
-		
+
 		////////////////////////////
 		//Pointers
         kSaveData_SaveObject(mpBody, mlBodyId);
@@ -1670,14 +1670,14 @@ namespace hpl {
 	void cMeshEntity::LoadFromSaveData(iSaveData *apSaveData)
 	{
 		kSaveData_LoadFromBegin(cMeshEntity);
-		
+
 		///////////////////////
 		//Sub entities
 		//This is done on creation instead.
 		/*for(size_t i=0; i<pData->mvSubEntities.Size(); i++)
 		{
 			cSubMeshEntity *pSubEntity = GetSubMeshEntity((int)i);
-			
+
 			pSubEntity->LoadFromSaveData(&pData->mvSubEntities[i]);
 		}*/
 
@@ -1686,7 +1686,7 @@ namespace hpl {
 		for(size_t i=0; i< pData->mvAnimStates.Size(); ++i)
 		{
 			cAnimationState *pAnimationState = GetAnimationState((int)i);
-            
+
 			pAnimationState->LoadFromSaveData(&pData->mvAnimStates[i]);
 		}
 		//Log("LOADED: MeshEntity %s has %d animation states, in entity: %d\n",GetName().c_str(),
@@ -1713,7 +1713,7 @@ namespace hpl {
 			pSubEntity->SaveDataSetup(apSaveObjectHandler, apGame);
 		}
 
-		
+
 		///////////////////////
 		//Body
 		kSaveData_LoadObject(mpBody, mlBodyId,iPhysicsBody*);

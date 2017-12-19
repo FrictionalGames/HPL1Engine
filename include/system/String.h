@@ -29,7 +29,7 @@ namespace hpl {
 	class cString
 	{
 	public:
-		
+
 		/**
 		 * Converts ascii to unicode
 		 */
@@ -69,7 +69,7 @@ namespace hpl {
 		 */
 		static tString SetFileExt(tString  aString,tString  aExt);
 		static tWString SetFileExtW(tWString  aString,tWString  aExt);
-		
+
 		/**
 		 * Gets the file filename in for example: "/files/test/this.txt"
 		 * \param aString The Filename
@@ -191,8 +191,8 @@ namespace hpl {
 
 		static void UIntStringToArray(unsigned int *apArray, const char* apString,int alSize);
 		static void FloatStringToArray(float *apArray, const char* apString,int alSize);
-		
-		
+
+
 
 	private:
 

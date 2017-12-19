@@ -23,7 +23,7 @@
 
 
 namespace hpl {
-	
+
 	//////////////////////////////////////////////////////////////////////////
 	// CONSTRUCTORS
 	//////////////////////////////////////////////////////////////////////////
@@ -34,17 +34,17 @@ namespace hpl {
 	{
 
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	//////////////////////////////////////////////////////////////////////////
 	// PUBLIC METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
 
 	void iLight2D::SetFarAttenuation(float afX)
-	{ 
+	{
 		mfFarAttenuation = afX;
 		if(UpdateBoundingBox())
 			if(mpGridObject)
@@ -53,20 +53,20 @@ namespace hpl {
 	//-----------------------------------------------------------------------
 
 	void iLight2D::SetNearAttenuation(float afX)
-	{ 
+	{
 		mfNearAttenuation = afX;
 		if(mfNearAttenuation>mfFarAttenuation)
 			SetFarAttenuation(mfNearAttenuation);
 	}
 	//-----------------------------------------------------------------------
-	
+
 	cVector3f iLight2D::GetLightPosition()
 	{
 		return GetWorldPosition();
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	void iLight2D::UpdateLogic(float afTimeStep)
 	{
 		UpdateLight(afTimeStep);
@@ -77,7 +77,7 @@ namespace hpl {
 		}
 	}
 
-	
+
 	//-----------------------------------------------------------------------
 
 }

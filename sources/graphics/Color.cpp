@@ -30,7 +30,7 @@ namespace hpl {
 	{
 		r = afR; g = afG; b = afB; a = afA;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cColor::cColor(float afR, float afG, float afB)
@@ -44,14 +44,14 @@ namespace hpl {
 	{
 		r = 0; g = 0; b = 0; a = 1;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cColor::cColor(float afVal)
 	{
 		r = afVal; g = afVal; b = afVal; a = 1;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cColor::cColor(float afVal, float afA)
@@ -64,7 +64,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 	// PUBLIC METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
 
 	void cColor::FromVec(float *apV)
@@ -74,9 +74,9 @@ namespace hpl {
 		b = apV[2];
 		a = apV[3];
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	cColor cColor::operator*(float afVal) const
 	{
 		cColor col;
@@ -99,7 +99,7 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	
+
 	cColor cColor::operator+(const cColor &aCol) const
 	{
 		return cColor(
@@ -144,14 +144,14 @@ namespace hpl {
 
 	bool cColor::operator==(cColor aCol) const
 	{
-		if(r == aCol.r && g == aCol.g && b == aCol.b && a == aCol.a) 
+		if(r == aCol.r && g == aCol.g && b == aCol.b && a == aCol.a)
 			return true;
-        else 
+        else
 			return false;
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	tString cColor::ToString() const
 	{
 		char buf[512];

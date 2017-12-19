@@ -24,9 +24,9 @@
 #include "input/Action.h"
 
 namespace hpl {
-	
+
 	class cInput;
-	
+
 	class cActionMouseButton : public iAction
 	{
 	public:
@@ -38,7 +38,7 @@ namespace hpl {
 		tString GetInputName();
 
 		tString GetInputType(){return "MouseButton";}
-		
+
 		eMButton GetButton(){ return mButton;}
 	private:
 		eMButton mButton;

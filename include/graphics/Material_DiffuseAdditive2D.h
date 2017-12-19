@@ -39,20 +39,20 @@ namespace hpl {
 		tVtxBatchFlag GetBatchFlags(eMaterialRenderType mType);
 		bool NextPass(eMaterialRenderType mType);
 		bool HasMultiplePasses(eMaterialRenderType mType);
-		
+
 		bool UsesType(eMaterialRenderType aType);
 
 		eMaterialType GetType(eMaterialRenderType mType);
-		void EditVertexes(eMaterialRenderType mType, iCamera* apCam, iLight *pLight, 
+		void EditVertexes(eMaterialRenderType mType, iCamera* apCam, iLight *pLight,
 			tVertexVec *apVtxVec,cVector3f *apTransform,unsigned int alIndexAdd);
-	
+
 	private:
 	};
 
 	class cMaterialType_DiffuseAdditive2D : public iMaterialType
 	{
 	public:
-		bool IsCorrect(tString asName){ 
+		bool IsCorrect(tString asName){
 			if(cString::ToLowerCase(asName)=="diffadditive2d")return true;
 			return false;
 		}

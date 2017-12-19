@@ -32,7 +32,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	cLanguageFile::cLanguageFile(cResources *apResources)
 	{
 		mpResources = apResources;
@@ -52,7 +52,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	bool cLanguageFile::LoadFromFile(const tString asFile)
 	{
 		TiXmlDocument *pDoc = hplNew(TiXmlDocument,(asFile.c_str()) );
@@ -82,7 +82,7 @@ namespace hpl {
 			Warning("No resources element found in '%s'\n",asFile.c_str());
 		}
 
-		
+
 		///////////////////////////
 		//Iterate the categories
         TiXmlElement *pCatElem = pRootElem->FirstChildElement("CATEGORY");
@@ -92,7 +92,7 @@ namespace hpl {
 			tString sCatName = pCatElem->Attribute("Name");
 
 			m_mapCategories.insert(tLanguageCategoryMap::value_type(sCatName, pCategory));
-			
+
 			///////////////////////////
             //Iterate the entries
 			TiXmlElement *pEntryElem = pCatElem->FirstChildElement("Entry");
@@ -139,7 +139,7 @@ namespace hpl {
 								}
 								else if(sCommand[0]=='u')
 								{
-									int lNum = cString::ToInt(sCommand.substr(1).c_str(),0);	
+									int lNum = cString::ToInt(sCommand.substr(1).c_str(),0);
 									pEntry->mwsText += (wchar_t)lNum;
 								}
 								else
@@ -198,20 +198,20 @@ namespace hpl {
 			Log("Saving raw text '%s'\n", sRawFile.c_str());
 			FILE *pFile = fopen(sRawFile.c_str(),"w+");
 			if(pFile==NULL) Error("Could not open file: '%s'\n", sRawFile.c_str());
-			
+
 			tLanguageCategoryMapIt CatIt = m_mapCategories.begin();
 			for(; CatIt != m_mapCategories.end(); ++CatIt)
 			{
 				cLanguageCategory *pCategory = CatIt->second;
 				tLanguageEntryMapIt EntryIt = pCategory->m_mapEntries.begin();
-                for(; EntryIt != pCategory->m_mapEntries.end(); ++EntryIt)				
+                for(; EntryIt != pCategory->m_mapEntries.end(); ++EntryIt)
 				{
 					cLanguageEntry *pEntry = EntryIt->second;
 					fputs(cString::To8Char(pEntry->mwsText + _W("\n\n")).c_str(), pFile);
 				}
 			}
-			
-			
+
+
 			fclose(pFile);
 		}*/
 
@@ -229,7 +229,7 @@ namespace hpl {
 			Warning("Could not find language file category '%s'\n",asCat.c_str());
 			return mwsEmpty;
 		}
-		
+
         cLanguageCategory *pCategory = CatIt->second;
 		tLanguageEntryMapIt EntryIt = pCategory->m_mapEntries.find(asName);
 		if(EntryIt == pCategory->m_mapEntries.end())
@@ -242,7 +242,7 @@ namespace hpl {
 
 		return pEntry->mwsText;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	//////////////////////////////////////////////////////////////////////////
@@ -251,6 +251,6 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	
+
 	//-----------------------------------------------------------------------
 }

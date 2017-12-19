@@ -24,9 +24,9 @@
 #include "input/InputTypes.h"
 
 namespace hpl {
-	
+
 	//--------------------------------
-	
+
 	enum eGuiMouseButton
 	{
 		eGuiMouseButton_Left =		0x00000001,
@@ -57,9 +57,9 @@ namespace hpl {
 		eGuiMaterial_Modulative,
 		eGuiMaterial_LastEnum,
 	};
-	
+
 	//--------------------------------
-	
+
 	enum eWidgetType
 	{
 		eWidgetType_Root,
@@ -79,7 +79,7 @@ namespace hpl {
 	};
 
 	//--------------------------------
-	
+
 	enum eGuiSkinFont
 	{
 		eGuiSkinFont_Default,
@@ -108,7 +108,7 @@ namespace hpl {
 		eGuiSkinAttribute_LastEnum
 	};
 	//--------------------------------
-		
+
 	enum eGuiSkinGfx
 	{
 		///////////////////////////////////
@@ -263,7 +263,7 @@ namespace hpl {
 
 	//--------------------------------
 
-	
+
 	struct cGuiMessageData
 	{
 		cGuiMessageData(){}
@@ -296,8 +296,8 @@ namespace hpl {
 	};
 
 	//--------------------------------
-	
-	
+
+
 	class iWidget;
 
 	typedef bool (*tGuiCallbackFunc)(void *,iWidget*,cGuiMessageData&);
@@ -310,24 +310,24 @@ namespace hpl {
 		{\
 			return ((ThisClass*)apObject)->FuncName(apWidget, aData); \
 		}
-		
+
 	#define kGuiCalllbackFuncEnd(ThisClass,FuncName) \
 		static bool FuncName##_static_gui(void *apObject,iWidget* apWidget,cGuiMessageData& aData) \
 		{ \
 			return ((ThisClass*)apObject)->FuncName(apWidget, aData); \
-		} 
+		}
 
 	#define kGuiCallback(FuncName) &FuncName##_static_gui
-	
+
 	//--------------------------------
-	
+
 	typedef std::list<iWidget*> tWidgetList;
 	typedef tWidgetList::iterator tWidgetListIt;
 
 	//--------------------------------
 
 	class cGuiGfxElement;
-	
+
 	typedef std::list<cGuiGfxElement*> tGuiGfxElementList;
 	typedef tGuiGfxElementList::iterator tGuiGfxElementListIt;
 

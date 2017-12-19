@@ -31,7 +31,7 @@ namespace hpl
 
 	cActionHaptic::cActionHaptic(tString asName,cHaptic *apHaptic, int alButton) : iAction(asName)
 	{
-		mlButton = alButton;	
+		mlButton = alButton;
 		mpHaptic = apHaptic;
 	}
 
@@ -59,7 +59,7 @@ namespace hpl
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	tString cActionHaptic::GetInputName()
 	{
 		switch(mlButton)

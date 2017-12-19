@@ -30,7 +30,7 @@ namespace hpl {
 	public:
 		cWidgetTextBox(cGuiSet *apSet, cGuiSkin *apSkin);
 		virtual ~cWidgetTextBox();
-		
+
 		void SetMaxTextLength(int alLength);
 		int GetMaxTextLength(){return mlMaxCharacters;}
 
@@ -40,7 +40,7 @@ namespace hpl {
 
 		void SetCanEdit(bool abX);
 		bool GetCanEdit(){return mbCanEdit;}
-		
+
 	protected:
 		/////////////////////////
 		// Own functions
@@ -55,7 +55,7 @@ namespace hpl {
 		void OnLoadGraphics();
 		void OnChangeSize();
 		void OnChangeText();
-		
+
 		void OnDraw(float afTimeStep, cGuiClipRegion *apClipRegion);
 
 		bool OnMouseMove(cGuiMessageData &aData);
@@ -83,12 +83,12 @@ namespace hpl {
 		float mfMaxTextSizeNeg;
 
 		bool mbCanEdit;
-		
+
 		cGuiGfxElement *mpGfxMarker;
 		cGuiGfxElement *mpGfxSelectedTextBack;
 
 		cGuiGfxElement *mpGfxBackground;
-		
+
 		cGuiGfxElement *mvGfxBorders[4];
 		cGuiGfxElement *mvGfxCorners[4];
 	};

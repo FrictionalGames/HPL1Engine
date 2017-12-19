@@ -23,7 +23,7 @@
 #include "math/MathTypes.h"
 
 namespace hpl {
-	
+
 	class cMesh2D;
 	class cWorld2D;
 	class cBody2D;
@@ -36,8 +36,8 @@ namespace hpl {
 		cVector2f mvPushVec;
 		cVector2f mvPushPos;
 	};
-	
-	
+
+
 	class cCollider2D
 	{
 	public:
@@ -48,27 +48,27 @@ namespace hpl {
 
 		/**
 		 * Collides a body with the world and returns a flag of what object has collided.
-		 * \param *apBody 
+		 * \param *apBody
 		 * \return 0= no collision, eFlagBit0 = Tiles, all other bits are custom.
 		 */
 		tFlag CollideBody(cBody2D *apBody, cCollideData2D* apData);
-		
-		
+
+
 		/**
 		 * Collides a custom rect with the world
 		 * \param aRect
 		 * \param alCollideFlags Specifies what things to check for collision with.
-		 * \return 
+		 * \return
 		 */
 		tFlag CollideRect(cRect2f& aRect,tFlag alCollideFlags, cCollideData2D* apData);
-		
-		tFlag CollideLine(const cVector2f& avStart,const cVector2f& avEnd,tFlag alCollideFlags, 
+
+		tFlag CollideLine(const cVector2f& avStart,const cVector2f& avEnd,tFlag alCollideFlags,
 							cCollideData2D* apData);
 
 		cCollider2DDebug mDebug;
 	private:
 		cWorld2D* mpWorld;
-		
+
 		void SetCollideMesh(cCollisionMesh2D* apMesh, cRect2f& aRect);
 
 		bool Collide(cCollisionMesh2D* apMeshA,cCollisionMesh2D* apMeshB, cVector2f &avMTD);

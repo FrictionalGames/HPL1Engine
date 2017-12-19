@@ -55,14 +55,14 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 	// PUBLIC METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
 
 	void cMouseSDL::Update()
 	{
 		cVector2f vScreenSize = mpLowLevelGraphics->GetScreenSize();
 		cVector2f vVirtualSize = mpLowLevelGraphics->GetVirtualSize();
-		
+
 		//mvMouseRelPos = cVector2f(0,0);
 
 		//Log("Input start\n");
@@ -74,7 +74,7 @@ namespace hpl {
 		{
 			SDL_Event *pEvent = &(*it);
 
-			if(	pEvent->type != SDL_MOUSEMOTION && 
+			if(	pEvent->type != SDL_MOUSEMOTION &&
 				pEvent->type != SDL_MOUSEBUTTONDOWN &&
 				pEvent->type != SDL_MOUSEBUTTONUP)
 			{
@@ -104,11 +104,11 @@ namespace hpl {
 					case SDL_BUTTON_LEFT: mvMButtonArray[eMButton_Left] = bButtonIsDown;break;
 					case SDL_BUTTON_MIDDLE: mvMButtonArray[eMButton_Middle] = bButtonIsDown;break;
 					case SDL_BUTTON_RIGHT: mvMButtonArray[eMButton_Right] = bButtonIsDown;break;
-					case SDL_BUTTON_WHEELUP: 
+					case SDL_BUTTON_WHEELUP:
 						mvMButtonArray[eMButton_WheelUp] = bButtonIsDown;
 						if(bButtonIsDown) mbWheelUpMoved = true;
 						break;
-					case SDL_BUTTON_WHEELDOWN: 
+					case SDL_BUTTON_WHEELDOWN:
 						mvMButtonArray[eMButton_WheelDown] = bButtonIsDown;
 						if(bButtonIsDown) mbWheelDownMoved = true;
 						break;
@@ -120,16 +120,16 @@ namespace hpl {
 		else					mvMButtonArray[eMButton_WheelDown] = false;
 		if(mbWheelUpMoved)		mvMButtonArray[eMButton_WheelUp] = true;
 		else					mvMButtonArray[eMButton_WheelUp] = false;
-		
-		int lX,lY; 
+
+		int lX,lY;
 		SDL_GetRelativeMouseState(&lX, &lY);
 
 		mvMouseRelPos = cVector2f((float)lX,(float)lY);
 		mvMouseRelPos = (mvMouseRelPos/vScreenSize)*vVirtualSize;
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	bool cMouseSDL::ButtonIsDown(eMButton mButton)
 	{
 		return mvMButtonArray[mButton];
@@ -139,21 +139,21 @@ namespace hpl {
 
 	cVector2f cMouseSDL::GetAbsPosition()
 	{
-		// Do a transform with the screen-size to the the float coordinates.  
+		// Do a transform with the screen-size to the the float coordinates.
 		cVector2f vPos = mvMouseAbsPos;
-		
+
 		return vPos;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cVector2f cMouseSDL::GetRelPosition()
 	{
-		// Do a transform with the screen-size to the the float coordinates.  
+		// Do a transform with the screen-size to the the float coordinates.
 		cVector2f vPos = mvMouseRelPos;
 		//Ok this is?
 		mvMouseRelPos = cVector2f(0,0);
-		
+
 		return vPos;
 		/*cVector2f vNew;
 
@@ -181,7 +181,7 @@ namespace hpl {
 		}
 		vNew.x = vSum.x/fTotalPercent;
 		vNew.y = vSum.y/fTotalPercent;
-		
+
 		return vNew;*/
 	}
 
@@ -193,29 +193,29 @@ namespace hpl {
 		mvMouseRelPos = cVector2f(0,0);
 
 		int lX,lY; //Just to clear the rel pos.
-		
+
 		SDL_PumpEvents();
 		SDL_GetRelativeMouseState(&lX, &lY);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
-	void cMouseSDL::SetSmoothProperties(float afMinPercent, 
+	void cMouseSDL::SetSmoothProperties(float afMinPercent,
 		float afMaxPercent,unsigned int alBufferSize)
 	{
 		mfMaxPercent = afMaxPercent;
 		mfMinPercent = afMinPercent;
 		mlBufferSize = alBufferSize;
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	/////////////////////////////////////////////////////////////////////////
 	// PRIVATE METHODS
 	/////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	//-----------------------------------------------------------------------
 
 }

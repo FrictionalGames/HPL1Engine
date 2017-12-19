@@ -67,7 +67,7 @@ namespace hpl {
 		BeginLoad(asName);
 
 		asNewName = asName;
-		
+
 		//If the file is missing an extension, search for an existing file.
 		if(cString::GetFileExt(asNewName) == "")
 		{
@@ -96,7 +96,7 @@ namespace hpl {
 		if(pAnimation==NULL && sPath!="")
 		{
 			cMeshLoaderHandler *pMeshLoadHandler = mpResources->GetMeshLoaderHandler();
-			
+
 			//try to load animation from mesh
 			cMesh *pTempMesh = pMeshLoadHandler->LoadMesh(sPath,0);
 			if(pTempMesh==NULL){
@@ -117,13 +117,13 @@ namespace hpl {
 			pTempMesh->ClearAnimations(false);
 
 			hplDelete(pTempMesh);
-			
+
 			AddResource(pAnimation);
 		}
 
 		if(pAnimation) pAnimation->IncUserCount();
 		else Error("Couldn't create animation '%s'\n",asNewName.c_str());
-		
+
 		EndLoad();
 		return pAnimation;
 	}

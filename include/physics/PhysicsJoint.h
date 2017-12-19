@@ -38,7 +38,7 @@ namespace hpl {
 	typedef std::map<tString, iPhysicsController*> tPhysicsControllerMap;
 	typedef tPhysicsControllerMap::iterator tPhysicsControllerMapIt;
 
-	 
+
 	typedef cSTLMapIterator<iPhysicsController*, tPhysicsControllerMap, tPhysicsControllerMapIt> cPhysicsControllerIterator;
 
 	//-----------------------------------

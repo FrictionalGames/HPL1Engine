@@ -80,7 +80,7 @@ namespace hpl {
 	protected:
 		tString msName;
 	};
-	
+
 	typedef std::map<tString,iEntity2DLoader*> tEntity2DLoaderMap;
 	typedef tEntity2DLoaderMap::iterator tEntity2DLoaderMapIt;
 
@@ -144,7 +144,7 @@ namespace hpl {
 
 	//-------------------------------------------------------
 
-	// Should this be made a map so you can do 
+	// Should this be made a map so you can do
 	// GetManager(tString) when getting a manager?
 	// This way you would be able to add your own resource types
 	// easily.
@@ -153,7 +153,7 @@ namespace hpl {
 
 	//-------------------------------------------------------
 
-	
+
 	class cResources : public iUpdateable
 	{
 	public:
@@ -204,7 +204,7 @@ namespace hpl {
 		cVideoManager* GetVideoManager(){ return mpVideoManager;}
 
 		iLowLevelSystem* GetLowLevelSystem(){ return mpLowLevelSystem;}
-		
+
 	private:
 		iLowLevelResources *mpLowLevelResources;
 		iLowLevelGraphics *mpLowLevelGraphics;
@@ -214,7 +214,7 @@ namespace hpl {
         tResourceManagerList mlstManagers;
 		cImageManager *mpImageManager;
 		cGpuProgramManager *mpGpuProgramManager;
-		cTileSetManager* mpTileSetManager; 
+		cTileSetManager* mpTileSetManager;
 		cImageEntityManager* mpImageEntityManager;
 		cParticleManager* mpParticleManager;
 		cSoundManager* mpSoundManager;
@@ -230,7 +230,7 @@ namespace hpl {
 
 		cMeshManager* mpMeshManager;
 		cMeshLoaderHandler* mpMeshLoaderHandler;
-		
+
 		tEntity2DLoaderMap m_mMapEntity2DLoaders;
 		tArea2DLoaderMap m_mMapArea2DLoaders;
 

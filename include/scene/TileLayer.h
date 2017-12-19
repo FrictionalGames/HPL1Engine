@@ -31,7 +31,7 @@ namespace hpl {
 		eTileLayerType_Normal,
 		eTileLayerType_LastEnum
 	};
-	
+
 	typedef std::vector<cTile*> tTileVec;
 	typedef tTileVec::iterator tTileVecIt;
 
@@ -51,10 +51,10 @@ namespace hpl {
 		float GetZ(){return mfZ;}
 
 		bool HasCollision(){ return mbCollision;}
-	
+
 	private:
 		tTileVec mvTile;
-		
+
 		cVector2l mvSize;
 		bool mbCollision;
 		bool mbLit;

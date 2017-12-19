@@ -36,13 +36,13 @@ namespace hpl {
 
 		void SetStatic(bool abX);
 		bool GetStatic(){return mbStatic;}
-		
-		
+
+
 	protected:
 		/////////////////////////
 		// Implemented functions
 		void OnLoadGraphics();
-		
+
 		void OnDraw(float afTimeStep, cGuiClipRegion *apClipRegion);
 
 		bool OnMouseMove(cGuiMessageData &aData);

@@ -48,35 +48,35 @@ namespace hpl {
 		virtual ~cEntityLoader_Object(){}
 
         iEntity3D* Load(const tString &asName, TiXmlElement *apRootElem, const cMatrixf &a_mtxTransform,
-					cWorld3D *apWorld, const tString &asFileName, bool abLoadReferences);		
+					cWorld3D *apWorld, const tString &asFileName, bool abLoadReferences);
 
 	protected:
 		virtual void BeforeLoad(TiXmlElement *apRootElem, const cMatrixf &a_mtxTransform,cWorld3D *apWorld){};
 		virtual void AfterLoad(TiXmlElement *apRootElem, const cMatrixf &a_mtxTransform,cWorld3D *apWorld){};
-			
+
 		void SetBodyProperties(iPhysicsBody *apBody, TiXmlElement *apPhysicsElem);
 		void SetJointProperties(iPhysicsJoint *apJoint, TiXmlElement *apJointElem,cWorld3D *apWorld);
 
 		void LoadController(iPhysicsJoint *apJoint,iPhysicsWorld *apPhysicsWorld, TiXmlElement *apElem);
 
 		eAnimationEventType GetAnimationEventType(const char* apString);
-		
+
 		tString msSubType;
 		tString msName;
 
 		tString msFileName;
-		
+
 		std::vector<iPhysicsBody*> mvBodies;
 		std::vector<iPhysicsJoint*> mvJoints;
 
 		std::vector<iHapticShape*> mvHapticShapes;
-		
+
 		std::vector<iLight3D*> mvLights;
 		std::vector<cParticleSystem3D*> mvParticleSystems;
 		std::vector<cBillboard*> mvBillboards;
 		std::vector<cBeam*> mvBeams;
 		std::vector<cSoundEntity*> mvSoundEntities;
-		
+
 		cMeshEntity *mpEntity;
 		cMesh *mpMesh;
 	};

@@ -34,17 +34,17 @@ namespace hpl {
 		/**
 		 * Check if a mouse button is down
 		 * \param eMButton the button to check
-		 * \return 
+		 * \return
 		 */
 		virtual bool ButtonIsDown(eMButton)=0;
 		/**
 		 * Get the absolute pos of the mouse.
-		 * \return 
+		 * \return
 		 */
 		virtual cVector2f GetAbsPosition()=0;
 		/**
 		 * Get the relative movement.
-		 * \return 
+		 * \return
 		 */
 		virtual cVector2f GetRelPosition()=0;
 
@@ -58,7 +58,7 @@ namespace hpl {
 		 * \param afMaxPercent Influence of the latest position.
 		 * \param alBufferSize number of saved positions, 1 = no smoothing
 		 */
-		virtual void SetSmoothProperties(float afMinPercent, 
+		virtual void SetSmoothProperties(float afMinPercent,
 										float afMaxPercent,unsigned int alBufferSize)=0;
 	};
 

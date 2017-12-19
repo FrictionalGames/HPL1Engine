@@ -32,20 +32,20 @@ namespace hpl {
 
 	typedef std::list<iSoundEnvironment*> tSoundEnvList;
 	typedef tSoundEnvList::iterator tSoundEnvListIt;
-	
+
 
 	class iLowLevelSound
 	{
 	public:
 		iLowLevelSound();
 		virtual ~iLowLevelSound();
-		
+
 		/**
 		 * Get the formats supported
-		 * \param &alstFormats 
+		 * \param &alstFormats
 		 */
 		virtual void GetSupportedFormats(tStringList &alstFormats)=0;
-		
+
 		virtual iSoundData* LoadSoundData(const tString& asName,const tString& asFilePath,
 											const tString& asType, bool abStream,bool abLoopStream)=0;
 
@@ -61,17 +61,17 @@ namespace hpl {
 		virtual void SetSetRolloffFactor(float afFactor)=0;
 
 		virtual void SetVolume(float afVolume)=0;
-		
+
 		cVector3f& GetListenerPosition(){ return mvListenerPosition;}
 		cVector3f& GetListenerVelocity(){ return mvListenerVelocity;}
 		cVector3f& GetListenerForward() { return mvListenerForward;}
 		cVector3f& GetListenerUp() { return mvListenerUp; }
 		bool GetListenerAttenuation(){ return mbListenerAttenuation;}
-		
+
 		float GetVolume(){ return mfVolume;}
 
 		//virtual void LogSoundStatus() {}
-		virtual void Init ( bool abUseHardware, bool abForceGeneric, bool abUseEnvAudio, int alMaxChannels, 
+		virtual void Init ( bool abUseHardware, bool abForceGeneric, bool abUseEnvAudio, int alMaxChannels,
 							int alStreamUpdateFreq, bool abUseThreading, bool abUseVoiceManagement,
 							int alMaxMonoSourceHint, int alMaxStereoSourceHint,
                             int alStreamingBufferSize, int alStreamingBufferCount, bool abEnableLowLevelLog, tString asDeviceName)=0;
@@ -89,7 +89,7 @@ namespace hpl {
 
 		iSoundEnvironment* GetSoundEnvironmentFromFileName (const tString& asName);
 		//void DestroySoundEnvironment( iSoundEnvironment* apSoundEnv);
-		
+
 
 	protected:
 		float mfVolume;
@@ -98,7 +98,7 @@ namespace hpl {
 
 		bool mbHardwareAcc;
 		bool mbEnvAudioEnabled;
-		
+
 		cVector3f mvListenerUp;
 		cVector3f mvListenerForward;
 		cVector3f mvListenerRight;

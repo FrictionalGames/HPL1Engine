@@ -46,7 +46,7 @@ namespace hpl {
 		mpRenderer3D = apRenderer3D;
 
 		mpGpuManager = mpResources->GetGpuProgramManager();
-		
+
 		mvScreenSize = mpLowLevelGraphics->GetScreenSize();
 
 		mpRenderList = apRenderList;
@@ -61,7 +61,7 @@ namespace hpl {
 				mpScreenBuffer[i] = mpLowLevelGraphics->CreateTexture(cVector2l(
 					(int)mvScreenSize.x,(int)mvScreenSize.y),32,cColor(0,0,0,0),false,
 					eTextureType_Normal, eTextureTarget_Rect);
-				
+
 				if(mpScreenBuffer[i]==NULL)
 				{
 					Error("Couldn't create screenbuffer!\n");
@@ -71,10 +71,10 @@ namespace hpl {
 				}
 				mpScreenBuffer[i]->SetWrapS(eTextureWrap_ClampToEdge);
 				mpScreenBuffer[i]->SetWrapT(eTextureWrap_ClampToEdge);
-				
+
 			}
 			else
-			{	
+			{
 				mpScreenBuffer[i] = NULL;
 				Error("Texture rectangle not supported. Posteffects will be turned off.");
 			}
@@ -84,14 +84,14 @@ namespace hpl {
 		// Create programs
 
 		Log(" Creating programs\n");
-		
+
 		/////////////////
 		//Blur programs
 		mbBlurFallback = false; //Set to true if the fallbacks are used.
 
 		mpBlurVP = mpGpuManager->CreateProgram("PostEffect_Blur_vp.cg","main",eGpuProgramType_Vertex);
 		if(!mpBlurVP) Error("Couldn't load 'PostEffect_Blur_vp.cg'!\n");
-		
+
 		mpBlurRectFP = mpGpuManager->CreateProgram("PostEffect_Blur_Rect_fp.cg","main",eGpuProgramType_Fragment);
 		/*if(!mpBlurRectFP)
 		{
@@ -100,8 +100,8 @@ namespace hpl {
 			mpBlurRectFP = mpGpuManager->CreateProgram("PostEffect_Fallback01_Blur_Rect_fp.cg","main",eGpuProgramType_Fragment);
 			if(!mpBlurRectFP) Error("Couldn't load 'PostEffect_Blur_Rect_fp.cg'!\n");
 		}*/
-		
-		
+
+
 		mpBlur2dFP = mpGpuManager->CreateProgram("PostEffect_Blur_2D_fp.cg","main",eGpuProgramType_Fragment);
 		/*if(!mpBlur2dFP)
 		{
@@ -110,22 +110,22 @@ namespace hpl {
 			mpBlur2dFP = mpGpuManager->CreateProgram("PostEffect_Fallback01_Blur_2D_fp.cg","main",eGpuProgramType_Fragment);
 			if(!mpBlur2dFP) Error("Couldn't load 'PostEffect_Blur_2D_fp.cg'!\n");
 		}*/
-		
-		
+
+
 		/////////////////
 		// Bloom programs
 		mpBloomVP = mpGpuManager->CreateProgram("PostEffect_Bloom_vp.cg","main",eGpuProgramType_Vertex);
 		if(!mpBloomVP) Error("Couldn't load 'PostEffect_Bloom_vp.cg'!\n");
-		
+
 		mpBloomFP = mpGpuManager->CreateProgram("PostEffect_Bloom_fp.cg","main",eGpuProgramType_Fragment);
 		if(!mpBloomFP) Error("Couldn't load 'PostEffect_Bloom_fp.cg'!\n");
-		
+
 		//Bloom blur textures
 		mpBloomBlurTexture = mpLowLevelGraphics->CreateTexture(
 												cVector2l(256,256),
 												32,cColor(0,0,0,0),false,
 												eTextureType_Normal, eTextureTarget_2D);
-		
+
 		if(mpBloomBlurTexture == NULL) {
 			Error("Couldn't create bloom blur textures!\n");
 		}
@@ -133,8 +133,8 @@ namespace hpl {
 			mpBloomBlurTexture->SetWrapS(eTextureWrap_ClampToEdge);
 			mpBloomBlurTexture->SetWrapT(eTextureWrap_ClampToEdge);
 		}
-		
-		
+
+
 		/////////////////
 		// MotionBlur programs
 		mpMotionBlurVP = mpGpuManager->CreateProgram("PostEffect_Motion_vp.cg","main",eGpuProgramType_Vertex);
@@ -159,12 +159,12 @@ namespace hpl {
 
 		mpDepthOfFieldFP = mpGpuManager->CreateProgram("PostEffect_DoF_fp.cg","main",eGpuProgramType_Fragment);
 		if(!mpDepthOfFieldFP) Error("Couldn't load 'PostEffect_DoF_fp.cg'!\n");
-		
+
 		//Depth of Field blur textures
 		mpDofBlurTexture = mpLowLevelGraphics->CreateTexture(	cVector2l(256,256),
 																32,cColor(0,0,0,0),false,
 																eTextureType_Normal, eTextureTarget_2D);
-		
+
 		if(mpDofBlurTexture == NULL) {
 			Error("Couldn't create Depth of Field blur textures!\n");
 		}
@@ -174,23 +174,23 @@ namespace hpl {
 		}
 
 		Log("  RendererPostEffects created\n");
-		
+
 		////////////////////////////////////
 		// Variable setup
-		
+
 		//General
 		mbActive = false;
 		mvTexRectVtx.resize(4);
-		
+
 		//Bloom
 		mbBloomActive = false;
 		mfBloomSpread = 2.0f;
-		
+
 		//Motion blur
 		mbMotionBlurActive = false;
 		mfMotionBlurAmount = 1.0f;
 		mbMotionBlurFirstTime = true;
-		
+
 		//Depth of Field
 		mbDofActive = false;
 		mfDofMaxBlur = 1.0f;
@@ -205,7 +205,7 @@ namespace hpl {
 	{
 		for(int i=0;i<2;i++)
 			if(mpScreenBuffer[i])hplDelete(mpScreenBuffer[i]);
-		
+
 		if(mpBlurVP) mpGpuManager->Destroy(mpBlurVP);
 		if(mpBlur2dFP) mpGpuManager->Destroy(mpBlur2dFP);
 		if(mpBlurRectFP) mpGpuManager->Destroy(mpBlurRectFP);
@@ -221,7 +221,7 @@ namespace hpl {
 
 		if(mpBloomBlurTexture) hplDelete(mpBloomBlurTexture);
 		if(mpDofBlurTexture) hplDelete(mpDofBlurTexture);
-		
+
 	}
 
 	//-----------------------------------------------------------------------
@@ -229,7 +229,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 	// PUBLIC METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
 
 	void cRendererPostEffects::SetBloomActive(bool abX)
@@ -244,48 +244,48 @@ namespace hpl {
 		mbMotionBlurActive = abX;
 		mbMotionBlurFirstTime = true;
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	void cRendererPostEffects::Render()
 	{
 		if(mpScreenBuffer[0] == NULL || mpScreenBuffer[1] == NULL) return;
 		if(!mpLowLevelGraphics->GetCaps(eGraphicCaps_TextureTargetRectangle)) return;
-		
-		if(mbActive==false || 
-			(	mImageTrailData.mbActive==false && mbBloomActive==false && 
-				mbMotionBlurActive==false && mbDofActive==false) ) 
+
+		if(mbActive==false ||
+			(	mImageTrailData.mbActive==false && mbBloomActive==false &&
+				mbMotionBlurActive==false && mbDofActive==false) )
 		{
 			return;
 		}
 
 		mvScreenSize = mpLowLevelGraphics->GetScreenSize();
-		
+
 		RenderDepthOfField();
 		RenderMotionBlur();
-		
+
 		mpLowLevelGraphics->SetDepthTestActive(false);
 		mpLowLevelGraphics->PushMatrix(eMatrix_ModelView);
 		mpLowLevelGraphics->SetIdentityMatrix(eMatrix_ModelView);
 		mpLowLevelGraphics->SetOrthoProjection(mpLowLevelGraphics->GetVirtualSize(),-1000,1000);
-				
+
 		RenderBloom();
 
-        RenderImageTrail();		
-		
+        RenderImageTrail();
+
 		mpLowLevelGraphics->PopMatrix(eMatrix_ModelView);
 	}
 
 	//-----------------------------------------------------------------------
 
 	//TODO: Support source texture as 2D
-	
+
 	void cRendererPostEffects::RenderBlurTexture(iTexture *apDestination, iTexture *apSource,
 													float afBlurAmount)
 	{
 		bool bProgramsLoaded = false;
 		if(mpBlurRectFP && mpBlur2dFP && mpBlurVP) bProgramsLoaded = true;
-		
+
 		iLowLevelGraphics *pLowLevel = mpLowLevelGraphics;
 		cVector2l vBlurSize = cVector2l(apDestination->GetWidth(), apDestination->GetHeight());
 		cVector2f vBlurDrawSize;
@@ -296,7 +296,7 @@ namespace hpl {
 
 		///////////////////////////////////////////
 		//Horizontal blur pass
-		
+
 		//Shader setup
 		if(bProgramsLoaded)
 		{
@@ -328,10 +328,10 @@ namespace hpl {
 		}
 
 		pLowLevel->CopyContextToTexure(apDestination,0,vBlurSize);
-			
+
 		///////////////////////////////////////////
 		//Vertical blur pass
-		
+
 		//Setup shaders
 		//Shader setup
 		if(bProgramsLoaded)
@@ -350,7 +350,7 @@ namespace hpl {
 			mpLowLevelGraphics->SetTexture(1,apDestination);
 			mpLowLevelGraphics->SetTexture(2,apDestination);
 		}
-		
+
 		{
 			mvTexRectVtx[0] = cVertex(cVector3f(0,0,40),cVector2f(0,1),cColor(1,1.0f) );
 			mvTexRectVtx[1] = cVertex(cVector3f(vBlurDrawSize.x,0,40),cVector2f(1,1),cColor(1,1.0f));
@@ -381,7 +381,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 	// PRIVATE METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
 
 	void cRendererPostEffects::RenderDepthOfField()
@@ -394,21 +394,21 @@ namespace hpl {
 		// Setup
 		cCamera3D *pCam = mpRenderList->GetCamera();
 
-		
+
 		iTexture *pScreenTexture = mpScreenBuffer[mImageTrailData.mlCurrentBuffer==0?1:0];
 
 		//Size of the virtual screen
 		cVector2f vVirtSize = mpLowLevelGraphics->GetVirtualSize();
-		
+
         //Copy screen to texture
 		mpLowLevelGraphics->CopyContextToTexure(pScreenTexture,0, cVector2l((int)mvScreenSize.x,(int)mvScreenSize.y));
-		
+
 		//Set up things needed for blurring
 		mpLowLevelGraphics->SetDepthWriteActive(false);
 		mpLowLevelGraphics->SetDepthTestActive(false);
 		mpLowLevelGraphics->SetIdentityMatrix(eMatrix_ModelView);
 		mpLowLevelGraphics->SetOrthoProjection(mpLowLevelGraphics->GetVirtualSize(),-1000,1000);
-		
+
 		//Render blur texture
 		RenderBlurTexture(mpDofBlurTexture,pScreenTexture,2.0f);
 
@@ -432,7 +432,7 @@ namespace hpl {
 			mvTexRectVtx[1] = cVertex(cVector3f(vVirtSize.x,0,40),			cVector2f(mvScreenSize.x,mvScreenSize.y),	cColor(1,1.0f));
 			mvTexRectVtx[2] = cVertex(cVector3f(vVirtSize.x,vVirtSize.y,40),cVector2f(mvScreenSize.x,0),			cColor(1,1.0f));
 			mvTexRectVtx[3] = cVertex(cVector3f(0,vVirtSize.y,40),			cVector2f(0,0),						cColor(1,1.0f));
-			
+
 			mpLowLevelGraphics->SetActiveTextureUnit(1);
 			mpLowLevelGraphics->SetTextureEnv(eTextureParam_ColorSource0,eTextureSource_Texture);
 			mpLowLevelGraphics->SetTextureEnv(eTextureParam_ColorSource1,eTextureSource_Previous);
@@ -444,10 +444,10 @@ namespace hpl {
 
 			mpLowLevelGraphics->SetTextureEnv(eTextureParam_ColorFunc, eTextureFunc_Modulate);
 		}
-		
+
 		//Set things back to normal
 		mpLowLevelGraphics->SetMatrix(eMatrix_Projection, pCam->GetProjectionMatrix());
-		
+
 		///////////////////////////////////////////
 		//Draw motion blur objects
 		mpLowLevelGraphics->SetDepthTestFunc(eDepthTestFunc_Equal);
@@ -456,7 +456,7 @@ namespace hpl {
 
 		//Setup
 		mpDepthOfFieldVP->Bind();
-		
+
 		mpDepthOfFieldFP->Bind();
 		mpDepthOfFieldFP->SetVec3f("planes",cVector3f(mfDofNearPlane,mfDofFocalPlane,mfDofFarPlane));
 		mpDepthOfFieldFP->SetFloat("maxBlur",mfDofMaxBlur);
@@ -499,7 +499,7 @@ namespace hpl {
 			//Set the previous postion to the current
 			if(pMtx) pObject->SetPrevMatrix(*pMtx);
 		}
-		
+
 		mpLowLevelGraphics->SetDepthTestFunc(eDepthTestFunc_LessOrEqual);
 		mpLowLevelGraphics->SetDepthWriteActive(true);
 
@@ -527,7 +527,7 @@ namespace hpl {
 
 		//Copy screen to texture
 		mpLowLevelGraphics->CopyContextToTexure(pScreenTexture,0, cVector2l((int)mvScreenSize.x,(int)mvScreenSize.y));
-		
+
 		///////////////////////////////////////////
 		//Draw motion blur objects
 		mpLowLevelGraphics->SetDepthTestActive(true);
@@ -549,19 +549,19 @@ namespace hpl {
 
 		mpMotionBlurFP->Bind();
 		mpMotionBlurFP->SetVec2f("halfScreenSize",
-								cVector2f(	(float)pScreenTexture->GetWidth()/2.0f, 
+								cVector2f(	(float)pScreenTexture->GetWidth()/2.0f,
 											(float)pScreenTexture->GetHeight()/2.0f));
 
 		mpLowLevelGraphics->SetTexture(0,pScreenTexture);
-		
-		
+
+
 		//////////////////
 		//Render objects
 		while(it.HasNext())
 		{
 			iRenderable *pObject = it.Next();
 			cMatrixf *pMtx = pObject->GetModelMatrix(pCam);
-			
+
 			//////////////////
 			//Non static models
 			if(pMtx)
@@ -598,7 +598,7 @@ namespace hpl {
 
 				mpMotionBlurVP->SetMatrixf("prevWorldViewProj", mtxPrevViewProj);
 				mpMotionBlurVP->SetMatrixf("modelView",mtxModelView);
-				mpMotionBlurVP->SetMatrixf("prevModelView",mtxPrevModelView);	
+				mpMotionBlurVP->SetMatrixf("prevModelView",mtxPrevModelView);
 			}
 
 			pObject->GetVertexBuffer()->Bind();
@@ -606,7 +606,7 @@ namespace hpl {
 			pObject->GetVertexBuffer()->Draw();
 
 			pObject->GetVertexBuffer()->UnBind();
-			
+
 
 			//Set the previous postion to the current
 			if(pMtx) pObject->SetPrevMatrix(*pMtx);
@@ -617,40 +617,40 @@ namespace hpl {
 		mpMotionBlurVP->UnBind();
 		mpLowLevelGraphics->SetTexture(0,NULL);
 		mpLowLevelGraphics->SetTexture(1,NULL);
-		
-		
+
+
 		//Set the new pervious values.
 		pCam->SetPrevView(pCam->GetViewMatrix());
 		pCam->SetPrevProjection(pCam->GetProjectionMatrix());
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cRendererPostEffects::RenderBloom()
-	{	
+	{
 		if(mbBloomActive==false) return;
 
 		if(mpBloomFP==NULL || mpBloomVP==NULL) return;
 
 		//////////////////////////////
 		// Setup
-		
+
 		iTexture *pScreenTexture = mpScreenBuffer[mImageTrailData.mlCurrentBuffer==0?1:0];
 
 		//Copy screen to texture
-		mpLowLevelGraphics->CopyContextToTexure(pScreenTexture,0, 
+		mpLowLevelGraphics->CopyContextToTexure(pScreenTexture,0,
 												cVector2l((int)mvScreenSize.x,(int)mvScreenSize.y));
-		
+
 		//Get the blur texture
         RenderBlurTexture(mpBloomBlurTexture,pScreenTexture,mfBloomSpread);
 
 		//Size of blur texture
 		cVector2f vBlurSize = cVector2f((float)mpBloomBlurTexture->GetWidth(),(float)mpBloomBlurTexture->GetHeight());
 
-		
+
 		//Size of the virtual screen
 		cVector2f vVirtSize = mpLowLevelGraphics->GetVirtualSize();
-		
+
 		///////////////////////////////////////////
 		//Draw Bloom
 
@@ -672,7 +672,7 @@ namespace hpl {
 			vUvVec[1] = cVector2f(mvScreenSize.x,mvScreenSize.y);
 			vUvVec[2] = cVector2f(mvScreenSize.x,0);
 			vUvVec[3] = cVector2f(0,0);
-			
+
 
 			mvTexRectVtx[0] = cVertex(cVector3f(0,0,40),cVector2f(0,1),cColor(1,1.0f) );
 			mvTexRectVtx[1] = cVertex(cVector3f(vVirtSize.x,0,40),cVector2f(1,1),cColor(1,1.0f));
@@ -690,10 +690,10 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	void cRendererPostEffects::RenderImageTrail()
 	{
-		if(mImageTrailData.mbActive==false) return; 
+		if(mImageTrailData.mbActive==false) return;
 
 		tVertexVec vVtx;
 		vVtx.push_back( cVertex(cVector3f(0,0,40),cVector2f(0,mvScreenSize.y),cColor(1,0.6f) ) );
@@ -706,7 +706,7 @@ namespace hpl {
 			(int)mpLowLevelGraphics->GetScreenSize().x,
 			(int)mpLowLevelGraphics->GetScreenSize().y));
 		{
-			if(mImageTrailData.mbActive) 
+			if(mImageTrailData.mbActive)
 			{
 				if(mImageTrailData.mbFirstPass){
 					mpLowLevelGraphics->SetBlendActive(false);

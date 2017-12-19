@@ -49,7 +49,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	float cAnimation::GetLength()
 	{
 		return mfLength;
@@ -72,7 +72,7 @@ namespace hpl {
 
 		return pTrack;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cAnimationTrack* cAnimation::GetTrack(int alIndex)
@@ -94,14 +94,14 @@ namespace hpl {
 
 		return NULL;
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	void cAnimation::ResizeTracks(int alNum)
 	{
 		mvTracks.reserve(alNum);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	int cAnimation::GetTrackNum()

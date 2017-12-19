@@ -27,7 +27,7 @@
 #ifdef INCLUDE_THEORA
 #include "impl/VideoStreamTheora.h"
 #endif
-#include "impl/Platform.h" 
+#include "impl/Platform.h"
 #include "system/String.h"
 
 #include "SDL/SDL.h"
@@ -91,7 +91,7 @@ namespace hpl {
 
 			SDL_Surface* orig = NULL;
 			orig = IMG_Load(asFilePath.c_str());
-			
+
 			if(orig==NULL){
 				//Error handling stuff?
 				return NULL;

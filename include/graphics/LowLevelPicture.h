@@ -37,13 +37,13 @@ namespace hpl {
 		unsigned int GetDepth(){return  mlDepth;}
 
 		unsigned int GetBpp(){return  mlBpp;}
-		
+
 		virtual bool HasAlpha()=0;
 
 		void SetPath(tString asPath){msPath = asPath;}
 		tString GetPath(){return msPath;}
 		tString GetFileName(){return cString::GetFileName(msPath);}
-	
+
 	protected:
 		unsigned int mlHeight;
 		unsigned int mlWidth;

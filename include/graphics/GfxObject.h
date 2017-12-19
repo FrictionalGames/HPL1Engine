@@ -25,13 +25,13 @@
 namespace hpl {
 
 	class iMaterial;
-	
+
 	class cGfxObject
 	{
 	public:
 		cGfxObject(iMaterial* apMat,const tString& asFile, bool abIsImage);
 		~cGfxObject();
-		
+
 		iMaterial* GetMaterial() const{ return mpMat;}
 		cVertex* GetVtxPtr(int alNum){ return &mvVtx[alNum];}
 		tVertexVec* GetVertexVec(){ return &mvVtx;}
@@ -39,7 +39,7 @@ namespace hpl {
 		const tString& GetSourceFile(){ return msSourceFile;}
 
 		bool IsImage(){ return mbIsImage;}
-		
+
 	private:
 		tVertexVec mvVtx;
 		iMaterial* mpMat;
@@ -50,6 +50,6 @@ namespace hpl {
 	};
 
 	typedef std::vector<cGfxObject> tGfxObjectVec;
-	typedef tGfxObjectVec::iterator tGfxObjectVecIt; 
+	typedef tGfxObjectVec::iterator tGfxObjectVecIt;
 };
 #endif // HPL_GFX_OBJECT_H

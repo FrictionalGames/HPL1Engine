@@ -68,7 +68,7 @@ namespace hpl {
 	{
 		switch(aTarget)
 		{
-		case eTextureTarget_1D:		return GL_TEXTURE_1D;	
+		case eTextureTarget_1D:		return GL_TEXTURE_1D;
 		case eTextureTarget_2D:		return GL_TEXTURE_2D;
 		case eTextureTarget_Rect:	return GL_TEXTURE_RECTANGLE_NV;
 		case eTextureTarget_CubeMap:	return GL_TEXTURE_CUBE_MAP_ARB;
@@ -102,7 +102,7 @@ namespace hpl {
 		mpPixelFormat = hplNew(cSDLPixelFormat, () );
 
 		mpRenderTarget=NULL;
-		
+
 		for(int i=0;i<MAX_TEXTUREUNITS;i++)
 			mpCurrentTexture[i] = NULL;
 
@@ -113,7 +113,7 @@ namespace hpl {
 		//Create the batch arrays:
 		mlBatchStride = 13;
 		//3 Pos floats, 4 color floats, 3 Tex coord floats .
-		mpVertexArray = (float*)hplMalloc(sizeof(float) * mlBatchStride * mlBatchArraySize); 
+		mpVertexArray = (float*)hplMalloc(sizeof(float) * mlBatchStride * mlBatchArraySize);
 		mpIndexArray = (unsigned int*)hplMalloc(sizeof(unsigned int) * mlBatchArraySize); //Index is one int.
 
 		for(int i=0;i<MAX_TEXTUREUNITS;i++)
@@ -143,7 +143,7 @@ namespace hpl {
 		hplFree(mpVertexArray);
 		hplFree(mpIndexArray);
 		for(int i=0;i<MAX_TEXTUREUNITS;i++)	hplFree(mpTexCoordArray[i]);
-		
+
 		hplDelete(mpPixelFormat);
 
 		//Exit extra stuff
@@ -158,8 +158,8 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
-	bool cLowLevelGraphicsSDL::Init(int alWidth, int alHeight, int alBpp, int abFullscreen, 
+
+	bool cLowLevelGraphicsSDL::Init(int alWidth, int alHeight, int alBpp, int abFullscreen,
 									int alMultisampling, const tString& asWindowCaption)
 	{
 		mvScreenSize.x = alWidth;
@@ -170,7 +170,7 @@ namespace hpl {
 
         //Set some GL Attributes
 		SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER,1);
-		
+
 		SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
 		SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
 		SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);
@@ -178,7 +178,7 @@ namespace hpl {
 
 		SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
 		SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
-		
+
 		// Multisampling
 		if(mlMultisampling > 0)
 		{
@@ -196,9 +196,9 @@ namespace hpl {
 		}
 
 		unsigned int mlFlags = SDL_OPENGL;
-		
+
 		if(abFullscreen) mlFlags |= SDL_FULLSCREEN;
-		
+
 		Log(" Setting video mode: %d x %d - %d bpp\n",alWidth, alHeight, alBpp);
 		mpScreen = SDL_SetVideoMode( alWidth, alHeight, alBpp, mlFlags);
 		if(mpScreen==NULL){
@@ -253,14 +253,14 @@ namespace hpl {
 		SDL_GetGammaRamp(mvStartGammaArray[0],mvStartGammaArray[1],mvStartGammaArray[2]);
 
 		SDL_SetGamma(mfGammaCorrection,mfGammaCorrection,mfGammaCorrection);
-		
+
 		//GL
 		Log(" Setting up OpenGL\n");
 		SetupGL();
-		
+
 		//Set the clear color
 		SDL_GL_SwapBuffers();
-		
+
 		return true;
 	}
 
@@ -268,7 +268,7 @@ namespace hpl {
 
 	void cLowLevelGraphicsSDL::CheckMultisampleCaps()
 	{
-		
+
 	}
 
 	//-----------------------------------------------------------------------
@@ -288,7 +288,7 @@ namespace hpl {
 
 		//Set best perspective correction
 		glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
-		
+
 		//int lStencilBits=-1;
 		//glGetIntegerv(GL_STENCIL_BITS,&lStencilBits);
 		//Log(" Stencil bits: %d\n",lStencilBits);
@@ -303,7 +303,7 @@ namespace hpl {
 		glLoadIdentity();
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
-		
+
 		//glTexEnvi(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_REPLACE);
 
 		/////  BEGIN BATCH ARRAY STUFF ///////////////
@@ -324,7 +324,7 @@ namespace hpl {
 		Log("  Max texture coord units: %d\n",GetCaps(eGraphicCaps_MaxTextureCoordUnits));
 		Log("  Two sided stencil: %d\n",GetCaps(eGraphicCaps_TwoSideStencil));
 		Log("  Vertex Buffer Object: %d\n",GetCaps(eGraphicCaps_VertexBufferObject));
-		
+
 		Log("  Anisotropic filtering: %d\n",GetCaps(eGraphicCaps_AnisotropicFiltering));
 		if(GetCaps(eGraphicCaps_AnisotropicFiltering))
 			Log("  Max Anisotropic degree: %d\n",GetCaps(eGraphicCaps_MaxAnisotropicFiltering));
@@ -333,10 +333,10 @@ namespace hpl {
 
 		Log("  Vertex Program: %d\n",GetCaps(eGraphicCaps_GL_VertexProgram));
 		Log("  Fragment Program: %d\n",GetCaps(eGraphicCaps_GL_FragmentProgram));
-		
+
 		Log("  NV Register Combiners: %d\n",GetCaps(eGraphicCaps_GL_NVRegisterCombiners));
 		Log("  NV Register Combiners Stages: %d\n",GetCaps(eGraphicCaps_GL_NVRegisterCombiners_MaxStages));
-		
+
 		Log("  ATI Fragment Shader: %d\n",GetCaps(eGraphicCaps_GL_ATIFragmentShader));
 	}
 	//-----------------------------------------------------------------------
@@ -350,16 +350,16 @@ namespace hpl {
 			{
 				return 1;//GLEE_ARB_texture_rectangle?1:0;
 			}
-			
-		
+
+
 		//Vertex Buffer Object
-		case eGraphicCaps_VertexBufferObject:		
+		case eGraphicCaps_VertexBufferObject:
 			{
 				return GLEE_ARB_vertex_buffer_object?1:0;
 			}
-		
+
 		//Two Sided Stencil
-		case eGraphicCaps_TwoSideStencil:			
+		case eGraphicCaps_TwoSideStencil:
 			{
 				//DEBUG:
 				//return 0;
@@ -393,7 +393,7 @@ namespace hpl {
 				if(GLEE_EXT_texture_filter_anisotropic) return 1;
 				else return 0;
 			}
-		
+
 		//Texture Anisotropy
 		case eGraphicCaps_MaxAnisotropicFiltering:
 			{
@@ -403,7 +403,7 @@ namespace hpl {
 				glGetFloatv(GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT,&fMax);
 				return (int)fMax;
 			}
-		
+
 		//Multisampling
 		case eGraphicCaps_Multisampling:
 			{
@@ -411,7 +411,7 @@ namespace hpl {
 				return 0;
 			}
 
-		
+
 		//GL Vertex program
 		case eGraphicCaps_GL_VertexProgram:
 			{
@@ -421,17 +421,17 @@ namespace hpl {
 				if(GLEE_ARB_vertex_program) return 1;
 				else return 0;
 			}
-		
+
 		//GL Fragment program
 		case eGraphicCaps_GL_FragmentProgram:
 			{
 				//Debbug:
 				//return 0;
-				
+
 				if(GLEE_ARB_fragment_program) return 1;
 				else return 0;
 			}
-		
+
 		//GL NV register combiners
 		case eGraphicCaps_GL_NVRegisterCombiners:
 			{
@@ -446,7 +446,7 @@ namespace hpl {
 				glGetIntegerv(GL_MAX_GENERAL_COMBINERS_NV,(GLint *)&lStages);
 				return lStages;
 			}
-		
+
 		//GL ATI Fragment Shader
 		case eGraphicCaps_GL_ATIFragmentShader:
 			{
@@ -457,7 +457,7 @@ namespace hpl {
 
 		return 0;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cLowLevelGraphicsSDL::ShowCursor(bool abX)
@@ -467,7 +467,7 @@ namespace hpl {
 		else
 			SDL_ShowCursor(SDL_DISABLE);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cLowLevelGraphicsSDL::SetVsyncActive(bool abX)
@@ -481,14 +481,14 @@ namespace hpl {
 		if (GLEE_GLX_SGI_swap_control)
 		{
 			glXSwapIntervalSGI(abX ? 1 : 0);
-		}  
+		}
 		#endif
 	}
 
 	//-----------------------------------------------------------------------
 
 	void cLowLevelGraphicsSDL::SetMultisamplingActive(bool abX)
-	{	
+	{
 		if(!GLEE_ARB_multisample || mlMultisampling<=0) return;
 
 		if(abX)
@@ -516,8 +516,8 @@ namespace hpl {
 			if (iArrayValue > 65535)
 				iArrayValue = 65535;
 
-			GammaArray[0][iIndex] = 
-			GammaArray[1][iIndex] = 
+			GammaArray[0][iIndex] =
+			GammaArray[1][iIndex] =
 			GammaArray[2][iIndex] = iArrayValue;
 
 		}
@@ -527,7 +527,7 @@ namespace hpl {
 		/*if(bReturn!=-1) Log("Setting gamma worked!\n");
 		else		Log("Setting gamma FAILED!\n");*/
 	}
-	
+
 	float cLowLevelGraphicsSDL::GetGammaCorrection()
 	{
 		return mfGammaCorrection;
@@ -538,7 +538,7 @@ namespace hpl {
 	void cLowLevelGraphicsSDL::SetClipPlane(int alIdx, const cPlanef& aPlane)
 	{
 		mvClipPlanes[alIdx] = aPlane;
-        
+
 		double vPlane[4];
 		vPlane[0] = aPlane.a;
 		vPlane[1] = aPlane.b;
@@ -571,7 +571,7 @@ namespace hpl {
 		SDL_LockSurface(pBmp->GetSurface());
 		glReadBuffer(GL_BACK);
 		glReadPixels(0,0,mvScreenSize.x,mvScreenSize.y,GL_RGBA,GL_UNSIGNED_BYTE,pSrcPixels);
-		
+
 		for(int y=0; y<mvScreenSize.y; ++y)
 		{
 			for(int x=0; x<mvScreenSize.x; ++x)
@@ -579,24 +579,24 @@ namespace hpl {
 				unsigned char* pDestPix = &pDestPixels[((mvScreenSize.x * y) + x) * 4];
 				unsigned char* pSrcPix = &pSrcPixels[((mvScreenSize.x * ((mvScreenSize.y-1) - y))
 														+ x) * 4];
-				
+
 				pDestPix[0] = pSrcPix[0];
 				pDestPix[1] = pSrcPix[1];
 				pDestPix[2] = pSrcPix[2];
 				pDestPix[3] = 255;
 			}
 		}
-		
+
 		SDL_UnlockSurface(pBmp->GetSurface());
 		SDL_SaveBMP(pBmp->GetSurface(),asFile.c_str());
-		
+
 		hplFree(pSrcPixels);
 		hplDelete(pBmp);
-		
+
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	iBitmap2D* cLowLevelGraphicsSDL::CreateBitmap2D(const cVector2l &avSize, unsigned int alBpp)
 	{
 		cSDLBitmap2D *pBmp = hplNew( cSDLBitmap2D, (mpPixelFormat) );
@@ -617,29 +617,29 @@ namespace hpl {
 	iBitmap2D* cLowLevelGraphicsSDL::CreateBitmap2DFromSurface(SDL_Surface* apSurface,const tString& asType)
 	{
 		cSDLBitmap2D *pBmp = hplNew( cSDLBitmap2D, (apSurface,mpPixelFormat,asType) );
-		
+
 		pBmp->msType = asType;
 
 		return pBmp;
 	}
 
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	iGpuProgram* cLowLevelGraphicsSDL::CreateGpuProgram(const tString& asName, eGpuProgramType aType)
 	{
 		return hplNew( cCGProgram, (asName,mCG_Context, aType) );
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	iPixelFormat* cLowLevelGraphicsSDL::GetPixelFormat()
 	{
 		return mpPixelFormat;
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	iTexture* cLowLevelGraphicsSDL::CreateTexture(bool abUseMipMaps, eTextureType aType, eTextureTarget aTarget)
 	{
 		return hplNew( cSDLTexture, ("",mpPixelFormat,this,aType, abUseMipMaps, aTarget) );
@@ -654,7 +654,7 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	iTexture* cLowLevelGraphicsSDL::CreateTexture(iBitmap2D* apBmp,bool abUseMipMaps, eTextureType aType, 
+	iTexture* cLowLevelGraphicsSDL::CreateTexture(iBitmap2D* apBmp,bool abUseMipMaps, eTextureType aType,
 												eTextureTarget aTarget)
 	{
 		cSDLTexture *pTex = hplNew( cSDLTexture, ("",mpPixelFormat,this,aType, abUseMipMaps, aTarget) );
@@ -664,7 +664,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	iTexture* cLowLevelGraphicsSDL::CreateTexture(const cVector2l& avSize,int alBpp,cColor aFillCol,
 											bool abUseMipMaps, eTextureType aType, eTextureTarget aTarget)
 	{
@@ -696,13 +696,13 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	
+
 	void cLowLevelGraphicsSDL::PushMatrix(eMatrix aMtxType)
 	{
 		SetMatrixMode(aMtxType);
 		glPushMatrix();
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 
@@ -719,16 +719,16 @@ namespace hpl {
 		cMatrixf mtxTranpose = a_mtxA.GetTranspose();
 		glLoadMatrixf(mtxTranpose.v);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
-	
+
 	void cLowLevelGraphicsSDL::SetIdentityMatrix(eMatrix aMtxType)
 	{
 		SetMatrixMode(aMtxType);
 		glLoadIdentity();
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 
@@ -737,21 +737,21 @@ namespace hpl {
 		SetMatrixMode(aMtxType);
 		glTranslatef(avPos.x,avPos.y,avPos.z);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 
 	/**
 	 * \todo fix so that there are X, Y , Z versions of this one.
-	 * \param aMtxType 
-	 * \param &avRot 
+	 * \param aMtxType
+	 * \param &avRot
 	 */
 	void cLowLevelGraphicsSDL::RotateMatrix(eMatrix aMtxType, const cVector3f &avRot)
 	{
 		SetMatrixMode(aMtxType);
 		glRotatef(1,avRot.x,avRot.y,avRot.z);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cLowLevelGraphicsSDL::ScaleMatrix(eMatrix aMtxType, const cVector3f &avScale)
@@ -759,9 +759,9 @@ namespace hpl {
 		SetMatrixMode(aMtxType);
 		glScalef(avScale.x,avScale.y,avScale.z);
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	void cLowLevelGraphicsSDL::SetOrthoProjection(const cVector2f& avSize, float afMin, float afMax)
 	{
 		glMatrixMode(GL_PROJECTION);
@@ -781,24 +781,24 @@ namespace hpl {
 		GLenum LastTarget=0;
 		if(mpCurrentTexture[alUnit])
 			LastTarget = GetGLTextureTargetEnum(mpCurrentTexture[alUnit]->GetTarget());
-		
+
 		//Check if multi texturing is supported.
 		if(GLEE_ARB_multitexture){
 			glActiveTextureARB(GL_TEXTURE0_ARB + alUnit);
 		}
-		
+
 		//If the current texture in this unit is a render target, unbind it.
 		if(mpCurrentTexture[alUnit]){
 			if(mpCurrentTexture[alUnit]->GetTextureType() == eTextureType_RenderTarget)
 			{
 				cSDLTexture *pSDLTex = static_cast<cSDLTexture *> (mpCurrentTexture[alUnit]);
-				
+
 				glBindTexture(LastTarget, pSDLTex->GetTextureHandle());
 				cPBuffer* pBuffer = pSDLTex->GetPBuffer();
 				pBuffer->UnBind();
 			}
 		}
-		
+
 		//Disable this unit if NULL
 		if(apTex == NULL)
 		{
@@ -811,7 +811,7 @@ namespace hpl {
 			if(NewTarget != LastTarget) glDisable(LastTarget);
 
 			cSDLTexture *pSDLTex = static_cast<cSDLTexture*> (apTex);
-			
+
 			glBindTexture(NewTarget, pSDLTex->GetTextureHandle());
 			glEnable(NewTarget);
 
@@ -873,14 +873,14 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	iVertexBuffer* cLowLevelGraphicsSDL::CreateVertexBuffer(tVertexFlag aFlags, 
+	iVertexBuffer* cLowLevelGraphicsSDL::CreateVertexBuffer(tVertexFlag aFlags,
 														eVertexBufferDrawType aDrawType,
-														eVertexBufferUsageType aUsageType, 
+														eVertexBufferUsageType aUsageType,
 														int alReserveVtxSize,int alReserveIdxSize)
 	{
 		//return hplNew( cVertexBufferVBO,(this, aFlags,aDrawType,aUsageType,alReserveVtxSize,alReserveIdxSize) );
 		//return hplNew( cVertexBufferOGL, (this, aFlags,aDrawType,aUsageType,alReserveVtxSize,alReserveIdxSize) );
-		
+
 		if(GetCaps(eGraphicCaps_VertexBufferObject))
 		{
 			return hplNew( cVertexBufferVBO, (this, aFlags,aDrawType,aUsageType,alReserveVtxSize,alReserveIdxSize) );
@@ -907,7 +907,7 @@ namespace hpl {
 		}
 		glEnd();
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cLowLevelGraphicsSDL::FlushRendering()
@@ -921,7 +921,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	void cLowLevelGraphicsSDL::DrawTri(const tVertexVec &avVtx)
 	{
 		assert(avVtx.size()==3);
@@ -936,7 +936,7 @@ namespace hpl {
 		}
 		glEnd();
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cLowLevelGraphicsSDL::DrawTri(const cVertex* avVtx)
@@ -951,13 +951,13 @@ namespace hpl {
 		}
 		glEnd();
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cLowLevelGraphicsSDL::DrawQuad(const tVertexVec &avVtx)
 	{
 		assert(avVtx.size()==4);
-		
+
 		glBegin(GL_QUADS);
 		{
 			for(int i=0;i<4;i++){
@@ -979,13 +979,13 @@ namespace hpl {
 			for(int i=0;i<4;i++)
 			{
 				glMultiTexCoord3fARB(GL_TEXTURE0_ARB,avVtx[i].tex.x,avVtx[i].tex.y,avVtx[i].tex.z);
-				
+
 				for(int unit=0; unit<lExtraUnits; ++unit)
 				{
 					glMultiTexCoord3fARB(GL_TEXTURE0_ARB + unit + 1,
 										avExtraUvs[unit*4 + i].x, avExtraUvs[unit*4 + i].y, avExtraUvs[unit*4 + i].z);
 				}
-				
+
 				glColor4f(avVtx[i].col.r,avVtx[i].col.g,avVtx[i].col.b,avVtx[i].col.a);
 				glVertex3f(avVtx[i].pos.x,avVtx[i].pos.y,avVtx[i].pos.z);
 			}
@@ -1001,7 +1001,7 @@ namespace hpl {
 	{
 		return hplNew(cOcclusionQueryOGL, () );
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cLowLevelGraphicsSDL::DestroyOcclusionQuery(iOcclusionQuery *apQuery)
@@ -1014,14 +1014,14 @@ namespace hpl {
 	void cLowLevelGraphicsSDL::ClearScreen()
 	{
 		GLbitfield bitmask=0;
-        
+
 		if(mbClearColor)bitmask |= GL_COLOR_BUFFER_BIT;
 		if(mbClearDepth)bitmask |= GL_DEPTH_BUFFER_BIT;
 		if(mbClearStencil)bitmask |= GL_STENCIL_BUFFER_BIT;
 
 		glClear(bitmask);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cLowLevelGraphicsSDL::SetClearColor(const cColor& aCol){
@@ -1033,7 +1033,7 @@ namespace hpl {
 	void cLowLevelGraphicsSDL::SetClearStencil(int alVal){
 		glClearStencil(alVal);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cLowLevelGraphicsSDL::SetClearColorActive(bool abX){
@@ -1059,22 +1059,22 @@ namespace hpl {
 	{
 		glDepthMask(abX);
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	void cLowLevelGraphicsSDL::SetDepthTestActive(bool abX)
 	{
 		if(abX) glEnable(GL_DEPTH_TEST);
 		else glDisable(GL_DEPTH_TEST);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cLowLevelGraphicsSDL::SetDepthTestFunc(eDepthTestFunc aFunc)
 	{
 		glDepthFunc(GetGLDepthTestFuncEnum(aFunc));
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cLowLevelGraphicsSDL::SetAlphaTestActive(bool abX)
@@ -1082,14 +1082,14 @@ namespace hpl {
 		if(abX) glEnable(GL_ALPHA_TEST);
 		else glDisable(GL_ALPHA_TEST);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cLowLevelGraphicsSDL::SetAlphaTestFunc(eAlphaTestFunc aFunc,float afRef)
 	{
 		glAlphaFunc(GetGLAlphaTestFuncEnum(aFunc),afRef);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cLowLevelGraphicsSDL::SetStencilActive(bool abX)
@@ -1097,9 +1097,9 @@ namespace hpl {
 		if(abX) glEnable(GL_STENCIL_TEST);
 		else glDisable(GL_STENCIL_TEST);
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	/*void cLowLevelGraphicsSDL::SetStencilTwoSideActive(bool abX)
 	{
 		if(GLEE_EXT_stencil_two_side)
@@ -1107,9 +1107,9 @@ namespace hpl {
 			glEnable(GL_STENCIL_TEST_TWO_SIDE_EXT);
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	void cLowLevelGraphicsSDL::SetStencilFace(eStencilFace aFace)
 	{
 		if(GLEE_EXT_stencil_two_side)
@@ -1118,14 +1118,14 @@ namespace hpl {
 			else							glActiveStencilFaceEXT(GL_BACK);
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cLowLevelGraphicsSDL::SetStencilFunc(eStencilFunc aFunc,int alRef, unsigned int aMask)
 	{
 		glStencilFunc(GetGLStencilFuncEnum(aFunc), alRef, aMask);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cLowLevelGraphicsSDL::SetStencilOp(eStencilOp aFailOp,eStencilOp aZFailOp,eStencilOp aZPassOp)
@@ -1145,11 +1145,11 @@ namespace hpl {
 			glActiveStencilFaceEXT(GL_FRONT);
 		}
 		glStencilFunc(GetGLStencilFuncEnum(aFunc), alRef, aMask);
-		
+
 		glStencilOp(GetGLStencilOpEnum(aFailOp), GetGLStencilOpEnum(aZFailOp),
 					GetGLStencilOpEnum(aZPassOp));
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cLowLevelGraphicsSDL::SetStencilTwoSide(eStencilFunc aFrontFunc,eStencilFunc aBackFunc,
@@ -1161,7 +1161,7 @@ namespace hpl {
 		if(GLEE_EXT_stencil_two_side)
 		{
 			glEnable(GL_STENCIL_TEST_TWO_SIDE_EXT);
-			
+
 			//Front
 			glActiveStencilFaceEXT(GL_FRONT);
 			glStencilFunc(GetGLStencilFuncEnum(aFrontFunc), alRef, aMask);
@@ -1179,17 +1179,17 @@ namespace hpl {
 		else if(GLEE_ATI_separate_stencil)
 		{
 			//Front
-			glStencilOpSeparateATI( GL_FRONT, GetGLStencilOpEnum(aFrontFailOp), 
-								GetGLStencilOpEnum(aFrontZFailOp), 
+			glStencilOpSeparateATI( GL_FRONT, GetGLStencilOpEnum(aFrontFailOp),
+								GetGLStencilOpEnum(aFrontZFailOp),
 								GetGLStencilOpEnum(aFrontZPassOp));
 			//Back
-			glStencilOpSeparateATI( GL_BACK, GetGLStencilOpEnum(aBackFailOp), 
-								GetGLStencilOpEnum(aBackZFailOp), 
+			glStencilOpSeparateATI( GL_BACK, GetGLStencilOpEnum(aBackFailOp),
+								GetGLStencilOpEnum(aBackZFailOp),
 								GetGLStencilOpEnum(aBackZPassOp));
 
 			//Front and Back function
 			glStencilFuncSeparateATI(GetGLStencilFuncEnum(aFrontFunc),
-									GetGLStencilFuncEnum(aBackFunc), 
+									GetGLStencilFuncEnum(aBackFunc),
 									alRef, aMask);
 		}
 		else
@@ -1205,7 +1205,7 @@ namespace hpl {
 			glDisable(GL_STENCIL_TEST_TWO_SIDE_EXT);
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cLowLevelGraphicsSDL::SetCullActive(bool abX)
@@ -1228,16 +1228,16 @@ namespace hpl {
 		if(abX) glEnable(GL_SCISSOR_TEST);
 		else glDisable(GL_SCISSOR_TEST);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cLowLevelGraphicsSDL::SetScissorRect(const cRect2l &aRect)
 	{
 		glScissor(aRect.x, (mvScreenSize.y - aRect.y - 1)-aRect.h, aRect.w, aRect.h);
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	void cLowLevelGraphicsSDL::SetBlendActive(bool abX)
 	{
 		if(abX)
@@ -1245,17 +1245,17 @@ namespace hpl {
 		else
 			glDisable(GL_BLEND);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cLowLevelGraphicsSDL::SetBlendFunc(eBlendFunc aSrcFactor, eBlendFunc aDestFactor)
 	{
 		glBlendFunc(GetGLBlendEnum(aSrcFactor),GetGLBlendEnum(aDestFactor));
 	}
-	
+
 	//-----------------------------------------------------------------------
 
-	
+
 	void cLowLevelGraphicsSDL::SetBlendFuncSeparate(eBlendFunc aSrcFactorColor, eBlendFunc aDestFactorColor,
 		eBlendFunc aSrcFactorAlpha, eBlendFunc aDestFactorAlpha)
 	{
@@ -1290,7 +1290,7 @@ namespace hpl {
 		}
 		glEnd();
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cLowLevelGraphicsSDL::DrawQuad(const tVertexVec &avVtx,const float afZ)
@@ -1308,7 +1308,7 @@ namespace hpl {
 		}
 		glEnd();
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cLowLevelGraphicsSDL::DrawQuad(const tVertexVec &avVtx,const float afZ,const cColor &aCol)
@@ -1348,9 +1348,9 @@ namespace hpl {
 		mpVertexArray[mlVertexCount + 10] =	apVtx->norm.x;
 		mpVertexArray[mlVertexCount + 11] =	apVtx->norm.y;
 		mpVertexArray[mlVertexCount + 12] =	apVtx->norm.z;
-		
+
 		mlVertexCount = mlVertexCount + mlBatchStride;
-		
+
 		if(mlVertexCount/mlBatchStride >= mlBatchArraySize)
 		{
 			//Make the array larger.
@@ -1396,14 +1396,14 @@ namespace hpl {
 			//Make the array larger.
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cLowLevelGraphicsSDL::AddVertexToBatch(const cVertex *apVtx, const cMatrixf* aMtx)
 	{
 
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cLowLevelGraphicsSDL::AddVertexToBatch_Size2D(const cVertex *apVtx, const cVector3f* avTransform,
@@ -1419,13 +1419,13 @@ namespace hpl {
 		mpVertexArray[mlVertexCount + 4] =	apCol->g;
 		mpVertexArray[mlVertexCount + 5] =	apCol->b;
 		mpVertexArray[mlVertexCount + 6] =	apCol->a;
-		
+
 		//Texture coord
 		mpVertexArray[mlVertexCount + 7] =	apVtx->tex.x;
 		mpVertexArray[mlVertexCount + 8] =	apVtx->tex.y;
 		mpVertexArray[mlVertexCount + 9] =	apVtx->tex.z;
 
-		
+
 		mlVertexCount = mlVertexCount + mlBatchStride;
 
 		if(mlVertexCount/mlBatchStride >= mlBatchArraySize)
@@ -1459,7 +1459,7 @@ namespace hpl {
 		mlVertexCount = mlVertexCount + mlBatchStride;
 	}
 
-	
+
 	//-----------------------------------------------------------------------
 
 	void cLowLevelGraphicsSDL::AddIndexToBatch(int alIndex)
@@ -1482,16 +1482,16 @@ namespace hpl {
 		mpTexCoordArray[alUnit][lCount+0] = apCoord->x;
 		mpTexCoordArray[alUnit][lCount+1] = apCoord->y;
 		mpTexCoordArray[alUnit][lCount+2] = apCoord->z;
-		
+
 		mlTexCoordArrayCount[alUnit]+=3;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cLowLevelGraphicsSDL::SetBatchTextureUnitActive(unsigned int alUnit,bool abActive)
 	{
 		glClientActiveTextureARB(GL_TEXTURE0_ARB+alUnit);
-		
+
 		if(abActive==false){
 			glTexCoordPointer(3,GL_FLOAT,sizeof(float)*mlBatchStride, &mpVertexArray[7]);
 		}
@@ -1499,7 +1499,7 @@ namespace hpl {
 			glTexCoordPointer(3,GL_FLOAT,0, &mpTexCoordArray[alUnit][0]);
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cLowLevelGraphicsSDL::FlushTriBatch(tVtxBatchFlag aTypeFlags, bool abAutoClear)
@@ -1516,14 +1516,14 @@ namespace hpl {
 				mlTexCoordArrayCount[i]=0;
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cLowLevelGraphicsSDL::FlushQuadBatch(tVtxBatchFlag aTypeFlags, bool abAutoClear)
 	{
 		SetVtxBatchStates(aTypeFlags);
 		SetUpBatchArrays();
-		
+
 		glDrawElements(GL_QUADS,mlIndexCount,GL_UNSIGNED_INT, mpIndexArray);
 
 		if(abAutoClear){
@@ -1533,7 +1533,7 @@ namespace hpl {
 				mlTexCoordArrayCount[i]=0;
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cLowLevelGraphicsSDL::ClearBatch()
@@ -1543,7 +1543,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	void cLowLevelGraphicsSDL::DrawLine(const cVector3f& avBegin, const cVector3f& avEnd, cColor aCol)
 	{
 		SetTexture(0,NULL);
@@ -1562,13 +1562,13 @@ namespace hpl {
 		SetTexture(0,NULL);
 		SetBlendActive(false);
 		glColor4f(aCol.r,aCol.g,aCol.b,aCol.a);
-		
+
 		glBegin(GL_LINES);
 		{
 			//Pos Z Quad
 			glVertex3f(avMax.x,avMax.y,avMax.z);
 			glVertex3f(avMin.x,avMax.y,avMax.z);
-			
+
 			glVertex3f(avMax.x,avMax.y,avMax.z);
 			glVertex3f(avMax.x,avMin.y,avMax.z);
 
@@ -1594,27 +1594,27 @@ namespace hpl {
 			//Lines between
 			glVertex3f(avMax.x,avMax.y,avMax.z);
 			glVertex3f(avMax.x,avMax.y,avMin.z);
-			
+
 			glVertex3f(avMin.x,avMax.y,avMax.z);
 			glVertex3f(avMin.x,avMax.y,avMin.z);
 
 			glVertex3f(avMin.x,avMin.y,avMax.z);
 			glVertex3f(avMin.x,avMin.y,avMin.z);
-			
+
 			glVertex3f(avMax.x,avMin.y,avMax.z);
 			glVertex3f(avMax.x,avMin.y,avMin.z);
 		}
 		glEnd();
 
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cLowLevelGraphicsSDL::DrawSphere(const cVector3f& avPos, float afRadius, cColor aCol)
 	{
 		int alSegments = 32;
 		float afAngleStep = k2Pif /(float)alSegments;
-        
+
 		SetTexture(0,NULL);
 		SetBlendActive(false);
 		glColor4f(aCol.r,aCol.g,aCol.b,aCol.a);
@@ -1623,20 +1623,20 @@ namespace hpl {
 			//X Circle:
 			for(float a=0; a< k2Pif; a+= afAngleStep)
 			{
-				glVertex3f(avPos.x, avPos.y + sin(a)*afRadius, 
+				glVertex3f(avPos.x, avPos.y + sin(a)*afRadius,
 									avPos.z + cos(a)*afRadius);
 
-				glVertex3f(avPos.x, avPos.y + sin(a+afAngleStep)*afRadius, 
+				glVertex3f(avPos.x, avPos.y + sin(a+afAngleStep)*afRadius,
 									avPos.z + cos(a+afAngleStep)*afRadius);
 			}
 
 			//Y Circle:
 			for(float a=0; a< k2Pif; a+= afAngleStep)
 			{
-				glVertex3f(avPos.x + cos(a)*afRadius, avPos.y, 
+				glVertex3f(avPos.x + cos(a)*afRadius, avPos.y,
 									avPos.z + sin(a)*afRadius);
 
-				glVertex3f(avPos.x + cos(a+afAngleStep)*afRadius, avPos.y , 
+				glVertex3f(avPos.x + cos(a+afAngleStep)*afRadius, avPos.y ,
 							avPos.z+ sin(a+afAngleStep)*afRadius);
 			}
 
@@ -1645,15 +1645,15 @@ namespace hpl {
 			{
 				glVertex3f(avPos.x + cos(a)*afRadius, avPos.y + sin(a)*afRadius, avPos.z);
 
-				glVertex3f(avPos.x + cos(a+afAngleStep)*afRadius, 
-							avPos.y + sin(a+afAngleStep)*afRadius, 
+				glVertex3f(avPos.x + cos(a+afAngleStep)*afRadius,
+							avPos.y + sin(a+afAngleStep)*afRadius,
 							avPos.z);
 			}
 
 		}
 		glEnd();
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cLowLevelGraphicsSDL::DrawLine2D(const cVector2f& avBegin, const cVector2f& avEnd, float afZ, cColor aCol)
@@ -1668,7 +1668,7 @@ namespace hpl {
 		}
 		glEnd();
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cLowLevelGraphicsSDL::DrawLineRect2D(const cRect2f& aRect, float afZ, cColor aCol)
@@ -1686,7 +1686,7 @@ namespace hpl {
 		}
 		glEnd();
    	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cLowLevelGraphicsSDL::DrawFilledRect2D(const cRect2f& aRect, float afZ, cColor aCol)
@@ -1704,13 +1704,13 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	/**
 	 * \todo Implement this.
-	 * \param avCenter 
-	 * \param afRadius 
-	 * \param afZ 
-	 * \param aCol 
+	 * \param avCenter
+	 * \param afRadius
+	 * \param afZ
+	 * \param aCol
 	 */
 	void cLowLevelGraphicsSDL::DrawLineCircle2D(const cVector2f& avCenter, float afRadius, float afZ, cColor aCol)
 	{
@@ -1718,8 +1718,8 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
-	void cLowLevelGraphicsSDL::CopyContextToTexure(iTexture* apTex, const cVector2l &avPos, 
+
+	void cLowLevelGraphicsSDL::CopyContextToTexure(iTexture* apTex, const cVector2l &avPos,
 							const cVector2l &avSize, const cVector2l &avTexOffset)
 	{
 		if(apTex==NULL)return;
@@ -1732,11 +1732,11 @@ namespace hpl {
 		//												avSize.y,avPos.y);
 
 		SetTexture(0, apTex);
-		glCopyTexSubImage2D(GetGLTextureTargetEnum(apTex->GetTarget()),0, 
+		glCopyTexSubImage2D(GetGLTextureTargetEnum(apTex->GetTarget()),0,
 							avTexOffset.x, lTexY,
 							avPos.x, lScreenY, avSize.x, avSize.y);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cLowLevelGraphicsSDL::SetRenderTarget(iTexture* pTex)
@@ -1764,16 +1764,16 @@ namespace hpl {
 			cPBuffer* pPBuffer = pSDLTex->GetPBuffer();
 
 			//pPBuffer->UnBind();//needed?
-			
+
 			if (!pPBuffer->MakeCurrentContext()){
 				Log("PBuffer::Activate() failed.\n");
 			}
 		}
-       
+
 
 		//Old OGL 1.1 Code:
 		/*FlushRenderTarget();
-        
+
 		mpRenderTarget = pTex;
 
 		if(mpRenderTarget==NULL)
@@ -1781,19 +1781,19 @@ namespace hpl {
 		else
 			glViewport(0,0,pTex->GetWidth(),pTex->GetHeight());*/
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	bool cLowLevelGraphicsSDL::RenderTargetHasZBuffer()
 	{
 		return true;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cLowLevelGraphicsSDL::FlushRenderTarget()
 	{
-		
+
 
 		//Old OGL 1.1 Code:
 		/*if(mpRenderTarget!=NULL)
@@ -1802,11 +1802,11 @@ namespace hpl {
 
 			//Log("w: %d\n",mpRenderTarget->GetWidth());
 
-			glCopyTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 0, 0, 
+			glCopyTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 0, 0,
 							mpRenderTarget->GetWidth(), mpRenderTarget->GetHeight(), 0);
 		}*/
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 
@@ -1814,9 +1814,9 @@ namespace hpl {
 	{
 		return cVector2f((float)mvScreenSize.x, (float)mvScreenSize.y);
 	}
-	
+
 	//-----------------------------------------------------------------------
-		
+
 	cVector2f cLowLevelGraphicsSDL::GetVirtualSize()
 	{
 		return mvVirtualSize;
@@ -1830,11 +1830,11 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	//////////////////////////////////////////////////////////////////////////
 	// PRIVATE METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
 
 	void cLowLevelGraphicsSDL::SetUpBatchArrays()
@@ -1851,22 +1851,22 @@ namespace hpl {
 		glClientActiveTextureARB(GL_TEXTURE2_ARB);
 		glTexCoordPointer(3,GL_FLOAT,sizeof(float)*mlBatchStride, &mpVertexArray[7]);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cLowLevelGraphicsSDL::SetVtxBatchStates(tVtxBatchFlag aFlags)
 	{
 		if(aFlags & eVtxBatchFlag_Position)	glEnableClientState(GL_VERTEX_ARRAY );
 		else glDisableClientState(GL_VERTEX_ARRAY );
-		
+
 		if(aFlags & eVtxBatchFlag_Color0) glEnableClientState(GL_COLOR_ARRAY );
 		else glDisableClientState(GL_COLOR_ARRAY );
-			
+
 		if(aFlags & eVtxBatchFlag_Normal) glEnableClientState(GL_NORMAL_ARRAY );
 		else glDisableClientState(GL_NORMAL_ARRAY );
 
 
-		if(aFlags & eVtxBatchFlag_Texture0){ 
+		if(aFlags & eVtxBatchFlag_Texture0){
 			glClientActiveTextureARB(GL_TEXTURE0_ARB);
 			glEnableClientState(GL_TEXTURE_COORD_ARRAY );
 		}
@@ -1875,7 +1875,7 @@ namespace hpl {
 			glDisableClientState(GL_TEXTURE_COORD_ARRAY );
 		}
 
-		if(aFlags & eVtxBatchFlag_Texture1){ 
+		if(aFlags & eVtxBatchFlag_Texture1){
 			glClientActiveTextureARB(GL_TEXTURE1_ARB);
 			glEnableClientState(GL_TEXTURE_COORD_ARRAY );
 		}
@@ -1884,7 +1884,7 @@ namespace hpl {
 			glDisableClientState(GL_TEXTURE_COORD_ARRAY );
 		}
 
-		if(aFlags & eVtxBatchFlag_Texture2){ 
+		if(aFlags & eVtxBatchFlag_Texture2){
 			glClientActiveTextureARB(GL_TEXTURE2_ARB);
 			glEnableClientState(GL_TEXTURE_COORD_ARRAY );
 		}
@@ -1892,10 +1892,10 @@ namespace hpl {
 			glClientActiveTextureARB(GL_TEXTURE2_ARB);
 			glDisableClientState(GL_TEXTURE_COORD_ARRAY );
 		}
-		
-		
+
+
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	GLenum cLowLevelGraphicsSDL::GetGLBlendEnum(eBlendFunc aType)
@@ -1938,13 +1938,13 @@ namespace hpl {
 		case eTextureParam_AlphaOp1:		return GL_OPERAND1_ALPHA_ARB;
 		case eTextureParam_AlphaOp2:		return GL_OPERAND2_ALPHA_ARB;
 		case eTextureParam_ColorScale:		return GL_RGB_SCALE_ARB;
-		case eTextureParam_AlphaScale:		return GL_ALPHA_SCALE;	
+		case eTextureParam_AlphaScale:		return GL_ALPHA_SCALE;
 		}
 		return 0;
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	GLenum cLowLevelGraphicsSDL::GetGLTextureOpEnum(eTextureOp aType)
 	{
 		switch(aType)
@@ -1976,7 +1976,7 @@ namespace hpl {
 	{
 		switch(aType)
 		{
-		case eTextureTarget_1D:		return GL_TEXTURE_1D;	
+		case eTextureTarget_1D:		return GL_TEXTURE_1D;
 		case eTextureTarget_2D:		return GL_TEXTURE_2D;
 		case eTextureTarget_Rect:
 			{
@@ -1987,7 +1987,7 @@ namespace hpl {
 		}
 		return 0;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	GLenum cLowLevelGraphicsSDL::GetGLTextureFuncEnum(eTextureFunc aType)
@@ -2014,17 +2014,17 @@ namespace hpl {
 		case eDepthTestFunc_Never:			return GL_NEVER;
 		case eDepthTestFunc_Less:				return GL_LESS;
 		case eDepthTestFunc_LessOrEqual:		return GL_LEQUAL;
-		case eDepthTestFunc_Greater:			return GL_GREATER; 
+		case eDepthTestFunc_Greater:			return GL_GREATER;
 		case eDepthTestFunc_GreaterOrEqual:	return GL_GEQUAL;
 		case eDepthTestFunc_Equal:			return GL_EQUAL;
 		case eDepthTestFunc_NotEqual:			return GL_NOTEQUAL;
-		case eDepthTestFunc_Always:			return GL_ALWAYS; 
+		case eDepthTestFunc_Always:			return GL_ALWAYS;
 		}
 		return 0;
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	GLenum cLowLevelGraphicsSDL::GetGLAlphaTestFuncEnum(eAlphaTestFunc aType)
 	{
 		switch(aType)
@@ -2032,15 +2032,15 @@ namespace hpl {
 		case eAlphaTestFunc_Never:			return GL_NEVER;
 		case eAlphaTestFunc_Less:				return GL_LESS;
 		case eAlphaTestFunc_LessOrEqual:		return GL_LEQUAL;
-		case eAlphaTestFunc_Greater:			return GL_GREATER; 
+		case eAlphaTestFunc_Greater:			return GL_GREATER;
 		case eAlphaTestFunc_GreaterOrEqual:	return GL_GEQUAL;
 		case eAlphaTestFunc_Equal:			return GL_EQUAL;
 		case eAlphaTestFunc_NotEqual:			return GL_NOTEQUAL;
-		case eAlphaTestFunc_Always:			return GL_ALWAYS; 
+		case eAlphaTestFunc_Always:			return GL_ALWAYS;
 		}
 		return 0;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	GLenum cLowLevelGraphicsSDL::GetGLStencilFuncEnum(eStencilFunc aType)
@@ -2050,25 +2050,25 @@ namespace hpl {
 		case eStencilFunc_Never:			return GL_NEVER;
 		case eStencilFunc_Less:				return GL_LESS;
 		case eStencilFunc_LessOrEqual:		return GL_LEQUAL;
-		case eStencilFunc_Greater:			return GL_GREATER; 
+		case eStencilFunc_Greater:			return GL_GREATER;
 		case eStencilFunc_GreaterOrEqual:	return GL_GEQUAL;
 		case eStencilFunc_Equal:			return GL_EQUAL;
 		case eStencilFunc_NotEqual:			return GL_NOTEQUAL;
-		case eStencilFunc_Always:			return GL_ALWAYS; 
+		case eStencilFunc_Always:			return GL_ALWAYS;
 		}
 		return 0;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	GLenum cLowLevelGraphicsSDL::GetGLStencilOpEnum(eStencilOp aType)
 	{
 		switch(aType)
 		{
-		case eStencilOp_Keep:			return GL_KEEP; 
-		case eStencilOp_Zero:			return GL_ZERO; 
-		case eStencilOp_Replace:		return GL_REPLACE; 
-		case eStencilOp_Increment:		return GL_INCR; 
+		case eStencilOp_Keep:			return GL_KEEP;
+		case eStencilOp_Zero:			return GL_ZERO;
+		case eStencilOp_Replace:		return GL_REPLACE;
+		case eStencilOp_Increment:		return GL_INCR;
 		case eStencilOp_Decrement:		return GL_DECR;
 		case eStencilOp_Invert:			return GL_INVERT;
 		case eStencilOp_IncrementWrap:	return GL_INCR_WRAP_EXT;
@@ -2085,7 +2085,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	void cLowLevelGraphicsSDL::ExitCG()
 	{
 		cgDestroyContext(mCG_Context);

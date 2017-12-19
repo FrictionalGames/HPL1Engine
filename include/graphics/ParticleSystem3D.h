@@ -91,7 +91,7 @@ namespace hpl {
 		typedef iEntity3D __super;
 	#endif
 	public:
-		cParticleSystem3D(	const tString asName,cParticleSystemData3D *apData, 
+		cParticleSystem3D(	const tString asName,cParticleSystemData3D *apData,
 							cResources *apResources, cGraphics *apGraphics);
 		~cParticleSystem3D();
 

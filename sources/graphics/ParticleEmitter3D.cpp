@@ -40,7 +40,7 @@ namespace hpl {
 
 	iParticleEmitter3D::iParticleEmitter3D(tString asName,tMaterialVec *avMaterials,
 									unsigned int alMaxParticles, cVector3f avSize,
-									cGraphics *apGraphics,cResources *apResources) 
+									cGraphics *apGraphics,cResources *apResources)
 	:iRenderable(asName),iParticleEmitter(avMaterials, alMaxParticles,avSize,apGraphics,apResources)
 	{
 		mpVtxBuffer = apGraphics->GetLowLevel()->CreateVertexBuffer(
@@ -80,17 +80,17 @@ namespace hpl {
 		mvMaxDrawSize =0;
 
 		mlAxisDrawUpdateCount = -1;
-		
+
 		mbApplyTransformToBV = false;
 
 		mlUpdateCount =0;
 		mfTimeStepAccum =0;
-		
+
 		//If Direction should be udpdated
 		mbUsesDirection = false;
 
 		mDrawType = eParticleEmitter3DType_FixedPoint;
-        
+
 		mCoordSystem = eParticleEmitter3DCoordSystem_World;
 
 
@@ -102,9 +102,9 @@ namespace hpl {
 	{
 		hplDelete(mpVtxBuffer);
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	//////////////////////////////////////////////////////////////////////////
 	// PUBLIC METHODS
 	//////////////////////////////////////////////////////////////////////////
@@ -142,9 +142,9 @@ namespace hpl {
 		}
 
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	void iParticleEmitter3D::UpdateLogic(float afTimeStep)
 	{
 		if(IsActive()==false) return;
@@ -162,7 +162,7 @@ namespace hpl {
 
 		Update(afTimeStep);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	iMaterial* iParticleEmitter3D::GetMaterial()
@@ -222,26 +222,26 @@ namespace hpl {
 			// SUB DIVISION SET UP
 				if(mvSubDivUV.size() > 1)
 				{
-					float *pTexArray = mpVtxBuffer->GetArray(eVertexFlag_Texture0);	
-	
+					float *pTexArray = mpVtxBuffer->GetArray(eVertexFlag_Texture0);
+
 					for(int i=0;i<(int)mlNumOfParticles;i++)
 					{
 						cParticle *pParticle = mvParticles[i];
-					
+
 						cPESubDivision &subDiv = mvSubDivUV[pParticle->mlSubDivNum];
-					
+
 		                SetTex(&pTexArray[i*12 + 0*3],subDiv.mvUV[0]);
 						SetTex(&pTexArray[i*12 + 1*3],subDiv.mvUV[1]);
 						SetTex(&pTexArray[i*12 + 2*3],subDiv.mvUV[2]);
 						SetTex(&pTexArray[i*12 + 3*3],subDiv.mvUV[3]);
-		
+
 						/*SetTex(&pTexArray[i*12 + 0*3], cVector3f(1,1,0));
 						SetTex(&pTexArray[i*12 + 1*3], cVector3f(0,1,0));
 						SetTex(&pTexArray[i*12 + 2*3], cVector3f(0,0,0));
 						SetTex(&pTexArray[i*12 + 3*3], cVector3f(1,0,0));*/
 					}
 				}
-			
+
 				//////////////////////////////////////////////////
 				// FIXED POINT
 				if(mDrawType == eParticleEmitter3DType_FixedPoint)
@@ -256,7 +256,7 @@ namespace hpl {
 				// NEW
 
 				// ---
-				
+
 
 					int lVtxStride = kvVertexElements[cMath::Log2ToInt(eVertexFlag_Position)];
 					int lVtxQuadSize = lVtxStride*4;
@@ -266,7 +266,7 @@ namespace hpl {
 						cParticle *pParticle = mvParticles[i];
 
 						//This is not the fastest thing possible...
-						cVector3f vParticlePos = pParticle->mvPos;	
+						cVector3f vParticlePos = pParticle->mvPos;
 
 						if(mCoordSystem == eParticleEmitter3DCoordSystem_Local){
 							vParticlePos = cMath::MatrixMul(mpParentSystem->GetWorldMatrix(), vParticlePos);
@@ -297,7 +297,7 @@ namespace hpl {
 							cVector3f(-mvDrawSize.x,-mvDrawSize.y,0),
 							cVector3f(-mvDrawSize.x, mvDrawSize.y,0),
 							cVector3f( mvDrawSize.x, mvDrawSize.y,0)
-					};	
+					};
 
 					int lVtxStride = kvVertexElements[cMath::Log2ToInt(eVertexFlag_Position)];
 					int lVtxQuadSize = lVtxStride*4;
@@ -309,7 +309,7 @@ namespace hpl {
 						//This is not the fastest thing possible
 						cVector3f vParticlePos = pParticle->mvPos;
 
-									
+
 						if(mCoordSystem == eParticleEmitter3DCoordSystem_Local){
 							vParticlePos = cMath::MatrixMul(mpParentSystem->GetWorldMatrix(), vParticlePos);
 						}
@@ -321,15 +321,15 @@ namespace hpl {
 
 						cVector3f vParticleSize = pParticle->mvSize;
 						cColor& colParticleColor = pParticle->mColor;
-										
+
 						if ( mbUsePartSpin )
 						{
 							cMatrixf mtxRotationMatrix = cMath::MatrixRotateZ(pParticle->mfSpin);
 
-	
+
 							SetPos(&pPosArray[i*lVtxQuadSize + 0*lVtxStride], vPos + cMath::MatrixMul(mtxRotationMatrix, vAdd[0]*vParticleSize));
 							SetCol(&pColArray[i*16 + 0*4], colParticleColor);
-	
+
 							SetPos(&pPosArray[i*lVtxQuadSize + 1*lVtxStride], vPos + cMath::MatrixMul(mtxRotationMatrix, vAdd[1]*vParticleSize));
 							SetCol(&pColArray[i*16 + 1*4], colParticleColor);
 
@@ -338,7 +338,7 @@ namespace hpl {
 
 							SetPos(&pPosArray[i*lVtxQuadSize + 3*lVtxStride], vPos + cMath::MatrixMul(mtxRotationMatrix, vAdd[3]*vParticleSize));
 							SetCol(&pColArray[i*16 + 3*4], colParticleColor);
-	
+
 						}
 						else
 						{
@@ -346,7 +346,7 @@ namespace hpl {
 
 							SetPos(&pPosArray[i*lVtxQuadSize + 0*lVtxStride], vPos + vAdd[0]*vParticleSize);
 							SetCol(&pColArray[i*16 + 0*4], colParticleColor);
-	
+
 							SetPos(&pPosArray[i*lVtxQuadSize + 1*lVtxStride], vPos + vAdd[1]*vParticleSize);
 							SetCol(&pColArray[i*16 + 1*4], colParticleColor);
 
@@ -371,7 +371,7 @@ namespace hpl {
 					};
 
 					int lVtxStride = kvVertexElements[cMath::Log2ToInt(eVertexFlag_Position)];
-					int lVtxQuadSize = lVtxStride*4;	
+					int lVtxQuadSize = lVtxStride*4;
 
 					for(int i=0;i<(int)mlNumOfParticles;i++)
 					{
@@ -392,7 +392,7 @@ namespace hpl {
 
 						cVector3f vDirY;
 						cVector2f vDirX;
-					
+
 						if(vPos1 == vPos2)
 						{
 							vDirY = cVector3f(0,1,0);
@@ -405,10 +405,10 @@ namespace hpl {
 							vDirX = cVector2f(vDirY.y,-vDirY.x);
 							vDirX.Normalise();
 						}
-						
+
 						vDirX = vDirX * mvDrawSize.x * pParticle->mvSize.x;
 						vDirY = vDirY * mvDrawSize.y * pParticle->mvSize.y;
-	
+
 						SetPos(&pPosArray[i*lVtxQuadSize + 0*lVtxStride], vPos2 + vDirY*-1 + vDirX);
 						SetCol(&pColArray[i*16 + 0*4], pParticle->mColor);
 
@@ -435,7 +435,7 @@ namespace hpl {
 					}
 
 					cVector3f vAdd[4];
-					/*= 
+					/*=
 					{
 						mvRight		 +	mvForward * 1,
 						mvRight * -1 +	mvForward * 1,
@@ -465,7 +465,7 @@ namespace hpl {
 						vAdd[1] = mvRight * -vSize.x	 +	mvForward * vSize.y;
 						vAdd[2] = mvRight * -vSize.x	 +	mvForward * -vSize.y;
 						vAdd[3] = mvRight	* vSize.x	 +	mvForward * -vSize.y;
-						
+
 						cColor& colParticleColor = pParticle->mColor;
 
 						SetPos(&pPosArray[i*lVtxQuadSize + 0*lVtxStride], vPos + vAdd[0]);
@@ -487,15 +487,15 @@ namespace hpl {
 				mbUpdateGfx = false;
 
 				//Update the vertex buffer data
-			
+
 				if(mvSubDivUV.size() > 1)
 					mpVtxBuffer->UpdateData(eVertexFlag_Position | eVertexFlag_Color0 | eVertexFlag_Texture0, false);
 				else
 					mpVtxBuffer->UpdateData(eVertexFlag_Position | eVertexFlag_Color0, false);
-		
+
 				}
 			}
-		
+
 	}
 
 	//-----------------------------------------------------------------------
@@ -508,9 +508,9 @@ namespace hpl {
 	//-----------------------------------------------------------------------
 
 	bool iParticleEmitter3D::IsVisible()
-	{ 
+	{
 		if(IsActive()==false) return false;
-		return IsRendered(); 
+		return IsRendered();
 	}
 
 	//-----------------------------------------------------------------------
@@ -575,14 +575,14 @@ namespace hpl {
 			else
 			{
 				m_mtxTemp = cMath::MatrixInverse(apCamera->GetViewMatrix());
-				//m_mtxTemp = cMath::MatrixMul(cMath::MatrixInverse(apCamera->GetViewMatrix()), 
+				//m_mtxTemp = cMath::MatrixMul(cMath::MatrixInverse(apCamera->GetViewMatrix()),
 				//								GetWorldMatrix());
 			}
 
 			//m_mtxTemp.SetTranslation(cVector3f(0,0,0));//GetWorldMatrix().GetTranslation());
 
 			//m_mtxTemp = cMatrixf::Identity;
-			
+
 			//cMatrixf mtxCam = apCamera->GetViewMatrix();
 			//Log("MATRIX: %s\n",mtxCam.ToString().c_str());
 
@@ -602,7 +602,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	//-----------------------------------------------------------------------
 
 	//////////////////////////////////////////////////////////////////////////

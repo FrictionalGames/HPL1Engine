@@ -87,14 +87,14 @@ namespace hpl {
 		{
 			return hplNew( cMaterial_Fallback01_Bump, (asName,apLowLevelGraphics,
 				apImageManager,apTextureManager,apRenderer,
-				apProgramManager,aPicture,apRenderer3D) );	
+				apProgramManager,aPicture,apRenderer3D) );
 		}
 		else if(apLowLevelGraphics->GetCaps(eGraphicCaps_GL_VertexProgram) &&
 			iMaterial::GetQuality() >= eMaterialQuality_Low)
 		{
 			return hplNew( cMaterial_Fallback02_Diffuse, (asName,apLowLevelGraphics,
 				apImageManager,apTextureManager,apRenderer,
-				apProgramManager,aPicture,apRenderer3D) );	
+				apProgramManager,aPicture,apRenderer3D) );
 		}
 		else
 		{
@@ -103,6 +103,6 @@ namespace hpl {
 				apProgramManager,aPicture,apRenderer3D) );
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
 }

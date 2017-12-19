@@ -56,17 +56,17 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	void cWidgetCheckBox::SetChecked(bool abX)
 	{
 		if(mbChecked == abX) return;
 
 		mbChecked = abX;
-        
+
 		cGuiMessageData data = cGuiMessageData(mbChecked);
 		ProcessMessage(eGuiMessage_CheckChange,data);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 
@@ -83,7 +83,7 @@ namespace hpl {
 		mvGfxBox[0][0] = mpSkin->GetGfx(eGuiSkinGfx_CheckBoxDisabledUnchecked);
 		mvGfxBox[0][1] = mpSkin->GetGfx(eGuiSkinGfx_CheckBoxDisabledChecked);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cWidgetCheckBox::OnChangeSize()
@@ -100,18 +100,18 @@ namespace hpl {
 		// Box
 		mpSet->DrawGfx( mvGfxBox[IsEnabled()][mbChecked], GetGlobalPosition() +
 						cVector3f(0,mvSize.y/2 - mvGfxBox[0][0]->GetActiveSize().y/2,0));
-		
+
 		////////////////////////////////
 		// Text
 		eGuiSkinFont font = IsEnabled() ? eGuiSkinFont_Default : eGuiSkinFont_Disabled;
-		DrawSkinText(			msText,font, GetGlobalPosition() + 
+		DrawSkinText(			msText,font, GetGlobalPosition() +
 							cVector3f(	mvGfxBox[0][0]->GetActiveSize().x +3.0f,
 										mvSize.y/2 - mvDefaultFontSize.y/2,0),
 							eFontAlign_Left);
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	bool cWidgetCheckBox::OnMouseMove(cGuiMessageData &aData)
 	{
 		return true;
@@ -130,7 +130,7 @@ namespace hpl {
 	bool cWidgetCheckBox::OnMouseUp(cGuiMessageData &aData)
 	{
 		if(mbPressed) SetChecked(!mbChecked);
-		
+
 		mbPressed = false;
 		return true;
 	}
@@ -141,9 +141,9 @@ namespace hpl {
 	{
 		return false;
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	bool cWidgetCheckBox::OnMouseLeave(cGuiMessageData &aData)
 	{
 		mbPressed = false;

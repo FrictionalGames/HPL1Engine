@@ -25,7 +25,7 @@
 #include "math/BoundingVolume.h"
 
 namespace hpl {
-	
+
 	class cBoundingVolume;
 
 	enum eVertexBufferDrawType
@@ -43,9 +43,9 @@ namespace hpl {
 		eVertexBufferUsageType_Stream,
 		eVertexBufferUsageType_LastEnum
 	};
-		
+
 	typedef tFlag tVertexFlag;
-    
+
 	#define eVertexFlag_Normal		(0x00000001)
 	#define eVertexFlag_Position	(0x00000002)
 	#define eVertexFlag_Color0		(0x00000004)
@@ -58,7 +58,7 @@ namespace hpl {
 
 	#define klNumOfVertexFlags (9)
 
-	const tVertexFlag kvVertexFlags[] = {eVertexFlag_Normal,eVertexFlag_Position,eVertexFlag_Color0, 
+	const tVertexFlag kvVertexFlags[] = {eVertexFlag_Normal,eVertexFlag_Position,eVertexFlag_Color0,
 				eVertexFlag_Color1,eVertexFlag_Texture0,eVertexFlag_Texture1,eVertexFlag_Texture2,
 				eVertexFlag_Texture3,eVertexFlag_Texture4};
 
@@ -83,24 +83,24 @@ namespace hpl {
 	class iVertexBuffer
 	{
 	public:
-		iVertexBuffer(iLowLevelGraphics* apLowLevelGraphics,tVertexFlag aFlags, 
+		iVertexBuffer(iLowLevelGraphics* apLowLevelGraphics,tVertexFlag aFlags,
 			eVertexBufferDrawType aDrawType,eVertexBufferUsageType aUsageType,
 			int alReserveVtxSize,int alReserveIdxSize) :
 			mVertexFlags(aFlags), mpLowLevelGraphics(apLowLevelGraphics),
 			mDrawType(aDrawType), mUsageType(aUsageType), mlElementNum(-1),
 			mbTangents(false){}
-		
+
 		virtual ~iVertexBuffer(){}
 
 		tVertexFlag GetFlags(){ return mVertexFlags;}
-		
+
 		virtual void AddVertex(tVertexFlag aType,const cVector3f& avVtx)=0;
 		virtual void AddColor(tVertexFlag aType,const cColor& aColor)=0;
 		virtual void AddIndex(unsigned int alIndex)=0;
-		
+
 		virtual bool Compile(tVertexCompileFlag aFlags)=0;
 		virtual void UpdateData(tVertexFlag aTypes, bool abIndices)=0;
-		
+
 		/**
 		* This creates a double of the vertex array with w=0.
 		* \param abUpdateData if the hardware buffer should be updated aswell.
@@ -120,12 +120,12 @@ namespace hpl {
 		virtual void UnBind()=0;
 
         virtual iVertexBuffer* CreateCopy(eVertexBufferUsageType aUsageType)=0;
-			
+
         virtual cBoundingVolume CreateBoundingVolume()=0;
-		
+
 		virtual float* GetArray(tVertexFlag aType)=0;
 		virtual unsigned int* GetIndices()=0;
-		
+
 		virtual int GetVertexNum()=0;
 		virtual int GetIndexNum()=0;
 
@@ -134,7 +134,7 @@ namespace hpl {
 		 */
 		virtual void ResizeArray(tVertexFlag aType, int alSize)=0;
 		virtual void ResizeIndices(int alSize)=0;
-        		
+
 		//For debugging purposes, quite slow to use.
 		virtual cVector3f GetVector3(tVertexFlag aType, unsigned alIdx)=0;
 		virtual cVector3f GetVector4(tVertexFlag aType, unsigned alIdx)=0;

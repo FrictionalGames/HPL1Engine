@@ -32,7 +32,7 @@ namespace hpl {
 	class cParticleSystemData3D;
 
 	//----------------------------------------------------
-	
+
 	typedef std::map<tString, cParticleSystemData3D*> tParticleSystemData3DMap;
 	typedef tParticleSystemData3DMap::iterator tParticleSystemData3DMapIt;
 
@@ -44,24 +44,24 @@ namespace hpl {
 	public:
 		cParticleManager(cGraphics* apGraphics,cResources *apResources);
 		~cParticleManager();
-		
+
 		/**
 		 * NOT USED! For now that is... there is no need for it since particle systems are not really
 		 * resources, yet
-		 * \param asName 
-		 * \return 
+		 * \param asName
+		 * \return
 		 */
 		iResourceBase* Create(const tString& asName);
-		
+
 		iParticleSystem2D* CreatePS2D(const tString& asName, cVector3f avSize);
-		
+
 		cParticleSystem3D* CreatePS3D(const tString& asName,const tString& asType, cVector3f avSize,
 										const cMatrixf& a_mtxTransform);
 
 		void AddData3D(cParticleSystemData3D *apData);
 
 		void Preload(const tString& asFile);
-		
+
 		void Destroy(iResourceBase* apResource);
 		void Unload(iResourceBase* apResource);
 	private:

@@ -43,10 +43,10 @@ namespace hpl {
 
 
 		eMaterialType GetType(eMaterialRenderType aType);
-		void EditVertexes(eMaterialRenderType aType, iCamera* apCam, iLight *pLight, 
+		void EditVertexes(eMaterialRenderType aType, iCamera* apCam, iLight *pLight,
 			tVertexVec *apVtxVec,cVector3f *apTransform,unsigned int alIndexAdd);
 
-	
+
 	private:
 		bool mbHasSpecular;
 	};
@@ -54,10 +54,10 @@ namespace hpl {
 	class cMaterialType_BumpSpec2D : public iMaterialType
 	{
 	public:
-		bool IsCorrect(tString asName){ 
+		bool IsCorrect(tString asName){
 			return cString::ToLowerCase(asName)=="bumpspec2d";
 		}
-		
+
 		iMaterial* Create(const tString& asName,iLowLevelGraphics* apLowLevelGraphics,
 			cImageManager* apImageManager, cTextureManager *apTextureManager,
 			cRenderer2D* apRenderer, cGpuProgramManager* apProgramManager,

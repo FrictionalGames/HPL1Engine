@@ -26,12 +26,12 @@
 class TiXmlElement;
 
 namespace hpl {
-	
+
 	class cResources;
 	class cGraphics;
 	class cImageEntityData;
 	class cImageAnimation;
-	
+
 	class cImageEntity : public iEntity2D
 	{
 	public:
@@ -52,15 +52,15 @@ namespace hpl {
 		bool LoadEntityData(cImageEntityData* apData, int alAnimNum=0);
 
 		cImageEntityData* GetEntityData(){ return mpEntityData;}
-		
+
 		///// Animation ////////////////////////
-		
+
 		bool SetAnimation(const tString& asName, bool abLoop = true);
 		const tString& GetCurrentAnimation() const;
 		bool AnimationIsLooped(){ return mbLoopAnimation; }
 		bool AnimationIsPlaying();
 		void StopAnimation();
-		
+
 		void SetAnimationSpeed(float afSpeed){ mfAnimSpeed = afSpeed; }
 		float GetAnimationSpeed(){ return mfAnimSpeed; }
 
@@ -85,7 +85,7 @@ namespace hpl {
 		void Flash(float afAdd);
 
 		bool IsCollidable(){ return mbCollidable;}
-		
+
 	private:
 		cResources* mpResources;
 		cGraphics* mpGraphics;
@@ -102,7 +102,7 @@ namespace hpl {
 		cVector2f mvSize;
 		bool mbFlipH;
 		bool mbFlipV;
-        
+
 		bool mbRotationHasChanged;
 		bool mbSizeHasChanged;
 		float mfCurrentAngle;
@@ -113,7 +113,7 @@ namespace hpl {
 		int mlFrame;
 		int mlLastFrame;
 		bool mbAnimationPaused;
-		bool mbLoopAnimation; 
+		bool mbLoopAnimation;
 
 		tVertexVec mvBaseVtx;
 		tVertexVec mvVtx;

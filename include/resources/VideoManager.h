@@ -28,9 +28,9 @@ namespace hpl {
 	class iVideoStream;
 	class iVideoStreamLoader;
 
-	
+
 	//----------------------------------------------------
-	
+
 	typedef std::list<iVideoStreamLoader*> tVideoStreamLoaderList;
 	typedef tVideoStreamLoaderList::iterator tVideoStreamLoaderListIt;
 
@@ -46,9 +46,9 @@ namespace hpl {
 	public:
 		cVideoManager(cGraphics* apGraphics,cResources *apResources);
 		~cVideoManager();
-		
+
 		iResourceBase* Create(const tString& asName);
-		
+
 		iVideoStream* CreateVideo(const tString& asName);
 
 		void AddVideoLoader(iVideoStreamLoader *apLoader);

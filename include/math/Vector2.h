@@ -72,7 +72,7 @@ namespace hpl {
 				y = aVal;
 				return *this;
 			}
-			
+
 			//////////////////////////////////////////
 			// Boolean
 			/////////////////////////////////////////
@@ -88,7 +88,7 @@ namespace hpl {
 				if(x == aVec.x && y==aVec.y)return false;
 				else return true;
 			}
-			
+
 			//////////////////////////////////////////
 			// Vector Arithmetic
 			/////////////////////////////////////////
@@ -190,9 +190,9 @@ namespace hpl {
 			}
 
 			//////////////////////////////////////////
-			// Methods 
+			// Methods
 			/////////////////////////////////////////
-			
+
 			inline void FromVec(const T *apVec)
 			{
 				x = apVec[0];
@@ -235,6 +235,6 @@ namespace hpl {
 				return str;
 			}
 	};
-	
+
 };
 #endif // HPL_VECTOR2_H

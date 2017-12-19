@@ -41,7 +41,7 @@ namespace hpl {
 	#define START_TIMING_TAB(x)
 	#define STOP_TIMING_TAB(x)
 #endif
-	
+
 	class iScript;
 
 	extern void SetLogFile(const tWString &asFile);
@@ -105,28 +105,28 @@ namespace hpl {
 		/**
 		 * Creates a ne script
 		 * \param asName name of the script.
-		 * \return 
+		 * \return
 		 */
 		virtual iScript* CreateScript(const tString& asName)=0;
 
 		/**
-		 * Add a function to the script vm. Example: "void test(float x)" 
+		 * Add a function to the script vm. Example: "void test(float x)"
 		 * \param asFuncDecl the declaration.
-		 * \return 
+		 * \return
 		 */
 		virtual bool AddScriptFunc(const tString& asFuncDecl, void* pFunc, int callConv)=0;
-		
+
 		/**
 		 * Add a variable to the script vm. Example: "int MyVar"
-		 * \param asVarDecl the declartion 
+		 * \param asVarDecl the declartion
 		 * \param *pVar the variable
-		 * \return 
+		 * \return
 		 */
 		virtual bool AddScriptVar(const tString& asVarDecl, void *pVar)=0;
 
 		/**
 		* Sets the main thread to rest for a number of milliseconds.
-		* \param alMillisecs 
+		* \param alMillisecs
 		*/
 		virtual void Sleep ( const unsigned int alMillisecs )=0 ;
 

@@ -26,7 +26,7 @@ namespace hpl {
 
 	class cBody2D;
 	class cCollider2D;
-	
+
 	class cArea2D : public iEntity2D
 	{
 	public:
@@ -42,10 +42,10 @@ namespace hpl {
 
 		bool CheckWorldCollision(tFlag alFlags);
 		bool CheckBodyCollision(cBody2D *apBody);
-		
+
 		const cRect2f& GetBoundingBox();
 		bool UpdateBoundingBox();
-	
+
 	private:
 		cCollider2D* mpCollider;
 

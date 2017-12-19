@@ -51,7 +51,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	bool cConfigFile::Load()
 	{
 		#ifdef WIN32
@@ -59,7 +59,7 @@ namespace hpl {
 		#else
 				FILE *pFile = fopen(cString::To8Char(msFile).c_str(),"rb");
 		#endif
-		
+
 		bool bRet = mpXmlDoc->LoadFile(pFile);
 
 		if(pFile) fclose(pFile);
@@ -78,7 +78,7 @@ namespace hpl {
 		#endif
 
 		bool bRet = mpXmlDoc->SaveFile(pFile);
-		
+
 		if(pFile) fclose(pFile);
 
 		return bRet;
@@ -89,13 +89,13 @@ namespace hpl {
 	void cConfigFile::SetString(tString asLevel, tString asName, tString asVal)
 	{
 		TiXmlElement *pLevelElem = mpXmlDoc->FirstChildElement(asLevel.c_str());
-		
+
 		if(pLevelElem==NULL){
 			TiXmlElement *pNodeChild = hplNew( TiXmlElement, (asLevel.c_str()) );
 			pLevelElem = static_cast<TiXmlElement*>(mpXmlDoc->InsertEndChild(*pNodeChild));
 			hplDelete(pNodeChild);
 		}
-		
+
 		pLevelElem->SetAttribute(asName.c_str(),asVal.c_str());
 	}
 	//-----------------------------------------------------------------------
@@ -107,9 +107,9 @@ namespace hpl {
 
 		SetString(asLevel,asName,sBuffer);
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	void cConfigFile::SetFloat(tString asLevel, tString asName, float afVal)
 	{
 		char sBuffer[40];
@@ -117,7 +117,7 @@ namespace hpl {
 
 		SetString(asLevel,asName,sBuffer);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cConfigFile::SetBool(tString asLevel, tString asName, bool abVal)
@@ -139,10 +139,10 @@ namespace hpl {
 	{
 		const char *sVal = GetCharArray(asLevel,asName);
 		if(sVal==NULL) return alDefault;
-		
+
 		return cString::ToInt(sVal,alDefault);
 	}
-	
+
 	float cConfigFile::GetFloat(tString asLevel, tString asName,float afDefault)
 	{
 		const char *sVal = GetCharArray(asLevel,asName);
@@ -155,7 +155,7 @@ namespace hpl {
 	{
 		const char *sVal = GetCharArray(asLevel,asName);
 		if(sVal==NULL) return abDefault;
-        
+
 		return cString::ToBool(sVal,abDefault);
 	}
 
@@ -173,7 +173,7 @@ namespace hpl {
 		if(pLevelElem==NULL){
 			return NULL;
 		}
-		
+
 		return pLevelElem->Attribute(asName.c_str());
 	}
 

@@ -69,19 +69,19 @@ namespace hpl {
 		mbHasAlpha = false;
 		mbDepthTest = true;
 		mfValue = 1;
-		
-		for(int i=0;i<2;i++) 
+
+		for(int i=0;i<2;i++)
 			for(int j=0;j<kMaxProgramNum;j++) mpProgram[i][j]=NULL;
 
 		mlPassCount=0;
 
 		mlId = -1;
 	}
-	
+
 	iMaterial::~iMaterial()
 	{
 		int i;
-		
+
 		for(i=0;i<(int)mvImage.size();i++){
 			if(mvImage[i])
 				mpImageManager->Destroy(mvImage[i]);
@@ -110,7 +110,7 @@ namespace hpl {
 
 	/*void iMaterial::Destroy()
 	{
-				
+
 	}*/
 
 	//-----------------------------------------------------------------------
@@ -138,7 +138,7 @@ namespace hpl {
 		if(mPicture==eMaterialPicture_Image)
 		{
 			tVertexVec VtxVec = mvImage[aType]->GetVertexVecCopy(0,0);
-			
+
 			SizeRect.x = VtxVec[0].tex.x;
 			SizeRect.y = VtxVec[0].tex.y;
 			SizeRect.w = VtxVec[2].tex.x - VtxVec[0].tex.x;

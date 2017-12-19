@@ -66,9 +66,9 @@ namespace hpl {
 
 		/**
 		 * Create a from a file. Used internally
-		 * \param asFile 
-		 * \param asEntry 
-		 * \return 
+		 * \param asFile
+		 * \param asEntry
+		 * \return
 		 */
 		virtual bool CreateFromFile(const tString& asFile, const tString& asEntry)=0;
 
@@ -82,13 +82,13 @@ namespace hpl {
 		virtual void UnBind()=0;
 
 		virtual bool SetFloat(const tString& asName, float afX)=0;
-		
+
 		bool SetVec2f(const tString& asName, const cVector2f avVec)
 		{
 			return SetVec2f(asName,avVec.x, avVec.y);
 		}
 		virtual bool SetVec2f(const tString& asName, float afX,float afY)=0;
-		
+
 		bool SetVec3f(const tString& asName, const cVector3f& avVec)
 		{
 			return SetVec3f(asName, avVec.x,avVec.y,avVec.z);
@@ -106,13 +106,13 @@ namespace hpl {
 		virtual bool SetVec4f(const tString& asName, float afX,float afY,float afZ, float afW)=0;
 
 		virtual bool SetMatrixf(const tString& asName, const cMatrixf& mMtx)=0;
-		virtual bool SetMatrixf(const tString& asName, eGpuProgramMatrix mType, 
+		virtual bool SetMatrixf(const tString& asName, eGpuProgramMatrix mType,
 			eGpuProgramMatrixOp mOp)=0;
 
 		virtual bool SetTexture(const tString& asName,iTexture* apTexture, bool abAutoDisable=true)=0;
 		virtual bool SetTextureToUnit(int alUnit, iTexture* apTexture)=0;
 
-			
+
 		eGpuProgramType GetType() { return mProgramType;}
 
 	protected:

@@ -23,7 +23,7 @@
 #include <list>
 
 namespace hpl {
-	
+
 	//----------------------------------------------
 
 	enum eHapticShapeType
@@ -61,7 +61,7 @@ namespace hpl {
 	};
 
 	//----------------------------------------------
-	
+
 	class iHapticShape;
 	class iHapticForce;
 	class iHapticSurface;

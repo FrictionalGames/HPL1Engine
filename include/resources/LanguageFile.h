@@ -31,7 +31,7 @@ namespace hpl {
 	class cLanguageEntry
 	{
 	public:
-		tWString mwsText;		
+		tWString mwsText;
 	};
 
 	typedef std::map<tString, cLanguageEntry*> tLanguageEntryMap;
@@ -59,13 +59,13 @@ namespace hpl {
 	public:
 		cLanguageFile(cResources *apResources);
 		~cLanguageFile();
-		
+
 		bool LoadFromFile(const tString asFile);
-		
+
 		const tWString& Translate(const tString& asCat, const tString& asName);
-        
+
 	private:
-		tLanguageCategoryMap m_mapCategories;	
+		tLanguageCategoryMap m_mapCategories;
 		tWString mwsEmpty;
 
 		cResources *mpResources;

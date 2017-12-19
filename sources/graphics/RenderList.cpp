@@ -29,10 +29,10 @@
 
 
 namespace hpl {
-	
+
 
 	int cRenderList::mlGlobalRenderCount = 0;
-	
+
 
 	//////////////////////////////////////////////////////////////////////////
 	// MOTION BLUR OBJECT COMPARE
@@ -42,7 +42,7 @@ namespace hpl {
 												iRenderable* pObjectB) const
 	{
 		//TODO: perhaps Z here...
-		
+
 		return pObjectA->GetVertexBuffer() < pObjectB->GetVertexBuffer();
 	}
 
@@ -68,16 +68,16 @@ namespace hpl {
 	bool cOcclusionQueryObject_Compare::operator()(	const cOcclusionQueryObject* pObjectA,
 													const cOcclusionQueryObject* pObjectB) const
 	{
-        if(pObjectA->mpVtxBuffer != pObjectB->mpVtxBuffer) 
+        if(pObjectA->mpVtxBuffer != pObjectB->mpVtxBuffer)
 			return pObjectA->mpVtxBuffer < pObjectB->mpVtxBuffer;
-		
-		if(pObjectA->mpMatrix != pObjectB->mpMatrix) 
+
+		if(pObjectA->mpMatrix != pObjectB->mpMatrix)
 			return pObjectA->mpMatrix < pObjectB->mpMatrix;
-		
+
 		return (int)pObjectA->mbDepthTest < (int)pObjectB->mbDepthTest;
 	}
 
-	
+
 	//////////////////////////////////////////////////////////////////////////
 	// RENDER NODE
 	//////////////////////////////////////////////////////////////////////////
@@ -88,7 +88,7 @@ namespace hpl {
 	//-----------------------------------------------------------------------
 
 	bool cRenderNodeCompare::operator()(cRenderNode* apNodeA,cRenderNode* apNodeB) const
-	{	
+	{
 		int  val = apNodeA->mpState->Compare(apNodeB->mpState);
 		bool ret =  val>0 ? true : false;
 		return ret;
@@ -123,7 +123,7 @@ namespace hpl {
 
 			pNode->mpState->SetMode(apSettings);
 			pNode->Render(apSettings);
-		}	
+		}
 	}
 
 
@@ -150,7 +150,7 @@ namespace hpl {
 		g_poolRenderState = m_poolRenderState;
 		g_poolRenderNode = m_poolRenderNode;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cRenderList::~cRenderList()
@@ -171,8 +171,8 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 	// PUBLIC METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
-	
+
+
 	//-----------------------------------------------------------------------
 
 	void cRenderList::Clear()
@@ -185,25 +185,25 @@ namespace hpl {
 		m_setQueries.clear();
 		m_setMotionBlurObjects.clear();
 		m_setTransperantObjects.clear();
-		
+
 		mRootNodeDepth.DeleteChildren();
 		mRootNodeDiffuse.DeleteChildren();
 		mRootNodeTrans.DeleteChildren();
-		
+
 		for(int i=0;i<MAX_NUM_OF_LIGHTS;i++)
 		{
 			mRootNodeLight[i].DeleteChildren();
 		}
-		
+
 		mlLastRenderCount = mlRenderCount;
 		mlRenderCount++;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cRenderList::AddOcclusionQuery(cOcclusionQueryObject *apObject)
 	{
-		m_setQueries.insert(apObject);	
+		m_setQueries.insert(apObject);
 	}
 
 	//-----------------------------------------------------------------------
@@ -219,16 +219,16 @@ namespace hpl {
 	{
 		return cMotionBlurObjectIterator(&m_setMotionBlurObjects);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cTransperantObjectIterator cRenderList::GetTransperantIterator()
 	{
 		return cTransperantObjectIterator(&m_setTransperantObjects);
 	}
-	
+
 	//-----------------------------------------------------------------------
-		
+
 	cLight3DIterator cRenderList::GetLightIt()
 	{
 		return cLight3DIterator(&m_setLights);
@@ -252,7 +252,7 @@ namespace hpl {
 	{
 		return (int)m_setObjects.size();
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cRenderNode* cRenderList::GetRootNode(eRenderListDrawType aObjectType, eMaterialRenderType aPassType, int alLightNum)
@@ -271,12 +271,12 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	void cRenderList::Compile()
 	{
 		int lLightNum = (int)m_setLights.size();
 		if(lLightNum > MAX_NUM_OF_LIGHTS) lLightNum = MAX_NUM_OF_LIGHTS;
-		
+
 		for(int i=0; i<lLightNum; ++i) mvObjectsPerLight[i] =0;
 
 		// Iterate the objects to be rendered and build trees with render states.
@@ -312,13 +312,13 @@ namespace hpl {
 									0,NULL, false,lPass);
 					}
 				}
-				
+
 				//If object uses light add the object to each light's tree.
 				if(pMat->UsesType(eMaterialRenderType_Light))
 				{
 					//Light trees that the object will belong to.
 					int lLightCount =0;
-					
+
 					tLight3DSetIt lightIt = m_setLights.begin();
 					for(;lightIt != m_setLights.end();++lightIt)
 					{
@@ -340,7 +340,7 @@ namespace hpl {
 						++lLightCount;
 					}
 				}
-				
+
 				//If it has a diffuse pass, add to the diffuse tree.
 				if(pObject->GetMaterial()->UsesType(eMaterialRenderType_Diffuse))
 				{
@@ -355,11 +355,11 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	bool cRenderList::Add(iRenderable* apObject)
 	{
 		if(apObject->IsVisible()==false) return false;
-		
+
 		//Check if the object is culled by fog.
 		cRenderer3D *pRenderer = mpGraphics->GetRenderer3D();
 		if(pRenderer->GetFogActive() && pRenderer->GetFogCulling())
@@ -372,17 +372,17 @@ namespace hpl {
 				return false;
 			}
 		}
-		
+
 		//Check if the object as already been added.
 		if(mlRenderCount == apObject->GetRenderCount()) return false;
 		apObject->SetRenderCount(mlRenderCount);
-		
+
 		//Update the graphics of object.
 		apObject->UpdateGraphics(cRenderList::GetCamera(),mfFrameTime,this);
 
 		//Set that the object is to be rendered.
 		apObject->SetGlobalRenderCount(mlGlobalRenderCount);
-		
+
 		switch(apObject->GetRenderType())
 		{
 			//Add a normal renderable
@@ -399,7 +399,7 @@ namespace hpl {
 			else
 			{
 				m_setObjects.insert(apObject);
-				
+
 				//MotionBlur
 				if(mpGraphics->GetRendererPostEffects()->GetMotionBlurActive()
 					|| mpGraphics->GetRenderer3D()->GetRenderSettings()->mbFogActive
@@ -421,7 +421,7 @@ namespace hpl {
 
 			break;
 			//Add all sub meshes of the mesh
-		case eRenderableType_Mesh: 
+		case eRenderableType_Mesh:
 			{
 				cMeshEntity* pMesh = static_cast<cMeshEntity*>(apObject);
 				for(int i=0;i<pMesh->GetSubMeshEntityNum();i++)
@@ -433,7 +433,7 @@ namespace hpl {
 			//Add a light to a special container
 		case eRenderableType_Light:
 			iLight3D *pLight = static_cast<iLight3D*>(apObject);
-						
+
 			m_setLights.insert(pLight);
 			break;
 		}
@@ -442,20 +442,20 @@ namespace hpl {
 
 	}
 
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	//////////////////////////////////////////////////////////////////////////
 	// PRIVATE METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	cRenderNode* cRenderList::InsertNode(cRenderNode* apListNode, cRenderNode* apTempNode)
 	{
 		//Log("Searching for node... ");
 		//Create a node with the state.
-		
+
 		tRenderNodeSetIt it = apListNode->m_setNodes.find(apTempNode);
 
 		if(it != apListNode->m_setNodes.end())
@@ -470,7 +470,7 @@ namespace hpl {
 			//no node found, create one and return it.
 			cRenderNode *pNode = m_poolRenderNode->Create();
 			pNode->mpState = m_poolRenderState->Create();
-				
+
 			//Copy the relevant values to the state.
 			pNode->mpState->Set(apTempNode->mpState);
 
@@ -479,7 +479,7 @@ namespace hpl {
 			return pNode;
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	/*cRenderNode* cRenderList::InsertNode(cRenderNode* apListNode, cRenderNode* apTempNode)
@@ -512,7 +512,7 @@ namespace hpl {
 		// Go through each render state type and set the appropriate
 		// variables for each type. The most important states are set first.
 		// The state is then inserted to a tree structure, where each state type is a level.
-		//                       Example: 
+		//                       Example:
 		//                 |----------root--------|
 		//           |---pass              |-----pass----|
 		//       depth-test            depth-test     depth-test
@@ -522,13 +522,13 @@ namespace hpl {
 		// This is then passed on the next state, the state inserted (or exist found) there and so on.
 		// At each insertion, it is first checked if a state with variables exist, and if so, use that.
 		// if not, a new node is created and inserted.
-		// The temp node state is used as storage for the data to skip the overhead of deletion 
+		// The temp node state is used as storage for the data to skip the overhead of deletion
 		// and creation when testing if state exist. Instead new data is only created if the state
 		// is new.
 		// Each Render state has the same class, but uses different var depending on type, this to
 		// skip the overhead of using inheritance.
 		//-------------------------------------------------------------
-		
+
 		/////// SECTOR //////////////
 		if(aPassType == eMaterialRenderType_Z)
 		{
@@ -538,7 +538,7 @@ namespace hpl {
 
 			pTempState->mType = eRenderStateType_Sector;
 			pTempState->mpSector = apObject->GetCurrentSector();
-			
+
 			pNode = InsertNode(pNode, pTempNode);
 		}
 
@@ -564,7 +564,7 @@ namespace hpl {
 
 			pTempState->mType = eRenderStateType_DepthTest;
 			pTempState->mbDepthTest = pMaterial->GetDepthTest();
-			
+
 			pNode = InsertNode(pNode, pTempNode);
 		}
 
@@ -576,13 +576,13 @@ namespace hpl {
 			//pTempState = m_poolRenderState->Create();
 			//pTempNode->mpState = pTempState;
 
-			
+
 			pTempState->mType = eRenderStateType_Depth;
 			pTempState->mfZ = apObject->GetZ();
-			
+
 			pNode = InsertNode(pNode, pTempNode);
 		}
-		
+
 		/////// ALPHA MODE //////////////
 		{
 			//Log("\nAlpha level %d\n", pMaterial->GetAlphaMode(mType,alPass));
@@ -590,13 +590,13 @@ namespace hpl {
 			//pTempState = m_poolRenderState->Create();
 			//pTempNode->mpState = pTempState;
 
-			
+
 			pTempState->mType = eRenderStateType_AlphaMode;
 			pTempState->mAlphaMode = pMaterial->GetAlphaMode(aPassType,alPass, apLight);
 
 			pNode = InsertNode(pNode, pTempNode);
 		}
-		
+
 		/////// BLEND MODE //////////////
 		{
 			//Log("\nBlend level %d : %d\n",pMaterial->GetBlendMode(mType,alPass),pMaterial->GetChannelMode(mType,alPass));
@@ -612,7 +612,7 @@ namespace hpl {
 
 			pNode = InsertNode(pNode, pTempNode);
 		}
-		
+
 		/////// VERTEX PROGRAM //////////////
 		{
 			//Log("\nVertex program level\n");
@@ -621,7 +621,7 @@ namespace hpl {
 			//pTempNode->mpState = pTempState;
 
 			pTempState->mType = eRenderStateType_VertexProgram;
-			
+
 			pTempState->mpVtxProgram = pMaterial->GetVertexProgram(aPassType,alPass,apLight);
 			pTempState->mpVtxProgramSetup = pMaterial->GetVertexProgramSetup(aPassType,alPass,apLight);
 			pTempState->mbUsesLight = pMaterial->VertexProgramUsesLight(aPassType, alPass,apLight);
@@ -640,7 +640,7 @@ namespace hpl {
 
 
 			pTempState->mType = eRenderStateType_FragmentProgram;
-			
+
 			pTempState->mpFragProgram = pMaterial->GetFragmentProgram(aPassType,alPass,apLight);
 			pTempState->mpFragProgramSetup = pMaterial->GetFragmentProgramSetup(aPassType,alPass,apLight);
 
@@ -674,7 +674,7 @@ namespace hpl {
 
 
 			pTempState->mType = eRenderStateType_VertexBuffer;
-			
+
 			pTempState->mpVtxBuffer = apObject->GetVertexBuffer();
 
 			pNode = InsertNode(pNode, pTempNode);
@@ -689,11 +689,11 @@ namespace hpl {
 
 
 			pTempState->mType = eRenderStateType_Matrix;
-			
+
 			pTempState->mpModelMatrix = apObject->GetModelMatrix(mpCamera);
 			pTempState->mpInvModelMatrix = apObject->GetInvModelMatrix();
 			pTempState->mvScale = apObject->GetCalcScale();
-			
+
 			pNode = InsertNode(pNode, pTempNode);
 		}
 
@@ -706,9 +706,9 @@ namespace hpl {
 
 
 			pTempState->mType = eRenderStateType_Render;
-			
+
 			pTempState->mpObject = apObject;
-			
+
 			InsertNode(pNode, pTempNode);
 		}
 
@@ -732,7 +732,7 @@ namespace hpl {
 		// Go through each render state type and set the appropriate
 		// variables for each type. The most important states are set first.
 		// The state is then inserted to a tree structure, where each state type is a level.
-		//                       Example: 
+		//                       Example:
 		//                 |----------root--------|
 		//           |---pass              |-----pass----|
 		//       depth-test            depth-test     depth-test
@@ -742,13 +742,13 @@ namespace hpl {
 		// This is then passed on the next state, the state inserted (or exist found) there and so on.
 		// At each insertion, it is first checked if a state with variables exist, and if so, use that.
 		// if not, a new node is created and inserted.
-		// The temp node state is used as storage for the data to skip the overhead of deletion 
+		// The temp node state is used as storage for the data to skip the overhead of deletion
 		// and creation when testing if state exist. Instead new data is only created if the state
 		// is new.
 		// Each Render state has the same class, but uses different var depending on type, this to
 		// skip the overhead of using inheritance.
 		//-------------------------------------------------------------
-		
+
 		/////// SECTOR //////////////
 		if(aPassType == eMaterialRenderType_Z)
 		{
@@ -758,7 +758,7 @@ namespace hpl {
 
 			pTempState->mType = eRenderStateType_Sector;
 			pTempState->mpSector = apObject->GetCurrentSector();
-			
+
 			pNode = InsertNode(pNode, pTempNode);
 		}
 
@@ -784,7 +784,7 @@ namespace hpl {
 
 			pTempState->mType = eRenderStateType_DepthTest;
 			pTempState->mbDepthTest = pMaterial->GetDepthTest();
-			
+
 			pNode = InsertNode(pNode, pTempNode);
 		}
 
@@ -796,13 +796,13 @@ namespace hpl {
 			pTempState = m_poolRenderState->Create();
 			pTempNode->mpState = pTempState;
 
-			
+
 			pTempState->mType = eRenderStateType_Depth;
 			pTempState->mfZ = apObject->GetZ();
-			
+
 			pNode = InsertNode(pNode, pTempNode);
 		}
-		
+
 		/////// ALPHA MODE //////////////
 		{
 			//Log("\nAlpha level %d\n", pMaterial->GetAlphaMode(mType,alPass));
@@ -810,13 +810,13 @@ namespace hpl {
 			pTempState = m_poolRenderState->Create();
 			pTempNode->mpState = pTempState;
 
-			
+
 			pTempState->mType = eRenderStateType_AlphaMode;
 			pTempState->mAlphaMode = pMaterial->GetAlphaMode(aPassType,alPass, apLight);
 
 			pNode = InsertNode(pNode, pTempNode);
 		}
-		
+
 		/////// BLEND MODE //////////////
 		{
 			//Log("\nBlend level %d : %d\n",pMaterial->GetBlendMode(mType,alPass),pMaterial->GetChannelMode(mType,alPass));
@@ -832,7 +832,7 @@ namespace hpl {
 
 			pNode = InsertNode(pNode, pTempNode);
 		}
-		
+
 		/////// VERTEX PROGRAM //////////////
 		{
 			//Log("\nVertex program level\n");
@@ -841,7 +841,7 @@ namespace hpl {
 			pTempNode->mpState = pTempState;
 
 			pTempState->mType = eRenderStateType_VertexProgram;
-			
+
 			pTempState->mpVtxProgram = pMaterial->GetVertexProgram(aPassType,alPass,apLight);
 			pTempState->mpVtxProgramSetup = pMaterial->GetVertexProgramSetup(aPassType,alPass,apLight);
 			pTempState->mbUsesLight = pMaterial->VertexProgramUsesLight(aPassType, alPass,apLight);
@@ -860,7 +860,7 @@ namespace hpl {
 
 
 			pTempState->mType = eRenderStateType_FragmentProgram;
-			
+
 			pTempState->mpFragProgram = pMaterial->GetFragmentProgram(aPassType,alPass,apLight);
 
 			pNode = InsertNode(pNode, pTempNode);
@@ -893,7 +893,7 @@ namespace hpl {
 
 
 			pTempState->mType = eRenderStateType_VertexBuffer;
-			
+
 			pTempState->mpVtxBuffer = apObject->GetVertexBuffer();
 
 			pNode = InsertNode(pNode, pTempNode);
@@ -908,11 +908,11 @@ namespace hpl {
 
 
 			pTempState->mType = eRenderStateType_Matrix;
-			
+
 			pTempState->mpModelMatrix = apObject->GetModelMatrix(mpCamera);
 			pTempState->mpInvModelMatrix = apObject->GetInvModelMatrix();
 			pTempState->mvScale = apObject->GetCalcScale();
-			
+
 			pNode = InsertNode(pNode, pTempNode);
 		}
 
@@ -925,9 +925,9 @@ namespace hpl {
 
 
 			pTempState->mType = eRenderStateType_Render;
-			
+
 			pTempState->mpObject = apObject;
-			
+
 			InsertNode(pNode, pTempNode);
 		}
 

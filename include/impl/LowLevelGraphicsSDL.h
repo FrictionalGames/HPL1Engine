@@ -40,9 +40,9 @@ namespace hpl {
 	//-------------------------------------------------
 
 	GLenum ColorFormatToGL(eColorDataFormat aFormat);
-	
+
 	GLenum TextureTargetToGL(eTextureTarget aTarget);
-	
+
 	//-------------------------------------------------
 
 	class cLowLevelGraphicsSDL : public iLowLevelGraphics
@@ -223,7 +223,7 @@ namespace hpl {
 		void SetRenderTarget(iTexture* pTex);
 		bool RenderTargetHasZBuffer();
 		void FlushRenderTarget();
-		
+
 		void FlushRendering();
 		void SwapBuffers();
 

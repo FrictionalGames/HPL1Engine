@@ -33,7 +33,7 @@ namespace hpl {
 	typedef tNodeList::iterator tNodeListIt;
 
 	typedef cSTLIterator<iNode*,tNodeList,tNodeListIt> cNodeIterator;
-	
+
 	//------------------------------------
 
 	kSaveData_BaseClass(iNode)

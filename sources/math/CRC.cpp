@@ -27,7 +27,7 @@ namespace hpl {
 	void cCRCTable::Init (tCRCKey aKey)
 	{
 		if (aKey == mKey) return;
-		
+
 		mKey = aKey;
 
 		// for all possible byte values

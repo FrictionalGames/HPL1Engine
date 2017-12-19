@@ -39,7 +39,7 @@ namespace hpl {
 	iPhysicsController::iPhysicsController(const tString &asName, iPhysicsWorld *apWorld)
 	{
 		msName = asName;
-		
+
 		mpWorld = apWorld;
 
 		mpBody = NULL;
@@ -57,7 +57,7 @@ namespace hpl {
 
 		mbPaused = false;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	iPhysicsController::~iPhysicsController()
@@ -80,7 +80,7 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	
+
 	void iPhysicsController::Update(float afTimeStep)
 	{
 		if(mbActive==false || mbPaused) return;
@@ -93,7 +93,7 @@ namespace hpl {
 		{
 			vInput = cMath::MatrixMul(cMath::MatrixInverse(mpBody->GetLocalMatrix().GetRotation()),vInput);
 		}
-		
+
 
 		float fValue = GetAxisValue(mInputAxis, vInput);
 		float fError = mfDestValue - fValue;
@@ -106,12 +106,12 @@ namespace hpl {
 			else
 				fOutput = cMath::Max(fOutput, -mfMaxOutput);
 		}
-		
+
 		if(mbLogInfo)
 			Log("%s | Input: %f Dest: %f Error: %f OutPut: %f\n",msName.c_str(),fValue,mfDestValue,fError,fOutput);
 
 		AddOutputValue(mOutputType,mOutputAxis,fOutput);
-		
+
 		////////////////////////////////////////
 		//Check if dest vale is reached
 		if(mEndType == ePhysicsControllerEnd_OnDest && mpJoint)
@@ -128,7 +128,7 @@ namespace hpl {
 	//-----------------------------------------------------------------------
 
 	void iPhysicsController::SetActive(bool abX)
-	{	
+	{
 		if(abX == mbActive) return;
 
         mPidController.Reset();
@@ -173,7 +173,7 @@ namespace hpl {
 
 		return 0;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void iPhysicsController::AddOutputValue(ePhysicsControllerOutput aOutput,
@@ -181,7 +181,7 @@ namespace hpl {
 									float afVal)
 	{
 		cVector3f vVec(0,0,0);
-		
+
 		switch(aAxis)
 		{
 		case ePhysicsControllerAxis_X: vVec.x = afVal; break;
@@ -201,7 +201,7 @@ namespace hpl {
 		case ePhysicsControllerOutput_Force: mpBody->AddForce(vVec); break;
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	float iPhysicsController::GetAxisValue(ePhysicsControllerAxis aAxis, const cVector3f &avVec)
@@ -266,9 +266,9 @@ namespace hpl {
 	void iPhysicsController::SaveToSaveData(iSaveData *apSaveData)
 	{
 		kSaveData_SaveToBegin(iPhysicsController);
-		
+
 		kSaveData_SaveTo(msName);
-		
+
 		kSaveData_SaveTo(mfA);
 		kSaveData_SaveTo(mfB);
 		kSaveData_SaveTo(mfC);
@@ -327,7 +327,7 @@ namespace hpl {
 	void iPhysicsController::SaveDataSetup(cSaveObjectHandler *apSaveObjectHandler, cGame *apGame)
 	{
 		kSaveData_SetupBegin(iPhysicsController);
-		
+
 		kSaveData_LoadObject(mpBody,mlBodyId,iPhysicsBody*);
 		kSaveData_LoadObject(mpJoint,mlJointId, iPhysicsJoint*);
 	}

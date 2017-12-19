@@ -31,7 +31,7 @@ namespace hpl {
 	public:
 		cConfigFile(tWString asFile);
 		~cConfigFile();
-		
+
 		/**
 		 * Loads data from file
 		 * \return true if loading ws ok, else false
@@ -42,7 +42,7 @@ namespace hpl {
 		 * \return true if loading ws ok, else false
 		 */
 		bool Save();
-		
+
 		void SetString(tString asLevel, tString asName, tString asVal);
 		void SetInt(tString asLevel, tString asName, int alVal);
 		void SetFloat(tString asLevel, tString asName, float afVal);

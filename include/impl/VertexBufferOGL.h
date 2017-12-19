@@ -34,12 +34,12 @@ namespace hpl {
 		void AddVertex(tVertexFlag aType,const cVector3f& avVtx);
 		void AddColor(tVertexFlag aType,const cColor& aColor);
 		void AddIndex(unsigned int alIndex);
-		
+
 		bool Compile(tVertexCompileFlag aFlags);
 		void UpdateData(tVertexFlag aTypes, bool abIndices);
 
 		void CreateShadowDouble(bool abUpdateData);
-		
+
 		void Transform(const cMatrixf &mtxTransform);
 
 		void Draw(eVertexBufferDrawType aDrawType);
@@ -59,7 +59,7 @@ namespace hpl {
 
 		void ResizeArray(tVertexFlag aType, int alSize);
 		void ResizeIndices(int alSize);
-		
+
 		//For debugging purposes
 		int GetVertexNum();
 		int GetIndexNum();
@@ -69,7 +69,7 @@ namespace hpl {
 		cColor GetColor(tVertexFlag aType, unsigned alIdx);
 		unsigned int GetIndex(tVertexFlag aType, unsigned alIdx);
 
-		
+
 	private:
 		void SetVertexStates(tVertexFlag aFlags);
 

@@ -50,7 +50,7 @@ namespace hpl {
 	{
 		mfFrameLength = afLength;
 	}
-		
+
 	//-----------------------------------------------------------------------
 
 	//////////////////////////////////////////////////////////////////////////
@@ -171,7 +171,7 @@ namespace hpl {
 			{
 				//Log("Over max!\n");
 				//Stop at end
-				if(pAnim->mType == eGuiGfxAnimationType_StopAtEnd) 
+				if(pAnim->mType == eGuiGfxAnimationType_StopAtEnd)
 				{
 					lFrame = (int)mvImageBufferVec.size()-1;
 					mfCurrentFrame = (float)lFrame;
@@ -191,7 +191,7 @@ namespace hpl {
 				}
 			}
 			//Log("Frame %d %f actual_frame: %d size: %d\n",lFrame,mfCurrentFrame,((int)mvImageBufferVec.size()-1) - lFrame,mvImageBufferVec.size());
-			
+
 			//Oscillate fix
 			if(mbForwardAnim== false && pAnim->mType == eGuiGfxAnimationType_Oscillate)
 			{
@@ -226,13 +226,13 @@ namespace hpl {
 			SetImage(mvImageBufferVec[mlActiveImage],0);
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	void cGuiGfxElement::AddImage(cResourceImage* apImage)
 	{
 		SetImage(apImage, mlTextureNum);
-		
+
 		mvActiveSize = GetImageSize();
 
 		++mlTextureNum;
@@ -275,7 +275,7 @@ namespace hpl {
 		pAnimation->msName = asName;
 
 		mvAnimations.push_back(pAnimation);
-        		
+
 		return pAnimation;
 	}
 

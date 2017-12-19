@@ -204,7 +204,7 @@ namespace hpl {
 	struct cKeyPress
 	{
 		cKeyPress(){}
-		cKeyPress(eKey aKey, int alUnicode,int alModifier) 
+		cKeyPress(eKey aKey, int alUnicode,int alModifier)
 			: mKey(aKey), mlUnicode(alUnicode), mlModifier(alModifier) {}
 
 		eKey mKey;

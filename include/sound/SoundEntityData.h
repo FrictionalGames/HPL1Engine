@@ -71,28 +71,28 @@ namespace hpl {
 
 		void SetPriority(int alX){ mlPriority = alX;}
 		int GetPriority(){ return mlPriority;}
-		
+
 		//Resource implementation
 		bool Reload(){ return false;}
 		void Unload(){}
 		void Destroy(){}
-	
-	protected:	
+
+	protected:
 		tString msMainSound;
 		tString msStartSound;
 		tString msStopSound;
 
 		bool mbFadeStart;
 		bool mbFadeStop;
-        
+
 		float mfVolume;
 		float mfMaxDistance;
 		float mfMinDistance;
-		
+
 		bool mbStream;
 		bool mbLoop;
 		bool mbUse3D;
-		
+
 		bool mbBlockable;
 		float mfBlockVolumeMul;
 

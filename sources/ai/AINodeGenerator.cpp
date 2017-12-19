@@ -40,7 +40,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	cAINodeGeneratorParams::cAINodeGeneratorParams()
 	{
 		msNodeType = "node";
@@ -55,7 +55,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	//-----------------------------------------------------------------------
 
 	class cCollideRayCallback : public iPhysicsRayCallback
@@ -84,17 +84,17 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	cAINodeGenerator::cAINodeGenerator()
 	{
 
 	}
-	
+
 	cAINodeGenerator::~cAINodeGenerator()
 	{
 
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	//////////////////////////////////////////////////////////////////////////
@@ -102,7 +102,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	static cCollideRayCallback gCollideRayCallback;
 
 	//-----------------------------------------------------------------------
@@ -115,7 +115,7 @@ namespace hpl {
 		iPhysicsWorld *pPhysicsWorld = apWorld->GetPhysicsWorld();
 
 		bool mbLoadFromFile=false;
-		
+
 		cSystem *pSystem = apWorld->GetSystem();
 		cResources *pResources = apWorld->GetResources();
 		cFileSearcher *pFileSearcher = pResources->GetFileSearcher();
@@ -140,8 +140,8 @@ namespace hpl {
 				}
 			}
 		}
-        		
-		
+
+
 		/////////////////////////////////
 		// Get the size of the world
 		cPhysicsBodyIterator it = pPhysicsWorld->GetBodyIterator();
@@ -154,7 +154,7 @@ namespace hpl {
 
 			cVector3f vMin = pBody->GetBV()->GetMin();
 			cVector3f vMax = pBody->GetBV()->GetMax();
-			
+
 			//X
 			if(vWorldMin.x > vMin.x) vWorldMin.x = vMin.x;
 			if(vWorldMax.x < vMax.x) vWorldMax.x = vMax.x;
@@ -167,13 +167,13 @@ namespace hpl {
 			if(vWorldMin.z > vMin.z) vWorldMin.z = vMin.z;
 			if(vWorldMax.z < vMax.z) vWorldMax.z = vMax.z;
 		}
-		
+
 		//Make the world small according to grid size.
 		vWorldMin.x += mpParams->mfGridSize;
 		vWorldMin.z += mpParams->mfGridSize;
 		vWorldMax.x -= mpParams->mfGridSize;
 		vWorldMax.z -= mpParams->mfGridSize;
-		
+
 		/////////////////////////////////////////
 		//Check against the user set min and max
 		if(vWorldMin.x < mpParams->mvMinPos.x) vWorldMin.x = mpParams->mvMinPos.x;
@@ -184,7 +184,7 @@ namespace hpl {
 
 		if(vWorldMin.z < mpParams->mvMinPos.z) vWorldMin.z = mpParams->mvMinPos.z;
 		if(vWorldMax.z > mpParams->mvMaxPos.z) vWorldMax.z = mpParams->mvMaxPos.z;
-				
+
 
 		/////////////////////////////////////////
 		//Place the nodes in the world
@@ -194,7 +194,7 @@ namespace hpl {
 		{
 			cVector3f vStart(vPos.x, vWorldMax.y, vPos.z);
 			cVector3f vEnd(vPos.x, vWorldMin.y, vPos.z);
-			
+
 			pPhysicsWorld->CastRay(this,vStart,vEnd,false,false,true);
 
 			//Log("Pos: %s Min: %s Max: %s\n",vPos.ToString().c_str(),
@@ -227,16 +227,16 @@ namespace hpl {
 		for(; nodeIt != mpNodeList->end(); ++nodeIt)
 		{
 			cTempAiNode &Node = *nodeIt;
-		
+
 			//Check if there are any walls close by.
 			for(int i=0; i<4; ++i)
 			{
 				gCollideRayCallback.mbIntersected = false;
 				pPhysicsWorld->CastRay(&gCollideRayCallback,Node.mvPos,Node.mvPos + vEnds[i],true,false,true);
-				
+
 				if(gCollideRayCallback.mbIntersected)
 				{
-					//Log("Walldistance %f : Add: (%s) Push (%s) Min: %f\n",gCollideRayCallback.mfDist, 
+					//Log("Walldistance %f : Add: (%s) Push (%s) Min: %f\n",gCollideRayCallback.mfDist,
 					//											vEnds[i].ToString().c_str(),
 					//											vPushBackDirs[i].ToString().c_str(),
 					//											mpParams->mfMinWallDist);
@@ -253,13 +253,13 @@ namespace hpl {
 
 		SaveToFile();
 	}
-	
+
 	//////////////////////////////////////////////////////////////////////////
 	// PRIVATE
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	bool cAINodeGenerator::OnIntersect(iPhysicsBody *pBody,cPhysicsRayParams *apParams)
 	{
 		if(pBody->GetMass() != 0) return true;
@@ -267,7 +267,7 @@ namespace hpl {
 		iPhysicsWorld *pPhysicsWorld = mpWorld->GetPhysicsWorld();
 
 		cVector3f vPosition = apParams->mvPoint + cVector3f(0,mpParams->mfHeightFromGround,0);
-		
+
 		mpNodeList->push_back(cTempAiNode(vPosition,""));
 
 		return true;
@@ -285,24 +285,24 @@ namespace hpl {
 
 		tString sMapPath = pFileSearcher->GetFilePath(mpWorld->GetFileName());
 		tString sSaveFile = cString::SetFileExt(sMapPath,"ainodes");
-		
+
 		TiXmlDocument* pXmlDoc = hplNew( TiXmlDocument, (sSaveFile.c_str()) );
 
 		TiXmlElement *pRootElem = static_cast<TiXmlElement*>(pXmlDoc->InsertEndChild(TiXmlElement("AiNodes")));
-		
+
 		tTempAiNodeListIt nodeIt = mpNodeList->begin();
 		for(; nodeIt != mpNodeList->end(); ++nodeIt)
 		{
 			cTempAiNode &Node = *nodeIt;
 			TiXmlElement *pNodeElem = static_cast<TiXmlElement*>(pRootElem->InsertEndChild(TiXmlElement("Node")));
-			
-			tString sPos =	cString::ToString(Node.mvPos.x)+" " + 
+
+			tString sPos =	cString::ToString(Node.mvPos.x)+" " +
 							cString::ToString(Node.mvPos.y)+" " +
 							cString::ToString(Node.mvPos.z);
 			pNodeElem->SetAttribute("Pos",sPos.c_str());
 			pNodeElem->SetAttribute("Name", Node.msName.c_str());
 		}
-				
+
 		if(pXmlDoc->SaveFile()==false)
 		{
 			Error("Couldn't save XML file %s\n",sSaveFile.c_str());
@@ -344,6 +344,6 @@ namespace hpl {
 
 		hplDelete(pXmlDoc);
 	}
-	
+
 	//-----------------------------------------------------------------------
 }

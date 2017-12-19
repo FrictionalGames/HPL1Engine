@@ -22,7 +22,7 @@
 #include "graphics/Material.h"
 
 namespace hpl {
-	
+
 	class cGraphics;
 	class cResources;
 
@@ -31,22 +31,22 @@ namespace hpl {
 	public:
 		cMaterialHandler(cGraphics* apGraphics, cResources* apResources);
 		~cMaterialHandler();
-		
+
 		/**
 		 * Add a new type of material
-		 * \param apTypedata 
+		 * \param apTypedata
 		 */
 		void Add(iMaterialType* apTypedata);
 		/**
 		 * Create a new material
-		 * \param asMatName 
-		 * \param mPicType 
-		 * \return 
+		 * \param asMatName
+		 * \param mPicType
+		 * \return
 		 */
 		iMaterial* Create(tString asMatName, eMaterialPicture mPicType);
 
 		iMaterial* Create(const tString& asName,tString asMatName, eMaterialPicture mPicType);
-	
+
 	private:
 		tMaterialTypeList mlstMatTypes;
 		cResources* mpResources;

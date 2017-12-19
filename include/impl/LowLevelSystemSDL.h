@@ -32,12 +32,12 @@ namespace hpl {
 	public:
 		cLogWriter(const tWString& asDefaultFile);
 		~cLogWriter();
-		
+
 		void Write(const tString& asMessage);
 		void Clear();
 
 		void SetFileName(const tWString& asFile);
-		
+
 	private:
 		void ReopenFile();
 
@@ -46,13 +46,13 @@ namespace hpl {
 	};
 
 	//------------------------------------------------------
-	
+
 	class cScriptOutput// : public  asIOutputStream
 	{
 	public:
 		cScriptOutput() : msMessage("") {}
 		~cScriptOutput(){}
-		
+
 		void AddMessage(const asSMessageInfo *msg);
 		void Display();
 		void Clear();

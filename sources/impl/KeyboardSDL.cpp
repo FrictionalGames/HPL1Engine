@@ -27,13 +27,13 @@
 #endif
 
 namespace hpl {
-	
+
 	//////////////////////////////////////////////////////////////////////////
 	// CONSTRUCTORS
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	cKeyboardSDL::cKeyboardSDL(cLowLevelInputSDL *apLowLevelInputSDL) : iKeyboard("SDL Portable Keyboard")
 	{
 		mpLowLevelInputSDL = apLowLevelInputSDL;
@@ -44,7 +44,7 @@ namespace hpl {
 		SDL_EnableUNICODE(1);
 		SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	//////////////////////////////////////////////////////////////////////////
@@ -58,7 +58,7 @@ namespace hpl {
         for(; it != mpLowLevelInputSDL->mlstEvents.end(); ++it)
 		{
 			SDL_Event *pEvent = &(*it);
-			
+
 			if(pEvent->type != SDL_KEYDOWN && pEvent->type != SDL_KEYUP)
 			{
 				continue;
@@ -78,7 +78,7 @@ namespace hpl {
 				if(sdl_mod & KMOD_META)		mModifier |= eKeyModifier_META;
 
 				mlstKeysPressed.push_back(cKeyPress(key,pEvent->key.keysym.unicode,mModifier));
-				
+
 				//if(mlstKeysPressed.size()>MAX_KEY_PRESSES) mlstKeysPressed.pop_front();
 			}
 		}
@@ -128,15 +128,15 @@ namespace hpl {
 	{
 		return eKey_NONE;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	/////////////////////////////////////////////////////////////////////////
 	// PRIVATE METHODS
 	/////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	eKey cKeyboardSDL::SDLToKey(int alKey)
 	{
 		switch(alKey)
@@ -278,7 +278,7 @@ namespace hpl {
 
 		return eKey_NONE;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cKeyboardSDL::ClearKeyList()

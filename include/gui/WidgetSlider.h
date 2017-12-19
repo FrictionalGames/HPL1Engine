@@ -37,10 +37,10 @@ namespace hpl {
 
 		int GetValue(){ return mlValue;}
 		void SetValue(int alValue);
-		
+
 		int GetMaxValue(){ return mlMaxValue;}
 		void SetMaxValue(int alMax);
-		
+
 		int GetButtonValueAdd(){ return mlButtonValueAdd;}
 		void SetButtonValueAdd(int alAdd);
 
@@ -55,7 +55,7 @@ namespace hpl {
 		void UpdateBarProperties();
 
 		bool ArrowButtonDown(iWidget* apWidget,cGuiMessageData& aData);
-		kGuiCalllbackDeclarationEnd(ArrowButtonDown);		
+		kGuiCalllbackDeclarationEnd(ArrowButtonDown);
 
 		/////////////////////////
 		// Implemented functions
@@ -64,7 +64,7 @@ namespace hpl {
 		void OnChangeSize();
 		void OnChangePosition();
 
-		
+
 		void OnDraw(float afTimeStep, cGuiClipRegion *apClipRegion);
 
 		bool OnMouseMove(cGuiMessageData &aData);

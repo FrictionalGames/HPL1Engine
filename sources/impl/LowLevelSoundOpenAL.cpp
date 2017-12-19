@@ -67,15 +67,15 @@ namespace hpl {
 												const tString& asType, bool abStream,bool abLoopStream)
 	{
 		cOpenALSoundData* pSoundData = hplNew( cOpenALSoundData, (asName,abStream) );
-		
+
 		pSoundData->SetLoopStream(abLoopStream);
-		
+
 		if(pSoundData->CreateFromFile(asFilePath)==false)
 		{
 			hplDelete(pSoundData);
 			return NULL;
 		}
-		
+
 		return pSoundData;
 	}
 
@@ -92,12 +92,12 @@ namespace hpl {
 		}
 	}
 	//-----------------------------------------------------------------------
-	
+
 	void cLowLevelSoundOpenAL::UpdateSound(float afTimeStep)
 	{
 		OAL_Update();
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cLowLevelSoundOpenAL::SetListenerAttributes(const cVector3f &avPos,const cVector3f &avVel,
@@ -135,9 +135,9 @@ namespace hpl {
 
 		OAL_Listener_SetAttributes ( avPos.v, mvListenerVelocity.v, (mvListenerForward*(-1)).v, mvListenerUp.v );
 	}
-	
+
 	//-----------------------------------------------------------------------
-		
+
 	void cLowLevelSoundOpenAL::SetListenerAttenuation (bool abEnabled)
 	{
 		mbListenerAttenuation = abEnabled;
@@ -149,7 +149,7 @@ namespace hpl {
 	{
 		OAL_SetRollOffFactor ( afFactor );
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cLowLevelSoundOpenAL::SetVolume(float afVolume)
@@ -169,7 +169,7 @@ namespace hpl {
 */
 	//-----------------------------------------------------------------------
 
-	void cLowLevelSoundOpenAL::Init(bool abUseHardware, bool abForceGeneric, bool abUseEnvAudio,int alMaxChannels, 
+	void cLowLevelSoundOpenAL::Init(bool abUseHardware, bool abForceGeneric, bool abUseEnvAudio,int alMaxChannels,
 									int alStreamUpdateFreq, bool abUseThreading, bool abUseVoiceManagement,
 									int alMaxMonoSourceHint, int alMaxStereoSourceHint,
 									int alStreamingBufferSize, int alStreamingBufferCount, bool abEnableLowLevelLog, tString asDeviceName)
@@ -177,10 +177,10 @@ namespace hpl {
 
 		cOpenALSoundEnvironment* pEnv = hplNew(cOpenALSoundEnvironment,());
 
-		
+
 
 		mbLogSounds = abEnableLowLevelLog;
-		
+
 		Log(" Initializing OpenAL.\n");
 
 		cOAL_Init_Params cInitParams;
@@ -197,7 +197,7 @@ namespace hpl {
 
 		if (mbLogSounds)
 			Log("  Sound logging enabled\n");
-		
+
 		#ifdef WIN32
 
 		cInitParams.mbUseEFX = abUseEnvAudio;
@@ -205,7 +205,7 @@ namespace hpl {
 		if ( abUseHardware )
 		{
 			Log("  Trying to open hardware device...%s ",abForceGeneric ? "(Generic forced)" : "" );
-			
+
 			OAL_SetupLogging(mbLogSounds, eOAL_LogOutput_File, eOAL_LogVerbose_High, "HPL_OpenAL_HWDevice");
 
 			if (abForceGeneric)
@@ -223,11 +223,11 @@ namespace hpl {
 		#else
 
 		cInitParams.mbUseEFX = false;
-	
+
 		Log("  Trying to open audio device... ");
 
 		OAL_SetupLogging(mbLogSounds, eOAL_LogOutput_File, eOAL_LogVerbose_High, "HPL_OpenAL");
-		
+
 		#endif
 
 		mbInitialized = OAL_Init(cInitParams);
@@ -247,17 +247,17 @@ namespace hpl {
 		#ifdef WIN32
 
 			mbHardwareAcc = (strcmp(OAL_Info_GetDeviceName(),"Generic Software") != 0);
-		
+
 			if (abUseHardware)
 			{
-				if (mbHardwareAcc) 
+				if (mbHardwareAcc)
 					Log("Success!\n");
 				else
 					Log("Failed opening hardware device, using software\n");
 			}
 			else
 				Log("Success!\n");
-		
+
 		#else
 
 				Log("Success!\n");
@@ -265,7 +265,7 @@ namespace hpl {
 
 		OAL_SetDistanceModel ( eOAL_DistanceModel_None );
 
-		
+
 		Log("  Device name: %s\n", OAL_Info_GetDeviceName() );
 		Log("  Number of mono sources: %d\n", OAL_Info_GetNumSources());
 		Log("  Vendor name: %s\n", OAL_Info_GetVendorName());
@@ -301,12 +301,12 @@ namespace hpl {
 				Log("  Setting up Environmental Audio...Failed.\n");
 		}
 		#endif
-			      
-				
+
+
 		//Default listener settings.
 		float Pos[3] = {0,0,0};
 		float Vel[3] = {0,0,0};
-				
+
 		mvListenerForward = cVector3f(0,0,1);
 		mvListenerUp = cVector3f(0,1,0);
 
@@ -333,12 +333,12 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	iSoundEnvironment* cLowLevelSoundOpenAL::LoadSoundEnvironment(const tString &asFilePath)
 	{
 		if (!mbEnvAudioEnabled)
 			return NULL;
-		
+
 		/////////////////////////////////////////////
 		///Check if sound already exist
 		iSoundEnvironment *pSE = GetSoundEnvironmentFromFileName(asFilePath);
@@ -365,7 +365,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	void cLowLevelSoundOpenAL::SetSoundEnvironment ( iSoundEnvironment* apSoundEnv )
 	{
 		if (!mbEnvAudioEnabled)
@@ -377,7 +377,7 @@ namespace hpl {
 			//if (mbNullEffectAttached == false)
 			//{
 			//	mbNullEffectAttached = true;
-		
+
 				OAL_Effect_Reverb_SetDensity(mpEffect, 0);
 				OAL_Effect_Reverb_SetDiffusion(mpEffect, 0);
 				OAL_Effect_Reverb_SetEchoTime (mpEffect, 0);
@@ -559,7 +559,7 @@ namespace hpl {
 			pEnv.SetRoomRolloffFactor(pSrcEnv->GetRoomRolloffFactor()*fOneMinusT + pDstEnv->GetRoomRolloffFactor()*afT);
 			pEnv.SetDecayHFLimit(pDstEnv->GetDecayHFLimit());
 		}
-		
+
 		SetSoundEnvironment(&pEnv);
 
 	}

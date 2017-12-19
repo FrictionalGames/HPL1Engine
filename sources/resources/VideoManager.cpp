@@ -55,7 +55,7 @@ namespace hpl {
 
 	iResourceBase* cVideoManager::Create(const tString& asName)
 	{
-		return CreateVideo(asName);	
+		return CreateVideo(asName);
 	}
 
 	//-----------------------------------------------------------------------
@@ -65,7 +65,7 @@ namespace hpl {
 		BeginLoad(asName);
 
 		tString sPath = mpFileSearcher->GetFilePath(asName);
-		if(sPath == "") 
+		if(sPath == "")
 		{
 			EndLoad();
 			Error("Video file '%s' could not be found!\n",asName.c_str());
@@ -133,7 +133,7 @@ namespace hpl {
 		}
 
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	//////////////////////////////////////////////////////////////////////////
@@ -141,11 +141,11 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	iVideoStreamLoader * cVideoManager::GetLoader(const tString& asFileName)
 	{
 		tString sExt = cString::ToLowerCase(cString::GetFileExt(asFileName));
-		
+
 		tVideoStreamLoaderListIt it = mlstVideoLoaders.begin();
 		for(; it != mlstVideoLoaders.end(); ++it)
 		{

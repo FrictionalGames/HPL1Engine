@@ -46,7 +46,7 @@ namespace hpl {
 		mbHasSpecular = true;
 
 		mType = eMaterialType_BumpSpec;
-		
+
 		if(mbHasSpecular)
 		{
 			//load the fragment program
@@ -73,14 +73,14 @@ namespace hpl {
 				eGpuProgramType_Vertex);
 			SetProgram(pVtxProg,eGpuProgramType_Vertex,0);
 		}
-		
+
 	}
 
 	//-----------------------------------------------------------------------
 
 	cMaterial_BumpSpec2D::~cMaterial_BumpSpec2D()
 	{
-		
+
 	}
 
 	//-----------------------------------------------------------------------
@@ -95,7 +95,7 @@ namespace hpl {
 	{
 
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	bool cMaterial_BumpSpec2D::StartRendering(eMaterialRenderType aType,iCamera* apCam,iLight *apLight)
@@ -111,42 +111,42 @@ namespace hpl {
 		else if(aType == eMaterialRenderType_Light)
 		{
 			cVector3f vLightPos = apLight->GetLightPosition();
-			
+
 			cVector3f vEyePos;
 			if(apCam!=NULL)
 			{
 				vEyePos = apCam->GetEyePosition();
 			}
-			
+
 			mpLowLevelGraphics->SetBlendActive(true);
 			mpLowLevelGraphics->SetBlendFunc(eBlendFunc_One,eBlendFunc_One);
-			
+
 			mpLowLevelGraphics->SetTexture(0, GetTexture(eMaterialTexture_NMap));
 			mpLowLevelGraphics->SetTexture(1, mpRenderer->GetLightMap(0));
 
 			mpProgram[eGpuProgramType_Vertex][0]->SetMatrixf("worldViewProj",
 				eGpuProgramMatrix_ViewProjection,
 				eGpuProgramMatrixOp_Identity);
-			
+
 			mpProgram[eGpuProgramType_Vertex][0]->SetVec3f("LightPos",vLightPos.x, vLightPos.y,vLightPos.z);
-			
+
 			if(mbHasSpecular)
 				mpProgram[eGpuProgramType_Vertex][0]->SetVec3f("EyePos",vEyePos.x, vEyePos.y,vEyePos.z);
-			
+
 			mpProgram[eGpuProgramType_Vertex][0]->SetFloat("LightRadius",apLight->GetFarAttenuation());
 			mpProgram[eGpuProgramType_Vertex][0]->SetVec4f("LightColor",apLight->GetDiffuseColor().r,
 									apLight->GetDiffuseColor().g, apLight->GetDiffuseColor().b,
 									apLight->GetDiffuseColor().a);
 
 			mpProgram[eGpuProgramType_Vertex][0]->Bind();
-					
+
 			mpProgram[eGpuProgramType_Fragment][0]->Bind();
 		}
 		else if(aType == eMaterialRenderType_Diffuse)
 		{
 			mpLowLevelGraphics->SetBlendActive(true);
 			mpLowLevelGraphics->SetBlendFunc(eBlendFunc_DestColor,eBlendFunc_DestAlpha);
-						
+
 			mpLowLevelGraphics->SetTexture(0, GetTexture(eMaterialTexture_Diffuse));
 			mpLowLevelGraphics->SetTextureEnv(eTextureParam_ColorFunc,eTextureFunc_Add);
 			mpLowLevelGraphics->SetTextureEnv(eTextureParam_ColorOp1, eTextureOp_OneMinusAlpha);
@@ -192,41 +192,41 @@ namespace hpl {
 			return eVtxBatchFlag_Position |	eVtxBatchFlag_Texture0 |
 				eVtxBatchFlag_Normal | eVtxBatchFlag_Color0;
 		}
-		
+
 		return eVtxBatchFlag_Position |	eVtxBatchFlag_Texture0 	| eVtxBatchFlag_Color0;
 	}
 	//-----------------------------------------------------------------------
-	
+
 	bool cMaterial_BumpSpec2D::NextPass(eMaterialRenderType aType)
 	{
 		return false;
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	bool cMaterial_BumpSpec2D::HasMultiplePasses(eMaterialRenderType aType)
 	{
 		return false;
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	eMaterialType cMaterial_BumpSpec2D::GetType(eMaterialRenderType aType)
 	{
 		if(aType == eMaterialRenderType_Z) return eMaterialType_DiffuseAlpha;
 		return mType;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
-	void cMaterial_BumpSpec2D::EditVertexes(eMaterialRenderType aType, iCamera* apCam, iLight *pLight, 
+	void cMaterial_BumpSpec2D::EditVertexes(eMaterialRenderType aType, iCamera* apCam, iLight *pLight,
 		tVertexVec *apVtxVec,cVector3f *apTransform, unsigned int alIndexAdd)
 	{
 
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	tTextureTypeList cMaterial_BumpSpec2D::GetTextureTypes()
 	{
 		tTextureTypeList lstTypes;

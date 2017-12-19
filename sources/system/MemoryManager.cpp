@@ -28,13 +28,13 @@ namespace hpl {
 	bool cMemoryManager::mbLogDeletion = false;
 	bool cMemoryManager::mbLogCreation = false;
 	int cMemoryManager::mlCreationCount =0;
-	
+
 	//////////////////////////////////////////////////////////////////////////
 	// ALLOCATED POINTER
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-		
+
 	cAllocatedPointer::cAllocatedPointer(void *apData,const std::string &asFile, int alLine, size_t alMemory)
 	{
 		mpData = apData;
@@ -51,7 +51,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	void* cMemoryManager::AddPointer(const cAllocatedPointer& aAllocatedPointer)
 	{
 		m_mapPointers.insert(tAllocatedPointerMap::value_type(aAllocatedPointer.mpData,aAllocatedPointer));
@@ -76,24 +76,24 @@ namespace hpl {
 		{
 			char* apTest = (char*)it->second.mpData;
 			size_t testSize = it->second.mlMemory;
-            if(apData >= apTest && apData < apTest + testSize) bFound = true;				
+            if(apData >= apTest && apData < apTest + testSize) bFound = true;
 		}
 
-        
+
 		if(bFound==false)
 		{
 			Warning("Trying to delete pointer %d created that does not exist!\n",apData);
-			return false; 
+			return false;
 		}
 
-		
+
 		mlTotalMemoryUsage -= it->second.mlMemory;
-		
+
 		m_mapPointers.erase(it);
 
 		return true;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cMemoryManager::LogResults()
@@ -109,7 +109,7 @@ namespace hpl {
 		{
 			Log("| Memory leaks detected: \n");
 			Log("|\n");
-			
+
 			Log("| address\t file");
 
 			//Get max length of file name
@@ -123,10 +123,10 @@ namespace hpl {
 			lMax += 5;
 
 			for(int i=0; i<lMax-4; ++i) Log(" ");
-			
+
 
 			Log("line\t\t memory usage\t  \n");
-			
+
 			Log("|------------------------------------------------------------\n");
 
 			it = m_mapPointers.begin();

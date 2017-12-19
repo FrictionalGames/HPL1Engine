@@ -38,7 +38,7 @@ namespace hpl {
 			normal = avNormal;
 		}
  	};
-	
+
 	typedef std::vector<cTriangleData> tTriangleDataVec;
 	typedef tTriangleDataVec::iterator tTriangleDataVecIt;
 

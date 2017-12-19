@@ -50,16 +50,16 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 	// PRIVATE METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
 
 	cSectorVisibilityContainer* cLight3DPoint::CreateSectorVisibility()
 	{
 		return mpWorld3D->GetPortalContainer()->CreateVisibiltyFromBV(GetBoundingVolume());
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	void cLight3DPoint::UpdateBoundingVolume()
 	{
 		mBoundingVolume.SetSize(mfFarAttenuation*2);
@@ -72,9 +72,9 @@ namespace hpl {
 	{
 		cVector2f vScreenSize = apLowLevelGraphics->GetScreenSize();
 		bool bVisible = cMath::GetClipRectFromBV(aClipRect,*GetBoundingVolume(),
-										apRenderSettings->mpCamera->GetViewMatrix(), 
+										apRenderSettings->mpCamera->GetViewMatrix(),
 										apRenderSettings->mpCamera->GetProjectionMatrix(),
-										apRenderSettings->mpCamera->GetNearClipPlane(), 
+										apRenderSettings->mpCamera->GetNearClipPlane(),
 										cVector2l((int)vScreenSize.x,(int)vScreenSize.y));
 		return bVisible;
 	}

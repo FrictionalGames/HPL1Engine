@@ -31,16 +31,16 @@ namespace hpl {
 	public:
 		iKeyboard(tString asName);
 		virtual ~iKeyboard(){}
-		
+
 		/**
-		 * 
-		 * \param aKey The key to check 
-		 * \return true if pressed else false 
+		 *
+		 * \param aKey The key to check
+		 * \return true if pressed else false
 		 */
 		virtual bool KeyIsDown(eKey aKey)=0;
 		/**
 		 * Can be checked many times to see all key presses
-		 * \return key that is currently pressed. eKey_NONE is no key. 
+		 * \return key that is currently pressed. eKey_NONE is no key.
 		 */
 		virtual cKeyPress GetKey()=0;
 		/**
@@ -55,7 +55,7 @@ namespace hpl {
 		/**
 		 * \todo Implement!
 		 * \param eKey The key to change to string.
-		 * \return The name of the key as a string. 
+		 * \return The name of the key as a string.
 		 */
 		virtual tString KeyToString(eKey)=0;
 		/**

@@ -28,7 +28,7 @@ namespace hpl
 	class iSoundEnvironment
 	{
 	public:
-		iSoundEnvironment ( ){}		
+		iSoundEnvironment ( ){}
 		virtual ~iSoundEnvironment () {}
 
 		virtual bool CreateFromFile(const tString &asFile){ return false;}
@@ -41,7 +41,7 @@ namespace hpl
 		tString mstrName;
 		tString msFileName;
 	};
-	
+
 }
 
 

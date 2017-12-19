@@ -41,7 +41,7 @@ namespace hpl {
 		ePEType_LastEnum,
 	};
 
-	
+
 	// ---
 
 	enum eParticleEmitter3DType
@@ -78,7 +78,7 @@ namespace hpl {
 	};
 
 	//------------------------------------------
-	
+
 	class cPESubDivision
 	{
 	public:
@@ -86,18 +86,18 @@ namespace hpl {
 	};
 
 	//------------------------------------------
-	
+
 	//////////////////////////////////////////////////////
-	/////////////// PARTICLE SYSTEM ////////////////////// 
+	/////////////// PARTICLE SYSTEM //////////////////////
 	//////////////////////////////////////////////////////
 
 	class iParticleEmitter3D : public iParticleEmitter, public iRenderable
 	{
 	public:
-		iParticleEmitter3D(	tString asName,tMaterialVec* avMaterials,unsigned int alMaxParticles, 
+		iParticleEmitter3D(	tString asName,tMaterialVec* avMaterials,unsigned int alMaxParticles,
 							cVector3f avSize, cGraphics* apGraphics,cResources *apResources);
 		virtual ~iParticleEmitter3D();
-		
+
 		void UpdateLogic(float afTimeStep);
 
 		void Render(){}
@@ -117,14 +117,14 @@ namespace hpl {
 
 		//Renderable implementation
 		void UpdateGraphics(cCamera3D *apCamera,float afFrameTime, cRenderList *apRenderList);
-		
+
 		iMaterial *GetMaterial();
 		iVertexBuffer* GetVertexBuffer();
 
 		bool IsShadowCaster(){ return false;}
 
 		cBoundingVolume* GetBoundingVolume();
-		
+
 		cMatrixf* GetModelMatrix(cCamera3D *apCamera);
 
 		int GetMatrixUpdateCount(){return GetTransformUpdateCount();}
@@ -156,15 +156,15 @@ namespace hpl {
         //Set by the particle system implementation.
 		cVector2f mvDrawSize;
 		cVector2f mvMaxDrawSize;
-		
+
 		eParticleEmitter3DType mDrawType;
 
 		eParticleEmitter3DCoordSystem mCoordSystem;
-		
+
 		cWorld3D *mpWorld;
-		
+
 		bool mbUsesDirection;
-		
+
 
 		// NEW
 		bool mbUsePartSpin;

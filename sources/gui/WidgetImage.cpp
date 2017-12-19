@@ -54,7 +54,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	void cWidgetImage::SetImage(cGuiGfxElement *apGfx)
 	{
 		if(mpGfxImage == apGfx) return;
@@ -94,7 +94,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	bool cWidgetImage::OnMouseMove(cGuiMessageData &aData)
 	{
 		return true;
@@ -120,9 +120,9 @@ namespace hpl {
 	{
 		return false;
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	bool cWidgetImage::OnMouseLeave(cGuiMessageData &aData)
 	{
 		return false;

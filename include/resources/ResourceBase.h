@@ -28,19 +28,19 @@ namespace hpl {
 	class iResourceBase
 	{
 	public:
-		
+
 		iResourceBase(tString asName,unsigned long alPrio);
 
 		virtual ~iResourceBase();
-				
+
 		/**
-		 * virtual bool Reload()=0; 
+		 * virtual bool Reload()=0;
 		 * \return true is reload was succesful, else false.
 		 */
 		virtual bool Reload()=0;
 
 		/**
-		 * Free most the memory, save info to get started again. 
+		 * Free most the memory, save info to get started again.
 		 */
 		virtual void Unload()=0;
 
@@ -58,7 +58,7 @@ namespace hpl {
 		unsigned long GetSize(){return mlSize;}
 
 		void SetLogDestruction(bool abX){ mbLogDestruction = abX;}
-		
+
 		unsigned int GetUserCount(){return mlUserCount;}
 		void IncUserCount();
 		void DecUserCount(){if(mlUserCount>0)mlUserCount--;}
@@ -69,11 +69,11 @@ namespace hpl {
 
 	protected:
 		static bool mbLogCreateAndDelete;
-			
+
 		unsigned int mlPrio; //dunno if this will be of any use.
 		unsigned long mlTime; //Time for creation.
 		unsigned long mlSize; //for completion. Not used yet.
-		
+
 		unsigned int mlUserCount;
         unsigned long mlHandle;
 		tString msName;

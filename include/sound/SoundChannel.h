@@ -26,14 +26,14 @@
 namespace hpl {
 	class iSoundData;
 	class cSoundManager;
-	
+
 	class iSoundChannelCallback
 	{
 	public:
 		virtual void OnPriorityRelease()=0;
 	};
-	
-	
+
+
 	//--------------------------------------------
 
 	class iSoundChannel
@@ -44,7 +44,7 @@ namespace hpl {
 			mbLooping=false;
 			mbPaused=true;
 			mbPositionRelative=false;
-            
+
 			mfSpeed=1;
 			mfVolume=1;
 			mfMaxDistance=0;
@@ -72,10 +72,10 @@ namespace hpl {
 
 		virtual void Play()=0;
 		virtual void Stop()=0;
-		
+
 		virtual void SetPaused(bool abX)=0;
 		virtual void SetSpeed(float afSpeed)=0;
-		virtual void SetVolume (float afVolume)=0; 
+		virtual void SetVolume (float afVolume)=0;
 		virtual void SetLooping (bool abLoop)=0;
 		virtual void SetPan (float afPan)=0;
 		virtual void Set3D(bool ab3D)=0;
@@ -83,7 +83,7 @@ namespace hpl {
 		virtual void SetPriority(int alX)=0;
 		virtual int GetPriority()=0;
 
-		void SetPriorityModifier(int alX){ 
+		void SetPriorityModifier(int alX){
 			mlPriorityModifier = alX;
 			SetPriority(GetPriority());
 		}
@@ -94,7 +94,7 @@ namespace hpl {
 		void SetRelPosition(const cVector3f &avPos){ mvRelPosition = avPos;}
 
 		virtual void SetVelocity(const cVector3f &avVel)=0;
-		
+
 		virtual void SetMinDistance(float fMin)=0;
 		virtual void SetMaxDistance(float fMax)=0;
 
@@ -102,10 +102,10 @@ namespace hpl {
 		virtual bool IsBufferUnderrun()=0;
 		virtual double GetElapsedTime()=0;
 		virtual double GetTotalTime()=0;
-		
+
 		bool GetPaused(){return mbPaused;}
 		float GetSpeed(){return mfSpeed;}
-		float GetVolume (){return mfVolume;} 
+		float GetVolume (){return mfVolume;}
 		bool GetLooping (){return mbLooping;}
 		float GetPan (){return mfPan;}
 		bool Get3D (){return mb3D;}
@@ -118,13 +118,13 @@ namespace hpl {
 		float GetBlockVolumeMul(){ return mfBlockVolumeMul;}
 
 		bool GetPositionRelative(){return mbPositionRelative;}
-		
+
 		const cVector3f& GetRelPosition(){ return mvRelPosition;}
 		const cVector3f& GetPosition(){ return mvPosition;}
 		const cVector3f& GetVelocity (){ return mvVelocity;}
-		
-		float GetMinDistance(){ return mfMinDistance;} 
-		float GetMaxDistance(){ return mfMaxDistance;} 
+
+		float GetMinDistance(){ return mfMinDistance;}
+		float GetMaxDistance(){ return mfMaxDistance;}
 
 		iSoundChannelCallback* GetCallBack(){ return mpCallback;}
 		void SetCallBack(iSoundChannelCallback* apCallback){ mpCallback = apCallback;}
@@ -139,7 +139,7 @@ namespace hpl {
 		virtual void SetFiltering ( bool abEnabled, int alFlags ) = 0;
 		virtual void SetFilterGain(float afGain) =0;
 		virtual void SetFilterGainHF(float afGainHF)=0;
-		
+
 	protected:
 		iSoundData* mpData;
 		cSoundManager* mpSoundManger;
@@ -163,7 +163,7 @@ namespace hpl {
 		float mfBlockVolumeMul;
 
 		bool mbAffectedByEnv;
-        
+
 
 		int mlPriority;
 		int mlPriorityModifier;

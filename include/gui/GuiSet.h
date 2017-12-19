@@ -33,13 +33,13 @@ namespace hpl {
 	class cScene;
 
 	class iFontData;
-	
+
 	class cGui;
 	class cGuiSkin;
 	class iGuiMaterial;
 	class iGuiPopUp;
 	class iWidget;
-	
+
 	class cWidgetWindow;
 	class cWidgetFrame;
 	class cWidgetButton;
@@ -52,12 +52,12 @@ namespace hpl {
 	class cWidgetComboBox;
 
 	//---------------------------------------------
-	
+
 	typedef std::list<iGuiPopUp*> tGuiPopUpList;
 	typedef tGuiPopUpList::iterator tGuiPopUpListIt;
-    
+
 	//---------------------------------------------
-	
+
 	class cGuiClipRegion;
 	class cGuiRenderObject
 	{
@@ -80,10 +80,10 @@ namespace hpl {
 	typedef tGuiRenderObjectSet::iterator tGuiRenderObjectSetIt;
 
 	//-----------------------------------------------
-		
+
 	typedef std::list<cGuiClipRegion*> tGuiClipRegionList;
 	typedef tGuiClipRegionList::iterator tGuiClipRegionListIt;
-	
+
 	class cGuiClipRegion
 	{
 	public:
@@ -95,12 +95,12 @@ namespace hpl {
 
 		//tGuiRenderObjectSet m_setObjects;
 		cRect2f mRect;
-		
+
 		tGuiClipRegionList mlstChildren;
 	};
 
 	//-----------------------------------------------
-	
+
 	class cGuiSet
 	{
 	public:
@@ -124,18 +124,18 @@ namespace hpl {
 
 		void SetDrawOffset(const cVector3f& avOffset){ mvDrawOffset = avOffset;}
 		void SetCurrentClipRegion(cGuiClipRegion *apRegion){ mpCurrentClipRegion = apRegion;}
-		
-		void DrawGfx(	cGuiGfxElement* apGfx, 
-						const cVector3f &avPos, 
+
+		void DrawGfx(	cGuiGfxElement* apGfx,
+						const cVector3f &avPos,
 						const cVector2f &avSize=-1,
 						const cColor& aColor=cColor(1,1),
 						eGuiMaterial aMaterial = eGuiMaterial_LastEnum);
-		void DrawFont(	const tWString &asText, 
+		void DrawFont(	const tWString &asText,
 						iFontData *apFont, const cVector3f &avPos,
 						const cVector2f &avSize, const cColor& aColor,
-						eFontAlign aAlign = eFontAlign_Left, 
+						eFontAlign aAlign = eFontAlign_Left,
 						eGuiMaterial aMaterial = eGuiMaterial_FontNormal);
-		
+
 		////////////////////////////////////
 		// Widget Creation
 		cWidgetWindow* CreateWidgetWindow(	const cVector3f &avLocalPos=0,
@@ -264,7 +264,7 @@ namespace hpl {
 		cResources* GetResources(){ return mpResources;}
 
 		bool IsDestroyingSet(){ return mbDestroyingSet;}
-		
+
 	private:
 		void RenderClipRegion();
 
@@ -278,7 +278,7 @@ namespace hpl {
 		bool OnKeyPress(cGuiMessageData &aData);
 
 		bool DrawMouse(iWidget* apWidget,cGuiMessageData& aData);
-		kGuiCalllbackDeclarationEnd(DrawMouse);	
+		kGuiCalllbackDeclarationEnd(DrawMouse);
 
 
 		cGui *mpGui;
@@ -312,12 +312,12 @@ namespace hpl {
 		cVector3f mv3DSize;
 		cMatrixf m_mtx3DTransform;
 		int mlDrawPrio;
-		
+
 		bool mbActive;
 		bool mbDrawMouse;
 		float mfMouseZ;
 		cGuiGfxElement *mpGfxCurrentPointer;
-				
+
 		bool mvMouseDown[3];
 		cVector2f mvMousePos;
 

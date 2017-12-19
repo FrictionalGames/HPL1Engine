@@ -24,7 +24,7 @@
 namespace hpl {
 
 	//--------------------------------------
-	
+
 	class iWidgetItemContainer
 	{
 	public:
