@@ -57,12 +57,12 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	cBone* cBone::CreateChildBone(const tString &asName)
 	{
 		cBone *pBone = hplNew(cBone,(asName, mpSkeleton) );
 		pBone->mpParent = this;
-		
+
 		mlstChildren.push_back(pBone);
 		mpSkeleton->AddBone(pBone);
 
@@ -77,7 +77,7 @@ namespace hpl {
 
 		NeedsUpdate();
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	const cMatrixf& cBone::GetLocalTransform()
@@ -88,7 +88,7 @@ namespace hpl {
 	const cMatrixf& cBone::GetWorldTransform()
 	{
 		UpdateMatrix();
-		
+
         return m_mtxWorldTransform;
 	}
 
@@ -104,7 +104,7 @@ namespace hpl {
 	void cBone::Detach()
 	{
 		if(mpParent == NULL) return;
-		
+
         tBoneListIt it = mpParent->mlstChildren.begin();
 		for(;it != mpParent->mlstChildren.end(); it++)
 		{
@@ -152,7 +152,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	void cBone::NeedsUpdate()
 	{
 		mbNeedsUpdate = true;

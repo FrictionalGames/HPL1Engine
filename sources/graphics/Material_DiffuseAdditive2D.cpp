@@ -42,7 +42,7 @@ namespace hpl {
 
 	cMaterial_DiffuseAdditive2D::~cMaterial_DiffuseAdditive2D()
 	{
-		
+
 	}
 
 	//-----------------------------------------------------------------------
@@ -50,14 +50,14 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 	// PUBLIC METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
 
 	void cMaterial_DiffuseAdditive2D::Compile()
 	{
 
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	bool cMaterial_DiffuseAdditive2D::StartRendering(eMaterialRenderType aType,iCamera* apCam,iLight *pLight)
@@ -66,11 +66,11 @@ namespace hpl {
 		{
 			mpLowLevelGraphics->SetBlendActive(true);
 			mpLowLevelGraphics->SetBlendFunc(eBlendFunc_SrcAlpha, eBlendFunc_One);
-			
+
 			mpLowLevelGraphics->SetActiveTextureUnit(0);
 			//mpLowLevelGraphics->SetTextureEnv(eTextureParam_ColorOp1,eTextureOp_Alpha);
 			mpLowLevelGraphics->SetTextureEnv(eTextureParam_ColorFunc, eTextureFunc_Modulate);
-			
+
 			mpLowLevelGraphics->SetTexture(0,GetTexture(eMaterialTexture_Diffuse));
 
 			return true;
@@ -79,7 +79,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	void cMaterial_DiffuseAdditive2D::EndRendering(eMaterialRenderType aType)
 	{
 		if(aType == eMaterialRenderType_Diffuse)
@@ -91,7 +91,7 @@ namespace hpl {
 		}
 
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	tVtxBatchFlag cMaterial_DiffuseAdditive2D::GetBatchFlags(eMaterialRenderType aType)
@@ -100,7 +100,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	bool cMaterial_DiffuseAdditive2D::NextPass(eMaterialRenderType aType)
 	{
 		return false;
@@ -119,7 +119,7 @@ namespace hpl {
 	{
 		return mType;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	bool cMaterial_DiffuseAdditive2D::UsesType(eMaterialRenderType aType)
@@ -131,7 +131,7 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	void cMaterial_DiffuseAdditive2D::EditVertexes(eMaterialRenderType aType, iCamera* apCam, iLight *pLight, 
+	void cMaterial_DiffuseAdditive2D::EditVertexes(eMaterialRenderType aType, iCamera* apCam, iLight *pLight,
 		tVertexVec *apVtxVec,cVector3f *apTransform,unsigned int alIndexAdd)
 	{
 

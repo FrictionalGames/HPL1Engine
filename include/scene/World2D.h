@@ -31,7 +31,7 @@
 class TiXmlElement;
 
 namespace hpl {
-	
+
 	class cGraphics;
 	class cResources;
 	class cSound;
@@ -53,7 +53,7 @@ namespace hpl {
 	class cMesh2D;
 	class iParticleSystem2D;
 
-	
+
 	class cWorld2D
 	{
 	friend class cCollider2D;
@@ -74,16 +74,16 @@ namespace hpl {
 		iScript* GetScript(){ return mpScript;}
 
 		void ResetBodyIDCount(){mlBodyIDCount =0;}
-			
+
 		///// LIGHT METHODS ////////////////////
 
 		cLight2DPoint* CreateLightPoint(tString asName="");
 		void DestroyLight(iLight2D* apLight);
 		cGridMap2D* GetGridMapLights();
 		iLight2D* GetLight(const tString& asName);
-		
+
 		///// BODY METHODS ////////////////////
-		
+
 		cBody2D* CreateBody2D(const tString& asName,cMesh2D *apMesh, cVector2f avSize);
 		cGridMap2D* GetGridMapBodies(){return mpMapBodies;}
 
@@ -94,7 +94,7 @@ namespace hpl {
 		 * Gets an area on the map. This does a linear search and very fast.
 		 * \param asName The name, if "" then the first of the correct type is returned
 		 * \param asType The typem if "" then type doesn't matter.
-		 * \return 
+		 * \return
 		 */
 		cArea2D* GetArea(const tString& asName,const tString& asType);
 
@@ -102,7 +102,7 @@ namespace hpl {
 
 		cSoundSource* CreateSoundSource(const tString& asName,const tString& asSoundName,bool abVolatile);
 		void DestroySoundSource(cSoundSource* apSound);
-        
+
 		///// ENTITY METHODS ////////////////////
 
 		cImageEntity* CreateImageEntity(tString asName,tString asDataName);
@@ -141,9 +141,9 @@ namespace hpl {
 		cGridMap2D *mpMapBodies;
 		cGridMap2D *mpMapParticles;
 		cGridMap2D *mpMapAreas;
-        
+
 		tSoundSourceList mlstSoundSources;
-		
+
 		int mlBodyIDCount;
 
 		cTileMap *mpTileMap;
@@ -152,7 +152,7 @@ namespace hpl {
 		tString msMapName;
 		float mfLightZ;
 		cColor mAmbientColor;
-		
+
 		//Update
 		void UpdateEntities();
 		void UpdateBodies();

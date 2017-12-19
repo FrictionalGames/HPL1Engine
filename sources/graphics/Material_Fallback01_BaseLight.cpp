@@ -63,7 +63,7 @@ namespace hpl {
 		: iGLStateProgram("Internal_ATIDiffuse"), mlBind(0)
 	{
 	}
-	
+
 	void cGLState_ATIDiffuse::InitData()
 	{
 		mlBind = glGenFragmentShadersATI(1);
@@ -75,7 +75,7 @@ namespace hpl {
 
 		glSampleMapATI(GL_REG_0_ATI, GL_TEXTURE0_ARB, GL_SWIZZLE_STR_ATI);
 		glSampleMapATI(GL_REG_2_ATI, GL_TEXTURE2_ARB, GL_SWIZZLE_STR_ATI);
-		
+
 		//Reg0 = NormlizedVec dot3 Vector(0,0,1)
 		float vConst[4] = {0,0,1,0};
 		glSetFragmentShaderConstantATI( GL_CON_0_ATI,vConst);
@@ -90,7 +90,7 @@ namespace hpl {
 		glAlphaFragmentOp2ATI(	GL_MUL_ATI, GL_REG_0_ATI, GL_NONE,
 								GL_REG_0_ATI, GL_NONE, GL_NONE,
 								GL_REG_2_ATI, GL_NONE, GL_NONE);
-		
+
 		glEndFragmentShaderATI();
 	}
 
@@ -170,7 +170,7 @@ namespace hpl {
 		glAlphaFragmentOp2ATI(	GL_MUL_ATI, GL_REG_0_ATI, GL_NONE,
 								GL_REG_0_ATI, GL_NONE, GL_NONE,
 								GL_REG_2_ATI, GL_NONE, GL_NONE);
-		
+
 		glEndFragmentShaderATI();
 	}
 
@@ -331,14 +331,14 @@ namespace hpl {
 			{
 				mvFragPrograms[eBaseLightProgram_Point1] = &gATIBumpGLState;
 				mvFragPrograms[eBaseLightProgram_Spot1] =  &gATIBumpGLState;
-				
+
 				mvFragPrograms[eBaseLightProgram_Spot2] =  &gATISpotGLState;
 			}
 			else
 			{
 				mvFragPrograms[eBaseLightProgram_Point1] = &gBumpGLState;
 				mvFragPrograms[eBaseLightProgram_Spot1] =  &gBumpGLState;
-				
+
 				mvFragPrograms[eBaseLightProgram_Spot2] =  NULL;//hplNew( cGLState_Spot,(mpLowLevelGraphics) );
 			}
 
@@ -354,14 +354,14 @@ namespace hpl {
 			{
 				mvFragPrograms[eBaseLightProgram_Point1] = &gATIDiffuseGLState;
 				mvFragPrograms[eBaseLightProgram_Spot1] =  &gATIDiffuseGLState;
-				
+
 				mvFragPrograms[eBaseLightProgram_Spot2] =  &gATISpotGLState;
 			}
 			else
 			{
 				mvFragPrograms[eBaseLightProgram_Point1] = &gDiffuseGLState;
 				mvFragPrograms[eBaseLightProgram_Spot1] =  &gDiffuseGLState;
-				
+
 				mvFragPrograms[eBaseLightProgram_Spot2] =  NULL;//hplNew( cGLState_Spot, (mpLowLevelGraphics) );
 			}
 
@@ -508,8 +508,8 @@ namespace hpl {
 		// Other
 		else if(aType == eMaterialRenderType_Z)
 		{
-			//return eMaterialChannelMode_Z; 
-			return eMaterialChannelMode_RGBA; 
+			//return eMaterialChannelMode_Z;
+			return eMaterialChannelMode_RGBA;
 		}
 
 		return eMaterialChannelMode_RGBA;

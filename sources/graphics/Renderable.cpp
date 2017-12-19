@@ -30,7 +30,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	iRenderable::iRenderable(const tString &asName) : iEntity3D(asName)
 	{
 		mbRendered = true;
@@ -57,7 +57,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	cMatrixf* iRenderable::GetInvModelMatrix()
 	{
 		cMatrixf *pModelMatrix = GetModelMatrix(NULL);
@@ -66,19 +66,19 @@ namespace hpl {
 		if(mlLastMatrixCount != GetMatrixUpdateCount())
 		{
 			mlLastMatrixCount = GetMatrixUpdateCount();
-						
+
 			m_mtxInvModel = cMath::MatrixInverse(*pModelMatrix);
 		}
-		
+
 		return &m_mtxInvModel;
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	const cVector3f& iRenderable::GetCalcScale()
 	{
 		cMatrixf *pModelMatrix = GetModelMatrix(NULL);
-		
+
 		if(pModelMatrix != NULL && mlCalcScaleMatrixCount != GetMatrixUpdateCount())
 		{
 			mlCalcScaleMatrixCount = GetMatrixUpdateCount();
@@ -89,21 +89,21 @@ namespace hpl {
 
 		return mvCalcScale;
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	bool iRenderable::CollidesWithBV(cBoundingVolume *apBV)
 	{
 		return cMath::CheckCollisionBV(*GetBoundingVolume(), *apBV);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	bool iRenderable::CollidesWithFrustum(cFrustum *apFrustum)
 	{
-		return apFrustum->CollideBoundingVolume(GetBoundingVolume()) != eFrustumCollision_Outside; 
+		return apFrustum->CollideBoundingVolume(GetBoundingVolume()) != eFrustumCollision_Outside;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	//////////////////////////////////////////////////////////////////////////

@@ -50,14 +50,14 @@ namespace hpl {
 		bool IsVisible(){ return false; }
 
 		bool IsShadowCaster(){ return false;}
-		
+
 		void UpdateLogic(float afTimeStep){}
-	
+
 	private:
 		iPhysicsWorld* mpPhysicsWorld;
 		iPhysicsBody* mpBody;
 	};
-	
+
 	//-----------------------------------------------------------------------
 
 

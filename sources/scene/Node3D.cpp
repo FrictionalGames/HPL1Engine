@@ -90,14 +90,14 @@ namespace hpl {
 	{
 		return m_mtxLocalTransform.GetTranslation();
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cMatrixf& cNode3D::GetLocalMatrix()
 	{
 		return m_mtxLocalTransform;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cVector3f cNode3D::GetWorldPosition()
@@ -151,7 +151,7 @@ namespace hpl {
 			SetPosition(avWorldPos);
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 
@@ -169,7 +169,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	const char* cNode3D::GetName()
 	{
 		return msName.c_str();
@@ -181,7 +181,7 @@ namespace hpl {
 	{
 		return mpParent;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cNode3D::SetParent(cNode3D* apNode)
@@ -200,9 +200,9 @@ namespace hpl {
 
 	void cNode3D::AddRotation(const cVector3f& avRot, eEulerRotationOrder aOrder)
 	{
-		m_mtxRotation = cMath::MatrixMul(cMath::MatrixRotate(avRot, aOrder), m_mtxRotation);	
+		m_mtxRotation = cMath::MatrixMul(cMath::MatrixRotate(avRot, aOrder), m_mtxRotation);
 	}
-	
+
 	void cNode3D::AddRotation(const cQuaternion& aqRotation)
 	{
 		//Would be better to have the rotation as a quaternion and
@@ -230,37 +230,37 @@ namespace hpl {
 
 		//Log("Startpos: %s",vPos.ToString().c_str());
 		//Log("World pos: %s\n",GetWorldMatrix().GetTranslation().ToString().c_str());
-		
+
 		//The animation rotation is applied before the local.
 		mtxTransform = cMath::MatrixMul(mtxTransform,m_mtxRotation);
 
 		//Skip scale for now.
 		//mtxTransform = cMath::MatrixMul(cMath::MatrixScale(mvScale), mtxTransform);
-		
+
 		mtxTransform.SetTranslation(vPos + mvTranslation);
 
 		SetMatrix(mtxTransform,abSetChildrenUpdated);
 
 		//Log("World pos: %s\n",GetWorldMatrix().GetTranslation().ToString().c_str());
-		
+
 		//Reset values
 		m_mtxRotation = cMatrixf::Identity;
 		mvScale = cVector3f(1,1,1);
 		mvTranslation = cVector3f(0,0,0);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cNode3D::SetSource(const tString &asSource)
 	{
 		msSource = asSource;
 	}
-	
+
 	const char* cNode3D::GetSource()
 	{
 		return msSource.c_str();
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	//////////////////////////////////////////////////////////////////////////
@@ -287,7 +287,7 @@ namespace hpl {
 		}
 	}
 	//-----------------------------------------------------------------------
-	
+
 	void cNode3D::SetWorldTransformUpdated()
 	{
 		//if(msName == "WeaponJoint") LogUpdate("  setworldtransform updated!\n");
@@ -299,7 +299,7 @@ namespace hpl {
 		for(;EIt != mlstEntity.end();++EIt)
 		{
 			iEntity3D* pEntity = static_cast<iEntity3D*>(*EIt);
-			
+
 			pEntity->SetTransformUpdated();
 		}
 
@@ -335,7 +335,7 @@ namespace hpl {
 	{
 		return hplNew( cNode3D,(msName,mbAutoDeleteChildren) );
 	}
-	
+
 	int cSaveData_cNode3D::GetSaveCreatePrio()
 	{
 		return 0;
@@ -347,7 +347,7 @@ namespace hpl {
 	{
 		return hplNew( cSaveData_cNode3D,() );
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 
@@ -359,7 +359,7 @@ namespace hpl {
 		kSaveData_SaveTo(msSource);
 		kSaveData_SaveTo(mbAutoDeleteChildren);
 		kSaveData_SaveTo(m_mtxLocalTransform);
-		
+
 		kSaveData_SaveObject(mpParent,mlParentId);
 	}
 
@@ -387,5 +387,5 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	
+
 }

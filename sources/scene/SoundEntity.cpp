@@ -39,7 +39,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	cSoundEntity::cSoundEntity(const tString& asName,cSoundEntityData *apData,
 								cSoundEntityManager *apSoundEntityManager,
 								cWorld3D *apWorld,
@@ -73,7 +73,7 @@ namespace hpl {
 		mbStarted = false; //If the sound started playing-
 
 		mbSkipStartEnd = false; //If the end and start sounds should be skipped.
-		
+
         mbPrioRemove = false; //If the sounds was removed because too many where playing
 
 		mbFadingOut = false; //If the sound is fading out.
@@ -96,7 +96,7 @@ namespace hpl {
 			mbRemoveWhenOver = true;
 		}
 	}
-	
+
 	cSoundEntity::~cSoundEntity()
 	{
 		if(mbLog)Log("Delete entity start...");
@@ -111,18 +111,18 @@ namespace hpl {
 		hplDelete(mpSoundCallback);
 
 		if(mbLog)Log("end\n");
-		
+
 		//Not sure if this should be here. SOund entities take little memory
 		//might be better of releasing all of em at exit.
 		//mpSoundEntityManager->Destroy(mpData);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	//////////////////////////////////////////////////////////////////////////
 	// PUBLIC METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
 
 	void cSoundEntityChannelCallback::OnPriorityRelease()
@@ -158,7 +158,7 @@ namespace hpl {
 		mbStopped =false;
 		mbOutOfRange = false;
 		mbFadingOut = false;
-		
+
 		if(abPlayStart && mbSkipStartEnd==false)
 		{
 			if(mpData->GetLoop() && mpData->GetStartSoundName()!="")
@@ -210,7 +210,7 @@ namespace hpl {
 			{
 				PlaySound(mpData->GetStopSoundName(),false,eSoundEntityType_Stop);
 			}
-			
+
 			if(mpSoundHandler->IsValid(mvSounds[eSoundEntityType_Main]))
 			{
 				mvSounds[eSoundEntityType_Main]->Stop();
@@ -228,7 +228,7 @@ namespace hpl {
 
 		if(mbLog)Log("End\n");
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cSoundEntity::FadeIn(float afSpeed)
@@ -251,7 +251,7 @@ namespace hpl {
 
 		if(mbLog)Log("end\n");
 	}
-	
+
 	void cSoundEntity::FadeOut(float afSpeed)
 	{
 		mbFadingOut = true;
@@ -277,7 +277,7 @@ namespace hpl {
 		{
 			mbStopped = true;
 		}
-		
+
 
 		if(mbLog)Log("end\n");
 	}
@@ -302,12 +302,12 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	
+
 	bool cSoundEntity::GetRemoveWhenOver()
 	{
 		return mbRemoveWhenOver;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cSoundEntity::UpdateLogic(float afTimeStep)
@@ -321,7 +321,7 @@ namespace hpl {
 			mfSleepCount -= afTimeStep;
 			return;
 		}
-		
+
 		//////////////////////////////////////////////
 		//If out of range check if it is inside range.
 		if(mbOutOfRange && mbStopped==false)
@@ -344,7 +344,7 @@ namespace hpl {
 		if(mbLog)Log("Update entity start...");
 
 		/////////////////////////////////////////////////
-		//Go through all sounds and check if they are playing, 
+		//Go through all sounds and check if they are playing,
 		//if so update their positions else remove.
 		for(int i=0; i<3; i++)
 		{
@@ -354,7 +354,7 @@ namespace hpl {
 				{
 					mvSounds[i] = NULL;
 					//mvSoundEntries[i] = NULL;
-					
+
 					//if the sound has stopped due to priority try starting again
 					if(mbPrioRemove && i == (int)eSoundEntityType_Main)
 					{
@@ -370,7 +370,7 @@ namespace hpl {
 						}
 					}
 					//If the sound has already started, stop it.
-					else if((mpData->GetInterval()==0 || mpData->GetLoop()==false) && 
+					else if((mpData->GetInterval()==0 || mpData->GetLoop()==false) &&
 							mbStarted)
 					{
 						//Log("Stopping %s!\n",GetName().c_str());
@@ -382,7 +382,7 @@ namespace hpl {
 					if(mbPrioRemove){
 						//if(mbLog)Log("  -Removed + valid? This is baaaad!\n");
 					}
-					
+
 					if(mvSounds[i] && !mvSounds[i]->GetPositionRelative())
 					{
 						mvSounds[i]->SetPosition(GetWorldPosition());
@@ -396,7 +396,7 @@ namespace hpl {
 		if(mbStopped==false)
 		{
 			/////////////////////////////////////////////////////////////////////////
-			//Sound is not playing, start it and since it has not been invoked by Play 
+			//Sound is not playing, start it and since it has not been invoked by Play
 			//no need to play start sound. Only do this if interval is 0 else it might
 			//be a deliberate pause.
 			if(mvSounds[eSoundEntityType_Main]==NULL && mvSounds[eSoundEntityType_Start]==NULL
@@ -419,7 +419,7 @@ namespace hpl {
 				{
 					mfSleepCount = 0.3f;
 				}
-				
+
 			}
 
 			///////////////////////////////////////////////////////////
@@ -429,12 +429,12 @@ namespace hpl {
 				&& mvSounds[eSoundEntityType_Main]==NULL)
 			{
 				mfIntervalCount += afTimeStep;
-				
+
 				//if the interval time has elapsed the sound might be played again.
 				if(mfIntervalCount >= mpData->GetInterval())
 				{
 					//Check random and if rand is right play the sound.
-					if(cMath::RandRectf(0,1) <= mpData->GetRandom() || 
+					if(cMath::RandRectf(0,1) <= mpData->GetRandom() ||
 						mpData->GetRandom()==0)
 					{
 						PlaySound(mpData->GetMainSoundName(),false,eSoundEntityType_Main);
@@ -459,7 +459,7 @@ namespace hpl {
 						{
 							mvSounds[eSoundEntityType_Main]->Stop();
 						}
-						
+
 						mvSounds[eSoundEntityType_Main] = NULL;
 					}
 
@@ -491,7 +491,7 @@ namespace hpl {
 			}
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 
@@ -519,7 +519,7 @@ namespace hpl {
 								asName, abLoop,
 								mfVolume, cVector3f(0,0,1),
 								mpData->GetMinDistance(), mpData->GetMaxDistance(),
-								eSoundDest_World,true, mpData->GetPriority());	
+								eSoundDest_World,true, mpData->GetPriority());
 		}
 
 		if(mvSounds[aType]==NULL)
@@ -614,7 +614,7 @@ namespace hpl {
 		kSaveData_SaveToBegin(cSoundEntity);
 
 		pData->msData = mpData==NULL ? "" : mpData->GetName();
-		
+
 		kSaveData_SaveTo(mbStopped);
 		kSaveData_SaveTo(mbRemoveWhenOver);
 		kSaveData_SaveTo(mbStarted);
@@ -651,5 +651,5 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 }

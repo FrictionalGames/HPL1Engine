@@ -30,7 +30,7 @@ namespace hpl
 
 	cActionMouseButton::cActionMouseButton(tString asName,cInput *apInput, eMButton aButton) : iAction(asName)
 	{
-		mButton = aButton;	
+		mButton = aButton;
 		mpInput = apInput;
 	}
 
@@ -56,7 +56,7 @@ namespace hpl
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	tString  cActionMouseButton::GetInputName()
 	{
 		switch(mButton)

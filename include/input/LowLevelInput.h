@@ -28,11 +28,11 @@ namespace hpl {
 	{
 	public:
 		virtual ~iLowLevelInput(){}
-		
+
 		/**
 		 * Lock all input to current window.
-		 * \param abX 
-		 * \return 
+		 * \param abX
+		 * \return
 		 */
 		virtual void LockInput(bool abX)=0;
 		/**

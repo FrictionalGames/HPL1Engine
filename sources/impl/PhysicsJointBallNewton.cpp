@@ -29,8 +29,8 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	cPhysicsJointBallNewton::cPhysicsJointBallNewton(const tString &asName, 
-						iPhysicsBody *apParentBody, iPhysicsBody *apChildBody, 
+	cPhysicsJointBallNewton::cPhysicsJointBallNewton(const tString &asName,
+						iPhysicsBody *apParentBody, iPhysicsBody *apChildBody,
 						iPhysicsWorld *apWorld, const cVector3f &avPivotPoint)
 	: iPhysicsJointNewton<iPhysicsJointBall>(asName,apParentBody,apChildBody,apWorld,avPivotPoint)
 	{
@@ -58,7 +58,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-		
+
 	void cPhysicsJointBallNewton::SetConeLimits(const cVector3f& avPin, float afMaxConeAngle, float afMaxTwistAngle)
 	{
 		NewtonBallSetConeLimits(mpNewtonJoint, avPin.v,afMaxConeAngle,afMaxTwistAngle);
@@ -67,7 +67,7 @@ namespace hpl {
 		mfMaxConeAngle = afMaxConeAngle;
 		mfMaxTwistAngle = afMaxTwistAngle;
 	}
-	
+
 	cVector3f cPhysicsJointBallNewton::GetAngles()
 	{
 		cVector3f vAngles;
@@ -76,7 +76,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	cVector3f cPhysicsJointBallNewton::GetVelocity()
 	{
 		return cVector3f(0,0,0);
@@ -95,7 +95,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	float cPhysicsJointBallNewton::GetDistance()
 	{
 		return 0;

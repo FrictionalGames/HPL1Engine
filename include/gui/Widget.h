@@ -54,14 +54,14 @@ namespace hpl {
 	typedef tWidgetCallbackList::iterator tWidgetCallbackListIt;
 
 	//--------------------------------
-	
+
 	class iWidget
 	{
 	friend class cGuiSet;
 	public:
 		iWidget(eWidgetType aType,cGuiSet *apSet, cGuiSkin *apSkin);
 		virtual ~iWidget();
-	
+
 		/////////////////////////
 		//General
 		void Update(float afTimeStep);
@@ -73,13 +73,13 @@ namespace hpl {
 		void AddCallback(eGuiMessage aMessage,void *apObject,tGuiCallbackFunc apFunc);
 
 		eWidgetType GetType(){ return mType;}
-		
+
 		void Init();
 
         /////////////////////////
 		// Public Helper functions
 		bool PointIsInside(const cVector2f& avPoint, bool abOnlyClipped);
-		
+
 		/////////////////////////
 		//Hierarchy
 		void AttachChild(iWidget *apChild);
@@ -109,13 +109,13 @@ namespace hpl {
 
 		const cColor& GetDefaultFontColor(){ return mDefaultFontColor;}
 		void SetDefaultFontColor(const cColor& aColor){ mDefaultFontColor = aColor;}
-		
+
 		const cVector2f& GetDefaultFontSize(){ return mvDefaultFontSize;}
 		void SetDefaultFontSize(const cVector2f& avSize){ mvDefaultFontSize = avSize;}
 
 		void SetClipActive(bool abX){ mbClipsGraphics = abX;}
 		bool GetClipActive(){ return mbClipsGraphics;}
-		
+
 		void SetPosition(const cVector3f &avPos);
 		void SetGlobalPosition(const cVector3f &avPos);
 		const cVector3f& GetLocalPosition();
@@ -133,16 +133,16 @@ namespace hpl {
 		void SetConnectedToChildren(bool abX){ mbConnectedToChildren = abX;}
 
 		cGuiGfxElement* GetPointerGfx();
-		
+
 	protected:
 		/////////////////////////
 		// Upper Widget functions
 		virtual void OnLoadGraphics(){}
-		
+
 		virtual void OnChangeSize(){}
 		virtual void OnChangePosition(){}
 		virtual void OnChangeText(){}
-		
+
 		virtual void OnInit(){}
 
 		virtual void OnDraw(float afTimeStep, cGuiClipRegion *apClipRegion){}
@@ -162,8 +162,8 @@ namespace hpl {
 		virtual bool OnLostFocus(cGuiMessageData &aData){return false;}
 
 		virtual bool OnKeyPress(cGuiMessageData &aData){return false;}
-	
-		
+
+
 		/////////////////////////
 		// Private Helper functions
 		cVector3f WorldToLocalPosition(const cVector3f &avPos);
@@ -181,7 +181,7 @@ namespace hpl {
 
 		void DrawDefaultText(	const tWString& asText,
 								const cVector3f& avPosition,eFontAlign aAlign);
-		
+
 		void SetPositionUpdated();
 
 		void LoadGraphics();
@@ -211,7 +211,7 @@ namespace hpl {
 		iWidget *mpParent;
 
 		tWidgetList mlstChildren;
-		
+
 		bool mbEnabled;
 		bool mbVisible;
 
@@ -222,11 +222,11 @@ namespace hpl {
 		cGuiGfxElement* mpPointerGfx;
 
         bool mbConnectedToChildren;
-						
+
 	private:
-		void SetMouseIsOver(bool abX){ mbMouseIsOver = abX;}        
+		void SetMouseIsOver(bool abX){ mbMouseIsOver = abX;}
 		bool ProcessCallbacks(eGuiMessage aMessage, cGuiMessageData &aData);
-        
+
 
         std::vector<tWidgetCallbackList> mvCallbackLists;
 

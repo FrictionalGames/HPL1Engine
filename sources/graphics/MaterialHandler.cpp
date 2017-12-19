@@ -60,7 +60,7 @@ namespace hpl {
 	{
 		mlstMatTypes.push_back(apTypedata);
 	}
-	
+
 	//-----------------------------------------------------------------------
 	iMaterial* cMaterialHandler::Create(tString asMatName, eMaterialPicture mPicType)
 	{
@@ -68,7 +68,7 @@ namespace hpl {
 	}
 
 	iMaterial* cMaterialHandler::Create(const tString& asName,tString asMatName, eMaterialPicture mPicType)
-	{	
+	{
 		iMaterial* pMat=NULL;
 		cResourceImage* pImage=NULL;
 		unsigned int lIdCount = 1;
@@ -81,7 +81,7 @@ namespace hpl {
 									mpResources->GetTextureManager(),
 									mpGraphics->GetRenderer2D(),mpResources->GetGpuProgramManager(),
 									mPicType,mpGraphics->GetRenderer3D());
-				
+
 				//Set an id to the material for easier rendering later on.
 				pMat->SetId(lIdCount);
 
@@ -101,8 +101,8 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
-	
+
+
 
 	//-----------------------------------------------------------------------
 

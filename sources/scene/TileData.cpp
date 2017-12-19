@@ -28,7 +28,7 @@ namespace hpl {
 	//-----------------------------------------------------------------------
 
 	cTileDataNormal::cTileDataNormal(cImageManager* apImageManager, cVector2f avTileSize)
-									
+
 	{
 		mpImageManager = apImageManager;
 
@@ -47,7 +47,7 @@ namespace hpl {
 
 	cTileDataNormal::~cTileDataNormal()
 	{
-	
+
 	}
 
 	//-----------------------------------------------------------------------
@@ -57,10 +57,10 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	tVertexVec* cTileDataNormal::GetVertexVec(eTileRotation aRotation)
 	{
-	    return mvVtx[aRotation];		
+	    return mvVtx[aRotation];
 	}
 	//-----------------------------------------------------------------------
 
@@ -68,21 +68,21 @@ namespace hpl {
 	{
 		return mvIdx;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	tVertexVec* cTileDataNormal::GetCollideVertexVec(eTileRotation aRotation)
 	{
-		return mvCollideVtx[aRotation];		
+		return mvCollideVtx[aRotation];
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	tUIntVec* cTileDataNormal::GetCollideIndexVec(eTileRotation aRotation)
 	{
 		return mvCollideIdx;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cTileDataNormal::Destroy()
@@ -111,7 +111,7 @@ namespace hpl {
 	//-----------------------------------------------------------------------
 
 	void  cTileDataNormal::SetCollideMesh(cMesh2D *apCollideMesh)
-	{ 
+	{
 		mpCollideMesh = apCollideMesh;
 
 		for(int i=0;i<eTileRotation_LastEnum;i++)
@@ -121,15 +121,15 @@ namespace hpl {
 
 		mvCollideIdx = mpCollideMesh->GetIndexVec();
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	//////////////////////////////////////////////////////////////////////////
 	// PRIVATE METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	void cTileDataNormal::SetMesh(cMesh2D *apMesh){
 		mpMesh = apMesh;
 
@@ -143,7 +143,7 @@ namespace hpl {
 			{
 				mvVtx[i] = mpMesh->GetVertexVec(ImageRect,mvTileSize,(eTileRotation)i);
 			}
-			
+
 			mvIdx = mpMesh->GetIndexVec();
 		}
 	}
@@ -154,7 +154,7 @@ namespace hpl {
 	{
 		mpMaterial = apMaterial;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 }

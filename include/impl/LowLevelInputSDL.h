@@ -44,7 +44,7 @@ namespace hpl {
 	public:
 		std::list<SDL_Event> mlstEvents;
 
-	private: 
+	private:
 		iLowLevelGraphics *mpLowLevelGraphics;
 	};
 };

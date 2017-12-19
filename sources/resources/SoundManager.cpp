@@ -74,11 +74,11 @@ namespace hpl {
 				AddResource(pSound);
 				pSound->SetSoundManager(mpResources->GetSoundManager());
 			}
-			
+
 		}
 		else
 		{
-			
+
 		}
 
 
@@ -109,7 +109,7 @@ namespace hpl {
 		if(apResource->HasUsers())
 		{
 			apResource->DecUserCount();
-				
+
 			iSoundData *pData = static_cast<iSoundData *>(apResource);
 			if(pData->IsStream() && pData->HasUsers()==false)
 			{
@@ -131,11 +131,11 @@ namespace hpl {
 			iResourceBase* pData = it->second;
 			RemoveResource(pData);
 			hplDelete(pData);
-			
+
 			it= m_mapHandleResources.begin();
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	//////////////////////////////////////////////////////////////////////////
@@ -143,7 +143,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	iSoundData *cSoundManager::FindData(const tString &asName, tString &asFilePath)
 	{
 		iSoundData *pData=NULL;

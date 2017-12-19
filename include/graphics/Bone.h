@@ -26,7 +26,7 @@
 #include "system/SystemTypes.h"
 
 namespace hpl {
-	
+
 	class cSkeleton;
 	class cBone;
 
@@ -34,7 +34,7 @@ namespace hpl {
 	typedef tBoneList::iterator tBoneListIt;
 
 	typedef cSTLIterator<cBone*,tBoneList,tBoneListIt> cBoneIterator;
-    
+
 	class cBone
 	{
 	friend class cSkeleton;
@@ -56,23 +56,23 @@ namespace hpl {
 		void Detach();
 
 		cBone* GetParent(){ return mpParent;}
-		
+
 		//Needed for some loading stuff..
 		int GetValue(){ return mlValue;}
 		void SetValue(int alVal){ mlValue = alVal;}
-		
+
 	private:
 		void NeedsUpdate();
 
 		void UpdateMatrix();
-	
+
 		tString msName;
 
 		cMatrixf m_mtxTransform;
 
 		cMatrixf m_mtxWorldTransform;
 		cMatrixf m_mtxInvWorldTransform;
-		
+
 		cBone* mpParent;
 		tBoneList mlstChildren;
 

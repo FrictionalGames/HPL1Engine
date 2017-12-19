@@ -52,7 +52,7 @@ namespace hpl {
 	{
 	friend class cMeshLoaderHandler;
 	public:
-		iMeshLoader(iLowLevelGraphics *apLowLevelGraphics) 
+		iMeshLoader(iLowLevelGraphics *apLowLevelGraphics)
 					: mpLowLevelGraphics(apLowLevelGraphics){}
 
 		virtual cMesh* LoadMesh(const tString& asFile, tMeshLoadFlag aFlags)=0;

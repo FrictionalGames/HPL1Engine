@@ -26,12 +26,12 @@ namespace hpl {
 
 	class iLowLevelSound;
 	class iSoundChannel;
-	
-	
+
+
 	////////////////////////////////////////////////////
 	//////////// MUSIC LOCK ///////////////////////////
 	////////////////////////////////////////////////////
-	
+
 	class cMusicLock
 	{
 	public:
@@ -41,7 +41,7 @@ namespace hpl {
 		float mfVolume;
 		bool mbLoop;
 	};
-	
+
 	////////////////////////////////////////////////////
 	//////////// MUSIC ENTRY ///////////////////////////
 	////////////////////////////////////////////////////
@@ -49,7 +49,7 @@ namespace hpl {
 	class cMusicEntry
 	{
 	public:
-		cMusicEntry() : msFileName(""), mpStream(NULL), mfMaxVolume(1), 
+		cMusicEntry() : msFileName(""), mpStream(NULL), mfMaxVolume(1),
 			mfVolume(0), mfVolumeAdd(0.01f){}
 
 		tString msFileName;
@@ -81,10 +81,10 @@ namespace hpl {
 		 * \param afVolume volume to be played at
 		 * \param afFadeStepSize volume increse/decrease per app step when fading to new volume.
 		 * \param abLoop If the music should be looped or not.
-		 * \return 
+		 * \return
 		 */
 		bool Play(const tString& asFileName,float afVolume, float afFadeStepSize, bool abLoop);
-		
+
 		/**
 		 * Stop playing the current music.
 		 * \param afFadeStepSize volume increse/decrease per app step when fading volume to 0.
@@ -92,10 +92,10 @@ namespace hpl {
 		void Stop(float afFadeStepSize);
 		void Pause();
 		void Resume();
-		
+
 		/**
 		 * No more music can be played when locked. Latest song that has been tried to be palyed is saved in lock.
-		 * \param apLock 
+		 * \param apLock
 		 */
 		void Lock(cMusicLock* apLock);
 		/**
@@ -104,9 +104,9 @@ namespace hpl {
 		void UnLock();
 		tString GetCurrentSongName();
 		float GetCurrentSongVolume();
-		
+
 		cMusicEntry* GetCurrentSong();
-		
+
 		void Update(float afTimeStep);
 
 	private:

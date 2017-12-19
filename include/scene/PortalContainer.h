@@ -39,7 +39,7 @@ namespace hpl {
 
 	typedef std::set<iEntity3D*> tEntity3DSet;
 	typedef std::set<iEntity3D*>::iterator tEntity3DSetIt;
-    
+
 	//----------------------------------------------------
 
 	class cPortalContainer;
@@ -52,7 +52,7 @@ namespace hpl {
 
 	//----------------------------------------------------
 
-	
+
 	class cPortalContainerEntityIterator
 	{
 	public:
@@ -128,7 +128,7 @@ namespace hpl {
 
 		void SetTargetSector(tString asSectorId);
 		cSector *GetTargetSector();
-		
+
 		cSector *GetSector();
 
 		void AddPortalId(int alId);
@@ -167,7 +167,7 @@ namespace hpl {
 
 		bool mbActive;
 
-		
+
         cVector3f mvNormal;
 		cPlanef mPlane;
 		cBoundingVolume mBV;
@@ -298,7 +298,7 @@ namespace hpl {
 
 		//Global dynamic entities
 		tEntity3DSet m_setGlobalEntities;
-		
+
 		tStringList mlstVisibleSectors;
 
 		int mlEntityIterateCount;

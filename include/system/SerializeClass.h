@@ -38,7 +38,7 @@ namespace hpl {
 	#define eSerializeType_Float32		(3)
 
 	#define eSerializeType_String		(4)
-	
+
 	#define eSerializeType_Vector2l		(5)
 	#define eSerializeType_Vector2f		(6)
 	#define eSerializeType_Vector3l		(7)
@@ -85,7 +85,7 @@ namespace hpl {
 	#define eSerializeMainType_NULL				(0xFFFF)
 
 
-	
+
 	/////////////////////////////////////////////////
 	//// HELPER DEFINES /////////////////////////////
 	/////////////////////////////////////////////////

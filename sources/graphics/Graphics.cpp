@@ -100,21 +100,21 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
-	bool cGraphics::Init(	int alWidth, int alHeight, int alBpp, int abFullscreen, 
-							int alMultisampling,const tString &asWindowCaption, 
+
+	bool cGraphics::Init(	int alWidth, int alHeight, int alBpp, int abFullscreen,
+							int alMultisampling,const tString &asWindowCaption,
 							cResources* apResources)
 	{
 		Log("Initializing Graphics Module\n");
 		Log("--------------------------------------------------------\n");
-		
+
 		//Setup the graphic directories:
 		apResources->AddResourceDir("core/programs");
 		apResources->AddResourceDir("core/textures");
-		
+
 		Log(" Init low level graphics\n");
 		mpLowLevelGraphics->Init(alWidth,alHeight,alBpp,abFullscreen,alMultisampling,asWindowCaption);
-		
+
 		Log(" Creating graphic systems\n");
 		mpMaterialHandler = hplNew( cMaterialHandler,(this, apResources));
 		mpDrawer = hplNew( cGraphicsDrawer,(mpLowLevelGraphics,mpMaterialHandler,apResources));
@@ -125,8 +125,8 @@ namespace hpl {
 		mpRendererPostEffects = hplNew( cRendererPostEffects,(mpLowLevelGraphics,apResources,mpRenderList,
 														mpRenderer3D));
 		mpRenderer3D->SetPostEffects(mpRendererPostEffects);
-		
-		
+
+
 		//Add all the materials.
 		//2D
 		Log(" Adding engine materials\n");
@@ -149,23 +149,23 @@ namespace hpl {
 		mpMaterialHandler->Add(hplNew( cMaterialType_Flat,()) );
 		mpMaterialHandler->Add(hplNew( cMaterialType_Modulative,()) );
 		mpMaterialHandler->Add(hplNew( cMaterialType_ModulativeX2,()) );
-		
+
 		mpMaterialHandler->Add(hplNew( cMaterialType_EnvMap_Reflect,()) );
 
 		mpMaterialHandler->Add(hplNew( cMaterialType_Water,()) );
 
 		Log("--------------------------------------------------------\n\n");
-		
+
 		return true;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	iLowLevelGraphics* cGraphics::GetLowLevel()
 	{
 		return mpLowLevelGraphics;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cGraphicsDrawer* cGraphics::GetDrawer()
@@ -179,7 +179,7 @@ namespace hpl {
 	{
 		return mpRenderer2D;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 }

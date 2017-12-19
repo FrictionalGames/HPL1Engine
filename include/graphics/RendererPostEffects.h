@@ -29,7 +29,7 @@
 namespace hpl {
 
 #define kFilterProgramNum (1)
-	
+
 	class iLowLevelGraphics;
 	class iLowLevelResources;
 	class iGpuProgram;
@@ -61,16 +61,16 @@ namespace hpl {
 		int mlCurrentBuffer;
 		float mfAmount;
 	};
-	
+
 	class cResources;
-	
+
 	class cRendererPostEffects
 	{
 	public:
-		cRendererPostEffects(iLowLevelGraphics *apLowLevelGraphics,cResources* apResources, 
+		cRendererPostEffects(iLowLevelGraphics *apLowLevelGraphics,cResources* apResources,
 							cRenderList *apRenderList, cRenderer3D *apRenderer3D);
 		~cRendererPostEffects();
-		
+
 		/**
 		 * Render post effects, called by cScene
 		 */
@@ -85,12 +85,12 @@ namespace hpl {
 		 * \param afAmount 0.0 - 1.0 are valid
 		 */
 		void SetImageTrailAmount(float afAmount){mImageTrailData.mfAmount = afAmount;}
-		
+
 		iTexture* GetScreenBuffer(int alNum){ return mpScreenBuffer[alNum];}
 
 		void SetActive(bool abX){ mbActive = abX;}
 		bool GetActive(){ return mbActive;}
-	
+
 		void SetBloomActive(bool abX);
 		bool GetBloomActive(){ return mbBloomActive;}
 
@@ -116,13 +116,13 @@ namespace hpl {
 		float GetDepthOfFieldFarPlane(){ return mfDofFarPlane;}
 
 		iTexture* GetFreeScreenTexture(){ return mpScreenBuffer[mImageTrailData.mlCurrentBuffer==0?1:0];}
-		
+
 		void RenderBlurTexture(iTexture *apDestination, iTexture *apSource,float afBlurAmount);
 
 	private:
 		void RenderImageTrail();
 
-		void RenderBloom();	
+		void RenderBloom();
 
 		void RenderMotionBlur();
 
@@ -137,11 +137,11 @@ namespace hpl {
 		cRenderList *mpRenderList;
 
 		cVector2f mvScreenSize;
-		
+
 		iTexture* mpScreenBuffer[2];
 
 		cImageTrailEffect mImageTrailData;
-		
+
 		iGpuProgram *mpBlurVP;
 		iGpuProgram *mpBlur2dFP;
 		iGpuProgram *mpBlurRectFP;
@@ -158,7 +158,7 @@ namespace hpl {
 		iGpuProgram *mpDepthOfFieldVP;
 		iGpuProgram *mpDepthOfFieldFP;
 		iTexture *mpDofBlurTexture;
-		
+
 		tVertexVec mvTexRectVtx;
 
 		bool mbBloomActive;
@@ -173,7 +173,7 @@ namespace hpl {
 		float mfDofFocalPlane;
 		float mfDofNearPlane;
 		float mfDofFarPlane;
-		
+
 		bool mbActive;
 	};
 

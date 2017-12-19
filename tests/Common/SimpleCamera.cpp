@@ -35,7 +35,7 @@ cSimpleCamera::cSimpleCamera(cGame *apGame, float afSpeed,cVector3f avStartPos,b
 	mpGui = mpGame->GetGui();
 	mpGuiSkin = mpGui->CreateSkin("gui_default.skin");
 	mpGuiSet = mpGui->CreateSet("Text",mpGuiSkin);
-	
+
 	//Debug:
 	//mpGui->SetFocus(mpGuiSet);
 	//mpGuiSet->SetDrawMouse(true);
@@ -71,8 +71,8 @@ void cSimpleCamera::Update(float afFrameTime)
 	}
 
 	if(mbActive== false) return;
-	
-	float fMul = mpGame->GetStepSize();	
+
+	float fMul = mpGame->GetStepSize();
 
 	if(mpGame->GetInput()->IsTriggerd("Forward")) mpCamera->MoveForward(mfSpeed * fMul);
 	if(mpGame->GetInput()->IsTriggerd("Backward")) mpCamera->MoveForward(-mfSpeed* fMul);
@@ -93,7 +93,7 @@ void cSimpleCamera::OnDraw()
 	//return;
 	//cVector2f vAbs = mpGame->GetInput()->GetMouse()->GetAbsPosition();
 	//mpGui->SendMousePos(vAbs, 0);
-	
+
 
 	//for(int i=0;i<600; ++i)
 	//	mpGuiSet->DrawGfx(mpTestGfx,0,cVector2f(1024,768));

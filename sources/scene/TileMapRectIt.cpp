@@ -33,7 +33,7 @@ namespace hpl {
 
 		mvPos = avPos;
 		mvSize = avSize;
-		
+
 		mlLayer = alLayer;
 		mlLayerCount =0;
 		mlCurrentLayer = 0;
@@ -64,7 +64,7 @@ namespace hpl {
 		}
 		else{
 		}
-		
+
 		mbUpdated = false;
 	}
 
@@ -81,7 +81,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	bool cTileMapRectIt::HasNext()
 	{
 		GetTile();
@@ -98,14 +98,14 @@ namespace hpl {
       	mbUpdated = false;
 		return mpTile;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 
 	cTile* cTileMapRectIt::PeekNext()
 	{
 		GetTile();
-		
+
 		return mpTile;
 	}
 
@@ -128,7 +128,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 	// PUBLIC METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
 
 	void cTileMapRectIt::GetTile()
@@ -143,7 +143,7 @@ namespace hpl {
 			if( (mlLayer>=0 && mlLayerCount>0) || (mlLayer==-1 && mlLayerCount>= (int)mpTileMap->mvTileLayer.size()) )
 			{
 				mlLayerCount=0;
-				
+
 				mlTileNum++;
 				mlTileColCount--;
 				if(mlTileColCount<=0)
@@ -169,9 +169,9 @@ namespace hpl {
 					mpTile = mpTileMap->mvTileLayer[mlLayer]->mvTile[mlTileNum];
 					mlCurrentLayer = mlLayer;
 				}
-				
+
 				mlLayerCount++;
-                
+
 				if(mpTile!=NULL){
 					iTileData* pData = mpTile->GetTileData();
 					if(pData && pData->IsSolid()){

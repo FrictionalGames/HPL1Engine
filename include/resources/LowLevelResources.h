@@ -31,7 +31,7 @@ namespace hpl {
 	{
 	public:
 		virtual ~iLowLevelResources(){}
-		
+
 		/**
 		 * Returns a list of files in a dir
 		 * \param &alstStrings list where the files are saved

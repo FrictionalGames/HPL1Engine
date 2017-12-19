@@ -131,7 +131,7 @@ static asCScriptString &AssignBitsToString(asDWORD i, asCScriptString &dest)
 {
 	ostringstream stream;
 	stream << hex << i;
-	dest.buffer = stream.str(); 
+	dest.buffer = stream.str();
 
 	// Return a reference to the object
 	return dest;
@@ -149,7 +149,7 @@ static asCScriptString &AssignUIntToString(unsigned int i, asCScriptString &dest
 {
 	ostringstream stream;
 	stream << i;
-	dest.buffer = stream.str(); 
+	dest.buffer = stream.str();
 	return dest;
 }
 
@@ -165,7 +165,7 @@ static asCScriptString &AssignIntToString(int i, asCScriptString &dest)
 {
 	ostringstream stream;
 	stream << i;
-	dest.buffer = stream.str(); 
+	dest.buffer = stream.str();
 	return dest;
 }
 
@@ -181,7 +181,7 @@ static asCScriptString &AssignFloatToString(float f, asCScriptString &dest)
 {
 	ostringstream stream;
 	stream << f;
-	dest.buffer = stream.str(); 
+	dest.buffer = stream.str();
 	return dest;
 }
 
@@ -197,7 +197,7 @@ static asCScriptString &AssignDoubleToString(double f, asCScriptString &dest)
 {
 	ostringstream stream;
 	stream << f;
-	dest.buffer = stream.str(); 
+	dest.buffer = stream.str();
 	return dest;
 }
 
@@ -217,7 +217,7 @@ static asCScriptString &AddAssignBitsToString(asDWORD i, asCScriptString &dest)
 {
 	ostringstream stream;
 	stream << hex << i;
-	dest.buffer += stream.str(); 
+	dest.buffer += stream.str();
 	return dest;
 }
 
@@ -233,7 +233,7 @@ static asCScriptString &AddAssignUIntToString(unsigned int i, asCScriptString &d
 {
 	ostringstream stream;
 	stream << i;
-	dest.buffer += stream.str(); 
+	dest.buffer += stream.str();
 	return dest;
 }
 
@@ -249,7 +249,7 @@ static asCScriptString &AddAssignIntToString(int i, asCScriptString &dest)
 {
 	ostringstream stream;
 	stream << i;
-	dest.buffer += stream.str(); 
+	dest.buffer += stream.str();
 	return dest;
 }
 
@@ -265,7 +265,7 @@ static asCScriptString &AddAssignFloatToString(float f, asCScriptString &dest)
 {
 	ostringstream stream;
 	stream << f;
-	dest.buffer += stream.str(); 
+	dest.buffer += stream.str();
 	return dest;
 }
 
@@ -281,7 +281,7 @@ static asCScriptString &AddAssignDoubleToString(double f, asCScriptString &dest)
 {
 	ostringstream stream;
 	stream << f;
-	dest.buffer += stream.str(); 
+	dest.buffer += stream.str();
 	return dest;
 }
 
@@ -301,7 +301,7 @@ static asCScriptString *AddStringBits(const asCScriptString &str, asDWORD i)
 {
 	ostringstream stream;
 	stream << hex << i;
-	return new asCScriptString(str.buffer + stream.str()); 
+	return new asCScriptString(str.buffer + stream.str());
 }
 
 static void AddStringBits_Generic(asIScriptGeneric *gen)
@@ -595,13 +595,13 @@ void RegisterScriptString_Native(asIScriptEngine *engine)
 	r = engine->RegisterObjectBehaviour("string", asBEHAVE_ASSIGNMENT, "string &f(const string &in)", asMETHODPR(asCScriptString, operator =, (const asCScriptString&), asCScriptString&), asCALL_THISCALL); assert( r >= 0 );
 	r = engine->RegisterObjectBehaviour("string", asBEHAVE_ADD_ASSIGN, "string &f(const string &in)", asMETHODPR(asCScriptString, operator+=, (const asCScriptString&), asCScriptString&), asCALL_THISCALL); assert( r >= 0 );
 
-	// Register the memory allocator routines. This will make all memory allocations for the string 
+	// Register the memory allocator routines. This will make all memory allocations for the string
 	// object be made in one place, which is important if for example the script library is used from a dll
 	r = engine->RegisterObjectBehaviour("string", asBEHAVE_ALLOC, "string &f(uint)", asFUNCTION(StringAlloc), asCALL_CDECL); assert( r >= 0 );
 	r = engine->RegisterObjectBehaviour("string", asBEHAVE_FREE, "void f(string &in)", asFUNCTION(StringFree), asCALL_CDECL); assert( r >= 0 );
 
 	// Register the factory to return a handle to a new string
-	// Note: We must register the string factory after the basic behaviours, 
+	// Note: We must register the string factory after the basic behaviours,
 	// otherwise the library will not allow the use of object handles for this type
 	r = engine->RegisterStringFactory("string@", asFUNCTION(StringFactory), asCALL_CDECL); assert( r >= 0 );
 
@@ -665,13 +665,13 @@ void RegisterScriptString_Generic(asIScriptEngine *engine)
 	r = engine->RegisterObjectBehaviour("string", asBEHAVE_ASSIGNMENT, "string &f(const string &in)", asFUNCTION(AssignString_Generic), asCALL_GENERIC); assert( r >= 0 );
 	r = engine->RegisterObjectBehaviour("string", asBEHAVE_ADD_ASSIGN, "string &f(const string &in)", asFUNCTION(AddAssignString_Generic), asCALL_GENERIC); assert( r >= 0 );
 
-	// Register the memory allocator routines. This will make all memory allocations for the string 
+	// Register the memory allocator routines. This will make all memory allocations for the string
 	// object be made in one place, which is important if for example the script library is used from a dll
 	r = engine->RegisterObjectBehaviour("string", asBEHAVE_ALLOC, "string &f(uint)", asFUNCTION(StringAlloc), asCALL_CDECL); assert( r >= 0 );
 	r = engine->RegisterObjectBehaviour("string", asBEHAVE_FREE, "void f(string &in)", asFUNCTION(StringFree), asCALL_CDECL); assert( r >= 0 );
 
 	// Register the factory to return a handle to a new string
-	// Note: We must register the string factory after the basic behaviours, 
+	// Note: We must register the string factory after the basic behaviours,
 	// otherwise the library will not allow the use of object handles for this type
 	r = engine->RegisterStringFactory("string@", asFUNCTION(StringFactory_Generic), asCALL_GENERIC); assert( r >= 0 );
 

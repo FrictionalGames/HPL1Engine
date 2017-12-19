@@ -84,7 +84,7 @@ namespace hpl {
 
 		bool GetIsOneSided(){ return mbIsOneSided;}
 		const cVector3f& GetOneSidedNormal(){ return mvOneSidedNormal;}
-		
+
 		void Compile();
 	private:
 		void CheckOneSided();

@@ -58,7 +58,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	void cWidgetWindow::SetStatic(bool abX)
 	{
 		mbStatic = abX;
@@ -111,7 +111,7 @@ namespace hpl {
 
 		////////////////////////////////
 		// Label
-		mpSet->DrawGfx(	mpGfxLabel,GetGlobalPosition() + 
+		mpSet->DrawGfx(	mpGfxLabel,GetGlobalPosition() +
 						cVector3f(mvGfxCorners[0]->GetActiveSize().x,mvGfxCorners[0]->GetActiveSize().y,0.2f),
 						vLabelSize);
 
@@ -127,7 +127,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	bool cWidgetWindow::OnMouseMove(cGuiMessageData &aData)
 	{
 		if(mbMoving) SetGlobalPosition(mvRelMousePos + cVector3f(aData.mvPos.x, aData.mvPos.y,0));
@@ -147,7 +147,7 @@ namespace hpl {
 		labelRect.h = mpLabelFont->mvSize.y + mvLabelTextOffset.y*2;
 		labelRect.x = GetGlobalPosition().x + mvGfxCorners[0]->GetActiveSize().x;
 		labelRect.y = GetGlobalPosition().y + mvGfxCorners[0]->GetActiveSize().y;
-		
+
 		////////////////////////////////
 		// Check for collision
 		if(cMath::PointBoxCollision(aData.mvPos,labelRect) && aData.mlVal & eGuiMouseButton_Left)
@@ -156,7 +156,7 @@ namespace hpl {
 			mvRelMousePos = GetPosRelativeToMouse(aData);
 			mvRelMousePos.z = GetGlobalPosition().z;
 		}
-		
+
 		return true;
 	}
 
@@ -164,8 +164,8 @@ namespace hpl {
 
 	bool cWidgetWindow::OnMouseUp(cGuiMessageData &aData)
 	{
-		if(aData.mlVal & eGuiMouseButton_Left) mbMoving = false;	
-		
+		if(aData.mlVal & eGuiMouseButton_Left) mbMoving = false;
+
 		return true;
 	}
 
@@ -175,13 +175,13 @@ namespace hpl {
 	{
 		return false;
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	bool cWidgetWindow::OnMouseLeave(cGuiMessageData &aData)
 	{
 		cVector3f vLastGlobal = GetGlobalPosition();
-		
+
 		if(mbMoving) SetGlobalPosition(mvRelMousePos + cVector3f(aData.mvPos.x, aData.mvPos.y,0));
 
 		//Check so that mouse is not outside of clip area.
@@ -190,7 +190,7 @@ namespace hpl {
 			SetGlobalPosition(vLastGlobal);
 			mbMoving = false;
 		}
-		
+
 		return false;
 	}
 

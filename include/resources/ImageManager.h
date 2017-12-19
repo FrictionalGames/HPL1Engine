@@ -32,7 +32,7 @@ namespace hpl {
 
 	typedef std::list<cFrameBitmap*> tFrameBitmapList;
 	typedef tFrameBitmapList::iterator tFrameBitmapListIt;
-	
+
 	typedef std::map<int,cFrameTexture*> tFrameTextureMap;
 	typedef tFrameTextureMap::iterator tFrameTextureMapIt;
 
@@ -42,13 +42,13 @@ namespace hpl {
 		cImageManager(cFileSearcher *apFileSearcher, iLowLevelGraphics *apLowLevelGraphics,
 						iLowLevelResources *apLowLevelResources,iLowLevelSystem *apLowLevelSystem);
 		~cImageManager();
-		
+
 		iResourceBase* Create(const tString& asName);
-		
+
 		void Destroy(iResourceBase* apResource);
-		
+
 		void Unload(iResourceBase* apResource);
-		
+
 		//Image specifc
 		iResourceBase* CreateInFrame(const tString& asName, int alFrameHandle);
 		cResourceImage* CreateImage(const tString& asName, int alFrameHandle=-1);
@@ -66,10 +66,10 @@ namespace hpl {
 		void SetFrameLocked(int alHandle, bool abLocked);
 	private:
 		iLowLevelGraphics *mpLowLevelGraphics;
-		
+
 		tFrameBitmapList mlstBitmapFrames;
 		tFrameTextureMap m_mapTextureFrames;
-		
+
 		tStringList mlstFileFormats;
         cVector2l mvFrameSize;
 		int mlFrameHandle;

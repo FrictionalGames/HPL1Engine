@@ -36,11 +36,11 @@ namespace hpl {
 	{
 	friend class cImageManager;
 	public:
-		cResourceImage(tString asName, cFrameTexture *apFrameTex, 
+		cResourceImage(tString asName, cFrameTexture *apFrameTex,
 						cFrameBitmap *apFrameBmp,
 						cRect2l aRect,
 						cVector2l avSrcSize, int alHandle);
-		
+
 		bool Reload();
 		void Unload();
 		void Destroy();
@@ -61,13 +61,13 @@ namespace hpl {
 
 		tVertexVec GetVertexVecCopy(const cVector2f &avPos, const cVector2f &avSize);
 		const tVertexVec& GetVertexVec(){return mvVtx;}
-		
+
     private:
 		~cResourceImage();
 
 		cFrameTexture *mpFrameTexture;
 		cFrameBitmap *mpFrameBitmap;
-		
+
 		cVector2l mvSourceSize;
 		cRect2l mRect;
 		tVertexVec mvVtx;

@@ -34,16 +34,16 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	cBody2D::cBody2D(const tString& asName,cMesh2D *apMesh, cVector2f avSize, cCollider2D* apCollider, int alID) 
+	cBody2D::cBody2D(const tString& asName,cMesh2D *apMesh, cVector2f avSize, cCollider2D* apCollider, int alID)
 	: iEntity2D(asName)
 	{
 		mvSize = avSize;
 		mpMesh = apMesh;
 		mpCollider = apCollider;
-		
+
 		mpCollMesh = mpMesh->CreateCollisonMesh(0,mvSize);
 		mpBaseCollMesh = mpMesh->CreateCollisonMesh(0,mvSize);
-		
+
 		/*for(int i=0;i<(int)mpCollMesh->mvPos.size();i++)
 		{
 			Log("Pos%d: %s\n", i,mpCollMesh->mvPos[i].ToString().c_str());
@@ -55,11 +55,11 @@ namespace hpl {
 		}*/
 
 		//Log("------------\n");
-			
+
 		//Set some default values to the properties
 		mfMaxVel =0;
 		mfAcc =1;
-		
+
 		mfAirFriction = 0.005f;
 		mfGroundFriction = 0.3f;
 		mfGravity = 0.4f;
@@ -121,17 +121,17 @@ namespace hpl {
 
 		cCollideData2D CollideData;
 		//Update Gravity
-		
+
 		mbGroundFrictionX = false;
 
 		if(mbCollides && mfGravity > 0)
 		{
 			cVector3f vTempPos = GetPosition();
-			
+
 			float fXSize = mvSize.x;
 			cRect2f Rect(vTempPos.x - fXSize/2,vTempPos.y+mfGravity,
 						fXSize, mvSize.y/2);
-            
+
 			if(mpCollider->CollideRect(Rect,GetCollideFlag(),NULL))
 			{
 				//We are still on ground.
@@ -144,7 +144,7 @@ namespace hpl {
 				//If the player used to be on ground, add some extra force
 				if(mbOnGround)
 				{
-					mvForce.y += mfGravity*2;	
+					mvForce.y += mfGravity*2;
 				}
 
 				mbOnGround = false;
@@ -155,7 +155,7 @@ namespace hpl {
 
 		//Add the Y Axis and check for collision
 		AddPosXY(cVector2f(0,mvForce.y));
-		
+
 		if(mbCollides)
 		{
 			UpdateCollisionMesh();
@@ -175,7 +175,7 @@ namespace hpl {
 							if(*it != mpParentBody)
 							{
 								if(mpParentBody != NULL)DetachBody(mpParentBody);
-								
+
 								SetParentBody(*it);
 								(*it)->AttachBody(this);
 								//Log("Attaching!\n");
@@ -183,7 +183,7 @@ namespace hpl {
 						}
 						else
 						{
-							if(mpParentBody != NULL) 
+							if(mpParentBody != NULL)
 							{
 								DetachBody(mpParentBody);
 								mpParentBody = NULL;
@@ -197,7 +197,7 @@ namespace hpl {
 				}
 
 				if(mvCollideCount.y>0){
-					
+
 					mvForce.y=0;
 				}
 
@@ -212,19 +212,19 @@ namespace hpl {
 			}
 
 			if(mbOnGround==false && mbAttachToGround)
-			{	
-				if(mpParentBody != NULL) 
+			{
+				if(mpParentBody != NULL)
 				{
 					DetachBody(mpParentBody);
 					mpParentBody = NULL;
 					//Log("Detaching!\n");
-				}		
+				}
 			}
 		}
-		
+
 		//Add the X Axis and check for collision
 		AddPosXY(cVector2f(mvForce.x, 0));
-		
+
 		if(mbCollides)
 		{
 			UpdateCollisionMesh();
@@ -236,7 +236,7 @@ namespace hpl {
 				if(mvCollideCount.x>0){
 					mvForce.x=0;
 				}
-				
+
 				mvLastCollidePos.x = GetPosition().x;
 			}
 			else{
@@ -248,14 +248,14 @@ namespace hpl {
 		// Update the force
 		float fAngle=0,fStrength=0;
 		cMath::GetAngleFromVector(mvForce, &fAngle, &fStrength);
-		
-		fStrength -= mfAirFriction; //This is the air friction. 
+
+		fStrength -= mfAirFriction; //This is the air friction.
 							//It should be combined with the friction of the collided material.
-		
+
 		if(fStrength<0)fStrength=0;
-		
+
 		SetForce(fAngle,fStrength);
-		
+
 		//Don't do any friction if the body has moved.
 		//if(!mbMoved) Or?
 		{
@@ -275,10 +275,10 @@ namespace hpl {
 				//Log("Force: %s\n",mvForce.ToString().c_str());
 			}
 		}
-	
+
 		mvMovement = GetPosition() - vStartPos;
-				
-		
+
+
 		/*tBody2DListIt BodyIt = mlstAttachedBodies.begin();
 		for(;BodyIt != mlstAttachedBodies.end();BodyIt++)
 		{
@@ -286,11 +286,11 @@ namespace hpl {
 
 			pBody->SetPosition(pBody->GetPosition() + vMovement);
 		}*/
-		
+
 		if(mpNode){
 			mpNode->SetPosition(GetWorldPosition());
 		}
-		
+
 		mbMoved = false;
 	}
 
@@ -299,27 +299,27 @@ namespace hpl {
 	void cBody2D::Move(float afValue)
 	{
 		float fAngle=0,fStrength=0;
-		
+
 		cVector2f vForwardVec = cMath::GetVectorFromAngle2D(mvRotation.z, 1);
 		cVector2f vMovement = cMath::ProjectVector2D(mvForce,vForwardVec);
 		cMath::GetAngleFromVector(vMovement,&fAngle,&fStrength);
-		
+
 		if(fStrength < mfMaxVel)
 		{
 			float fTempAcc = mfAcc;
-			
+
 			if(fStrength + fTempAcc > mfMaxVel){
 				fTempAcc -=  (fStrength + fTempAcc) -  mfMaxVel;
 			}
-			
+
 			mvForce += vForwardVec * fTempAcc;
 
 			mbMoved = true;
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	void cBody2D::AddForce(float afAngle, float afStrength)
 	{
 		cVector2f vForce = cMath::GetVectorFromAngle2D(afAngle, afStrength);
@@ -328,7 +328,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	void cBody2D::AddForce(const cVector2f& avForce)
 	{
 		mvForce += avForce;
@@ -341,7 +341,7 @@ namespace hpl {
 		cVector2f vForce = cMath::GetVectorFromAngle2D(afAngle, afStrength);
 		SetForce(vForce);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cBody2D::SetForce(const cVector2f& avForce)
@@ -350,7 +350,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	const cRect2f& cBody2D::GetBoundingBox()
 	{
 		return mBoundingBox;
@@ -380,9 +380,9 @@ namespace hpl {
 
 		return true;
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	void cBody2D::UpdateCollisionMesh()
 	{
 		cVector2f vPos(GetPosition().x, GetPosition().y);
@@ -391,7 +391,7 @@ namespace hpl {
 			mpCollMesh->mvPos[i] =  vPos + mpBaseCollMesh->mvPos[i];
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cCollisionMesh2D* cBody2D::GetCollisionMesh()
@@ -405,9 +405,9 @@ namespace hpl {
 	{
 		mlstAttachedBodies.push_back(apBody);
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	void cBody2D::DetachBody(cBody2D* apBody)
 	{
 		tBody2DListIt it = mlstAttachedBodies.begin();
@@ -420,9 +420,9 @@ namespace hpl {
 			}
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	void cBody2D::SetParentBody(cBody2D* apBody)
 	{
 		mpParentBody = apBody;

@@ -22,25 +22,25 @@
 #include "system/String.h"
 
 namespace hpl {
-	
+
 	//////////////////////////////////////////////////////////////////////////
 	// CONSTRUCTORS
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	cSystem::cSystem(iLowLevelSystem *apLowLevelSystem)
 	{
 		mpLowLevelSystem = apLowLevelSystem;
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	cSystem::~cSystem()
 	{
 		Log("Exiting System Module\n");
 		Log("--------------------------------------------------------\n");
-		
+
 		Log("--------------------------------------------------------\n\n");
 	}
 
@@ -55,14 +55,14 @@ namespace hpl {
 	{
 		return hplNew( cLogicTimer, (alUpdatesPerSec, mpLowLevelSystem) );
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	iLowLevelSystem* cSystem::GetLowLevel()
 	{
 		return mpLowLevelSystem;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 }

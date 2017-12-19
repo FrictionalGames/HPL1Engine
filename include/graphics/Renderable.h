@@ -138,7 +138,7 @@ namespace hpl {
 
 		int mlRenderCount;
 		int mlPrevRenderCount;
-		
+
 		int mlCalcScaleMatrixCount;
 		cVector3f mvCalcScale;
 

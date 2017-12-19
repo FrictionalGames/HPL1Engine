@@ -133,7 +133,7 @@ namespace hpl {
 		STLDeleteAll(mlstAINodeContainers);
 		STLDeleteAll(mlstAStarHandlers);
 		STLMapDeleteAll(m_mapTempNodes);
-		
+
 		if(mpScript){
 			mpResources->GetScriptManager()->Destroy(mpScript);
 		}
@@ -168,7 +168,7 @@ namespace hpl {
 		START_TIMING(Entities);
 		UpdateEntities(afTimeStep);
 		STOP_TIMING(Entities);
-		
+
 		START_TIMING(Bodies);
 		UpdateBodies(afTimeStep);
 		STOP_TIMING(Bodies);
@@ -497,7 +497,7 @@ namespace hpl {
 		}
 
 		mpPortalContainer->Remove(apMesh);
-		
+
 		hplDelete(apMesh);
 	}
 
@@ -570,12 +570,12 @@ namespace hpl {
 			else
 				Warning("Couldn't load texture '%s' for light '%s'",asGobo.c_str(), asName.c_str());
 		}
-		
+
 		if(abAddToContainer)
 			mpPortalContainer->Add(pLight, false);
 
 		pLight->SetWorld3D(this);
-		
+
 		return pLight;
 	}
 
@@ -790,7 +790,7 @@ namespace hpl {
 	void cWorld3D::DestroySoundEntity(cSoundEntity* apEntity)
 	{
 		//STLFindAndDelete(mlstSoundEntities,apEntity);
-		
+
 		tSoundEntityListIt it= mlstSoundEntities.begin();
 		for(; it != mlstSoundEntities.end(); ++it)
 		{
@@ -824,7 +824,7 @@ namespace hpl {
 				pJoint->SetSound(NULL);
 			}
 		}
-		
+
 		//Destroy all sound entities
 		STLDeleteAll(mlstSoundEntities);
 		mlstSoundEntities.clear();
@@ -880,7 +880,7 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	cAINodeContainer* cWorld3D::CreateAINodeContainer(const tString &asName, 
+	cAINodeContainer* cWorld3D::CreateAINodeContainer(const tString &asName,
 								const tString &asNodeName,
 								const cVector3f &avSize,
 								bool abNodeIsAtCenter,
@@ -901,7 +901,7 @@ namespace hpl {
 				pContainer = pCont;
 			}
 		}
-		
+
 
 		//////////////////////////////////
 		//Get file name
@@ -943,7 +943,7 @@ namespace hpl {
 				cTempAiNode& pNode = *NodeIt;
 				pContainer->AddNode(pNode.msName,pNode.mvPos,NULL);
 			}
-			
+
 			bool bLoadedFromFile=false;
 			if(FileExists(cString::To16Char(sAiFileName)))
 			{
@@ -956,7 +956,7 @@ namespace hpl {
 					pContainer->LoadFromFile(sAiFileName);
 				}
 			}
-			
+
 			if(bLoadedFromFile==false)
 			{
 				Log("Rebuilding node connections and saving to '%s'\n",sAiFileName.c_str());
@@ -968,7 +968,7 @@ namespace hpl {
 				pContainer->SaveToFile(sAiFileName);
 			}
 		}
-		
+
 		//unsigned long lTime = mpSystem->GetLowLevel()->GetTime() - lStartTime;
 		//Log("Creating ai nodes took: %d\n",lTime);
 
@@ -1081,11 +1081,11 @@ namespace hpl {
 			if(pEntity->IsActive()){
 				//bool bTime = cString::GetLastStringPos(pEntity->GetName(), "infected")>=0;
 				//if(bTime) START_TIMING_EX(pEntity->GetName().c_str(),entity);
-				
+
 				//Debug:
 				//for(int i=0; i<100;++i) pEntity->UpdateLogic(afTimeStep / 100.0f);
 				pEntity->UpdateLogic(afTimeStep);
-				
+
 				//if(bTime) STOP_TIMING(entity);
 			}
 		}

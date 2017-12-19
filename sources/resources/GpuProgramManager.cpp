@@ -31,7 +31,7 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	cGpuProgramManager::cGpuProgramManager(cFileSearcher *apFileSearcher,iLowLevelGraphics *apLowLevelGraphics, 
+	cGpuProgramManager::cGpuProgramManager(cFileSearcher *apFileSearcher,iLowLevelGraphics *apLowLevelGraphics,
 		iLowLevelResources *apLowLevelResources,iLowLevelSystem *apLowLevelSystem)
 		: iResourceManager(apFileSearcher, apLowLevelResources,apLowLevelSystem)
 	{
@@ -56,8 +56,8 @@ namespace hpl {
 	/**
 	 * Since further parameters are needed for the gpu prog this does not work...
 	 * For now at least.
-	 * \param asName 
-	 * \return 
+	 * \param asName
+	 * \return
 	 */
 	iResourceBase* cGpuProgramManager::Create(const tString& asName)
 	{
@@ -74,11 +74,11 @@ namespace hpl {
 		pProgram = static_cast<iGpuProgram*>(FindLoadedResource(asName,sPath));
 
 		BeginLoad(asName);
-		
+
 		if(pProgram==NULL && sPath!="")
 		{
 			pProgram = mpLowLevelGraphics->CreateGpuProgram(asName, aType);
-			
+
 			if(pProgram->CreateFromFile(sPath,asEntry)==false)
 			{
 				Error("Couldn't create program '%s'\n",asName.c_str());
@@ -86,13 +86,13 @@ namespace hpl {
 				EndLoad();
 				return NULL;
 			}
-			
+
 			AddResource(pProgram);
 		}
-		
+
 		if(pProgram)pProgram->IncUserCount();
 		else Error("Couldn't load program '%s'\n",asName.c_str());
-		
+
 		EndLoad();
 		return pProgram;
      }
@@ -125,6 +125,6 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	
+
 	//-----------------------------------------------------------------------
 }

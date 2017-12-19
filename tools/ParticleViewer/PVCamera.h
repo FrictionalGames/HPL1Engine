@@ -27,10 +27,10 @@ public:
 	~cPVCamera();
 
 	void Update(float afFrameTime);
-	
+
 	void OnDraw();
 private:
-	void CalculateCameraPos();	
+	void CalculateCameraPos();
 
 	cGame *mpGame;
 	iFontData* mpFont;

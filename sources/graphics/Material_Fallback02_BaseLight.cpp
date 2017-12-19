@@ -35,7 +35,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 	// FRAGMENT PROGRAMS
 	//////////////////////////////////////////////////////////////////////////
-	
+
     //-----------------------------------------------------------------------
 
 	cGLStateTwoUnits_Diffuse::cGLStateTwoUnits_Diffuse()
@@ -112,7 +112,7 @@ namespace hpl {
 		glDisable(GL_FRAGMENT_SHADER_ATI);
 	}
 
-	
+
 	//-----------------------------------------------------------------------
 
 	cGLStateTwoUnits_Spot::cGLStateTwoUnits_Spot()
@@ -150,7 +150,7 @@ namespace hpl {
 		{
 			gATIDiffuseGLState.SetUp(mpLowLevelGraphics);
 		}
-		
+
 		mbIsTransperant = false;
 		mbIsGlowing= false;
 		mbUsesLights = true;
@@ -184,7 +184,7 @@ namespace hpl {
 		///////////////////////////////////////////
 		//Load the light pass fragment program
 		//Point
-		
+
 		if(mpLowLevelGraphics->GetCaps(eGraphicCaps_GL_ATIFragmentShader))
 		{
 			mvFragPrograms[eBaseLightProgram_Point1] = &gATIDiffuseGLState;
@@ -199,7 +199,7 @@ namespace hpl {
 
 			mvFragPrograms[eBaseLightProgram_Spot2] =  NULL;//hplNew( cGLStateTwoUnits_Spot, (mpLowLevelGraphics) );
 		}
-		
+
 
 		///////////////////////////////////////////
 		//Load the Z pass vertex program
@@ -357,8 +357,8 @@ namespace hpl {
 		// Other
 		else if(aType == eMaterialRenderType_Z)
 		{
-			//return eMaterialChannelMode_Z; 
-			return eMaterialChannelMode_RGBA; 
+			//return eMaterialChannelMode_Z;
+			return eMaterialChannelMode_RGBA;
 		}
 
 		return eMaterialChannelMode_RGBA;

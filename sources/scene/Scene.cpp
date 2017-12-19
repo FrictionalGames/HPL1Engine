@@ -305,7 +305,7 @@ namespace hpl {
 			START_TIMING(PostSceneDraw)
 			apUpdater->OnPostSceneDraw();
 			STOP_TIMING(PostSceneDraw)
-			
+
 			START_TIMING(PostEffects)
 			mpGraphics->GetRendererPostEffects()->Render();
 			STOP_TIMING(PostEffects)
@@ -318,7 +318,7 @@ namespace hpl {
 			//mpGraphics->GetLowLevel()->ClearScreen();
 		}
 		mpGraphics->GetDrawer()->DrawAll();
-		
+
 		apUpdater->OnPostGUIDraw();
 	}
 

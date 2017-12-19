@@ -26,8 +26,8 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 	// PUBLIC METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
-	
+
+
 	//-----------------------------------------------------------------------
 
 	tWString cString::To16Char(const tString &asString)
@@ -41,7 +41,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	tString cString::To8Char(const tWString &awsString)
 	{
 		tString sTemp;
@@ -69,7 +69,7 @@ namespace hpl {
 
 		return wsString;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	tString cString::Sub(const tString& asString,int alStart,int alCount)
@@ -93,7 +93,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	//Get the file extension of a string
 	tString cString::GetFileExt(tString aString)
 	{
@@ -135,7 +135,7 @@ namespace hpl {
 		}
 		return aString;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 
@@ -179,7 +179,7 @@ namespace hpl {
 
 		return aPath + aString;
 	}
-	
+
 	tWString cString::SetFilePathW(tWString aString,tWString aPath)
 	{
 		if(GetLastCharW(aPath)!=_W("/") && GetLastCharW(aPath)!=_W("\\"))
@@ -303,7 +303,7 @@ namespace hpl {
 	tString cString::ReplaceStringTo(tString asString, tString asOldString,tString asNewString)
 	{
 		tString sNewString = "";
-		
+
 		for(size_t i=0;i<asString.size();i++)
 		{
 			bool bFound = true;
@@ -322,7 +322,7 @@ namespace hpl {
 			{
 				bFound = false;
 			}
-			
+
             //Insert new string
 			if(bFound)
 			{
@@ -343,13 +343,13 @@ namespace hpl {
 	tString cString::GetLastChar(tString aString)
 	{
 		if(aString.size()==0) return "";
-		return aString.substr(aString.size()-1); 
+		return aString.substr(aString.size()-1);
 	}
 
 	tWString cString::GetLastCharW(tWString aString)
 	{
 		if(aString.size()==0) return _W("");
-		return aString.substr(aString.size()-1); 
+		return aString.substr(aString.size()-1);
 	}
 
 	//-----------------------------------------------------------------------
@@ -359,7 +359,7 @@ namespace hpl {
 
 		return asString;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	int cString::ToInt(const char* asString,int alDefault)
@@ -397,12 +397,12 @@ namespace hpl {
 		tFloatVec vValues;
 
 		GetFloatVec(asString,vValues,NULL);
-        
+
 		if(vValues.size() != 4) return aDefault;
 
 		return cColor(vValues[0],vValues[1],vValues[2],vValues[3]);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cVector2f cString::ToVector2f(const char* asString, const cVector2f& avDefault)
@@ -438,7 +438,7 @@ namespace hpl {
 	cVector2l cString::ToVector2l(const char* asString, const cVector2l& avDefault)
 	{
 		if(asString==NULL) return avDefault;
-		
+
 		tIntVec vValues;
 
 		GetIntVec(asString,vValues,NULL);
@@ -447,13 +447,13 @@ namespace hpl {
 
 		return cVector2l(vValues[0],vValues[1]);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cVector3l cString::ToVector3l(const char* asString, const cVector3l& avDefault)
 	{
 		if(asString==NULL) return avDefault;
-		
+
 		tIntVec vValues;
 
 		GetIntVec(asString,vValues,NULL);
@@ -526,13 +526,13 @@ namespace hpl {
 
 		return avVec;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	tString cString::ToString(int alX)
 	{
 		char buff[256];
-		
+
         sprintf(buff, "%d",alX);
 
 		return buff;
@@ -546,7 +546,7 @@ namespace hpl {
 
 		return buff;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	tWString cString::ToStringW(int alX)
@@ -579,7 +579,7 @@ namespace hpl {
 		{
 			c = asData.substr(i,1);
 			bool bNewWord = false;
-			
+
 			//Check if the current char is a separator
 			if(apSeparators)
 			{
@@ -596,10 +596,10 @@ namespace hpl {
 			{
 				if(c[0]==' ' || c[0]=='\n' || c[0]=='\t' || c[0]==',')
 				{
-					bNewWord = true;	
+					bNewWord = true;
 				}
 			}
-			
+
 			if(bNewWord)
 			{
 				if(start)
@@ -615,8 +615,8 @@ namespace hpl {
 				str +=c;
 				if(i==asData.length()-1)avVec.push_back(str);
 			}
-		}	
-	
+		}
+
 		return avVec;
 	}
 
@@ -625,7 +625,7 @@ namespace hpl {
 	///Helper
 	//returns last char in a string
 	int cString::GetLastStringPos(tString aString, tString  aChar)
-	{	
+	{
 		int pos=-1;
 		for(int i=0;i<(int)aString.size();i++)
 		{
@@ -638,7 +638,7 @@ namespace hpl {
 	///Helper
 	//returns last char in a string
 	int cString::GetLastStringPosW(tWString aString, tWString  aChar)
-	{	
+	{
 		int pos=-1;
 		for(int i=0;i<(int)aString.size();i++)
 		{
@@ -669,7 +669,7 @@ namespace hpl {
 				{
 					vTempChar[lTempCharCount] =0;
 					apArray[lArrayCount] = (unsigned int) atoi(vTempChar);
-					
+
 					lTempCharCount=0;
 					lArrayCount++;
 				}
@@ -720,7 +720,7 @@ namespace hpl {
 			lStringCount++;
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 }

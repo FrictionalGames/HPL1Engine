@@ -44,10 +44,10 @@ namespace hpl {
 	static cTriangleData gvFaces[6] = {
 		cVector3f(1,0,0),
 		cVector3f(-1,0,0),
-		
+
 		cVector3f(0,1,0),
 		cVector3f(0,-1,0),
-		
+
 		cVector3f(0,0,1),
 		cVector3f(0,0,-1)
 	};
@@ -59,7 +59,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	bool cShadowVolumeBV::CollideBoundingVolume(cBoundingVolume* aBV)
 	{
 		//Do a simple sphere collide test
@@ -85,7 +85,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	bool cShadowVolumeBV::CollideBVAABB(cBoundingVolume* aBV)
 	{
 		cVector3f vMax = aBV->GetMax();
@@ -136,11 +136,11 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	cBoundingVolume::cBoundingVolume()
 	{
 		m_mtxTransform = cMatrixf::Identity;
-		
+
 		mvLocalMax = 0;
 		mvLocalMin = 0;
 
@@ -163,7 +163,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	cVector3f cBoundingVolume::GetMax()
 	{
 		UpdateSize();
@@ -177,7 +177,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-		
+
 	cVector3f cBoundingVolume::GetLocalMax()
 	{
 		return mvLocalMax;
@@ -187,7 +187,7 @@ namespace hpl {
 	{
 		return mvLocalMin;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cBoundingVolume::SetLocalMinMax(const cVector3f& avMin,const cVector3f& avMax)
@@ -195,16 +195,16 @@ namespace hpl {
 		mvLocalMax = avMax;
 		mvLocalMin = avMin;
 
-		mbSizeUpdated = true;	
+		mbSizeUpdated = true;
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	cVector3f cBoundingVolume::GetLocalCenter()
 	{
 		return mvPivot;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cVector3f cBoundingVolume::GetWorldCenter()
@@ -222,7 +222,7 @@ namespace hpl {
 
 		mbPositionUpdated = true;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cVector3f cBoundingVolume::GetPosition()
@@ -243,17 +243,17 @@ namespace hpl {
 	{
 		return m_mtxTransform;
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	void cBoundingVolume::SetSize(const cVector3f& avSize)
 	{
 		mvLocalMax = avSize * 0.5;
 		mvLocalMin = avSize * -0.5;
 
-		mbSizeUpdated = true;	
+		mbSizeUpdated = true;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cVector3f cBoundingVolume::GetSize()
@@ -271,19 +271,19 @@ namespace hpl {
 
 		return mfRadius;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cShadowVolumeBV* cBoundingVolume::GetShadowVolume(const cVector3f& avLightPos,
 														float afLightRange,bool abForceUpdate)
 	{
 		if(cMath::PointBVCollision(avLightPos, *this)) return NULL;
-		
+
 		if(!abForceUpdate && !mbShadowPlanesNeedUpdate) return &mShadowVolume;
-		
+
 		//Set size 0.
 		mShadowVolume.mvPoints.resize(0);
-		
+
 		//Get the corners.
 		cVector3f vMax = GetMax();
 		cVector3f vMin = GetMin();
@@ -297,16 +297,16 @@ namespace hpl {
 		vCorners[5] = cVector3f(vMin.x,vMax.y,vMin.z);
 		vCorners[6] = cVector3f(vMin.x,vMin.y,vMax.z);
 		vCorners[7] = cVector3f(vMin.x,vMin.y,vMin.z);
-		
+
 		/////////////////////////////////////////////////////////////////////
 		//Iterate the faces and check which ones are facing the light.
 		int lNearPoint =-1;
 		mShadowVolume.mlPlaneCount=0;
 		for(int face=0; face< 6; face++)
 		{
-			gvFaces[face].facingLight = cMath::Vector3Dot(gvFaces[face].normal, 
+			gvFaces[face].facingLight = cMath::Vector3Dot(gvFaces[face].normal,
 														vCorners[kvFacePoints[face]] - avLightPos)<0;
-			
+
 			//Get a point for the near plane. (any edge point will do)
 			if(gvFaces[face].facingLight)
 			{
@@ -317,13 +317,13 @@ namespace hpl {
 		}
 
 		mShadowVolume.mlCapPlanes = mShadowVolume.mlPlaneCount;
-	
+
 		//The direction a point is pushed away in
 		cVector3f vDir;
-		
+
 		//The length to push the shadow points.
 		float fPushLength = afLightRange*kSqrt2f;
-		
+
 		//////////////////////////////////////////////////////////
 		//Iterate the edges and build quads from the silhouette
 		for(int edge=0; edge< 12;edge++)
@@ -339,10 +339,10 @@ namespace hpl {
 				{
 					mShadowVolume.mvPoints.push_back(vCorners[Edge.point1]);
 					mShadowVolume.mvPoints.push_back(vCorners[Edge.point2]);
-					
+
 					vDir = (vCorners[Edge.point2]-avLightPos); vDir.Normalise();
 					mShadowVolume.mvPoints.push_back(vCorners[Edge.point2] + vDir*fPushLength);
-					
+
 					vDir = (vCorners[Edge.point1]-avLightPos); vDir.Normalise();
 					mShadowVolume.mvPoints.push_back(vCorners[Edge.point1] + vDir*fPushLength);
 				}
@@ -350,7 +350,7 @@ namespace hpl {
 				{
 					mShadowVolume.mvPoints.push_back(vCorners[Edge.point2]);
 					mShadowVolume.mvPoints.push_back(vCorners[Edge.point1]);
-					
+
 					vDir = (vCorners[Edge.point1]-avLightPos); vDir.Normalise();
 					mShadowVolume.mvPoints.push_back(vCorners[Edge.point1] + vDir*fPushLength);
 
@@ -359,10 +359,10 @@ namespace hpl {
 				}
 			}
 		}
-		
+
 		/////////////////////////////////////
 		//Create the side planes:
-		
+
 		for(int i=0; i< (int)mShadowVolume.mvPoints.size(); i+=4)
 		{
 			//Normal should point inwards
@@ -378,38 +378,38 @@ namespace hpl {
 
 		return &mShadowVolume;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cBoundingVolume::DrawEdges(const cVector3f& avLightPos,float afLightRange, iLowLevelGraphics *apLowLevelGraphics)
 	{
 		cShadowVolumeBV *pVolume = GetShadowVolume(avLightPos, afLightRange, false);
-		
+
 		apLowLevelGraphics->SetBlendActive(true);
 		apLowLevelGraphics->SetBlendFunc(eBlendFunc_One,eBlendFunc_One);
 		apLowLevelGraphics->SetDepthWriteActive(false);
 		tVertexVec vVtx;
 		vVtx.resize(4);
-		
+
 		for(int capplane=0; capplane<mShadowVolume.mlCapPlanes; capplane++)
 		{
 			mShadowVolume.mvPlanes[capplane].CalcNormal();
-			apLowLevelGraphics->DrawLine(GetWorldCenter(),GetWorldCenter() + 
+			apLowLevelGraphics->DrawLine(GetWorldCenter(),GetWorldCenter() +
 									mShadowVolume.mvPlanes[capplane].normal*-0.5f, cColor(1,1,1,1));
 		}
 
 		int lPlane = mShadowVolume.mlCapPlanes;
 		for(int quad = 0; quad < (int)pVolume->mvPoints.size(); quad+=4)
 		{
-			
+
 			for(int i=0; i<4; i++)
 				vVtx[i].pos = pVolume->mvPoints[quad+i];
-			
+
 			apLowLevelGraphics->DrawQuad(vVtx,cColor(0.2f,0,0.2f));
 
 			cVector3f vCenter = (vVtx[1].pos + vVtx[0].pos)*0.5f;
 			mShadowVolume.mvPlanes[lPlane].CalcNormal();
-			apLowLevelGraphics->DrawLine(vCenter,vCenter + 
+			apLowLevelGraphics->DrawLine(vCenter,vCenter +
 				mShadowVolume.mvPlanes[lPlane].normal*-0.5f, cColor(1,1,1,1));
 			lPlane++;
 		}
@@ -419,23 +419,23 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	void cBoundingVolume::AddArrayPoints(const float *apArray, int alNumOfVectors)
 	{
 		cBVTempArray temp;
 		temp.mpArray = apArray;
 		temp.mlSize = alNumOfVectors;
-		
+
 		mlstArrays.push_back(temp);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cBoundingVolume::CreateFromPoints(int alStride)
 	{
 		mvLocalMax = cVector3f(-100000, -100000, -100000);
 		mvLocalMin = cVector3f(100000, 100000, 100000);
-		
+
 		for(tBVTempArrayListIt it= mlstArrays.begin();it != mlstArrays.end(); it++)
 		{
 			//Loop through all the vectors and find min and max
@@ -446,7 +446,7 @@ namespace hpl {
 				//Min and max X
 				if(apVec[0] < mvLocalMin.x) mvLocalMin.x = apVec[0];
 				if(apVec[0] > mvLocalMax.x) mvLocalMax.x = apVec[0];
-				
+
 				//Min and max Y
 				if(apVec[1] < mvLocalMin.y) mvLocalMin.y = apVec[1];
 				if(apVec[1] > mvLocalMax.y) mvLocalMax.y = apVec[1];
@@ -474,7 +474,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-		
+
 	void cBoundingVolume::UpdateSize()
 	{
 		if(mbSizeUpdated)
@@ -492,7 +492,7 @@ namespace hpl {
 			vCorners[5] = cMath::MatrixMul(mtxRot, cVector3f(mvLocalMin.x,mvLocalMax.y,mvLocalMin.z));
 			vCorners[6] = cMath::MatrixMul(mtxRot, cVector3f(mvLocalMin.x,mvLocalMin.y,mvLocalMax.z));
 			vCorners[7] = cMath::MatrixMul(mtxRot, cVector3f(mvLocalMin.x,mvLocalMin.y,mvLocalMin.z));
-			
+
 			mvMax = vCorners[0];
 			mvMin = vCorners[0];
 
@@ -511,16 +511,16 @@ namespace hpl {
 				if(vCorners[i].z < mvMin.z) mvMin.z = vCorners[i].z;
 				else if(vCorners[i].z > mvMax.z) mvMax.z = vCorners[i].z;
 			}
-			
+
 			//Get the transformed size.
 			mvSize = mvMax - mvMin;
-			
+
 			//Get the local pivot (or offset from origo).
 			mvPivot = mvMax - (mvSize*0.5f);
 
 			//Get radius as pivot to localmax
 			mfRadius = cMath::Vector3Dist(mvPivot, mvMax);
-						
+
 			mbSizeUpdated = false;
 			mbPositionUpdated = true;
 		}
@@ -566,7 +566,7 @@ namespace hpl {
 	int lNearPoint =-1;
 	for(int face=0; face< 6; face++)
 	{
-	gvFaces[face].facingLight = cMath::Vector3Dot(gvFaces[face].normal, 
+	gvFaces[face].facingLight = cMath::Vector3Dot(gvFaces[face].normal,
 	vCorners[kvFacePoints[face]] - avLightPos)<0;
 
 	//Get a point for the near plane. (any edge point will do)

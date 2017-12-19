@@ -26,7 +26,7 @@ namespace hpl {
 	class cSound;
 	class cResources;
 	class cSoundEntityData;
-	
+
 	class cSoundEntityManager : public iResourceManager
 	{
 	public:
@@ -37,7 +37,7 @@ namespace hpl {
 
 		iResourceBase* Create(const tString& asName);
 		cSoundEntityData* CreateSoundEntity(const tString& asName);
-		
+
 		void Destroy(iResourceBase* apResource);
 		void Unload(iResourceBase* apResource);
 

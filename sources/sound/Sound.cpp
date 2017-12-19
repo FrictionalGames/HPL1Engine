@@ -46,7 +46,7 @@ namespace hpl {
 
 		hplDelete(mpSoundHandler);
 		hplDelete(mpMusicHandler);
-		
+
 		Log("--------------------------------------------------------\n\n");
 	}
 
@@ -55,7 +55,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 	// PUBLIC METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
 
 	void cSound::Update(float afTimeStep)
@@ -68,13 +68,13 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	void cSound::Init(	cResources *apResources, bool abUseHardware, bool abForceGeneric, bool abUseEnvAudio, int alMaxChannels, 
+	void cSound::Init(	cResources *apResources, bool abUseHardware, bool abForceGeneric, bool abUseEnvAudio, int alMaxChannels,
 						int alStreamUpdateFreq, bool abUseThreading, bool abUseVoiceManagement,
 						int alMaxMonoSourceHint, int alMaxStereoSourceHint,
 						int alStreamingBufferSize, int alStreamingBufferCount, bool abEnableLowLevelLog, tString asDeviceName)
 	{
 		mpResources = apResources;
-		
+
 		Log("Initializing Sound Module\n");
 		Log("--------------------------------------------------------\n");
 
@@ -87,7 +87,7 @@ namespace hpl {
 
 		Log("--------------------------------------------------------\n\n");
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 }

@@ -23,7 +23,7 @@
 namespace hpl {
 
 	class iLowLevelGraphics;
-	
+
 	class iGuiMaterial
 	{
 	public:

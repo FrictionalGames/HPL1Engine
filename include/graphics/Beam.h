@@ -35,16 +35,16 @@ namespace hpl {
 	class iLowLevelGraphics;
 	class iMaterial;
 	class iVertexBuffer;
-	
+
 	//------------------------------------------
-	
+
 	class cBeam;
 	class cBeamEnd : public iEntity3D
 	{
 	friend class cBeam;
 	friend class cBeamEnd_UpdateCallback;
 	public:
-		cBeamEnd(const tString asName, cBeam *apBeam) : iEntity3D(asName), 
+		cBeamEnd(const tString asName, cBeam *apBeam) : iEntity3D(asName),
 						mColor(1,1),mpBeam(apBeam) {}
 
 		void SetColor(const cColor &aColor);
@@ -59,7 +59,7 @@ namespace hpl {
 	};
 
 	//------------------------------------------
-	
+
 	class cBeamEnd_UpdateCallback : public iEntityCallback
 	{
 	public:
@@ -79,16 +79,16 @@ namespace hpl {
 		~cBeam();
 
 		void SetMaterial(iMaterial * apMaterial);
-		
+
 		const tString& GetFileName(){return msFileName;}
 
 		/**
 		 * Set the size. X= the thickness of the line, width of texture used. Y = the length that one texture height takes.
-		 * \param avSize 
+		 * \param avSize
 		 */
 		void SetSize(const cVector2f& avSize);
 		cVector2f GetSize(){ return mvSize;}
-		
+
 		void SetColor(const cColor &aColor);
 		const cColor& GetColor(){ return mColor;}
 
@@ -132,7 +132,7 @@ namespace hpl {
 		cMaterialManager* mpMaterialManager;
 		cFileSearcher *mpFileSearcher;
 		iLowLevelGraphics* mpLowLevelGraphics;
-		
+
 		iMaterial *mpMaterial;
 		iVertexBuffer* mpVtxBuffer;
 
@@ -144,13 +144,13 @@ namespace hpl {
 		int mlEndTransformCount;
 
 		cMatrixf m_mtxTempTransform;
-		
+
 		int mlLastRenderCount;
 
 		cBeamEnd_UpdateCallback mEndCallback;
 
 		cVector2f mvSize;
-		
+
 		cVector3f mvAxis;
 		cVector3f mvMidPosition;
 

@@ -24,7 +24,7 @@
 
 
 namespace hpl {
-	
+
 	class iLowLevelGraphics;
 	class cLowLevelInputSDL;
 
@@ -34,18 +34,18 @@ namespace hpl {
 		cMouseSDL(cLowLevelInputSDL *apLowLevelInputSDL, iLowLevelGraphics *apLowLevelGraphics);
 
 		bool ButtonIsDown(eMButton);
-		
+
 		void Update();
-		
+
 		/**
 		* \todo Fix so it works and handles screen size
-		* \return 
+		* \return
 		*/
 		cVector2f GetAbsPosition();
-		
+
 		/**
 		 * \todo Fix so it works and handles screen size
-		 * \return 
+		 * \return
 		 */
 		cVector2f GetRelPosition();
 
@@ -58,7 +58,7 @@ namespace hpl {
 		 * \param afMaxPercent The influence of the newest value
 		 * \param alBufferSize The number of values recorded
 		 */
-		void SetSmoothProperties(float afMinPercent, 
+		void SetSmoothProperties(float afMinPercent,
 			float afMaxPercent,unsigned int alBufferSize);
 
 	private:
@@ -72,7 +72,7 @@ namespace hpl {
 		float mfMaxPercent;
 		float mfMinPercent;
 		int mlBufferSize;
-	
+
 		cLowLevelInputSDL *mpLowLevelInputSDL;
 		iLowLevelGraphics *mpLowLevelGraphics;
 

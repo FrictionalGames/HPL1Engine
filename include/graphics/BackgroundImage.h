@@ -36,12 +36,12 @@ namespace hpl {
 		void Draw(const cRect2f& aCollideRect, iLowLevelGraphics * apLowLevelGraphics);
 
 		void Update();
-	
+
 	private:
 		iMaterial *mpMaterial;
 
 		tVertexVec mvVtx;
-		
+
 		cVector3f mvPos;
 		bool mbTile;
 		cVector2f mvSize;
@@ -50,6 +50,6 @@ namespace hpl {
 	};
 
 	typedef std::map<float,cBackgroundImage*> tBackgroundImageMap;
-	typedef tBackgroundImageMap::iterator tBackgroundImageMapIt; 
+	typedef tBackgroundImageMap::iterator tBackgroundImageMapIt;
 };
 #endif // HPL_BACKGROUND_IMAGE_H

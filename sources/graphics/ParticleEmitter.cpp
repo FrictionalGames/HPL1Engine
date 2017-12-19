@@ -70,7 +70,7 @@ namespace hpl {
 
 	iParticleEmitter::iParticleEmitter(tMaterialVec *avMaterials,
 									unsigned int alMaxParticles, cVector3f avSize,
-									cGraphics *apGraphics, cResources *apResources) 
+									cGraphics *apGraphics, cResources *apResources)
 	{
 		mpGraphics = apGraphics;
 		mpResources = apResources;
@@ -82,9 +82,9 @@ namespace hpl {
 		}
 		mlMaxParticles = alMaxParticles;
 		mlNumOfParticles =0;
-		
+
 		mvMaterials = avMaterials;
-		
+
 		//Update vars:
 		mbDying = false;
 		mfTime =0;
@@ -102,19 +102,19 @@ namespace hpl {
 			hplDelete(mvParticles[i]);
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	//////////////////////////////////////////////////////////////////////////
 	// PUBLIC METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	void iParticleEmitter::Update(float afTimeStep)
 	{
 		UpdateMotion(afTimeStep);
-		
+
 		mfTime++;
 		mbUpdateGfx = true;
 		mbUpdateBV = true;
@@ -128,7 +128,7 @@ namespace hpl {
 		mlNumOfParticles = 0;
 		mbDying = true;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 
@@ -144,7 +144,7 @@ namespace hpl {
 		++mlNumOfParticles;
 		return mvParticles[mlNumOfParticles-1];
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void iParticleEmitter::SwapRemove(unsigned int alIndex)

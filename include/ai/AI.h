@@ -27,7 +27,7 @@
 namespace hpl {
 
 	class cAINodeGenerator;
-    
+
 	class cAI : public iUpdateable
 	{
 	public:
@@ -36,9 +36,9 @@ namespace hpl {
 
 		void Reset();
 		void Update(float afTimeStep);
-		
+
 		void Init();
-		
+
 		cAINodeGenerator *GetNodeGenerator(){ return mpAINodeGenerator;}
 
 	private:

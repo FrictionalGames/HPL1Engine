@@ -48,7 +48,7 @@ namespace hpl {
 		tWStringVecIt it = mvItems.begin();
 		for(; it != mvItems.end(); ++it,++lCount)
 		{
-			if(lCount == alX) 
+			if(lCount == alX)
 			{
 				mvItems.erase(it);
 				break;
@@ -63,7 +63,7 @@ namespace hpl {
 		tWStringVecIt it = mvItems.begin();
 		for(; it != mvItems.end(); ++it)
 		{
-			if(*it == asItem) 
+			if(*it == asItem)
 			{
 				mvItems.erase(it);
 				break;
@@ -98,7 +98,7 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	
+
 	//-----------------------------------------------------------------------
 
 

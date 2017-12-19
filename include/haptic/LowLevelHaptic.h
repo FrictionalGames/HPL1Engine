@@ -46,7 +46,7 @@ namespace hpl {
 
 		void Update(float afTimeStep);
 		bool Init(cResources *apResources);
-		
+
 		void DestroyAllShapes();
 		void DestroyAll();
 
@@ -77,14 +77,14 @@ namespace hpl {
 		//! \name Input
 		//########################################################################################
 		//! @{
-		
+
 		virtual bool ButtonIsPressed(int alNum)=0;
 
 		virtual cVector3f GetHardwarePosition()=0;
 		virtual cVector3f GetHardwareRotation()=0;
 
 		cVector3f GetHardwarePosDelta();
-		
+
 		cVector2f GetProxyScreenPos(const cVector2f& avScreenSize);
 		cVector2f GetProxyScreenDeltaPos(const cVector2f& avScreenSize);
 
@@ -92,7 +92,7 @@ namespace hpl {
 		cVector2f GetVirtualMousePos();
 		void SetVirtualMousePosBounds(	const cVector2f &avMin,const cVector2f &avMax,
 											const cVector2f &avScreenSize);
-		
+
 		virtual cVector3f GetProxyPosition()=0;
 		virtual void SetProxyRadius(float afRadius)=0;
 		virtual float GetProxyRadius()=0;
@@ -108,27 +108,27 @@ namespace hpl {
 
 		virtual iHapticSurface* CreateSimpleSurface(const tString &asName,
 													float afDamping=0.0f, float afStiffness=0.9f)=0;
-		
+
 		virtual iHapticSurface* CreateFrictionalSurface(const tString &asName,
 														float afDamping=0.0f, float afStiffness=0.9f,
 														float afDynamicFriction=0.2f, float afStartingFriction=0.3f,
 														float afTangentStiffness=0.7f, float afStoppingFriction=0.1f)=0;
-		
-		virtual iHapticSurface* CreateRoughSurface(const tString &asName, 
+
+		virtual iHapticSurface* CreateRoughSurface(const tString &asName,
 													float afDeviation=0.1f, float afMean=0.5f,
 													float afDamping=0.0f, float afStiffness=0.9f,
 													float afDynamicFriction=0.2f, float afStartingFriction=0.3f,
 													float afTangentStiffness=0.7f, float afStoppingFriction=0.1f)=0;
-		
-		virtual iHapticSurface* CreateStickySurface(const tString &asName, 
+
+		virtual iHapticSurface* CreateStickySurface(const tString &asName,
 													float afDeadHeight=0.004f, float afStickyStiffness=0.6f,
 													float afDamping=0.0f, float afStiffness=0.9f,
 													float afDynamicFriction=0.2f, float afStartingFriction=0.3f,
 													float afTangentStiffness=0.7f, float afStoppingFriction=0.1f)=0;
-		
+
 		iHapticSurface* GetSurfaceFromName(const tString &asName);
 
-		
+
 
 		//! @}
 
@@ -175,7 +175,7 @@ namespace hpl {
 		virtual void UpdateLowLevel(float afTimeStep)=0;
 
 		cResources *mpResources;
-	
+
 		cCamera3D *mpCamera;
 		cVector3f mvCameraOffset;
 

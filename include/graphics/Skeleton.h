@@ -31,7 +31,7 @@ namespace hpl {
 
 	typedef std::vector<cBone*> tBoneVec;
 	typedef tBoneVec::iterator tBoneVecIt;
-	
+
 	typedef std::map<tString,int> tBoneIdxNameMap;
 	typedef tBoneIdxNameMap::iterator tBoneIdxNameMapIt;
 
@@ -45,12 +45,12 @@ namespace hpl {
 		void RemoveBone(cBone* apBone);
 
 		cBone* GetRootBone();
-		
+
         cBone* GetBoneByIndex(int alIndex);
 		cBone* GetBoneByName(const tString &asName);
 		int GetBoneIndexByName(const tString &asName);
 		int GetBoneNum();
-	
+
 	private:
 		cBone* mpRootBone;
 

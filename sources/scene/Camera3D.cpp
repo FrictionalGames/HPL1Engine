@@ -72,7 +72,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 	// PUBLIC METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
 
 	void cCamera3D::SetPosition(const cVector3f &avPos)
@@ -86,9 +86,9 @@ namespace hpl {
 	//-----------------------------------------------------------------------
 
 	void cCamera3D::SetPitch(float afAngle)
-	{ 
+	{
 		mfPitch = afAngle;
-		
+
 		if(mvPitchLimits.x!=0 || mvPitchLimits.y!=0)
 		{
 			if(mfPitch> mvPitchLimits.x)mfPitch = mvPitchLimits.x;
@@ -98,9 +98,9 @@ namespace hpl {
 		mbViewUpdated = true; mbMoveUpdated = true;
 	}
 	void cCamera3D::SetYaw(float afAngle)
-	{ 
+	{
 		mfYaw = afAngle;
-		
+
 		if(mvYawLimits.x!=0 || mvYawLimits.y!=0)
 		{
 			if(mfYaw> mvYawLimits.x)mfYaw = mvYawLimits.x;
@@ -110,17 +110,17 @@ namespace hpl {
 		mbViewUpdated = true; mbMoveUpdated = true;
 	}
 	void cCamera3D::SetRoll(float afAngle)
-	{ 
+	{
 		mfRoll = afAngle;
 		mbViewUpdated = true; mbMoveUpdated = true;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cCamera3D::AddPitch(float afAngle)
 	{
 		mfPitch += afAngle;
-		
+
 		if(mvPitchLimits.x!=0 || mvPitchLimits.y!=0)
 		{
 			if(mfPitch> mvPitchLimits.x)mfPitch = mvPitchLimits.x;
@@ -130,19 +130,19 @@ namespace hpl {
 		mbViewUpdated = true; mbMoveUpdated = true;
 	}
 	void cCamera3D::AddYaw(float afAngle)
-	{ 
+	{
 		mfYaw += afAngle;
-		
+
 		if(mvYawLimits.x!=0 || mvYawLimits.y!=0)
 		{
 			if(mfYaw> mvYawLimits.x)mfYaw = mvYawLimits.x;
 			if(mfYaw< mvYawLimits.y)mfYaw = mvYawLimits.y;
 		}
-		
+
 		mbViewUpdated = true; mbMoveUpdated = true;
 	}
 	void cCamera3D::AddRoll(float afAngle)
-	{ 
+	{
 		mfRoll += afAngle;
 		mbViewUpdated = true; mbMoveUpdated = true;
 	}
@@ -152,14 +152,14 @@ namespace hpl {
 	void cCamera3D::MoveForward(float afDist)
 	{
 		UpdateMoveMatrix();
-		
+
 		mvPosition += m_mtxMove.GetForward()*-afDist;
 
 		mbViewUpdated = true;
 
 		mNode.SetPosition(mvPosition);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cCamera3D::MoveRight(float afDist)
@@ -167,12 +167,12 @@ namespace hpl {
 		UpdateMoveMatrix();
 
 		mvPosition += m_mtxMove.GetRight()*afDist;
-		
+
 		mbViewUpdated = true;
 
 		mNode.SetPosition(mvPosition);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cCamera3D::MoveUp(float afDist)
@@ -185,15 +185,15 @@ namespace hpl {
 
 		mNode.SetPosition(mvPosition);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cCamera3D::SetRotateMode(eCameraRotateMode aMode)
 	{
 		mRotateMode = aMode;
 		mbViewUpdated = true; mbMoveUpdated = true;
-	}	
-	
+	}
+
 	//-----------------------------------------------------------------------
 
 	void cCamera3D::SetMoveMode(eCameraMoveMode aMode)
@@ -239,7 +239,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	const cMatrixf& cCamera3D::GetViewMatrix()
 	{
 		if(mbViewUpdated)
@@ -258,7 +258,7 @@ namespace hpl {
 		}
 		return m_mtxView;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	const cMatrixf& cCamera3D::GetProjectionMatrix()
@@ -297,10 +297,10 @@ namespace hpl {
 
 			mbProjectionUpdated = false;
 		}
-		
+
 		return m_mtxProjection;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	const cMatrixf& cCamera3D::GetMoveMatrix()
@@ -331,14 +331,14 @@ namespace hpl {
 	{
 
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cVector3f cCamera3D::UnProject(const cVector2f& avScreenPos, iLowLevelGraphics *apLowLevel)
 	{
 		//This code uses math::unproejct which is not working currently
 		/*cVector3f vPos(avScreenPos.x,avScreenPos.y,-0.1f);
-		
+
 		bool bWasInf=false;
 		if(mbInfFarPlane){
 			SetInifintiveFarPlane(false);bWasInf=true;
@@ -347,11 +347,11 @@ namespace hpl {
 		if(bWasInf){
 			SetInifintiveFarPlane(true);
 		}
-		
+
 		cVector2f vScreenSize = apLowLevel->GetVirtualSize();
 
 		return cMath::Vector3UnProject(vPos, cRect2f(0,0,vScreenSize.x, vScreenSize.y), mtxViewProj);*/
-		
+
 		cVector2f vScreenSize = apLowLevel->GetVirtualSize();
 		cVector2f vNormScreen(	(avScreenPos.x / vScreenSize.x) - 0.5f,
 								 0.5f - (avScreenPos.y / vScreenSize.y));
@@ -360,7 +360,7 @@ namespace hpl {
 		cVector2f avViewportToWorld;
 		avViewportToWorld.y = afNormalizedSlope * mfNearClipPlane * 2.0f;
 		avViewportToWorld.x = avViewportToWorld.y * mfAspect;
-        
+
 		cVector3f vDir(	vNormScreen.x * avViewportToWorld.x,
 						vNormScreen.y * avViewportToWorld.y,
 						-mfNearClipPlane);
@@ -391,7 +391,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	cVector3f cCamera3D::GetForward()
 	{
 		return GetViewMatrix().GetForward()*-1.0f;
@@ -406,7 +406,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	//////////////////////////////////////////////////////////////////////////
 	// PRIVATE METHODS
 	//////////////////////////////////////////////////////////////////////////

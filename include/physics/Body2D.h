@@ -30,9 +30,9 @@ namespace hpl {
 	class cNode2D;
 	class cCollider2D;
 	class cCollisionMesh2D;
-	
+
 	class cBody2D;
-	
+
 	typedef std::list<cBody2D*> tBody2DList;
 	typedef tBody2DList::iterator tBody2DListIt;
 
@@ -41,16 +41,16 @@ namespace hpl {
 	public:
 		cBody2D(const tString& asName, cMesh2D *apMesh, cVector2f avSize, cCollider2D* apCollider, int alID);
 		~cBody2D();
-		
+
 		const cRect2f& GetBoundingBox();
 		bool UpdateBoundingBox();
 
 		void Move(float afValue);
 
 		void UpdateLogic(float afTimeStep);
-		
+
 		tString GetEntityType(){return "Body";};
-		
+
 		cVector3f& GetPosition(){ return mvPosition;}
 		cVector3f& GetLastPosition(){ return mvLastPosition;}
 		void ResetLastPosition(){ mvLastPosition = mvPosition;}
@@ -65,7 +65,7 @@ namespace hpl {
 		float GetAirFriction() {return mfAirFriction;}
 		float GetGroundFriction(){return mfGroundFriction;}
 		const cVector2f& GetSize(){ return mvSize;}
-		
+
 		const cVector3f& GetMovement(){ return mvMovement;}
 
 		void SetMaxVelocity(float afMaxVel){ mfMaxVel = afMaxVel;}
@@ -83,25 +83,25 @@ namespace hpl {
 		void SetForce(float afAngle, float afStrength);
 		void SetForce(const cVector2f& avForce);
 
-		const cVector2f& GetForce() const {return mvForce;} 
+		const cVector2f& GetForce() const {return mvForce;}
 
 		/**
 		 * Sets the things that the body can collide with, default is eFlagBit_0 (tiles)
-		 * \param alFlag 
+		 * \param alFlag
 		 */
 		void SetCollideFlag(tFlag alFlag){ mlCollideFlag = alFlag;}
 		tFlag GetCollideFlag(){ return mlCollideFlag;}
 
 		/**
 		 * Sets if the body is attached to moving obejcts and moves with the, default is false.
-		 * \param abX 
+		 * \param abX
 		 */
 		void SetAttachToGround(bool abX){mbAttachToGround = abX;}
 		bool GetAttachToGround(){return mbAttachToGround;}
 
 		/**
 		 * Sets if other objects can attach themselves to this body. Default is true.
-		 * \param abX 
+		 * \param abX
 		 */
 		void SetAttachBodies(bool abX){ mbAttachBodies = abX;}
 		bool GetAttachBodies(){ return mbAttachBodies;}
@@ -109,11 +109,11 @@ namespace hpl {
 		void AttachBody(cBody2D* apBody);
 		void DetachBody(cBody2D* apBody);
 		void SetParentBody(cBody2D* apBody);
-		
+
 		/**
-		* Sets the types of collider the body is, default is eFlagBit_1. On collision checking, the 
+		* Sets the types of collider the body is, default is eFlagBit_1. On collision checking, the
 		* other objects specify what it can collide with. And for every body this value is checked.
-		* \param alFlag 
+		* \param alFlag
 		*/
 		void SetCollideType(tFlag alFlag){ mlCollideType = alFlag;}
 		tFlag GetCollideType(){ return mlCollideType;}
@@ -124,10 +124,10 @@ namespace hpl {
 		int GetID(){ return mlID; }
 
 		bool OnGround(){return mbOnGround;}
-		
+
 		void UpdateCollisionMesh();
 		cCollisionMesh2D* GetCollisionMesh();
-	
+
 	private:
 		float mfMaxVel;
 		float mfAcc;
@@ -135,7 +135,7 @@ namespace hpl {
 		float mfMaxGravityVel;
 		float mfAirFriction;
 		float mfGroundFriction;
-		
+
 		bool mbCollides;
 		bool mbCollidable;
 		bool mbMoved;
@@ -155,14 +155,14 @@ namespace hpl {
 		cMesh2D* mpMesh;
 		cCollider2D* mpCollider;
 		cNode2D* mpNode;
-	
+
 		cCollisionMesh2D *mpCollMesh;
 		cCollisionMesh2D *mpBaseCollMesh;
-		
+
 		bool mbOnGround;
 		bool mbGroundFrictionX;
 		bool mbGroundFrictionY;
-		
+
 		cVector2f mvForce;
 		cVector2f mvSize;
 

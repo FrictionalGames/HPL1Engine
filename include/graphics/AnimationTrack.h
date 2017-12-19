@@ -41,12 +41,12 @@ namespace hpl {
 		 * \param afTime the time for the key frame.
 		 */
 		cKeyFrame* CreateKeyFrame(float afTime);
-		
+
 		inline cKeyFrame* GetKeyFrame(int alIndex){ return mvKeyFrames[alIndex];}
 		inline int GetKeyFrameNum(){ return (int) mvKeyFrames.size();}
 
 		inline tAnimTransformFlag GetTransformFlags(){ return mTransformFlags;}
-		
+
 		/**
 		 * Apply the animation to a node. The method uses Node->AddXXX() so Update matrix must be called
 		 * for the transformation to be applied.
@@ -66,13 +66,13 @@ namespace hpl {
          * Gets key frames between for a specific time.
          * \param afTime The time
          * \param &apKeyFrameA The frame that is equal to or before time
-         * \param &apKeyFrameB The frame that is after time. 
+         * \param &apKeyFrameB The frame that is after time.
          * \return Weight of the different frames. 0 = 100% A, 1 = 100% B 0.5 = 50% A and 50% B
          */
         float GetKeyFramesAtTime(float afTime, cKeyFrame** apKeyFrameA,cKeyFrame** apKeyFrameB);
 
 		const char* GetName(){ return msName.c_str();}
-		
+
 		void SetNodeIndex(int alIndex){ mlNodeIdx = alIndex;}
 		int GetNodeIndex(){ return mlNodeIdx;}
 
@@ -85,7 +85,7 @@ namespace hpl {
 		tAnimTransformFlag mTransformFlags;
 
 		float mfMaxFrameTime;
-		
+
         cAnimation* mpParent;
 	};
 

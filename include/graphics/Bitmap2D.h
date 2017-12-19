@@ -36,10 +36,10 @@ namespace hpl {
 
 		/**
 		 * Save the bitmap to file
-		 * \param asFile 
-		 * \return 
+		 * \param asFile
+		 * \return
 		 */
-		virtual bool SaveToFile(const tString& asFile)=0;	
+		virtual bool SaveToFile(const tString& asFile)=0;
 
 		/**
 		 * Draw the bitmap onto another
@@ -49,16 +49,16 @@ namespace hpl {
 		virtual void DrawToBitmap(iBitmap2D *apBmp, const cVector2l &avPos)=0;
 		/**
 		 * Creates a new size for the bitmap. (all previous content is erased
-		 * \param avSize 
-		 * \param alBpp 
-		 * \return 
+		 * \param avSize
+		 * \param alBpp
+		 * \return
 		 */
 		virtual bool Create(cVector2l avSize, unsigned int alBpp)=0;
 
 		/**
 		 * Draws a solid rect onto the bitmap. IF h and w is than w and how of the bitmap is used.
-		 * \param &aRect 
-		 * \param &aColor 
+		 * \param &aRect
+		 * \param &aColor
 		 */
 		virtual void FillRect(const cRect2l &aRect, const cColor &aColor)=0;
 
@@ -66,10 +66,10 @@ namespace hpl {
 		 * Get a pointer to the raw pixel data.
 		 */
 		virtual void* GetRawData()=0;
-		
+
 		/**
 		 * Get the number of color channels in the image.
-		 * \return 
+		 * \return
 		 */
 		virtual int GetNumChannels()=0;
 	};

@@ -29,7 +29,7 @@ namespace hpl
 	{
 	public:
 		cOpenALSoundEnvironment ( );
-		
+
 		~cOpenALSoundEnvironment ();
 
 		bool CreateFromFile(const tString &asFile);
@@ -41,22 +41,22 @@ namespace hpl
 		inline float GetGainLF ( ) { return mfGainLF; }
 		inline float GetDecayTime ( ) { return mfDecayTime; }
 		inline float GetDecayHFRatio (  ) { return mfDecayHFRatio; }
-		inline float GetDecayLFRatio (  ) { return mfDecayLFRatio; } 
+		inline float GetDecayLFRatio (  ) { return mfDecayLFRatio; }
 		inline float GetReflectionsGain (  ) { return mfReflectionsGain; }
-		inline float GetReflectionsDelay(  ) { return mfReflectionsDelay; } 
+		inline float GetReflectionsDelay(  ) { return mfReflectionsDelay; }
 		inline float* GetReflectionsPan(  ) { return mfReflectionsPan; }
-		inline float GetLateReverbGain( ) { return mfLateReverbGain; } 
+		inline float GetLateReverbGain( ) { return mfLateReverbGain; }
 		inline float GetLateReverbDelay ( ) { return mfLateReverbDelay; }
 		inline float* GetLateReverbPan () { return mfLateReverbPan; }
 		inline float GetEchoTime () { return mfEchoTime; }
-		inline float GetEchoDepth () { return mfEchoDepth; } 
+		inline float GetEchoDepth () { return mfEchoDepth; }
 		inline float GetModulationTime () { return mfModulationTime; }
 		inline float GetModulationDepth () { return mfModulationDepth; }
 		inline float GetAirAbsorptionGainHF () { return mfAirAbsorptionGainHF; }
-		inline float GetHFReference () { return mfHFReference; } 
+		inline float GetHFReference () { return mfHFReference; }
 		inline float GetLFReference () { return mfLFReference; }
 		inline float GetRoomRolloffFactor () { return mfRoomRolloffFactor; }
-		inline int	 GetDecayHFLimit () { return mbDecayHFLimit; } 
+		inline int	 GetDecayHFLimit () { return mbDecayHFLimit; }
 
 		inline void SetDensity( float afDensity)									{ mfDensity = afDensity; }
 		inline void SetDiffusion ( float afDiffusion)								{ mfDiffusion = afDiffusion; }
@@ -107,11 +107,11 @@ namespace hpl
 		float	mfLFReference;
 		float	mfRoomRolloffFactor;
 		int		mbDecayHFLimit;
-	
-	};
-	
 
-	
+	};
+
+
+
 }
 
 

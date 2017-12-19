@@ -65,8 +65,8 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	/*void iLowLevelSound::DestroySoundEnvironment( iSoundEnvironment* apSoundEnv) 
-	{ 
+	/*void iLowLevelSound::DestroySoundEnvironment( iSoundEnvironment* apSoundEnv)
+	{
 		Log(" Destroy %d\n",apSoundEnv);
 
 		STLFindAndDelete(mlstSoundEnv,apSoundEnv);

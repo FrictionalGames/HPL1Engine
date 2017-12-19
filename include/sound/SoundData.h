@@ -26,19 +26,19 @@ namespace hpl {
 
 	class cSoundManager;
 	class iSoundChannel;
-	
+
 	class iSoundData : public iResourceBase
 	{
 	public:
 		iSoundData(tString asName, bool abStream) : iResourceBase(asName, 0),
 		mpSoundManger(NULL), mbStream(abStream){}
-		
+
 		virtual ~iSoundData(){}
 
 		virtual bool CreateFromFile(const tString &asFile)=0;
 
 		virtual iSoundChannel* CreateChannel(int alPriority)=0;
-		
+
 
 		virtual bool IsStereo()=0;
 
@@ -53,8 +53,8 @@ namespace hpl {
 		void SetSoundManager(cSoundManager* apSoundManager){
 			mpSoundManger = apSoundManager;
 		}
-	
-	protected:	
+
+	protected:
 		bool mbStream;
 		bool mbLoopStream;
 		cSoundManager* mpSoundManger;

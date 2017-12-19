@@ -25,7 +25,7 @@
 namespace hpl {
 
 	class cGuiSkinFont;
-	
+
 	class cWidgetTextBox;
 	class cWidgetButton;
 	class cWidgetSlider;
@@ -44,7 +44,7 @@ namespace hpl {
 
 		void SetMaxShownItems(int alX);
 		int GetMaxShownItems(){ return mlMaxItems;}
-		
+
 	protected:
 		/////////////////////////
 		// Own functions
@@ -57,7 +57,7 @@ namespace hpl {
 		kGuiCalllbackDeclarationEnd(ButtonPress);
 
 		bool DrawText(iWidget* apWidget,cGuiMessageData& aData);
-		kGuiCalllbackDeclarationEnd(DrawText);	
+		kGuiCalllbackDeclarationEnd(DrawText);
 
 		bool SliderMove(iWidget* apWidget,cGuiMessageData& aData);
 		kGuiCalllbackDeclarationEnd(SliderMove);
@@ -71,7 +71,7 @@ namespace hpl {
 		void OnChangeSize();
 		void OnChangeText();
 		void OnInit();
-		
+
 		void OnDraw(float afTimeStep, cGuiClipRegion *apClipRegion);
 
 		bool OnMouseMove(cGuiMessageData &aData);
@@ -79,7 +79,7 @@ namespace hpl {
 		bool OnMouseUp(cGuiMessageData &aData);
 		bool OnMouseEnter(cGuiMessageData &aData);
 		bool OnMouseLeave(cGuiMessageData &aData);
-		
+
 		bool OnLostFocus(cGuiMessageData &aData);
 
 
@@ -104,7 +104,7 @@ namespace hpl {
 		cGuiGfxElement *mpGfxBackground;
 
 		cGuiGfxElement *mpGfxSelection;
-		
+
 		cGuiGfxElement *mvGfxBorders[4];
 		cGuiGfxElement *mvGfxCorners[4];
 	};

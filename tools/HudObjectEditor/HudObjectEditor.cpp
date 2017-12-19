@@ -44,7 +44,7 @@ public:
 		mfLastT = 100000.0f;
 		mpPickedBody = NULL;
 	}
-	
+
 	bool OnIntersect(iPhysicsBody *pBody,cPhysicsRayParams *apParams)
 	{
 		if(pBody->GetMass()>0)
@@ -60,7 +60,7 @@ public:
 
 		return true;
 	}
-	
+
 	iPhysicsBody* mpPickedBody;
 	cVector3f mvPos;
 	cVector3f mvLocalPos;
@@ -78,15 +78,15 @@ public:
 	{
 		//////////////////////////////////////////////////
 		/// Variables
-		
+
 
 		/////////////////////////////////////////////////
 		// Set up data
 		mpLowLevelGraphics = gpGame->GetGraphics()->GetLowLevel();
-		
+
 		//gpGame->SetRenderOnce(true);
 		//gpGame->GetGraphics()->GetRenderer3D()->SetDebugFlags(eRendererDebugFlag_LogRendering);
-		
+
 		gpGame->GetGraphics()->GetRendererPostEffects()->SetActive(true);
 		gpGame->GetGraphics()->GetRendererPostEffects()->SetBloomActive(true);
 		gpGame->GetGraphics()->GetRendererPostEffects()->SetBloomSpread(6);
@@ -112,19 +112,19 @@ public:
 
 		gpGame->GetInput()->AddAction(new cActionKeyboard("Print",gpGame->GetInput(),eKey_p));
 
-		
+
 		/////////////////////////////////////////////
 		// Resource setup
 		gpGame->GetResources()->AddEntity3DLoader(new cEntityLoader_Object("Object"),true);
 
-		
+
 		/////////////////////////////////////////////
 		// Create World
 		mpWorld = gpGame->GetScene()->CreateWorld3D("Test");
 		gpGame->GetScene()->SetWorld3D(mpWorld);
 
 
-		
+
 		/////////////////////////////////////////////
 		// Create Physics world
 		// Setup physics
@@ -141,7 +141,7 @@ public:
 		// Create FPS Camera.
 		mpFPSCamera = gpGame->GetScene()->CreateCamera3D(eCameraMoveMode_Fly);
 		mpFPSCamera->SetFOV(cMath::ToRad(70));
-		
+
 
 		/////////////////////////////////////////////
 		cMesh *pMesh = gpGame->GetResources()->GetMeshManager()->CreateMesh(gsModelFile);
@@ -167,8 +167,8 @@ public:
 			cParticleSystem3D *pPS = pMesh->CreateParticleSystemInWorld("Model",pMesh->GetParticleSystem(i),mpEntity,mpWorld);
 		}
 
-		
-		
+
+
 		/////////////////////////////////////////////77
 		// Create Floor
 		pMesh = gpGame->GetResources()->GetMeshManager()->CreateMesh("misc_rect.dae");
@@ -187,7 +187,7 @@ public:
 		mpLight->SetCastShadows(true);
 		mpLight->SetPosition(cVector3f(8,8,8));
 		//mpLight->SetVisible(false);
-		
+
 		mpLight2 = mpWorld->CreateLightPoint("Light2");
 		mpLight2->SetDiffuseColor(cColor(1,1,1,1.0f));
 		mpLight2->SetFarAttenuation(60.0f);
@@ -203,7 +203,7 @@ public:
 		mpFlare2  = mpWorld->CreateBillboard("Bill2",2,"misc_flare2");
 		mpFlare2->SetVisible(true);
 		mpFlare2->SetPosition(mpLight2->GetWorldPosition());
-		
+
 		/////////////////////////////////////////////77
 		// Misc
 
@@ -240,7 +240,7 @@ public:
 
 	~cSimpleUpdate()
 	{
-	
+
 	}
 
 	void OnExit()
@@ -284,7 +284,7 @@ public:
 			mtxTransform = cMath::MatrixMul(mtxTransform, cMath::MatrixRotateZ(-fRotSpeed));
 		}
 
-		if(gpGame->GetInput()->BecameTriggerd("View1")) 
+		if(gpGame->GetInput()->BecameTriggerd("View1"))
 		{
 			gpGame->GetScene()->SetCamera(gpCameraUpdate->GetCamera());
 		}
@@ -292,7 +292,7 @@ public:
 		{
 			gpGame->GetScene()->SetCamera(mpFPSCamera);
 		}
-		
+
 		if(gpGame->GetInput()->BecameTriggerd("Print"))
 		{
 			Log("-------- PRINT ---------------------\n");
@@ -300,12 +300,12 @@ public:
 			Log("Rot: %.1f %.1f %.1f\n",cMath::ToDeg(mvRotation.x),cMath::ToDeg(mvRotation.y),cMath::ToDeg(mvRotation.z));
 			Log("------------------------------------\n");
 		}
-		
+
 		mvRotation = cMath::MatrixToEulerAngles(mtxTransform,eEulerRotationOrder_XYZ);
 
 		cMatrixf mtxPose = cMath::MatrixRotate(mvRotation,eEulerRotationOrder_XYZ);
 		mtxPose.SetTranslation(mvPosition);
-		
+
 		cVector3f vRot = cVector3f(mpFPSCamera->GetPitch(), mpFPSCamera->GetYaw(),mpFPSCamera->GetRoll());
 		cMatrixf mtxSmoothCam = cMath::MatrixRotate(vRot * -1.0f, eEulerRotationOrder_YXZ);
 		cVector3f vUp = mtxSmoothCam.GetUp();
@@ -314,15 +314,15 @@ public:
 
 		////////////////////
 		//Set rotation
-		cMatrixf mtxEntity = cMath::MatrixMul( 
+		cMatrixf mtxEntity = cMath::MatrixMul(
 								cMath::MatrixRotate(vRot, eEulerRotationOrder_XYZ),
 								mtxPose.GetRotation()
 									);
-		
+
 		/////////////////////////
 		//Set position
 		const cVector3f &vLocalPos = mtxPose.GetTranslation();
-		cVector3f vRealLocalPos =	vUp *		vLocalPos.y + 
+		cVector3f vRealLocalPos =	vUp *		vLocalPos.y +
 									vRight *	vLocalPos.x +
 									vForward *	vLocalPos.z;
 
@@ -330,7 +330,7 @@ public:
 
 		mpEntity->SetMatrix(mtxEntity);
 	}
-	
+
 	void OnDraw()
 	{
 		mpFont->Draw(cVector3f(5,5,0),13,cColor(1,1),eFontAlign_Left,_W("PosX: %.3f"),mvPosition.x);
@@ -349,10 +349,10 @@ public:
 		mpLowLevelGraphics->SetDepthTestActive(false);
 
 		mpLowLevelGraphics->SetBlendActive(false);
-		
+
 		mpLowLevelGraphics->SetDepthTestActive(false);
 		mpLowLevelGraphics->SetDepthWriteActive(false);
-		
+
 		mpLowLevelGraphics->SetDepthTestActive(true);
 		mpLowLevelGraphics->SetDepthWriteActive(true);
 
@@ -370,7 +370,7 @@ public:
 		mpLowLevelGraphics->DrawLine(0,vZ * 0.2f,cColor(0,0,1));*/
 	}
 
-	
+
 
 private:
 	cVector3f mvRot;
@@ -380,18 +380,18 @@ private:
 	cCamera3D* mpFPSCamera;
 
 	cMeshEntity *mpEntity;
-		
+
 	iLowLevelGraphics* mpLowLevelGraphics;
 	cWorld3D* mpWorld;
 
 	iPhysicsWorld *mpPhysicsWorld;
-	
+
 	cBillboard *mpFlare;
 	cBillboard *mpFlare2;
 
 	iLight3D *mpLight;
 	iLight3D *mpLight2;
-	
+
 	cVector3f mvPosition;
 	cVector3f mvRotation;
 };
@@ -412,7 +412,7 @@ int WINAPI WinMain(	HINSTANCE hInstance,  HINSTANCE hPrevInstance,LPSTR	lpCmdLin
 	bool bVsync = pConfig->GetBool("Screen", "Vsync", false);
 
 	SetLogFile(_W("hoe.log"));
-	
+
 	//Init the game engine
 	gpGame = new cGame(new cSDLGameSetup(),lScreenW,lScreenH,32,bFullScreen,45);
 	gpGame->GetGraphics()->GetLowLevel()->SetVsyncActive(bVsync);
@@ -420,22 +420,22 @@ int WINAPI WinMain(	HINSTANCE hInstance,  HINSTANCE hPrevInstance,LPSTR	lpCmdLin
 	SetWindowCaption("Model Viewer");
 
 	//iResourceBase::SetLogCreateAndDelete(true);
-	
+
 	//Add resources
 	gpGame->GetResources()->LoadResourceDirsFile("resources.cfg");
-	
+
 	if(lpCmdLine != ""){
 		gsModelFile = lpCmdLine;
 	}
 
-	
+
 	//Add updates
 	gpCameraUpdate = new cHOECamera(gpGame,5,cVector3f(0,0,2),true);
 	gpGame->GetUpdater()->AddUpdate("Default", gpCameraUpdate);
 
 	cSimpleUpdate Update;
 	gpGame->GetUpdater()->AddUpdate("Default", &Update);
-		
+
 	//Run the engine
 	gpGame->Run();
 

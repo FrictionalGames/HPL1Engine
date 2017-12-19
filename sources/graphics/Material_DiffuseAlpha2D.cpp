@@ -42,7 +42,7 @@ namespace hpl {
 
 	cMaterial_DiffuseAlpha2D::~cMaterial_DiffuseAlpha2D()
 	{
-		
+
 	}
 
 	//-----------------------------------------------------------------------
@@ -57,7 +57,7 @@ namespace hpl {
 	{
 
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	bool cMaterial_DiffuseAlpha2D::StartRendering(eMaterialRenderType aType,iCamera* apCam,iLight *pLight)
@@ -66,18 +66,18 @@ namespace hpl {
 		{
 			mpLowLevelGraphics->SetBlendActive(true);
 			mpLowLevelGraphics->SetBlendFunc(eBlendFunc_SrcAlpha, eBlendFunc_OneMinusSrcAlpha);
-		
+
 			mpLowLevelGraphics->SetTexture(0, GetTexture(eMaterialTexture_Diffuse));
 			//mpLowLevelGraphics->SetTextureParam(eTextureParam_ColorOp1,eTextureOp_Alpha);
 			//mpLowLevelGraphics->SetTextureParam(eTextureParam_ColorFunc, eTextureFunc_Modulate);
-			
+
 			return true;
 		}
 		return false;
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	void cMaterial_DiffuseAlpha2D::EndRendering(eMaterialRenderType aType)
 	{
 		if(aType == eMaterialRenderType_Diffuse)
@@ -87,7 +87,7 @@ namespace hpl {
 		}
 
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	tVtxBatchFlag cMaterial_DiffuseAlpha2D::GetBatchFlags(eMaterialRenderType aType)
@@ -118,7 +118,7 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	void cMaterial_DiffuseAlpha2D::EditVertexes(eMaterialRenderType aType, iCamera* apCam, iLight *pLight, 
+	void cMaterial_DiffuseAlpha2D::EditVertexes(eMaterialRenderType aType, iCamera* apCam, iLight *pLight,
 		tVertexVec *apVtxVec,cVector3f *apTransform,unsigned int alIndexAdd)
 	{
 

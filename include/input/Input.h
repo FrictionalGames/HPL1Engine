@@ -45,15 +45,15 @@ namespace hpl {
 
 	class cInput : public iUpdateable
 	{
-	public: 
+	public:
 		cInput(iLowLevelInput *apLowLevelInput);
         ~cInput();
-		
+
 		/**
 		 * Updates the input, called by cGame
 		 */
 		void Update(float afTimeStep);
-		
+
 		/**
 		 * Add a new action.
 		 * \param *apAction The action to add.
@@ -62,31 +62,31 @@ namespace hpl {
 
 		/**
 		 * Check if an action is triggered.
-		 * \param asName 
-		 * \return 
+		 * \param asName
+		 * \return
 		 */
 		bool IsTriggerd(tString asName);
 		/**
 		 *
 		 * \param asName name of the action.
-		 * \return 
+		 * \return
 		 */
 		bool WasTriggerd(tString asName);
 
 		/**
 		 *
 		 * \param asName name of the action.
-		 * \return 
+		 * \return
 		 */
 		bool BecameTriggerd(tString asName);
 
 		/**
 		*
 		* \param asName name of the action.
-		* \return 
+		* \return
 		*/
 		bool DoubleTriggerd(tString asName, float afLimit);
-        
+
 		/**
 		 *
 		 * \return currently used keyboard
@@ -108,7 +108,7 @@ namespace hpl {
 
 		/**
 		 * Destroys an action if it exists.
-		 * \param asName 
+		 * \param asName
 		 */
 		void DestroyAction(tString asName);
 
@@ -128,13 +128,13 @@ namespace hpl {
 		iLowLevelInput* GetLowLevel(){ return mpLowLevelInput;}
 
 	private:
-		
+
 
 		tActionMap m_mapActions;
 		tInputDeviceList mlstInputDevices;
 
 		iLowLevelInput *mpLowLevelInput;
-		
+
 		iMouse* mpMouse;
 		iKeyboard* mpKeyboard;
 	};

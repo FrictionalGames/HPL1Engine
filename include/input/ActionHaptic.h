@@ -25,9 +25,9 @@
 #include "haptic/Haptic.h"
 
 namespace hpl {
-	
+
 	class cHaptic;
-	
+
 	class cActionHaptic : public iAction
 	{
 	public:
@@ -39,7 +39,7 @@ namespace hpl {
 		tString GetInputName();
 
 		tString GetInputType(){return "HapticDeviceButton";}
-		
+
 		int GetButton(){ return mlButton;}
 	private:
 		int mlButton;

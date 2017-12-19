@@ -41,16 +41,16 @@ namespace hpl {
 		bool HasMultiplePasses(eMaterialRenderType aType);
 
 		eMaterialType GetType(eMaterialRenderType aType);
-		void EditVertexes(eMaterialRenderType aType, iCamera* apCam, iLight *pLight, 
+		void EditVertexes(eMaterialRenderType aType, iCamera* apCam, iLight *pLight,
 			tVertexVec *apVtxVec,cVector3f *apTransform,unsigned int alIndexAdd);
-	
+
 	private:
 	};
 
 	class cMaterialType_FontNormal : public iMaterialType
 	{
 	public:
-		bool IsCorrect(tString asName){ 
+		bool IsCorrect(tString asName){
 			return cString::ToLowerCase(asName)=="fontnormal";
 		}
 

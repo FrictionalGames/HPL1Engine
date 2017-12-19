@@ -40,8 +40,8 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	cImageEntity::cImageEntity(tString asName,cResources* apResources, cGraphics* apGraphics, 
-								bool abAutoDeleteData) 
+	cImageEntity::cImageEntity(tString asName,cResources* apResources, cGraphics* apGraphics,
+								bool abAutoDeleteData)
 	: iEntity2D(asName)
 	{
 		mvSize =cVector2f(-1,-1);
@@ -91,7 +91,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 	// PUBLIC METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
 	int cImageEntity::GetMaxFrameNum()
 	{
@@ -100,9 +100,9 @@ namespace hpl {
 		//One for the -1, one for the frame jump, and one becuase we start with 0.
 		return (int)mpAnimation->mvFrameNums.size()-3;
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	bool cImageEntity::SetAnimation(const tString& asName, bool abLoop)
 	{
 		mbLoopAnimation = abLoop;
@@ -116,7 +116,7 @@ namespace hpl {
 		mfFrameNum =0;
 		return true;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	const tString& cImageEntity::GetCurrentAnimation() const
@@ -128,7 +128,7 @@ namespace hpl {
 		return mpAnimation->msName;
 	}
 	//-----------------------------------------------------------------------
-	
+
 	void cImageEntity::StopAnimation()
 	{
 		for(int i=0;i<(int)mpAnimation->mvFrameNums.size();i++)
@@ -148,7 +148,7 @@ namespace hpl {
 	void cImageEntity::SetSize(const cVector2f& avSize)
 	{
 		if(avSize.x == mvSize.x && avSize.y== mvSize.y)return;
-		
+
 		mvSize.x = avSize.x==0?0.001f:avSize.x;
 		mvSize.y = avSize.y==0?0.001f:avSize.y;
 
@@ -165,9 +165,9 @@ namespace hpl {
         mbFlipH = abX;
 		mbRotationHasChanged=true;
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	void cImageEntity::SetFlipV(bool abX)
 	{
 		if(mbFlipV == abX)return;
@@ -175,9 +175,9 @@ namespace hpl {
 		mbFlipV = abX;
 		mbRotationHasChanged=true;
 	}
-		
+
 	//-----------------------------------------------------------------------
-	
+
 	void cImageEntity::UpdateLogic(float afTimeStep)
 	{
 		if(mbFlashing)
@@ -202,12 +202,12 @@ namespace hpl {
 				SetAlpha(fAlpha);
 			}
 		}
-		
+
 		if(mpAnimation && !mbAnimationPaused)
 		{
 			if(mpAnimation->mvFrameNums[(int)mfFrameNum]!=-1)
 			{
-				mfFrameNum+=mfAnimSpeed*mpAnimation->mfSpeed; 
+				mfFrameNum+=mfAnimSpeed*mpAnimation->mfSpeed;
 
 				int lFrameNum = (int) mfFrameNum;
 
@@ -216,7 +216,7 @@ namespace hpl {
 					if(mbLoopAnimation)
 					{
 						float fTemp = (float)mpAnimation->mvFrameNums[lFrameNum+1];
-						
+
 						mfFrameNum = fTemp + cMath::GetFraction(mfFrameNum);
 					}
 				}
@@ -231,17 +231,17 @@ namespace hpl {
 		int lFrameNum = (int)mfFrameNum;
 		return mpAnimation->mvFrameNums[lFrameNum]!=-1;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cImageEntity::Render()
 	{
 		if(!mbIsActive)return;
-		
+
 		/*Update frame stuff if needed here*/
-		
+
 		mvTransform = GetWorldPosition();
-		
+
 		/// Get the frame to be used //////////////
 		if(mpEntityData->GetFrameNum()==1)
 		{
@@ -252,10 +252,10 @@ namespace hpl {
 		{
 			mlLastFrame = mlFrame;
 			mlFrame = mpAnimation->mvFrameNums[(int)mfFrameNum];
-			
+
 			if(mlFrame==-1) mlFrame = mpAnimation->mvFrameNums[((int)mfFrameNum)-1];
-						
-			/// If Frame has changed update vertexes 
+
+			/// If Frame has changed update vertexes
 			if(mlLastFrame != mlFrame)
 			{
 				tVertexVec* pVtx = &mpEntityData->GetImageFrame(mlFrame)->mvVtx;
@@ -268,7 +268,7 @@ namespace hpl {
 				}
 			}
 		}
-		
+
 
 		if(mbSizeHasChanged)
 		{
@@ -278,7 +278,7 @@ namespace hpl {
 				//This also only works on square meshes...
 				mvBaseVtx[i].pos.x = std::abs(mvBaseVtx[i].pos.x)/mvBaseVtx[i].pos.x;
 				mvBaseVtx[i].pos.y = std::abs(mvBaseVtx[i].pos.y)/mvBaseVtx[i].pos.y;
-				
+
 				mvBaseVtx[i].pos.x *= mvSize.x/2;
 				mvBaseVtx[i].pos.y *= mvSize.y/2;
 				mvBaseVtx[i].pos.z = 0;
@@ -297,7 +297,7 @@ namespace hpl {
 			float fNormZ=3;
 			if(mbFlipV)fNormZ = 1;
 			if(mbFlipH)fNormZ *= -1;
-			
+
 			for(int i=0;i<(int)mvVtx.size();i++)
 			{
 				mvVtx[i].pos.x = mvBaseVtx[i].pos.x*fCos - mvBaseVtx[i].pos.y*fSin;
@@ -305,7 +305,7 @@ namespace hpl {
 
 				if(mbFlipH) mvVtx[i].pos.x = -mvVtx[i].pos.x;
 				if(mbFlipV) mvVtx[i].pos.y = -mvVtx[i].pos.y;
-			
+
 				mvVtx[i].norm.x = fCos;
 				mvVtx[i].norm.y = fSin;
 				mvVtx[i].norm.z = fNormZ;
@@ -317,16 +317,16 @@ namespace hpl {
 			ePrimitiveType_Quad, GetWorldPosition().z,
 			mBoundingBox, NULL, &mvTransform);
 		// Add the render object.
-		mpGraphics->GetRenderer2D()->AddObject(_obj);		
+		mpGraphics->GetRenderer2D()->AddObject(_obj);
 
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	bool cImageEntity::LoadData(TiXmlElement* apRootElem)
 	{
 		tString sDataName = cString::ToString(apRootElem->Attribute("DataName"),"");
-		
+
 		mbFlipH = cString::ToBool(apRootElem->Attribute("FlipH"),false);
 		mbFlipV = cString::ToBool(apRootElem->Attribute("FlipV"),false);
 		mvRotation.z = cMath::ToRad(cString::ToFloat(apRootElem->Attribute("Angle"),0));
@@ -349,7 +349,7 @@ namespace hpl {
 
 		return LoadEntityData(pImageData, alAnimNum);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	bool cImageEntity::LoadEntityData(cImageEntityData* apData, int alAnimNum)
@@ -372,16 +372,16 @@ namespace hpl {
 		{
 			mvSize = mpEntityData->GetImageSize();
 		}
-		
+
 		mvVtx = mvBaseVtx;
 		mvIdxVec = *mpEntityData->GetIndexVec();
 		mbRotationHasChanged = true;
 		mbSizeHasChanged = true;
 		mfCurrentAngle =0;
-		
+
 		return true;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	const cRect2f& cImageEntity::GetBoundingBox()
@@ -394,7 +394,7 @@ namespace hpl {
 	bool cImageEntity::UpdateBoundingBox()
 	{
 		cVector2f vSize;
-		
+
 		if(mvRotation.z != 0)
 		{
 			//Only Temp...
@@ -407,20 +407,20 @@ namespace hpl {
 		{
 			vSize = mvSize;
 		}
-		
+
 		mBoundingBox = cRect2f(cVector2f(GetWorldPosition().x-vSize.x/2,
 										GetWorldPosition().y-vSize.y/2),vSize);
 
 		return true;
 	}
 	//-----------------------------------------------------------------------
-	
+
 	void cImageEntity::SetAlpha(float afX)
 	{
 		if(mfAlpha != afX)
 		{
 			mfAlpha = afX;
-            
+
 			for(int i=0;i<(int)mvVtx.size();i++)
 			{
 				mvVtx[i].col.a = mfAlpha;

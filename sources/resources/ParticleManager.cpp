@@ -53,7 +53,7 @@ namespace hpl {
 
 		Log(" Done with particles\n");
 
-		
+
 	}
 
 	//-----------------------------------------------------------------------
@@ -66,7 +66,7 @@ namespace hpl {
 
 	iResourceBase* cParticleManager::Create(const tString& asName)
 	{
-		return NULL;	
+		return NULL;
 	}
 
 	//-----------------------------------------------------------------------
@@ -75,16 +75,16 @@ namespace hpl {
 	{
 		/*tParticleSystemDataMapIt it = m_mapData.find(asName);
 		if(it == m_mapData.end()) return NULL;
-		
+
 		iParticleSystemData *pData = it->second;
 
 		//Is name needed?..nahh
 		iParticleSystem* pPart = pData->Create("",avSize);
 		pPart->SetDataName(asName);
 		pPart->SetDataSize(avSize);
-		
+
 		if(pPart->GetType() == eParticleSystemType_2D)
-			return static_cast<iParticleSystem2D*>(pPart);		
+			return static_cast<iParticleSystem2D*>(pPart);
 		else
 		{
 			hplDelete(pPart);
@@ -96,7 +96,7 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	cParticleSystem3D* cParticleManager::CreatePS3D(const tString& asName,const tString& asType, 
+	cParticleSystem3D* cParticleManager::CreatePS3D(const tString& asName,const tString& asType,
 												cVector3f avSize,const cMatrixf& a_mtxTransform)
 	{
 		cParticleSystemData3D *pData = NULL;
@@ -110,7 +110,7 @@ namespace hpl {
 		if(pData == NULL)
 		{
 			tString sFile = cString::SetFileExt(asType,"ps");
-			
+
 			tString sPath = mpFileSearcher->GetFilePath(sFile);
 
 			if(sPath == "")
@@ -118,7 +118,7 @@ namespace hpl {
 				Error("Couldn't find particle system file '%s'\n",sFile.c_str());
 				return NULL;
 			}
-			
+
 			cParticleSystemData3D *pPSData = hplNew( cParticleSystemData3D, (sTypeName,
 																		mpResources,mpGraphics) );
 
@@ -133,7 +133,7 @@ namespace hpl {
 
 			pData = pPSData;
 		}
-				
+
 
 		pData->IncUserCount();
         cParticleSystem3D* pPS = pData->Create(asName,avSize,a_mtxTransform);
@@ -141,15 +141,15 @@ namespace hpl {
 		pPS->SetDataSize(avSize);
 		pPS->SetParticleManager(this);
 
-		return pPS;		
+		return pPS;
 	}
-    
+
 	//-----------------------------------------------------------------------
 
 	void cParticleManager::AddData3D(cParticleSystemData3D *apData)
 	{
 		AddResource(apData);
-		//m.insert(tParticleSystemData3DMap::value_type(cString::ToLowerCase(apData->GetName()), 
+		//m.insert(tParticleSystemData3DMap::value_type(cString::ToLowerCase(apData->GetName()),
 		//														apData));
 	}
 
@@ -201,7 +201,7 @@ namespace hpl {
 			apResource->DecUserCount();
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	//////////////////////////////////////////////////////////////////////////

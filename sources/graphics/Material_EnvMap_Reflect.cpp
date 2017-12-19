@@ -56,7 +56,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-    
+
 	static cEnvMapReflect_SetUp gEnvMaterialSetup;
 
 	//////////////////////////////////////////////////////////////////////////
@@ -64,7 +64,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	cGLState_EnvMapReflect::cGLState_EnvMapReflect()
 		: iGLStateProgram("Internal_Diffuse")
 	{
@@ -86,7 +86,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	cGLState_EnvMapReflect gGLState_EnvMapReflect;
 
 	//////////////////////////////////////////////////////////////////////////
@@ -179,7 +179,7 @@ namespace hpl {
 
 	eMaterialChannelMode cMaterial_EnvMap_Reflect::GetChannelMode(eMaterialRenderType aType, int alPass, iLight3D *apLight)
 	{
-		if(aType == eMaterialRenderType_Z) return eMaterialChannelMode_Z; 
+		if(aType == eMaterialRenderType_Z) return eMaterialChannelMode_Z;
 		return eMaterialChannelMode_RGBA;
 	}
 
@@ -213,7 +213,7 @@ namespace hpl {
 	//-----------------------------------------------------------------------
 
 	tTextureTypeList cMaterial_EnvMap_Reflect::GetTextureTypes()
-	{ 
+	{
 		tTextureTypeList vTypes;
 		vTypes.push_back(cTextureType("",eMaterialTexture_Diffuse));
 		vTypes.push_back(cTextureType("cube",eMaterialTexture_CubeMap));

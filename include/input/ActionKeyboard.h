@@ -24,7 +24,7 @@
 #include "input/Action.h"
 
 namespace hpl {
-	
+
 	class cInput;
 
 	class cActionKeyboard : public iAction

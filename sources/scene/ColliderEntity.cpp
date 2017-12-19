@@ -54,7 +54,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	cBoundingVolume* cColliderEntity::GetBoundingVolume()
 	{
 		return &mBoundingVolume;

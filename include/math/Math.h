@@ -26,8 +26,8 @@
 #include "graphics/Color.h"
 
 namespace hpl {
-	
-	
+
+
 	class cMath
 	{
 	public:
@@ -36,17 +36,17 @@ namespace hpl {
 		//////////////////////////////////////////////////////
 		/**
          * Generates a random integer from min to max
-         * \param alMin 
-         * \param alMax 
-         * \return 
+         * \param alMin
+         * \param alMax
+         * \return
          */
         static int RandRectl(int alMin, int alMax);
-		
+
 		/**
 		 * Generates a random float from min to max
-		 * \param alMin 
-		 * \param alMax 
-		 * \return 
+		 * \param alMin
+		 * \param alMax
+		 * \return
 		 */
 		static float RandRectf(float alMin, float alMax);
 
@@ -65,7 +65,7 @@ namespace hpl {
 		*/
 		static cColor RandRectColor(const cColor &aMin,const cColor &aMax);
 
-		
+
 		/**
 		 * Randomize the rand funcs.
 		 * \param alSeed the seed, -1 = random seed.
@@ -80,18 +80,18 @@ namespace hpl {
 		static bool BoxCollision(cRect2f aRect1, cRect2f aRect2);
 
 		static bool PointBoxCollision(cVector2f avPoint, cRect2f aRect);
-		
+
 		static bool BoxFit(cRect2l aRectSrc, cRect2l aRectDest);
 		static bool BoxFit(cRect2f aRectSrc, cRect2f aRectDest);
 
 		static float Dist2D(const cVector2f &avPosA,const cVector2f &avPosB);
 		static float Dist2D(const cVector3f &avPosA,const cVector3f &avPosB);
-		
+
 		static float SqrDist2D(const cVector2f &avPosA,const cVector2f &avPosB);
 		static float SqrDist2D(const cVector3f &avPosA,const cVector3f &avPosB);
 
 		static cRect2f& ClipRect(cRect2f& aRectSrc,const cRect2f& aRectDest);
-		
+
 		/**
 		* Checks collison between two bounding volumes.
 		* \return true if collision, else false.
@@ -99,7 +99,7 @@ namespace hpl {
         static bool CheckCollisionBV(cBoundingVolume& aBV1,cBoundingVolume& aBV2);
 
 		static bool PointBVCollision(const cVector3f& avPoint, cBoundingVolume& aBV2);
-		
+
 		/**
 		* Creates a clip rect for a bounding volume in screen space.
 		* \return false if behind near clip.
@@ -117,15 +117,15 @@ namespace hpl {
 
 		/**
 		 * Get fraction part of a float
-		 * \param afVal 
-		 * \return 
+		 * \param afVal
+		 * \return
 		 */
 		static float GetFraction(float afVal);
 		/**
 		 * Moldus (%) of a float
-		 * \param afDividend 
-		 * \param afDivisor 
-		 * \return 
+		 * \param afDividend
+		 * \param afDivisor
+		 * \return
 		 */
 		static float Modulus(float afDividend, float afDivisor);
 
@@ -174,7 +174,7 @@ namespace hpl {
 
 		inline static float Abs(float afX){ return afX < 0 ? -afX : afX;}
 		inline static int Abs(int alX){ return alX < 0 ? -alX : alX;}
-		
+
 		static float GetAngleDistance(float afAngle1, float afAngle2, float afMaxAngle);
 		static float GetAngleDistanceRad(float afAngle1, float afAngle2);
 		static float GetAngleDistanceDeg(float afAngle1, float afAngle2);
@@ -190,34 +190,34 @@ namespace hpl {
 		//////////////////////////////////////////////////////
 		/**
 		 * Get the angle a vector at aStartPos has to have to look at aGoalPos
-		 * \param &aStartPos 
-		 * \param &avGoalPos 
-		 * \return 
+		 * \param &aStartPos
+		 * \param &avGoalPos
+		 * \return
 		 */
 		static float GetAngleFromPoints2D(const cVector2f &aStartPos, const cVector2f &avGoalPos);
 		/**
 		 * Get a vector from an angle and a length
-		 * \param afAngle 
-		 * \param afLength 
-		 * \return 
+		 * \param afAngle
+		 * \param afLength
+		 * \return
 		 */
 		static cVector2f GetVectorFromAngle2D(float afAngle, float afLength);
 		/**
 		 * Get angle and length of a vector
-		 * \param &avVec 
-		 * \param *apAngle 
-		 * \param *apLength 
+		 * \param &avVec
+		 * \param *apAngle
+		 * \param *apLength
 		 */
 		static void GetAngleFromVector(const cVector2f &avVec, float *apAngle, float *apLength);
-		
+
 		/**
 		 * Project Src on Dest
-		 * \param &avSrcVec 
-		 * \param &avDestVec 
-		 * \return 
+		 * \param &avSrcVec
+		 * \param &avDestVec
+		 * \return
 		 */
 		static cVector2f ProjectVector2D(const cVector2f &avSrcVec, const cVector2f &avDestVec);
-		
+
 		//////////////////////////////////////////////////////
 		////////// VECTOR 3D ///////////////////////////////
 		//////////////////////////////////////////////////////
@@ -231,7 +231,7 @@ namespace hpl {
 		{
 			return cVector3f(ToDeg(avVec.x),ToDeg(avVec.y),ToDeg(avVec.z));
 		}
-		
+
 		static inline cVector3f Vector3Normalize(const cVector3f &avVec)
 		{
 			cVector3f vNorm = avVec;
@@ -258,59 +258,59 @@ namespace hpl {
 
 		/**
 		 * Vector cross product, A x B = R
-		 * \param avVecA 
-		 * \param avVecB 
-		 * \return 
+		 * \param avVecA
+		 * \param avVecB
+		 * \return
 		 */
-		static cVector3f Vector3Cross(const cVector3f& avVecA,const cVector3f& avVecB); 
+		static cVector3f Vector3Cross(const cVector3f& avVecA,const cVector3f& avVecB);
 
 		/**
 		 * Vector dot product, A * B = R
-		 * \param avVecA 
-		 * \param avVecB 
-		 * \return 
+		 * \param avVecA
+		 * \param avVecB
+		 * \return
 		 */
 		static float Vector3Dot(const cVector3f& avVecA,const cVector3f& avVecB);
 
 		/**
 		* Project Src on Dest
 		* \param &avSrcVec, must be normalized
-		* \param &avDestVec, must be normalized 
-		* \return 
+		* \param &avDestVec, must be normalized
+		* \return
 		*/
 		static cVector3f ProjectVector3D(const cVector3f &avSrcVec, const cVector3f &avDestVec);
 
-		
+
 		/**
 		* Calculates the angle between two vectors.
-		* \param avVecA 
-		* \param avVecB 
-		* \return 
+		* \param avVecA
+		* \param avVecB
+		* \return
 		*/
 		static float Vector3Angle(const cVector3f& avVecA,const cVector3f& avVecB);
-		
+
 		/**
 		 * Unprojects a vector from screen size and coords.
 		*/
-		static cVector3f Vector3UnProject(const cVector3f& avVec, const cRect2f &aScreenRect, 
+		static cVector3f Vector3UnProject(const cVector3f& avVec, const cRect2f &aScreenRect,
 											cMatrixf a_mtxViewProj);
 
 		/**
 		 * Calculates distance from a point to a plane
 		 * \param aPlane The plane must be normalised!
-		 * \param avVec 
+		 * \param avVec
 		 * \return >0 if in front of plane, 0 if on plane and <0 if behind plane
 		 */
 		static float PlaneToPointDist(const cPlanef& aPlane, const cVector3f& avVec);
 
 		/**
 		 * Get the line defining the intersection of 2 planes.
-		 * \param aPA 
-		 * \param aPB 
-		 * \param avDir The direction of the line will be placed here 
-		 * \param avPoint A point on the line will be placed here. 
+		 * \param aPA
+		 * \param aPB
+		 * \param avDir The direction of the line will be placed here
+		 * \param avPoint A point on the line will be placed here.
 		 */
-		static void PlaneIntersectionLine(const cPlanef& aPA, const cPlanef& aPB, 
+		static void PlaneIntersectionLine(const cPlanef& aPA, const cPlanef& aPB,
 											cVector3f& avDir, cVector3f& avPoint);
 
 		/**
@@ -320,8 +320,8 @@ namespace hpl {
 											const cVector3f& avPoint2, int alPairNum);
 
 		/**
-		* Checks intersection with a a frustum, an array of alPairNum plane pairs(alPairNum * 2 planes), and a quad mesh. 
-		* \param apPoints the points of the quad mesh, every 4 points is a face. 
+		* Checks intersection with a a frustum, an array of alPairNum plane pairs(alPairNum * 2 planes), and a quad mesh.
+		* \param apPoints the points of the quad mesh, every 4 points is a face.
 		*/
 		static bool CheckFrustumQuadMeshIntersection(const cPlanef* apPlanePairs, tVector3fVec *apPoints,
 													int alPairNum);
@@ -336,25 +336,25 @@ namespace hpl {
 		 * Spherical Linear Interpolation between quaternions A and B
 		 * \param afT The amount inbetween the quaternions. 0.0 is A and 1 is B.
 		 * \param abShortestPath Move the the shortest path.
-		 * \return 
+		 * \return
 		 */
-		static cQuaternion QuaternionSlerp(float afT,const cQuaternion& aqA, const cQuaternion& aqB, 
+		static cQuaternion QuaternionSlerp(float afT,const cQuaternion& aqA, const cQuaternion& aqB,
 											bool abShortestPath);
 
 		static float QuaternionDot(const cQuaternion& aqA,const cQuaternion& aqB);
 
-		
+
 		//////////////////////////////////////////////////////
 		////////// MATRIX ////////////////////////////////////
 		//////////////////////////////////////////////////////
-		
+
 		/**
 		* Spherical Linear Interpolation between matrix A and B
 		* \param afT The amount inbetween the quaternions. 0.0 is A and 1 is B.
 		* \param abShortestPath Move the the shortest path.
-		* \return 
+		* \return
 		*/
-		static cMatrixf MatrixSlerp(float afT,const cMatrixf& a_mtxA, const cMatrixf& a_mtxB, 
+		static cMatrixf MatrixSlerp(float afT,const cMatrixf& a_mtxA, const cMatrixf& a_mtxB,
 											bool abShortestPath);
 
 		/**
@@ -371,11 +371,11 @@ namespace hpl {
 		static cVector3f MatrixMulDivideW(const cMatrixf &a_mtxA,const cVector3f &avB);
 
 		/**
-		 * Multiply matrix and a float. 
+		 * Multiply matrix and a float.
 		 */
 		static cMatrixf MatrixMulScalar(const cMatrixf &a_mtxA, float afB);
-		
-		
+
+
 		/**
 		 * Creates a rotation matrix along all axes according to order.
 		 */
@@ -394,10 +394,10 @@ namespace hpl {
 		static cMatrixf MatrixRotateZ(float afAngle);
 		static cMatrixf MatrixScale(cVector3f avScale);
 		static cMatrixf MatrixTranslate(cVector3f avTrans);
-		
+
 		/**
 		 * Creates a matrix from a quaternion.
-		 * \return 
+		 * \return
 		 */
 		static cMatrixf MatrixQuaternion(const cQuaternion &aqRot);
 
@@ -405,18 +405,18 @@ namespace hpl {
 		 * Get the minor of a matrix.
 		 */
 		static inline float MatrixMinor(const cMatrixf &a_mtxA,
-			const size_t r0, const size_t r1, const size_t r2, 
+			const size_t r0, const size_t r1, const size_t r2,
 			const size_t c0, const size_t c1, const size_t c2);
 		/**
 		* Get the adjoint of a matrix.
 		*/
 		static inline cMatrixf MatrixAdjoint(const cMatrixf &a_mtxA);
-		
+
 		/**
 		* Get the determinant of a matrix.
 		*/
 		static inline float MatrixDeterminant(const cMatrixf &a_mtxA);
-		
+
 		/**
 		 * Gets the inverse of a matrix.
 		 */
@@ -424,8 +424,8 @@ namespace hpl {
 
 		/**
 		 * Converts the matrix into Euler angles, XYZ only supported at the moment.
-		 * \param &a_mtxA 
-		 * \param aOrder 
+		 * \param &a_mtxA
+		 * \param aOrder
 		 */
 		static cVector3f MatrixToEulerAngles(const cMatrixf &a_mtxA, eEulerRotationOrder aOrder);
 
@@ -433,7 +433,7 @@ namespace hpl {
 		 * Create a char string from the matrix
 		 */
 		static const char* MatrixToChar(const cMatrixf &a_mtxA);
-		
+
 		//////////////////////////////////////////////////////
 		////////// POLYGONS //////////////////////////////////
 		//////////////////////////////////////////////////////
@@ -449,7 +449,7 @@ namespace hpl {
 		 * \param  alVertexNum Number of vertex, normals and texcoords.
 		 * \return true if success, else false
 		 */
-		static bool CreateTriTangentVectors(float* apDestArray, 
+		static bool CreateTriTangentVectors(float* apDestArray,
 										const unsigned int* apIndexArray,int alIndexNum,
 										const float* apVertexArray, int alVtxStride,
 										const float *apTexArray,
@@ -481,7 +481,7 @@ namespace hpl {
 								const unsigned int* apIndexArray,int alIndexNum,
 								const float* apVertexArray, int alVtxStride, int alVertexNum,
 								bool *apIsDoubleSided);
-		
+
 
 };
 

@@ -28,7 +28,7 @@ namespace hpl {
 		eBinTreeNode_Right
 	};
 
-	
+
 
 	//////////////////////////////////////////////////////////////////////////
 	// TREE NODE CLASS
@@ -40,7 +40,7 @@ namespace hpl {
 		{
 			return &mData;
 		}
-	
+
 		BinTreeNode(T aData, BinTreeNode<T> *aParent, eBinTreeNode aParentDir)
 		{
 			for(int i=0;i<2;i++) mChild[i]=NULL;
@@ -67,7 +67,7 @@ namespace hpl {
 		{
 			return mParent;
 		}
-	
+
 	private:
 		BinTreeNode<T>* mChild[2];
 		BinTreeNode<T>* mParent;
@@ -78,8 +78,8 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 	// MAIN TREE CLASS
 	//////////////////////////////////////////////////////////////////////////
-	
-	
+
+
 	template<class T> class BinTree {
 	public:
 		BinTree(){
@@ -108,7 +108,7 @@ namespace hpl {
 		 * Insert a node to the tree.
 		 * \todo only works to set the root node.
 		 * \param aData the data to insert
-		 * \return 
+		 * \return
 		 */
 		BinTreeNode<T>* Insert(T aData)
 		{
@@ -141,7 +141,7 @@ namespace hpl {
 				}
 			}
 			mlNumOfNodes++;
-			
+
 			return Node;
 		}
 
@@ -150,7 +150,7 @@ namespace hpl {
 		 * \param aData the data to insert
 		 * \param aNode the node to insert the data in
 		 * \param aChild what child to insert at
-		 * \return 
+		 * \return
 		 */
 		BinTreeNode<T>* InsertAt(T aData,BinTreeNode<T>* aNode, eBinTreeNode aChild=eBinTreeNode_Left)
 		{
@@ -166,7 +166,7 @@ namespace hpl {
 
 		/**
 		 * Get the size of the tree
-		 * \return 
+		 * \return
 		 */
 		int Size()
 		{
@@ -175,14 +175,14 @@ namespace hpl {
 
 		const std::list<BinTreeNode<T>*>& GetLeafList()
 		{
-			mlstNodes.clear(); 
+			mlstNodes.clear();
 			PopulateLeafList(mFirstNode);
 			 return  mlstNodes;
 		}
 
 		/**
 		 * Get a list of all the nodes in the tree
-		 * \return 
+		 * \return
 		 */
 		const std::list<BinTreeNode<T>*>& GetNodeList()
 		{
@@ -190,13 +190,13 @@ namespace hpl {
 			PopulateNodeList(mFirstNode);
 			return  mlstNodes;
 		}
-	    
+
 	private:
 		int mlNumOfNodes;
 		BinTreeNode<T>* mFirstNode;
 		int mlNum;
-		
-		std::list<BinTreeNode<T>*> mlstNodes; 
+
+		std::list<BinTreeNode<T>*> mlstNodes;
 
 		void DeleteNode(BinTreeNode<T>* aNode)
 		{
@@ -204,7 +204,7 @@ namespace hpl {
 
 			DeleteNode(aNode->GetChild(eBinTreeNode_Left));
 			DeleteNode(aNode->GetChild(eBinTreeNode_Right));
-			
+
 			hplDelete(aNode);
 			mlNum++;
 		}
@@ -214,14 +214,14 @@ namespace hpl {
 			if(aNode==NULL)	return;
 
 			PopulateNodeList(aNode->GetChild(eBinTreeNode_Left));
-			mlstNodes.push_back(aNode);			
+			mlstNodes.push_back(aNode);
 			PopulateNodeList(aNode->GetChild(eBinTreeNode_Right));
 		}
 
 		void PopulateLeafList(BinTreeNode<T>* aNode)
 		{
 			if(aNode==NULL)	return;
-			
+
 			if(aNode->GetChild(eBinTreeNode_Left)==NULL &&
 				aNode->GetChild(eBinTreeNode_Right)==NULL)
 			{

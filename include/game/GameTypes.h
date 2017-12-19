@@ -32,7 +32,7 @@ namespace hpl {
 		cScriptVar();
 
 		tString msName;
-		int mlVal; 
+		int mlVal;
 	};
 
 	typedef std::map<tString,cScriptVar> tScriptVarMap;

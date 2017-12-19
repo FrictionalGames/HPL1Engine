@@ -60,7 +60,7 @@ namespace hpl {
 		tString asNewName;
 
 		BeginLoad(asName);
-		
+
 		asNewName = cString::SetFileExt(asName,"tsd");
 
 		pTileSet = static_cast<cTileSet*>(this->FindLoadedResource(asNewName,sPath));
@@ -79,7 +79,7 @@ namespace hpl {
 
 		if(pTileSet)pTileSet->IncUserCount();
 		else Error("Couldn't load tileset '%s'\n",asNewName.c_str());
-		
+
 		EndLoad();
 		return pTileSet;
 	}
@@ -88,7 +88,7 @@ namespace hpl {
 
 	cTileSet* cTileSetManager::CreateTileSet(const tString& asName)
 	{
-		return 	static_cast<cTileSet*>(Create(asName));	
+		return 	static_cast<cTileSet*>(Create(asName));
 	}
 
 	//-----------------------------------------------------------------------

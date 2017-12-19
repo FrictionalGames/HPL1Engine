@@ -27,7 +27,7 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	cTileLayer::cTileLayer(unsigned int alW, unsigned int alH, bool abCollision,bool abLit, 
+	cTileLayer::cTileLayer(unsigned int alW, unsigned int alH, bool abCollision,bool abLit,
 							eTileLayerType aType,float afZ)
 	{
 		mvSize = cVector2l(alW, alH);
@@ -45,7 +45,7 @@ namespace hpl {
 	cTileLayer::~cTileLayer()
 	{
 		Log(" Deleting tilelayer.\n");
-		
+
 		for(int i=0;i<(int)mvTile.size();i++)
 			if(mvTile[i])hplDelete(mvTile[i]);
 
@@ -59,12 +59,12 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	bool cTileLayer::SetTile(unsigned int alX,unsigned int alY,cTile *aVal)
 	{
 		int lNum = alY*mvSize.x+alX;
 		if(lNum>=(int)mvTile.size()) return false;
-		
+
 		if(aVal == NULL)
 		{
 			if(mvTile[lNum])hplDelete(mvTile[lNum]);
@@ -99,7 +99,7 @@ namespace hpl {
 	{
 		return  mvTile[alNum];
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 }

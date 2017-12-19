@@ -29,14 +29,14 @@ namespace hpl {
 	class cWorld3D;
 
 	//--------------------------------
-	
+
 	typedef tFlag tAIFreePathFlag;
 
 	#define eAIFreePathFlag_SkipStatic	 (0x00000001)
 	#define eAIFreePathFlag_SkipDynamic	 (0x00000002)
 	#define eAIFreePathFlag_SkipVolatile (0x00000004)
 
-	
+
 	//--------------------------------
 	class cAINode;
 
@@ -66,9 +66,9 @@ namespace hpl {
 		inline cAINodeEdge* GetEdge(int alIdx) { return &mvEdges[alIdx];}
 
 		const cVector3f& GetPosition(){ return mvPosition;}
-		
+
 		const tString& GetName(){ return msName;}
-		
+
 	private:
 		tString msName;
 		cVector3f mvPosition;
@@ -82,12 +82,12 @@ namespace hpl {
 
 	typedef std::list<cAINode*> tAINodeList;
 	typedef tAINodeList::iterator tAINodeListIt;
-	
+
 	typedef std::map<tString,cAINode*> tAINodeMap;
 	typedef tAINodeMap::iterator tAINodeMapIt;
-	
+
 	//--------------------------------
-	
+
 	class iAIFreePathCallback
 	{
 	public:
@@ -101,21 +101,21 @@ namespace hpl {
 	public:
 		void Reset();
 		void SetFlags(tAIFreePathFlag aFlags){ mFlags = aFlags;}
-		
+
 		bool BeforeIntersect(iPhysicsBody *pBody);
 		bool OnIntersect(iPhysicsBody *pBody,cPhysicsRayParams *apParams);
-		
+
 		bool Intersected();
 
 		iAIFreePathCallback *mpCallback;
-	
+
 	private:
 		bool mbIntersected;
 		tAIFreePathFlag mFlags;
 	};
 
 	//--------------------------------
-	
+
 	class cAIGridNode
 	{
 	public:
@@ -129,7 +129,7 @@ namespace hpl {
 	{
 	public:
 		cAINodeIterator(cAINodeContainer *apContainer, const cVector3f &avPos, float afRadius);
-		
+
 		bool HasNext();
 		cAINode *Next();
 
@@ -148,7 +148,7 @@ namespace hpl {
 	};
 
 	//--------------------------------
-		
+
 	class cAINodeContainer
 	{
 	friend class cAINodeIterator;
@@ -161,7 +161,7 @@ namespace hpl {
 		const tString& GetName(){ return msName;}
 
 		const cVector3f& GetCollideSize(){ return mvSize;}
-		
+
 		/**
 		 * Reserves spaces for nodes.
 		 * \param alReserveSpace Number of nodes to reserve space for.
@@ -206,22 +206,22 @@ namespace hpl {
 
 		/**
 		 * Returns a node iterator. Note that the radius is not checked, some nodes may lie outside.
-		 * \param &avPosition 
-		 * \param afRadius 
-		 * \return 
+		 * \param &avPosition
+		 * \param afRadius
+		 * \return
 		 */
 		cAINodeIterator GetNodeIterator(const cVector3f &avPosition, float afRadius);
 
 		/**
 		 * Checks for a free path using the containers collide size.
-		 * \param &avStart 
-		 * \param &avEnd 
+		 * \param &avStart
+		 * \param &avEnd
 		 * \param alRayNum The max number of rays cast, -1 = maximum
 		 * \param alFlags Set Flags for the ray casting.
 		 * \param apCallback Check for every body and overrides alFlags.
-		 * \return 
+		 * \return
 		 */
-		bool FreePath(const cVector3f &avStart, const cVector3f &avEnd, int alRayNum=-1, 
+		bool FreePath(const cVector3f &avStart, const cVector3f &avEnd, int alRayNum=-1,
 						tAIFreePathFlag aFlags=0, iAIFreePathCallback *apCallback=NULL);
 
 
@@ -235,10 +235,10 @@ namespace hpl {
 		* Sets the min number of end node added to a node. This overrides max distance when needed.
 		*/
 		void SetMinEdges(int alX){ mlMinNodeEnds = alX;}
-		
+
 		/**
 		 * Sets the max distance for an end node.
-		 * \param afX 
+		 * \param afX
 		 */
 		void SetMaxEdgeDistance(float afX){ mfMaxEndDistance = afX;}
 

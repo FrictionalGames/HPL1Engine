@@ -23,7 +23,7 @@
 #include "math/BoundingVolume.h"
 
 namespace hpl {
-	
+
 	enum eCollideShapeType
 	{
 		eCollideShapeType_Null,
@@ -38,7 +38,7 @@ namespace hpl {
 	};
 
 	class iPhysicsWorld;
-	
+
 	class iCollideShape
 	{
 	public:
@@ -47,9 +47,9 @@ namespace hpl {
 
 		virtual iCollideShape* GetSubShape(int alIdx)=0;
 		virtual int GetSubShapeNum()=0;
-		
+
 		cVector3f GetSize(){ return mvSize;}
-		
+
 		float GetRadius(){ return mvSize.x;}
 		float GetHeight(){ return mvSize.y;}
 		float GetWidth(){ return mvSize.x;}

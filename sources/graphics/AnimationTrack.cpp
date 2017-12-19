@@ -31,7 +31,7 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	cAnimationTrack::cAnimationTrack(const tString &asName, tAnimTransformFlag aTransformFlags, 
+	cAnimationTrack::cAnimationTrack(const tString &asName, tAnimTransformFlag aTransformFlags,
 									cAnimation *apParent)
 	{
 		msName = asName;
@@ -57,12 +57,12 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	void cAnimationTrack::ResizeKeyFrames(int alSize)
 	{
 		mvKeyFrames.reserve(alSize);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cKeyFrame* cAnimationTrack::CreateKeyFrame(float afTime)
@@ -88,7 +88,7 @@ namespace hpl {
 			}
 			mvKeyFrames.insert(it,pFrame);
 		}
-		
+
         return pFrame;
 	}
 
@@ -97,17 +97,17 @@ namespace hpl {
 	void cAnimationTrack::ApplyToNode(cNode3D* apNode, float afTime, float afWeight)
 	{
 		cKeyFrame Frame = GetInterpolatedKeyFrame(afTime);
-        		
+
 		//Scale
 		//Skip this for now...
 		/*cVector3f vOne(1,1,1);
 		cVector3f vScale = (Frame.scale - vOne)*afWeight + vOne;
 		apNode->AddScale(vScale);*/
-		
+
 		//Rotation
 		cQuaternion qRot = cMath::QuaternionSlerp(afWeight, cQuaternion::Identity, Frame.rotation, true);
 		apNode->AddRotation(qRot);
-		
+
 		//Translation
 		cVector3f vTrans = Frame.trans * afWeight;
 		apNode->AddTranslation(vTrans);
@@ -122,10 +122,10 @@ namespace hpl {
 
 		cKeyFrame *pKeyFrameA = NULL;
 		cKeyFrame *pKeyFrameB = NULL;
-		
+
 		float fT = GetKeyFramesAtTime(afTime, &pKeyFrameA, &pKeyFrameB);
 
-		
+
         if(fT == 0.0f)
 		{
 			ResultKeyFrame.rotation = pKeyFrameA->rotation;
@@ -133,11 +133,11 @@ namespace hpl {
 			ResultKeyFrame.trans = pKeyFrameA->trans;
 		}
 		else
-		{	
+		{
 			//Do a linear interpolation
 			//This should include spline stuff later on.
 
-            ResultKeyFrame.rotation = cMath::QuaternionSlerp(fT, pKeyFrameA->rotation, 
+            ResultKeyFrame.rotation = cMath::QuaternionSlerp(fT, pKeyFrameA->rotation,
 													pKeyFrameB->rotation, true);
 
 			ResultKeyFrame.scale = pKeyFrameA->scale * (1 - fT) + pKeyFrameB->scale * fT;
@@ -148,14 +148,14 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	float cAnimationTrack::GetKeyFramesAtTime(float afTime, cKeyFrame** apKeyFrameA,cKeyFrame** apKeyFrameB)
 	{
 		float fTotalAnimLength = mpParent->GetLength();
 
-		// Wrap time 
+		// Wrap time
 		//Not sure it is a good idea to clamp the length.
-		//But wrapping screws loop mode up. 
+		//But wrapping screws loop mode up.
 		//Wrap(..., totalLength + kEpislon), migh work though.
 		afTime = cMath::Clamp(afTime, 0, fTotalAnimLength);
 
@@ -164,11 +164,11 @@ namespace hpl {
 		{
 			*apKeyFrameA = mvKeyFrames[mvKeyFrames.size()-1];
 			*apKeyFrameB = mvKeyFrames[0];
-			
-			//Get T between end to start again. (the last frame doesn't mean the anim is over. 
+
+			//Get T between end to start again. (the last frame doesn't mean the anim is over.
 			// In that case wrap to the first frame).
 			float fDeltaT = fTotalAnimLength - (*apKeyFrameA)->time;
-			
+
 			//If animation time is >= max time might as well just return the last frame.
 			//Not sure if this is good for some looping anims, in that case check the code.
 			return 0.0f;//(afTime - (*apKeyFrameA)->time) / fDeltaT;
@@ -187,8 +187,8 @@ namespace hpl {
 				break;
 			}
 		}
-		
-		//If first frame was found, the lowest time is not 0. 
+
+		//If first frame was found, the lowest time is not 0.
 		//If so return the first frame only.
 		if(lIdxB == 0)
 		{
@@ -196,13 +196,13 @@ namespace hpl {
 			*apKeyFrameB = mvKeyFrames[0];
 			return 0.0f;
 		}
-		
+
 		//Get the frames
 		*apKeyFrameA = mvKeyFrames[lIdxB-1];
 		*apKeyFrameB = mvKeyFrames[lIdxB];
-        
+
 		float fDeltaT = (*apKeyFrameB)->time - (*apKeyFrameA)->time;
-        
+
 		return (afTime - (*apKeyFrameA)->time) / fDeltaT;
 	}
 

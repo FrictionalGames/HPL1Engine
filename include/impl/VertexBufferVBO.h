@@ -23,7 +23,7 @@
 
 
 namespace hpl {
-	
+
 	class cVertexBufferVBO : public iVertexBuffer
 	{
 	public:
@@ -38,7 +38,7 @@ namespace hpl {
 
 		bool Compile(tVertexCompileFlag aFlags);
 		void UpdateData(tVertexFlag aTypes, bool abIndices);
-		
+
 		void CreateShadowDouble(bool abUpdateData);
 
 		void Transform(const cMatrixf &mtxTransform);
@@ -46,14 +46,14 @@ namespace hpl {
 		void Draw(eVertexBufferDrawType aDrawType = eVertexBufferDrawType_LastEnum);
 		void DrawIndices(unsigned int *apIndices, int alCount,
 						eVertexBufferDrawType aDrawType = eVertexBufferDrawType_LastEnum);
-		
+
 		void Bind();
 		void UnBind();
 
 		iVertexBuffer* CreateCopy(eVertexBufferUsageType aUsageType);
 
 		cBoundingVolume CreateBoundingVolume();
-		
+
 		int GetVertexNum();
 		int GetIndexNum();
 
@@ -62,7 +62,7 @@ namespace hpl {
 
 		void ResizeArray(tVertexFlag aType, int alSize);
 		void ResizeIndices(int alSize);
-		
+
 		//For debugging purposes
 		cVector3f GetVector3(tVertexFlag aType, unsigned alIdx);
 		cVector3f GetVector4(tVertexFlag aType, unsigned alIdx);
@@ -77,7 +77,7 @@ namespace hpl {
 		unsigned int mlElementHandle;
 
 		tFloatVec mvVertexArray[klNumOfVertexFlags];
-		
+
 		unsigned int mvArrayHandle[klNumOfVertexFlags];
 
 		tUIntVec mvIndexArray;

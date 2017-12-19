@@ -30,7 +30,7 @@
 #include "graphics/VertexBuffer.h"
 
 namespace hpl {
-	
+
 	class iRenderable;
 	class cCamera3D;
 	class cGraphics;
@@ -47,9 +47,9 @@ namespace hpl {
 		eRenderListDrawType_Trans,
 		eRenderListDrawType_LastEnum
 	};
-	
+
 	//-------------------------------------------------------------
-	
+
 	class cRenderNode;
 
 	class cRenderNodeCompare
@@ -57,7 +57,7 @@ namespace hpl {
 	public:
 		bool operator()(cRenderNode* apNodeA,cRenderNode* apNodeB) const;
 	};
-	
+
 	typedef std::set<cRenderNode*, cRenderNodeCompare> tRenderNodeSet;
 	typedef tRenderNodeSet::iterator tRenderNodeSetIt;
 
@@ -79,29 +79,29 @@ namespace hpl {
 	class cMotionBlurObject_Compare
 	{
 	public:
-		bool operator()(iRenderable* pObjectA,iRenderable* pObjectB) const; 
+		bool operator()(iRenderable* pObjectA,iRenderable* pObjectB) const;
 	};
 
 	typedef std::multiset<iRenderable*,cMotionBlurObject_Compare> tMotionBlurObjectSet;
 	typedef tMotionBlurObjectSet::iterator tMotionBlurObjectSetIt;
 
-	typedef cSTLIterator<iRenderable*, tMotionBlurObjectSet, 
+	typedef cSTLIterator<iRenderable*, tMotionBlurObjectSet,
 							tMotionBlurObjectSetIt> cMotionBlurObjectIterator;
 
 	//-------------------------------------------------------------
-	
-	
+
+
 	class cTransperantObject_Compare
 	{
 	public:
-		bool operator()(iRenderable* pObjectA,iRenderable* pObjectB) const; 
+		bool operator()(iRenderable* pObjectA,iRenderable* pObjectB) const;
 	};
 
 	typedef std::multiset<iRenderable*,cTransperantObject_Compare> tTransperantObjectSet;
 	typedef tTransperantObjectSet::iterator tTransperantObjectSetIt;
 
 	typedef cSTLIterator<iRenderable*, tTransperantObjectSet, tTransperantObjectSetIt> cTransperantObjectIterator;
-	
+
 
 	//-------------------------------------------------------------
 
@@ -119,17 +119,17 @@ namespace hpl {
 	class cOcclusionQueryObject_Compare
 	{
 	public:
-		bool operator()(const cOcclusionQueryObject* pObjectA,const cOcclusionQueryObject* pObjectB) const; 
+		bool operator()(const cOcclusionQueryObject* pObjectA,const cOcclusionQueryObject* pObjectB) const;
 	};
 
 	typedef std::set<cOcclusionQueryObject*,cOcclusionQueryObject_Compare> tOcclusionQueryObjectSet;
 	typedef tOcclusionQueryObjectSet::iterator tOcclusionQueryObjectSetIt;
 
-	typedef cSTLIterator<cOcclusionQueryObject*, tOcclusionQueryObjectSet, 
+	typedef cSTLIterator<cOcclusionQueryObject*, tOcclusionQueryObjectSet,
 						tOcclusionQueryObjectSetIt> cOcclusionQueryObjectIterator;
 
 	//-------------------------------------------------------------
-	
+
 	typedef std::set<iRenderable*> tRenderableSet;
 	typedef tRenderableSet::iterator tRenderableSetIt;
 
@@ -147,7 +147,7 @@ namespace hpl {
 	public:
 		cRenderList(cGraphics *apGraphics);
 		~cRenderList();
-		
+
 		void SetCamera(cCamera3D* apCamera){ mpCamera = apCamera;}
 		cCamera3D* GetCamera(){ return mpCamera;}
 
@@ -155,16 +155,16 @@ namespace hpl {
 		void Clear();
 
 		void AddOcclusionQuery(cOcclusionQueryObject *apObject);
-		
+
 		cOcclusionQueryObjectIterator GetQueryIterator();
 
 		cMotionBlurObjectIterator GetMotionBlurIterator();
 
 		cTransperantObjectIterator GetTransperantIterator();
-		
+
 		cLight3DIterator GetLightIt();
 		cRenderableIterator GetObjectIt();
-		
+
 		int GetLightNum();
 		int GetObjectNum();
 
@@ -174,9 +174,9 @@ namespace hpl {
 		int GetLastRenderCount(){ return mlLastRenderCount;}
 
 		int GetLightObjects(int alLightIdx){ return mvObjectsPerLight[alLightIdx];}
-		
+
 		void SetFrameTime(float afTime){ mfFrameTime = afTime;}
-		
+
 		cRenderNode* GetRootNode(eRenderListDrawType aObjectType ,eMaterialRenderType aPassType, int alLightNum);
 
 		static inline int GetGlobalRenderCount(){ return mlGlobalRenderCount;}
@@ -185,21 +185,21 @@ namespace hpl {
 		cRenderNode* InsertNode(cRenderNode* apListNode, cRenderNode* apTempNode);
 
 		void AddToTree(iRenderable* apObject,eRenderListDrawType aObjectType,
-						eMaterialRenderType mPassType,int alLightNum,iLight3D* apLight, 
+						eMaterialRenderType mPassType,int alLightNum,iLight3D* apLight,
 						bool abUseDepth, int alPass);
 
 		static int mlGlobalRenderCount;
 
 		tLight3DSet m_setLights;
 		int mvObjectsPerLight[MAX_NUM_OF_LIGHTS];
-		
+
 		tRenderableSet m_setObjects;
 
 		tOcclusionQueryObjectSet m_setQueries;
 
         tMotionBlurObjectSet m_setMotionBlurObjects;
 		tTransperantObjectSet m_setTransperantObjects;
-		
+
 		cRenderNode mRootNodeDepth;
 		cRenderNode mRootNodeDiffuse;
 		cRenderNode mRootNodeLight[MAX_NUM_OF_LIGHTS];

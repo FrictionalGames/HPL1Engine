@@ -35,7 +35,7 @@ namespace hpl {
 		eTileCollisionType_OnlyDown,
 		eTileCollisionType_LastEnum
 	};
-	
+
 	enum eTileDataType
 	{
 		eTileDataType_Normal,
@@ -47,12 +47,12 @@ namespace hpl {
 	{
 	public:
 		virtual ~iTileData(){}
-		
+
 		virtual void Destroy()=0;
 		virtual bool IsSolid()=0;
 		virtual eTileDataType GetType()=0;
 
-		/*virtual tVertexVec GetVertexVec(const cVector3f &avPos, const cVector2f &avSize, 
+		/*virtual tVertexVec GetVertexVec(const cVector3f &avPos, const cVector2f &avSize,
 										unsigned char acAngle)=0;*/
 	};
 
@@ -67,7 +67,7 @@ namespace hpl {
 
 		void Destroy();
 		bool IsSolid(){return mbIsSolid;}
-		void SetIsSolid(bool abIsSolid){mbIsSolid = abIsSolid;} 
+		void SetIsSolid(bool abIsSolid){mbIsSolid = abIsSolid;}
 
 		eTileCollisionType GetCollisionType(){ return mCollisionType;}
 		void SetCollisionType(eTileCollisionType aCollisionType){ mCollisionType = aCollisionType;}
@@ -75,7 +75,7 @@ namespace hpl {
 		eTileDataType GetType(){ return eTileDataType_Normal; }
 		tVertexVec* GetVertexVec(eTileRotation aRotation);
 		tUIntVec* GetIndexVec(eTileRotation aRotation);
-		
+
 		tVertexVec* GetCollideVertexVec(eTileRotation aRotation);
 		tUIntVec* GetCollideIndexVec(eTileRotation aRotation);
 
@@ -87,7 +87,7 @@ namespace hpl {
 
 		cMesh2D* GetCollideMesh();
 		void SetCollideMesh(cMesh2D *apCollideMesh);
-		
+
 	private:
 		cImageManager* mpImageManager;
 

@@ -34,7 +34,7 @@ namespace hpl {
 
 	typedef std::vector<cTileLayer*> tTileLayerVec;
 	typedef tTileLayerVec::iterator tTileLayerVecIt;
-	
+
 	class cTileMap
 	{
 	friend class cTileMapRectIt;

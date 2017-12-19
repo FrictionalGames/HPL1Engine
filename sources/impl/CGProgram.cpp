@@ -33,7 +33,7 @@ namespace hpl{
 	tString cCGProgram::msForceFP = "AUTO";
 	tString cCGProgram::msForceVP = "AUTO";
 
-	cCGProgram::cCGProgram(tString asName,CGcontext aContext,eGpuProgramType aType) 
+	cCGProgram::cCGProgram(tString asName,CGcontext aContext,eGpuProgramType aType)
 	: iGpuProgram(asName, aType)
 	{
 		mContext = aContext;
@@ -98,24 +98,24 @@ namespace hpl{
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	bool cCGProgram::Reload()
 	{
 		return false;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cCGProgram::Unload()
 	{
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cCGProgram::Destroy()
 	{
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	bool cCGProgram::CreateFromFile(const tString &asFile, const tString &asEntry)
@@ -142,7 +142,7 @@ namespace hpl{
 			const char* pString = cgGetLastListing(mContext);
 			int lIdx=0;
 			int lLastNewLine=0;
-			
+
 			Log(" -----------------------------------\n");
 			while(pString[lIdx]!=0)//true)
 			{
@@ -162,11 +162,11 @@ namespace hpl{
 				lIdx++;
 			}
 			Log(" -----------------------------------\n");
-			
+
 			Log("CG: Error loading: '%s'!\n",asFile.c_str());
 			return false;
 		}
-		
+
 		if(mProgram==NULL){
 			Log("Error loading: '%s'!\n",asFile.c_str());
 			return false;
@@ -180,7 +180,7 @@ namespace hpl{
 		if (err != CG_NO_ERROR)
 		{
 			Log(" %s\n", cgGetErrorString(err));
-			
+
 			cgDestroyProgram(mProgram);
 			mProgram = NULL;
 
@@ -204,7 +204,7 @@ namespace hpl{
 			{
 				continue;
 			}
-			
+
 			//Get the unit number
 			int lUnit = lCount;
 			const char *pSemantic = cgGetParameterSemantic(Param);
@@ -219,7 +219,7 @@ namespace hpl{
 
 			++lCount;
 		}
-		
+
 		return true;
 	}
 
@@ -237,14 +237,14 @@ namespace hpl{
 	{
 		cgGLDisableProfile(mProfile);
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	bool  cCGProgram::SetFloat(const tString& asName, float afX)
 	{
 		CGparameter Param = GetParam(asName, CG_FLOAT);
 		if(Param==NULL)return false;
-		
+
 		cgGLSetParameter1f(Param, afX);
 		return true;
 	}
@@ -259,7 +259,7 @@ namespace hpl{
 		cgGLSetParameter2f(Param, afX, afY);
 		return true;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	bool  cCGProgram::SetVec3f(const tString& asName, float afX,float afY,float afZ)
@@ -270,9 +270,9 @@ namespace hpl{
 		cgGLSetParameter3f(Param, afX, afY, afZ);
 		return true;
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	bool  cCGProgram::SetVec4f(const tString& asName, float afX,float afY,float afZ, float afW)
 	{
 		CGparameter Param = GetParam(asName, CG_FLOAT4);
@@ -288,15 +288,15 @@ namespace hpl{
 	{
 		CGparameter Param = GetParam(asName, CG_FLOAT4x4);
 		if(Param==NULL)return false;
-		
+
 		cgGLSetMatrixParameterfr(Param,&mMtx.m[0][0]);
 
 		return true;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
-	bool cCGProgram::SetMatrixf(const tString& asName, eGpuProgramMatrix mType, 
+	bool cCGProgram::SetMatrixf(const tString& asName, eGpuProgramMatrix mType,
 		eGpuProgramMatrixOp mOp)
 	{
 		CGparameter Param = GetParam(asName, CG_FLOAT4x4);
@@ -365,7 +365,7 @@ namespace hpl{
 		if(mvTexUnitParam[alUnit]==NULL || alUnit >= MAX_TEXTUREUNITS) return false;
 
 		cSDLTexture* pSDLTex = static_cast<cSDLTexture*>(apTexture);
-		
+
 		if(apTexture)
 		{
 			//Log("Intializing TexUnit %s(%d): %d\n",cgGetParameterName(mvTexUnitParam[alUnit]),
@@ -381,9 +381,9 @@ namespace hpl{
 		return true;
 	}
 
-		
+
 	//-----------------------------------------------------------------------
-	
+
 	//////////////////////////////////////////////////////////////////////////
 	// PROTECTED METHODS
 	//////////////////////////////////////////////////////////////////////////
@@ -400,7 +400,7 @@ namespace hpl{
 
 		return Param;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 }

@@ -48,33 +48,33 @@ namespace hpl {
 		mlFramecounter=0;
 		mfFrametimestart=0;
 		mfFrametime=0;
-	
+
 		mfUpdateRate = 1;
 
 		mpLowLevelSystem = apLowLevelSystem;
 
-		mfFrametimestart = ((float)GetApplicationTime()) / 1000.0f; 
+		mfFrametimestart = ((float)GetApplicationTime()) / 1000.0f;
 	}
-	
+
 	void cFPSCounter::AddFrame()
 	{
 		mlFramecounter++;
 
 		mfFrametime = (((float)GetApplicationTime()) / 1000.0f) - mfFrametimestart;
-		
+
 		// update the timer
 		if (mfFrametime >= mfUpdateRate)
 		{
 			mfFPS = ((float)mlFramecounter)/mfFrametime;
 			mlFramecounter = 0;
-			mfFrametimestart = ((float)GetApplicationTime()) / 1000.0f; 
+			mfFrametimestart = ((float)GetApplicationTime()) / 1000.0f;
 		}
 	}
-	
+
 	//////////////////////////////////////////////////////////////////////////
 	// SETUP VAR CONTAINER
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
 
 	cSetupVarContainer::cSetupVarContainer()
@@ -117,25 +117,25 @@ namespace hpl {
 	float cSetupVarContainer::GetFloat(const tString& asName, float afDefault)
 	{
 		const tString& sVal = GetString(asName);
-		if(sVal == "") 
+		if(sVal == "")
 			return afDefault;
-		else 
+		else
 			return cString::ToFloat(sVal.c_str(),afDefault);
 	}
 	int cSetupVarContainer::GetInt(const tString& asName, int alDefault)
 	{
 		const tString& sVal = GetString(asName);
-		if(sVal == "") 
+		if(sVal == "")
 			return alDefault;
-		else 
+		else
 			return cString::ToInt(sVal.c_str(),alDefault);
 	}
 	bool cSetupVarContainer::GetBool(const tString& asName, bool abDefault)
 	{
 		const tString& sVal = GetString(asName);
-		if(sVal == "") 
+		if(sVal == "")
 			return abDefault;
-		else 
+		else
 			return cString::ToBool(sVal.c_str(),abDefault);
 	}
 
@@ -224,16 +224,16 @@ namespace hpl {
 			aVars.GetInt("ScreenHeight",600),
 			aVars.GetInt("ScreenBpp",32),
 			aVars.GetBool("Fullscreen",false),
-			aVars.GetInt("Multisampling",0), 
+			aVars.GetInt("Multisampling",0),
 			aVars.GetString("WindowCaption"),
 			mpResources);
 
 		//Init Sound
-		mpSound->Init(mpResources, aVars.GetBool("UseSoundHardware",true), 
+		mpSound->Init(mpResources, aVars.GetBool("UseSoundHardware",true),
 						aVars.GetBool("ForceGeneric",false),
 						aVars.GetBool("UseEnvironmentalAudio", false),
 						aVars.GetInt("MaxSoundChannels",32),
-						aVars.GetInt("StreamUpdateFreq",10), 
+						aVars.GetInt("StreamUpdateFreq",10),
 						aVars.GetBool("UseSoundThreading",true),
 						aVars.GetBool("UseVoiceManagement",true),
 						aVars.GetInt("MaxMonoChannelsHint",0),
@@ -307,9 +307,9 @@ namespace hpl {
 
 		hplDelete(mpLogicTimer);
 		hplDelete(mpFPSCounter);
-		
+
 		hplDelete(mpUpdater);
-		
+
 		hplDelete(mpGui);
 		hplDelete(mpScene);
 		if(mpHaptic) hplDelete(mpHaptic);
@@ -320,10 +320,10 @@ namespace hpl {
 		hplDelete(mpPhysics);
 		hplDelete(mpAI);
 		hplDelete(mpSystem);
-		
+
 		Log(" Deleting game setup provided by user\n");
 		hplDelete(mpGameSetup);
-		
+
 		Log("HPL Exit was successful!\n");
 	}
 
@@ -334,36 +334,36 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	int glClearUpdateCheck=0;
 	void cGame::Run()
 	{
 		//Log line that ends user init.
 		Log("--------------------------------------------------------\n\n");
-		
+
 		bool bDone = false;
 		double fNumOfTimes=0;
 		double fMediumTime=0;
 
 		mpUpdater->OnStart();
-		
+
 		mpLogicTimer->Reset();
 
 		//Loop the game... fix the var...
 		unsigned long lTempTime = GetApplicationTime();
-		
+
 		//reset the mouse, really reset the damn thing :P
 		for(int i=0;i<10;i++) mpInput->GetMouse()->Reset();
-		
-		
+
+
 		Log("Game Running\n");
 		Log("--------------------------------------------------------\n");
 
 		mfFrameTime = 0;
 		unsigned long lTempFrameTime = GetApplicationTime();
-		
+
 		bool mbIsUpdated = true;
-		
+
 		//cMemoryManager::SetLogCreation(true);
 
 		while(!mbGameIsDone)
@@ -374,9 +374,9 @@ namespace hpl {
 			while(mpLogicTimer->WantUpdate() && !mbGameIsDone)
 			{
 				unsigned int lUpdateTime = GetApplicationTime();
-				
+
 				mpUpdater->Update(GetStepSize());
-				
+
 				unsigned int lDeltaTime = GetApplicationTime() - lUpdateTime;
 				mfUpdateTime = (float)(lDeltaTime) / 1000.0f;
 
@@ -392,26 +392,26 @@ namespace hpl {
 			}
 			mpLogicTimer->EndUpdateLoop();
 
-			
-			//If not making a single rendering is better to use gpu and 
+
+			//If not making a single rendering is better to use gpu and
 			//cpu at the same time and make query checks etc after logic update.
 			//If any delete has occured in the update this might crash. so skip it for now.
 			/*if(mbRenderOnce==false)	{
 				mpGraphics->GetRenderer3D()->FetchOcclusionQueries();
 				mpUpdater->OnPostBufferSwap();
 			}*/
-			
+
 			//Draw graphics!
 			if(mbRenderOnce && bDone)continue;
 			if(mbRenderOnce)bDone = true;
-			
-			
+
+
 			if(mbIsUpdated)
 			{
 				mpScene->UpdateRenderList(mfFrameTime);
 				if(mbLimitFPS==false) mbIsUpdated = false;
 			}
-			
+
 			if(mbLimitFPS==false || mbIsUpdated)
 			{
 				//LogUpdate("----------- RENDER GFX START --------------\n");
@@ -421,16 +421,16 @@ namespace hpl {
            		//Get the the from the last frame.
 				mfFrameTime = ((float)(GetApplicationTime() - lTempFrameTime))/1000;
 				lTempFrameTime = GetApplicationTime();
-				
+
 				//Draw this frame
 				//unsigned long lFTime = GetApplicationTime();
 				mpUpdater->OnDraw();
 				mpScene->Render(mpUpdater,mfFrameTime);
 				//if(mpScene->GetDrawScene()) LogUpdate("FrameTime: %d ms\n", GetApplicationTime() - lFTime);
-				
+
 				//Update fps counter.
 				mpFPSCounter->AddFrame();
-	           	
+
 				//Update the screen.
 				mpGraphics->GetLowLevel()->SwapBuffers();
 				//Log("Swap done: %d\n", GetApplicationTime());
@@ -439,7 +439,7 @@ namespace hpl {
 					mpGraphics->GetRenderer3D()->FetchOcclusionQueries();
 					mpUpdater->OnPostBufferSwap();
 				}
-				
+
 				fNumOfTimes++;
 			}
 
@@ -450,19 +450,19 @@ namespace hpl {
 			//}
 		}
 		Log("--------------------------------------------------------\n\n");
-	
+
 		Log("Statistics\n");
 		Log("--------------------------------------------------------\n");
 
 		unsigned long lTime = GetApplicationTime() - lTempTime;
 		fMediumTime = fNumOfTimes/(((double)lTime)/1000);
-		
+
 		Log(" Medium framerate: %f\n", fMediumTime);
 		Log("--------------------------------------------------------\n\n");
 
 		Log("User Exit\n");
 		Log("--------------------------------------------------------\n");
-		
+
 		mpUpdater->OnExit();
 	}
 	//-----------------------------------------------------------------------
@@ -501,7 +501,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	cResources* cGame::GetResources()
 	{
 		return mpResources;
@@ -513,14 +513,14 @@ namespace hpl {
 	{
 		return mpGraphics;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cSystem* cGame::GetSystem()
 	{
 		return mpSystem;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cInput* cGame::GetInput()
@@ -529,7 +529,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	cSound* cGame::GetSound()
 	{
 		return mpSound;
@@ -543,12 +543,12 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	cAI* cGame::GetAI()
 	{
 		return mpAI;
 	}
-	
+
 
 	//-----------------------------------------------------------------------
 
@@ -572,12 +572,12 @@ namespace hpl {
 	{
 		return mpUpdater;
 	}
-	
+
 	float cGame::GetFPS()
 	{
 		return mpFPSCounter->mfFPS;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cGame::SetFPSUpdateRate(float afSec)

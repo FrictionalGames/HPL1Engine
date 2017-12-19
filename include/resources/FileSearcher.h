@@ -29,7 +29,7 @@ namespace hpl {
 
 	typedef std::multimap<tString, tString> tFilePathMap;
 	typedef tFilePathMap::iterator tFilePathMapIt;
-	
+
 	class cFileSearcher
 	{
 	public:
@@ -50,7 +50,7 @@ namespace hpl {
 
         /**
          * Gets a file pointer and searches through all added resources.
-         * \param asName Name of the file. 
+         * \param asName Name of the file.
 		 * \return Path to the file. "" if file is not found.
          */
         tString GetFilePath(tString asName);

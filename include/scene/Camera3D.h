@@ -25,14 +25,14 @@
 #include "scene/Node3D.h"
 
 namespace hpl {
-	
+
 	enum eCameraMoveMode
 	{
 		eCameraMoveMode_Walk,
 		eCameraMoveMode_Fly,
 		eCameraMoveMode_LastEnum
 	};
-	
+
 	enum eCameraRotateMode
 	{
 		eCameraRotateMode_EulerAngles,
@@ -42,7 +42,7 @@ namespace hpl {
 
 	class iLowLevelGraphics;
 	class iEntity3D;
-	
+
 	class cCamera3D : public iCamera
 	{
 	public:
@@ -54,17 +54,17 @@ namespace hpl {
 
 		/**
 		 * Move forward (or back) according to the move mode.
-		 * \param afDist 
+		 * \param afDist
 		 */
 		void MoveForward(float afDist);
 		/**
 		* Move right (or left) according to the move mode.
-		* \param afDist 
+		* \param afDist
 		*/
 		void MoveRight(float afDist);
 		/**
 		* Move up (or down) according to the move mode.
-		* \param afDist 
+		* \param afDist
 		*/
 		void MoveUp(float afDist);
 
@@ -76,13 +76,13 @@ namespace hpl {
 
 		void SetFarClipPlane(float afX) { mfFarClipPlane = afX; mbProjectionUpdated = true;}
 		float GetFarClipPlane() { return mfFarClipPlane;}
-		
+
 		void SetNearClipPlane(float afX) { mfNearClipPlane = afX; mbProjectionUpdated = true;}
 		float GetNearClipPlane() { return mfNearClipPlane;}
-		
+
 		/**
 		 * This sets the far plane so that no far clipping is made.
-		 * The FarClipPlane is still used for creating bounding box and frustum and 
+		 * The FarClipPlane is still used for creating bounding box and frustum and
 		 * should be set to some value.
 		 */
 		void SetInifintiveFarPlane(bool abX){ mbInfFarPlane = abX; mbProjectionUpdated = true;}
@@ -91,7 +91,7 @@ namespace hpl {
 		cFrustum* GetFrustum();
 
 		eCameraRotateMode GetRotateMode(){return mRotateMode;}
-		
+
 		eCameraMoveMode GetMoveMode(){return mMoveMode;}
 		/**
 		* Set the mode to calculate the rotation angles.
@@ -110,7 +110,7 @@ namespace hpl {
 		 * Resets all rotation
 		 */
 		void ResetRotation();
-		
+
 		/**
 		 * Unproject the screen coordinate to world space.
 		*/
@@ -124,11 +124,11 @@ namespace hpl {
 		//////////////////////////////////////////////////
 		////////// EULER ANGLES ROTATION /////////////////
 		//////////////////////////////////////////////////
-		
+
 		void SetPitch(float afAngle);
 		void SetYaw(float afAngle);
 		void SetRoll(float afAngle);
-		
+
 		void AddPitch(float afAngle);
 		void AddYaw(float afAngle);
 		void AddRoll(float afAngle);
@@ -153,16 +153,16 @@ namespace hpl {
 		//////////////////////////////////////////////////
 		////////// EULER ANGLES ROTATION /////////////////
 		//////////////////////////////////////////////////
-		
+
 		const cMatrixf& GetViewMatrix();
 		const cMatrixf& GetProjectionMatrix();
-		
+
 		const cMatrixf& GetMoveMatrix();
 
 		//iCamera stuff:
 		void SetModelViewMatrix(iLowLevelGraphics* apLowLevel);
 		void SetProjectionMatrix(iLowLevelGraphics* apLowLevel);
-		cVector3f GetEyePosition(); 
+		cVector3f GetEyePosition();
 
 		eCameraType GetType(){ return eCameraType_3D;}
 
@@ -173,10 +173,10 @@ namespace hpl {
 		//////////////////////////////////////////////////
 		////////// RENDER SPECIFIC ///////////////////////
 		//////////////////////////////////////////////////
-		
+
 		void SetPrevView(const cMatrixf &a_mtxA){ m_mtxPrevView = a_mtxA;}
 		void SetPrevProjection(const cMatrixf &a_mtxA){m_mtxPrevProjection = a_mtxA;}
-		
+
 		cMatrixf& GetPrevView(){ return m_mtxPrevView;}
 		cMatrixf& GetPrevProjection(){ return m_mtxPrevProjection;}
 

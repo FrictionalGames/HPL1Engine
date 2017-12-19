@@ -28,7 +28,7 @@
 #include "resources/MeshLoader.h"
 
 namespace hpl {
-	
+
 	class cMesh;
 	class iMeshLoader;
 	class cResources;

@@ -29,7 +29,7 @@ namespace hpl {
 #define MAX_KEY_PRESSES (20)
 
 	class cLowLevelInputSDL;
-	
+
 	class cKeyboardSDL : public iKeyboard
 	{
 	public:
@@ -37,7 +37,7 @@ namespace hpl {
 
 		void Update();
 
-		//Keyboard specific 
+		//Keyboard specific
 		bool KeyIsDown(eKey aKey);
 		cKeyPress GetKey();
 		bool KeyIsPressed();
@@ -51,7 +51,7 @@ namespace hpl {
 		eKey AsciiToKey(int alChar);
 		eKeyModifier mModifier;
 
-		std::vector<bool> mvKeyArray; 
+		std::vector<bool> mvKeyArray;
 
 		std::list<cKeyPress> mlstKeysPressed;
 

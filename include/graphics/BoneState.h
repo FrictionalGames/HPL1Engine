@@ -29,7 +29,7 @@ namespace hpl {
 	{
 	public:
 		cBoneState(const tString &asName, bool abAutoDeleteChildren);
-		
+
 		void SetBody(iPhysicsBody *apBody);
 		iPhysicsBody* GetBody();
 

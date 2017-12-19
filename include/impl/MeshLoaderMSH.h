@@ -32,7 +32,7 @@ namespace hpl {
 	class cMesh;
 	class cNode3D;
 	class iVertexBuffer;
-	
+
 	class cMeshLoaderMSH : public iMeshLoader
 	{
 	public:
@@ -49,8 +49,8 @@ namespace hpl {
 		bool IsSupported(const tString asFileType);
 
 		void AddSupportedTypes(tStringVec* avFileTypes);
-		
-	
+
+
 	private:
 		//Saving
 		void SaveFloatData(TiXmlElement* apRoot, int alSize, const char *asName, float* apData);

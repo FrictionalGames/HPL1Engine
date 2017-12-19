@@ -56,7 +56,7 @@ namespace hpl {
 	#define _W(t) L ## t
 
 	//--------------------------------------------------------
-	
+
 	enum eSystemPath
 	{
 		eSystemPath_Personal,
@@ -69,7 +69,7 @@ namespace hpl {
     typedef unsigned int tFlag;
 
 	typedef std::string tString;
-	
+
 	typedef std::list<tString> tStringList;
 	typedef tStringList::iterator tStringListIt;
 
@@ -79,7 +79,7 @@ namespace hpl {
 	typedef std::set<tString> tStringSet;
 	typedef tStringSet::iterator tStringSetIt;
 
-	
+
 	//--------------------------------------------------------
 
 	typedef std::wstring tWString;
@@ -94,7 +94,7 @@ namespace hpl {
 
 	//--------------------------------------------------------
 
-	
+
 	typedef std::vector<unsigned char> tByteVec;
 	typedef tByteVec::iterator tByteVecIt;
 
@@ -120,14 +120,14 @@ namespace hpl {
 	typedef tUIntList::iterator tUIntListIt;
 
 
-	typedef enum 
+	typedef enum
 	{
 		eMsgBoxType_Info,
 		eMsgBoxType_Error,
 		eMsgBoxType_Warning,
 		eMsgBoxType_Default
 	} eMsgBoxType;
-	
+
 
 	//////////////////////////////////////////////////
 	///////// DEFINES ///////////////////////////////
@@ -323,7 +323,7 @@ namespace hpl {
 
 		size_t mlCurrentData;
 
-		T* (*mpCreateFunc)(); 
+		T* (*mpCreateFunc)();
 	};
 
 	//----------------------------------------------------------

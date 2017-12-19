@@ -35,7 +35,7 @@ namespace hpl {
 	public:
 		cSDLGameSetup();
 		~cSDLGameSetup();
-		
+
 		cInput* CreateInput(cGraphics* apGraphics);
 		cSystem* CreateSystem();
 		cGraphics* CreateGraphics();

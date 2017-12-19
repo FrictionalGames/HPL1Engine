@@ -33,21 +33,21 @@ namespace hpl {
 
 		void SetDrawFrame(bool abX){ mbDrawFrame = abX;}
 		bool GetDrawFrame(){ return mbDrawFrame;}
-		
+
 		void SetDrawBackground(bool abX){mbDrawBackground = abX;}
 		bool GetDrawBackground(){ return mbDrawBackground;}
-		
+
 		void SetBackgroundZ(float afZ){mfBackgroundZ = afZ;}
 		float GetBackgroundZ(){ return mfBackgroundZ;}
 
 		void SetBackGroundColor(const cColor &aColor){ mBackGroundColor = aColor;}
 		const cColor& GetBackGroundColor(){ return mBackGroundColor;}
-		
+
 	protected:
 		/////////////////////////
 		// Implemented functions
 		void OnLoadGraphics();
-		
+
 		void OnDraw(float afTimeStep, cGuiClipRegion *apClipRegion);
 		void OnDrawAfterClip(float afTimeStep, cGuiClipRegion *apClipRegion);
 
@@ -65,7 +65,7 @@ namespace hpl {
 		cColor mBackGroundColor;
 
 		cGuiGfxElement *mpGfxBackground;
-		
+
 		cGuiGfxElement *mvGfxBorders[4];
 		cGuiGfxElement *mvGfxCorners[4];
 	};

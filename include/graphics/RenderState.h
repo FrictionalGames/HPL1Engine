@@ -25,12 +25,12 @@
 #include "graphics/Material.h"
 
 namespace hpl {
-	
+
 	class cRenderSettings;
 	class iRenderable;
 	class iLight3D;
 	class cSector;
-	
+
 	enum eRenderStateType
 	{
 		eRenderStateType_Sector = 0,
@@ -48,7 +48,7 @@ namespace hpl {
 		eRenderStateType_LastEnum  = 12
 	};
 	///////////// INTERFACE ////////////////////
-	
+
 	class iRenderState
 	{
 	public:
@@ -67,49 +67,49 @@ namespace hpl {
 
 		//Pass
 		int mlPass;
-		
+
 		//DepthTest
 		bool mbDepthTest;
-		
+
 		//Depth:
 		float mfZ;
-		
+
 		//Alpha
 		eMaterialAlphaMode mAlphaMode;
-		
+
 		//Blend
 		eMaterialBlendMode mBlendMode;
 		eMaterialChannelMode mChannelMode;
-		
+
 		//Vertex program
 		iGpuProgram *mpVtxProgram;
 		iMaterialProgramSetup* mpVtxProgramSetup;
 		bool mbUsesLight;
 		bool mbUsesEye;
 		iLight3D* mpLight;
-		
+
 		//Fragment program
 		iGpuProgram *mpFragProgram;
 		iMaterialProgramSetup* mpFragProgramSetup;
-		
+
 		//Texture
 		iTexture* mpTexture[MAX_TEXTUREUNITS];
 		eMaterialBlendMode mTextureBlend[MAX_TEXTUREUNITS];
-		
+
 		//Vertex buffer
 		iVertexBuffer *mpVtxBuffer;
-		
+
 		//Matrix
 		cMatrixf *mpModelMatrix;
 		cMatrixf *mpInvModelMatrix;
-		
+
 		//Scale
 		cVector3f mvScale;
-		
+
 		//Render
 		iRenderable *mpObject;
 
-		
+
 	private:
 		//Compare
 		int CompareSector(const iRenderState* apState)const;
@@ -204,7 +204,7 @@ namespace hpl {
 	{
 	public:
 		cRenderState_FragmentProgram() : iRenderState(eRenderStateType_FragmentProgram){}
-		
+
 		int Compare(iRenderState* apState);
 		void SetMode(cRenderSettings* apSettings);
 

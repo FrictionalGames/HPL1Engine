@@ -46,7 +46,7 @@ namespace hpl {
 	class cMultiImageEntity
 	{
 	public:
-		cMultiImageEntity(class cScene* apScene, cNode2D *apNode); 
+		cMultiImageEntity(class cScene* apScene, cNode2D *apNode);
 		~cMultiImageEntity();
 
 		bool Add(tString asName, tString asFile,cVector3f avLocalPos,tFlag alPartId);
@@ -66,8 +66,8 @@ namespace hpl {
 		void SetAnimPaused(bool abX);
 		bool GetAnimPaused(){ return mbAnimPaused;}
 
-		cImageEntity* GetEntity(int alPartId); 
-		
+		cImageEntity* GetEntity(int alPartId);
+
 	private:
 		bool mbActive;
 		float mfAlpha;
@@ -75,7 +75,7 @@ namespace hpl {
 
 		cScene* mpScene;
 		cNode2D* mpNode;
-		
+
 		tMultiImagePartMap m_mapEntityParts;
 
 		bool mbFlipH;

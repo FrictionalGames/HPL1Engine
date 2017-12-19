@@ -26,7 +26,7 @@
 #include "scene/Tile.h"
 
 namespace hpl {
-	
+
 	class cCollidedTile
 	{
 	public:

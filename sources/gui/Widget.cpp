@@ -78,7 +78,7 @@ namespace hpl {
 			RemoveChild(*it);
 			it = mlstChildren.begin();
 		}
-		
+
 		////////////////////////////
 		//Remove from parent
 		if(mpParent) mpParent->RemoveChild(this);
@@ -102,7 +102,7 @@ namespace hpl {
 	void iWidget::Draw(float afTimeStep, cGuiClipRegion *apClipRegion)
 	{
 		if(mbVisible==false) return;
-		
+
 		OnDraw(afTimeStep, apClipRegion);
 
 		cGuiClipRegion *pChildRegion = apClipRegion;
@@ -120,7 +120,7 @@ namespace hpl {
 		data.mfVal = afTimeStep;
 		data.mpData = apClipRegion;
 		ProcessMessage(eGuiMessage_OnDraw, data);
-		
+
 		/////////////////////////////////
 		//Draw children
 		tWidgetListIt it = mlstChildren.begin();
@@ -133,21 +133,21 @@ namespace hpl {
 
 		if(mbClipsGraphics) mpSet->SetCurrentClipRegion(apClipRegion);
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	void iWidget::Init()
 	{
 		OnInit();
 		LoadGraphics();
 	}
-		
+
 	//-----------------------------------------------------------------------
 
 	bool iWidget::ProcessMessage(eGuiMessage aMessage, cGuiMessageData &aData)
 	{
 		if(IsEnabled()==false) return false;
-		
+
 		aData.mMessage = aMessage;
 
 		bool bRet = false;
@@ -174,7 +174,7 @@ namespace hpl {
 		/////////////////////////////////////////
 		//Process user callbacks for the event.
 		if(ProcessCallbacks(aMessage,aData)) bRet = true;
-		
+
 		return bRet;
 	}
 
@@ -200,15 +200,15 @@ namespace hpl {
 		if(abOnlyClipped && mbClipsGraphics==false) return true;
 
 		cVector3f vGlobalPos = GetGlobalPosition();
-		
-		if(	avPoint.x < vGlobalPos.x || avPoint.x > vGlobalPos.x + mvSize.x || 
+
+		if(	avPoint.x < vGlobalPos.x || avPoint.x > vGlobalPos.x + mvSize.x ||
 			avPoint.y < vGlobalPos.y || avPoint.y > vGlobalPos.y + mvSize.y)
 		{
 			return false;
 		}
 		else
 		{
-			return true;	
+			return true;
 		}
 	}
 
@@ -227,7 +227,7 @@ namespace hpl {
 		apChild->SetPositionUpdated();
 		mlstChildren.push_back(apChild);
 	}
-	
+
 	void iWidget::RemoveChild(iWidget *apChild)
 	{
 		tWidgetListIt it = mlstChildren.begin();
@@ -238,7 +238,7 @@ namespace hpl {
 			if(pChild == apChild)
 			{
 				mlstChildren.erase(it);
-				
+
 				pChild->mpParent = NULL;
 				pChild->SetPositionUpdated();
 				pChild->SetPosition(pChild->mvPosition + GetGlobalPosition());
@@ -265,10 +265,10 @@ namespace hpl {
 			if(mpParent->IsEnabled()) return mbEnabled;
 			else					return false;
 		}
-		
+
 		return mbEnabled;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void iWidget::SetVisible(bool abX)
@@ -290,7 +290,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	bool iWidget::HasFocus()
 	{
 		return mpSet->GetFocusedWidget() == this;
@@ -322,12 +322,12 @@ namespace hpl {
 	{
 		SetPosition(avPos - mpParent->GetGlobalPosition());
 	}
-	
+
 	const cVector3f& iWidget::GetLocalPosition()
 	{
 		return mvPosition;
 	}
-	
+
 	const cVector3f& iWidget::GetGlobalPosition()
 	{
 		if(mpParent)
@@ -344,22 +344,22 @@ namespace hpl {
 			return mvPosition;
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void iWidget::SetSize(const cVector2f &avSize)
 	{
 		mvSize = avSize;
-		
+
 		OnChangeSize();
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	bool iWidget::ClipsGraphics()
 	{
 		if(mpParent && mpParent->ClipsGraphics()) return true;
-		
+
 		return mbClipsGraphics;
 	}
 
@@ -367,7 +367,7 @@ namespace hpl {
 
 	bool iWidget::IsConnectedTo(iWidget *apWidget, bool abIsStartWidget)
 	{
-		if(abIsStartWidget == false && mbConnectedToChildren==false) return false; 
+		if(abIsStartWidget == false && mbConnectedToChildren==false) return false;
 
 		if(apWidget == NULL) return false;
 		if(apWidget == this) return true;
@@ -391,7 +391,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 	// PROTECTED METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
 
 	bool iWidget::OnGotFocus(cGuiMessageData &aData)
@@ -440,29 +440,29 @@ namespace hpl {
 		mpSet->DrawGfx(	apBorderVec[0],
 			cVector3f(	avSize.x - apBorderVec[0]->GetActiveSize().x,
 			apCornerVec[1]->GetActiveSize().y,0),
-			cVector2f(	apBorderVec[0]->GetImageSize().x, 
+			cVector2f(	apBorderVec[0]->GetImageSize().x,
 			avSize.y - (apCornerVec[2]->GetActiveSize().y +
 			apCornerVec[1]->GetActiveSize().y)));
 		//Left
 		mpSet->DrawGfx(	apBorderVec[1],
 			cVector3f(	0,apCornerVec[0]->GetActiveSize().y,0),
-			cVector2f(	apBorderVec[1]->GetImageSize().x, 
-			avSize.y - (apCornerVec[3]->GetActiveSize().y + 
+			cVector2f(	apBorderVec[1]->GetImageSize().x,
+			avSize.y - (apCornerVec[3]->GetActiveSize().y +
 			apCornerVec[0]->GetActiveSize().y)));
 
 		//Up
 		mpSet->DrawGfx(	apBorderVec[2],
 			cVector3f(	apCornerVec[0]->GetActiveSize().x,0,0),
 			cVector2f(	avSize.x - (apCornerVec[0]->GetActiveSize().x+
-			apCornerVec[1]->GetActiveSize().x), 
+			apCornerVec[1]->GetActiveSize().x),
 			apBorderVec[2]->GetImageSize().y));
 
 		//Down
 		mpSet->DrawGfx(	apBorderVec[3],
-			cVector3f(	apCornerVec[3]->GetActiveSize().x, 
+			cVector3f(	apCornerVec[3]->GetActiveSize().x,
 			avSize.y - apBorderVec[3]->GetActiveSize().y,0),
 			cVector2f(	avSize.x - (apCornerVec[2]->GetActiveSize().x+
-			apCornerVec[3]->GetActiveSize().x), 
+			apCornerVec[3]->GetActiveSize().x),
 			apBorderVec[3]->GetImageSize().y));
 
 
@@ -509,7 +509,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 	// PRIVATE METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
 
 	bool iWidget::ProcessCallbacks(eGuiMessage aMessage, cGuiMessageData &aData)
@@ -523,7 +523,7 @@ namespace hpl {
 		for(; it != lstCallbacks.end(); ++it)
 		{
 			cWidgetCallback &callback = *it;
-            
+
 			bool bX = (callback.mpFunc)(callback.mpObject,this, aData);
 			if(bX) bRet = true;
 		}
@@ -560,7 +560,7 @@ namespace hpl {
 		OnChangePosition();
 
 		tWidgetListIt it = mlstChildren.begin();
-		for(; it != mlstChildren.end(); ++it) 
+		for(; it != mlstChildren.end(); ++it)
 		{
 			iWidget *pChild = *it;
 			pChild->SetPositionUpdated();

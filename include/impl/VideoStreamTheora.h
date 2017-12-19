@@ -35,7 +35,7 @@ namespace hpl {
 		~cVideoStreamTheora();
 
         bool LoadFromFile(tString asFilePath);
-		
+
 		void Update(float afTimeStep);
 
 		void Play();
@@ -56,7 +56,7 @@ namespace hpl {
 		bool GetHeaders();
 		bool InitDecoders();
 		void ResetStreams();
-		
+
 		cVideoStreamTheora_Loader *mpLoader;
 
 		FILE *mpFile;
@@ -68,7 +68,7 @@ namespace hpl {
 		float mfTime;
 
 		unsigned char *mpFrameBuffer;
-		
+
 		ogg_sync_state   mOggSyncState;
 		ogg_stream_state mTheoraStreamState;
 		theora_info      mTheoraInfo;
@@ -92,13 +92,13 @@ namespace hpl {
 	public:
 		cVideoStreamTheora_Loader();
 		~cVideoStreamTheora_Loader();
-		
+
 		iVideoStream* Create(const tString& asName){ return hplNew( cVideoStreamTheora, (asName,this) );}
-	
+
 	private:
 		unsigned char* mpYuvToR;
 		unsigned char* mpYuvToB;
-		
+
 		unsigned short* mpYuv_G_UV;
 		unsigned char* mpYuv_G_Y_UV;
 	};

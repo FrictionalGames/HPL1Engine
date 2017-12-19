@@ -55,7 +55,7 @@ namespace hpl {
 	class cResources;
 
 	//---------------------------------------------
-	
+
 	enum eRendererShowShadows
 	{
 		eRendererShowShadows_All,
@@ -73,7 +73,7 @@ namespace hpl {
 
 		void Clear();
 		void Reset(iLowLevelGraphics *apLowLevel);
-		
+
 		//Setings that doesn't change:
 		iGpuProgram *mpVtxExtrudeProgram;
 		iGpuProgram *mpFragExtrudeProgram;
@@ -97,7 +97,7 @@ namespace hpl {
 		eRendererShowShadows mShowShadows;
 		bool mbLog;
 		tRendererDebugFlag mDebugFlags;
-		
+
 		//State settings
 		int mlLastShadowAlgo;
 
@@ -114,13 +114,13 @@ namespace hpl {
 		iGpuProgram* mpFragmentProgram;
 
 		bool mbMatrixWasNULL;
-		
+
 		bool mbUsesLight;
 		bool mbUsesEye;
 
 		cColor mAmbientColor;
 
-		
+
 		iTexture* mpTexture[MAX_TEXTUREUNITS];
 		eMaterialBlendMode mTextureBlend[MAX_TEXTUREUNITS];
 
@@ -128,7 +128,7 @@ namespace hpl {
 	};
 
 	//---------------------------------------------
-	
+
 	class cRenderer3D
 	{
 	public:
@@ -143,11 +143,11 @@ namespace hpl {
 		void SetSkyBox(iTexture *apTexture, bool abAutoDestroy);
 		void SetSkyBoxActive(bool abX);
 		void SetSkyBoxColor(const cColor& aColor);
-		
+
 		iTexture* GetSkyBox(){return mpSkyBoxTexture;}
 		bool GetSkyBoxActive(){ return mbSkyBoxActive;}
 		cColor GetSkyBoxColor(){ return mSkyBoxColor;}
-		
+
 		void SetAmbientColor(const cColor& aColor){ mRenderSettings.mAmbientColor = aColor;}
 		cColor GetAmbientColor(){ return mRenderSettings.mAmbientColor;}
 
@@ -157,7 +157,7 @@ namespace hpl {
 
 		void SetRefractionUsed(bool abX){ mbRefractionUsed = abX;}
 		bool GetRefractionUsed(){  return mbRefractionUsed;}
-				
+
 		//Fog properties
 		void SetFogActive(bool abX);
 		void SetFogStart(float afX);
@@ -176,7 +176,7 @@ namespace hpl {
 
 		void SetPostEffects(cRendererPostEffects *apPostEffects){ mpPostEffects = apPostEffects;}
 
-		
+
 		//Debug setup
 		void SetDebugFlags(tRendererDebugFlag aFlags){ mDebugFlags = aFlags;}
 		tRendererDebugFlag GetDebugFlags(){ return mDebugFlags;}
@@ -188,17 +188,17 @@ namespace hpl {
 		void SetShowShadows(eRendererShowShadows aState);
 
 		void FetchOcclusionQueries();
-	
+
 	private:
 		inline void BeginRendering(cCamera3D* apCamera);
 
 		void InitSkyBox();
-		
+
 		//Render steps
 		void RenderFog(cCamera3D *apCamera);
 
 		void RenderSkyBox(cCamera3D *apCamera);
-		
+
 		void RenderZ(cCamera3D *apCamera);
 
 		void RenderOcclusionQueries(cCamera3D *apCamera);
@@ -210,8 +210,8 @@ namespace hpl {
 		void RenderTrans(cCamera3D *apCamera);
 
 		void RenderDebug(cCamera3D *apCamera);
-		
-		inline void RenderDebugObject(cCamera3D *apCamera,iRenderable* &apObject, iMaterial* apPrevMat, 
+
+		inline void RenderDebugObject(cCamera3D *apCamera,iRenderable* &apObject, iMaterial* apPrevMat,
 					int alPrevMatId,iVertexBuffer* apPrevVtxBuff,
 					eMaterialRenderType aRenderType, iLight3D* apLight);
 
@@ -228,7 +228,7 @@ namespace hpl {
 		iGpuProgram *mpDiffuseFragProgram;
 		iGpuProgram *mpSolidFogVtxProgram;
 		iGpuProgram *mpSolidFogFragProgram;
-		
+
 		iTexture *mpFogLinearSolidTexture;
 
 		iTexture *mpFogLinearAddTexture;
@@ -248,15 +248,15 @@ namespace hpl {
 
 		cMeshCreator* mpMeshCreator;
 		cRenderList *mpRenderList;
-		
+
 		iVertexBuffer* mpSkyBox;
 		iTexture* mpSkyBoxTexture;
 		bool mbAutoDestroySkybox;
 		bool mbSkyBoxActive;
 		cColor mSkyBoxColor;
-		
+
 		cResources* mpResources;
-		
+
 		tRendererDebugFlag mDebugFlags;
 	};
 

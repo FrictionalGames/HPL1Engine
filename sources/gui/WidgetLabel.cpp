@@ -59,7 +59,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	//-----------------------------------------------------------------------
 
 	void cWidgetLabel::SetMaxTextLength(int alLength)
@@ -90,9 +90,9 @@ namespace hpl {
 		// Texts
 		cVector3f vOffset = 0;
 		//if(mTextAlign == eFontAlign_Center)		vOffset.x += mvSize.x/2;
-		//else 
+		//else
 		if(mTextAlign == eFontAlign_Right)	vOffset.x += mvSize.x;
-		
+
 		if(mbWordWrap)
 		{
 			int lChars =0;
@@ -145,7 +145,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	bool cWidgetLabel::OnMouseMove(cGuiMessageData &aData)
 	{
 		return false;
@@ -171,9 +171,9 @@ namespace hpl {
 	{
 		return false;
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	bool cWidgetLabel::OnMouseLeave(cGuiMessageData &aData)
 	{
 		return false;

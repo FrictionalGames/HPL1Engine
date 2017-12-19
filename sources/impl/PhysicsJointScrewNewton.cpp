@@ -29,8 +29,8 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	cPhysicsJointScrewNewton::cPhysicsJointScrewNewton(const tString &asName, 
-		iPhysicsBody *apParentBody, iPhysicsBody *apChildBody, 
+	cPhysicsJointScrewNewton::cPhysicsJointScrewNewton(const tString &asName,
+		iPhysicsBody *apParentBody, iPhysicsBody *apChildBody,
 		iPhysicsWorld *apWorld,const cVector3f &avPivotPoint, const cVector3f avPinDir)
 		: iPhysicsJointNewton<iPhysicsJointScrew>(asName,apParentBody,apChildBody,apWorld,avPivotPoint)
 	{
@@ -64,7 +64,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	void cPhysicsJointScrewNewton::SetMaxDistance(float afX)
 	{
 		mfMaxDistance = afX;
@@ -81,7 +81,7 @@ namespace hpl {
 	{
 		return mfMinDistance;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cVector3f cPhysicsJointScrewNewton::GetVelocity()
@@ -100,7 +100,7 @@ namespace hpl {
 		return vForce;
 	}
 	//-----------------------------------------------------------------------
-	
+
 	float cPhysicsJointScrewNewton::GetDistance()
 	{
 		return NewtonCorkscrewGetJointPosit(mpNewtonJoint);
@@ -112,7 +112,7 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	
+
 	//////////////////////////////////////////////////////////////////////////
 	// STATIC CALLBACKS
 	//////////////////////////////////////////////////////////////////////////
@@ -122,7 +122,7 @@ namespace hpl {
 	unsigned cPhysicsJointScrewNewton::LimitCallback(const NewtonJoint* pScrew, NewtonHingeSliderUpdateDesc* pDesc)
 	{
 		cPhysicsJointScrewNewton* pScrewJoint = (cPhysicsJointScrewNewton*)NewtonJointGetUserData(pScrew);
-		
+
 		//pScrewJoint->OnPhysicsUpdate();
 
 		float fDistance = NewtonCorkscrewGetJointPosit (pScrew);
@@ -140,7 +140,7 @@ namespace hpl {
 			pDesc->m_accel = NewtonCorkscrewCalculateStopAccel (pScrew, pDesc, pScrewJoint->mfMinDistance);
 			pDesc->m_minFriction =0;
 			return 1;
-		} 
+		}
 		else if (fDistance > pScrewJoint->mfMaxDistance)
 		{
 			pScrewJoint->OnMaxLimit();
@@ -154,7 +154,7 @@ namespace hpl {
 			if(pScrewJoint->mpParentBody ==NULL || pScrewJoint->mpParentBody->GetMass()==0)
 			{
 				if(	(pScrewJoint->mfStickyMaxDistance != 0 &&
-					fabs(fDistance - pScrewJoint->mfMaxDistance) < pScrewJoint->mfStickyMaxDistance) 
+					fabs(fDistance - pScrewJoint->mfMaxDistance) < pScrewJoint->mfStickyMaxDistance)
 					||
 					(pScrewJoint->mfStickyMinDistance != 0 &&
 					fabs(fDistance - pScrewJoint->mfMinDistance) < pScrewJoint->mfStickyMinDistance)

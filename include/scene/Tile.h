@@ -26,16 +26,16 @@
 #include "scene/TileData.h"
 
 namespace hpl {
-	
+
 	#define eTileFlag_Breakable (eFlagBit_0)
-	
+
 	class cTile
 	{
-	public: 
+	public:
 		cTile(iTileData* apTileData, eTileRotation aAngle,
 			const cVector3f &avPos, const cVector2f &avSize, cCollisionMesh2D* apCollMesh);
 		~cTile();
-		
+
 		iTileData* GetTileData(){ return mpTileData; }
 		void SetTileData(iTileData* apTileData){mpTileData=apTileData;}
 
@@ -56,12 +56,12 @@ namespace hpl {
 
 	private:
 		cCollisionMesh2D* mpCollMesh;
-		
+
 		tFlag mlFlags;
 		iTileData* mpTileData;
 		cVector3f mvPosition;
 		eTileRotation mAngle; //0:normal.  1:90 CW.  2:180. CW  3:270 CW.
-							//4: flip horisontally.  5: flip vertically.  6: flip both.	
+							//4: flip horisontally.  5: flip vertically.  6: flip both.
 	};
 
 	typedef std::list<cTile*> tTileList;

@@ -44,7 +44,7 @@ namespace hpl {
 	class iPhysicsController;
 	class cWorld3D;
 	class cBoundingVolume;
-	
+
 	typedef std::list<iCollideShape*> tCollideShapeList;
 	typedef tCollideShapeList::iterator tCollideShapeListIt;
 
@@ -66,9 +66,9 @@ namespace hpl {
 
 	typedef std::map<tString, iPhysicsMaterial*> tPhysicsMaterialMap;
 	typedef tPhysicsMaterialMap::iterator tPhysicsMaterialMapIt;
-		
+
 	typedef cSTLMapIterator<iPhysicsMaterial*, tPhysicsMaterialMap, tPhysicsMaterialMapIt> cPhysicsMaterialIterator;
-	
+
 	typedef cSTLIterator<iPhysicsBody*, tPhysicsBodyList, tPhysicsBodyListIt> cPhysicsBodyIterator;
 	typedef cSTLIterator<iPhysicsJoint*, tPhysicsJointList, tPhysicsJointListIt> cPhysicsJointIterator;
 
@@ -79,7 +79,7 @@ namespace hpl {
 		ePhysicsAccuracy_High,
 		ePhysicsAccuracy_LastEnum
 	};
-	
+
 	//----------------------------------------------------
 
 	class cPhysicsRayParams
@@ -116,7 +116,7 @@ namespace hpl {
 		//! \name General
 		//########################################################################################
 		//! @{
-	
+
 		void Update(float afTimeStep);
 		virtual void Simulate(float afTimeStep)=0;
 
@@ -126,7 +126,7 @@ namespace hpl {
 		virtual void SetWorldSize(const cVector3f &avMin,const cVector3f &avMax)=0;
 		virtual cVector3f GetWorldSizeMin()=0;
 		virtual cVector3f GetWorldSizeMax()=0;
-		
+
 		virtual void SetGravity(const cVector3f& avGravity)=0;
 		virtual cVector3f GetGravity()=0;
 
@@ -147,9 +147,9 @@ namespace hpl {
 		virtual iCollideShape* CreateMeshShape(iVertexBuffer *apVtxBuffer)=0;
 		virtual iCollideShape* CreateCompundShape(tCollideShapeVec &avShapes)=0;
 		void DestroyShape(iCollideShape *apShape);
-		
+
 		//! @}
-		
+
 		//########################################################################################
 		//! \name Joints
 		//########################################################################################
@@ -162,7 +162,7 @@ namespace hpl {
 											const cVector3f& avPivotPoint,const cVector3f& avPinDir,
 											iPhysicsBody* apParentBody, iPhysicsBody *apChildBody)=0;
 		virtual iPhysicsJointSlider* CreateJointSlider(const tString &asName,
-											const cVector3f& avPivotPoint,const cVector3f& avPinDir,			
+											const cVector3f& avPivotPoint,const cVector3f& avPinDir,
 											iPhysicsBody* apParentBody, iPhysicsBody *apChildBody)=0;
 		virtual iPhysicsJointScrew* CreateJointScrew(const tString &asName,
 											const cVector3f& avPivotPoint,const cVector3f& avPinDir,
@@ -170,9 +170,9 @@ namespace hpl {
 		void DestroyJoint(iPhysicsJoint* apJoint);
 		iPhysicsJoint *GetJoint(const tString &asName);
 		cPhysicsJointIterator GetJointIterator();
-		
+
 		//! @}
-		
+
 		//########################################################################################
 		//! \name Materials
 		//########################################################################################
@@ -183,7 +183,7 @@ namespace hpl {
 		cPhysicsMaterialIterator GetMaterialIterator();
 
 		//! @}
-		
+
 		//########################################################################################
 		//! \name Bodies
 		//########################################################################################
@@ -204,7 +204,7 @@ namespace hpl {
 
 		//! @}
 
-		
+
 		//########################################################################################
 		//! \name Tools
 		//########################################################################################
@@ -212,7 +212,7 @@ namespace hpl {
 
 		void SetLogDebug(bool abX){ mbLogDebug = abX;}
 		bool GetLogDebug(){ return mbLogDebug;}
-		
+
 		void AddSaveData(cSaveDataHandler* apHandler);
 
 		virtual iPhysicsController *CreateController(const tString &asName)=0;
@@ -224,8 +224,8 @@ namespace hpl {
 		void RenderContactPoints(iLowLevelGraphics *apLowLevel, const cColor& aPointColor,
 								const cColor& aLineColor);
 
-		virtual void CastRay(iPhysicsRayCallback *apCallback, 
-							const cVector3f &avOrigin, const cVector3f& avEnd, 
+		virtual void CastRay(iPhysicsRayCallback *apCallback,
+							const cVector3f &avOrigin, const cVector3f& avEnd,
 							bool abCalcDist, bool abCalcNormal, bool abCalcPoint,
 							bool abUsePrefilter=false)=0;
 
@@ -235,14 +235,14 @@ namespace hpl {
 										iCollideShape* apShapeB, const cMatrixf& a_mtxB,
 										cCollideData & aCollideData, int alMaxPoints=4)=0;
 
-		bool CheckShapeWorldCollision(cVector3f *apNewPos, 
+		bool CheckShapeWorldCollision(cVector3f *apNewPos,
 										iCollideShape* apShape, const cMatrixf& a_mtxTransform,
 										iPhysicsBody *apSkipBody=NULL, bool abSkipStatic=false,
-										bool abIsCharacter=false, 
+										bool abIsCharacter=false,
 										iPhysicsWorldCollisionCallback *apCallback=NULL,
 										bool abCollideCharacter=true,
 										bool abDebug=false);
-		
+
 		void DestroyAll();
 
 		cWorld3D* GetWorld3D(){ return mpWorld3D;}

@@ -34,13 +34,13 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	class cGLState_ModulateFog : public iGLStateProgram
 	{
 	public:
 
 		cGLState_ModulateFog() : iGLStateProgram("ModulateFog"){}
-		
+
 		void Bind()
 		{
 			mpLowGfx->SetActiveTextureUnit(1);
@@ -66,7 +66,7 @@ namespace hpl {
 	};
 
 	static cGLState_ModulateFog gModulateFog;
-	
+
 	//-----------------------------------------------------------------------
 
 	//////////////////////////////////////////////////////////////////////////
@@ -127,7 +127,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 	// PUBLIC METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
 
 	iGpuProgram* cMaterial_Modulative::GetVertexProgram(eMaterialRenderType aType, int alPass, iLight3D *apLight)
@@ -202,7 +202,7 @@ namespace hpl {
 			if(alUnit == 0)
 				return mvTexture[eMaterialTexture_Diffuse];
 		}
-		
+
 		return NULL;
 	}
 
@@ -212,7 +212,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	bool cMaterial_Modulative::UsesType(eMaterialRenderType aType)
 	{
 		if(aType == eMaterialRenderType_Diffuse) return true;
@@ -220,9 +220,9 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	tTextureTypeList cMaterial_Modulative::GetTextureTypes()
-	{ 
+	{
 		tTextureTypeList vTypes;
 		vTypes.push_back(cTextureType("",eMaterialTexture_Diffuse));
 		vTypes.push_back(cTextureType("_ref",eMaterialTexture_Refraction));

@@ -92,14 +92,14 @@ namespace hpl {
 		hplDelete(mpSoundEntityManager);
 		hplDelete(mpAnimationManager);
 		hplDelete(mpVideoManager);
-		
+
 		Log(" All resources deleted\n");
 
 		hplDelete(mpFileSearcher);
 		hplDelete(mpMeshLoaderHandler);
 
 		if(mpLanguageFile) hplDelete(mpLanguageFile);
-		
+
 		mlstManagers.clear();
 		Log("--------------------------------------------------------\n\n");
 	}
@@ -109,7 +109,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 	// PUBLIC METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
 
 	void cResources::Init(	cGraphics* apGraphics,cSystem *apSystem, cSound* apSound, cScene *apScene,
@@ -150,7 +150,7 @@ namespace hpl {
 		mlstManagers.push_back(mpAnimationManager);
 		mpVideoManager = hplNew( cVideoManager,(apGraphics, this) );
 		mlstManagers.push_back(mpVideoManager);
-		
+
 		Log(" Misc Creation\n");
 
 		mpMeshLoaderHandler = hplNew( cMeshLoaderHandler,(this, apScene) );
@@ -160,7 +160,7 @@ namespace hpl {
 
 		Log("--------------------------------------------------------\n\n");
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cResources::Update(float afTimeStep)
@@ -185,9 +185,9 @@ namespace hpl {
 
 	/**
 	 * \todo File searcher should check so if the dir is allready added and if so return false and not add
-	 * \param &asDir 
-	 * \param &asMask 
-	 * \return 
+	 * \param &asDir
+	 * \param &asMask
+	 * \return
 	 */
 	bool cResources::AddResourceDir(const tString &asDir, const tString &asMask)
 	{
@@ -198,7 +198,7 @@ namespace hpl {
 	}
 
 	void cResources::ClearResourceDirs()
-	{	
+	{
 		mpFileSearcher->ClearDirectories();
 	}
 
@@ -241,7 +241,7 @@ namespace hpl {
 	{
 		m_mMapEntity2DLoaders.insert(tEntity2DLoaderMap::value_type(apLoader->GetName(), apLoader));
 	}
-	
+
 	iEntity2DLoader* cResources::GetEntity2DLoader(const tString& asName)
 	{
 		tEntity2DLoaderMapIt it = m_mMapEntity2DLoaders.find(asName);
@@ -254,12 +254,12 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	void cResources::AddArea2DLoader(iArea2DLoader* apLoader)
 	{
 		m_mMapArea2DLoaders.insert(tArea2DLoaderMap::value_type(apLoader->GetName(), apLoader));
 	}
-	
+
 	iArea2DLoader* cResources::GetArea2DLoader(const tString& asName)
 	{
 		tArea2DLoaderMapIt it = m_mMapArea2DLoaders.find(asName);
@@ -287,7 +287,7 @@ namespace hpl {
 		tEntity3DLoaderMapIt it = m_mEntity3DLoaders.find(asName);
 		if(it == m_mEntity3DLoaders.end()){
 			Warning("No loader for type '%s' found!\n",asName.c_str());
-			
+
 			if(mpDefaultEntity3DLoader){
 				Log("Using default loader!\n");
 				return mpDefaultEntity3DLoader;
@@ -329,7 +329,7 @@ namespace hpl {
 
 		return it->second;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	bool cResources::LoadResourceDirsFile(const tString &asFile)
@@ -344,7 +344,7 @@ namespace hpl {
 
 		//Get the root.
 		TiXmlElement* pRootElem = pXmlDoc->RootElement();
-        
+
 		TiXmlElement* pChildElem = pRootElem->FirstChildElement();
 		for(; pChildElem != NULL; pChildElem = pChildElem->NextSiblingElement())
 		{
@@ -363,7 +363,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	iLowLevelResources* cResources::GetLowLevel()
 	{
 		return mpLowLevelResources;

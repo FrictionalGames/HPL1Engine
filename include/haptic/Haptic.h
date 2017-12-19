@@ -41,7 +41,7 @@ namespace hpl {
 		void Update(float afTimeStep);
 
 		iLowLevelHaptic * GetLowLevel(){ return mpLowLevelHaptic;}
-		
+
 	private:
 		iLowLevelHaptic *mpLowLevelHaptic;
 

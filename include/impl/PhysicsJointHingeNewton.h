@@ -27,10 +27,10 @@ namespace hpl {
 	class cPhysicsJointHingeNewton : public iPhysicsJointNewton<iPhysicsJointHinge>
 	{
 	public:
-		cPhysicsJointHingeNewton(const tString &asName, iPhysicsBody *apParentBody, iPhysicsBody *apChildBody, 
+		cPhysicsJointHingeNewton(const tString &asName, iPhysicsBody *apParentBody, iPhysicsBody *apChildBody,
 			iPhysicsWorld *apWorld,const cVector3f &avPivotPoint, const cVector3f avPinDir);
 		~cPhysicsJointHingeNewton();
-		
+
         void SetMaxAngle(float afAngle);
 		void SetMinAngle(float afAngle);
 		float GetMaxAngle();
@@ -42,7 +42,7 @@ namespace hpl {
 
 		float GetDistance();
 		float GetAngle();
-	
+
 	private:
 		float mfPreviousAngle;
 		static unsigned LimitCallback(const NewtonJoint* pHinge, NewtonHingeSliderUpdateDesc* pDesc);

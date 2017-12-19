@@ -45,7 +45,7 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	iPhysicsBody::iPhysicsBody(const tString &asName,iPhysicsWorld *apWorld,iCollideShape *apShape) 
+	iPhysicsBody::iPhysicsBody(const tString &asName,iPhysicsWorld *apWorld,iCollideShape *apShape)
 		: iEntity3D(asName)
 	{
 		mpWorld = apWorld;
@@ -65,13 +65,13 @@ namespace hpl {
 
 		mbBlocksSound = false;
 		mbBlocksLight = true;
-	
+
 		mpScrapeBody = NULL;
 		mpScrapeSoundEntity = NULL;
 		mpRollSoundEntity = NULL;
 		mbHasImpact = false;
 		mbHasSlide = false;
-		
+
 		mlSlideCount = 0;
 		mlImpactCount = 0;
 
@@ -108,7 +108,7 @@ namespace hpl {
 
 	iPhysicsBody::~iPhysicsBody()
 	{
-		
+
 	}
 
 	//-----------------------------------------------------------------------
@@ -117,7 +117,7 @@ namespace hpl {
 	void iPhysicsBody::Destroy()
 	{
 		//Log("Start Destroying newton body '%s' %d\n",msName.c_str(),(size_t)this);
-		
+
 		if(mpNode) hplDelete(mpNode);
 		mpWorld->DestroyShape(mpShape);
 
@@ -127,7 +127,7 @@ namespace hpl {
 			iPhysicsJoint *pJoint = mvJoints[i];
 
 			pJoint->RemoveBody(this);
-			
+
 			if(pJoint->GetParentBody()==NULL && pJoint->GetChildBody()==NULL)
 			{
 				mpWorld->DestroyJoint(pJoint);
@@ -149,9 +149,9 @@ namespace hpl {
 
 		//Log("Deleted body '%s'\n",msName.c_str());
 
-		if(mpScrapeSoundEntity && mpWorld->GetWorld3D()->SoundEntityExists(mpScrapeSoundEntity)) 
+		if(mpScrapeSoundEntity && mpWorld->GetWorld3D()->SoundEntityExists(mpScrapeSoundEntity))
 			mpWorld->GetWorld3D()->DestroySoundEntity(mpScrapeSoundEntity);
-		if(mpRollSoundEntity  && mpWorld->GetWorld3D()->SoundEntityExists(mpRollSoundEntity)) 
+		if(mpRollSoundEntity  && mpWorld->GetWorld3D()->SoundEntityExists(mpRollSoundEntity))
 			mpWorld->GetWorld3D()->DestroySoundEntity(mpRollSoundEntity);
 
 		DeleteLowLevel();
@@ -198,7 +198,7 @@ namespace hpl {
 			}
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void iPhysicsBody::UpdateBeforeSimulate(float afTimeStep)
@@ -211,7 +211,7 @@ namespace hpl {
 		SetHasImpact(false);
 		mbHasCollision = false;
 	}
-	
+
 	void iPhysicsBody::UpdateAfterSimulate(float afTimeStep)
 	{
 		//////////////////////////////////
@@ -221,7 +221,7 @@ namespace hpl {
 			mbDisableAfterSimulation = false;
 			SetEnabled(false);
 		}
-		
+
 		//////////////////////////////////
 		//Check slide sound
 		if(HasSlide()==false)
@@ -232,13 +232,13 @@ namespace hpl {
 				{
 					//Log("Stopped scrape %d on body '%s' IN BODY!\n", (size_t)GetScrapeSoundEntity(),
 					//												 GetName().c_str());
-					
+
 					if(mpWorld->GetWorld3D())
 						if(mpWorld->GetWorld3D()->SoundEntityExists(GetScrapeSoundEntity()))
 						{
 							GetScrapeSoundEntity()->FadeOut(5.2f);
 						}
-					
+
 					SetScrapeSoundEntity(NULL);
 					SetScrapeBody(NULL);
 				}
@@ -257,7 +257,7 @@ namespace hpl {
 		//Update rolling sound
 		if(mpMaterial) mpMaterial->GetSurfaceData()->UpdateRollEffect(this);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cNode3D* iPhysicsBody::GetNode()
@@ -265,7 +265,7 @@ namespace hpl {
 		return mpNode;
 	}
 	cNode3D* iPhysicsBody::CreateNode()
-	{	
+	{
 		if(mpNode) return mpNode;
 
 		mpNode = hplNew( cNode3D, () );
@@ -278,7 +278,7 @@ namespace hpl {
 	{
 		mlstBodyCallbacks.push_back(apCallback);
 	}
-	
+
 	void iPhysicsBody::RemoveBodyCallback(iPhysicsBodyCallback *apCallback)
 	{
 		tPhysicsBodyCallbackListIt it = mlstBodyCallbacks.begin();
@@ -293,7 +293,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	bool iPhysicsBody::OnBeginCollision(iPhysicsBody *apBody)
 	{
 		if(mlstBodyCallbacks.empty()) return true;
@@ -316,7 +316,7 @@ namespace hpl {
 
 		return bReturn;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void iPhysicsBody::OnCollide(iPhysicsBody *apBody, cPhysicsContactData* apContactData)
@@ -326,7 +326,7 @@ namespace hpl {
 		if(mlstBodyCallbacks.empty()) return;
 
 		//Log("Checking on collide callbacks for '%s' ",apBody->GetName().c_str());
-		
+
 		tPhysicsBodyCallbackListIt it = mlstBodyCallbacks.begin();
 		for(; it != mlstBodyCallbacks.end(); ++it)
 		{
@@ -346,9 +346,9 @@ namespace hpl {
 	{
 		return mpMaterial;
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	iCollideShape* iPhysicsBody::GetShape()
 	{
 		return mpShape;
@@ -362,7 +362,7 @@ namespace hpl {
 
 		mlstAttachedCharacters.push_back(apChar);
 	}
-	
+
 	void iPhysicsBody::RemoveAttachedCharacter(iCharacterBody *apChar)
 	{
 		std::list<iCharacterBody*>::iterator it = mlstAttachedCharacters.begin();
@@ -387,7 +387,7 @@ namespace hpl {
 	kBeginSerializeBase(cSaveData_iCollideShape)
 	kSerializeVar(mType,eSerializeType_Int32)
 	kSerializeVar(m_mtxOffset, eSerializeType_Matrixf)
-	kSerializeVar(mvSize, eSerializeType_Vector3f)	
+	kSerializeVar(mvSize, eSerializeType_Vector3f)
 	kEndSerialize()
 
 	//-----------------------------------------------------------------------
@@ -420,32 +420,32 @@ namespace hpl {
 	kEndSerialize()
 
 	//-----------------------------------------------------------------------
-	
+
 	static iCollideShape* _CreateShape(cSaveData_iCollideShape *apData, iPhysicsWorld *apWorld)
 	{
 		switch((eCollideShapeType)apData->mType)
 		{
-		case eCollideShapeType_Box: 
+		case eCollideShapeType_Box:
 			return apWorld->CreateBoxShape(apData->mvSize,&apData->m_mtxOffset);
-		case eCollideShapeType_Sphere: 
+		case eCollideShapeType_Sphere:
 			return apWorld->CreateSphereShape(apData->mvSize,&apData->m_mtxOffset);
-		case eCollideShapeType_Cylinder: 
+		case eCollideShapeType_Cylinder:
 			return apWorld->CreateCylinderShape(apData->mvSize.x,apData->mvSize.y,&apData->m_mtxOffset);
-		case eCollideShapeType_Capsule: 
+		case eCollideShapeType_Capsule:
 			return apWorld->CreateCapsuleShape(apData->mvSize.x,apData->mvSize.y,&apData->m_mtxOffset);
 		}
-		
+
 		Warning("Invalid shape type %d!\n",apData->mType);
 
 		return NULL;
 	}
 
-	static iCollideShape* CreateCollideShapeFromSave(cContainerList<cSaveData_iCollideShape> *apShapeList, 
+	static iCollideShape* CreateCollideShapeFromSave(cContainerList<cSaveData_iCollideShape> *apShapeList,
 													iPhysicsWorld *apWorld)
 	{
 		cContainerListIterator<cSaveData_iCollideShape> it = apShapeList->GetIterator();
 		if(apShapeList->Size()==1)
-		{	
+		{
 			return _CreateShape(&it.Next(),apWorld);
 		}
 		else
@@ -455,7 +455,7 @@ namespace hpl {
 			{
 				vShapes.push_back(_CreateShape(&it.Next(),apWorld));
 			}
-			
+
 			return apWorld->CreateCompundShape(vShapes);
 		}
 	}
@@ -468,9 +468,9 @@ namespace hpl {
 		//Get the collider
 		iCollideShape* pShape = CreateCollideShapeFromSave(&mlstShapes,pWorld);
 		if(pShape == NULL) return NULL;
-		
+
         iPhysicsBody* pBody = pWorld->CreateBody(msName, pShape);
-		
+
 		return pBody;
 	}
 
@@ -499,7 +499,7 @@ namespace hpl {
 
 		//Material
 		pData->msMaterial = mpMaterial==NULL ? "" : mpMaterial->GetName();
-		
+
 		//Save vars
 		kSaveData_SaveTo(mbBlocksSound);
 		kSaveData_SaveTo(mbIsCharacter);
@@ -529,14 +529,14 @@ namespace hpl {
 	void iPhysicsBody::LoadFromSaveData(iSaveData *apSaveData)
 	{
 		kSaveData_LoadFromBegin(iPhysicsBody);
-		
+
 		//Material
 		if(pData->msMaterial!="")
 		{
 			iPhysicsMaterial* pMat= mpWorld->GetMaterialFromName(pData->msMaterial);
 			if(pMat) SetMaterial(pMat);
 		}
-	
+
 		//Save vars
 		kSaveData_LoadFrom(mbBlocksSound);
 		kSaveData_LoadFrom(mbIsCharacter);
@@ -577,9 +577,9 @@ namespace hpl {
 			for(int i=0; i< mpShape->GetSubShapeNum(); ++i)
 			{
 				iCollideShape *pShape = mpShape->GetSubShape(i);
-				
+
 				cSaveData_iCollideShape Shape;
-				Shape.mType = (int)pShape->GetType();         
+				Shape.mType = (int)pShape->GetType();
 				Shape.m_mtxOffset = pShape->GetOffset();
 				Shape.mvSize = pShape->GetSize();
 
@@ -589,14 +589,14 @@ namespace hpl {
 		else
 		{
 			cSaveData_iCollideShape Shape;
-			Shape.mType = (int)mpShape->GetType();         
+			Shape.mType = (int)mpShape->GetType();
 			Shape.m_mtxOffset = mpShape->GetOffset();
 			Shape.mvSize = mpShape->GetSize();
 
 			apShapeList->Add(Shape);
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 }

@@ -66,7 +66,7 @@ namespace hpl {
 		BeginLoad(asName);
 
 		asNewName = asName;//cString::SetFileExt(asName,"mesh");
-		
+
 		//If the file is missing an extension, search for an existing file.
 		if(cString::GetFileExt(asNewName) == "")
 		{
@@ -106,7 +106,7 @@ namespace hpl {
 
 		if(pMesh)pMesh->IncUserCount();
 		else Error("Couldn't create mesh '%s'\n",asNewName.c_str());
-		
+
 		EndLoad();
 		return pMesh;
 	}

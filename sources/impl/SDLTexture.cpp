@@ -92,7 +92,7 @@ namespace hpl {
 			//glDeleteTextures(1,(GLuint *)&mvTextureHandles[0]);
 			//glGenTextures(1,(GLuint *)&mvTextureHandles[0]);
 		}
-		
+
 		return CreateFromBitmapToHandle(pBmp,0);
 	}
 
@@ -297,7 +297,7 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	void cSDLTexture::SetPixels2D(	int alLevel, const cVector2l& avOffset, const cVector2l& avSize, 
+	void cSDLTexture::SetPixels2D(	int alLevel, const cVector2l& avOffset, const cVector2l& avSize,
 									eColorDataFormat aDataFormat, void *apPixelData)
 	{
 		if(mTarget != eTextureTarget_2D && mTarget != eTextureTarget_Rect) return;
@@ -347,7 +347,7 @@ namespace hpl {
 	{
 		return mvTextureHandles.size() > 1;
 	}
-	
+
 	void cSDLTexture::NextFrame()
 	{
 		mfTimeCount += mfTimeDir;
@@ -407,7 +407,7 @@ namespace hpl {
 			}
 		}
 	}
-	
+
 	float cSDLTexture::GetT()
 	{
 		return cMath::Modulus(mfTimeCount,1.0f);

@@ -53,7 +53,7 @@ public:
 		//iMaterial::SetQuality(eMaterialQuality_High);
 
 		mpLowLevelGraphics = gpGame->GetGraphics()->GetLowLevel();
-		
+
 		gpGame->GetGraphics()->GetRendererPostEffects()->SetActive(true);
 		gpGame->GetGraphics()->GetRendererPostEffects()->SetBloomActive(true);
 		gpGame->GetGraphics()->GetRendererPostEffects()->SetBloomSpread(6);
@@ -86,7 +86,7 @@ public:
 		while(lightIt.HasNext())
 		{
 			iLight3D *pLight = lightIt.Next();
-			
+
 			pLight->SetOnlyAffectInSector(true);
 		}
 
@@ -104,9 +104,9 @@ public:
 			pCam->SetPosition(pStartPos->GetWorldMatrix().GetTranslation());
 
 			cMatrixf mtxInv = cMath::MatrixInverse(pStartPos->GetWorldMatrix());
-			
+
 			cVector3f vForward = pStartPos->GetWorldMatrix().GetForward()*-1.0f;
-			
+
 			cVector3f vRotation = cMath::GetAngleFromPoints3D(cVector3f(0,0,0), vForward);
 
 			Log("Rot: %s Fwd: %s\n",vRotation.ToString().c_str(), vForward.ToString().c_str());
@@ -123,7 +123,7 @@ public:
 		//pCam->SetPosition(cVector3f(-4.94f, 2.23f, -15.05f));
 		//pCam->SetYaw(0.423f);
 		//pCam->SetPitch(0);
-		
+
 		gpGame->GetInput()->AddAction(new cActionKeyboard("Shadows",gpGame->GetInput(),eKey_1));
 		gpGame->GetInput()->AddAction(new cActionKeyboard("RoomDebug",gpGame->GetInput(),eKey_2));
 		gpGame->GetInput()->AddAction(new cActionKeyboard("LightDebug",gpGame->GetInput(),eKey_3));
@@ -147,7 +147,7 @@ public:
 		mbRenderLines = false;
 		mbAreas = false;
 		mbDisplayObjects = false;
-		
+
 		//cCamera3D *pCam = static_cast<cCamera3D*>(gpGame->GetScene()->GetCamera());
 
 		/*pCam->SetPosition(cVector3f(-3.25, 1.63f,-2.344f));
@@ -168,13 +168,13 @@ public:
 		while(resourceIt.HasNext())
 		{
 			iTexture *pTexture = static_cast<iTexture*>(resourceIt.Next());
-			
+
 			int lMemory = pTexture->GetWidth() * pTexture->GetHeight() * (pTexture->GetBpp()/8);
-			
+
 			mapTextures.insert(tTextureMemMap::value_type(lMemory, pTexture));
 		}
 
-		
+
 
 		//Models in scene:
 		Log("##################\nSCENE MODELS:\n");
@@ -186,7 +186,7 @@ public:
 			Log(" %s\n", pEntity->GetName().c_str());
 			Log("  Position: %s\n", pEntity->GetWorldPosition().ToString().c_str());
 			Log("  Matrix: %s\n", pEntity->GetWorldMatrix().ToString().c_str());
-			Log("  BB: (%s)-(%s)\n",pEntity->GetBoundingVolume()->GetMin().ToString().c_str(), 
+			Log("  BB: (%s)-(%s)\n",pEntity->GetBoundingVolume()->GetMin().ToString().c_str(),
 									pEntity->GetBoundingVolume()->GetMax().ToString().c_str());
 
 		}
@@ -218,7 +218,7 @@ public:
 			Log("%d x %d pixels | %d  bpp | %d kb | \tdir: %s\n",pTexture->GetWidth(),pTexture->GetHeight(),
 											pTexture->GetBpp(),lMemory / 1024,sDir.c_str());
 
-			
+
 		}
 		Log("\nTotal Memory usage: %d mb\n",lMemoryAccum / (1024*1024));
 		Log("##################\n");
@@ -226,7 +226,7 @@ public:
 
 	~cSimpleUpdate()
 	{
-	
+
 	}
 
 	void Update(float afFrameTime)
@@ -276,10 +276,10 @@ public:
 		}
 
 		tFlag renderFlags =0;
-		
+
 		if(mbLightDebug) renderFlags |= eRendererDebugFlag_DrawLightBoundingBox;
 		if(mbRenderLines) renderFlags |= eRendererDebugFlag_RenderLines;
-		
+
 		gpGame->GetGraphics()->GetRenderer3D()->SetDebugFlags(renderFlags);
 	}
 
@@ -291,7 +291,7 @@ public:
 
 		mpFont->Draw(cVector2f(5,17),12,cColor(1,1),eFontAlign_Left,
 					_W("Lights: %d"),pRenderList->GetLightNum());
-		
+
 		mpFont->Draw(cVector2f(5,31),12,cColor(1,1),eFontAlign_Left,
 					_W("Objects: %d"),pRenderList->GetObjectNum());
 
@@ -343,10 +343,10 @@ public:
 			while(LightIt.HasNext())
 			{
 				iLight3D *pLight = LightIt.Next();
-				
+
 				mpFont->Draw(cVector2f(5+fX,90+fY),10,cColor(1,1),eFontAlign_Left,_W("%s : %d"),
 					cString::To16Char(pLight->GetName()).c_str(),pRenderList->GetLightObjects(idx));
-				
+
 				++idx;
 				fY+=11;
 				if(fY > 500){
@@ -355,8 +355,8 @@ public:
 				}
 			}
 		}
-		
-		
+
+
 		mpFont->Draw(cVector2f(800,580),12,cColor(1,1),eFontAlign_Right,
 			_W("Pos: (%s) Yaw: %f Pitch %f"),cString::To16Char(pCam->GetPosition().ToString()).c_str(),
 			pCam->GetYaw(),
@@ -366,7 +366,7 @@ public:
 		if(mbRoomDebug)
 		{
 			mpFont->Draw(cVector2f(140,15),12,cColor(1,1),eFontAlign_Left,_W("Visible Rooms:"));
-			
+
 			//Draw list of rooms
 			tStringList *pRoomList = mpWorld->GetPortalContainer()->GetVisibleSectorsList();
 			tStringListIt it = pRoomList->begin();
@@ -390,7 +390,7 @@ public:
 		mpLowLevelGraphics->SetDepthTestActive(false);
 		mpLowLevelGraphics->SetIdentityMatrix(eMatrix_ModelView);
 
-		mpLowLevelGraphics->SetOrthoProjection(mpLowLevelGraphics->GetVirtualSize(),-1000,1000);		
+		mpLowLevelGraphics->SetOrthoProjection(mpLowLevelGraphics->GetVirtualSize(),-1000,1000);
 
 		cVector2f vScreenSize = mpLowLevelGraphics->GetScreenSize();
 		cRect2l ClipRect;
@@ -406,16 +406,16 @@ public:
 				cRect2l ClipRect;
 
 				bool bVisible = cMath::GetClipRectFromBV(ClipRect,*pLight->GetBoundingVolume(),
-					pCam->GetViewMatrix(), 
+					pCam->GetViewMatrix(),
 					pCam->GetProjectionMatrix(),
-					pCam->GetNearClipPlane(), 
+					pCam->GetNearClipPlane(),
 					cVector2l((int)vScreenSize.x,(int)vScreenSize.y));
 
 				if(bVisible)
 				{
 					cVector3f vVirtSize = mpLowLevelGraphics->GetVirtualSize();
-					mpLowLevelGraphics->DrawLineRect2D(cRect2f((float)ClipRect.x,(float)ClipRect.y, 
-						(float)ClipRect.w, 
+					mpLowLevelGraphics->DrawLineRect2D(cRect2f((float)ClipRect.x,(float)ClipRect.y,
+						(float)ClipRect.w,
 						(float)ClipRect.h),
 						20,cColor(1,0,0,1));
 				}
@@ -428,7 +428,7 @@ public:
 	}
 
 	//--------------------------------------------------------------
-	
+
 	void OnPostSceneDraw()
 	{
 		cCamera3D *pCam = static_cast<cCamera3D*>(gpGame->GetScene()->GetCamera());
@@ -445,7 +445,7 @@ public:
 		while(meshIt.HasNext())
 		{
 			cMeshEntity *pMesh = meshIt.Next();
-			
+
 			cColor col = gvSectorColors[lColor % glSectorColorNum];
 
 			mpLowLevelGraphics->DrawBoxMaxMin(pMesh->GetBoundingVolume()->GetMax(),
@@ -458,13 +458,13 @@ public:
 		/*if(mpStart)
 		{
 			cVector3f vPos = mpStart->GetWorldMatrix().GetTranslation();
-			
+
 			cMatrixf mtxInv = cMath::MatrixInverse(mpStart->GetWorldMatrix());
-			
+
 			cVector3f vForward = mtxInv.GetForward();
 			cVector3f vUp = mtxInv.GetUp();
 			cVector3f vRight = mtxInv.GetRight();
-			
+
             mpLowLevelGraphics->DrawLine(vPos,vPos + vForward,cColor(0,0,1,1));
 			mpLowLevelGraphics->DrawLine(vPos,vPos + vUp,cColor(0,1,0,1));
 			mpLowLevelGraphics->DrawLine(vPos,vPos + vRight,cColor(1,0,0,1));
@@ -479,7 +479,7 @@ public:
 			{
 				cAreaEntity *pArea = it->second;
 
-				mpLowLevelGraphics->SetMatrix(eMatrix_ModelView, 
+				mpLowLevelGraphics->SetMatrix(eMatrix_ModelView,
 									cMath::MatrixMul(pCam->GetViewMatrix(),pArea->m_mtxTransform));
 
                 mpLowLevelGraphics->DrawBoxMaxMin(pArea->mvSize*0.5f, pArea->mvSize* -0.5f, cColor(1,0.5f,1));
@@ -487,7 +487,7 @@ public:
 
 			mpLowLevelGraphics->SetMatrix(eMatrix_ModelView, pCam->GetViewMatrix());
 		}
-		
+
 
 		if(mbColliderDebug){
 			mpWorld->GetPhysicsWorld()->RenderDebugGeometry(mpLowLevelGraphics,cColor(1,1,1,1));
@@ -517,7 +517,7 @@ public:
 		/// DEBUG PROTAL COLLIDERS
 
 		/*static bool bOnce = true;
-		
+
 		if(bOnce)
 		{
 			cBoundingVolume cameraBV;
@@ -546,7 +546,7 @@ public:
 		// Draw boxes around sectors and portals
 		if(mpWorld ==NULL) return;
 
-		
+
 		tSectorMap *pSectorMap = mpWorld->GetPortalContainer()->GetSectorMap();
 		tSectorMapIt SectorIt = pSectorMap->begin();
 		int lNum=0;
@@ -567,12 +567,12 @@ public:
 
 				mpLowLevelGraphics->DrawBoxMaxMin(pPortal->GetBV()->GetMax(),pPortal->GetBV()->GetMin(),
 					cColor(1,0.0f,0.0f,1));
-				
+
 				cVector3f vStart = pPortal->GetBV()->GetWorldCenter();
 				cVector3f vEnd = vStart + pPortal->GetNormal()*0.1f;
 
 				mpLowLevelGraphics->DrawLine(vStart, vEnd,Col);
-				
+
 				//GetColor of target sector
 				cColor TargCol(0.5f,0.5f,0.5f);
 				cSector *pTargetSector =pPortal->GetTargetSector();
@@ -589,8 +589,8 @@ public:
 			}
 		}
 	}
-	
-	
+
+
 private:
 	iFontData *mpFont;
 
@@ -602,9 +602,9 @@ private:
 	bool mbRenderLines;
 	bool mbAreas;
 	bool mbDisplayObjects;
-	
+
 	cStartPosEntity *mpStart;
-	
+
 	cWorld3D* mpWorld;
 	iLowLevelGraphics* mpLowLevelGraphics;
 };
@@ -614,7 +614,7 @@ private:
 int hplMain(const tString &asCommandLine)
 {
 	//iResourceBase::SetLogCreateAndDelete(true);
-	//iGpuProgram::SetLogDebugInformation(true); 
+	//iGpuProgram::SetLogDebugInformation(true);
 
 	// Load config file
 	cConfigFile *pConfig = new cConfigFile(_W("viewer_settings.cfg"));
@@ -632,16 +632,16 @@ int hplMain(const tString &asCommandLine)
 	gpGame->SetLimitFPS(false);
 
 	SetWindowCaption("Scene Viewer");
-	
+
 	//Add resources
 	gpGame->GetResources()->LoadResourceDirsFile("resources.cfg");
 
 	if(asCommandLine != ""){
-		
+
 		tStringVec vArgs;
 		tString sSepp = " ";
 		cString::GetStringVec(asCommandLine,vArgs,&sSepp);
-		
+
 		if(vArgs.size()>=1)	gsSceneFile= vArgs[0];
 		//if(vArgs.size()>=2)	gsStartPos = vArgs[1];
 		gsStartPos = "link01";
@@ -653,7 +653,7 @@ int hplMain(const tString &asCommandLine)
 	gpGame->GetUpdater()->AddUpdate("Default", &cameraUpdate);
 	cSimpleUpdate Update;
 	gpGame->GetUpdater()->AddUpdate("Default", &Update);
-		
+
 	//Run the engine
 	gpGame->Run();
 

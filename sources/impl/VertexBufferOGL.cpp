@@ -137,7 +137,7 @@ namespace hpl {
 
 	void cVertexBufferOGL::UpdateData(tVertexFlag aTypes, bool abIndices)
 	{
-		
+
 	}
 
 	//-----------------------------------------------------------------------
@@ -228,7 +228,7 @@ namespace hpl {
 		if(drawType==eVertexBufferDrawType_Quad)		mode = GL_QUADS;
 		else if(drawType==eVertexBufferDrawType_Lines)	mode = GL_LINE_STRIP;
 
-		
+
 		int lSize = mlElementNum;
 		if(mlElementNum<0) lSize = GetIndexNum();
 

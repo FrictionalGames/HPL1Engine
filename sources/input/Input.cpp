@@ -26,14 +26,14 @@
 #include "input/ActionMouseButton.h"
 
 
-namespace hpl 
+namespace hpl
 {
 	//////////////////////////////////////////////////////////////////////////
 	// CONSTRUCTORS
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	cInput::cInput(iLowLevelInput *apLowLevelInput) : iUpdateable("HPL_Input")
 	{
 		mpLowLevelInput = apLowLevelInput;
@@ -46,7 +46,7 @@ namespace hpl
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	cInput::~cInput()
 	{
 		Log("Exiting Input Module\n");
@@ -63,7 +63,7 @@ namespace hpl
 	//-----------------------------------------------------------------------
 
 	//////////////////////////////////////////////////////////////////////////
-	// PUBLIC METHODS				
+	// PUBLIC METHODS
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
@@ -71,7 +71,7 @@ namespace hpl
 	void cInput::Update(float afTimeStep)
 	{
 		mpLowLevelInput->BeginInputUpdate();
-		
+
 		for(tInputDeviceListIt it = mlstInputDevices.begin(); it!= mlstInputDevices.end();++it)
 		{
 			(*it)->Update();
@@ -84,18 +84,18 @@ namespace hpl
 			it->second->Update(afTimeStep);
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	void cInput::AddAction(iAction *apAction)
 	{
 		tString sName = apAction->GetName();
 		tActionMap::value_type val = tActionMap::value_type(sName,apAction);
-		m_mapActions.insert(val);	
+		m_mapActions.insert(val);
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	bool cInput::IsTriggerd(tString asName)
 	{
 		iAction *pAction = GetAction(asName);
@@ -115,7 +115,7 @@ namespace hpl
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	bool cInput::BecameTriggerd(tString asName)
 	{
 		iAction *pAction = GetAction(asName);
@@ -133,7 +133,7 @@ namespace hpl
 
 		return pAction->DoubleTriggerd(afLimit);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	iKeyboard* cInput::GetKeyboard()
@@ -147,7 +147,7 @@ namespace hpl
 	{
 		return mpMouse;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	iAction* cInput::GetAction(tString asName)
@@ -184,16 +184,16 @@ namespace hpl
 		{
 			if(mpMouse->ButtonIsDown((eMButton)i)) return true;
 		}
-		
+
 		return false;
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	iAction* cInput::InputToAction(const tString &asName)
 	{
 		iAction *pAction=NULL;
-		
+
 		//////////////////////
 		//Keyboard
 		for(int i=0; i< eKey_LastEnum; ++i)
@@ -213,7 +213,7 @@ namespace hpl
 			{
 				if(mpMouse->ButtonIsDown((eMButton)i))
 				{
-					pAction = hplNew( cActionMouseButton, (asName,this,(eMButton)i));					
+					pAction = hplNew( cActionMouseButton, (asName,this,(eMButton)i));
 					break;
 				}
 			}
@@ -228,10 +228,10 @@ namespace hpl
 
 			AddAction(pAction);
 		}
-		
+
 		return pAction;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 }

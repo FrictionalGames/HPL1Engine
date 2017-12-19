@@ -27,7 +27,7 @@
 namespace hpl {
 
 	class cAnimationTrack;
-	
+
 	typedef std::vector<cAnimationTrack*> tAnimationTrackVec;
 	typedef tAnimationTrackVec::iterator tAnimationTrackVecIt;
 
@@ -48,7 +48,7 @@ namespace hpl {
 
 		const char* GetAnimationName(){ return msAnimName.c_str();}
 		void SetAnimationName(const tString &asName){ msAnimName =asName;}
-		
+
 		tString& GetFileName(){ return msFileName;}
 
 		//Resources implementation
@@ -61,7 +61,7 @@ namespace hpl {
 		tString msFileName;
 
 		float mfLength;
-		
+
 		tAnimationTrackVec mvTracks;
 	};
 

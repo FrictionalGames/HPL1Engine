@@ -22,7 +22,7 @@
 #include "physics/PhysicsJoint.h"
 
 namespace hpl {
-	
+
 	class cGraphics;
 	class cResources;
 	class cSystem;
@@ -32,7 +32,7 @@ namespace hpl {
 	class cGame;
 
 
-	
+
 	//---------------------------------------
 
 	class cScriptJointCallback : public iPhysicsJointCallback
@@ -50,7 +50,7 @@ namespace hpl {
 
 		cScene *mpScene;
 	};
-	
+
 	//---------------------------------------
 
 	class cScriptFuncs

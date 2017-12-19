@@ -54,13 +54,13 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	tFlag cCollider2D::CollideBody(cBody2D *apBody, cCollideData2D* apData)
 	{
 		tFlag lCollision = eFlagBit_None;
 
 		cRect2f CollideRect = apBody->GetBoundingBox();
-		
+
 		cCollisionMesh2D* pCollMesh = apBody->GetCollisionMesh();
 
 		cVector2f vPushVector;
@@ -69,23 +69,23 @@ namespace hpl {
 		/////// TEST COLLISION WITH TILES
 		float fTileSize = mpWorld->GetTileMap()->GetTileSize();
 		cRect2f TileRect = cRect2f(0,0,fTileSize,fTileSize);
-        
-		
-		for(int i=0;i<mpWorld->GetTileMap()->GetTileLayerNum();i++)	
+
+
+		for(int i=0;i<mpWorld->GetTileMap()->GetTileLayerNum();i++)
 		{
 			if(mpWorld->GetTileMap()->GetTileLayer(i)->HasCollision()==false)continue;
-			
+
 			iTileMapIt *pTileIt = mpWorld->GetTileMap()->GetRectIterator(CollideRect,i);
-			
+
 			while(pTileIt->HasNext())
 			{
 				cTile *pTile = pTileIt->Next();
 				TileRect.x = pTile->GetPosition().x-fTileSize/2;
 				TileRect.y = pTile->GetPosition().y-fTileSize/2;
-				
+
 				//This can be used for material properties.
 				//cTileDataNormal *pTData = static_cast<cTileDataNormal*>(pTile->GetTileData());
-					
+
                 if(pTile->GetCollisionMesh()==NULL)continue;
 
 				if(Collide(pCollMesh, pTile->GetCollisionMesh(), vPushVector) )
@@ -96,9 +96,9 @@ namespace hpl {
 					vD = apBody->GetPosition() - pTile->GetPosition();
 					if ( (vD.x*vPushVector.x + vD.y*vPushVector.y) < 0.0f)
 						vPushVector = vPushVector * -1;
-					
+
 					cVector3f vPos = apBody->GetPosition();
-					
+
 					bool bAlterX=true;
 					bool bAlterY=true;
 
@@ -125,38 +125,38 @@ namespace hpl {
 							bAlterY = false;
 						}
 					}
-					
+
 					if(bAlterX)	vPos.x += vPushVector.x;
 					if(bAlterY)	vPos.y += vPushVector.y;
-					
+
 					apBody->SetPosition(vPos);
 					apBody->ResetLastPosition();
-						
+
 					apBody->UpdateCollisionMesh();
 					//not really needed untill layer change
 					CollideRect = apBody->GetBoundingBox();
-				
+
 					lCollision |= eFlagBit_0;
 					vLastPushVector = vPushVector;
 
 					//break;
 				}
 		    }
-            
+
 			hplDelete(pTileIt);
-			
+
 			//if(bCollision)break;
 		}
 
-		/////// TEST COLLISION WITH BODIES 
-		iGridMap2DIt* pBodyIt = mpWorld->GetGridMapBodies()->GetRectIterator(CollideRect);	
+		/////// TEST COLLISION WITH BODIES
+		iGridMap2DIt* pBodyIt = mpWorld->GetGridMapBodies()->GetRectIterator(CollideRect);
 
 		while(pBodyIt->HasNext())
 		{
 			cBody2D* pBody = static_cast<cBody2D*>(pBodyIt->Next());
-			
+
 			if(apBody == pBody)continue;
-			
+
 			//eFlagBit_0 is probably just temporary.
 			if(pBody->IsActive() && pBody->GetCollideType() & apBody->GetCollideFlag())
 			{
@@ -165,7 +165,7 @@ namespace hpl {
 				if(Collide(pCollMesh, pBody->GetCollisionMesh(), vPushVector) )
 				{
 					if(apData)apData->mlstBodies.push_back(pBody);
-					
+
 					cVector3f vD;
 					vD = apBody->GetPosition() - pBody->GetPosition();
 					if ( (vD.x*vPushVector.x + vD.y*vPushVector.y) < 0.0f)
@@ -182,7 +182,7 @@ namespace hpl {
 					CollideRect = apBody->GetBoundingBox();
 
 					lCollision |= eFlagBit_0;
-					
+
 					break;
 				}
 			}
@@ -203,7 +203,7 @@ namespace hpl {
 
 		return lCollision;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	tFlag cCollider2D::CollideRect(cRect2f& aRect,tFlag alCollideFlags, cCollideData2D* apData)
@@ -216,7 +216,7 @@ namespace hpl {
 		pCollMesh->mvPos.resize(4);
 		pCollMesh->mvNormal.resize(4);
 		SetCollideMesh(pCollMesh, aRect);
-				
+
 		cVector2f vPushVector;
 		cVector2f vLastPushVector;
 
@@ -226,7 +226,7 @@ namespace hpl {
 			float fTileSize = mpWorld->GetTileMap()->GetTileSize();
 			cRect2f TileRect = cRect2f(0,0,fTileSize,fTileSize);
 
-			for(int i=0;i<mpWorld->GetTileMap()->GetTileLayerNum();i++)	
+			for(int i=0;i<mpWorld->GetTileMap()->GetTileLayerNum();i++)
 			{
 				if(mpWorld->GetTileMap()->GetTileLayer(i)->HasCollision()==false)continue;
 
@@ -239,7 +239,7 @@ namespace hpl {
 					TileRect.y = pTile->GetPosition().y-fTileSize/2;
 
 					if(pTile->GetCollisionMesh()==NULL)continue;
-					
+
 					if(apData)apData->mlstTiles.push_back(cCollidedTile(pTile,i));
 
 					if(Collide(pCollMesh, pTile->GetCollisionMesh(), vPushVector) )
@@ -261,7 +261,7 @@ namespace hpl {
 						vPos += vPushVector;
 						aRect.x = vPos.x;
 						aRect.y = vPos.y;
-						
+
 						SetCollideMesh(pCollMesh, aRect);
 						CollideRect = aRect;
 
@@ -273,8 +273,8 @@ namespace hpl {
 				hplDelete(pTileIt);
 			}
 		}
-		
-		iGridMap2DIt* pBodyIt = mpWorld->GetGridMapBodies()->GetRectIterator(CollideRect);	
+
+		iGridMap2DIt* pBodyIt = mpWorld->GetGridMapBodies()->GetRectIterator(CollideRect);
 
 		while(pBodyIt->HasNext())
 		{
@@ -295,7 +295,7 @@ namespace hpl {
 				}
 			}
 		}
-		
+
 		hplDelete(pBodyIt);
 
 		/// Do some stuff when colliding
@@ -311,30 +311,30 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	tFlag cCollider2D::CollideLine(const cVector2f& avStart,const cVector2f& avEnd,tFlag alCollideFlags, 
+	tFlag cCollider2D::CollideLine(const cVector2f& avStart,const cVector2f& avEnd,tFlag alCollideFlags,
 		cCollideData2D* apData)
 	{
 		tFlag lCollision = eFlagBit_None;
 
-		
+
 		//// Check for all tiles if the flag is set
 		if(alCollideFlags & eFlagBit_0)
 		{
 			float fTileSize = mpWorld->GetTileMap()->GetTileSize();
-			
-			for(int i=0;i<mpWorld->GetTileMap()->GetTileLayerNum();i++)	
+
+			for(int i=0;i<mpWorld->GetTileMap()->GetTileLayerNum();i++)
 			{
 				if(mpWorld->GetTileMap()->GetTileLayer(i)->HasCollision()==false)continue;
 
 				iTileMapIt *pTileIt = mpWorld->GetTileMap()->GetLineIterator(avStart,avEnd,i);
-			
+
 				while(pTileIt->HasNext())
 				{
 					cTile *pTile = pTileIt->Next();
-					
+
 					if(pTile->GetCollisionMesh()==NULL)continue;
 					//Log("Found tile!\n");
-					
+
 					if(apData)apData->mlstTiles.push_back(cCollidedTile(pTile,i));
 
 					lCollision |= eFlagBit_0;
@@ -373,7 +373,7 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	
+
 	cVector2f FindMTD(cVector2f* pPushVector, int alNumVectors)
 	{
 		cVector2f MTD = pPushVector[0];
@@ -396,7 +396,7 @@ namespace hpl {
 	{
 		cVector2f vAxis[32];
 		int lAxisNum=0;
-		
+
 		//Check separating planes for A
 		for(int i=0;i<(int)apMeshA->mvNormal.size();i++)
 		{
@@ -406,7 +406,7 @@ namespace hpl {
 			}
 			lAxisNum++;
 		}
-		
+
 		//Check separating planes for B
 		for(int i=0;i<(int)apMeshB->mvNormal.size();i++)
 		{
@@ -418,12 +418,12 @@ namespace hpl {
 		}
 
 		avMTD = FindMTD(vAxis, lAxisNum);
-		
+
 
 		return true;
 	}
 	//-----------------------------------------------------------------------
-	
+
 	bool cCollider2D::AxisSeparateMeshes(cVector2f &avAxis,cCollisionMesh2D* apMeshA,
 										cCollisionMesh2D* apMeshB)
 	{
@@ -434,7 +434,7 @@ namespace hpl {
 		CalculateInterval(avAxis,apMeshB,fMinB, fMaxB);
 
 		if(fMinA >= fMaxB || fMinB >= fMaxA) return true;
-		
+
 		float fD0 = fMaxA - fMinB;
 		float fD1 = fMaxB - fMinA;
 		float fDepth = (fD0 < fD1)? fD0 : fD1;
@@ -445,7 +445,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	void cCollider2D::CalculateInterval(const cVector2f &avAxis,cCollisionMesh2D* apMesh,
 									float& afMin,float& afMax)
 	{

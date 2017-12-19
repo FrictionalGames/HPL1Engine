@@ -33,16 +33,16 @@ namespace hpl {
 	/////////// GRID OBJECT ////////////
 	class cGrid2D;
 	class cGridMap2D;
-	
+
 	typedef std::vector<cGrid2D*> tGrid2DPtrVec;
 	typedef tGrid2DPtrVec::iterator tGrid2DPtrVecIt;
-	
+
 	class cGrid2DObject
 	{
-	
+
 	public:
 		cGrid2DObject(iEntity2D *apEntity,cGridMap2D* apGridMap,unsigned int alHandle);
-		
+
 		void Update(const cRect2f &aRect);
 		void Destroy();
 
@@ -54,7 +54,7 @@ namespace hpl {
 			mlCount = alGlobalCount+1;
 			return true;
 		}
-	
+
 	private:
 		cVector2l mvPosition;
 		cVector2f mvSize;
@@ -75,7 +75,7 @@ namespace hpl {
 
 	typedef std::map<int,cGrid2DObject*> tGrid2DObjectMap;
 	typedef tGrid2DObjectMap::iterator tGrid2DObjectMapIt;
-	
+
 	class cGrid2D
 	{
 	friend class cGridMap2DRectIt;
@@ -91,11 +91,11 @@ namespace hpl {
 	private:
 		tGrid2DObjectMap m_mapObjects;
 
-        
+
 	};
 
 	/////////// GRID MAP ITERATOR ////
-	
+
 class cGridMap2D;
 
 	class iGridMap2DIt
@@ -116,17 +116,17 @@ class cGridMap2D;
 
 	private:
 		cGridMap2D* mpGridMap;
-		
+
 		int mlType; //0=global 1=outer 2=grids
 		tGrid2DObjectMapIt mIt;
-		
+
 		cVector2l mvPos;
 		cVector2l mvSize;
 		int mlGridNum;
 		int mlGridAdd;
 		int mlGridRowCount;
 		int mlGridColCount;
-        
+
 		bool mbUpdated;
 
 		cGrid2DObject* mpObject;
@@ -136,7 +136,7 @@ class cGridMap2D;
 
 
 	/////////// GRID MAP ////////////
-	
+
 	typedef std::vector<cGrid2D> tGrid2DVec;
 	typedef tGrid2DVec::iterator tGrid2DVecIt;
 
@@ -155,15 +155,15 @@ class cGridMap2D;
 
 		bool AddEntity(iEntity2D* apEntity);
 		bool RemoveEntity(iEntity2D* apEntity);
-				
+
 		int GetMaxArraySize(){ return mvMaxGridSpan.x*mvMaxGridSpan.y;}
 		const cVector2l& GetMaxGridSpan(){ return mvMaxGridSpan; }
 		const cVector2l& GetGridSize(){return mvGridSize;}
 		const cVector2l& GetGridNum(){ return mvGridNum; }
-		
+
 		tGrid2DObjectMap* GetAllMap(){ return &m_mapAllObjects; }
 
-        void DrawGrid(iLowLevelGraphics *apLowLevel, float afZ=100,cColor aCol = cColor(1));        		
+        void DrawGrid(iLowLevelGraphics *apLowLevel, float afZ=100,cColor aCol = cColor(1));
 		void DrawEntityGrids(iLowLevelGraphics *apLowLevel,cVector2f avWorldPos, float afZ=101,cColor aCol = cColor(1,0,1,1));
 
 	private:
@@ -173,7 +173,7 @@ class cGridMap2D;
 		//all objects
 		//This is a list of all objects in the grid.
 		tGrid2DObjectMap m_mapAllObjects;
-		
+
 		//Global Objects
 		//These are objects that affect the entire map
 		tGrid2DObjectMap m_mapGlobalObjects;
@@ -185,7 +185,7 @@ class cGridMap2D;
 		//The count increases every time a fetch on the map is made.
 		// (all call to GetFirstEntity)
 		unsigned int mlGlobalCount;
-		
+
 		unsigned int mlHandleCount;
 
 		cVector2l mvSize;

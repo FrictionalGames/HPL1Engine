@@ -25,7 +25,7 @@ namespace hpl {
 
 	class iLowLevelGraphics;
 	class cWorld3D;
-	
+
 	class iLight
 	{
 	public:
@@ -37,17 +37,17 @@ namespace hpl {
 		bool IsFading();
 		cColor GetDestColor(){ return mDestCol;}
 		float GetDestRadius(){ return mfDestRadius;}
-		
+
 		//////////////////////////
 		//FLickering
 		void SetFlickerActive(bool abX);
 		bool GetFlickerActive(){return mbFlickering;}
-		
+
 		void SetFlicker(const cColor& aOffCol, float afOffRadius,
 						float afOnMinLength, float afOnMaxLength,const tString &asOnSound,const tString &asOnPS,
 						float afOffMinLength, float afOffMaxLength,const tString &asOffSound,const tString &asOffPS,
 						bool abFade, float afOnFadeLength, float afOffFadeLength);
-		
+
 		tString GetFlickerOffSound(){ return msFlickerOffSound;}
 		tString GetFlickerOnSound(){ return msFlickerOnSound;}
 		tString GetFlickerOffPS(){ return msFlickerOffPS;}
@@ -64,7 +64,7 @@ namespace hpl {
 
 		cColor GetFlickerOnColor(){ return mFlickerOnColor;}
 		float GetFlickerOnRadius(){ return mfFlickerOnRadius;}
-				
+
 		//////////////////////////
 		//Properties
 		const cColor& GetDiffuseColor(){ return mDiffuseColor; }
@@ -90,11 +90,11 @@ namespace hpl {
 		void SetSourceRadius(float afX){ mfSourceRadius = afX;}
 
 		virtual cVector3f GetLightPosition()=0;
-		
+
 		void UpdateLight(float afTimeStep);
 
 		void SetWorld3D(cWorld3D *apWorld){ mpWorld3D = apWorld;}
-	
+
 	protected:
 		virtual void OnFlickerOff(){}
 		virtual void OnFlickerOn(){}
@@ -109,9 +109,9 @@ namespace hpl {
 
 		bool mbCastShadows;
 		bool mbAffectMaterial;
-	
+
 		cWorld3D *mpWorld3D;
-		
+
 		///////////////////////////
 		//Fading.
 		cColor mColAdd;
@@ -119,7 +119,7 @@ namespace hpl {
 		cColor mDestCol;
 		float mfDestRadius;
 		float mfFadeTime;
-		
+
 		///////////////////////////
 		//Flicker
 		bool mbFlickering;

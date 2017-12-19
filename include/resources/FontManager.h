@@ -22,7 +22,7 @@
 #include "resources/ResourceManager.h"
 
 namespace hpl {
-	
+
 	class cGraphics;
 	class cResources;
 	class cGui;
@@ -41,7 +41,7 @@ namespace hpl {
 		 * \param alSize size the characters are rendered in
 		 * \param alFirstChar first ASCII character to be rendered
 		 * \param alLastChar last ASCII character to be rendered
-		 * \return 
+		 * \return
 		 */
 		iFontData* CreateFontData(const tString& asName, int alSize=16,unsigned short alFirstChar=32,
 								unsigned short alLastChar=255);

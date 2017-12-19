@@ -45,7 +45,7 @@ namespace hpl {
 	};
 
 	//-----------------------------------------
-	
+
 	class iVideoStream : public iResourceBase
 	{
 	public:
@@ -53,7 +53,7 @@ namespace hpl {
 		virtual ~iVideoStream(){}
 
         virtual bool LoadFromFile(tString asFilePath)=0;
-		
+
 		virtual void Update(float afTimeStep)=0;
 
 		virtual void Play()=0;
@@ -61,7 +61,7 @@ namespace hpl {
 
 		virtual void Pause(bool abX)=0;
 		virtual bool IsPaused()=0;
-		
+
 		virtual void SetLoop(bool abX)=0;
 		virtual bool IsLooping()=0;
 
@@ -70,7 +70,7 @@ namespace hpl {
 
 		const tString& GetFileName(){return msFilePath;}
 		const cVector2l& GetSize(){return mvSize;}
-		
+
 		//////////////////////////////////
 		// ResourceBase implementation
 		bool Reload(){ return false;}

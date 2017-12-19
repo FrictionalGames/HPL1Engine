@@ -33,7 +33,7 @@ namespace hpl {
 			mSDLPixelFmt32.palette = 0;
 			mSDLPixelFmt32.BitsPerPixel = 32;
 			mSDLPixelFmt32.BytesPerPixel = 4;
-			
+
 			if(SDL_BYTEORDER == SDL_BIG_ENDIAN){
 				mSDLPixelFmt32.Rmask = 0xff000000;
 				mSDLPixelFmt32.Gmask = 0x00ff0000;
@@ -58,17 +58,17 @@ namespace hpl {
 				mSDLPixelFmt32.Bshift = 16;
 				mSDLPixelFmt32.Ashift = 24;
 			}
-			
+
 			mSDLPixelFmt32.Rloss=0;
 			mSDLPixelFmt32.Gloss=0;
 			mSDLPixelFmt32.Bloss=0;
 			mSDLPixelFmt32.Aloss=0;
-			
+
 			mSDLPixelFmt32.colorkey =0;
 			mSDLPixelFmt32.alpha = 255;
 			////// END - PIXEL FORMAT 32 bit RGBA ////////
 
-		
+
 		}
 
 		SDL_PixelFormat* GetSDLPixelFormat32()

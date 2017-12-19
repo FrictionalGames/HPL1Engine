@@ -49,7 +49,7 @@ public:
 		mfLastT = 100000.0f;
 		mpPickedBody = NULL;
 	}
-	
+
 	bool OnIntersect(iPhysicsBody *pBody,cPhysicsRayParams *apParams)
 	{
 		if(pBody->GetMass()>0)
@@ -65,7 +65,7 @@ public:
 
 		return true;
 	}
-	
+
 	iPhysicsBody* mpPickedBody;
 	cVector3f mvPos;
 	cVector3f mvLocalPos;
@@ -88,18 +88,18 @@ public:
 		mbColliders = false;
 
 		mfFlashAlpha = 0;
-		
+
 		//iMaterial::SetQuality(eMaterialQuality_High);
 
 		/////////////////////////////////////////////////
 		// Set up data
 		mpLowLevelGraphics = gpGame->GetGraphics()->GetLowLevel();
-		
+
 		//gpGame->SetRenderOnce(true);
 		//gpGame->GetGraphics()->GetRenderer3D()->SetDebugFlags(eRendererDebugFlag_LogRendering);
 		//gpGame->GetGraphics()->GetRenderer3D()->SetDebugFlags(	eRendererDebugFlag_DrawNormals |
 		//														eRendererDebugFlag_DrawTangents);
-		
+
 		gpGame->GetGraphics()->GetRendererPostEffects()->SetActive(true);
 		gpGame->GetGraphics()->GetRendererPostEffects()->SetBloomActive(true);
 		gpGame->GetGraphics()->GetRendererPostEffects()->SetBloomSpread(6);
@@ -125,12 +125,12 @@ public:
 		// Resource setup
 		gpGame->GetResources()->AddEntity3DLoader(new cEntityLoader_Object("Object"),true);
 
-		
+
 		/////////////////////////////////////////////
 		// Create World
 		mpWorld = gpGame->GetScene()->CreateWorld3D("Test");
 		gpGame->GetScene()->SetWorld3D(mpWorld);
-		
+
 		/////////////////////////////////////////////
 		// Create Physics world
 		// Setup physics
@@ -142,13 +142,13 @@ public:
 		mpPhysicsWorld->SetMaxTimeStep(1.0f / 30.0f);
 
         mpWorld->SetPhysicsWorld(mpPhysicsWorld);
-		
+
 		/////////////////////////////////////////////77
 		// Create MEsh / Entity
-		
+
 		//Add resource path
 		//gpGame->GetResources()->AddResourceDir(cString::GetFilePath(gsModelFile));
-        
+
 		tString sFileName = cString::GetFileName(gsModelFile);
 		tString sExt = cString::ToLowerCase(cString::GetFileExt(sFileName));
 
@@ -158,7 +158,7 @@ public:
 			cMatrixf mtxTransform = cMatrixf::Identity;
 			//mtxTransform = cMath::MatrixRotateY(-kPi2f);
 			//mtxTransform.SetTranslation(cVector3f(2,0,2));
-			
+
 			//for(int i=0; i<2; ++i)
 			//{
 			//mtxTransform.SetTranslation(cVector3f(4,0,0));
@@ -220,7 +220,7 @@ public:
 			//Load mesh file
 			cMesh *pMesh = gpGame->GetResources()->GetMeshManager()->CreateMesh(sFileName);
 			if(pMesh==NULL) FatalError("Couldn't load mesh\n");
-			
+
 			//Create entity from mesh
 			mpEntity = mpWorld->CreateMeshEntity("EntityName",pMesh);
 			mpEntity->SetCastsShadows(true);
@@ -252,7 +252,7 @@ public:
 					pEntityBody->SetMass(1);
 					pEntityBody->SetEnabled(false);
 					pEntityBody->SetMatrix(mtxTransform);
-					
+
 					cNode3D *pNode = pEntityBody->CreateNode();
 					pNode->AddEntity(mpEntity);
 
@@ -269,7 +269,7 @@ public:
 			{
 				pMesh->CreateLightInWorld("EntityName",pMesh->GetLight(i),mpEntity,mpWorld);
 			}
-			
+
 			//Create billboards
 			for(int i=0; i< pMesh->GetBillboardNum(); i++)
 			{
@@ -301,7 +301,7 @@ public:
 			{
 				pMesh->CreateSoundEntityInWorld("EntityName",pMesh->GetSoundEntity(i),mpEntity,mpWorld);
 			}
-				
+
 			//Check if entity has animation, if so play it.
 			if(mpEntity->GetAnimationStateNum()>0)
 			{
@@ -317,7 +317,7 @@ public:
 			//fY += 1.1f;
 			//fX += 0.6f;
 			//}
-			
+
 
 			//DEBUG:
 			/*for(int i=0; i< mvBodies.size(); ++i)
@@ -328,7 +328,7 @@ public:
 				//pBody->SetCollideCharacter(false);
 			}*/
 		}
-		
+
 		if(mpEntity)
 		{
 			mpEntity->SetSkeletonCollidersActive(true);
@@ -348,11 +348,11 @@ public:
 		{
 			cVector3f vSize = pFloor->GetBoundingVolume()->GetSize();
 			vSize.y = 0.1f;
-			
+
 			cMatrixf mtxOffSet = cMath::MatrixTranslate(cVector3f(0,-0.05f,0));
 			iCollideShape *pShape = mpPhysicsWorld->CreateBoxShape(vSize, &mtxOffSet);
 			iPhysicsBody *pBody = mpPhysicsWorld->CreateBody("Floor",pShape);
-			
+
 			pBody->SetPosition(pFloor->GetWorldPosition());
 			pBody->SetGravity(false);
 		}
@@ -371,7 +371,7 @@ public:
 		mpLight->SetFarAttenuation(280.0f);
 		mpLight->SetCastShadows(true);
 		//mpLight->SetVisible(false);
-		
+
 		mpLight2 = mpWorld->CreateLightPoint("Light2");
 		mpLight2->SetDiffuseColor(cColor(1,1,1,1.0f));
 		mpLight2->SetFarAttenuation(60.0f);
@@ -384,7 +384,7 @@ public:
 
 		//debug
 		//mpEntity->SetPosition(cVector3f(3,0,0));
-		
+
 		//for(size_t i=0; i< mvBodies.size(); ++i)
 		//{
 		//	mvBodies[i]->SetAutoDisable(false);
@@ -421,7 +421,7 @@ public:
 				if(j==pVtxBuff->GetVertexNum()-1) Log("--------\n");
 			}*/
 
-		
+
 			lVtxTotal += pSubMesh->GetVertexBuffer()->GetVertexNum();
 		}
 		Log(" Total Vertex count: %d\n",lVtxTotal);
@@ -442,13 +442,13 @@ public:
 
 
 		Log("------------------------\n");
-		
+
 
 	}
 
 	~cSimpleUpdate()
 	{
-	
+
 	}
 
 	void Update(float afTimeStep)
@@ -478,32 +478,32 @@ public:
 				mbFlashed = false;
 			}
 		}
-		
+
 		//////////////////////////////////
 		//Rotate light/flare
 		if(mbLightMovement)
 		{
 			cMatrixf mtxRot = cMath::MatrixRotateY(mvFlareRotation.y);
 			mtxRot = cMath::MatrixMul(mtxRot,cMath::MatrixRotateZ(mvFlareRotation.z));
-			
+
 			mpFlare->SetPosition(cMath::MatrixMul(mtxRot,cVector3f(0,10,10)));
 			mpLight->SetPosition(cMath::MatrixMul(mtxRot,cVector3f(0,10,10)));
 
 			mtxRot = cMath::MatrixRotateY(mvFlareRotation.y);
 			mtxRot = cMath::MatrixMul(mtxRot,cMath::MatrixRotateZ(mvFlareRotation.z));
-			
+
 			mpFlare2->SetPosition(cMath::MatrixMul(mtxRot,cVector3f(0,10,-10)));
 			mpLight2->SetPosition(cMath::MatrixMul(mtxRot,cVector3f(0,10,-10)));
 
 			mvFlareRotation.y += cMath::ToRad(1);
 		}
-		
+
 		////////////////////////////////////
 		//Input
 		//Render Shadows
 		if(gpGame->GetInput()->BecameTriggerd("Shadows")){
 			eRendererShowShadows mShadows = gpGame->GetGraphics()->GetRenderer3D()->GetShowShadows();
-			
+
 			if(mShadows == eRendererShowShadows_All)
 				gpGame->GetGraphics()->GetRenderer3D()->SetShowShadows(eRendererShowShadows_None);
 			else
@@ -516,7 +516,7 @@ public:
 		}
 		//Render colliders
 		if(gpGame->GetInput()->BecameTriggerd("Colliders")){
-			mbColliders = !mbColliders;	
+			mbColliders = !mbColliders;
 		}
 		//Simulate physics
 		if(mvBodies.size()==1 && gpGame->GetInput()->BecameTriggerd("Physics"))
@@ -552,15 +552,15 @@ public:
 			{
 				cMatrixf mtxTransform = mpEntity->CalculateTransformFromSkeleton(NULL,NULL);
 				mpEntity->SetMatrix(mtxTransform);
-				
+
 				mpEntity->UpdateLogic(0);
 
 				//////////////////////////////////
 				//Fade to animation.
 				float fFadeTime = 0.5f;
-				
+
 				mpEntity->FadeSkeletonPhysicsWeight(fFadeTime);
-				
+
 				mpEntity->Play(mlCurrentAnim,true,true);
 				mpEntity->GetAnimationState(mlCurrentAnim)->SetWeight(0.0f);
 				mpEntity->GetAnimationState(mlCurrentAnim)->FadeIn(fFadeTime);
@@ -572,7 +572,7 @@ public:
 				mpEntity->SetSkeletonPhysicsActive(true);
 				mpEntity->Stop();
 			}
-			
+
 		}
 
 		//Interact with object
@@ -583,15 +583,15 @@ public:
 			if(mBodyPicker.mpPickedBody)
 			{
 				//Get pos of start.
-                mBodyPicker.mvPos = cMath::MatrixMul(mBodyPicker.mpPickedBody->GetLocalMatrix(), 
+                mBodyPicker.mvPos = cMath::MatrixMul(mBodyPicker.mpPickedBody->GetLocalMatrix(),
 															mBodyPicker.mvLocalPos);
 
 				//Get Drag pos
 				cVector3f vDir = pCam->UnProject(vMousePos, mpLowLevelGraphics);
 				mvDragPos = pCam->GetPosition() + vDir*mBodyPicker.mfDist;
-				
+
 				//Spring testing:
-				cVector3f vForce = (mvDragPos - mBodyPicker.mvPos)*20 - 
+				cVector3f vForce = (mvDragPos - mBodyPicker.mvPos)*20 -
 									(mBodyPicker.mpPickedBody->GetLinearVelocity()*0.4f);
 
 
@@ -607,7 +607,7 @@ public:
 				mBodyPicker.Clear();
 
 				mpPhysicsWorld->CastRay(&mBodyPicker,vOrigin,vEnd,true,false,true);
-                			
+
 				if(mBodyPicker.mpPickedBody)
 				{
 					mBodyPicker.mpPickedBody->SetAutoDisable(false);
@@ -627,7 +627,7 @@ public:
 			if(mBodyPicker.mpPickedBody) mBodyPicker.mpPickedBody->SetAutoDisable(true);
 			mBodyPicker.Clear();
 		}
-		
+
 
 		//DEBUGTEST:
 		//Spring test, make the object rotate at a certain speed.
@@ -636,7 +636,7 @@ public:
 		float fG = 2.0f;
 
 		cVector3f vSpeed = mvBodies[0]->GetAngularVelocity();
-		
+
 		//float fForce = (fDestSpeed - vSpeed.Length())*fF - fG* vSpeed.Length();
 		//mvBodies[0]->AddTorque(cVector3f(0,fForce,0));
 
@@ -647,7 +647,7 @@ public:
 		//cVector3f vForce = (cVector3f(fDestSpeed,fDestSpeed,fDestSpeed) - vSpeed)*fF - vSpeed*fG;
 		//mvBodies[0]->AddTorque(vForce);*/
 	}
-	
+
 	void OnDraw()
 	{
 		if(mfFlashAlpha >0)
@@ -704,7 +704,7 @@ public:
 		mpLowLevelGraphics->SetDepthTestActive(false);
 
 		mpLowLevelGraphics->SetBlendActive(false);
-		
+
 		if(mvBodies.size()>0 && mbColliders)
 		{
 			mpLowLevelGraphics->SetDepthTestActive(false);
@@ -730,18 +730,18 @@ public:
 				//mpLowLevelGraphics->DrawSphere(pJoint->GetPivotPoint(),0.05f,cColor(1,0.2f,0.4f,1));
 			}
 		}
-		
+
 		///////////////////
 		//BEGIN TEST BEAM
-		
+
 		/*mpLowLevelGraphics->DrawSphere(mvBeams[0]->GetWorldPosition(),0.1f,cColor(1,0,1,1));
 		mpLowLevelGraphics->DrawSphere(mvBeams[0]->GetEnd()->GetWorldPosition(),0.1f,cColor(1,0,1,1));
-	
+
 		cVector3f vDir = mvBeams[0]->GetEnd()->GetWorldPosition() - mvBeams[0]->GetWorldPosition();
 		cVector3f vMid =  mvBeams[0]->GetWorldPosition() + vDir*0.5f;
 
 		mpLowLevelGraphics->DrawSphere(vMid,0.1f,cColor(0,1,1,1));
-		
+
 		mpLowLevelGraphics->DrawLine(	vMid, vMid+mvBeams[0]->GetAxis()*0.35f,
 										cColor(1,0.6,1,1));*/
 
@@ -757,7 +757,7 @@ public:
 		{
 			//cBoundingVolume *pBV = mBodyPicker.mpPickedBody->GetBV();
 			//mpLowLevelGraphics->DrawBoxMaxMin(pBV->GetMax(), pBV->GetMin(),cColor(1,0,1,1));
-			
+
 			mpLowLevelGraphics->DrawSphere(mBodyPicker.mvPos,0.1f, cColor(1,0,0,1));
 			mpLowLevelGraphics->DrawSphere(mvDragPos,0.1f, cColor(1,0,0,1));
 
@@ -772,17 +772,17 @@ public:
 		{
 			mpLowLevelGraphics->SetDepthTestActive(false);
 			mpLowLevelGraphics->SetDepthWriteActive(false);
-			
+
 			cMesh *pMesh = mpEntity->GetMesh();
 			cSkeleton *pSkeleton = pMesh->GetSkeleton();
 
 			mpLowLevelGraphics->DrawBoxMaxMin(	mpEntity->GetBoundingVolume()->GetMax(),
 												mpEntity->GetBoundingVolume()->GetMin(),
 												cColor(1,1,1,1));
-			
+
 			if(pSkeleton)
 			{
-				
+
 				for(int i=0;i < mpEntity->GetBoneStateNum(); i++)
 				{
 					cBoneState* pState = mpEntity->GetBoneState(i);
@@ -805,8 +805,8 @@ public:
 		}
 
 		mpLowLevelGraphics->DrawSphere(mpEntity->GetWorldPosition(),0.05f,cColor(1.0f,0.3f,0.3f,1));
-		
-		
+
+
 
 		//////////////////////////////////////
 		//Debug the root bone
@@ -847,7 +847,7 @@ public:
 		mpLowLevelGraphics->SetDepthWriteActive(true);
 	}
 
-	
+
 
 private:
 	cVector3f mvRot;
@@ -864,9 +864,9 @@ private:
 	cVector3f mvRay0;
 	cVector3f mvRay1;
 	cVector3f mvDragPos;
-	
+
 	iPhysicsWorld *mpPhysicsWorld;
-	
+
 	cBillboard *mpFlare;
 	cBillboard *mpFlare2;
 
@@ -910,8 +910,8 @@ int hplMain(const tString &asCommandLine)
 	SetCurrentDirectory(sDir.c_str());
 #endif
 	//CreateMessageBoxW(_W("Path"),_W("To Exe: %s"), cString::To16Char(sDir).c_str());
-	
-	//iGpuProgram::SetLogDebugInformation(true); 
+
+	//iGpuProgram::SetLogDebugInformation(true);
 
 	SetUpdateLogActive(true);
 
@@ -924,7 +924,7 @@ int hplMain(const tString &asCommandLine)
 	int lScreenH = pConfig->GetInt("Screen","Height",600);
 	bool bFullScreen = pConfig->GetBool("Screen", "FullScreen", false);
 	bool bVsync = pConfig->GetBool("Screen", "Vsync", false);
-	
+
 	//Init the game engine
 	gpGame = new cGame(new cSDLGameSetup(),lScreenW,lScreenH,32,bFullScreen,45);
 	gpGame->GetGraphics()->GetLowLevel()->SetVsyncActive(bVsync);
@@ -934,14 +934,14 @@ int hplMain(const tString &asCommandLine)
 
 	//Add file where model is
 	//iResourceBase::SetLogCreateAndDelete(true);
-	
+
 	//Add resources
 	gpGame->GetResources()->LoadResourceDirsFile("resources.cfg");
 
 	if(asCommandLine != ""){
 		gsModelFile = asCommandLine;
 		gsModelFile = cString::ReplaceCharTo(gsModelFile,"\"","");
-		
+
 		tString sModelDir = cString::GetFilePath(gsModelFile);
 		if(sModelDir != "")
 			gpGame->GetResources()->AddResourceDir(sModelDir);
@@ -952,7 +952,7 @@ int hplMain(const tString &asCommandLine)
 	//Add updates
 	cSimpleUpdate Update;
 	gpGame->GetUpdater()->AddUpdate("Default", &Update);
-	
+
 	cMVCamera cameraUpdate(gpGame,20,cVector3f(0,0,10),true);
 	gpGame->GetUpdater()->AddUpdate("Default", &cameraUpdate);
 

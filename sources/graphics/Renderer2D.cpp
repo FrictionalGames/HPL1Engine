@@ -51,12 +51,12 @@ namespace hpl {
 		mpLowLevelResources = apResources->GetLowLevel();
 		mpResources = apResources;
 		mpGraphicsDrawer = apGraphicsDrawer;
-						
-		
+
+
 		///LIGHTING SETUP
 		mpLightMap[0] = mpResources->GetTextureManager()->Create2D("PointLight2D.bmp",false);
 		if(mpLightMap[0] == NULL)FatalError("Couldn't load PointLight2D");
-		
+
 		mpLightMap[0]->SetWrapS(eTextureWrap_ClampToEdge);
 		mpLightMap[0]->SetWrapT(eTextureWrap_ClampToEdge);
 
@@ -84,7 +84,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 	// PUBLIC METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
 	////////////////////// RENDER OBJECT COMPARE ////////////////////////////
 	bool cRenderObject2DCompare::operator()(const cRenderObject2D &aObjectA,const cRenderObject2D &aObjectB)
@@ -95,16 +95,16 @@ namespace hpl {
 			return aObjectA.GetMaterial()->GetTexture(eMaterialTexture_Diffuse) >
 				aObjectB.GetMaterial()->GetTexture(eMaterialTexture_Diffuse);
 		}
-		else if(aObjectA.GetMaterial()->GetType(eMaterialRenderType_Diffuse) != 
+		else if(aObjectA.GetMaterial()->GetType(eMaterialRenderType_Diffuse) !=
 			aObjectB.GetMaterial()->GetType(eMaterialRenderType_Diffuse))
 		{
-			return aObjectA.GetMaterial()->GetType(eMaterialRenderType_Diffuse) > 
+			return aObjectA.GetMaterial()->GetType(eMaterialRenderType_Diffuse) >
 				aObjectB.GetMaterial()->GetType(eMaterialRenderType_Diffuse);
 		}
-		/*else if(aObjectA.GetMaterial()->GetType(eMaterialRenderType_Light) != 
+		/*else if(aObjectA.GetMaterial()->GetType(eMaterialRenderType_Light) !=
 		aObjectB.GetMaterial()->GetType(eMaterialRenderType_Light))
 		{
-		return aObjectA.GetMaterial()->GetType(eMaterialRenderType_Light) > 
+		return aObjectA.GetMaterial()->GetType(eMaterialRenderType_Light) >
 		aObjectB.GetMaterial()->GetType(eMaterialRenderType_Light);
 		}*/
 		/*else if(Some other thing to sort by)*/
@@ -112,9 +112,9 @@ namespace hpl {
 
 		return false;
 	}
-	
+
 	////////////////////// TRANS RENDER OBJECT COMPARE ////////////////////////////
-	
+
 	bool cRenderTransObjectCompare::operator()(const cRenderObject2D &aObjectA,const cRenderObject2D &aObjectB)
 	{
 		if(aObjectA.GetZ() != aObjectB.GetZ())
@@ -139,25 +139,25 @@ namespace hpl {
 		return false;
 	}
 	//-----------------------------------------------------------------------
-	
+
 	void cRenderer2D::RenderObject(const cRenderObject2D& aObject, unsigned int &aIdxAdd, iMaterial* pMat,
 		iLight2D* pLight, eMaterialRenderType aRenderType, cCamera2D *apCam)
 	{
 		if(aObject.GetCustomRenderer()){
-			
+
 			aObject.GetCustomRenderer()->RenderToBatch(aRenderType, aIdxAdd);
 			return;
 		}
-		
+
 		int i;
 		tVertexVec *pVtxVec = aObject.GetVertexVec();
 		tUIntVec *pIdxVec = aObject.GetIndexVec();
 		cVector3f *pTransform = aObject.GetTransform();
 		//bool bUsesLights = aObject.GetMaterial()->UsesLights();
-		
-		
+
+
 		//pMat->EditVertexes(aRenderType,apCam,pLight,pVtxVec,pTransform,aIdxAdd);
-				
+
 		if(pTransform == NULL)
 		{
 			for(i=0;i<(int)pVtxVec->size();i++)
@@ -168,7 +168,7 @@ namespace hpl {
 			for(i=0;i<(int)pVtxVec->size();i++)
 				mpLowLevelGraphics->AddVertexToBatch(&(*pVtxVec)[i], pTransform);
 		}
-		
+
 		for(i=0;i<(int)pIdxVec->size();i++)
 		{
 			mpLowLevelGraphics->AddIndexToBatch((*pIdxVec)[i]+aIdxAdd);
@@ -194,21 +194,21 @@ namespace hpl {
 		mpLowLevelGraphics->ClearScreen();
 		apCamera->SetModelViewMatrix(mpLowLevelGraphics);
 		apCamera->SetProjectionMatrix(mpLowLevelGraphics);
-		
+
 		////// BEGIN SET UP LIGHTS /////////////
-		
+
 		iGridMap2DIt* pLightIt = apMapLights->GetRectIterator(ClipRect);
-		
+
 		while(pLightIt->HasNext())
 		{
 			iLight2D* pLight = static_cast<iLight2D*>(pLightIt->Next());
 
-			if(pLight->GetDiffuseColor().r == 0 && pLight->GetDiffuseColor().g ==0 && 
+			if(pLight->GetDiffuseColor().r == 0 && pLight->GetDiffuseColor().g ==0 &&
 				pLight->GetDiffuseColor().b==0)
 			{
 				continue;
 			}
-			
+
 			if(pLight->GetAffectMaterial())
 			{
 				mlstLights.push_back(pLight);
@@ -223,7 +223,7 @@ namespace hpl {
 
 		////// END SET UP LIGHTS /////////////
 
-		
+
 		/*int lCount=0;
 		tRenderObjectSetIt TestIt = m_mapObject.begin();
 		while(TestIt != m_mapObject.end())
@@ -236,14 +236,14 @@ namespace hpl {
 			TestIt++;
 			lCount++;
 		}*/
-				
-		
+
+
 		////// BEGIN RENDER ZBUFFER ////////////
-		
+
 		mpLowLevelGraphics->SetDepthWriteActive(true);
 		mpLowLevelGraphics->SetColorWriteActive(false,false,false,false);
 		mpLowLevelGraphics->SetDepthTestFunc(eDepthTestFunc_LessOrEqual);
-		
+
 		tRenderObjectSetIt ObjectIt = m_mapObject.begin();
 		if(ObjectIt != m_mapObject.end())
 			pMat = ObjectIt->GetMaterial();
@@ -271,12 +271,12 @@ namespace hpl {
 					pMat = ObjectIt->GetMaterial();
 				}
 			}
-			while(	pMat->GetType(eMaterialRenderType_Z) == 
+			while(	pMat->GetType(eMaterialRenderType_Z) ==
 				pPrevMat->GetType(eMaterialRenderType_Z)
 				&&
 				pMat->GetTexture(eMaterialTexture_Diffuse) ==
 				pPrevMat->GetTexture(eMaterialTexture_Diffuse)
-			); 
+			);
 
 			lIdxAdd =0;
 
@@ -289,13 +289,13 @@ namespace hpl {
 
 			pPrevMat->EndRendering(eMaterialRenderType_Z);
 		}
-		
+
 		////// BEGIN RENDER ZBUFFER ////////////
 
-		
+
 
 		////// BEGIN RENDER LIGHTS////////////
-				
+
 		mpLowLevelGraphics->SetDepthWriteActive(false);
 		mpLowLevelGraphics->SetColorWriteActive(true,true,true,true);
 
@@ -314,21 +314,21 @@ namespace hpl {
 					LightIt++;
 					continue;
 			}
-			
+
 			mpLowLevelGraphics->SetDepthTestFunc(eDepthTestFunc_Equal);
 			//Set up stencil so shaodws are not drawn
 			mpLowLevelGraphics->SetStencilActive(true);
 			mpLowLevelGraphics->SetStencil(eStencilFunc_NotEqual, 0x1,0x1,
 											eStencilOp_Keep,eStencilOp_Keep,eStencilOp_Keep);
-			
+
 			///////////////////////////
 			//Set up scissortest:
 			///////////////////////////
 			/*mpLowLevelGraphics->SetScissorActive(true);
-			
+
 			cRect2f LightBB = (*LightIt)->GetBoundingBox();
-			cRect2l LightRect(	(int)floor( ( (LightBB.x - ClipRect.x)/ClipRect.w) * mpLowLevelGraphics->GetScreenSize().x), 
-				(int)floor( ( (LightBB.y - ClipRect.y)/ClipRect.h) * mpLowLevelGraphics->GetScreenSize().y), 
+			cRect2l LightRect(	(int)floor( ( (LightBB.x - ClipRect.x)/ClipRect.w) * mpLowLevelGraphics->GetScreenSize().x),
+				(int)floor( ( (LightBB.y - ClipRect.y)/ClipRect.h) * mpLowLevelGraphics->GetScreenSize().y),
 				(int)((LightBB.w/ClipRect.w)*mpLowLevelGraphics->GetScreenSize().x),
 				(int)((LightBB.h/ClipRect.h)*mpLowLevelGraphics->GetScreenSize().y)
 				);
@@ -344,7 +344,7 @@ namespace hpl {
 				LightRect.w = (int)mpLowLevelGraphics->GetScreenSize().x - LightRect.x;
 			if(LightRect.y + LightRect.h >= mpLowLevelGraphics->GetScreenSize().y)
 				LightRect.h = (int)mpLowLevelGraphics->GetScreenSize().y - LightRect.y;
-			
+
 			mpLowLevelGraphics->SetScissorRect(LightRect);*/
 
 			/////////////////////////////////
@@ -360,7 +360,7 @@ namespace hpl {
 				if(cMath::BoxCollision((*LightIt)->GetBoundingBox(), ObjectIt->GetRect())==false){
 					ObjectIt++;
 					if(ObjectIt != m_mapObject.end())pMat = ObjectIt->GetMaterial();
-					continue; 
+					continue;
 				}
 
 				if(pMat->StartRendering(eMaterialRenderType_Light, apCamera,*LightIt)==false)
@@ -390,12 +390,12 @@ namespace hpl {
 						pMat = ObjectIt->GetMaterial();
 					}
 				}
-				while(	pMat->GetType(eMaterialRenderType_Light) == 
+				while(	pMat->GetType(eMaterialRenderType_Light) ==
 					pPrevMat->GetType(eMaterialRenderType_Light)
 					&&
 					pMat->GetTexture(eMaterialTexture_Diffuse) ==
 					pPrevMat->GetTexture(eMaterialTexture_Diffuse)
-					); 
+					);
 
 				lIdxAdd =0;
 
@@ -408,7 +408,7 @@ namespace hpl {
 
 				pPrevMat->EndRendering(eMaterialRenderType_Light);
 			}
-			
+
 			//mpLowLevelGraphics->SetScissorActive(false);
 
 			ClearShadows();
@@ -417,36 +417,36 @@ namespace hpl {
 
 			LightIt++;
 		}
-		
+
 		////// END RENDER LIGHTS ////////////
 
 
 		////// BEGIN RENDER FAST LIGHTS ////////////
-		
-		
+
+
 		/*LightIt = mlstFastLights.begin();
-		
+
 		while(LightIt != mlstFastLights.end())
 		{
 			lIdxAdd = (*LightIt)->Render(mpLowLevelGraphics,lIdxAdd);
 			LightIt++;
 		}
-		
+
 		mpLowLevelGraphics->SetDepthTestFunc(eDepthTestFunc_LessOrEqual);
 		mpLowLevelGraphics->SetBlendActive(true);
 		mpLowLevelGraphics->SetBlendFunc(eBlendFunc_One,eBlendFunc_One);
-		
+
 		mpLowLevelGraphics->FlushTriBatch(eVtxBatchFlag_Position | eVtxBatchFlag_Color0,true);*/
-		
+
 		mpLowLevelGraphics->SetBlendActive(false);
-		
+
 		lIdxAdd =0;
-		
+
 		////// END RENDER FAST LIGHTS ////////////
 
 
 
-		
+
 		////// BEGIN RENDER DIFFUSE ////////////
 		mpLowLevelGraphics->SetDepthTestFunc(eDepthTestFunc_Equal);
 
@@ -464,13 +464,13 @@ namespace hpl {
 				continue;
 			}
 
-			do 
+			do
 			{
 				RenderObject(*ObjectIt,lIdxAdd,pMat,NULL,eMaterialRenderType_Diffuse,apCamera);
 				pPrevMat = pMat;
-				
+
 				ObjectIt++;//ObjectIt = m_mapObject.erase(ObjectIt);?
-				
+
 				//if(ObjectIt == m_mapObject.end()) pMat=NULL;
 				//else pMat = ObjectIt->GetMaterial();
 
@@ -482,17 +482,17 @@ namespace hpl {
 					pMat = ObjectIt->GetMaterial();
 				}
 			}
-			//while(pMat == pPrevMat); 
-			while(	pMat->GetType(eMaterialRenderType_Diffuse) == 
+			//while(pMat == pPrevMat);
+			while(	pMat->GetType(eMaterialRenderType_Diffuse) ==
 					pPrevMat->GetType(eMaterialRenderType_Diffuse)
 					&&
 					pMat->GetTexture(eMaterialTexture_Diffuse) ==
 					pPrevMat->GetTexture(eMaterialTexture_Diffuse)
 			);
 
-			
-			
-			
+
+
+
 			lIdxAdd =0;
 
 			do  {
@@ -508,12 +508,12 @@ namespace hpl {
 		////// END RENDER DIFFUSE ////////////
 
 		////// BEGIN RENDER BACKGROUND ////////////
-		
+
 		cRect2f TempRect;
 		apCamera->GetClipRect(TempRect);
 
 		mpGraphicsDrawer->DrawBackgrounds(TempRect);
-		
+
 		////// EMD RENDER BACKGROUND ////////////
 
 
@@ -522,9 +522,9 @@ namespace hpl {
 		apCamera->SetModelViewMatrix(mpLowLevelGraphics);
 		mpLowLevelGraphics->SetDepthWriteActive(false);
 		mpLowLevelGraphics->SetDepthTestFunc(eDepthTestFunc_LessOrEqual);
-		
+
 		tRenderTransObjectSetIt TransIt = m_mapTransObject.begin();
-		
+
 		if(TransIt != m_mapTransObject.end())
 			pMat = TransIt->GetMaterial();
 		lIdxAdd =0;
@@ -534,7 +534,7 @@ namespace hpl {
 			{
 				TransIt++;//TransIt = mapTransObject.erase(TransIt);?
 				if(TransIt != m_mapTransObject.end())pMat = TransIt->GetMaterial();
-				
+
 				continue;
 			}
 
@@ -547,8 +547,8 @@ namespace hpl {
 				if(TransIt == m_mapTransObject.end()) pMat=NULL;
 				else pMat = TransIt->GetMaterial();
 			}
-			while(pMat == pPrevMat); 
-			//while(pMat->GetType() == pPrevMat->GetType()); //better right?	
+			while(pMat == pPrevMat);
+			//while(pMat->GetType() == pPrevMat->GetType()); //better right?
 
 			lIdxAdd =0;
 
@@ -561,11 +561,11 @@ namespace hpl {
 
 			pPrevMat->EndRendering(eMaterialRenderType_Diffuse);
 		}
-		
+
 		////// END RENDER TRANS ////////////
 
 		////// BEGIN CLEAN UP ////////////
-		
+
 		mpLowLevelGraphics->SetStencilActive(false);
 		mpLowLevelGraphics->SetDepthWriteActive(true);
 		mpLowLevelGraphics->SetColorWriteActive(true,true,true,true);
@@ -574,12 +574,12 @@ namespace hpl {
 
 		mlstLights.clear();
 		mlstFastLights.clear();
-		m_mapObject.clear(); 
+		m_mapObject.clear();
 		m_mapTransObject.clear();
 
 		////// END CLEAN UP ////////////
 	}
-		
+
 	//-----------------------------------------------------------------------
 
 	void cRenderer2D::AddObject(cRenderObject2D &aObject)
@@ -599,7 +599,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	//////////////////////////////////////////////////////////////////////////
 	// PRIVATE METHODS
 	//////////////////////////////////////////////////////////////////////////
@@ -627,7 +627,7 @@ namespace hpl {
 		mpLowLevelGraphics->SetStencilActive(false);
 	}
 	//-----------------------------------------------------------------------
-	
+
 	/**
 	* This function renders the lightmap that is drawn on the normal gfx in a later pass
 	*/
@@ -646,7 +646,7 @@ namespace hpl {
 		//Set the stencil buffer so above shadows don't get affected by em.
 		mpLowLevelGraphics->SetStencilActive(true);
 
-		
+
 		//Not needed to clear since that is made in the GL setup, right?
 		/*if(mPrevLightRect.h<0)
 		{
@@ -658,7 +658,7 @@ namespace hpl {
 			mpLowLevelGraphics->SetClearColorActive(true);mpLowLevelGraphics->SetClearDepthActive(true);
 			mpLowLevelGraphics->SetClearStencilActive(false);
 		}*/
-		
+
 		mpLowLevelGraphics->SetStencil(eStencilFunc_Always, 0x1,0x1,
 								eStencilOp_Keep,eStencilOp_Keep,eStencilOp_Replace);
 
@@ -674,7 +674,7 @@ namespace hpl {
 		float fSourceSize = pLight->GetSourceRadius();
 		cVector3f vPos = pLight->GetWorldPosition();
 		cTile* pTile = apWorld->GetTileMap()->GetWorldTile(cVector2f(vPos.x,vPos.y),
-			apWorld->GetTileMap()->GetShadowLayer()); 
+			apWorld->GetTileMap()->GetShadowLayer());
 
 		if(pTile){
 			cTileDataNormal* pData = static_cast<cTileDataNormal*>(pTile->GetTileData());
@@ -739,7 +739,7 @@ namespace hpl {
 				//(Clipping is made in the CreateVertexes() )
 				if(cMath::BoxFit(cRect2f(vTilePos.x-fHalfTileSize,vTilePos.y-fHalfTileSize,
 					fTileSize,fTileSize),LightRect)==false){
-						bNonFit=true;					
+						bNonFit=true;
 					}
 
 					//Find points (edges) that cast shadows
@@ -747,7 +747,7 @@ namespace hpl {
 
 					//Add the shadows to the vertex batch
 					lFirstIndex = CreateVertexes(vLightPos,LightRect,fRadius,bNonFit,vTilePos,pVtxVec,
-						ShadowColor,lFirstIndex,fSourceSize);				
+						ShadowColor,lFirstIndex,fSourceSize);
 			}
 
 			hplDelete(pTileIt);
@@ -830,7 +830,7 @@ namespace hpl {
 		{
 			int point = (*apEdgeVec)[i].mlStartIndex;
 			int next = (*apEdgeVec)[i].mlEndIndex;
-						
+
 			vEdgeNormal = (*apEdgeVec)[i].mvNormal;
 			vLightNormal = avLightPos - avTilePos-(*apEdgeVec)[i].mvMidPos;
 
@@ -868,7 +868,7 @@ namespace hpl {
 			vPointPos[0].z = mfShadowZ;
 			vEndPos[0] = CalcLineEnd(vLightPos,vPointPos[0],fRadius,vSide[0],vLightPos);
 			vEndPos[0].z = mfShadowZ;
-			
+
 			vPointPos[1] = vTilePos + cVector2f((*apVtxVec)[next].pos.x,(*apVtxVec)[next].pos.y);
 			vPointPos[1].z = mfShadowZ;
 			vEndPos[1] = CalcLineEnd(vLightPos,vPointPos[1],fRadius,vSide[1],vLightPos);
@@ -885,7 +885,7 @@ namespace hpl {
 					vExtraPos.z = mfShadowZ;
 				}
 			}
-			
+
 			//If the entire object doesn't fit in the light rect we might wanna discard some points
 			if(bNonFit)
 			{
@@ -908,12 +908,12 @@ namespace hpl {
 			mpLowLevelGraphics->AddIndexToBatch(lFirstIndex+2);
 			mpLowLevelGraphics->AddIndexToBatch(lFirstIndex+3);
 
-			
+
 			//Debug:
 			/*mpLowLevelGraphics->SetDepthWriteActive(true);
 			mpLowLevelGraphics->DrawLine(cVector2f(vPointPos[0].x,vPointPos[0].y),
 				cVector2f(vEndPos[0].x,vEndPos[0].y),100,cColor(0.4));
-			
+
 			mpLowLevelGraphics->DrawLine(cVector2f(vPointPos[1].x,vPointPos[1].y),
 				cVector2f(vEndPos[1].x,vEndPos[1].y),100,cColor(0.4));
 			mpLowLevelGraphics->SetDepthWriteActive(false);*/
@@ -933,16 +933,16 @@ namespace hpl {
 				lFirstIndex+=4;
 			}
 		}
-		
+
 		return lFirstIndex;
 	}
 
 	//-----------------------------------------------------------------------
-    
+
 	/**
      *
-     * \param *avPoint 
-     * \param aRect 
+     * \param *avPoint
+     * \param aRect
      * \return True if points should be discarded, else false.
      */
     bool cRenderer2D::ClipPoints(cVector3f *avPoint,cRect2f aRect,cVector2f avPos, float afSize)

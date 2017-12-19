@@ -22,7 +22,7 @@
 #include "gui/GuiTypes.h"
 
 namespace hpl {
-	
+
 	class iGuiMaterial;
 	class iTexture;
 	class cResourceImage;
@@ -41,7 +41,7 @@ namespace hpl {
 		eGuiGfxAnimationType_Random,
 		eGuiGfxAnimationType_LastEnum
 	};
-	
+
 	class cGuiGfxAnimation
 	{
 	friend class cGuiGfxElement;
@@ -112,14 +112,14 @@ namespace hpl {
 		cResourceImage* mvImages[kMaxGuiTextures];
 
 		std::vector<cResourceImage*> mvImageBufferVec;
-		
+
 		std::vector<cGuiGfxAnimation*> mvAnimations;
 		int mlCurrentAnimation;
 		float mfCurrentFrame;
 		int mlActiveImage;
 		bool mbForwardAnim;
 		bool mbAnimationPaused;
-        
+
 		int mlTextureNum;
 
 		bool mbFlushed;

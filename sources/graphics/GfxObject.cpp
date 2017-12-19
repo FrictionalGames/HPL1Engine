@@ -37,7 +37,7 @@ namespace hpl {
 		msSourceFile = asFile;
 
 		mbIsImage = abIsImage;
-	
+
 		if(mbIsImage)
 		{
 			mvVtx = apMat->GetImage(eMaterialTexture_Diffuse)->GetVertexVecCopy(0,-1);
@@ -65,7 +65,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-		
+
 	//-----------------------------------------------------------------------
 
 }

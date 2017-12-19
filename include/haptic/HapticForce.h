@@ -42,9 +42,9 @@ namespace hpl {
 		virtual void SetFreq(float afFreq)=0;
 		virtual void SetAmp(float afAmp)=0;
 
-		virtual void SetTimeControl(bool abLoop,float afTime,float afIdleTime, 
+		virtual void SetTimeControl(bool abLoop,float afTime,float afIdleTime,
 									float afFadeInTime, float afFadeOutTime)=0;
-	
+
 	protected:
 		eHapticForceType mType;
 	};

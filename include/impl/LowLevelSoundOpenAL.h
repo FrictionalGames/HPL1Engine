@@ -24,7 +24,7 @@
 class cOAL_Effect_Reverb;
 
 
-namespace hpl 
+namespace hpl
 {
 
 	class cLowLevelSoundOpenAL : public iLowLevelSound

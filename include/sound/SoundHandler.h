@@ -25,7 +25,7 @@
 #include "physics/PhysicsWorld.h"
 
 namespace hpl {
-	
+
 	class iLowLevelSound;
 	class iSoundChannel;
 	class cWorld3D;
@@ -40,16 +40,16 @@ namespace hpl {
 	};
 
 	//----------------------------------------
-	
+
 	class cSoundRayCallback :public iPhysicsRayCallback
 	{
 	public:
 		void Reset();
 		bool HasCollided(){ return mbHasCollided;}
-		
+
 		bool BeforeIntersect(iPhysicsBody *pBody);
 		bool OnIntersect(iPhysicsBody *pBody,cPhysicsRayParams *apParams);
-		
+
 	private:
 		bool mbHasCollided;
 		int mlCount;
@@ -68,9 +68,9 @@ namespace hpl {
 		cSoundEntry() : mfNormalVolume(1), mfNormalVolumeFadeDest(1),
 						mfNormalVolumeMul(1), mfNormalVolumeFadeSpeed(0), mbStream(false),
 						mlCount(0){}
-		
+
 		void Update(float afTimeStep);
-		
+
 		tString msName;
 		iSoundChannel* mpSound;
 
@@ -78,7 +78,7 @@ namespace hpl {
 		float mfNormalVolumeMul;
 		float mfNormalVolumeFadeDest;
 		float mfNormalVolumeFadeSpeed;
-				
+
 		float mfNormalSpeed;
 
 		bool mbFirstTime;
@@ -93,19 +93,19 @@ namespace hpl {
 
 		eSoundDest mEffectType;
 	};
-	
+
 	typedef std::list<cSoundEntry> tSoundEntryList;
 	typedef tSoundEntryList::iterator tSoundEntryListIt;
 
 	typedef cSTLIterator<cSoundEntry,tSoundEntryList,tSoundEntryListIt> tSoundEntryIterator;
 
-	
+
 	////////////////////////////////////////////////////
 	//////////// SOUND HANDLER ///////////////////////
 	////////////////////////////////////////////////////
-	
+
 	//----------------------------------------
-	
+
 	typedef std::map<tString, int> tPlayedSoundNumMap;
 	typedef tPlayedSoundNumMap::iterator tPlayedSoundNumMapIt;
 
@@ -121,11 +121,11 @@ namespace hpl {
 		cSoundHandler(iLowLevelSound* apLowLevelSound, cResources* apResources);
 		~cSoundHandler();
 
-		iSoundChannel* Play(const tString& asName,bool abLoop,float afVolume,const cVector3f& avPos,  
+		iSoundChannel* Play(const tString& asName,bool abLoop,float afVolume,const cVector3f& avPos,
 				float afMinDist,float afMaxDist, eSoundDest mType, bool abRelative, bool ab3D = false,
 				int alPriorityModifier=0,eSoundDest aEffectType=eSoundDest_World);
-		
-		iSoundChannel* Play3D(const tString& asName,bool abLoop,float afVolume,const cVector3f& avPos,  
+
+		iSoundChannel* Play3D(const tString& asName,bool abLoop,float afVolume,const cVector3f& avPos,
 			float afMinDist,float afMaxDist, eSoundDest mType, bool abRelative,int alPriorityModifier=0,
 			eSoundDest aEffectType=eSoundDest_World)
 		{
@@ -141,21 +141,21 @@ namespace hpl {
 
 		void SetSilent(bool abX){ mbSilent = abX; }
 		bool GetSilent(){ return mbSilent; }
-		
+
 		bool Stop(const tString& asName);
 		bool StopAllExcept(const tString& asName);
-		
+
 		void StopAll(tFlag mTypes);
 		void PauseAll(tFlag mTypes);
 		void ResumeAll(tFlag mTypes);
-		
+
 		bool IsPlaying(const tString& asName);
 
 		bool IsValid(iSoundChannel* apChannel);
 		bool IsValidId(iSoundChannel* apChannel, int alId);
 
 		void Update(float afTimeStep);
-		
+
 		void SetSpeed(float afSpeed,float afRate,tFlag mTypes);
 		void SetVolume(float afVolume, float afRate, tFlag mTypes);
 
@@ -197,7 +197,7 @@ namespace hpl {
 		cSoundEntry* GetEntry(const tString& asName);
 		bool UpdateEntry(cSoundEntry* apEntry,float afTimeStep, tFlag aTypes);
 		void UpdateDistanceVolume3D(cSoundEntry* apEntry,float afTimeStep,bool abFade,tFlag aTypes);
-				
+
 		int mlCount;
 		int mlIdCount;
 	};

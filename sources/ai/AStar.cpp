@@ -100,13 +100,13 @@ namespace hpl {
 
 		//Set goal position
 		mvGoal = avGoal;
-		
+
 		float fMaxHeight = mpContainer->GetMaxHeight()*1.5f;
 
 		////////////////////////////////////////////////
 		//Find nodes reachable from the start and goal position (use double 2*2 distance)
 		float fMaxDist = mpContainer->GetMaxEdgeDistance()*2; //float fMaxDist = mpContainer->GetMaxEdgeDistance()*mpContainer->GetMaxEdgeDistance()*4;
-		
+
 		/////////////////////
 		//Check with Start
 		//Log(" Get Start\n");
@@ -138,7 +138,7 @@ namespace hpl {
 		{
 			cAINode *pAINode = goalNodeIt.Next();
 			//Log("Check node: %s\n",pAINode->GetName().c_str());
-			
+
 			float fHeight = fabs(avGoal.y - pAINode->GetPosition().y);
 			float fDist = cMath::Vector3Dist(avGoal,pAINode->GetPosition()); //fDist = cMath::Vector3DistSqr(avGoal,pAINode->GetPosition());
 			if(fDist < fMaxDist && fHeight <= fMaxHeight)
@@ -151,7 +151,7 @@ namespace hpl {
 			}
 		}
 		//Log(" Found goal\n");
-		
+
 		/*for(int i=0; i<mpContainer->GetNodeNum(); ++i)
 		{
 			cAINode *pAINode = mpContainer->GetNode(i);
@@ -311,7 +311,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	float cAStarHandler::Cost(float afDistance, cAINode *apAINode, cAStarNode *apParent)
 	{
 		if(apParent)

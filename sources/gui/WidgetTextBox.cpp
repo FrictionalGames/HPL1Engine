@@ -76,7 +76,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	void cWidgetTextBox::SetMaxTextLength(int alLength)
 	{
 		if(mlMaxCharacters == alLength) return;
@@ -86,7 +86,7 @@ namespace hpl {
 		if(mlMaxCharacters >=0 && (int)msText.size() > mlMaxCharacters)
 		{
 			SetText(cString::SubW(msText,0,mlMaxCharacters));
-			
+
 			if(mlSelectedTextEnd >= mlMaxCharacters) mlSelectedTextEnd = mlMaxCharacters-1;
 			if(mlMarkerCharPos >= mlMaxCharacters) mlMarkerCharPos = mlMaxCharacters-1;
 
@@ -98,7 +98,7 @@ namespace hpl {
 
 	cVector2f cWidgetTextBox::GetBackgroundSize()
 	{
-		return cVector2f(mvSize.x - mvGfxCorners[0]->GetActiveSize().x - 
+		return cVector2f(mvSize.x - mvGfxCorners[0]->GetActiveSize().x -
 										mvGfxCorners[1]->GetActiveSize().x,
 						mvSize.y - mvGfxCorners[0]->GetActiveSize().y -
 									mvGfxCorners[2]->GetActiveSize().y);
@@ -129,7 +129,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 	// PROTECTED METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
 
 	int cWidgetTextBox::GetLastCharInSize(int alStartPos, float afMaxSize, float afLengthAdd)
@@ -155,7 +155,7 @@ namespace hpl {
 
 		return lCharPos;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	int cWidgetTextBox::GetFirstCharInSize(int alStartPos, float afMaxSize, float afLengthAdd)
@@ -187,7 +187,7 @@ namespace hpl {
 
 	int cWidgetTextBox::WorldToCharPos(const cVector2f &avWorldPos)
 	{
-		float fTextPos =	WorldToLocalPosition(avWorldPos).x - 
+		float fTextPos =	WorldToLocalPosition(avWorldPos).x -
 							mvGfxCorners[0]->GetActiveSize().x + 3;
 
 		int lMarkerCharPos;
@@ -237,7 +237,7 @@ namespace hpl {
 		}
 
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cWidgetTextBox::OnChangeSize()
@@ -260,7 +260,7 @@ namespace hpl {
 		if(msText == _W(""))
 			mlVisibleCharSize = 0;
 		else
-			mlVisibleCharSize = GetLastCharInSize(	mlFirstVisibleChar,mfTextMaxSize,0) - 
+			mlVisibleCharSize = GetLastCharInSize(	mlFirstVisibleChar,mfTextMaxSize,0) -
 													mlFirstVisibleChar;
 
 		if(mlMaxCharacters >=0 && (int)msText.size() > mlMaxCharacters)
@@ -271,7 +271,7 @@ namespace hpl {
 			if(mlMarkerCharPos >= mlMaxCharacters) mlMarkerCharPos = mlMaxCharacters-1;
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cWidgetTextBox::OnLoadGraphics()
@@ -319,27 +319,27 @@ namespace hpl {
 
 				float fPos = fSelectEnd < fMarkerPos ? fSelectEnd : fMarkerPos;
 				float fEnd = fSelectEnd > fMarkerPos ? fSelectEnd : fMarkerPos;
-				
+
 				if(fPos <0)fPos =0;
 				if(fEnd > mfTextMaxSize) fEnd = mfTextMaxSize;
-				
+
 				float fSize = fEnd - fPos;
 
-				mpSet->DrawGfx( mpGfxSelectedTextBack, GetGlobalPosition() + 
+				mpSet->DrawGfx( mpGfxSelectedTextBack, GetGlobalPosition() +
 								vTextAdd + cVector3f(fPos,0,0.2f),
 								cVector2f(fSize,mvDefaultFontSize.y));
 			}
 		}
 
-		
+
 		////////////////////////////////
 		// Background and Borders
-		DrawBordersAndCorners(	mpGfxBackground, mvGfxBorders, mvGfxCorners, 
+		DrawBordersAndCorners(	mpGfxBackground, mvGfxBorders, mvGfxCorners,
 								GetGlobalPosition(), mvSize);
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	bool cWidgetTextBox::OnMouseMove(cGuiMessageData &aData)
 	{
 		if(mbPressed)
@@ -362,7 +362,7 @@ namespace hpl {
 		if((aData.mlVal & eGuiMouseButton_Left) == 0) return true;
 		if(mbCanEdit==false) return true;
 
-		SetMarkerPos(WorldToCharPos(aData.mvPos));	
+		SetMarkerPos(WorldToCharPos(aData.mvPos));
 		mlSelectedTextEnd = -1;
 		mbPressed = true;
 		return true;
@@ -413,9 +413,9 @@ namespace hpl {
 				break;
 			}
 		}
-		
+
 		mbPressed = false;
-		
+
 		return true;
 	}
 
@@ -424,12 +424,12 @@ namespace hpl {
 	bool cWidgetTextBox::OnMouseEnter(cGuiMessageData &aData)
 	{
 		mpSet->SetCurrentPointer(mpSkin->GetGfx(eGuiSkinGfx_PointerText));
-		
+
 		return true;
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	bool cWidgetTextBox::OnMouseLeave(cGuiMessageData &aData)
 	{
 		mpSet->SetCurrentPointer(mpSkin->GetGfx(eGuiSkinGfx_PointerNormal));
@@ -448,12 +448,12 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	bool cWidgetTextBox::OnKeyPress(cGuiMessageData &aData)
 	{
 		if(mbCanEdit==false) return true;
 		if(mlMarkerCharPos <0) return false;
-		
+
 		eKey key = aData.mKeyPress.mKey;
 		int mod = aData.mKeyPress.mlModifier;
 
@@ -466,7 +466,7 @@ namespace hpl {
 			int lStart = mlMarkerCharPos < mlSelectedTextEnd ? mlMarkerCharPos : mlSelectedTextEnd;
 			int lEnd = mlMarkerCharPos > mlSelectedTextEnd ? mlMarkerCharPos : mlSelectedTextEnd;
 			int lSelectSize = lEnd - lStart;
-			
+
 			/////////////////////////////
 			// Select all
 			if(key == eKey_a)
@@ -497,10 +497,10 @@ namespace hpl {
 			else if(key == eKey_v)
 			{
 				tWString sExtra = LoadTextFromClipboard();
-				
+
 				if(mlSelectedTextEnd <0)
 				{
-					if(	mlMaxCharacters ==-1 || 
+					if(	mlMaxCharacters ==-1 ||
 						(int)msText.size() + (int)sExtra.size() <= mlMaxCharacters)
 					{
 						SetText(cString::SubW(msText,0,	mlMarkerCharPos)+ sExtra +
@@ -515,7 +515,7 @@ namespace hpl {
 						(int)sExtra.size() <= lSelectSize ||
 						(int)sExtra.size() + (int)msText.size() - lSelectSize <= mlMaxCharacters)
 					{
-						SetText(cString::SubW(msText,0,	lStart) + sExtra + 
+						SetText(cString::SubW(msText,0,	lStart) + sExtra +
 								cString::SubW(msText,lEnd));
 
 						mlSelectedTextEnd = -1;
@@ -525,12 +525,12 @@ namespace hpl {
 			}
 		}
 		//////////////////////////////
-		//Arrow keys		
+		//Arrow keys
 		else if(key == eKey_LEFT || key == eKey_RIGHT)
 		{
 			if(mod & eKeyModifier_SHIFT)
 			{
-				if(mlSelectedTextEnd==-1) 
+				if(mlSelectedTextEnd==-1)
 					mlSelectedTextEnd = mlMarkerCharPos;
 
 				if(key == eKey_LEFT)	SetMarkerPos(mlMarkerCharPos-1);
@@ -562,12 +562,12 @@ namespace hpl {
 			{
 				if(key == eKey_DELETE)
 				{
-					SetText(cString::SubW(msText,0,	mlMarkerCharPos)+ 
+					SetText(cString::SubW(msText,0,	mlMarkerCharPos)+
 							cString::SubW(msText,mlMarkerCharPos+1));
 				}
 				else
 				{
-					SetText(cString::SubW(msText,0,	mlMarkerCharPos-1)+ 
+					SetText(cString::SubW(msText,0,	mlMarkerCharPos-1)+
 							cString::SubW(msText,mlMarkerCharPos));
 					SetMarkerPos(mlMarkerCharPos-1);
 				}
@@ -603,12 +603,12 @@ namespace hpl {
 		}
 		//////////////////////////////////
 		// Character
-		else 
+		else
 		{
 			int lFirstFontChar = mpDefaultFontType->GetFirstChar();
 			int lLastFontChar = mpDefaultFontType->GetLastChar();
 			wchar_t unicode = aData.mKeyPress.mlUnicode;
-	        
+
 			//Check so press is valid
 			if(	unicode >= lFirstFontChar && unicode <= lLastFontChar &&
 				mpDefaultFontType->GetGlyph(unicode - lFirstFontChar))
@@ -627,8 +627,8 @@ namespace hpl {
 				{
 					int lStart = mlMarkerCharPos < mlSelectedTextEnd ? mlMarkerCharPos : mlSelectedTextEnd;
 					int lEnd = mlMarkerCharPos > mlSelectedTextEnd ? mlMarkerCharPos : mlSelectedTextEnd;
-					
-					SetText(cString::SubW(msText,0,	lStart) + unicode + 
+
+					SetText(cString::SubW(msText,0,	lStart) + unicode +
 							cString::SubW(msText,lEnd));
 
 					mlSelectedTextEnd = -1;
@@ -637,8 +637,8 @@ namespace hpl {
 				}
 			}
 		}
-		
-		
+
+
 		return true;
 	}
 

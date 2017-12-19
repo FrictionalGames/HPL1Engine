@@ -108,7 +108,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 	// PUBLIC METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
 
 	void cMaterial_Water::Update(float afTimeStep)
@@ -117,7 +117,7 @@ namespace hpl {
 		gWaterProgramSetup.mfTime = mfTime;
 		gFogWaterProgramSetup.mfTime = mfTime;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	iGpuProgram* cMaterial_Water::GetVertexProgram(eMaterialRenderType aType, int alPass, iLight3D *apLight)
@@ -182,7 +182,7 @@ namespace hpl {
 			if(alUnit == 0)
 				return mvTexture[eMaterialTexture_Diffuse];
 		}
-		
+
 		return NULL;
 	}
 
@@ -192,7 +192,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	bool cMaterial_Water::UsesType(eMaterialRenderType aType)
 	{
 		if(aType == eMaterialRenderType_Diffuse) return true;
@@ -200,16 +200,16 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	tTextureTypeList cMaterial_Water::GetTextureTypes()
-	{ 
+	{
 		tTextureTypeList vTypes;
 		vTypes.push_back(cTextureType("",eMaterialTexture_Diffuse));
 		vTypes.push_back(cTextureType("",eMaterialTexture_Specular));
-		
+
 		if(mpRefractVtxProg && mpRefractFragProg)
 			vTypes.push_back(cTextureType("",eMaterialTexture_Refraction));
-		
+
 		return vTypes;
 	}
 

@@ -29,14 +29,14 @@
 class TiXmlElement;
 
 namespace hpl {
-	
+
 	#define kMaxImageEntityFrameWidth (1024)
 
 	class cResources;
 	class cGraphics;
 	class iMaterial;
 	class cMesh2D;
-	
+
 	class cImageFrame
 	{
 	public:
@@ -58,10 +58,10 @@ namespace hpl {
 		bool mbCollidable;
 		tString msSound;
 	};
-	
+
 	typedef std::map<tString,cImageAnimation> tImageAnimationMap;
 	typedef tImageAnimationMap::iterator tImageAnimationMapIt;
-	
+
 	class cImageEntityData : public iResourceBase
 	{
 	public:
@@ -89,7 +89,7 @@ namespace hpl {
 		const tString& GetDataName(){ return msDataName;}
 
 		cVector2f GetImageSize(){ return mvImageSize;}
-		
+
 		cMesh2D* GetCollideMesh(){ return mpCollideMesh;}
 
 		bool IsCollidable(){ return mbCollidable;}
@@ -117,7 +117,7 @@ namespace hpl {
 		tImageFrameVec mvImageFrames;
 		tImageAnimationMap m_mapAnimations;
 
-		
+
 		void GetFrameNum(TiXmlElement *apElement);
 	};
 

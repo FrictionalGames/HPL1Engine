@@ -33,7 +33,7 @@ namespace hpl {
 		~cCamera2D();
 
 		const cVector3f& GetPosition()const{return mvPosition;}
-		cVector3f GetEyePosition(); 
+		cVector3f GetEyePosition();
 		void SetPosition(cVector3f avPos){mvPosition = avPos;}
 
 		void SetXY(cVector2f avPos){mvPosition.x=avPos.x;mvPosition.y=avPos.y;}

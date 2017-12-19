@@ -42,7 +42,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	void cFrustum::SetViewProjMatrix(const cMatrixf& a_mtxProj, const cMatrixf& a_mtxView,
 									float afFarPlane, float afNearPlane,float afFOV,float afAspect,
 									const cVector3f &avOrigin, bool abInfFarPlane)
@@ -58,24 +58,24 @@ namespace hpl {
 		mvOrigin = avOrigin;
 
 		mbInfFarPlane = abInfFarPlane;
-		
+
 		//This could be made more accurate.
 		mOriginBV.SetSize(afNearPlane*2);
 		mOriginBV.SetPosition(mvOrigin);
-		
+
 		UpdatePlanes();
 		UpdateSphere();
 		UpdateEndPoints();
 		UpdateBV();
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cPlanef cFrustum::GetPlane(eFrustumPlane aType)
 	{
 		return mPlane[aType];
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	eFrustumCollision cFrustum::CollideBoundingVolume(cBoundingVolume* aBV)
@@ -85,10 +85,10 @@ namespace hpl {
 		{
 			return eFrustumCollision_Outside;
 		}
-		
+
 		//Do a simple sphere collide test
 		eFrustumCollision ret = CollideBVSphere(aBV);
-		
+
 		//If there was an intersection, collide with the AABB
 		if(ret == eFrustumCollision_Intersect)
 		{
@@ -99,7 +99,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	bool cFrustum::CheckLineIntersection(const cVector3f& avPoint1,const cVector3f& avPoint2)
 	{
 		return cMath::CheckFrustumLineIntersection(&mPlane[0],avPoint1,avPoint2,3);
@@ -119,10 +119,10 @@ namespace hpl {
 		if(CheckQuadMeshIntersection(&apVolume->mvPoints)){
 			return true;
 		}
-		
+
 		//The first shadow plane is the near plane which we can skip.
 		int lPairNum = (apVolume->mlPlaneCount-1)/2;
-		
+
 		//Check with volume planes.
 		for(int i=0; i<4; ++i)
 		{
@@ -135,13 +135,13 @@ namespace hpl {
 
 		return false;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	//////////////////////////////////////////////////////////////////////////
 	// PRIVATE METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
 
 	eFrustumCollision cFrustum::CollideFustrumSphere(cBoundingVolume* aBV)
@@ -175,12 +175,12 @@ namespace hpl {
 				return eFrustumCollision_Intersect;
 			}
 		}
-		
+
 		return eFrustumCollision_Inside;
 	}
 	//-----------------------------------------------------------------------
 
-	
+
 	eFrustumCollision cFrustum::CollideBVAABB(cBoundingVolume* aBV)
 	{
 		cVector3f vMax = aBV->GetMax();
@@ -192,7 +192,7 @@ namespace hpl {
 				cVector3f(vMax.x,vMax.y,vMin.z),
 				cVector3f(vMax.x,vMin.y,vMax.z),
 				cVector3f(vMax.x,vMin.y,vMin.z),
-				
+
 				cVector3f(vMin.x,vMax.y,vMax.z),
 				cVector3f(vMin.x,vMax.y,vMin.z),
 				cVector3f(vMin.x,vMin.y,vMax.z),
@@ -201,7 +201,7 @@ namespace hpl {
 				//The "fuling", add center as well...
 				aBV->GetPosition()
 		};
-		
+
 		int lTotalIn =0;
 
 		int lPlanes = 6;
@@ -233,7 +233,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	void cFrustum::UpdateSphere()
 	{
 		// calculate the radius of the frustum sphere
@@ -256,15 +256,15 @@ namespace hpl {
 
 		// get the look vector of the camera from the view matrix
 		cVector3f vLookVector = m_mtxModelView.GetForward() * -1;
-		
+
 		// calculate the center of the sphere
 		cVector3f vCenter = (mvOrigin) + (vLookVector * (fViewLen * 0.5f + mfNearPlane));
-		
+
 		mBoundingSphere = cSpheref(vCenter,fRadius);
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	void cFrustum::UpdatePlanes()
 	{
 		//Left
@@ -272,36 +272,36 @@ namespace hpl {
 												m_mtxViewProj.m[3][1] + m_mtxViewProj.m[0][1],
 												m_mtxViewProj.m[3][2] + m_mtxViewProj.m[0][2],
 												m_mtxViewProj.m[3][3] + m_mtxViewProj.m[0][3]);
-		
+
 		//Right
 		mPlane[eFrustumPlane_Right] = cPlanef(	m_mtxViewProj.m[3][0] - m_mtxViewProj.m[0][0],
-												m_mtxViewProj.m[3][1] - m_mtxViewProj.m[0][1],	
+												m_mtxViewProj.m[3][1] - m_mtxViewProj.m[0][1],
 												m_mtxViewProj.m[3][2] - m_mtxViewProj.m[0][2],
 												m_mtxViewProj.m[3][3] - m_mtxViewProj.m[0][3]);
 
 		//Bottom
 		mPlane[eFrustumPlane_Bottom] = cPlanef(	m_mtxViewProj.m[3][0] + m_mtxViewProj.m[1][0],
-												m_mtxViewProj.m[3][1] + m_mtxViewProj.m[1][1],	
+												m_mtxViewProj.m[3][1] + m_mtxViewProj.m[1][1],
 												m_mtxViewProj.m[3][2] + m_mtxViewProj.m[1][2],
 												m_mtxViewProj.m[3][3] + m_mtxViewProj.m[1][3]);
-		
+
 		//Top
 		mPlane[eFrustumPlane_Top] = cPlanef(	m_mtxViewProj.m[3][0] - m_mtxViewProj.m[1][0],
-												m_mtxViewProj.m[3][1] - m_mtxViewProj.m[1][1],	
+												m_mtxViewProj.m[3][1] - m_mtxViewProj.m[1][1],
 												m_mtxViewProj.m[3][2] - m_mtxViewProj.m[1][2],
 												m_mtxViewProj.m[3][3] - m_mtxViewProj.m[1][3]);
-				
+
 		//Near
 		mPlane[eFrustumPlane_Near] = cPlanef(	m_mtxViewProj.m[3][0] + m_mtxViewProj.m[2][0],
-												m_mtxViewProj.m[3][1] + m_mtxViewProj.m[2][1],	
+												m_mtxViewProj.m[3][1] + m_mtxViewProj.m[2][1],
 												m_mtxViewProj.m[3][2] + m_mtxViewProj.m[2][2],
 												m_mtxViewProj.m[3][3] + m_mtxViewProj.m[2][3]);
 		//Far
 		mPlane[eFrustumPlane_Far] = cPlanef(	m_mtxViewProj.m[3][0] - m_mtxViewProj.m[2][0],
-												m_mtxViewProj.m[3][1] - m_mtxViewProj.m[2][1],	
+												m_mtxViewProj.m[3][1] - m_mtxViewProj.m[2][1],
 												m_mtxViewProj.m[3][2] - m_mtxViewProj.m[2][2],
 												m_mtxViewProj.m[3][3] - m_mtxViewProj.m[2][3]);
-		
+
 		for(int i=0;i<6;i++)
 		{
 			mPlane[i].Normalise();
@@ -326,12 +326,12 @@ namespace hpl {
 
 		//cVector3f vRightDir = cMath::MatrixMul(cMath::MatrixQuaternion(cQuaternion(fYAngle,vUp)), vForward);
 		//cVector3f vLeftDir = cMath::MatrixMul(cMath::MatrixQuaternion(cQuaternion(-fYAngle,vUp)), vForward);
-		
+
 		vForward = vForward *-1;
 
 		float fRightAdd = sin(fYAngle);
 		//float fUpAdd = sin(fXAngle);
-		
+
 		cVector3f vVec0 = vUpDir + vRight * fRightAdd;
 		cVector3f vVec2 = vDownDir + vRight * fRightAdd;
 		cVector3f vVec3 = vDownDir + vRight * -fRightAdd;
@@ -341,7 +341,7 @@ namespace hpl {
 		cVector3f vVec1 = vRightDir;//cMath::Vector3Normalize(vUpDir+vLeftDir);
 		cVector3f vVec2 = vDownDir;//cMath::Vector3Normalize(vDownDir+vLeftDir);
 		cVector3f vVec3 = vLeftDir;//cMath::Vector3Normalize(vDownDir+vRightDir);*/
-		
+
 		//angles between forward and the vectors
 		float fAngle0 = cMath::Vector3Angle(vVec0, vForward);
 		float fAngle1 = cMath::Vector3Angle(vVec1, vForward);
@@ -353,7 +353,7 @@ namespace hpl {
 		mvEndPoints[1] = mvOrigin + vVec1 * (mfFarPlane/cos(fAngle1));
 		mvEndPoints[2] = mvOrigin + vVec2 * (mfFarPlane/cos(fAngle2));
 		mvEndPoints[3] = mvOrigin + vVec3 * (mfFarPlane/cos(fAngle3));
-				
+
 		/*mvEndPoints[0] = mvOrigin + (vUpDir+vRightDir)	 * mfFarPlane *-1;
 		mvEndPoints[1] = mvOrigin + (vUpDir+vLeftDir)	 * mfFarPlane*-1;
 		mvEndPoints[2] = mvOrigin + (vDownDir+vRightDir)* mfFarPlane*-1;
@@ -381,7 +381,7 @@ namespace hpl {
 
 		mBoundingVolume.SetLocalMinMax(vMin, vMax);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	const cVector3f& cFrustum::GetOrigin()
@@ -403,7 +403,7 @@ namespace hpl {
 		return m_mtxModelView.GetForward();
 	}
 	//-----------------------------------------------------------------------
-	
+
 	void cFrustum::Draw(iLowLevelGraphics *apLowLevelGraphics)
 	{
 		apLowLevelGraphics->DrawLine(mvOrigin, mvEndPoints[0],cColor(1,1,1,1));

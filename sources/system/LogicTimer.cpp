@@ -31,7 +31,7 @@ namespace hpl {
 	{
 		mlMaxUpdates = alUpdatesPerSec;
 		mlUpdateCount =0;
-		
+
 		mpLowLevelSystem = apLowLevelSystem;
 
 		SetUpdatesPerSec(alUpdatesPerSec);
@@ -69,7 +69,7 @@ namespace hpl {
 		}
 		return false;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cLogicTimer::EndUpdateLoop()
@@ -102,7 +102,7 @@ namespace hpl {
 	{
 		return (int)(1000.0 / ((double)mlLocalTimeAdd));
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	float cLogicTimer::GetStepSize()
@@ -111,7 +111,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	//////////////////////////////////////////////////////////////////////////
 	// PRIVATE METHODS
 	//////////////////////////////////////////////////////////////////////////

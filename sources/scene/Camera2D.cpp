@@ -61,9 +61,9 @@ namespace hpl {
 		vEyePos.z = 100;
 		return vEyePos;
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	void cCamera2D::GetClipRect(cRect2f &aRect)
 	{
 		float fDiv = 1;
@@ -80,7 +80,7 @@ namespace hpl {
 
 		float lX = mvPosition.x - lW/2;
 		float lY = mvPosition.y - lH/2;
-		
+
 		aRect.x = lX;
 		aRect.y = lY;
 		aRect.w = lW;
@@ -96,8 +96,8 @@ namespace hpl {
 		cRect2f ClipRect;
 		GetClipRect(ClipRect);
 		cVector2f vVirtSize = apLowLevel->GetVirtualSize();
-		cVector3f vPos(-(ClipRect.x),-(ClipRect.y),0); 
-		cVector3f vScale(vVirtSize.x/ClipRect.w, vVirtSize.y/ClipRect.h, 1 );		
+		cVector3f vPos(-(ClipRect.x),-(ClipRect.y),0);
+		cVector3f vScale(vVirtSize.x/ClipRect.w, vVirtSize.y/ClipRect.h, 1 );
 
 		apLowLevel->ScaleMatrix(eMatrix_ModelView,vScale);
 		apLowLevel->TranslateMatrix(eMatrix_ModelView,vPos);

@@ -38,7 +38,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	cSoundHandler::cSoundHandler(iLowLevelSound* apLowLevelSound, cResources* apResources)
 	{
 		mpLowLevelSound = apLowLevelSound;
@@ -60,7 +60,7 @@ namespace hpl {
 		mAffectedBySpeed = eSoundDest_World;
 		mAffectedByVolume = eSoundDest_World;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cSoundHandler::~cSoundHandler()
@@ -72,7 +72,7 @@ namespace hpl {
 			hplDelete(it->mpSound);
 			it = mlstGuiSounds.erase(it);
 		}
-		
+
 		it = mlstWorldSounds.begin();
 		while(it != mlstWorldSounds.end())	{
 			it->mpSound->Stop();
@@ -91,7 +91,7 @@ namespace hpl {
 	{
 		mbHasCollided = false;
 	}
-	
+
 	bool cSoundRayCallback::BeforeIntersect(iPhysicsBody *pBody)
 	{
 		if(pBody->GetBlocksSound()) return true;
@@ -103,7 +103,7 @@ namespace hpl {
 		mbHasCollided = true;
 		return false;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cSoundEntry::Update(float afTimeStep)
@@ -113,7 +113,7 @@ namespace hpl {
 			//Log("speed %s: %f\n", msName.c_str(),mfNormalVolumeFadeSpeed);
 
 			mfNormalVolumeMul += mfNormalVolumeFadeSpeed*afTimeStep;
-			
+
 			if(mfNormalVolumeMul <0) mfNormalVolumeMul =0;
 			if(mfNormalVolumeMul >1) mfNormalVolumeMul =1;
 
@@ -126,14 +126,14 @@ namespace hpl {
 			}
 			else
 			{
-				if(mfNormalVolumeMul >= mfNormalVolumeFadeDest) 
+				if(mfNormalVolumeMul >= mfNormalVolumeFadeDest)
 				{
 					mfNormalVolumeMul = mfNormalVolumeFadeDest;
 				}
 			}
 		}
-		
-		if(std::abs(mfNormalVolumeFadeDest) < 0.001f && std::abs(mfNormalVolumeMul) < 0.001f 
+
+		if(std::abs(mfNormalVolumeFadeDest) < 0.001f && std::abs(mfNormalVolumeMul) < 0.001f
 			&& mfNormalVolumeFadeSpeed<=0)
 		{
 			mpSound->Stop();
@@ -142,7 +142,7 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	iSoundChannel* cSoundHandler::Play(const tString& asName,bool abLoop,float afVolume,const cVector3f& avPos,  
+	iSoundChannel* cSoundHandler::Play(const tString& asName,bool abLoop,float afVolume,const cVector3f& avPos,
 		float afMinDist,float afMaxDist, eSoundDest mType,bool abRelative, bool ab3D,int alPriorityModifier,
 		eSoundDest aEffectType)
 	{
@@ -162,15 +162,15 @@ namespace hpl {
 			else
 				lPrio += 100;
 		}
-		
+
 		//Create sound channel
 		iSoundChannel *pSound = CreateChannel(asName,lPrio);
 		if(pSound == NULL){
 			Warning("Can't find sound '%s' (may also be due too many sounds playing).\n",asName.c_str());
 			return NULL;
 		}
-		
-		//Set up channel		
+
+		//Set up channel
 		pSound->SetLooping(abLoop);
 		pSound->SetMinDistance(afMinDist);
 		pSound->SetMaxDistance(afMaxDist);
@@ -191,13 +191,13 @@ namespace hpl {
 
 			cVector3f vPos = cMath::MatrixMul(mpLowLevelSound->GetListenerMatrix(), avPos);
 			pSound->SetPosition(vPos);
-			
+
 			//Needed?
 //			pSound->SetPosition(mpLowLevelSound->GetListenerPosition() +
-//								pSound->GetRelPosition());				
+//								pSound->GetRelPosition());
 		}
 		else {
-			
+
 			pSound->SetPositionRelative(abRelative);
 			if(abRelative)
 			{
@@ -207,13 +207,13 @@ namespace hpl {
 			}
 			else
 			{
-				pSound->SetPosition(avPos);							
+				pSound->SetPosition(avPos);
 			}
 		}
 
 		pSound->SetId(mlIdCount);
 
-		cSoundEntry Entry; 
+		cSoundEntry Entry;
 		Entry.mpSound = pSound;
 		Entry.mfNormalVolume = afVolume;
 		Entry.msName = asName;
@@ -250,7 +250,7 @@ namespace hpl {
 		{
 			pSound->Play();
 		}
-	
+
 		if(mType == eSoundDest_Gui)
 		{
 			mlstGuiSounds.push_back(Entry);
@@ -263,7 +263,7 @@ namespace hpl {
 		//Log("Starting sound '%s' prio: %d\n",	pSound->GetData()->GetName().c_str(),
 		//										pSound->GetPriority());
 
-				
+
 		mlIdCount++;
 
 		return pSound;
@@ -271,7 +271,7 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	iSoundChannel* cSoundHandler::PlayGui(const tString& asName,bool abLoop,float afVolume,const cVector3f& avPos, 
+	iSoundChannel* cSoundHandler::PlayGui(const tString& asName,bool abLoop,float afVolume,const cVector3f& avPos,
 											eSoundDest aEffectType)
 	{
 		return Play(asName,abLoop,afVolume,avPos,1.0f,1000.0f,eSoundDest_Gui,true,false,0, aEffectType);
@@ -282,7 +282,7 @@ namespace hpl {
 	iSoundChannel* cSoundHandler::PlayStream(const tString& asFileName,bool abLoop,float afVolume,bool ab3D, eSoundDest aEffectType)
 	{
 		if(asFileName == "")return NULL;
-		
+
 		iSoundData* pData = mpResources->GetSoundManager()->CreateSoundData(asFileName,true,abLoop);
 		if(pData==NULL){
 			Error("Couldn't load stream '%s'\n",asFileName.c_str());
@@ -294,7 +294,7 @@ namespace hpl {
 			Error("Can't create sound channel for '%s'\n",asFileName.c_str());
 			return NULL;
 		}
-		
+
 		//If it is silent do everything as normal except stop the sound at start.
 		if(mbSilent)
 		{
@@ -310,7 +310,7 @@ namespace hpl {
 
 		pSound->Set3D(ab3D);
 
-		cSoundEntry Entry; 
+		cSoundEntry Entry;
 		Entry.mpSound = pSound;
 		Entry.mfNormalVolume = afVolume;
 		Entry.msName = asFileName;
@@ -324,28 +324,28 @@ namespace hpl {
 		Entry.mbStream = true;
 
 		Entry.mEffectType = aEffectType;
-		
+
 		/////////////////////////
 		//Setup position
 		pSound->SetPositionRelative(true);
 		pSound->SetRelPosition(cVector3f(0,0,1));
-		cVector3f vPos = cMath::MatrixMul(	mpLowLevelSound->GetListenerMatrix(), 
+		cVector3f vPos = cMath::MatrixMul(	mpLowLevelSound->GetListenerMatrix(),
 											pSound->GetRelPosition() );
 		pSound->SetPosition(vPos);
 
 		mlstGuiSounds.push_back(Entry);
-				
+
 		mlIdCount++;
 
 		return pSound;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	bool cSoundHandler::Stop(const tString& asName)
 	{
 		cSoundEntry *pEntry = GetEntry(asName);
-		if(pEntry) 
+		if(pEntry)
 		{
 			pEntry->mpSound->Stop();
 		}
@@ -356,14 +356,14 @@ namespace hpl {
 
 		return true;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	bool cSoundHandler::StopAllExcept(const tString& asName)
 	{
 		return false;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cSoundHandler::StopAll(tFlag mTypes)
@@ -432,19 +432,19 @@ namespace hpl {
 			}
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	bool cSoundHandler::IsPlaying(const tString& asName)
 	{
 		cSoundEntry *pEntry = GetEntry(asName);
-		
+
 		if(pEntry) return pEntry->mpSound->IsPlaying();
-		
+
 		return false;
 	}
 	//-----------------------------------------------------------------------
-	
+
 	bool cSoundHandler::IsValid(iSoundChannel* apChannel)
 	{
 		tSoundEntryListIt it;
@@ -461,7 +461,7 @@ namespace hpl {
             if(it->mpSound == apChannel)return true;
 			it++;
 		}
-		
+
 		return false;
 	}
 
@@ -490,7 +490,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	void cSoundHandler::Update(float afTimeStep)
 	{
 		if(mfNewSpeed != mfSpeed)
@@ -515,11 +515,11 @@ namespace hpl {
 			{
 				it = mlstGuiSounds.erase(it);
 			}
-			else 
+			else
 			{
 				++it;
 			}
-			
+
 		}
 
 		it = mlstWorldSounds.begin();
@@ -538,9 +538,9 @@ namespace hpl {
 		mlCount++;
 	}
 	//-----------------------------------------------------------------------
-	
+
 	/**
-	 * 
+	 *
 	 * \todo support types.
 	 * \param afSpeed New speed to run sounds at
 	 * \param afRate Rate by which the current speed transform to the new
@@ -559,9 +559,9 @@ namespace hpl {
 
 		if(afRate==0)mfSpeed = mfNewSpeed;
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	void cSoundHandler::SetVolume(float afVolume, float afRate, tFlag aTypes)
 	{
 		mfNewVolume = afVolume;
@@ -629,23 +629,23 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	bool cSoundHandler::UpdateEntry(cSoundEntry *apEntry, float afTimeStep, tFlag aTypes)
 	{
 		//if(apEntry->mbStream) return;
-		
+
 		apEntry->Update(afTimeStep);
 
-		
+
 		/*Log("Updating entry: '%s' vol: %f playing: %d\n",apEntry->msName.c_str(),
 														apEntry->mpSound->GetVolume(),
 														apEntry->mpSound->IsPlaying()?1:0);*/
 		//Log("Pos: %s\n",apEntry->mpSound->GetPosition().ToString().c_str());
-		
+
 		if(!apEntry->mpSound->IsPlaying() && !apEntry->mpSound->GetPaused())
 		{
 			iSoundChannel *pSound = apEntry->mpSound;
-			
+
 			if(pSound->GetStopUsed()==false && pSound->GetCallBack() && pSound->GetLooping()
 				&& apEntry->mfNormalVolumeFadeDest !=0)
 			{
@@ -656,10 +656,10 @@ namespace hpl {
 			//Log("Stopping: %s Time: %f / %f\n",pSound->GetData()->GetName().c_str(),
 			//									pSound->GetElapsedTime(),
 			//									pSound->GetTotalTime());
-			
+
 			pSound->Stop();
 			hplDelete(pSound);
-				
+
 			return false;
 		}
 		else
@@ -686,17 +686,17 @@ namespace hpl {
 			{
 				apEntry->mfBlockMul += apEntry->mfBlockFadeSpeed*afTimeStep;
 				if(apEntry->mfBlockFadeSpeed<0){
-					if(apEntry->mfBlockMul < apEntry->mfBlockFadeDest) 
+					if(apEntry->mfBlockMul < apEntry->mfBlockFadeDest)
 						apEntry->mfBlockMul = apEntry->mfBlockFadeDest;
 				}
 				else {
-					if(apEntry->mfBlockMul > apEntry->mfBlockFadeDest) 
+					if(apEntry->mfBlockMul > apEntry->mfBlockFadeDest)
 						apEntry->mfBlockMul = apEntry->mfBlockFadeDest;
 				}
 			}
 
 
-			//Update the sound position 
+			//Update the sound position
 			//3D Position!
 			if(apEntry->mbStream)
 			{
@@ -705,7 +705,7 @@ namespace hpl {
 			//else if(apEntry->mpSound->Get3D())
 			if(apEntry->mpSound->Get3D())
 			{
-				UpdateDistanceVolume3D(apEntry,afTimeStep,apEntry->mbFirstTime ? false : true, aTypes);	
+				UpdateDistanceVolume3D(apEntry,afTimeStep,apEntry->mbFirstTime ? false : true, aTypes);
 			}
 			//2D Position
 			else
@@ -770,23 +770,23 @@ namespace hpl {
 	void cSoundHandler::UpdateDistanceVolume3D(cSoundEntry* apEntry,float afTimeStep,bool abFade,
 												tFlag aTypes)
 	{
-		if(mpWorld3D==NULL){ 
+		if(mpWorld3D==NULL){
 			return;
 		}
-		
-		
+
+
 		if(apEntry->mpSound->GetPositionRelative())
 		{
 			iSoundChannel *pSound = apEntry->mpSound;
-			cVector3f vPos = cMath::MatrixMul(mpLowLevelSound->GetListenerMatrix(), 
+			cVector3f vPos = cMath::MatrixMul(mpLowLevelSound->GetListenerMatrix(),
 												pSound->GetRelPosition() );
-			
+
 			pSound->SetPosition(vPos);
 //			cVector3f vPos = cMath::MatrixMul(mpLowLevelSound->GetListenerMatrix(),
 //												pSound->GetRelPosition());
 
 //			pSound->SetPosition(pSound->GetRelPosition());
-			
+
 
 			if(aTypes & mAffectedByVolume)
 			{
@@ -830,7 +830,7 @@ namespace hpl {
 					pPhysicsWorld->CastRay(&mSoundRayCallback,pSound->GetPosition(),
 						mpLowLevelSound->GetListenerPosition(),
 						false,false,false,true);
-					
+
 					//Log(" from (%s) to (%s) ",pSound->GetPosition().ToString().c_str(),
 					//						mpLowLevelSound->GetListenerPosition().ToString().c_str());
 
@@ -895,9 +895,9 @@ namespace hpl {
 					fVolume *= apEntry->mfNormalVolume;
 				}
 
-				float fBlock = pSound->GetBlockVolumeMul() + 
+				float fBlock = pSound->GetBlockVolumeMul() +
 					apEntry->mfBlockMul * (1 - pSound->GetBlockVolumeMul());
-				
+
 				if(aTypes & apEntry->mEffectType)
 				{
 					pSound->SetVolume(fBlock * fVolume * apEntry->mfNormalVolumeMul * mfVolume);
@@ -909,7 +909,7 @@ namespace hpl {
 				}
 
 				//pSound->SetFilterGainHF(0.1f);
-				
+
 				//Log("Vol: %f\n",fBlock * fVolume * apEntry->mfNormalVolumeMul);
 				//Log("%s Block: %f\n",apEntry->msName.c_str(),apEntry->mfBlockMul);
 			}
@@ -942,9 +942,9 @@ namespace hpl {
 
 		return NULL;
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	iSoundChannel* cSoundHandler::CreateChannel(const tString& asName, int alPriority)
 	{
 		int lNum = cString::ToInt(cString::GetLastChar(asName).c_str(),0);
@@ -974,7 +974,7 @@ namespace hpl {
 			{
 				lLastNum = SoundIt->second;
 			}
-			
+
 			sName = sBaseName+cString::ToString(lCount+1);
 			pData = mpResources->GetSoundManager()->CreateSoundData(sName,false);
 			while(pData) {
@@ -1014,16 +1014,16 @@ namespace hpl {
 				return NULL;
 			}
 		}
-		
+
 		//Create sound channel
 		pSound = pData->CreateChannel(alPriority);
 		if(pSound == NULL){
 			//Warning("Couldn't play sound '%s'\n",asName.c_str());
 		}
-		
+
 		return pSound;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 }

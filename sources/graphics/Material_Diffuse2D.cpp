@@ -38,7 +38,7 @@ namespace hpl {
 	{
 		mbIsTransperant = false;
 		mbIsGlowing= false;
-		
+
 		mType = eMaterialType_Diffuse;
 	}
 
@@ -46,7 +46,7 @@ namespace hpl {
 
 	cMaterial_Diffuse2D::~cMaterial_Diffuse2D()
 	{
-		
+
 	}
 
 	//-----------------------------------------------------------------------
@@ -61,7 +61,7 @@ namespace hpl {
 	{
 
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	bool  cMaterial_Diffuse2D::StartRendering(eMaterialRenderType aType,iCamera* apCam,iLight *pLight)
@@ -82,10 +82,10 @@ namespace hpl {
 		{
 			mpLowLevelGraphics->SetBlendActive(true);
 			mpLowLevelGraphics->SetBlendFunc(eBlendFunc_One,eBlendFunc_Zero);
-            			
+
 			mpLowLevelGraphics->SetTexture(0, GetTexture(eMaterialTexture_Diffuse));
 		}
-		return true;		
+		return true;
 	}
 	//-----------------------------------------------------------------------
 
@@ -111,18 +111,18 @@ namespace hpl {
 
 	tVtxBatchFlag cMaterial_Diffuse2D::GetBatchFlags(eMaterialRenderType aType)
 	{
-		return eVtxBatchFlag_Position |	eVtxBatchFlag_Texture0 
+		return eVtxBatchFlag_Position |	eVtxBatchFlag_Texture0
 				| eVtxBatchFlag_Color0;
 	}
 	//-----------------------------------------------------------------------
-	
+
 	bool cMaterial_Diffuse2D::NextPass(eMaterialRenderType aType)
 	{
 		return false;
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	bool cMaterial_Diffuse2D::HasMultiplePasses(eMaterialRenderType aType)
 	{
 		return false;
@@ -138,7 +138,7 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	void cMaterial_Diffuse2D::EditVertexes(eMaterialRenderType aType, iCamera* apCam, iLight *pLight, 
+	void cMaterial_Diffuse2D::EditVertexes(eMaterialRenderType aType, iCamera* apCam, iLight *pLight,
 		tVertexVec *apVtxVec, cVector3f *apTransform, unsigned int alIndexAdd)
 	{
 	}

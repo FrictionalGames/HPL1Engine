@@ -87,7 +87,7 @@ namespace hpl {
 
 		if(mpDynVtxBuffer) hplDelete(mpDynVtxBuffer);
 
-		/* Clear any custom textures here*/	
+		/* Clear any custom textures here*/
 		if(mpMaterial) mpMaterialManager->Destroy(mpMaterial);
 	}
 
@@ -96,9 +96,9 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 	// BODY CALLBACK
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	void cSubMeshEntityBodyUpdate::OnTransformUpdate(iEntity3D* apEntity)
 	{
 		/*cSubMeshEntity *pSubEntity = static_cast<cSubMeshEntity*>(apEntity);
@@ -115,7 +115,7 @@ namespace hpl {
 			}
 		}*/
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	//////////////////////////////////////////////////////////////////////////
@@ -142,9 +142,9 @@ namespace hpl {
 			Error("Materials for sub entity %s are NULL!\n",GetName().c_str());
 		}
 
-		if(mpMaterial) 
+		if(mpMaterial)
 			return mpMaterial;
-		else 
+		else
 			return mpSubMesh->GetMaterial();
 	}
 
@@ -217,11 +217,11 @@ namespace hpl {
 				const unsigned char *pBoneIdx = &mpSubMesh->mpVertexBones[vtx*4];
 
 				const cMatrixf &mtxTransform = mpMeshEntity->mvBoneMatrices[*pBoneIdx];
-				
+
 				//Log("Vtx: %d\n",vtx);
-				//Log("Boneidx: %d Count %d Weight: %f vtx: %d\n",(int)*pBoneIdx,lCount, *pWeight,vtx);				
-				
-				//ATTENTION: Some optimizing might be done by accumulating the matrix instead. 
+				//Log("Boneidx: %d Count %d Weight: %f vtx: %d\n",(int)*pBoneIdx,lCount, *pWeight,vtx);
+
+				//ATTENTION: Some optimizing might be done by accumulating the matrix instead.
 								//THIS is really unsure since it seems like it will result in more math, matrix mul = 8*4 calc
 								//Vertex mul with matrix is 3 * 3 calculations
 								//this means: vertex= 9*3 = 27, matrix = 32
@@ -237,7 +237,7 @@ namespace hpl {
 				//Iterate weights until 0 is found or count < 4
 				while(*pWeight != 0 && lCount < 4)
 				{
-					//Log("Boneidx: %d Count %d Weight: %f\n",(int)*pBoneIdx,lCount, *pWeight);				
+					//Log("Boneidx: %d Count %d Weight: %f\n",(int)*pBoneIdx,lCount, *pWeight);
 					const cMatrixf &mtxTransform = mpMeshEntity->mvBoneMatrices[*pBoneIdx];
 
 					//Transform with the local movement of the bone.
@@ -273,7 +273,7 @@ namespace hpl {
 
 			//Update buffer
 			mpDynVtxBuffer->UpdateData(eVertexFlag_Position | eVertexFlag_Normal | eVertexFlag_Texture1,false);
-			
+
 			if(mpMeshEntity->IsShadowCaster())
 			{
 				//Update triangles
@@ -439,7 +439,7 @@ namespace hpl {
 			RemoveCallback(mpEntityCallback);
 		}*/
 	}
-	
+
 	bool cSubMeshEntity::GetUpdateBody()
 	{
 		return mbUpdateBody;
@@ -448,14 +448,14 @@ namespace hpl {
 	//-----------------------------------------------------------------------
 
 	cTriangleData& cSubMeshEntity::GetTriangle(int alIndex)
-	{ 
+	{
 		if(mpDynVtxBuffer)
 			return mvDynTriangles[alIndex];
 		else
 			return (*mpSubMesh->GetTriangleVecPtr())[alIndex];
 	}
 	int cSubMeshEntity::GetTriangleNum()
-	{ 
+	{
 		if(mpDynVtxBuffer)
 			return (int)mvDynTriangles.size();
 		else
@@ -463,15 +463,15 @@ namespace hpl {
 	}
 
 	tTriangleDataVec* cSubMeshEntity::GetTriangleVecPtr()
-	{ 
+	{
 		if(mpDynVtxBuffer)
 			return &mvDynTriangles;
 		else
 			return mpSubMesh->GetTriangleVecPtr();
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	void cSubMeshEntity::SetCustomMaterial(iMaterial *apMaterial, bool abDestroyOldCustom)
 	{
 		if(abDestroyOldCustom)
@@ -481,7 +481,7 @@ namespace hpl {
 
         mpMaterial = apMaterial;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cSector* cSubMeshEntity::GetCurrentSector() const
@@ -504,7 +504,7 @@ namespace hpl {
 	kSerializeVar(mbUpdateBody, eSerializeType_Bool)
 	kEndSerialize()
 
-	
+
 	//-----------------------------------------------------------------------
 
 	iSaveData* cSubMeshEntity::CreateSaveData()

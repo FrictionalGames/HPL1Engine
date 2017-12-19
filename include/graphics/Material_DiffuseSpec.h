@@ -31,14 +31,14 @@ namespace hpl {
 			cRenderer2D* apRenderer, cGpuProgramManager* apProgramManager,
 			eMaterialPicture aPicture, cRenderer3D *apRenderer3D);
 		~cMaterial_DiffuseSpec();
-		
+
 	private:
 	};
 
 	class cMaterialType_DiffuseSpec : public iMaterialType
 	{
 	public:
-		bool IsCorrect(tString asName){ 
+		bool IsCorrect(tString asName){
 			return cString::ToLowerCase(asName)=="diffusespecular";
 		}
 
@@ -46,7 +46,7 @@ namespace hpl {
 			cImageManager* apImageManager, cTextureManager *apTextureManager,
 			cRenderer2D* apRenderer, cGpuProgramManager* apProgramManager,
 			eMaterialPicture aPicture, cRenderer3D *apRenderer3D);
-		
+
 	};
 
 };

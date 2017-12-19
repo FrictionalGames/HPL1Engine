@@ -46,7 +46,7 @@ namespace hpl {
 		//! Internal.
 		ePhysicsMaterialCombMode_LastEnum
 	};
-	
+
 	//----------------------------------------------------
 
 	class cPhysicsContactData
@@ -70,11 +70,11 @@ namespace hpl {
 
 	//----------------------------------------------------
 
-	
+
 	class iPhysicsMaterial
 	{
 	public:
-		iPhysicsMaterial(const tString &asName, iPhysicsWorld *apWorld) 
+		iPhysicsMaterial(const tString &asName, iPhysicsWorld *apWorld)
 				: msName(asName), mpWorld(apWorld),mpSurfaceData(NULL),
 					mbPreloaded(false){}
 		virtual ~iPhysicsMaterial(){}
@@ -87,7 +87,7 @@ namespace hpl {
 		virtual float GetStaticFriction() const=0;
 		virtual void SetKineticFriction(float afElasticity)=0;
 		virtual float GetKineticFriction() const=0;
-		
+
 		virtual void SetFrictionCombMode(ePhysicsMaterialCombMode aMode)=0;
 		virtual ePhysicsMaterialCombMode GetFrictionCombMode() const=0;
 		virtual void SetElasticityCombMode(ePhysicsMaterialCombMode aMode)=0;

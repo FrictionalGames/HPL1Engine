@@ -36,7 +36,7 @@ namespace hpl {
 	public:
 		cGfxObject* mpObject;
 		cVector3f mvTransform;
-		
+
 		bool mbIsColorAndSize;
 		cColor mColor;
 		cVector2f mvSize;
@@ -47,19 +47,19 @@ namespace hpl {
 		iMaterial* GetMaterial() const;
 		float GetZ() const { return mvTransform.z;}
 	};
-    
+
 	typedef std::vector<cGfxObject> tGfxObjectVec;
-	typedef tGfxObjectVec::iterator tGfxObjectVecIt; 
+	typedef tGfxObjectVec::iterator tGfxObjectVecIt;
 
 	class cGfxBufferCompare
 	{
 	public:
 		bool operator()(const cGfxBufferObject& aObjectA,const cGfxBufferObject& aObjectB);
 	};
-	
+
 	typedef std::multiset<cGfxBufferObject,cGfxBufferCompare> tGfxBufferSet;
 	typedef tGfxBufferSet::iterator tGfxBufferSetIt;
-	
+
 	class cResources;
 
 	typedef std::list<cGfxObject*> tGfxObjectList;
@@ -74,25 +74,25 @@ namespace hpl {
 
 		/**
 		 * Draw Gfx object during next DrawAll call.
-		 * \param apObject 
-		 * \param avPos 
+		 * \param apObject
+		 * \param avPos
 		 */
 		void DrawGfxObject(cGfxObject* apObject, const cVector3f& avPos);
-		
+
 		/**
 		 * Draw Gfx object during next DrawAll call.
-		 * \param apObject 
-		 * \param avPos 
+		 * \param apObject
+		 * \param avPos
 		 * \param avSize Size of object
 		 * \param aColor color to use
 		 * \param abFlipH Flip image horisontally
 		 * \param abFlipV Flip image verically
 		 */
-		void DrawGfxObject(cGfxObject* apObject, const cVector3f& avPos, 
+		void DrawGfxObject(cGfxObject* apObject, const cVector3f& avPos,
 											const cVector2f& avSize, const cColor& aColor,
 											bool abFlipH=false, bool abFlipV=false, float afAngle = 0);
 
-		
+
 		/**
 		 * Draw all gfx obejcts, Called after world is rendered by cScene.
 		 */
@@ -103,22 +103,22 @@ namespace hpl {
 		 * \param &asFileName Filename of image
 		 * \param &asMaterialName material to use
 		 * \param abAddToList if the engine should delete object at exit, this means DestroyGfxObject must be used. Should almost always be true.
-		 * \return 
+		 * \return
 		 */
-		cGfxObject* CreateGfxObject(const tString &asFileName, const tString &asMaterialName, 
+		cGfxObject* CreateGfxObject(const tString &asFileName, const tString &asMaterialName,
 									bool abAddToList=true);
 		/**
 		 * Create gfx object from Bitmap
 		 * \param *apBmp bitmap
 		 * \param &asMaterialName material to use
 		 * \param abAddToList if the engine should delete object at exit, this means DestroyGfxObject must be used. Should almost always be true.
-		 * \return 
+		 * \return
 		 */
-		cGfxObject* CreateGfxObject(iBitmap2D *apBmp, const tString &asMaterialName, 
+		cGfxObject* CreateGfxObject(iBitmap2D *apBmp, const tString &asMaterialName,
 									bool abAddToList=true);
 
 
-		cGfxObject* CreateGfxObjectFromTexture(const tString &asFileName, const tString &asMaterialName, 
+		cGfxObject* CreateGfxObjectFromTexture(const tString &asFileName, const tString &asMaterialName,
 												bool abAddToList=true);
 		/**
 		 * Destroys a gfx object.
@@ -132,7 +132,7 @@ namespace hpl {
 		void UpdateBackgrounds();
 		void DrawBackgrounds(const cRect2f& aCollideRect);
 		void ClearBackgrounds();
-		
+
 	private:
 		iLowLevelGraphics *mpLowLevelGraphics;
 		cMaterialHandler* mpMaterialHandler;

@@ -38,14 +38,14 @@ namespace hpl {
 	class cAI;
 	class cHaptic;
 	class cGui;
-	
+
 	class cFPSCounter
 	{
 	public:
 		cFPSCounter(iLowLevelSystem* apLowLevelSystem);
-		
+
 		void AddFrame();
-		
+
 		float mfFPS;
 		float mfUpdateRate;
 	private:
@@ -63,7 +63,7 @@ namespace hpl {
 		cSetupVarContainer();
 
 		void AddString(const tString& asName, const tString& asValue);
-		
+
 		void AddInt(const tString& asName, int alValue);
 		void AddFloat(const tString& asName, float afValue);
 		void AddBool(const tString& asName, bool abValue);
@@ -74,7 +74,7 @@ namespace hpl {
 		int GetInt(const tString& asName,int alDefault);
 		bool GetBool(const tString& asName, bool abDefault);
 	private:
-		std::map<tString, tString>  m_mapVars; 
+		std::map<tString, tString>  m_mapVars;
 		tString msBlank;
 	};
 
@@ -97,11 +97,11 @@ namespace hpl {
 		 */
 		void Run();
 		/**
-		 * Exists the game. 
+		 * Exists the game.
 		 * \todo is this a good way to do it? Should game be global. If so, make a singleton.
 		 */
 		void Exit();
-		
+
 		/**
 		*
 		* \return A pointer to Scene
@@ -112,59 +112,59 @@ namespace hpl {
 		 * \return A pointer to Resources
 		 */
 		cResources* GetResources();
-		
+
 		/**
-		 * 
+		 *
 		 * \return A pointer to the Updater
 		 */
 		cUpdater* GetUpdater();
-		
+
 		/**
-		* 
+		*
 		* \return A pointer to the System
 		*/
 		cSystem* GetSystem();
-		
+
 		/**
-		* 
+		*
 		* \return A pointer to the Input
 		*/
 		cInput* GetInput();
 
 		/**
-		* 
+		*
 		* \return A pointer to the Graphics
 		*/
 		cGraphics* GetGraphics();
 		/**
-		* 
+		*
 		* \return A pointer to the Sound
 		*/
 		cSound* GetSound();
 		/**
-		* 
+		*
 		* \return A pointer to the Physics
 		*/
 		cPhysics* GetPhysics();
 
 		/**
-		* 
+		*
 		* \return A pointer to the AI
 		*/
 		cAI* GetAI();
 
 		/**
-		* 
+		*
 		* \return A pointer to the Gui
 		*/
 		cGui* GetGui();
 
 		/**
-		* 
+		*
 		* \return A pointer to the haptic
 		*/
 		cHaptic* GetHaptic();
-		
+
 		void ResetLogicTimer();
 		void SetUpdatesPerSec(int alUpdatesPerSec);
 		int GetUpdatesPerSec();

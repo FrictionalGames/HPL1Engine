@@ -44,14 +44,14 @@ namespace hpl {
 		mbGlobal = true;
 
         mpSectorMap = &mpContainer->m_mapSectors;
-		
+
 		mEntityIt = mpContainer->m_setGlobalEntities.begin();
 
 		if(mEntityIt == mpContainer->m_setGlobalEntities.end())
 		{
 			mbGlobal = false;
 		}
-		
+
 		//Get first sector with entities
 		mSectorIt = mpContainer->m_mapSectors.begin();
 		if(	mSectorIt != mpContainer->m_mapSectors.end() &&
@@ -68,7 +68,7 @@ namespace hpl {
 				}
 			}
 		}
-			
+
 		if(mbGlobal==false && mSectorIt != apContainer->m_mapSectors.end())
 		{
 			mpEntity3DSet = &(mSectorIt->second)->m_setEntities;
@@ -88,7 +88,7 @@ namespace hpl {
 
 		return true;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	iEntity3D *cPortalContainerEntityIterator::Next()
@@ -97,7 +97,7 @@ namespace hpl {
 		pEntity->SetIteratorCount(mlIteratorCount);
 
 		++mEntityIt;
-		
+
 		bool bNextEntity = false;
 		do {
 			////////////////////////////
@@ -109,14 +109,14 @@ namespace hpl {
 					mbGlobal = false;
 					//If there are no sectors, just return the entity.
 					if(mSectorIt == mpContainer->m_mapSectors.end()) return pEntity;
-					
+
 					mpEntity3DSet = &(mSectorIt->second)->m_setEntities;
 					mEntityIt = mpEntity3DSet->begin();
 				}
 			}
 			////////////////////////////7
 			//Search Sectors
-			else 
+			else
 			{
 				if(mEntityIt == mpEntity3DSet->end())
 				{
@@ -147,22 +147,22 @@ namespace hpl {
 			bNextEntity = true;
 			if(mbGlobal==false && mSectorIt == mpContainer->m_mapSectors.end()) bNextEntity = false;
 			else if((*mEntityIt)->GetIteratorCount() != mlIteratorCount) bNextEntity = false;
-			
+
 			if(bNextEntity) ++mEntityIt;
-		} 
+		}
 		while(bNextEntity);
 
 		return pEntity;
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	//////////////////////////////////////////////////////////////////////////
 	// PORTAL
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	cPortal::cPortal(int alId,cPortalContainer *apContainer)
 	{
 		mlId = alId;
@@ -181,7 +181,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	void cPortal::SetTargetSector(tString asSectorId)
 	{
 		msTargetSectorId = asSectorId;
@@ -194,7 +194,7 @@ namespace hpl {
 		if(mpTargetSector == NULL)
 		{
 			mpTargetSector = mpContainer->GetSector(msTargetSectorId);
-			
+
 			if(mpTargetSector ==NULL)
 				Error("Portal %d in sector %s target sector %s is NOT valid!\n",mlId,msSectorId.c_str(),
 										msTargetSectorId.c_str());
@@ -209,7 +209,7 @@ namespace hpl {
 	{
 		return mpSector;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cPortal::AddPortalId(int alId)
@@ -229,12 +229,12 @@ namespace hpl {
 		mBV.SetTransform(a_mtxTrans);
 	}
 	//-----------------------------------------------------------------------
-	
+
 	bool cPortal::IsVisible(cFrustum * apFrustum)
 	{
-		if(mbActive==false) return false;		
-		
-		//Check if the frustum is on the positive side of a plane 
+		if(mbActive==false) return false;
+
+		//Check if the frustum is on the positive side of a plane
 		//made from the portal normal and center.
 		if(cMath::PlaneToPointDist(mPlane, apFrustum->GetOrigin()) >= 0.0f)
 		{
@@ -248,7 +248,7 @@ namespace hpl {
 
 		return false;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	tPortalList* cPortal::GetPortalList()
@@ -260,14 +260,14 @@ namespace hpl {
 			for(size_t i=0; i<mvPortalIds.size();i++)
 			{
 				cPortal *pPortal = GetTargetSector()->GetPortal(mvPortalIds[i]);
-				
+
 				if(pPortal) mlstPortals.push_back(pPortal);
 			}
 		}
-		
+
 		return &mlstPortals;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cPortal::Compile()
@@ -276,12 +276,12 @@ namespace hpl {
 		// Calculate the bounding volume
 		cVector3f vMin = mlstPoints.front();
 		cVector3f vMax = mlstPoints.front();
-		
+
 		tVector3fListIt it = mlstPoints.begin();
 		for(; it != mlstPoints.end(); it++)
-		{	
+		{
 			cVector3f &vP = *it;
-			
+
 			if(vMax.x < vP.x)		vMax.x = vP.x;
 			else if(vMin.x > vP.x)	vMax.x = vP.x;
 			if(vMax.y < vP.y)		vMax.y = vP.y;
@@ -297,15 +297,15 @@ namespace hpl {
 
 		mPlane.FromNormalPoint(mvNormal, mBV.GetWorldCenter());
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	//////////////////////////////////////////////////////////////////////////
 	// SECTOR
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	cSector::cSector(tString asId,cPortalContainer *apContainer)
 	{
 		msId = asId;
@@ -319,7 +319,7 @@ namespace hpl {
 
 		mAmbient = cColor(1,1);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cSector::~cSector()
@@ -338,7 +338,7 @@ namespace hpl {
 
 		cVector3f vObjectMax = apPortal->GetBV()->GetMax();
 		cVector3f vObjectMin = apPortal->GetBV()->GetMin();
-		
+
 		cVector3f vMin = mBV.GetLocalMin();
 		cVector3f vMax = mBV.GetLocalMax();
 
@@ -353,7 +353,7 @@ namespace hpl {
 
 		mBV.SetLocalMinMax(vMin, vMax);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cPortal* cSector::GetPortal(int alId)
@@ -367,7 +367,7 @@ namespace hpl {
 
 		return NULL;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	bool cSector::TryToAdd(iRenderable *apObject, bool abStatic)
@@ -396,7 +396,7 @@ namespace hpl {
 				apObject->GetRenderContainerDataList()->push_back(this);
 				//if(bLog) Log("   Adding as dynamic!\n");
 
-				
+
 				//Log("Adding dynamic %d %s\n",(size_t)apObject,apObject->GetName().c_str());
 				//Add as a dynamic object
 				m_setDynamicObjects.insert(apObject);
@@ -407,7 +407,7 @@ namespace hpl {
 
 		return false;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	bool cSector::TryToAddEntity(iEntity3D *apEntity)
@@ -426,13 +426,13 @@ namespace hpl {
 			//Log("Adding dynamic %d %s\n",(size_t)apObject,apObject->GetName().c_str());
 			//Add as a dynamic object
 			m_setEntities.insert(apEntity);
-			
+
 			return true;
 		}
 
 		return false;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cSector::RemoveDynamic(iRenderable *apObject)
@@ -446,7 +446,7 @@ namespace hpl {
 	{
 		m_setEntities.erase(apEntity);
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cSector::GetVisible(cFrustum* apFrustum,cRenderList *apRenderList, cPortal *apStartPortal)
@@ -455,7 +455,7 @@ namespace hpl {
 		mlVisitCount = mpContainer->GetSectorVisitCount();
 
         mpContainer->GetVisibleSectorsList()->push_back(msId);
-		
+
 		//////////////////////////////////////////////////////
 		//Add all visible objects in the room to the render list
 		//Static
@@ -463,7 +463,7 @@ namespace hpl {
 		for(;it != m_setStaticObjects.end(); ++it)
 		{
 			iRenderable *pObject = *it;
-			
+
 			if(pObject->CollidesWithFrustum(apFrustum))
 			{
 				mpContainer->AddToRenderList(pObject,apFrustum,apRenderList);
@@ -480,18 +480,18 @@ namespace hpl {
 				mpContainer->AddToRenderList(pObject,apFrustum,apRenderList);
 			}
 		}
-		
+
 		/////////////////////////////////////////////
 		//Iterate all portals and and process them.
 		tPortalListIt PortIt;
 		tPortalListIt PortEnd;
-		
+
 		//If this room is seen looking through a portal, get the portals seen
 		if(apStartPortal)
 		{
 			tPortalList *pPortList = apStartPortal->GetPortalList();
 			PortIt = pPortList->begin();
-			PortEnd = pPortList->end();	
+			PortEnd = pPortList->end();
 		}
 		//If you are in in the center of the room, check all portals.
 		else
@@ -499,12 +499,12 @@ namespace hpl {
 			PortIt = mlstPortals.begin();
 			PortEnd = mlstPortals.end();
 		}
-		
+
 		for(; PortIt != PortEnd; ++PortIt)
 		{
 			cPortal *pPortal = *PortIt;
-			cSector *pTargetSector = pPortal->GetTargetSector();	
-			
+			cSector *pTargetSector = pPortal->GetTargetSector();
+
 			if(pTargetSector==NULL) continue;
 
 			//If sector has been visited, skip it
@@ -519,13 +519,13 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	bool gbCallbackActive = true;
 
 	//////////////////////////////////////////////////////////////////////////
 	// PORTAL CONTAINER ENTITY CALLBACK
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
 
 	cPortalContainerEntityCallback::cPortalContainerEntityCallback(cPortalContainer *apContainer)
@@ -572,7 +572,7 @@ namespace hpl {
 		for(; it != mpContainer->m_mapSectors.end(); ++it)
 		{
 			cSector* pSector = it->second;
-			if(pSector->TryToAddEntity(apEntity)) 
+			if(pSector->TryToAddEntity(apEntity))
 			{
 				//Log(" Adding %s to sector %s\n",apEntity->GetName().c_str(),
 				//								pSector->GetId().c_str());
@@ -592,12 +592,12 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	cPortalContainerCallback::cPortalContainerCallback(cPortalContainer *apContainer)
 	{
 		mpContainer = apContainer;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cPortalContainerCallback::OnTransformUpdate(iEntity3D * apEntity)
@@ -607,7 +607,7 @@ namespace hpl {
 		//Get the renderable and retrieve the render container data list.
 		iRenderable *apRenderable = static_cast<iRenderable*>(apEntity);
 		tRenderContainerDataList *pDataList = apRenderable->GetRenderContainerDataList();
-		
+
 		//Log("Removing %s from container\n",apRenderable->GetName().c_str());
 		// If empty then the object is in the global list.
         if(pDataList->empty())
@@ -630,7 +630,7 @@ namespace hpl {
 			//Clear the data list.
 			pDataList->clear();
 		}
-		
+
 		//Check what new sectors the object belong to.
 		bool bAdded = false;
 
@@ -645,7 +645,7 @@ namespace hpl {
 		for(; it != mpContainer->m_mapSectors.end(); ++it)
 		{
 			cSector* pSector = it->second;
-			if(pSector->TryToAdd(apRenderable, false)) 
+			if(pSector->TryToAdd(apRenderable, false))
 			{
 				bAdded = true;
 			}
@@ -678,7 +678,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	cPortalContainer::cPortalContainer()
 	{
 		mpEntityCallback = hplNew( cPortalContainerCallback, (this) );
@@ -688,14 +688,14 @@ namespace hpl {
 
 		mlEntityIterateCount = 0;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cPortalContainer::~cPortalContainer()
 	{
 		hplDelete(mpEntityCallback);
 		hplDelete(mpNormalEntityCallback);
-		
+
 		STLMapDeleteAll(m_mapSectors);
 	}
 
@@ -706,7 +706,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	bool cPortalContainer::Add(iRenderable *apRenderable, bool abStatic)
 	{
 		if(apRenderable==NULL)
@@ -755,7 +755,7 @@ namespace hpl {
 					}
 				}
 			}
-			
+
 			//If not added in any sector, add to global list.
 			if(bAdded == false){
 				mlstGlobalStaticObjects.push_back(apRenderable);
@@ -774,7 +774,7 @@ namespace hpl {
 			//Only add it if there are any sectors... otherwise it is pointless.
 			if(m_mapSectors.empty() == false)
 				apRenderable->AddCallback(mpEntityCallback);
-			
+
 			//Try to add it to all sectors the renderable touches
 			tSectorMapIt it = m_mapSectors.begin();
 			for(;it != m_mapSectors.end();it++)
@@ -801,7 +801,7 @@ namespace hpl {
 					}
 				}
 			}
-			
+
 			//If not added in any sector, add to global list.
 			if(bAdded == false)
 			{
@@ -813,7 +813,7 @@ namespace hpl {
 
 		return true;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	bool cPortalContainer::Remove(iRenderable *apRenderable)
@@ -844,10 +844,10 @@ namespace hpl {
 			//Clear the data list.
 			pDataList->clear();
 		}
-		
+
 		return true;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	bool cPortalContainer::AddEntity(iEntity3D *apEntity)
@@ -892,7 +892,7 @@ namespace hpl {
 			m_setGlobalEntities.insert(apEntity);
 			if(bLog)Log(" Adding as Global\n");
 		}
-	
+
 		if(bLog) Log("-------------\n");
 
 		return true;
@@ -933,7 +933,7 @@ namespace hpl {
 	void cPortalContainer::AddLightShadowCasters(iLight3D* apLight,cFrustum* apFrustum,cRenderList *apRenderList)
 	{
 		const bool bLog = false;
-		
+
 		if(bLog)Log("Checking for shadow casters in '%s'!\n",apLight->GetName().c_str());
 
 		if(apLight->GetCastShadows()==false) return;
@@ -941,7 +941,7 @@ namespace hpl {
 		if(bLog)Log("Found one!\n");
 
 		tRenderContainerDataList *pDataList = apLight->GetRenderContainerDataList();
-		
+
 		apLight->ClearCasters(apLight->IsStatic()?false:true);
 
 		//The light is not in any sector
@@ -956,7 +956,7 @@ namespace hpl {
 				for(; it != mlstGlobalStaticObjects.end(); it++)
 					apLight->AddShadowCaster(*it,apFrustum,true,apRenderList);
 			}
-			
+
 			//Add Dynamic objects
 			tRenderableSetIt it = m_setGlobalDynamicObjects.begin();
 			for(; it != m_setGlobalDynamicObjects.end(); it++)
@@ -974,7 +974,7 @@ namespace hpl {
 				cSector* pSector = static_cast<cSector*>(*it);
 
 				if(bLog)Log("SECTOR: %s\n",pSector->GetId().c_str());
-				
+
 				//If the light is static and the static list is not filled yet.
 				if(!(apLight->IsStatic() && apLight->AllStaticCastersAdded()))
 				{
@@ -985,7 +985,7 @@ namespace hpl {
 						apLight->AddShadowCaster(pR,apFrustum,true,apRenderList);
 					}
 				}
-				
+
 				//Add dynamic objects
 				tRenderableSetIt it = pSector->m_setDynamicObjects.begin();
 				for(;it != pSector->m_setDynamicObjects.end(); ++it){
@@ -1003,11 +1003,11 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	
+
 	void cPortalContainer::AddToRenderList(iRenderable *apObject,cFrustum* apFrustum,
 											cRenderList *apRenderList)
 	{
-		//If the light was added and it was the first time, 
+		//If the light was added and it was the first time,
 		//add shadow casters.
 		if(apRenderList->Add(apObject))
 		{
@@ -1015,7 +1015,7 @@ namespace hpl {
 			{
 				AddLightShadowCasters(static_cast<iLight3D*>(apObject), apFrustum,apRenderList);
 			}
-		}	
+		}
 	}
 
 	//-----------------------------------------------------------------------
@@ -1030,7 +1030,7 @@ namespace hpl {
 		////////////////////////////////////////////////
 		//Get a container with all the visible sectors
 		cSectorVisibilityContainer *pVisSectorCont = CreateVisibiltyFromFrustum(apFrustum);
-		
+
 		//Iterate visible sectors, check for intersection with object and add the valid ones.
 		tSectorVisibilityIterator SectorIt = pVisSectorCont->GetSectorIterator();
 		while(SectorIt.HasNext())
@@ -1052,7 +1052,7 @@ namespace hpl {
 				{
 					AddToRenderList(pObject,apFrustum,apRenderList);
 				}
-				
+
 			}
 			//Dynamic
 			//Log("-------START------\n");
@@ -1070,7 +1070,7 @@ namespace hpl {
 			}
 			//Log("------END-------\n");
 		}
-		
+
 		//////////////////////////////////////////
 		//Add global dynamic objects
 		{
@@ -1100,7 +1100,7 @@ namespace hpl {
 				}
 			}
 		}
-		
+
 		//Delete visible sectors.
 		hplDelete(pVisSectorCont);
 
@@ -1114,11 +1114,11 @@ namespace hpl {
 		/*When octrees are used, they should be compiled here */
 
 		////////////////////////////////////////////////////////
-		//Go through all normal entities and update them 
+		//Go through all normal entities and update them
 		//(this since sectors might have been created  after their creation).
 
 		tEntity3DSet setEntities;
-		
+
 		// Sectors
 		tSectorMapIt secIt = m_mapSectors.begin();
 		for(;secIt != m_mapSectors.end();secIt++)
@@ -1159,7 +1159,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	bool cPortalContainer::AddToSector(iRenderable *apRenderable,tString asSector)
 	{
 		tSectorMapIt it = m_mapSectors.find(asSector);
@@ -1171,19 +1171,19 @@ namespace hpl {
 		cSector *pSector = it->second;
 
 		pSector->m_setStaticObjects.insert(apRenderable);
-		
+
 		//Setting the sector is useful for some culling.
 		apRenderable->GetRenderContainerDataList()->push_back(pSector);
 
 		//Set center sector.
 		apRenderable->SetCurrentSector(pSector);
-		
+
 		cVector3f vObjectMax = apRenderable->GetBoundingVolume()->GetMax();
 		cVector3f vObjectMin = apRenderable->GetBoundingVolume()->GetMin();
 
 		cVector3f vMin = pSector->mBV.GetLocalMin();
 		cVector3f vMax = pSector->mBV.GetLocalMax();
-		
+
 		//Check if the bounding volume should be expanded.
 		if(vMax.x < vObjectMax.x) vMax.x = vObjectMax.x;
 		if(vMax.y < vObjectMax.y) vMax.y = vObjectMax.y;
@@ -1192,7 +1192,7 @@ namespace hpl {
 		if(vMin.x > vObjectMin.x) vMin.x = vObjectMin.x;
 		if(vMin.y > vObjectMin.y) vMin.y = vObjectMin.y;
 		if(vMin.z > vObjectMin.z) vMin.z = vObjectMin.z;
-		
+
 		pSector->mBV.SetLocalMinMax(vMin, vMax);
 		//Quick fix for thin stuff. (not working it seems)
 		//pSector->mBV.SetLocalMinMax(vMin - cVector3f(0.1f), vMax+cVector3f(0.1f));
@@ -1201,7 +1201,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	bool cPortalContainer::AddPortal(cPortal *apPortal, tString asSector)
 	{
 		tSectorMapIt it = m_mapSectors.find(asSector);
@@ -1216,9 +1216,9 @@ namespace hpl {
 
 		return true;
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	cSector* cPortalContainer::GetSector(tString asId)
 	{
 		tSectorMapIt it = m_mapSectors.find(asId);
@@ -1240,12 +1240,12 @@ namespace hpl {
 	{
 		cSectorVisibilityContainer *pContainer = hplNew( cSectorVisibilityContainer, (eSectorVisibilityType_BV) );
 		pContainer->SetBV(*apBV);
-		
+
 		pContainer->Compute(this);
 
 		return pContainer;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cSectorVisibilityContainer* cPortalContainer::CreateVisibiltyFromFrustum(cFrustum *apFrustum)
@@ -1257,15 +1257,15 @@ namespace hpl {
 
 		return pContainer;
 	}
-    
+
 	//-----------------------------------------------------------------------
 
 	//////////////////////////////////////////////////////////////////////////
 	// PRIVATE METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	//////////////////////////////////////////////////////////////////////////
 	// OLD CODE
 	//////////////////////////////////////////////////////////////////////////

@@ -33,7 +33,7 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	cTileSet::cTileSet(tString asName,cGraphics *apGraphics, cResources *apResources) 
+	cTileSet::cTileSet(tString asName,cGraphics *apGraphics, cResources *apResources)
 	: iResourceBase(asName,0)
 	{
 		mpResources = apResources;
@@ -64,7 +64,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	void cTileSet::Add(iTileData *apData)
 	{
 		mvData.push_back(apData);
@@ -78,7 +78,7 @@ namespace hpl {
 
 		return mvData[alNum];
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	bool cTileSet::CreateFromFile(const tString &asFile)
@@ -91,23 +91,23 @@ namespace hpl {
 
 		GetTileNum(pDoc->RootElement()->FirstChildElement());
 
-		
-		//Add the resources 
+
+		//Add the resources
 		mpResources->AddResourceDir(pDoc->RootElement()->Attribute("dir"));
 		//Get the tiles size
 		mfTileSize = (float)cString::ToInt(pDoc->RootElement()->Attribute("size"),0);
-		
+
 		//Calculate the best size for the frame:
 		double x = ceil(log( (double) ((float)mlNum)*mfTileSize )/log(2.0f) );
 		double y = ceil(log( (double)mfTileSize)/log(2.0f) );
-		
+
 		if(x>kMaxTileFrameWidth){
 			y += x - kMaxTileFrameWidth;
 			x = kMaxTileFrameWidth;
 		}
-		
+
 		mvFrameSize = cVector2l((int)pow(2.0,x),(int)pow(2.0,y));
-        
+
 		TiXmlElement *pTileElement = pDoc->RootElement()->FirstChildElement();
 		while(pTileElement!=NULL)
 		{
@@ -119,18 +119,18 @@ namespace hpl {
 		hplDelete(pDoc);
 
 		mpResources->GetImageManager()->FlushAll();
-		
+
 		return true;
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	//////////////////////////////////////////////////////////////////////////
 	// PRIVATE METHODS
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	bool cTileSet::LoadData(TiXmlElement *pElement)
 	{
 		tString sName = pElement->Attribute("name");
@@ -142,18 +142,18 @@ namespace hpl {
 		cMesh2D* pMesh=NULL;
 		cMesh2D* pCollideMesh=NULL;
 		cResourceImage* pImage=NULL;
-			
+
 		cTileDataNormal* pTileData = hplNew( cTileDataNormal, (mpResources->GetImageManager(),mfTileSize) );
-		
+
 		//Log("Tile %s:\n", sName.c_str());
 		//Log("Creating material: %s\n",sMaterial.c_str());
-		// Create material 
+		// Create material
 		pMaterial = mpGraphics->GetMaterialHandler()->Create(sMaterial, eMaterialPicture_Image);
 		if(pMaterial == NULL){
 			Error("Error creating material '%s' for '%s'!\n", sMaterial.c_str(),sName.c_str());
 			return false;
 		}
-			
+
 		//Log("Loading images..\n");
 		//Load the images
 		tTextureTypeList lstTypes = pMaterial->GetTextureTypes();
@@ -162,28 +162,28 @@ namespace hpl {
 			if(mvImageHandle[it->mType]==-1){
 				mvImageHandle[it->mType] = mpResources->GetImageManager()->CreateFrame(mvFrameSize);
 			}
-			
+
 			pImage = mpResources->GetImageManager()->CreateImage(sName + it->msSuffix,mvImageHandle[it->mType]);
 			if(pImage==NULL){
 				Error("Can't load texture '%s%s'!\n",sName.c_str(), it->msSuffix.c_str());
 				return false;
 			}
-			
+
 			pMaterial->SetImage(pImage, it->mType);
 		}
-		
+
 		//Compile material
 		pMaterial->Compile();
-        
+
 		// Create the mesh
         pMesh = mpGraphics->GetMeshCreator()->Create2D(sMesh, mfTileSize);
 		if(pMesh == NULL){
 			Error("Error creating mesh for '%s'!\n", sName.c_str());
 			return false;
 		}
-		
+
 		pTileData->SetData(pMesh,pMaterial);
-		
+
 		// Create the collide mesh
 		if(sCollideMesh != "")
 		{
@@ -193,19 +193,19 @@ namespace hpl {
 				return false;
 			}
 			pCollideMesh->CreateTileVertexVec();
-			
+
 			pTileData->SetCollideMesh(pCollideMesh);
 		}
 
-        
+
 		//Set the tilesdata properties:
 		pTileData->SetIsSolid(cString::ToInt(pElement->Attribute("solid"),1)?true:false );
-		
+
 		eTileCollisionType CType = (eTileCollisionType)cString::ToInt(pElement->Attribute("collision_type"),1);
 		pTileData->SetCollisionType(CType);
 
 		Add(pTileData);
-		
+
 		return true;
      }
 

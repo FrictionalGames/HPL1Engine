@@ -36,13 +36,13 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	cMeshLoaderHandler::cMeshLoaderHandler(cResources* apResources, cScene *apScene)
 	{
 		mpResources = apResources;
 		mpScene = apScene;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cMeshLoaderHandler::~cMeshLoaderHandler()
@@ -63,11 +63,11 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	cMesh* cMeshLoaderHandler::LoadMesh(const tString& asFile,tMeshLoadFlag aFlags)
 	{
 		tString sType = cString::ToLowerCase(cString::GetFileExt(asFile));
-		
+
 		tMeshLoaderListIt it = mlstLoaders.begin();
 		for(;it != mlstLoaders.end();it++)
 		{
@@ -78,7 +78,7 @@ namespace hpl {
 				return pLoader->LoadMesh(asFile,aFlags);
 			}
 		}
-		
+
 		Log("No loader for '%s' found!\n", sType.c_str());
 		return NULL;
 	}
@@ -88,7 +88,7 @@ namespace hpl {
 	bool cMeshLoaderHandler::SaveMesh(cMesh* apMesh,const tString& asFile)
 	{
 		tString sType = cString::ToLowerCase(cString::GetFileExt(asFile));
-		
+
 		tMeshLoaderListIt it = mlstLoaders.begin();
 		for(;it != mlstLoaders.end();it++)
 		{
@@ -99,11 +99,11 @@ namespace hpl {
 				return pLoader->SaveMesh(apMesh,asFile);
 			}
 		}
-	
+
 		Log("No loader for '%s' found!\n", sType.c_str());
 		return false;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cWorld3D* cMeshLoaderHandler::LoadWorld(const tString& asFile, tWorldLoadFlag aFlags)
@@ -152,12 +152,12 @@ namespace hpl {
 	void cMeshLoaderHandler::AddLoader(iMeshLoader *apLoader)
 	{
 		mlstLoaders.push_back(apLoader);
-		
+
 		apLoader->mpMaterialManager = mpResources->GetMaterialManager();
 		apLoader->mpMeshManager = mpResources->GetMeshManager();
 		apLoader->mpAnimationManager = mpResources->GetAnimationManager();
 		apLoader->mpSystem = mpScene->GetSystem();
-		
+
 		apLoader->AddSupportedTypes(&mvSupportedTypes);
 	}
 

@@ -22,7 +22,7 @@
 #include "resources/ResourceManager.h"
 
 namespace hpl {
-	
+
 	class cGraphics;
 	class cResources;
 	class cTileSet;

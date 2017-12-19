@@ -53,7 +53,7 @@ namespace hpl {
 			hplDelete(mpMainSong->mpStream);
 			hplDelete(mpMainSong);
 		}
-		
+
 		tMusicEntryListIt it = mlstFadingSongs.begin();
 		while(it != mlstFadingSongs.end())
 		{
@@ -73,10 +73,10 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	bool cMusicHandler::Play(const tString& asFileName,float afVolume, float afFadeStepSize, bool abLoop)
 	{
-		bool bSongIsPlaying = false;  
+		bool bSongIsPlaying = false;
 
 		if(mpLock!=NULL){
 			mpLock->msFileName = asFileName;
@@ -87,16 +87,16 @@ namespace hpl {
 
 		if(mpMainSong != NULL)
 			if(asFileName == mpMainSong->msFileName) bSongIsPlaying = true;
-		
+
 		if(!bSongIsPlaying)
 		{
 			//Put the previous song in the fading queue
 			if(mpMainSong != NULL)
 			{
-				mpMainSong->mfVolumeAdd = afFadeStepSize; 
+				mpMainSong->mfVolumeAdd = afFadeStepSize;
 				mlstFadingSongs.push_back(mpMainSong);
 			}
-			
+
 			//If there the song to be played is in the fade que, stop it.
 			tMusicEntryListIt it = mlstFadingSongs.begin();
 			while(it != mlstFadingSongs.end())
@@ -115,10 +115,10 @@ namespace hpl {
 				}
 			}
 
-			
+
 			//add it and set its properties
 			mpMainSong = hplNew( cMusicEntry, () );
-			
+
 			if(LoadAndStart(asFileName, mpMainSong,0,abLoop)==false){
 				hplDelete(mpMainSong);
 				mpMainSong = NULL;
@@ -133,16 +133,16 @@ namespace hpl {
 		//Set Properties
 		mpMainSong->mfMaxVolume = afVolume;
 		mpMainSong->mbLoop = abLoop;
-		
+
 		if(mpMainSong->mfMaxVolume > mpMainSong->mfVolume)
 			mpMainSong->mfVolumeAdd = afFadeStepSize;
 		else
 			mpMainSong->mfVolumeAdd = -afFadeStepSize;
-		
-		
+
+
 		return true;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cMusicHandler::Stop(float afFadeStepSize)
@@ -151,7 +151,7 @@ namespace hpl {
 
 		if(afFadeStepSize<0)afFadeStepSize=-afFadeStepSize;
 
-		mpMainSong->mfVolumeAdd = afFadeStepSize; 
+		mpMainSong->mfVolumeAdd = afFadeStepSize;
 		if(afFadeStepSize==0){
 			mpMainSong->mpStream->SetVolume(0);
 			mpMainSong->mpStream->Stop();
@@ -161,7 +161,7 @@ namespace hpl {
 		mlstFadingSongs.push_back(mpMainSong);
 		mpMainSong = NULL;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cMusicHandler::Pause()
@@ -176,7 +176,7 @@ namespace hpl {
 
 		mbIsPaused = true;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cMusicHandler::Resume()
@@ -206,7 +206,7 @@ namespace hpl {
 	{
 		mpLock = NULL;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	tString cMusicHandler::GetCurrentSongName()
@@ -216,7 +216,7 @@ namespace hpl {
 		else
 			return "";
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	float cMusicHandler::GetCurrentSongVolume()
@@ -286,7 +286,7 @@ namespace hpl {
 				pSong->mpStream->Stop();
 				hplDelete(pSong->mpStream);
 				hplDelete(pSong);
-				
+
 				it = mlstFadingSongs.erase(it);
 			}
 			else
@@ -304,7 +304,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	bool cMusicHandler::LoadAndStart(const tString& asFileName,cMusicEntry* apSong  ,float afVolume, bool abLoop)
 	{
 		iSoundData* pData = mpResources->GetSoundManager()->CreateSoundData(asFileName,true,abLoop);
@@ -312,7 +312,7 @@ namespace hpl {
 			Error("Couldn't load music '%s'\n",asFileName.c_str());
 			return false;
 		}
-		
+
 		iSoundChannel *pStream = pData->CreateChannel(256);
 		if(pStream == NULL){
 			Error("Couldn't stream music '%s'!\n",asFileName.c_str());
@@ -322,9 +322,9 @@ namespace hpl {
 		apSong->msFileName = asFileName;
 		apSong->mpStream = pStream;
 		apSong->mpStream->SetVolume(afVolume);
-		
+
 		apSong->mpStream->Play();
-		
+
 		return true;
 	}
 	//-----------------------------------------------------------------------

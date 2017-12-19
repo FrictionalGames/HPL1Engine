@@ -100,7 +100,7 @@ namespace hpl {
 
 	struct cPhysicsBody_Buoyancy
 	{
-		cPhysicsBody_Buoyancy() : mbActive(false), mfDensity(1), 
+		cPhysicsBody_Buoyancy() : mbActive(false), mfDensity(1),
 								mfLinearViscosity(1), mfAngularViscosity(1){}
 
 		bool mbActive;
@@ -278,7 +278,7 @@ namespace hpl {
 		virtual void SaveToSaveData(iSaveData *apSaveData);
 		virtual void LoadFromSaveData(iSaveData *apSaveData);
 		virtual void SaveDataSetup(cSaveObjectHandler *apSaveObjectHandler, cGame *apGame);
-		
+
 		virtual void DeleteLowLevel()=0;
 	protected:
 		void CreateSaveCollideShapes(cContainerList<cSaveData_iCollideShape> *apShapeList);

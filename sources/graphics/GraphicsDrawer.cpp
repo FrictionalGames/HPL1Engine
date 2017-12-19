@@ -199,7 +199,7 @@ namespace hpl {
 					vPos[1] = cMath::MatrixMul(mtxTrans,vPos[1]);
 					vPos[2] = cMath::MatrixMul(mtxTrans,vPos[2]);
 					vPos[3] = cMath::MatrixMul(mtxTrans,vPos[3]);
-					
+
 					if(pObj->mbFlipH)
 					{
 						mpLowLevelGraphics->AddVertexToBatch_Size2D(pObj->mpObject->GetVtxPtr(0),
@@ -347,7 +347,7 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	cGfxObject* cGraphicsDrawer::CreateGfxObjectFromTexture(	const tString &asFileName, const tString &asMaterialName, 
+	cGfxObject* cGraphicsDrawer::CreateGfxObjectFromTexture(	const tString &asFileName, const tString &asMaterialName,
 																bool abAddToList)
 	{
 		iTexture *pTex = mpResources->GetTextureManager()->Create2D(asFileName,false);
@@ -356,7 +356,7 @@ namespace hpl {
 			FatalError("Couldn't create texture '%s'!\n", asFileName.c_str());
 			return NULL;
 		}
-		
+
 		iMaterial* pMat = mpMaterialHandler->Create(asMaterialName, eMaterialPicture_Texture);
 		if(pMat==NULL){
 			FatalError("Couldn't create material '%s'!\n", asMaterialName.c_str());

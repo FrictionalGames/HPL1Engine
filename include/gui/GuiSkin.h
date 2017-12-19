@@ -31,7 +31,7 @@ namespace hpl {
 	class iGuiMaterial;
 
 	//-------------------------------------
-	
+
 	class cGuiSkinFont
 	{
 	public:
@@ -57,12 +57,12 @@ namespace hpl {
 		const tString& GetName(){ return msName;}
 
 		bool LoadFromFile(const tString &asFile);
-		
+
         cGuiGfxElement* GetGfx(eGuiSkinGfx aType);
 		cGuiSkinFont* GetFont(eGuiSkinFont aType);
 		const cVector3f& GetAttribute(eGuiSkinAttribute aType);
 	private:
-					
+
 		tString msName;
 		cGui *mpGui;
 

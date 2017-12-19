@@ -37,7 +37,7 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	cImageEntityData::cImageEntityData(tString asName,cGraphics *apGraphics, cResources *apResources) 
+	cImageEntityData::cImageEntityData(tString asName,cGraphics *apGraphics, cResources *apResources)
 		: iResourceBase(asName,0)
 	{
 		mpResources = apResources;
@@ -70,7 +70,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 	// PUBLIC METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
 
 	cImageAnimation* cImageEntityData::GetAnimationByName(const tString& asName)
@@ -80,13 +80,13 @@ namespace hpl {
 
 		return &it->second;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cImageAnimation* cImageEntityData::GetAnimationByHandle(int alHandle)
 	{
 		tImageAnimationMapIt it = m_mapAnimations.begin();
-		
+
 		while(it != m_mapAnimations.end())
 		{
 			if(it->second.mlHandle == alHandle)return &it->second;
@@ -106,7 +106,7 @@ namespace hpl {
 			FatalError("Couldn't load tileset '%s'!\n",asFile.c_str());
 			return false;
 		}
-		
+
 		TiXmlElement* RootElem = pDoc->RootElement();
 
 
@@ -120,10 +120,10 @@ namespace hpl {
 		msType = cString::ToString(MainElem->Attribute("Type"),"");
 		msSubType = cString::ToString(MainElem->Attribute("Subtype"),"");
 
-		
+
 		///////// IMAGE ///////////////
 		TiXmlElement* ImageElem = RootElem->FirstChildElement("IMAGE");
-        
+
 		tString sImageName = cString::ToString(ImageElem->Attribute("Name"),"");
 		tString sDirectory = cString::ToString(ImageElem->Attribute("Dir"),"");
 		tString sMaterial = cString::ToString(ImageElem->Attribute("Material"),"");
@@ -132,7 +132,7 @@ namespace hpl {
 		mvImageSize.x = cString::ToFloat(ImageElem->Attribute("Width"),512)+2.0f;
 		mvImageSize.y = cString::ToFloat(ImageElem->Attribute("Height"),512)+2.0f;
 
-		
+
 		///////// PROPERTIES ///////////////
 		TiXmlElement* PropElem = RootElem->FirstChildElement("PROPERTIES");
 
@@ -141,7 +141,7 @@ namespace hpl {
 		mbCollides = cString::ToBool(PropElem->Attribute("Collides"),false);
 		mbLit = cString::ToBool(PropElem->Attribute("Lit"),true);
 		tString sCollideMesh = cString::ToString(PropElem->Attribute("CollideMesh"),"square");
-		
+
 		///////// ANIMATIONS ///////////////
 		TiXmlElement* AnimationElem = RootElem->FirstChildElement("ANIMATIONS");
 
@@ -150,7 +150,7 @@ namespace hpl {
 			mlFrameNum = cString::ToInt(AnimationElem->Attribute("Frames"),1);
 
 			TiXmlElement* AnimChildElem = AnimationElem->FirstChildElement();
-			
+
 			int lCount=0;
 			while(AnimChildElem)
 			{
@@ -160,7 +160,7 @@ namespace hpl {
 				Anim.mbCollidable = cString::ToBool(AnimChildElem->Attribute("Collidable"),false);
 				Anim.msSound = cString::ToString(AnimChildElem->Attribute("Sound"),"");
 				Anim.mlHandle = lCount;
-                
+
 				tString sData = cString::ToString(AnimChildElem->Attribute("Data"),"");
 				cString::GetIntVec(sData,Anim.mvFrameNums);
 
@@ -178,11 +178,11 @@ namespace hpl {
 			bGotAnim = false;
 		}
 
-		
+
 		///////// LOADING /////////////////
-		
+
 		mpResources->AddResourceDir(sDirectory);
-		
+
 		// Create the mesh for drawing
 		mpMesh = mpGraphics->GetMeshCreator()->Create2D(sMesh, 2);
 		if(mpMesh == NULL)
@@ -213,7 +213,7 @@ namespace hpl {
 		}
 
 		mvFrameSize = cVector2l((int)pow(2.0,x),(int)pow(2.0,y));
-        
+
 		//Loop through all animation frames.
 		for(int i=0;i<mlFrameNum;i++)
 		{
@@ -223,7 +223,7 @@ namespace hpl {
 				Error("Error creating material '%s' for '%s'!\n", sMaterial.c_str(),msName.c_str());
 				return false;
 			}
-			
+
 			//Get the textures for the material
 			tTextureTypeList lstTypes = pMaterial->GetTextureTypes();
 			for(tTextureTypeListIt it = lstTypes.begin(); it!= lstTypes.end(); it++)
@@ -237,7 +237,7 @@ namespace hpl {
 				{
 					int lNum = i+1;
 					char buff[5];sprintf(buff,"%d",lNum);
-					
+
 					sFile = sImageName;
 					if(lNum<10)sFile+="0";
 					sFile+= buff;
@@ -245,7 +245,7 @@ namespace hpl {
 				else{
 					sFile = sImageName;
 				}
-				
+
 				cResourceImage* pImage = mpResources->GetImageManager()->CreateImage(
 														sFile + it->msSuffix,
 														avImageHandle[it->mType]);
@@ -264,7 +264,7 @@ namespace hpl {
 			ImageFrame.mpMaterial =pMaterial;
 			cRect2f ImageRect = pMaterial->GetTextureOffset(eMaterialTexture_Diffuse);
 			ImageFrame.mvVtx = *mpMesh->GetVertexVec(ImageRect,2,eTileRotation_0);
-			
+
 			mvImageFrames.push_back(ImageFrame);
 		}
 
@@ -276,7 +276,7 @@ namespace hpl {
 
 		return true;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cImageFrame* cImageEntityData::GetImageFrame(int alFrame)
@@ -293,7 +293,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	void cImageEntityData::GetFrameNum(TiXmlElement *apElement)
 	{
 		mlFrameNum = 1;

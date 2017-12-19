@@ -26,23 +26,23 @@
 
 namespace hpl {
 
-	class cSDLBitmap2D : public iBitmap2D 
+	class cSDLBitmap2D : public iBitmap2D
 	{
 	public:
 		cSDLBitmap2D(iPixelFormat *apPxlFmt);
 		cSDLBitmap2D(SDL_Surface* apSurface,iPixelFormat *apPxlFmt,const tString& asType);
 		~cSDLBitmap2D();
 
-		bool SaveToFile(const tString& asFile);	
+		bool SaveToFile(const tString& asFile);
 
 
 		void DrawToBitmap(iBitmap2D *apBmp, const cVector2l &avDestPos);
 		bool HasAlpha();
 		/**
 		 * \todo Support 16 bit format aswell.
-		 * \param avSize 
-		 * \param alBpp 
-		 * \return 
+		 * \param avSize
+		 * \param alBpp
+		 * \return
 		 */
 		bool Create(cVector2l avSize, unsigned int alBpp);
 

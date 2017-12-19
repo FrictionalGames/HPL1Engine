@@ -27,30 +27,30 @@ public:
 
 
 		//gpGame->GetGraphics()->GetRenderer3D()->SetDebugFlags(eRendererDebugFlag_DrawNormals);
-														
+
 														//eRendererDebugFlag_DisableLighting);
 		//gpGame->GetGraphics()->GetRenderer3D()->SetDebugFlags(eRendererDebugFlag_DrawBoundingSphere);
 		//gpGame->GetGraphics()->GetRenderer3D()->SetDebugFlags(eRendererDebugFlag_DrawBoundingBox);
 		//gpGame->GetGraphics()->GetRenderer3D()->SetDebugFlags(eRendererDebugFlag_DrawLightBoundingBox);
-		
+
 		iMaterial::SetQuality(eMaterialQuality_High);
 
 		mpLowLevelGraphics = gpGame->GetGraphics()->GetLowLevel();
 
 		mpWorld = gpGame->GetScene()->CreateWorld3D("Test");
 		gpGame->GetScene()->SetWorld3D(mpWorld);
-		
+
 		cMesh *pMesh =NULL;
 		cMeshEntity *pBox = NULL;
 
 		pMesh = gpGame->GetResources()->GetMeshManager()->CreateMesh("misc_rect.dae");
 		if(pMesh==NULL) FatalError("Couldn't load mesh\n");
-		
+
 		mpFloor = mpWorld->CreateMeshEntity("Floor",pMesh);
-		mpFloor->SetMatrix(cMath::MatrixMul(cMath::MatrixScale(7), 
+		mpFloor->SetMatrix(cMath::MatrixMul(cMath::MatrixScale(7),
 							cMath::MatrixRotate(cVector3f(0,0,0),eEulerRotationOrder_XYZ)));
 		mpFloor->SetCastsShadows(false);
-		
+
 		pMesh = gpGame->GetResources()->GetMeshManager()->CreateMesh("mine_barrel.dae");
 		cMeshEntity *pEntity = mpWorld->CreateMeshEntity("Test",pMesh);
 		pEntity->SetCastsShadows(true);
@@ -62,23 +62,23 @@ public:
 		vScale.y = mpFloor->GetWorldMatrix().GetUp().Length();
 		vScale.z = mpFloor->GetWorldMatrix().GetForward().Length();
 		Log("SCALE: %s\n",vScale.ToString().c_str());*/
-		
+
 
 		//mpBox = pEntity;
-		
+
 		mpLight = mpWorld->CreateLightPoint("Light");
 		mpLight->SetFarAttenuation(4);
 		mpLight->SetDiffuseColor(cColor(0.0f,1.0f,1.0f,1.0));
 		mpLight->SetCastShadows(true);
 		mpLight->SetPosition(cVector3f(2.3f,2.2f,3.51f));
 		mpLight->SetVisible(false);
-	
+
 		//Spot light create
 		mpSpotLight = mpWorld->CreateLightSpot("SpotLight");
 		iTexture *pTex = gpGame->GetResources()->GetTextureManager()->Create2D("test_gobo.tga",true);
 		if(pTex==NULL) FatalError("Couldn't load spot light texture!\n");
 		mpSpotLight->SetTexture(pTex);
-			
+
 		//Spot light setup
 		mvSpotLightPos = cVector3f(1,2.5,1);
 		mvSpotLightAngle = cVector3f(cMath::ToRad(-70),0,0);
@@ -88,7 +88,7 @@ public:
 		mpSpotLight->SetFarAttenuation(3);
 		mpSpotLight->SetCastShadows(true);
 		mpSpotLight->SetVisible(true);
-		
+
 		//Spot light gpu progs
 		/*mpVertexProgram = gpGame->GetResources()->GetGpuProgramManager()->CreateProgram(
 								"Diffuse_Light_Spot_vp.cg","main",eGpuProgramType_Vertex);
@@ -99,13 +99,13 @@ public:
 		{
 			FatalError("Frag or Vtx program loading failed!\n");
 		}*/
-		
+
 		mpFlare = mpWorld->CreateBillboard("Flare",1,"misc_flare");
 		mpFlare->SetPosition(mpLight->GetWorldPosition());
 		mpFlare->SetVisible(true);
 
 		gpGame->GetGraphics()->GetRenderer3D()->SetAmbientColor(cColor(0.2f,0.2f));
-		
+
 		//////////////////////////////////
 		//Create input actions
 		gpGame->GetInput()->AddAction(new cActionKeyboard("SpotForward",gpGame->GetInput(),eKey_UP));
@@ -121,7 +121,7 @@ public:
 		gpGame->GetInput()->AddAction(new cActionKeyboard("SpotRotLeft",gpGame->GetInput(),eKey_HOME));
 		gpGame->GetInput()->AddAction(new cActionKeyboard("SpotRotRight",gpGame->GetInput(),eKey_END));
 
-		
+
 		gpGame->GetInput()->AddAction(new cActionKeyboard("SpotFovUp",gpGame->GetInput(),eKey_INSERT));
 		gpGame->GetInput()->AddAction(new cActionKeyboard("SpotFovDown",gpGame->GetInput(),eKey_DELETE));
 	}
@@ -133,7 +133,7 @@ public:
 	void Update(float afTimeStep)
 	{
 		if(mpSpotLight == NULL) return;
-		
+
 		if(gpGame->GetInput()->IsTriggerd("SpotForward"))mvSpotLightPos.z -= 1*afTimeStep;
 		if(gpGame->GetInput()->IsTriggerd("SpotBackward"))mvSpotLightPos.z += 1*afTimeStep;
 		if(gpGame->GetInput()->IsTriggerd("SpotRight"))mvSpotLightPos.x -= 1*afTimeStep;
@@ -157,12 +157,12 @@ public:
 		mtxSpotLight.SetTranslation(mvSpotLightPos);
 		mpSpotLight->SetMatrix(mtxSpotLight);
 	}
-	
+
 	void OnDraw()
 	{
 
 	}
-	
+
     void OnPostSceneDraw()
 	{
 		if(mpSpotLight==NULL)return;
@@ -175,7 +175,7 @@ public:
 		mpLowLevelGraphics->SetStencilActive(false);
 		mpLowLevelGraphics->DrawSphere(mpSpotLight->GetWorldPosition(),0.2f,cColor(0,1,1));
 		mpLowLevelGraphics->DrawLine(mpSpotLight->GetWorldPosition(),
-			mpSpotLight->GetWorldPosition() + 
+			mpSpotLight->GetWorldPosition() +
 			mpSpotLight->GetViewMatrix().GetForward()*mpSpotLight->GetFarAttenuation()*-1,
 			cColor(1,1,0));
 
@@ -196,18 +196,18 @@ public:
 
 			iVertexBuffer *pVtxBuff = pEntity->GetSubMeshEntity(0)->GetVertexBuffer();
 			iTexture *pSpotTex = mpSpotLight->GetTexture();
-	        
+
 			//Set model view matrix
-			//mpLowLevelGraphics->SetMatrix(eMatrix_ModelView, 
+			//mpLowLevelGraphics->SetMatrix(eMatrix_ModelView,
 			//						cMath::MatrixMul(pCam->GetViewMatrix(), pEntity->GetWorldMatrix()));
-			
+
 			//Set texture
 			mpLowLevelGraphics->SetTexture(0, pSpotTex);
-			
+
 			//Set Blend mode
 			mpLowLevelGraphics->SetBlendActive(true);
 			mpLowLevelGraphics->SetBlendFunc(eBlendFunc_One,eBlendFunc_One);//eBlendFunc_DestColor, eBlendFunc_Zero);
-			
+
 			//GPU programs
 			//mpVertexProgram->SetMatrixf("worldViewProj",
 			//					eGpuProgramMatrix_ViewProjection,
@@ -218,7 +218,7 @@ public:
 
 			mpVertexProgram->SetMatrixf("spotViewProj",
 								cMath::MatrixMul(mpSpotLight->GetViewProjMatrix(), pEntity->GetWorldMatrix()));
-			
+
 			mpVertexProgram->Bind();
 			mpFragmentProgram->Bind();
 
@@ -237,19 +237,19 @@ public:
 			mpLowLevelGraphics->SetBlendActive(false);
 		}*/
 	}
-	
+
 
 private:
 	cMeshEntity *mpFloor;
 	cMeshEntity *mpBox;
-	
+
 	iFontData *mpFont;
-	
+
 	iLowLevelGraphics* mpLowLevelGraphics;
 	cWorld3D* mpWorld;
 
 	cBillboard *mpFlare;
-	
+
 	iLight3D *mpLight;
 
 	cLight3DSpot *mpSpotLight;
@@ -263,19 +263,19 @@ private:
 int hplMain(const tString& asCommandLine)
 {
 	iResourceBase::SetLogCreateAndDelete(true);
-	iGpuProgram::SetLogDebugInformation(true); 
+	iGpuProgram::SetLogDebugInformation(true);
 
 	//Init the game engine
 	gpGame = new cGame(new cSDLGameSetup(),800,600,32,false,45);
 	gpGame->GetGraphics()->GetLowLevel()->SetVsyncActive(false);
-	
+
 	//Add resources
 	gpGame->GetResources()->LoadResourceDirsFile("resources.cfg");
 
 	//Add updates
 	cSimpleUpdate Update;
 	gpGame->GetUpdater()->AddUpdate("Default", &Update);
-	
+
 	cSimpleCamera cameraUpdate(gpGame,10,cVector3f(0,2,5),true);
 	gpGame->GetUpdater()->AddUpdate("Default", &cameraUpdate);
 

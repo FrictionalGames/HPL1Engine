@@ -33,13 +33,13 @@ namespace hpl {
 
 		void SetChecked(bool abX);
 		bool IsChecked(){return mbChecked;}
-	
+
 	protected:
 		/////////////////////////
 		// Implemented functions
 		void OnLoadGraphics();
 		void OnChangeSize();
-		
+
 		void OnDraw(float afTimeStep, cGuiClipRegion *apClipRegion);
 
 		bool OnMouseMove(cGuiMessageData &aData);
@@ -54,7 +54,7 @@ namespace hpl {
 		bool mbPressed;
 
 		cGuiGfxElement *mvGfxBox[2][2];
-		
+
 	};
 
 };

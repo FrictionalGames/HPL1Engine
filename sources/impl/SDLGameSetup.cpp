@@ -48,10 +48,10 @@ namespace hpl {
 	cSDLGameSetup::cSDLGameSetup()
 	{
 		if (SDL_Init( SDL_INIT_VIDEO | SDL_INIT_TIMER ) < 0) {
-			FatalError("Error Initializing Display: %s",SDL_GetError()); 
+			FatalError("Error Initializing Display: %s",SDL_GetError());
 			exit(1);
 		}
-		
+
 		mpLowLevelSystem = hplNew( cLowLevelSystemSDL, () );
 		mpLowLevelGraphics = hplNew( cLowLevelGraphicsSDL,() );
 		mpLowLevelInput = hplNew( cLowLevelInputSDL,(mpLowLevelGraphics) );
@@ -62,13 +62,13 @@ namespace hpl {
 			mpLowLevelSound	= hplNew( cLowLevelSoundOpenAL,() );
 //		#endif
 		mpLowLevelPhysics = hplNew( cLowLevelPhysicsNewton,() );
-		
-#ifdef INCLUDE_HAPTIC 
+
+#ifdef INCLUDE_HAPTIC
 		mpLowLevelHaptic = hplNew( cLowLevelHapticHaptX,() );
-#else 
+#else
 		mpLowLevelHaptic = NULL;
 #endif
-		
+
 	}
 
 	//-----------------------------------------------------------------------
@@ -76,7 +76,7 @@ namespace hpl {
 	cSDLGameSetup::~cSDLGameSetup()
 	{
 		Log("- Deleting lowlevel stuff.\n");
-		
+
 		Log("  Physics\n");
 		hplDelete(mpLowLevelPhysics);
 		Log("  Sound\n");
@@ -102,7 +102,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	cScene* cSDLGameSetup::CreateScene(cGraphics* apGraphics, cResources *apResources, cSound* apSound,
 										cPhysics *apPhysics, cSystem *apSystem,cAI *apAI,
 										cHaptic *apHaptic)
@@ -113,18 +113,18 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	
+
 	/**
 	 * \todo Lowlevelresource and resource both use lowlevel graphics. Can this be fixed??
-	 * \param apGraphics 
-	 * \return 
+	 * \param apGraphics
+	 * \return
 	 */
 	cResources* cSDLGameSetup::CreateResources(cGraphics* apGraphics)
 	{
 		cResources *pResources = hplNew( cResources, (mpLowLevelResources,mpLowLevelGraphics) );
 		return pResources;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cInput* cSDLGameSetup::CreateInput(cGraphics* apGraphics)
@@ -132,7 +132,7 @@ namespace hpl {
 		cInput *pInput = hplNew( cInput, (mpLowLevelInput) );
 		return pInput;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cSystem* cSDLGameSetup::CreateSystem()
@@ -140,7 +140,7 @@ namespace hpl {
 		cSystem *pSystem = hplNew( cSystem, (mpLowLevelSystem) );
 		return pSystem;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cGraphics* cSDLGameSetup::CreateGraphics()
@@ -149,15 +149,15 @@ namespace hpl {
 		return pGraphics;
 	}
 	//-----------------------------------------------------------------------
-	
+
 	cSound* cSDLGameSetup::CreateSound()
 	{
 		cSound *pSound = hplNew( cSound, (mpLowLevelSound) );
 		return pSound;
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	cPhysics* cSDLGameSetup::CreatePhysics()
 	{
 		cPhysics *pPhysics = hplNew( cPhysics, (mpLowLevelPhysics) );

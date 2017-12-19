@@ -26,14 +26,14 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	cOpenALSoundData::cOpenALSoundData(tString asName, bool abStream) : iSoundData(asName,abStream)
 	{
 		mpSample = NULL;
 		mpStream = NULL;
 //		mpSoundData = NULL;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cOpenALSoundData::~cOpenALSoundData()
@@ -45,11 +45,11 @@ namespace hpl {
 		}
 		else
 		{
-			if(mpSample) 
+			if(mpSample)
 				OAL_Sample_Unload ( mpSample );//static_cast<cOAL_Sample*>(mpSoundData) );
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	//////////////////////////////////////////////////////////////////////////
@@ -57,27 +57,27 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	bool cOpenALSoundData::CreateFromFile(const tString &asFile)
 	{
 		int lFlags=0;
-		
+
 		unsigned int lCaps = 0;
 //		FSOUND_GetDriverCaps(0, &lCaps);//Current driver here instead of 0
-		
+
 		//Get the load flags
 //		if(lCaps & FSOUND_CAPS_HARDWARE)	lFlags |= FSOUND_HW3D;
 		//if(mbStream)						lFlags |= FSOUND_STREAMABLE;
-		
+
 		if(mbStream)
 		{
-			//mpSoundData 
-			mpStream = OAL_Stream_Load ( asFile.c_str() ); 
-			
-				
+			//mpSoundData
+			mpStream = OAL_Stream_Load ( asFile.c_str() );
+
+
 
 			if(mpStream == NULL )//mpSoundData==NULL){
-			{ 
+			{
 				Error("Couldn't load sound stream '%s'\n", asFile.c_str());
 				return false;
 			}
@@ -101,10 +101,10 @@ namespace hpl {
                 //mpSample->SetLoop ( true );
 
 		}
-				
+
 		return true;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	iSoundChannel* cOpenALSoundData::CreateChannel(int alPriority)
@@ -118,7 +118,7 @@ namespace hpl {
 		{
 			lHandle = OAL_Stream_Play ( OAL_FREE, GetStream(), 1.0f, true );
 			if(lHandle==-1)return NULL;
-			
+
 			pSoundChannel = hplNew( cOpenALSoundChannel, (this,lHandle, mpSoundManger) );
 			IncUserCount();
 		}
@@ -126,7 +126,7 @@ namespace hpl {
 		{
 			lHandle = OAL_Sample_Play ( OAL_FREE, GetSample(), 1.0f, true, alPriority);
 			if(lHandle==-1)return NULL;
-			
+
 			pSoundChannel = hplNew( cOpenALSoundChannel, (this,lHandle, mpSoundManger) );
 			IncUserCount();
 		}

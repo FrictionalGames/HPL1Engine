@@ -44,25 +44,25 @@ public:
 	{
 		//////////////////////////////////////////////////
 		/// Variables
-		
+
 		/////////////////////////////////////////////////
 		// Set up data
 		mpLowLevelGraphics = gpGame->GetGraphics()->GetLowLevel();
-		
+
 		//gpGame->SetRenderOnce(true);
 		//gpGame->GetGraphics()->GetRenderer3D()->SetDebugFlags(eRendererDebugFlag_LogRendering);
-		
+
 		gpGame->GetGraphics()->GetRendererPostEffects()->SetActive(true);
 		gpGame->GetGraphics()->GetRendererPostEffects()->SetBloomActive(true);
 		gpGame->GetGraphics()->GetRendererPostEffects()->SetBloomSpread(6);
 
 		gpGame->GetInput()->AddAction(new cActionKeyboard("Bloom",gpGame->GetInput(),eKey_b));
-		
+
 		/////////////////////////////////////////////
 		// Create World
 		mpWorld = gpGame->GetScene()->CreateWorld3D("Test");
 		gpGame->GetScene()->SetWorld3D(mpWorld);
-		
+
 		/////////////////////////////////////////////
 		// Create Physics world
 		// Setup physics
@@ -95,34 +95,34 @@ public:
 		gvRoomSize = cString::ToVector3f(pRootElem->Attribute("RoomSize"),6);
 
 		delete pXmlDoc;
-		
+
 
 		/////////////////////////////
 		//Particle system
 
-		//mpPS = mpWorld->CreateParticleSystem("PS",gsModelFile,1,cMatrixf::Identity);	
-		
+		//mpPS = mpWorld->CreateParticleSystem("PS",gsModelFile,1,cMatrixf::Identity);
+
 		/////////////////////////////
 		//Creates Room
 		if(gbShowRoom==false) return;
 
 		cMesh *pMesh = gpGame->GetResources()->GetMeshManager()->CreateMesh("misc_rect.dae");
 		if(pMesh==NULL) FatalError("Couldn't load mesh\n");
-		
+
 		cMeshEntity *pWall = NULL;
 		iPhysicsBody *pBody = NULL;
 		iCollideShape *pShape = NULL;
-		
+
 		//Floor
 		pWall = mpWorld->CreateMeshEntity("Floor",pMesh);
 		pWall->SetMatrix(cMath::MatrixScale(cVector3f(gvRoomSize.x,gvRoomSize.y,gvRoomSize.z)*0.5f));
 		pWall->SetPosition(cVector3f(0,-gvRoomSize.y/2,0));
-		
+
 		pShape = mpPhysicsWorld->CreateBoxShape(cVector3f(gvRoomSize.x,0.1f,gvRoomSize.z),NULL);
 		pBody = mpPhysicsWorld->CreateBody("",pShape);
 		pBody->SetPosition(cVector3f(0,-gvRoomSize.y/2 - 0.05f,0));
 
-		
+
 		//Roof
 		pMesh->IncUserCount();
 		pWall = mpWorld->CreateMeshEntity("Floor",pMesh);
@@ -152,7 +152,7 @@ public:
 		pWall->SetMatrix(cMath::MatrixScale(cVector3f(gvRoomSize.x,gvRoomSize.y,gvRoomSize.z)*0.5f));
 		pWall->SetMatrix(cMath::MatrixMul(pWall->GetLocalMatrix(), cMath::MatrixRotateZ(-kPi2f)));
 		pWall->SetPosition(cVector3f(-gvRoomSize.x/2,0,0));
-		
+
 		pShape = mpPhysicsWorld->CreateBoxShape(cVector3f(0.1f,gvRoomSize.y,gvRoomSize.z),NULL);
 		pBody = mpPhysicsWorld->CreateBody("",pShape);
 		pBody->SetPosition(cVector3f(-gvRoomSize.x/2 - 0.05f,0,0));
@@ -179,7 +179,7 @@ public:
 		pShape = mpPhysicsWorld->CreateBoxShape(cVector3f(gvRoomSize.x,gvRoomSize.y,0.1f),NULL);
 		pBody = mpPhysicsWorld->CreateBody("",pShape);
 		pBody->SetPosition(cVector3f(0,0,-gvRoomSize.x/2 - 0.05f));
-		
+
 		iLight3D* pLight = mpWorld->CreateLightPoint();
 		pLight->SetPosition(0);
 		pLight->SetFarAttenuation(2000);
@@ -188,7 +188,7 @@ public:
 
 	~cSimpleUpdate()
 	{
-	
+
 	}
 
 	void Update(float afTimeStep)
@@ -200,18 +200,18 @@ public:
 			mpPS->SetActive(false);
 			mpPS->SetVisible(false);
 		}*/
-		
+
 
 		cCamera3D *pCam = static_cast<cCamera3D*>(gpGame->GetScene()->GetCamera());
 
-		
+
 		//Render Bloom
 		if(gpGame->GetInput()->BecameTriggerd("Bloom")){
 			bool bBloom = gpGame->GetGraphics()->GetRendererPostEffects()->GetBloomActive();
 			gpGame->GetGraphics()->GetRendererPostEffects()->SetBloomActive(!bBloom);
 		}
 	}
-	
+
 	void OnDraw()
 	{
 	}
@@ -222,18 +222,18 @@ public:
 		cCamera3D *pCam = static_cast<cCamera3D*>(gpGame->GetScene()->GetCamera());
 		mpLowLevelGraphics->SetMatrix(eMatrix_ModelView, pCam->GetViewMatrix());
 		mpLowLevelGraphics->SetDepthTestActive(false);
-		
+
 		mpPhysicsWorld->RenderDebugGeometry(mpLowLevelGraphics,cColor(1,1));
 	}
 
 private:
 	cParticleSystem3D *mpPS;
-		
+
 	iLowLevelGraphics* mpLowLevelGraphics;
 	cWorld3D* mpWorld;
 
 	iPhysicsWorld *mpPhysicsWorld;
-	
+
 };
 
 /////////////////////////////////////////////////////
@@ -249,7 +249,7 @@ int hplMain(const tString& asCommands)
 	int lScreenH = pConfig->GetInt("Screen","Height",600);
 	bool bFullScreen = pConfig->GetBool("Screen", "FullScreen", false);
 	bool bVsync = pConfig->GetBool("Screen", "Vsync", false);
-	
+
 	//Init the game engine
 
 	gpGame = new cGame(new cSDLGameSetup(),lScreenW,lScreenH,32,bFullScreen,45);
@@ -258,10 +258,10 @@ int hplMain(const tString& asCommands)
 	SetWindowCaption("Particle Viewer");
 
 	//iResourceBase::SetLogCreateAndDelete(true);
-	
+
 	//Add resources
 	gpGame->GetResources()->LoadResourceDirsFile("resources.cfg");
-	
+
 	if(asCommands != ""){
 		gsModelFile = asCommands;
 	}
@@ -269,7 +269,7 @@ int hplMain(const tString& asCommands)
 	//Add updates
 	cSimpleUpdate Update;
 	gpGame->GetUpdater()->AddUpdate("Default", &Update);
-	
+
 	cPVCamera cameraUpdate(gpGame,20,cVector3f(0,0,10),false);
 	gpGame->GetUpdater()->AddUpdate("Default", &cameraUpdate);
 

@@ -28,7 +28,7 @@ namespace hpl
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	cActionKeyboard::cActionKeyboard(tString asName,cInput *apInput, int aKey) : iAction(asName)
 	{
 		// Split key and modifier
@@ -36,9 +36,9 @@ namespace hpl
 		mMod = (eKeyModifier)(aKey & eKeyModifier_MASK);
 		mpInput = apInput;
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	//////////////////////////////////////////////////////////////////////////
 	// PUBLIC METHODS
 	//////////////////////////////////////////////////////////////////////////
@@ -47,7 +47,7 @@ namespace hpl
 
 	bool cActionKeyboard::IsTriggerd()
 	{
-		return mpInput->GetKeyboard()->KeyIsDown(mKey) && 
+		return mpInput->GetKeyboard()->KeyIsDown(mKey) &&
 			( (mpInput->GetKeyboard()->GetModifier() & mMod) > 0 || mMod == eKeyModifier_NONE);
 	}
 	//-----------------------------------------------------------------------
@@ -57,9 +57,9 @@ namespace hpl
 		if(IsTriggerd())return 1.0;
 		else return 0.0;
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	tString cActionKeyboard::GetInputName()
 	{
 		tString tsKey = "";
@@ -73,13 +73,13 @@ namespace hpl
 			tsKey.append("Control ");
 		}
 		if (mMod & eKeyModifier_META) {
-			#ifdef __APPLE__	
+			#ifdef __APPLE__
 			tsKey.append("Command ");
 			#else
 			tsKey.append("Windows ");
 			#endif
 		}
-		
+
 		switch(mKey)
 		{
 			case eKey_BACKSPACE: tsKey.append("BackSpace"); break;

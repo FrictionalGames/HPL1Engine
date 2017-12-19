@@ -40,7 +40,7 @@ namespace hpl {
 
 		/**
 		 * Set the quaternion from and angle and axis.
-		 * \param afAngle 
+		 * \param afAngle
 		 * \param &avAxis MUST be unit length!
 		 */
 		void FromAngleAxis(float afAngle, const cVector3<float> &avAxis);

@@ -43,7 +43,7 @@ namespace hpl {
 	cGuiPopUpMessageBox::cGuiPopUpMessageBox(cGuiSet *apSet,
 											const tWString& asLabel, const tWString& asText,
 											const tWString& asButton1, const tWString& asButton2,
-											void *apCallbackObject, tGuiCallbackFunc apCallback) 
+											void *apCallbackObject, tGuiCallbackFunc apCallback)
 						: iGuiPopUp(apSet)
 	{
 		//////////////////////////
@@ -52,7 +52,7 @@ namespace hpl {
 		mpCallbackObject = apCallbackObject;
 
 		cGuiSkinFont *pFont = mpSkin->GetFont(eGuiSkinFont_Default);
-		
+
 		float fWindowMinLength = pFont->mpFont->GetLength(pFont->mvSize,asLabel.c_str());
 		float fTextLength = pFont->mpFont->GetLength(pFont->mvSize,asText.c_str());
 
@@ -63,7 +63,7 @@ namespace hpl {
 		cVector2f vVirtSize = mpSet->GetVirtualSize();
 
 		float fWindowHeight = 90 + pFont->mvSize.y;
-		
+
 		//////////////////////////
 		// Window
 		cVector3f vPos = cVector3f(vVirtSize.x/2 - fWindowWidth/2,vVirtSize.y/2- fWindowHeight/2,18);
@@ -120,7 +120,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 
 	//-----------------------------------------------------------------------
 
@@ -130,7 +130,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	bool cGuiPopUpMessageBox::ButtonPress(iWidget* apWidget,cGuiMessageData& aData)
 	{
 		int lButton = apWidget == mvButtons[0] ? 0 : 1;
@@ -143,12 +143,12 @@ namespace hpl {
 		}
 
 		SelfDestruct();
-		
+
 		return true;
 	}
 	kGuiCalllbackDeclaredFuncEnd(cGuiPopUpMessageBox,ButtonPress)
 
-	
+
 	//-----------------------------------------------------------------------
 
 

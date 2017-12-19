@@ -30,22 +30,22 @@ namespace hpl {
 	class cGuiPopUpMessageBox : public iGuiPopUp
 	{
 	public:
-		cGuiPopUpMessageBox(cGuiSet *apSet, 
+		cGuiPopUpMessageBox(cGuiSet *apSet,
 			const tWString& asLabel, const tWString& asText,
 			const tWString& asButton1, const tWString& asButton2,
 			void *apCallbackObject, tGuiCallbackFunc apCallback);
 		virtual ~cGuiPopUpMessageBox();
-		
+
 	protected:
 		bool ButtonPress(iWidget* apWidget,cGuiMessageData& aData);
-		kGuiCalllbackDeclarationEnd(ButtonPress);	
+		kGuiCalllbackDeclarationEnd(ButtonPress);
 
 		cWidgetWindow *mpWindow;
 		cWidgetButton *mvButtons[2];
 		cWidgetLabel *mpLabel;
 
 		iWidget *mpPrevAttention;
-		
+
 		void * mpCallbackObject;
 		tGuiCallbackFunc mpCallback;
 	};

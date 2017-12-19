@@ -33,14 +33,14 @@ namespace hpl {
 
 	cLowLevelPhysicsNewton::cLowLevelPhysicsNewton()
 	{
-	
+
 	}
 
 	//-----------------------------------------------------------------------
 
 	cLowLevelPhysicsNewton::~cLowLevelPhysicsNewton()
 	{
-		
+
 	}
 
 	//-----------------------------------------------------------------------
@@ -50,14 +50,14 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 
 	iPhysicsWorld* cLowLevelPhysicsNewton::CreateWorld()
 	{
 		cPhysicsWorldNewton* pWorld = hplNew( cPhysicsWorldNewton, () );
 		return pWorld;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 }

@@ -27,8 +27,8 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	iEntity2D::iEntity2D(tString asName) :	iEntity(asName), mvPosition(0), mvRotation(0), mvScale(0),	
-		mvLastPosition(0), mvLastRotation(0), mvLastScale(0),	
+	iEntity2D::iEntity2D(tString asName) :	iEntity(asName), mvPosition(0), mvRotation(0), mvScale(0),
+		mvLastPosition(0), mvLastRotation(0), mvLastScale(0),
 		mpGridObject(NULL)
 	{
 
@@ -41,7 +41,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
+
 	cVector3f iEntity2D::GetWorldPosition()
 	{
         if(mpParentNode)
@@ -53,7 +53,7 @@ namespace hpl {
 		else
 			return mvPosition;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cVector3f iEntity2D::GetWorldRotation()
@@ -67,7 +67,7 @@ namespace hpl {
 		else
 			return mvRotation;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	cVector3f iEntity2D::GetWorldScale()
@@ -83,18 +83,18 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	void iEntity2D::SetPosition(const cVector3f& avPos)
 	{
 		mvLastPosition = mvPosition;
 		mvPosition = avPos;
-		
+
 		if(UpdateBoundingBox())
 			if(mpGridObject)
 				mpGridObject->Update(GetBoundingBox());
-		
+
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void iEntity2D::SetRotation(const cVector3f& avRot)
@@ -106,7 +106,7 @@ namespace hpl {
 			if(mpGridObject)
 				mpGridObject->Update(GetBoundingBox());
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void iEntity2D::SetScale(const cVector3f& avScale)

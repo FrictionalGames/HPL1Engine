@@ -43,8 +43,8 @@ public:
 		mpPhysicsWorld->SetMaxTimeStep(1.0f / 60.0f);
 
 		mpWorld->SetPhysicsWorld(mpPhysicsWorld);
-		
-		
+
+
 		////////////////////////////////////////////////
 		// Create materials
 
@@ -60,12 +60,12 @@ public:
 		//Floor
 		pMesh = gpGame->GetResources()->GetMeshManager()->CreateMesh("Floor.dae");
 		if(pMesh==NULL) FatalError("Couldn't load mesh\n");
-		
+
 		mpFloorModel = mpWorld->CreateMeshEntity("Floor",pMesh);
 		pShape = mpPhysicsWorld->CreateMeshShape(pMesh->GetSubMesh(0)->GetVertexBuffer());
 		mpFloorBody = mpPhysicsWorld->CreateBody("Floor",pShape);
 		mpFloorBody->SetGravity(false);
-        
+
 		/////////////////////////////
 		//Boxes
 		pMesh = gpGame->GetResources()->GetMeshManager()->CreateMesh("Woodbox.dae");
@@ -81,12 +81,12 @@ public:
 			pBody = mpPhysicsWorld->CreateBody("Box",pShape);
 			pBody->SetPosition(cVector3f((float)j*1.1f,2.0f*i+2.0f,cMath::RandRectf(0,0.5f)));
 			pBody->SetMass(1);
-		
+
 			mvBoxes.push_back(pEntity);
 			mvBodies.push_back(pBody);
 			j++;
 		}
-						
+
 		mpLight = mpWorld->CreateLightPoint("Light1");
 		mpLight->SetDiffuseColor(cColor(1,1,1,1.0f));
 		mpLight->SetFarAttenuation(280.0f);
@@ -97,19 +97,19 @@ public:
 
 	~cSimpleUpdate()
 	{
-	
+
 	}
 
 	void Update(float afTimeStep)
 	{
 		mpPhysicsWorld->Simulate(afTimeStep);
-		
+
 		for(size_t i=0; i< mvBodies.size(); i++)
 		{
 			mvBoxes[i]->SetMatrix(mvBodies[i]->GetLocalMatrix());
 		}
 	}
-	
+
 	void OnDraw()
 	{
 	}
@@ -120,7 +120,7 @@ public:
 		mpLowLevelGraphics->SetMatrix(eMatrix_ModelView, pCam->GetViewMatrix());
 
 		mpLowLevelGraphics->SetDepthTestActive(false);
-		
+
 		mpPhysicsWorld->RenderDebugGeometry(mpLowLevelGraphics,cColor(1,0,1,1));
 
 //		mpLowLevelGraphics->DrawBoxMaxMin(mpFloorBody->GetBV()->GetMax(),
@@ -130,14 +130,14 @@ public:
 //			mpLowLevelGraphics->DrawBoxMaxMin(mvBodies[i]->GetBV()->GetMax(),
 //												mvBodies[i]->GetBV()->GetMin(), cColor(1,1,1,1));
 //		}
-//		
+//
 //		mpLowLevelGraphics->SetDepthTestActive(true);
 	}
 
-	
+
 
 private:
-	
+
 	std::vector<cMeshEntity*> mvBoxes;
 	std::vector<iPhysicsBody*> mvBodies;
 
@@ -167,7 +167,7 @@ int hplMain(const tString& asCommandLine)
 	//Init the game engine
 	gpGame = new cGame(new cSDLGameSetup(),800,600,32,false,45);
 	gpGame->GetGraphics()->GetLowLevel()->SetVsyncActive(false);
-	
+
 	//Add resources
 	gpGame->GetResources()->AddResourceDir("textures");
 	gpGame->GetResources()->AddResourceDir("models");
@@ -177,7 +177,7 @@ int hplMain(const tString& asCommandLine)
 	//Add updates
 	cSimpleUpdate Update;
 	gpGame->GetUpdater()->AddUpdate("Default", &Update);
-	
+
 	cSimpleCamera cameraUpdate(gpGame,17,cVector3f(0,4,15),true);
 	gpGame->GetUpdater()->AddUpdate("Default", &cameraUpdate);
 

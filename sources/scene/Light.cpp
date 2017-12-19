@@ -26,7 +26,7 @@
 
 
 namespace hpl {
-	
+
 	//////////////////////////////////////////////////////////////////////////
 	// CONSTRUCTORS
 	//////////////////////////////////////////////////////////////////////////
@@ -47,13 +47,13 @@ namespace hpl {
 
 		mfFadeTime =0;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	//////////////////////////////////////////////////////////////////////////
 	// PUBLIC METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
 
 	void iLight::SetDiffuseColor(cColor aColor)
@@ -66,13 +66,13 @@ namespace hpl {
 	//-----------------------------------------------------------------------
 
 	void iLight::UpdateLight(float afTimeStep)
-	{	
+	{
 		/////////////////////////////////////////////
 		// Fade
 		if(mfFadeTime>0)
 		{
 			//Log("Fading: %f / %f\n",afTimeStep,mfFadeTime);
-			
+
 			mfFarAttenuation += mfRadiusAdd*afTimeStep;
 			mDiffuseColor.r += mColAdd.r*afTimeStep;
 			mDiffuseColor.g += mColAdd.g*afTimeStep;
@@ -81,7 +81,7 @@ namespace hpl {
 			SetDiffuseColor(mDiffuseColor);
 
 			mfFadeTime-=afTimeStep;
-			
+
 			//Set the dest values.
 			if(mfFadeTime<=0)
 			{
@@ -94,7 +94,7 @@ namespace hpl {
 		/////////////////////////////////////////////
 		// Flickering
 		if(mbFlickering && mfFadeTime<=0)
-		{	
+		{
 			//////////////////////
 			//On
 			if(mbFlickerOn)
@@ -119,14 +119,14 @@ namespace hpl {
 					}
 
 					OnFlickerOff();
-                   
+
 					mfFlickerTime =0;
 					mfFlickerStateLength = cMath::RandRectf(mfFlickerOffMinLength,mfFlickerOffMaxLength);
 				}
 			}
 			//////////////////////
 			//Off
-			else 
+			else
 			{
 				if(mfFlickerTime >= mfFlickerStateLength)
 				{
@@ -147,7 +147,7 @@ namespace hpl {
 					}
 
 					OnFlickerOn();
-					
+
 					mfFlickerTime =0;
 					mfFlickerStateLength = cMath::RandRectf(mfFlickerOnMinLength,mfFlickerOnMaxLength);
 				}
@@ -192,7 +192,7 @@ namespace hpl {
 	{
 		mbFlickering = abX;
 	}
-	
+
 	void iLight::SetFlicker(const cColor& aOffCol, float afOffRadius,
 							float afOnMinLength, float afOnMaxLength,const tString &asOnSound,const tString &asOnPS,
 							float afOffMinLength, float afOffMaxLength,const tString &asOffSound,const tString &asOffPS,
@@ -228,5 +228,5 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 }

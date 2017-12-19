@@ -30,8 +30,8 @@ namespace hpl {
 		/**
 		 *
 		 * \param alUpdatesPerSec Number of updates per second.
-		 * \param *apLowLevelSystem 
-		 * \return 
+		 * \param *apLowLevelSystem
+		 * \return
 		 */
 		cLogicTimer(int alUpdatesPerSec,iLowLevelSystem *apLowLevelSystem);
 		~cLogicTimer();
@@ -53,13 +53,13 @@ namespace hpl {
 
 		/**
 		 * Set the number of times per second to update
-		 * \param alUpdatesPerSec 
+		 * \param alUpdatesPerSec
 		 */
 		void SetUpdatesPerSec(int alUpdatesPerSec);
 
 		/**
 		 * Sets the maximum updates in a row.
-		 * \param alUpdatesPerSec 
+		 * \param alUpdatesPerSec
 		 */
 		void SetMaxUpdates(int alMax);
 
@@ -73,7 +73,7 @@ namespace hpl {
 		float GetStepSize();
 
 
-		
+
 	private:
 		void Update();
 

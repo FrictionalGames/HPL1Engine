@@ -54,14 +54,14 @@ namespace hpl {
 	{
 		for(tUpdateableListIt it = mlstGlobalUpdateableList.begin();it!=mlstGlobalUpdateableList.end();++it)
 		{
-			(*it)->OnDraw();	
+			(*it)->OnDraw();
 		}
 
 		if(mpCurrentUpdates)
 		{
 			for(tUpdateableListIt it = mpCurrentUpdates->begin();it!=mpCurrentUpdates->end();++it)
 			{
-				(*it)->OnDraw();	
+				(*it)->OnDraw();
 			}
 		}
 	}
@@ -71,30 +71,30 @@ namespace hpl {
 	{
 		for(tUpdateableListIt it = mlstGlobalUpdateableList.begin();it!=mlstGlobalUpdateableList.end();++it)
 		{
-			(*it)->OnPostSceneDraw();	
+			(*it)->OnPostSceneDraw();
 		}
 
 		if(mpCurrentUpdates)
 		{
 			for(tUpdateableListIt it = mpCurrentUpdates->begin();it!=mpCurrentUpdates->end();++it)
 			{
-				(*it)->OnPostSceneDraw();	
+				(*it)->OnPostSceneDraw();
 			}
 		}
 	}
-	
+
 	void cUpdater::OnPostGUIDraw()
 	{
 		for(tUpdateableListIt it = mlstGlobalUpdateableList.begin();it!=mlstGlobalUpdateableList.end();++it)
 		{
-			(*it)->OnPostGUIDraw();	
+			(*it)->OnPostGUIDraw();
 		}
 
 		if(mpCurrentUpdates)
 		{
 			for(tUpdateableListIt it = mpCurrentUpdates->begin();it!=mpCurrentUpdates->end();++it)
 			{
-				(*it)->OnPostGUIDraw();	
+				(*it)->OnPostGUIDraw();
 			}
 		}
 	}
@@ -105,25 +105,25 @@ namespace hpl {
 	{
 		for(tUpdateableListIt it = mlstGlobalUpdateableList.begin();it!=mlstGlobalUpdateableList.end();++it)
 		{
-			(*it)->OnPostBufferSwap();	
+			(*it)->OnPostBufferSwap();
 		}
 
 		if(mpCurrentUpdates)
 		{
 			for(tUpdateableListIt it = mpCurrentUpdates->begin();it!=mpCurrentUpdates->end();++it)
 			{
-				(*it)->OnPostBufferSwap();	
+				(*it)->OnPostBufferSwap();
 			}
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
+
 	void cUpdater::OnStart()
 	{
 		for(tUpdateableListIt it = mlstGlobalUpdateableList.begin();it!=mlstGlobalUpdateableList.end();++it)
 		{
-			(*it)->OnStart();	
+			(*it)->OnStart();
 		}
 
 		tUpdateContainerMapIt ContIt = m_mapUpdateContainer.begin();
@@ -139,14 +139,14 @@ namespace hpl {
 			ContIt++;
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	void cUpdater::Reset()
 	{
 		for(tUpdateableListIt it = mlstGlobalUpdateableList.begin();it!=mlstGlobalUpdateableList.end();++it)
 		{
-			(*it)->Reset();	
+			(*it)->Reset();
 		}
 
 		tUpdateContainerMapIt ContIt = m_mapUpdateContainer.begin();
@@ -158,9 +158,9 @@ namespace hpl {
 			while(UpIt != pUpdates->end())
 			{
 				iUpdateable *pUpdate = *UpIt;
-				
+
 				pUpdate->Reset();
-				
+
 				++UpIt;
 			}
 
@@ -169,13 +169,13 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	void cUpdater::OnExit()
 	{
 		for(tUpdateableListIt it = mlstGlobalUpdateableList.begin();it!=mlstGlobalUpdateableList.end();++it)
 		{
 			//Log(" Exiting %s\n",(*it)->GetName().c_str());
-			(*it)->OnExit();	
+			(*it)->OnExit();
 		}
 
 		tUpdateContainerMapIt ContIt = m_mapUpdateContainer.begin();
@@ -194,7 +194,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	void cUpdater::Update(float afTimeStep)
 	{
 		for(tUpdateableListIt it = mlstGlobalUpdateableList.begin();it!=mlstGlobalUpdateableList.end();++it)
@@ -203,7 +203,7 @@ namespace hpl {
 			(*it)->Update(afTimeStep);
 			STOP_TIMING(game)
 		}
-		
+
 		if(mpCurrentUpdates)
 		{
 			tUpdateableList *pList = mpCurrentUpdates;
@@ -215,10 +215,10 @@ namespace hpl {
 			}
 		}
 	}
-	
+
 	//-----------------------------------------------------------------------
-	
-	
+
+
 	bool cUpdater::SetContainer(tString asContainer)
 	{
 		tUpdateContainerMapIt it = m_mapUpdateContainer.find(asContainer);
@@ -231,9 +231,9 @@ namespace hpl {
 		else {
 			SetUpdateLogActive(false);
 		}
-		
+
 		mpCurrentUpdates = &it->second;
-		
+
 		return true;
 	}
 
@@ -244,7 +244,7 @@ namespace hpl {
 		return msCurrentUpdates;
 
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	bool cUpdater::AddContainer(tString asName)
@@ -254,10 +254,10 @@ namespace hpl {
 														asName, tUpdateableList());
 		//Add it to the map
 		m_mapUpdateContainer.insert(val);
-		
+
 		return true;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	bool cUpdater::AddUpdate(tString asContainer, iUpdateable* apUpdate)
@@ -270,13 +270,13 @@ namespace hpl {
 		//Search the map for the container name
 		tUpdateContainerMapIt it = m_mapUpdateContainer.find(asContainer);
 		if(it == m_mapUpdateContainer.end()) return false;
-		
+
 		//Add the updatable
 		it->second.push_back(apUpdate);
 
 		return true;
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	bool cUpdater::AddGlobalUpdate(iUpdateable* apUpdate)
@@ -286,14 +286,14 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	//////////////////////////////////////////////////////////////////////////
 	// PRIVATE METHODS
 	//////////////////////////////////////////////////////////////////////////
 
 	//-----------------------------------------------------------------------
-	
-	
+
+
 
 	//-----------------------------------------------------------------------
 }

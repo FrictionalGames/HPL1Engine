@@ -42,7 +42,7 @@ namespace hpl {
 
 	cMaterial_FontNormal::~cMaterial_FontNormal()
 	{
-		
+
 	}
 
 	//-----------------------------------------------------------------------
@@ -57,7 +57,7 @@ namespace hpl {
 	{
 
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	bool cMaterial_FontNormal::StartRendering(eMaterialRenderType aType,iCamera* apCam,iLight *pLight)
@@ -68,14 +68,14 @@ namespace hpl {
 			mpLowLevelGraphics->SetBlendFunc(eBlendFunc_SrcAlpha,eBlendFunc_OneMinusSrcAlpha);
 
 			mpLowLevelGraphics->SetTexture(0, GetTexture(eMaterialTexture_Diffuse));
-			
+
 			return true;
 		}
 		return false;
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	void cMaterial_FontNormal::EndRendering(eMaterialRenderType aType)
 	{
 		if(aType == eMaterialRenderType_Diffuse)
@@ -84,7 +84,7 @@ namespace hpl {
 		}
 
 	}
-	
+
 	//-----------------------------------------------------------------------
 
 	tVtxBatchFlag cMaterial_FontNormal::GetBatchFlags(eMaterialRenderType aType)
@@ -115,7 +115,7 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	void cMaterial_FontNormal::EditVertexes(eMaterialRenderType aType, iCamera* apCam, iLight *pLight, 
+	void cMaterial_FontNormal::EditVertexes(eMaterialRenderType aType, iCamera* apCam, iLight *pLight,
 		tVertexVec *apVtxVec,cVector3f *apTransform,unsigned int alIndexAdd)
 	{
 

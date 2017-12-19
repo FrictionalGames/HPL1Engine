@@ -41,7 +41,7 @@ namespace hpl {
 
 		cOAL_Sample*	GetSample(){ return ( mpSample ); } //static_cast<cOAL_Sample*> (mpSoundData));}
 		cOAL_Stream*	GetStream(){ return ( mpStream ); } //static_cast<cOAL_Stream*> (mpSoundData));}
-	
+
 	private:
 		cOAL_Sample*	mpSample;
 		cOAL_Stream*	mpStream;

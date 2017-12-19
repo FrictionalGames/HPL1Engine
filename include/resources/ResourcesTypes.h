@@ -22,7 +22,7 @@
 #include <stdio.h>
 
 namespace hpl {
-	
+
 	//change to own file type?
 	typedef FILE tFile;
 

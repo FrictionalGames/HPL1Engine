@@ -78,12 +78,12 @@ namespace hpl {
 			mvVtxPrograms[i] =NULL;
 			mvFragPrograms[i] =NULL;
 		}
-		
+
 		////////////////////////////////////////
 		//Get names for other light programs
 		tString sSpotVtxProgram = cString::Sub(asLightVertexProgram,0, (int)asLightVertexProgram.size() - 5) +
 									"Spot_vp.cg";
-		
+
 		///////////////////////////////////////////
 		//Load the light pass vertex program
 		//Point
@@ -108,7 +108,7 @@ namespace hpl {
 
 			tString sSpotFragProgram = cString::Sub(asLightFragmentProgram,0, (int)asLightFragmentProgram.size() - 5) +
 													"Spot_fp.cg";
-			
+
 			mvFragPrograms[eBaseLightProgram_Spot1] = mpProgramManager->CreateProgram(sSpotFragProgram,"main",
 															eGpuProgramType_Fragment);
 		}
@@ -128,19 +128,19 @@ namespace hpl {
 														eGpuProgramType_Fragment);
 
 		}
-		
-		
+
+
 		///////////////////////////////////////////
 		//Load the Z pass vertex program
 		iGpuProgram *pVtxProg = mpProgramManager->CreateProgram("Diffuse_Color_vp.cg","main",eGpuProgramType_Vertex);
 		SetProgram(pVtxProg,eGpuProgramType_Vertex,1);
-		
+
 
 		///////////////////////////////////////////
 		//More fragment programs
 		mpSimpleFP = mpProgramManager->CreateProgram("Diffuse_Color_fp.cg","main",eGpuProgramType_Fragment);
 		mpAmbientFP = mpProgramManager->CreateProgram("Ambient_Color_fp.cg","main",eGpuProgramType_Fragment);
-		
+
 		///////////////////////////////////////////
 		//Normalization map
 		mpNormalizationMap = mpTextureManager->CreateCubeMap("Normalization", false);
@@ -183,7 +183,7 @@ namespace hpl {
 	//////////////////////////////////////////////////////////////////////////
 	// PUBLIC METHODS
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	//-----------------------------------------------------------------------
 
 	iGpuProgram* iMaterial_BaseLight::GetVertexProgram(eMaterialRenderType aType, int alPass, iLight3D *apLight)
@@ -194,13 +194,13 @@ namespace hpl {
 
 			if(apLight->GetLightType()==eLight3DType_Point)		program = eBaseLightProgram_Point1;
 			else if(apLight->GetLightType()==eLight3DType_Spot)	program = eBaseLightProgram_Spot1;
-			
+
 			return mvVtxPrograms[program];
 		}
-		
+
 		if(aType == eMaterialRenderType_Z) return mpProgram[eGpuProgramType_Vertex][1];
 		if(aType == eMaterialRenderType_Diffuse) return mpProgram[eGpuProgramType_Vertex][1];
-        
+
 		return NULL;
 	}
 
@@ -227,7 +227,7 @@ namespace hpl {
 		if(aType == eMaterialRenderType_Light)
 		{
 			eBaseLightProgram program;
-			
+
 			///////////////
 			//Spot two pass
 			if(aType == eMaterialRenderType_Light && apLight->GetLightType() == eLight3DType_Spot
@@ -277,7 +277,7 @@ namespace hpl {
 
 		return eMaterialAlphaMode_Solid;
 	}
-	
+
 	//------------------------------------------------------------------------------------
 
 	eMaterialBlendMode iMaterial_BaseLight::GetBlendMode(eMaterialRenderType aType, int alPass, iLight3D *apLight)
@@ -290,14 +290,14 @@ namespace hpl {
 			if(alPass == 0)			return eMaterialBlendMode_Replace;
 			else if(alPass == 1)	return eMaterialBlendMode_DestAlphaAdd;
 		}
-		
+
 		//////////////////////////////
 		// Other
 		if(aType == eMaterialRenderType_Z) return eMaterialBlendMode_Replace;
-		
+
 		return eMaterialBlendMode_Add;
 	}
-	
+
 	//------------------------------------------------------------------------------------
 
 	eMaterialChannelMode iMaterial_BaseLight::GetChannelMode(eMaterialRenderType aType, int alPass, iLight3D *apLight)
@@ -313,10 +313,10 @@ namespace hpl {
 		// Other
 		else if(aType == eMaterialRenderType_Z)
 		{
-			//return eMaterialChannelMode_Z; 
-			return eMaterialChannelMode_RGBA; 
+			//return eMaterialChannelMode_Z;
+			return eMaterialChannelMode_RGBA;
 		}
-		
+
 		return eMaterialChannelMode_RGBA;
 	}
 
@@ -347,7 +347,7 @@ namespace hpl {
 					{
 					//Falloff map
 					case 0: return apLight->GetFalloffMap();
-					
+
 					//Negative rejection:
 					case 1: return mpSpotNegativeRejectMap;
 					}
@@ -366,7 +366,7 @@ namespace hpl {
 					case 2: return mpNormalizationMap; break;
 
 					//Spotlight texture
-					case 3: 
+					case 3:
 						{
 							cLight3DSpot *pSpotLight = static_cast<cLight3DSpot*>(apLight);
 							return pSpotLight->GetTexture();
@@ -413,7 +413,7 @@ namespace hpl {
 						}
 						break;
 				}
-				
+
 			}
 		}
 		return NULL;
@@ -440,7 +440,7 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	bool iMaterial_BaseLight::UsesType(eMaterialRenderType aType)
 	{
 		if(aType == eMaterialRenderType_Diffuse)
@@ -454,9 +454,9 @@ namespace hpl {
 	}
 
 	//-----------------------------------------------------------------------
-	
+
 	tTextureTypeList iMaterial_BaseLight::GetTextureTypes()
-	{ 
+	{
 		tTextureTypeList vTypes;
 		vTypes.push_back(cTextureType("",eMaterialTexture_Diffuse));
 		if(mbUseNormalMap)
