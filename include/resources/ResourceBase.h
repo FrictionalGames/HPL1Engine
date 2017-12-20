@@ -44,10 +44,10 @@ namespace hpl {
 		 */
 		virtual void Unload()=0;
 
-        /**
-         * Free all memory.
-         */
-        virtual void Destroy()=0;
+		/**
+		 * Free all memory.
+		 */
+		virtual void Destroy()=0;
 
 		tString GetName(){return msName;}
 		unsigned long GetHandle(){return mlHandle;}
@@ -75,9 +75,9 @@ namespace hpl {
 		unsigned long mlSize; //for completion. Not used yet.
 
 		unsigned int mlUserCount;
-        unsigned long mlHandle;
+		unsigned long mlHandle;
 		tString msName;
-        tString msFilePath;
+		tString msFilePath;
 		bool mbLogDestruction;
 	};
 

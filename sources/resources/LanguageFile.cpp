@@ -68,7 +68,7 @@ namespace hpl {
 		///////////////////////////
 		//Iterate the resources
 		TiXmlElement *pResourceElem = pRootElem->FirstChildElement("RESOURCES");
-        if(pResourceElem)
+		if(pResourceElem)
 		{
 			TiXmlElement *pDirElem = pResourceElem->FirstChildElement("Directory");
 			for(; pDirElem != NULL; pDirElem = pDirElem->NextSiblingElement("Directory"))
@@ -85,7 +85,7 @@ namespace hpl {
 
 		///////////////////////////
 		//Iterate the categories
-        TiXmlElement *pCatElem = pRootElem->FirstChildElement("CATEGORY");
+		TiXmlElement *pCatElem = pRootElem->FirstChildElement("CATEGORY");
 		for(; pCatElem != NULL; pCatElem = pCatElem->NextSiblingElement("CATEGORY"))
 		{
 			cLanguageCategory *pCategory = hplNew( cLanguageCategory, () );
@@ -94,7 +94,7 @@ namespace hpl {
 			m_mapCategories.insert(tLanguageCategoryMap::value_type(sCatName, pCategory));
 
 			///////////////////////////
-            //Iterate the entries
+			//Iterate the entries
 			TiXmlElement *pEntryElem = pCatElem->FirstChildElement("Entry");
 			for(; pEntryElem != NULL; pEntryElem = pEntryElem->NextSiblingElement("Entry"))
 			{
@@ -204,7 +204,7 @@ namespace hpl {
 			{
 				cLanguageCategory *pCategory = CatIt->second;
 				tLanguageEntryMapIt EntryIt = pCategory->m_mapEntries.begin();
-                for(; EntryIt != pCategory->m_mapEntries.end(); ++EntryIt)
+				for(; EntryIt != pCategory->m_mapEntries.end(); ++EntryIt)
 				{
 					cLanguageEntry *pEntry = EntryIt->second;
 					fputs(cString::To8Char(pEntry->mwsText + _W("\n\n")).c_str(), pFile);
@@ -230,7 +230,7 @@ namespace hpl {
 			return mwsEmpty;
 		}
 
-        cLanguageCategory *pCategory = CatIt->second;
+		cLanguageCategory *pCategory = CatIt->second;
 		tLanguageEntryMapIt EntryIt = pCategory->m_mapEntries.find(asName);
 		if(EntryIt == pCategory->m_mapEntries.end())
 		{

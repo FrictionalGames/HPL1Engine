@@ -132,7 +132,7 @@ namespace hpl {
 				float fX = (float)x;
 				float fY = (float)y;
 
-                cPESubDivision *pSubDiv = &mvSubDivUV[lIdx];
+				cPESubDivision *pSubDiv = &mvSubDivUV[lIdx];
 
 				pSubDiv->mvUV[0] = cVector3f( (fX +1)*fInvW,	(fY +1)*fInvH,0);	//1,1
 				pSubDiv->mvUV[1] = cVector3f( fX*fInvW,			(fY +1)*fInvH,0);	//0,1
@@ -230,7 +230,7 @@ namespace hpl {
 
 						cPESubDivision &subDiv = mvSubDivUV[pParticle->mlSubDivNum];
 
-		                SetTex(&pTexArray[i*12 + 0*3],subDiv.mvUV[0]);
+						SetTex(&pTexArray[i*12 + 0*3],subDiv.mvUV[0]);
 						SetTex(&pTexArray[i*12 + 1*3],subDiv.mvUV[1]);
 						SetTex(&pTexArray[i*12 + 2*3],subDiv.mvUV[2]);
 						SetTex(&pTexArray[i*12 + 3*3],subDiv.mvUV[3]);

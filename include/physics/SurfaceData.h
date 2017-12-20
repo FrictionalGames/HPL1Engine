@@ -28,7 +28,7 @@ namespace hpl {
 	#define eRollAxisFlag_Y		2
 	#define eRollAxisFlag_Z		4
 
-    class cPhysics;
+	class cPhysics;
 	class iPhysicsWorld;
 	class iPhysicsBody;
 	class cResources;
@@ -118,7 +118,7 @@ namespace hpl {
 		void SetRollSoundName(const tString &asName){msRollSoundName = asName;}
 		void SetRollAxisFlags(tFlag aAxisFlags){mRollAxisFlags = aAxisFlags;}
 
-        void PreloadData();
+		void PreloadData();
 
 		iPhysicsMaterial *ToMaterial(iPhysicsWorld *apWorld);
 
@@ -188,7 +188,7 @@ namespace hpl {
 		tString msRollSoundName;
 		tFlag mRollAxisFlags;
 
-        tString msStepType;
+		tString msStepType;
 
 		tSurfaceImpactDataVec mvImpactData;
 

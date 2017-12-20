@@ -78,7 +78,7 @@ namespace hpl {
 	{
 	friend class cParticleEmitter3D_UserData;
 	public:
-    	cParticleEmitterData3D_UserData(const tString &asName,cResources* apResources,cGraphics *apGraphics);
+		cParticleEmitterData3D_UserData(const tString &asName,cResources* apResources,cGraphics *apGraphics);
 
 		iParticleEmitter* Create(tString asName, cVector3f avSize);
 
@@ -90,7 +90,7 @@ namespace hpl {
 									cVector3f *apPosVec);
 
 	private:
-        bool OnIntersect(iPhysicsBody *pBody,cPhysicsRayParams *apParams);
+		bool OnIntersect(iPhysicsBody *pBody,cPhysicsRayParams *apParams);
 		float mfShortestDist;
 		bool mbIntersected;
 		cVector3f *mpIntersectNormal;
@@ -188,7 +188,7 @@ namespace hpl {
 
 		ePEDeathType mDeathType;
 
-        tString msDeathPS;
+		tString msDeathPS;
 
 		/////////// RENDERING ////////
 		eParticleEmitter3DType mDrawType;

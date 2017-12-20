@@ -53,7 +53,7 @@ namespace hpl {
 
 	cMaterialManager::~cMaterialManager()
 	{
-        DestroyAll();
+		DestroyAll();
 
 		Log(" Done with materials\n");
 	}
@@ -149,7 +149,7 @@ namespace hpl {
 		{
 			iMaterial *pMat = static_cast<iMaterial*>(it->second);
 
-            for(int i=0; i<eMaterialTexture_LastEnum; ++i)
+			for(int i=0; i<eMaterialTexture_LastEnum; ++i)
 			{
 				iTexture *pTex = pMat->GetTexture((eMaterialTexture)i);
 				if(pTex)pTex->SetFilter(aFilter);

@@ -54,7 +54,7 @@ namespace hpl {
 
 		mpHaloSourceBuffer = mpMeshCreator->CreateBoxVertexBuffer(1);
 
-        mvSize = avSize;
+		mvSize = avSize;
 		mvAxis = cVector3f(0,1,0);
 
 		mColor = cColor(1,1,1,1);
@@ -277,7 +277,7 @@ namespace hpl {
 		if(mbHaloSourceIsParent)
 		{
 			iRenderable *pParent = static_cast<iRenderable*>(GetEntityParent());
-            if(pParent==NULL)
+			if(pParent==NULL)
 			{
 				Error("Billboard %s has no parent!\n",msName.c_str());
 				return;

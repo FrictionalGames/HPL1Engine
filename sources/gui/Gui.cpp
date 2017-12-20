@@ -446,7 +446,7 @@ namespace hpl {
 		if(mpSetInFocus==NULL) return false;
 
 		cGuiMessageData data = cGuiMessageData(avPos,avRel);
-        return mpSetInFocus->SendMessage(eGuiMessage_MouseMove,data);
+		return mpSetInFocus->SendMessage(eGuiMessage_MouseMove,data);
 	}
 
 	bool cGui::SendMouseClickDown(eGuiMouseButton aButton)
@@ -505,7 +505,7 @@ namespace hpl {
 	{
 		///////////////////////
 		// Fonts
-        AddFont(Default);
+		AddFont(Default);
 		AddFont(Disabled);
 		AddFont(WindowLabel);
 

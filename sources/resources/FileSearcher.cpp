@@ -87,7 +87,7 @@ namespace hpl {
 		tFilePathMapIt it = m_mapFiles.find(cString::ToLowerCase(asName));
 		if(it == m_mapFiles.end())return "";
 
-        return it->second;
+		return it->second;
 	}
 
 	//-----------------------------------------------------------------------

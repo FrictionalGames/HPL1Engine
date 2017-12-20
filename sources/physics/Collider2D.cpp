@@ -86,7 +86,7 @@ namespace hpl {
 				//This can be used for material properties.
 				//cTileDataNormal *pTData = static_cast<cTileDataNormal*>(pTile->GetTileData());
 
-                if(pTile->GetCollisionMesh()==NULL)continue;
+				if(pTile->GetCollisionMesh()==NULL)continue;
 
 				if(Collide(pCollMesh, pTile->GetCollisionMesh(), vPushVector) )
 				{
@@ -141,7 +141,7 @@ namespace hpl {
 
 					//break;
 				}
-		    }
+			}
 
 			hplDelete(pTileIt);
 
@@ -392,7 +392,7 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-    bool cCollider2D::Collide(cCollisionMesh2D* apMeshA,cCollisionMesh2D* apMeshB, cVector2f &avMTD)
+	bool cCollider2D::Collide(cCollisionMesh2D* apMeshA,cCollisionMesh2D* apMeshB, cVector2f &avMTD)
 	{
 		cVector2f vAxis[32];
 		int lAxisNum=0;

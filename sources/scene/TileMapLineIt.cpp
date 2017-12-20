@@ -105,7 +105,7 @@ namespace hpl {
 	{
 		GetTile();
 
-      	mbUpdated = false;
+		mbUpdated = false;
 		return mpTile;
 	}
 
@@ -261,7 +261,7 @@ namespace hpl {
 			fDy = floor(avPosA.y/mpTileMap->GetTileSize())*mpTileMap->GetTileSize();
 		fDy = fDy - avPosA.y;
 
-        //Get Y Intersection
+		//Get Y Intersection
 		float fDiv = mvPosAdd.x==0?0.00001f : mvPosAdd.x;//Handle div by 0
 		float fInterY = (fDx/fDiv)*mvPosAdd.y;
 		avYIntersect->x = avPosA.x + fDx;

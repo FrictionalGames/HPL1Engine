@@ -34,7 +34,7 @@ namespace hpl {
 		cVideoStreamTheora(tString asName, cVideoStreamTheora_Loader* apLoader);
 		~cVideoStreamTheora();
 
-        bool LoadFromFile(tString asFilePath);
+		bool LoadFromFile(tString asFilePath);
 
 		void Update(float afTimeStep);
 

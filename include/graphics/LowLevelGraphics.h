@@ -301,7 +301,7 @@ namespace hpl {
 
 		virtual void SetClearColor(const cColor& aCol)=0;
 		virtual void SetClearDepth(float afDepth)=0;
-        virtual void SetClearStencil(int alVal)=0;
+		virtual void SetClearStencil(int alVal)=0;
 
 		virtual void SetClearColorActive(bool abX)=0;
 		virtual void SetClearDepthActive(bool abX)=0;
@@ -403,7 +403,7 @@ namespace hpl {
 
 		virtual void DrawLine2D(const cVector2f& avBegin, const cVector2f& avEnd, float afZ, cColor aCol)=0;
 		virtual void DrawLineRect2D(const cRect2f& aRect, float afZ, cColor aCol)=0;
-        virtual void DrawLineCircle2D(const cVector2f& avCenter, float afRadius, float afZ, cColor aCol)=0;
+		virtual void DrawLineCircle2D(const cVector2f& avCenter, float afRadius, float afZ, cColor aCol)=0;
 
 		virtual void DrawFilledRect2D(const cRect2f& aRect, float afZ, cColor aCol)=0;
 		// GENERAL

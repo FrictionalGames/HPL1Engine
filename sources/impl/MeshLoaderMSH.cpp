@@ -127,7 +127,7 @@ namespace hpl {
 			bool bTangents = false;
 
 			//Check what type of vertices are included.
-            if(pVtxElem->FirstChild("Normal"))vtxFlags |= eVertexFlag_Normal;
+			if(pVtxElem->FirstChild("Normal"))vtxFlags |= eVertexFlag_Normal;
 			if(pVtxElem->FirstChild("Position"))vtxFlags |= eVertexFlag_Position;
 			if(pVtxElem->FirstChild("Texture"))vtxFlags |= eVertexFlag_Texture0;
 			if(pVtxElem->FirstChild("Color"))vtxFlags |= eVertexFlag_Color0;
@@ -158,10 +158,10 @@ namespace hpl {
 					TiXmlElement* pElem = pVtxElem->FirstChildElement(GetVertexName(kvVertexFlags[i]));
 
 					pVtxBuff->ResizeArray(kvVertexFlags[i],lVtxSize * lElemPerVtx);
-                    float *pArray = pVtxBuff->GetArray(kvVertexFlags[i]);
+					float *pArray = pVtxBuff->GetArray(kvVertexFlags[i]);
 
 					//Log("TYPE: %s:\n",GetVertexName(kvVertexFlags[i]));
-                    FillVtxArray(pArray, pElem->Attribute("data"),lVtxSize * lElemPerVtx);
+					FillVtxArray(pArray, pElem->Attribute("data"),lVtxSize * lElemPerVtx);
 				}
 			}
 
@@ -214,7 +214,7 @@ namespace hpl {
 		TiXmlElement* pSubMeshesElem = static_cast<TiXmlElement*>(pRootElem->InsertEndChild(XmlSubMeshes));
 
 		//SubMesh
-        for(int i=0; i< apMesh->GetSubMeshNum(); i++)
+		for(int i=0; i< apMesh->GetSubMeshNum(); i++)
 		{
 			cSubMesh* pSubMesh = apMesh->GetSubMesh(i);
 			iVertexBuffer *pVtxBuff = pSubMesh->GetVertexBuffer();
@@ -225,7 +225,7 @@ namespace hpl {
 			TiXmlElement XmlSubMesh("SubMesh");
 			TiXmlElement* pSubMeshElem = static_cast<TiXmlElement*>(pSubMeshesElem->InsertEndChild(XmlSubMesh));
 
-            //Set data
+			//Set data
 			pSubMeshElem->SetAttribute("name",pSubMesh->GetName().c_str());
 			iMaterial* pMat = pSubMesh->GetMaterial();
 			if(pMat)
@@ -254,7 +254,7 @@ namespace hpl {
 			TiXmlElement* pIdxElem = static_cast<TiXmlElement*>(pSubMeshElem->InsertEndChild(XmlIdx));
 			pIdxElem->SetAttribute("size",lIdxSize);
 			SaveIntData(pIdxElem,lIdxSize,pVtxBuff->GetIndices());
-      	}
+		}
 
 		bool bRet = pXmlDoc->SaveFile();
 		if(bRet==false)

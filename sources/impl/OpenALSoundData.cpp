@@ -98,7 +98,7 @@ namespace hpl {
 			}
 			else
 				OAL_Sample_SetLoop(mpSample,true);
-                //mpSample->SetLoop ( true );
+				//mpSample->SetLoop ( true );
 
 		}
 

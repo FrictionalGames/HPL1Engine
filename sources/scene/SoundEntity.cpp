@@ -74,7 +74,7 @@ namespace hpl {
 
 		mbSkipStartEnd = false; //If the end and start sounds should be skipped.
 
-        mbPrioRemove = false; //If the sounds was removed because too many where playing
+		mbPrioRemove = false; //If the sounds was removed because too many where playing
 
 		mbFadingOut = false; //If the sound is fading out.
 
@@ -235,9 +235,9 @@ namespace hpl {
 	{
 		if(mpSoundHandler->GetSilent())	return;
 
-        if(mbLog)Log("Fade in entity start...");
+		if(mbLog)Log("Fade in entity start...");
 
-        Play(false);
+		Play(false);
 		cSoundEntry* pEntry = GetSoundEntry(eSoundEntityType_Main);
 		if(pEntry)
 		{

@@ -232,7 +232,7 @@ namespace hpl {
 			}
 
 			////////////////////////////////
-            //Set the translation in this sampler
+			//Set the translation in this sampler
 			if(pTrans->msType == "translate")
 			{
 				//Log("Loading Translation\n");
@@ -656,7 +656,7 @@ namespace hpl {
 			}
 		}
 
-        //No animation with that target found, create new.
+		//No animation with that target found, create new.
 		avAnimations.push_back(cColladaAnimation());
 		cColladaAnimation& Anim = avAnimations[avAnimations.size() -1];
 		Anim.msTargetNode = asTargetNode;
@@ -1091,7 +1091,7 @@ namespace hpl {
 				TiXmlText *pVCountText = pVCountElem->FirstChild()->ToText();
 				if(pVCountText==NULL){ Error("No value data found!\n"); continue;}
 
-                tIntVec vVCount;
+				tIntVec vVCount;
 				cString::GetIntVec(pVCountText->Value(),vVCount);
 
 				/////////////////////////////
@@ -1475,7 +1475,7 @@ namespace hpl {
 				cString::GetIntVec(pText->Value(),vIndexArray);
 
 				int lTriangleNum = (int)vIndexArray.size()/ (3*lTriElements);
-                for(int triangle=0; triangle< lTriangleNum; triangle++)
+				for(int triangle=0; triangle< lTriangleNum; triangle++)
 				{
 					cColladaVtxIndex DataVec[3];
 					int lTriangleAdd = triangle*3*lTriElements;
@@ -1538,7 +1538,7 @@ namespace hpl {
 			Geometry.Clear();
 
 			////////////////////////////////////
-            //Create Tangents
+			//Create Tangents
 			tFloatVec vPosVec;  vPosVec.resize(Geometry.mvVertexVec.size() *4);
 			tFloatVec vNormVec; vNormVec.resize(Geometry.mvVertexVec.size() *3);
 			tFloatVec vTexVec;  vTexVec.resize(Geometry.mvVertexVec.size() *3);
@@ -1552,7 +1552,7 @@ namespace hpl {
 			{
 				cVertex &vertex = Geometry.mvVertexVec[i];
 
-                pPosData[0] = vertex.pos.x;
+				pPosData[0] = vertex.pos.x;
 				pPosData[1] = vertex.pos.y;
 				pPosData[2] = vertex.pos.z;
 				pPosData[3] = 1;
@@ -1717,7 +1717,7 @@ namespace hpl {
 						if(pValueElem)
 						{
 							TiXmlText *pText = pValueElem->FirstChild()->ToText();
-                            newParam.msData = pText->Value();
+							newParam.msData = pText->Value();
 						}
 						else
 						{
@@ -1751,12 +1751,12 @@ namespace hpl {
 				}
 
 				///////////////////////
-                //Diffuse
-                TiXmlElement *pDiffuseElem = pTypeElem->FirstChildElement("diffuse");
+				//Diffuse
+				TiXmlElement *pDiffuseElem = pTypeElem->FirstChildElement("diffuse");
 				if(pDiffuseElem)
 				{
 					TiXmlElement *pLocalTexture = pDiffuseElem->FirstChildElement("texture");
-                    if(pLocalTexture)
+					if(pLocalTexture)
 					{
 						tString _tstr = cString::ToString(pLocalTexture->Attribute("texture"),"");
 						Texture.msImage = *GetFinalSource(vNewParams,_tstr);

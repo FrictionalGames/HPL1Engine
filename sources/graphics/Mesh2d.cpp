@@ -243,7 +243,7 @@ namespace hpl {
 
 		for(int i=0;i<(int)aIdx.size();i++)
 		{
-            //Do some checks for the BB creation:
+			//Do some checks for the BB creation:
 			//X:
 			if(aVtx[aIdx[i]].pos.x>vLargest.x)vLargest.x = aVtx[aIdx[i]].pos.x;
 			else if(aVtx[aIdx[i]].pos.x<vSmallest.x)vSmallest.x = aVtx[aIdx[i]].pos.x;

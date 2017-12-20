@@ -152,7 +152,7 @@ namespace hpl {
 		mvSize.x = avSize.x==0?0.001f:avSize.x;
 		mvSize.y = avSize.y==0?0.001f:avSize.y;
 
-        mbSizeHasChanged = true;
+		mbSizeHasChanged = true;
 		mbRotationHasChanged = true;
 	}
 
@@ -162,7 +162,7 @@ namespace hpl {
 	{
 		if(mbFlipH == abX)return;
 
-        mbFlipH = abX;
+		mbFlipH = abX;
 		mbRotationHasChanged=true;
 	}
 
@@ -260,7 +260,7 @@ namespace hpl {
 			{
 				tVertexVec* pVtx = &mpEntityData->GetImageFrame(mlFrame)->mvVtx;
 
-                for(int i=0; i<(int)pVtx->size();i++)
+				for(int i=0; i<(int)pVtx->size();i++)
 				{
 					mvVtx[i].tex.x = (*pVtx)[i].tex.x;
 					mvVtx[i].tex.y = (*pVtx)[i].tex.y;

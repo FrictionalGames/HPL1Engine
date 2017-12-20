@@ -271,7 +271,7 @@ namespace hpl {
 
 		RenderBloom();
 
-        RenderImageTrail();
+		RenderImageTrail();
 
 		mpLowLevelGraphics->PopMatrix(eMatrix_ModelView);
 	}
@@ -400,7 +400,7 @@ namespace hpl {
 		//Size of the virtual screen
 		cVector2f vVirtSize = mpLowLevelGraphics->GetVirtualSize();
 
-        //Copy screen to texture
+		//Copy screen to texture
 		mpLowLevelGraphics->CopyContextToTexure(pScreenTexture,0, cVector2l((int)mvScreenSize.x,(int)mvScreenSize.y));
 
 		//Set up things needed for blurring
@@ -541,7 +541,7 @@ namespace hpl {
 			mbMotionBlurFirstTime = false;
 		}
 
-        cMotionBlurObjectIterator it = mpRenderList->GetMotionBlurIterator();
+		cMotionBlurObjectIterator it = mpRenderList->GetMotionBlurIterator();
 
 		//Setup
 		mpMotionBlurVP->Bind();
@@ -642,7 +642,7 @@ namespace hpl {
 												cVector2l((int)mvScreenSize.x,(int)mvScreenSize.y));
 
 		//Get the blur texture
-        RenderBlurTexture(mpBloomBlurTexture,pScreenTexture,mfBloomSpread);
+		RenderBlurTexture(mpBloomBlurTexture,pScreenTexture,mfBloomSpread);
 
 		//Size of blur texture
 		cVector2f vBlurSize = cVector2f((float)mpBloomBlurTexture->GetWidth(),(float)mpBloomBlurTexture->GetHeight());

@@ -47,7 +47,7 @@ namespace hpl {
 	{
 	public:
 		cInput(iLowLevelInput *apLowLevelInput);
-        ~cInput();
+		~cInput();
 
 		/**
 		 * Updates the input, called by cGame

@@ -47,7 +47,7 @@ namespace hpl {
 		cEntityLoader_Object(const tString &asName) : iEntity3DLoader(asName){}
 		virtual ~cEntityLoader_Object(){}
 
-        iEntity3D* Load(const tString &asName, TiXmlElement *apRootElem, const cMatrixf &a_mtxTransform,
+		iEntity3D* Load(const tString &asName, TiXmlElement *apRootElem, const cMatrixf &a_mtxTransform,
 					cWorld3D *apWorld, const tString &asFileName, bool abLoadReferences);
 
 	protected:

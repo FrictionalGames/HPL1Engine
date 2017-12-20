@@ -265,7 +265,7 @@ namespace hpl {
 		if(pSkeleton)
 		{
 			mbApplyTransformToBV = false;
-            mbHasNodes = false;
+			mbHasNodes = false;
 
 			if(mpRootNode==NULL)
 			{
@@ -594,7 +594,7 @@ namespace hpl {
 		if(mbHasNodes)
 		{
 			//Reset all node states to prepare for animations.
-            if(mvAnimationStates.size()>0)
+			if(mvAnimationStates.size()>0)
 			{
 				for(size_t i=0;i < mvNodeStates.size(); i++)
 				{
@@ -622,7 +622,7 @@ namespace hpl {
 
 						if(pTrack->GetNodeIndex()<0)
 						{
-                            pTrack->SetNodeIndex(GetNodeStateIndex(pTrack->GetName()));
+							pTrack->SetNodeIndex(GetNodeStateIndex(pTrack->GetName()));
 						}
 						cNode3D* pNodeState = GetNodeState(pTrack->GetNodeIndex());
 
@@ -832,7 +832,7 @@ namespace hpl {
 		{
 			cAnimationState *pState = mvAnimationStates[i];
 
-            if(pState->IsActive()==false || pState->IsPaused()) continue;
+			if(pState->IsActive()==false || pState->IsPaused()) continue;
 
 			for(int j=0; j < pState->GetEventNum(); ++j)
 			{
@@ -1662,7 +1662,7 @@ namespace hpl {
 
 		////////////////////////////
 		//Pointers
-        kSaveData_SaveObject(mpBody, mlBodyId);
+		kSaveData_SaveObject(mpBody, mlBodyId);
 	}
 
 	//-----------------------------------------------------------------------

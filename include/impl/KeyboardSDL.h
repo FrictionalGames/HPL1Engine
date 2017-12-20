@@ -47,7 +47,7 @@ namespace hpl {
 
 	private:
 		eKey SDLToKey(int alKey);
-        void ClearKeyList();
+		void ClearKeyList();
 		eKey AsciiToKey(int alChar);
 		eKeyModifier mModifier;
 

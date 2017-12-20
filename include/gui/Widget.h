@@ -43,7 +43,7 @@ namespace hpl {
 		cWidgetCallback(void *apObject, tGuiCallbackFunc apFunc)
 		{
 			mpObject = apObject;
-            mpFunc = apFunc;
+			mpFunc = apFunc;
 		}
 
 		void *mpObject;
@@ -76,7 +76,7 @@ namespace hpl {
 
 		void Init();
 
-        /////////////////////////
+		/////////////////////////
 		// Public Helper functions
 		bool PointIsInside(const cVector2f& avPoint, bool abOnlyClipped);
 
@@ -91,7 +91,7 @@ namespace hpl {
 
 		iWidget *GetParent(){ return mpParent;}
 
-        void SetEnabled(bool abX);
+		void SetEnabled(bool abX);
 		bool IsEnabled();
 		void SetVisible(bool abX);
 		bool IsVisible();
@@ -201,7 +201,7 @@ namespace hpl {
 
 		eWidgetType mType;
 
-        int mlPositionCount;
+		int mlPositionCount;
 
 		cGuiSkinFont *mpDefaultFont;
 		iFontData *mpDefaultFontType;
@@ -221,14 +221,14 @@ namespace hpl {
 
 		cGuiGfxElement* mpPointerGfx;
 
-        bool mbConnectedToChildren;
+		bool mbConnectedToChildren;
 
 	private:
 		void SetMouseIsOver(bool abX){ mbMouseIsOver = abX;}
 		bool ProcessCallbacks(eGuiMessage aMessage, cGuiMessageData &aData);
 
 
-        std::vector<tWidgetCallbackList> mvCallbackLists;
+		std::vector<tWidgetCallbackList> mvCallbackLists;
 
 		bool mbPositionIsUpdated;
 	};

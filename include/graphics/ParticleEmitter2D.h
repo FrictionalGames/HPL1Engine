@@ -59,7 +59,7 @@ namespace hpl {
 		cVertex* mpVtx;
 		cVector2f mvDrawSize;
 
-        void RenderToBatch(eMaterialRenderType aRenderType,	unsigned int &aIdxAdd);
+		void RenderToBatch(eMaterialRenderType aRenderType,	unsigned int &aIdxAdd);
 
 		virtual void RenderParticles(eMaterialRenderType aRenderType, unsigned int &aIdxAdd);
 	};

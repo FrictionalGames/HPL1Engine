@@ -90,7 +90,7 @@ namespace hpl {
 		bool CreateClipRect(cRect2l &aCliprect,cRenderSettings *apRenderSettings,iLowLevelGraphics *apLowLevelGraphics);
 
 
-        cMatrixf m_mtxProjection;
+		cMatrixf m_mtxProjection;
 		cMatrixf m_mtxViewProj;
 		cMatrixf m_mtxView;
 

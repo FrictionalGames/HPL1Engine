@@ -173,8 +173,8 @@ namespace hpl {
 		* \param &asName Name of the node
 		* \param &avPosition Position of the node.
 		* \param *apUserData Data supplied by user.
-         */
-        void AddNode(const tString &asName, const cVector3f &avPosition, void *apUserData=NULL);
+		 */
+		void AddNode(const tString &asName, const cVector3f &avPosition, void *apUserData=NULL);
 
 		/**
 		 * Get the number of nodes.

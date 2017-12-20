@@ -418,7 +418,7 @@ namespace hpl {
 
 				mbIsUpdated = false;
 
-           		//Get the the from the last frame.
+				//Get the the from the last frame.
 				mfFrameTime = ((float)(GetApplicationTime() - lTempFrameTime))/1000;
 				lTempFrameTime = GetApplicationTime();
 

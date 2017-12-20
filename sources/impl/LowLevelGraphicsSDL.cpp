@@ -168,7 +168,7 @@ namespace hpl {
 
 		mlMultisampling = alMultisampling;
 
-        //Set some GL Attributes
+		//Set some GL Attributes
 		SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER,1);
 
 		SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
@@ -565,7 +565,7 @@ namespace hpl {
 		cSDLBitmap2D *pBmp = hplNew( cSDLBitmap2D, (mpPixelFormat) );
 		pBmp->Create(cVector2l(mvScreenSize.x,mvScreenSize.y),32);
 
-        unsigned char *pDestPixels = (unsigned char*)pBmp->GetSurface()->pixels;
+		unsigned char *pDestPixels = (unsigned char*)pBmp->GetSurface()->pixels;
 		unsigned char *pSrcPixels = (unsigned char*)hplMalloc(mvScreenSize.x * mvScreenSize.y * 4);
 
 		SDL_LockSurface(pBmp->GetSurface());
@@ -1685,7 +1685,7 @@ namespace hpl {
 			glVertex3f(aRect.x,aRect.y,afZ);
 		}
 		glEnd();
-   	}
+	}
 
 	//-----------------------------------------------------------------------
 

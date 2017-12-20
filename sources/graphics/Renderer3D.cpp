@@ -156,7 +156,7 @@ namespace hpl {
 
 		//Solid
 		Log("Solid ");
-        iTexture *pTex = mpLowLevelGraphics->CreateTexture("FogLinearSolid",
+		iTexture *pTex = mpLowLevelGraphics->CreateTexture("FogLinearSolid",
 														false,eTextureType_Normal,eTextureTarget_1D);
 
 		for(int i=0; i<256; ++i) {
@@ -407,7 +407,7 @@ namespace hpl {
 		if(mbLog) Log("Rendering ZBuffer:\n");
 		RenderZ(apCamera);
 
-        //reset parameters.
+		//reset parameters.
 		mpLowLevelGraphics->SetTextureEnv(eTextureParam_ColorSource1,eTextureSource_Previous);
 		//mpLowLevelGraphics->SetTextureEnv(eTextureParam_AlphaSource1,eTextureSource_Previous);
 
@@ -632,7 +632,7 @@ namespace hpl {
 
 		//////////////////////////////////
 		// Blend mode
-        mpLowLevelGraphics->SetBlendActive(true);
+		mpLowLevelGraphics->SetBlendActive(true);
 		//mpLowLevelGraphics->SetBlendFunc(eBlendFunc_One,eBlendFunc_Zero);
 		mpLowLevelGraphics->SetBlendFunc(eBlendFunc_SrcAlpha, eBlendFunc_OneMinusSrcAlpha);
 		mRenderSettings.mBlendMode = eMaterialBlendMode_LastEnum;
@@ -926,7 +926,7 @@ namespace hpl {
 
 	void cRenderer3D::RenderTrans(cCamera3D *apCamera)
 	{
-        mpLowLevelGraphics->SetColorWriteActive(true, true, true, true);
+		mpLowLevelGraphics->SetColorWriteActive(true, true, true, true);
 		mpLowLevelGraphics->SetDepthWriteActive(false);
 
 		bool bLog = mRenderSettings.mbLog;
@@ -1102,7 +1102,7 @@ namespace hpl {
 					}
 
 					for(int i=0; i<4; ++i) mvVtxRect[i].col.a = 0;
-                    mpLowLevelGraphics->DrawQuad(mvVtxRect);
+					mpLowLevelGraphics->DrawQuad(mvVtxRect);
 
 					//Set back to ordinary projection...
 					mpLowLevelGraphics->SetMatrix(eMatrix_Projection, apCamera->GetProjectionMatrix());
@@ -1152,7 +1152,7 @@ namespace hpl {
 
 				//////////////////////////////
 				//Set up programs
-                bool bSpecial = false;
+				bool bSpecial = false;
 				if(	pMaterial->GetTexture(eMaterialTexture_Specular)!=NULL &&
 					pMaterial->GetRefractionDiffuseTexture() == eMaterialTexture_Diffuse)
 				{
@@ -1250,7 +1250,7 @@ namespace hpl {
 								}
 					}
 
-                    if(mRenderSettings.mpTexture[i] != pTex)
+					if(mRenderSettings.mpTexture[i] != pTex)
 					{
 						mpLowLevelGraphics->SetTexture(i, pTex);
 						mRenderSettings.mpTexture[i] = pTex;
@@ -1281,7 +1281,7 @@ namespace hpl {
 				}
 			}
 
-            /////////////////////////////////////////////////
+			/////////////////////////////////////////////////
 			// Alpha mode
 			if(alphaMode != mRenderSettings.mAlphaMode)
 			{
@@ -1454,7 +1454,7 @@ namespace hpl {
 				}
 			}
 
-            ///////////////////////////////////////////
+			///////////////////////////////////////////
 			/// Draw
 			if(bLog) Log("  Draw\n");
 			pVtxBuffer->Draw();

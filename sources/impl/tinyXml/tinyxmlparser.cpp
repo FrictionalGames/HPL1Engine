@@ -438,7 +438,7 @@ const char* TiXmlBase::ReadName( const char* p, TIXML_STRING * name, TiXmlEncodi
 const char* TiXmlBase::GetEntity( const char* p, char* value, int* length, TiXmlEncoding encoding )
 {
 	// Presume an entity, and pull it out.
-    TIXML_STRING ent;
+	TIXML_STRING ent;
 	int i;
 	*length = 0;
 
@@ -578,7 +578,7 @@ const char* TiXmlBase::ReadText(	const char* p,
 									bool caseInsensitive,
 									TiXmlEncoding encoding )
 {
-    *text = "";
+	*text = "";
 	if (    !trimWhiteSpace			// certain tags always keep whitespace
 		 || !condenseWhiteSpace )	// if true, whitespace is always kept
 	{
@@ -744,7 +744,7 @@ const char* TiXmlDocument::Parse( const char* p, TiXmlParsingData* prevData, TiX
 		}
 	}
 
-    p = SkipWhiteSpace( p, encoding );
+	p = SkipWhiteSpace( p, encoding );
 	if ( !p )
 	{
 		SetError( TIXML_ERROR_DOCUMENT_EMPTY, 0, 0, TIXML_ENCODING_UNKNOWN );
@@ -1074,14 +1074,14 @@ const char* TiXmlElement::Parse( const char* p, TiXmlParsingData* data, TiXmlEnc
 	// Read the name.
 	const char* pErr = p;
 
-    p = ReadName( p, &value, encoding );
+	p = ReadName( p, &value, encoding );
 	if ( !p || !*p )
 	{
 		if ( document )	document->SetError( TIXML_ERROR_FAILED_TO_READ_ELEMENT_NAME, pErr, data, encoding );
 		return 0;
 	}
 
-    TIXML_STRING endTag ("</");
+	TIXML_STRING endTag ("</");
 	endTag += value;
 	endTag += ">";
 
@@ -1188,7 +1188,7 @@ const char* TiXmlElement::ReadValue( const char* p, TiXmlParsingData* data, TiXm
 			if ( !textNode )
 			{
 				if ( document ) document->SetError( TIXML_ERROR_OUT_OF_MEMORY, 0, 0, encoding );
-				    return 0;
+					return 0;
 			}
 
 			if ( TiXmlBase::IsWhiteSpaceCondensed() )
@@ -1283,7 +1283,7 @@ const char* TiXmlUnknown::Parse( const char* p, TiXmlParsingData* data, TiXmlEnc
 		return 0;
 	}
 	++p;
-    value = "";
+	value = "";
 
 	while ( p && *p && *p != '>' )
 	{

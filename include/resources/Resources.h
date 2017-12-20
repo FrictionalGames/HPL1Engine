@@ -211,7 +211,7 @@ namespace hpl {
 		iLowLevelSystem *mpLowLevelSystem;
 		cFileSearcher *mpFileSearcher;
 
-        tResourceManagerList mlstManagers;
+		tResourceManagerList mlstManagers;
 		cImageManager *mpImageManager;
 		cGpuProgramManager *mpGpuProgramManager;
 		cTileSetManager* mpTileSetManager;

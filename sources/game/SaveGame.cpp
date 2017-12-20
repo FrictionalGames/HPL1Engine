@@ -132,7 +132,7 @@ namespace hpl {
 		int lMaxId =0;
 
 		tSaveObjectMapIt it = m_mapSaveObjects.begin();
-        for(; it != m_mapSaveObjects.end(); ++it)
+		for(; it != m_mapSaveObjects.end(); ++it)
 		{
 			iSaveObject *pObject = it->second;
 

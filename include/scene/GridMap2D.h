@@ -163,7 +163,7 @@ class cGridMap2D;
 
 		tGrid2DObjectMap* GetAllMap(){ return &m_mapAllObjects; }
 
-        void DrawGrid(iLowLevelGraphics *apLowLevel, float afZ=100,cColor aCol = cColor(1));
+		void DrawGrid(iLowLevelGraphics *apLowLevel, float afZ=100,cColor aCol = cColor(1));
 		void DrawEntityGrids(iLowLevelGraphics *apLowLevel,cVector2f avWorldPos, float afZ=101,cColor aCol = cColor(1,0,1,1));
 
 	private:

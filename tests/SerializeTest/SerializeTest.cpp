@@ -246,7 +246,7 @@ int hplMain(const tString &asCommandLine) {
 	gpGame->GetResources()->AddResourceDir("maps");
 
 	//Add updates
-   	cSimpleUpdate Update;
+	cSimpleUpdate Update;
 	gpGame->GetUpdater()->AddUpdate("Default", &Update);
 
 	cSimpleCamera cameraUpdate(gpGame,8,cVector3f(0,1,0),true);

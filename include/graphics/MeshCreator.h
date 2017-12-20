@@ -37,7 +37,7 @@ namespace hpl {
 		cMeshCreator(iLowLevelGraphics *apLowLevelGraphics, cResources *apResources);
 		~cMeshCreator();
 
-        cMesh2D *Create2D(tString asName, cVector2f mvSize);
+		cMesh2D *Create2D(tString asName, cVector2f mvSize);
 
 		cMesh* CreateBox(const tString &asName, cVector3f avSize, const tString &asMaterial);
 

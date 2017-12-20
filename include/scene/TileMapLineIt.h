@@ -51,7 +51,7 @@ namespace hpl {
 
 		cVector2f mvPos;
 		cVector2f mvPosAdd;
-        cVector2l mvTilePos;
+		cVector2l mvTilePos;
 
 		int mlLayer;
 		int mlLayerCount;
@@ -64,7 +64,7 @@ namespace hpl {
 		bool mbAddNext;
 
 		cTileMap* mpTileMap;
-        cTile* mpTile;
+		cTile* mpTile;
 
 		void GetTile();
 

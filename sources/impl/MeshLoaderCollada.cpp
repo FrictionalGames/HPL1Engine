@@ -273,7 +273,7 @@ namespace hpl {
 		/////////////////////////////////////////////////
 		// SETUP TEMP DATA STRUCTURES
 		//Images
-        tColladaImageVec vColladaImages;
+		tColladaImageVec vColladaImages;
 		//Textures
 		tColladaTextureVec vColladaTextures;
 		//Materials
@@ -453,7 +453,7 @@ namespace hpl {
 
 					cMeshJoint *pJoint = pMesh->CreatePhysicsJoint(JointType);
 
-                    CreateMeshJoint(pJoint, JointType, TempBV, vStrings, pNode,ColladaScene,vColladaGeometries);
+					CreateMeshJoint(pJoint, JointType, TempBV, vStrings, pNode,ColladaScene,vColladaGeometries);
 				}
 
 				/////////////////////////////////////
@@ -749,7 +749,7 @@ namespace hpl {
 
 			/////////////////////////////
 			//Add material
-            tString sMatName = GetMaterialTextureFile(Geom.msMaterial,vColladaMaterials,vColladaTextures,
+			tString sMatName = GetMaterialTextureFile(Geom.msMaterial,vColladaMaterials,vColladaTextures,
 														vColladaImages);
 			//Log("Material name: '%s'\n",sMatName.c_str());
 			iMaterial *pMaterial;
@@ -767,7 +767,7 @@ namespace hpl {
 																		Geom.msName.c_str());
 				continue;
 			}
-            pSubMesh->SetMaterial(pMaterial);
+			pSubMesh->SetMaterial(pMaterial);
 
 			/////////////////////////////
 			//If there is a controller for the mesh, get vertex-bone pairs.
@@ -811,7 +811,7 @@ namespace hpl {
 							cVertexBonePair DestPair;
 
 							int lBoneIdx = pSkeleton->GetBoneIndexByName(pCtrl->mvJoints[SrcPair.mlJoint]);
-                            DestPair.boneIdx = lBoneIdx;
+							DestPair.boneIdx = lBoneIdx;
 							DestPair.weight = pCtrl->mvWeights[SrcPair.mlWeight];
 							DestPair.vtxIdx = Extra.mlNewVtx;
 
@@ -1293,7 +1293,7 @@ namespace hpl {
 		apJoint->msName = avStrings[avStrings.size()-1];
 
 		//////////////////////////////////////
-        // Get if the joint bodies should collide
+		// Get if the joint bodies should collide
 		if(HasParam(avStrings,"nocollide")){
 			apJoint->mbCollide = false;
 		}
@@ -1306,7 +1306,7 @@ namespace hpl {
 		apJoint->mvPivot = apNode->m_mtxWorldTransform.GetTranslation();
 		apJoint->mvPinDir = cMath::Vector3Normalize(apNode->m_mtxWorldTransform.GetUp());
 
-        cColladaNode *pCNode = aColladaScene.GetNode(avStrings[2]);
+		cColladaNode *pCNode = aColladaScene.GetNode(avStrings[2]);
 		cColladaNode *pPNode = aColladaScene.GetNode(avStrings[3]);
 
 		if(pCNode) {
@@ -1597,7 +1597,7 @@ namespace hpl {
 			if(HasParam(vParams, "nocharcollide")) pBody->SetCollideCharacter(false);
 
 			tString sPhysicsMatName = apWorld->GetResources()->GetMaterialManager()->GetPhysicsMaterialName(sMatName);
-            iPhysicsMaterial *pPhysicsMat = apWorld->GetPhysicsWorld()->GetMaterialFromName(
+			iPhysicsMaterial *pPhysicsMat = apWorld->GetPhysicsWorld()->GetMaterialFromName(
 																				sPhysicsMatName);
 			if(pPhysicsMat)
 			{
@@ -2003,7 +2003,7 @@ namespace hpl {
 					tString sEndName = "_beamend_"+sName;
 					cColladaNode *pEndNode = apColladaScene->GetNode(sEndName);
 
-                    if(pEndNode)
+					if(pEndNode)
 					{
 						cBeam *pBeam = apWorld->CreateBeam(sName);
 
@@ -2221,7 +2221,7 @@ namespace hpl {
 								lParamAdd =1;
 							}
 
-                            tString sLightName ="";
+							tString sLightName ="";
 							tString sLightFile ="";
 
 							//Check if light might have file parameter
@@ -2368,7 +2368,7 @@ namespace hpl {
 					lDigits++;
 				}
 
-                sNum = cString::Sub(apNode->msName,lStartChar+4,lDigits);
+				sNum = cString::Sub(apNode->msName,lStartChar+4,lDigits);
 				//int lTargetSector = cString::ToInt(sNum.c_str(),-1);
 				tString sTargetSector = sNum;
 

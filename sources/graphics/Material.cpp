@@ -86,7 +86,7 @@ namespace hpl {
 			if(mvImage[i])
 				mpImageManager->Destroy(mvImage[i]);
 		}
-        for(i=0;i<(int)mvTexture.size();i++){
+		for(i=0;i<(int)mvTexture.size();i++){
 			if(mvTexture[i])
 				mpTextureManager->Destroy(mvTexture[i]);
 		}

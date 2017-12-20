@@ -272,7 +272,7 @@ namespace hpl {
 
 				m_setStartSectors.insert(pSector);
 			}
-       	}
+		}
 
 		/////////////////////////////////
 		// Iterate the start sectors

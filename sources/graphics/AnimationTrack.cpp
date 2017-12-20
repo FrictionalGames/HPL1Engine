@@ -71,7 +71,7 @@ namespace hpl {
 		pFrame->time = afTime;
 
 		//Check so that this is the first
-        if(afTime > mfMaxFrameTime || mvKeyFrames.empty())
+		if(afTime > mfMaxFrameTime || mvKeyFrames.empty())
 		{
 			mvKeyFrames.push_back(pFrame);
 			mfMaxFrameTime = afTime;
@@ -89,7 +89,7 @@ namespace hpl {
 			mvKeyFrames.insert(it,pFrame);
 		}
 
-        return pFrame;
+		return pFrame;
 	}
 
 	//-----------------------------------------------------------------------
@@ -126,7 +126,7 @@ namespace hpl {
 		float fT = GetKeyFramesAtTime(afTime, &pKeyFrameA, &pKeyFrameB);
 
 
-        if(fT == 0.0f)
+		if(fT == 0.0f)
 		{
 			ResultKeyFrame.rotation = pKeyFrameA->rotation;
 			ResultKeyFrame.scale = pKeyFrameA->scale;
@@ -137,7 +137,7 @@ namespace hpl {
 			//Do a linear interpolation
 			//This should include spline stuff later on.
 
-            ResultKeyFrame.rotation = cMath::QuaternionSlerp(fT, pKeyFrameA->rotation,
+			ResultKeyFrame.rotation = cMath::QuaternionSlerp(fT, pKeyFrameA->rotation,
 													pKeyFrameB->rotation, true);
 
 			ResultKeyFrame.scale = pKeyFrameA->scale * (1 - fT) + pKeyFrameB->scale * fT;

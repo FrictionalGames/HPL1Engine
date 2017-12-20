@@ -49,7 +49,7 @@ namespace hpl {
 			: iPhysicsJoint(asName,apParentBody,apChildBody, apWorld,avPivotPoint){}
 		virtual ~iPhysicsJointHinge(){}
 
-        virtual void SetMaxAngle(float afAngle)=0;
+		virtual void SetMaxAngle(float afAngle)=0;
 		virtual void SetMinAngle(float afAngle)=0;
 		virtual float GetMaxAngle()=0;
 		virtual float GetMinAngle()=0;

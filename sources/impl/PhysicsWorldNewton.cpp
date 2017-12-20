@@ -56,7 +56,7 @@ namespace hpl {
 		}
 
 		/////////////////////////////////
-        //Set default values to properties
+		//Set default values to properties
 		mvWorldSizeMin = cVector3f(0,0,0);
 		mvWorldSizeMax = cVector3f(0,0,0);
 
@@ -359,7 +359,7 @@ namespace hpl {
 		cPhysicsMaterialNewton *pMaterial = hplNew( cPhysicsMaterialNewton, (asName,this) );
 
 		tPhysicsMaterialMap::value_type Val(asName,pMaterial);
-        m_mapMaterials.insert(Val);
+		m_mapMaterials.insert(Val);
 
 		pMaterial->UpdateMaterials();
 
@@ -447,7 +447,7 @@ namespace hpl {
 		gvRayDelta = avEnd - avOrigin;
 		gfRayLength = gvRayDelta.Length();
 
-        gpRayCallback = apCallback;
+		gpRayCallback = apCallback;
 
 		if(abUsePrefilter)
 			NewtonWorldRayCast(mpNewtonWorld, avOrigin.v, avEnd.v,RayCastFilterFunc, NULL, RayCastPrefilterFunc);
@@ -472,7 +472,7 @@ namespace hpl {
 
 		//////////////////////////////
 		//Check compound collision
-        if(pNewtonShapeA->GetType() == eCollideShapeType_Compound ||
+		if(pNewtonShapeA->GetType() == eCollideShapeType_Compound ||
 			pNewtonShapeB->GetType() == eCollideShapeType_Compound)
 		{
 			int lACount = pNewtonShapeA->GetSubShapeNum();

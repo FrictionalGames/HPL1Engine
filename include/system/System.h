@@ -40,7 +40,7 @@ namespace hpl {
 		cLogicTimer * CreateLogicTimer(unsigned int alUpdatesPerSec);
 
 	private:
-        iLowLevelSystem *mpLowLevelSystem;
+		iLowLevelSystem *mpLowLevelSystem;
 	};
 
 };

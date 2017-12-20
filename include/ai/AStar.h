@@ -105,7 +105,7 @@ namespace hpl {
 
 		cVector3f mvGoal;
 
-        cAStarNode* mpGoalNode;
+		cAStarNode* mpGoalNode;
 		tAINodeSet m_setGoalNodes;
 
 		cAINodeContainer *mpContainer;

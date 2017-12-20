@@ -82,7 +82,7 @@ namespace hpl {
 						cAnimationManager *apAnimationManager);
 		~cAnimationState();
 
-        const char* GetName(){ return msName.c_str();}
+		const char* GetName(){ return msName.c_str();}
 
 		void Update(float afTimeStep);
 
@@ -102,14 +102,14 @@ namespace hpl {
 		void SetWeight(float afWeight);
 		float GetWeight();
 
-        void SetSpeed(float afSpeed);
+		void SetSpeed(float afSpeed);
 		float GetSpeed();
 
 		void SetBaseSpeed(float afSpeed);
 		float GetBaseSpeed();
 
 		void SetTimePosition(float afPosition);
-        float GetTimePosition();
+		float GetTimePosition();
 		float GetPreviousTimePosition();
 
 		/**

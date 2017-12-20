@@ -302,7 +302,7 @@ namespace hpl{
 		CGparameter Param = GetParam(asName, CG_FLOAT4x4);
 		if(Param==NULL)return false;
 
-        CGGLenum MtxType;
+		CGGLenum MtxType;
 		CGGLenum OpType;
 		switch(mType){
 			case eGpuProgramMatrix_View:				MtxType=CG_GL_MODELVIEW_MATRIX;break;
@@ -317,7 +317,7 @@ namespace hpl{
 			case eGpuProgramMatrixOp_InverseTranspose:OpType=CG_GL_MATRIX_INVERSE_TRANSPOSE; break;
 		}
 
-        cgGLSetStateMatrixParameter(Param,MtxType, OpType);
+		cgGLSetStateMatrixParameter(Param,MtxType, OpType);
 		return true;
 	}
 
@@ -327,7 +327,7 @@ namespace hpl{
 	{
 		CGtype textureType;
 
-    		if(apTexture)
+			if(apTexture)
 		{
 			switch(apTexture->GetTarget())
 			{

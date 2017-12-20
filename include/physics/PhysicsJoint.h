@@ -309,7 +309,7 @@ namespace hpl {
 
 		void CalcSoundFreq(float afSpeed,float *apFreq, float *apVol);
 
-        void LimitEffect(cJointLimitEffect *pEffect);
+		void LimitEffect(cJointLimitEffect *pEffect);
 	};
 };
 #endif // HPL_PHYSICS_JOINT_H

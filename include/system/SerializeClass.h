@@ -100,7 +100,7 @@ namespace hpl {
 	 */
 	#define kSerializableClassInit(aClass) \
 				public: \
-                const static tString msSerialize_Name; \
+				const static tString msSerialize_Name; \
 				const static tString msSerialize_ParentName; \
 				const static cSerializeMemberField * mpSerialize_MemberFields; \
 				virtual tString Serialize_GetTopClass(){ return #aClass;}

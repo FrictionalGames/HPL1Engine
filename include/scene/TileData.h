@@ -106,6 +106,6 @@ namespace hpl {
 
 		void SetMesh(cMesh2D *apMesh);
 		void SetMaterial(iMaterial* apMaterial);
-    };
+	};
 };
 #endif // HPL_TILEDATA_H

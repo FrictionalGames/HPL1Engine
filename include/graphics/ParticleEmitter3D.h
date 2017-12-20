@@ -153,7 +153,7 @@ namespace hpl {
 
 		cParticleSystem3D *mpParentSystem;
 
-        //Set by the particle system implementation.
+		//Set by the particle system implementation.
 		cVector2f mvDrawSize;
 		cVector2f mvMaxDrawSize;
 

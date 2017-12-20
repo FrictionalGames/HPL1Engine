@@ -152,7 +152,7 @@ namespace hpl {
 
 			cVector3f vVal(0);
 			tFloatVec vValues;
-            tString sSepp=" ";
+			tString sSepp=" ";
 			cString::GetFloatVec(sValue,vValues,&sSepp);
 
 			if(vValues.size()>0) vVal.x = vValues[0];
@@ -188,7 +188,7 @@ namespace hpl {
 			pFont->mColor = color;
 
 			mvFonts[type] = pFont;
-        }
+		}
 
 
 		//////////////////////////////////////

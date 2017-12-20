@@ -56,7 +56,7 @@ namespace hpl {
 		iMaterial* mpMaterial;
 		tVertexVec* mpVtxVec;
 		tUIntVec* mpIdxVec;
-        ePrimitiveType mType;
+		ePrimitiveType mType;
 		cMatrixf *mpMtx;
 		cVector3f *mpTransform;
 		float mfZ;

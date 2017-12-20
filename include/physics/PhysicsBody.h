@@ -283,7 +283,7 @@ namespace hpl {
 	protected:
 		void CreateSaveCollideShapes(cContainerList<cSaveData_iCollideShape> *apShapeList);
 
-        iPhysicsWorld *mpWorld;
+		iPhysicsWorld *mpWorld;
 		iCollideShape *mpShape;
 		iPhysicsMaterial *mpMaterial;
 		cNode3D *mpNode;

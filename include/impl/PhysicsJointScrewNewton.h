@@ -31,7 +31,7 @@ namespace hpl {
 			iPhysicsWorld *apWorld,const cVector3f &avPivotPoint, const cVector3f avPinDir);
 		~cPhysicsJointScrewNewton();
 
-        void SetMaxDistance(float afX);
+		void SetMaxDistance(float afX);
 		void SetMinDistance(float afX);
 		float GetMaxDistance();
 		float GetMinDistance();

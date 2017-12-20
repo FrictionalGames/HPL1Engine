@@ -303,7 +303,7 @@ namespace hpl {
 
 		apLowLevelGraphics->SetClearStencilActive(false);
 		apLowLevelGraphics->SetClearDepthActive(true);
-        apLowLevelGraphics->SetClearColorActive(true);*/
+		apLowLevelGraphics->SetClearColorActive(true);*/
 
 
 		cRect2l ClipRect;
@@ -325,7 +325,7 @@ namespace hpl {
 
 		//////////////////////////////////////////////////////////
 		// Cast shadows
-        if(mbCastShadows && apRenderSettings->mShowShadows != eRendererShowShadows_None
+		if(mbCastShadows && apRenderSettings->mShowShadows != eRendererShowShadows_None
 			&& apRenderSettings->mpVtxExtrudeProgram != NULL)
 		{
 			//Get temp index array. (Remove this when the index pool
@@ -363,7 +363,7 @@ namespace hpl {
 			apLowLevelGraphics->SetDepthTestFunc(eDepthTestFunc_Less);
 
 			//Resert the algo (zfail or zpass) used.
-            apRenderSettings->mlLastShadowAlgo=0;
+			apRenderSettings->mlLastShadowAlgo=0;
 
 			//Reset this variable so it can be used when rendering shadows.
 			apRenderSettings->mbMatrixWasNULL = false;
@@ -532,7 +532,7 @@ namespace hpl {
 			{
 				TiXmlElement *pRootElem = pDoc->RootElement();
 
-                TiXmlElement *pMainElem = pRootElem->FirstChildElement("MAIN");
+				TiXmlElement *pMainElem = pRootElem->FirstChildElement("MAIN");
 				if(pMainElem!=NULL)
 				{
 					mbCastShadows = cString::ToBool(pMainElem->Attribute("CastsShadows"),mbCastShadows);

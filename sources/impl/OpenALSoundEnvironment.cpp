@@ -76,7 +76,7 @@ namespace hpl
 			return false;
 		}
 
-        mfDensity = cString::ToFloat(pParams->Attribute("Density"),0);
+		mfDensity = cString::ToFloat(pParams->Attribute("Density"),0);
 		mfDiffusion = cString::ToFloat(pParams->Attribute("Diffusion"),0);
 		mfGain = cString::ToFloat(pParams->Attribute("Gain"),0);
 		mfGainHF = cString::ToFloat(pParams->Attribute("GainHF"),0);

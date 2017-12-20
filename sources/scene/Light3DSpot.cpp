@@ -54,7 +54,7 @@ namespace hpl {
 		mbViewProjUpdated = true;
 		mbFrustumUpdated = true;
 
-        mLightType = eLight3DType_Spot;
+		mLightType = eLight3DType_Spot;
 
 		mpFrustum = hplNew( cFrustum, () );
 
@@ -252,7 +252,7 @@ namespace hpl {
 		float fFrameTime = cString::ToFloat(apMainElem->Attribute("ProjectionFrameTime"),1.0f);
 		iTexture *pTex = NULL;
 
-        if(animMode != eTextureAnimMode_None)
+		if(animMode != eTextureAnimMode_None)
 		{
 			pTex = mpTextureManager->CreateAnim2D(sTexture,true);
 			pTex->SetAnimMode(animMode);

@@ -58,10 +58,10 @@ namespace hpl {
 		 */
 		tString GetName();
 
-        /**
-         * Update special logic for the action. Normally empty
-         */
-        virtual void UpdateLogic(float afTimeStep);
+		/**
+		 * Update special logic for the action. Normally empty
+		 */
+		virtual void UpdateLogic(float afTimeStep);
 
 
 		/**

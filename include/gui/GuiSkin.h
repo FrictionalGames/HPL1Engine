@@ -58,7 +58,7 @@ namespace hpl {
 
 		bool LoadFromFile(const tString &asFile);
 
-        cGuiGfxElement* GetGfx(eGuiSkinGfx aType);
+		cGuiGfxElement* GetGfx(eGuiSkinGfx aType);
 		cGuiSkinFont* GetFont(eGuiSkinFont aType);
 		const cVector3f& GetAttribute(eGuiSkinAttribute aType);
 	private:

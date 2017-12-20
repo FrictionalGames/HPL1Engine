@@ -68,7 +68,7 @@ namespace hpl {
 	bool cOcclusionQueryObject_Compare::operator()(	const cOcclusionQueryObject* pObjectA,
 													const cOcclusionQueryObject* pObjectB) const
 	{
-        if(pObjectA->mpVtxBuffer != pObjectB->mpVtxBuffer)
+		if(pObjectA->mpVtxBuffer != pObjectB->mpVtxBuffer)
 			return pObjectA->mpVtxBuffer < pObjectB->mpVtxBuffer;
 
 		if(pObjectA->mpMatrix != pObjectB->mpMatrix)
@@ -568,7 +568,7 @@ namespace hpl {
 			pNode = InsertNode(pNode, pTempNode);
 		}
 
-        /////// DEPTH //////////////
+		/////// DEPTH //////////////
 		if(abUseDepth)
 		{
 			//Log("\nDepth level, Z: %f\n",apObject->GetZ());
@@ -788,7 +788,7 @@ namespace hpl {
 			pNode = InsertNode(pNode, pTempNode);
 		}
 
-        /////// DEPTH //////////////
+		/////// DEPTH //////////////
 		if(abUseDepth)
 		{
 			//Log("\nDepth level, Z: %f\n",apObject->GetZ());

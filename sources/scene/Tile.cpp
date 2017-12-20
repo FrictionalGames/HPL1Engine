@@ -63,7 +63,7 @@ namespace hpl {
 						const cVector3f &avPos, const cVector2f &avSize)
 	{
 		mpTileData = apTileData;
-      	mAngle = aAngle;
+		mAngle = aAngle;
 	}
 
 	//-----------------------------------------------------------------------

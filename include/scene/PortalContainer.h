@@ -133,7 +133,7 @@ namespace hpl {
 
 		void AddPortalId(int alId);
 		void SetNormal(const cVector3f &avNormal);
-        void AddPoint(const cVector3f &avPoint);
+		void AddPoint(const cVector3f &avPoint);
 		void SetTransform(const cMatrixf &a_mtxTrans);
 
 		void Compile();
@@ -168,7 +168,7 @@ namespace hpl {
 		bool mbActive;
 
 
-        cVector3f mvNormal;
+		cVector3f mvNormal;
 		cPlanef mPlane;
 		cBoundingVolume mBV;
 		tVector3fList mlstPoints;
@@ -259,7 +259,7 @@ namespace hpl {
 		*/
 		bool AddToSector(iRenderable *apRenderable,tString asSector);
 
-        /*
+		/*
 		* Adds a portal to a sector.
 		*/
 		bool AddPortal(cPortal *apPortal, tString asSector);

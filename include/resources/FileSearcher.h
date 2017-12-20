@@ -48,12 +48,12 @@ namespace hpl {
 		 */
 		void ClearDirectories();
 
-        /**
-         * Gets a file pointer and searches through all added resources.
-         * \param asName Name of the file.
+		/**
+		 * Gets a file pointer and searches through all added resources.
+		 * \param asName Name of the file.
 		 * \return Path to the file. "" if file is not found.
-         */
-        tString GetFilePath(tString asName);
+		 */
+		tString GetFilePath(tString asName);
 
 	private:
 		tFilePathMap m_mapFiles;

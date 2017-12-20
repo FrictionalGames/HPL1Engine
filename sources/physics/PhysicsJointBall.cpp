@@ -47,7 +47,7 @@ namespace hpl {
 	{
 		iPhysicsWorld *apWorld = apGame->GetScene()->GetWorld3D()->GetPhysicsWorld();
 
-      	cMatrixf mtxChildTemp, mtxParentTemp;
+		cMatrixf mtxChildTemp, mtxParentTemp;
 
 		iPhysicsBody *pChildBody = static_cast<iPhysicsBody*>(apSaveObjectHandler->Get(mlChildBodyId));
 		if(pChildBody==NULL) return NULL;
@@ -55,7 +55,7 @@ namespace hpl {
 		iPhysicsBody *pParentBody = NULL;
 		if(mlParentBodyId>0) pParentBody = static_cast<iPhysicsBody*>(apSaveObjectHandler->Get(mlParentBodyId));
 
-        mtxChildTemp = pChildBody->GetLocalMatrix();
+		mtxChildTemp = pChildBody->GetLocalMatrix();
 		if(pParentBody) mtxParentTemp = pParentBody->GetLocalMatrix();
 
 		pChildBody->SetMatrix(m_mtxChildBodySetup);

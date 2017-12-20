@@ -76,7 +76,7 @@ namespace hpl {
 		{
 			char* apTest = (char*)it->second.mpData;
 			size_t testSize = it->second.mlMemory;
-            if(apData >= apTest && apData < apTest + testSize) bFound = true;
+			if(apData >= apTest && apData < apTest + testSize) bFound = true;
 		}
 
 

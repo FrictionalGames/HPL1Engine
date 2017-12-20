@@ -113,7 +113,7 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-    void iResourceManager::DestroyUnused(int alMaxToKeep)
+	void iResourceManager::DestroyUnused(int alMaxToKeep)
 	{
 		//Log("Start Num Of: %d\n",m_mapHandleResources.size());
 		//Check if there are too many resources.
@@ -236,7 +236,7 @@ namespace hpl {
 		if(abLog && iResourceBase::GetLogCreateAndDelete())
 		{
 			unsigned long lTime = GetApplicationTime() - mlTimeStart;
-            Log("%sLoaded resource %s in %d ms\n",GetTabs().c_str(), apResource->GetName().c_str(),lTime);
+			Log("%sLoaded resource %s in %d ms\n",GetTabs().c_str(), apResource->GetName().c_str(),lTime);
 			apResource->SetLogDestruction(true);
 		}
 
@@ -251,7 +251,7 @@ namespace hpl {
 		m_mapNameResources.erase(cString::ToLowerCase(apResource->GetName()));
 
 		//Log("Removing %s %d %d!\n", apResource->GetName().c_str(),x,y);
- 	}
+	}
 
 	//-----------------------------------------------------------------------
 

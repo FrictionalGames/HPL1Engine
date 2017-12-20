@@ -197,7 +197,7 @@ namespace hpl {
 
 		tOcclusionQueryObjectSet m_setQueries;
 
-        tMotionBlurObjectSet m_setMotionBlurObjects;
+		tMotionBlurObjectSet m_setMotionBlurObjects;
 		tTransperantObjectSet m_setTransperantObjects;
 
 		cRenderNode mRootNodeDepth;

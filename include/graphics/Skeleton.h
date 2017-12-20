@@ -46,7 +46,7 @@ namespace hpl {
 
 		cBone* GetRootBone();
 
-        cBone* GetBoneByIndex(int alIndex);
+		cBone* GetBoneByIndex(int alIndex);
 		cBone* GetBoneByName(const tString &asName);
 		int GetBoneIndexByName(const tString &asName);
 		int GetBoneNum();

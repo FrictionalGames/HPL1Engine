@@ -458,7 +458,7 @@ namespace hpl {
 		it = mlstGuiSounds.begin();
 		while(it != mlstGuiSounds.end())
 		{
-            if(it->mpSound == apChannel)return true;
+			if(it->mpSound == apChannel)return true;
 			it++;
 		}
 
@@ -715,7 +715,7 @@ namespace hpl {
 					iSoundChannel *pSound = apEntry->mpSound;
 
 					cVector3f vPos = cMath::MatrixMul( mpLowLevelSound->GetListenerMatrix(), pSound->GetRelPosition() );
-                    pSound->SetPosition(vPos);
+					pSound->SetPosition(vPos);
 
 					if(apEntry->mEffectType & mAffectedByVolume)
 					{

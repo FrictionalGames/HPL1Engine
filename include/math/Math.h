@@ -35,12 +35,12 @@ namespace hpl {
 		////////// RANDOM GENERATION ////////////////////////
 		//////////////////////////////////////////////////////
 		/**
-         * Generates a random integer from min to max
-         * \param alMin
-         * \param alMax
-         * \return
-         */
-        static int RandRectl(int alMin, int alMax);
+		 * Generates a random integer from min to max
+		 * \param alMin
+		 * \param alMax
+		 * \return
+		 */
+		static int RandRectl(int alMin, int alMax);
 
 		/**
 		 * Generates a random float from min to max
@@ -96,7 +96,7 @@ namespace hpl {
 		* Checks collison between two bounding volumes.
 		* \return true if collision, else false.
 		*/
-        static bool CheckCollisionBV(cBoundingVolume& aBV1,cBoundingVolume& aBV2);
+		static bool CheckCollisionBV(cBoundingVolume& aBV1,cBoundingVolume& aBV2);
 
 		static bool PointBVCollision(const cVector3f& avPoint, cBoundingVolume& aBV2);
 
@@ -142,12 +142,12 @@ namespace hpl {
 		 */
 		static bool IsPow2(int alX);
 
-        /**
-         * Wraps a value (afX) between min and max. Example: Wrap(-1, 0,10) returns 9.
+		/**
+		 * Wraps a value (afX) between min and max. Example: Wrap(-1, 0,10) returns 9.
 		 * \param afMin The minimum value. Must be lower than max.
 		 * \param afMax The maximum value. Must be higher than min and NOT 0.
-         */
-        static float Wrap(float afX, float afMin, float afMax);
+		 */
+		static float Wrap(float afX, float afMin, float afMax);
 
 		/**
 		 * Clamps a value between min and max. Example Clamp(-1, 0,1) return 0.

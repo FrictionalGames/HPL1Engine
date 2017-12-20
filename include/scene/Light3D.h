@@ -188,7 +188,7 @@ namespace hpl {
 		void OnFlickerOn();
 		void OnSetDiffuse();
 
-        virtual cSectorVisibilityContainer* CreateSectorVisibility()=0;
+		virtual cSectorVisibilityContainer* CreateSectorVisibility()=0;
 		virtual void ExtraXMLProperties(TiXmlElement *apMainElem){}
 		virtual void UpdateBoundingVolume()=0;
 		virtual bool CreateClipRect(cRect2l &aCliprect, cRenderSettings *apRenderSettings,iLowLevelGraphics *apLowLevelGraphics)=0;

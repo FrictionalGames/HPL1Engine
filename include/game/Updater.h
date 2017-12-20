@@ -90,7 +90,7 @@ namespace hpl {
 	private:
 		tString msCurrentUpdates;
 
-        tUpdateContainerMap m_mapUpdateContainer;
+		tUpdateContainerMap m_mapUpdateContainer;
 
 		iLowLevelSystem *mpLowLevelSystem;
 

@@ -208,7 +208,7 @@ namespace hpl {
 		if(mbInfFarPlane) lPlanes = 5;
 
 		//Go through all the planes
-        for(int i=0; i<lPlanes; i++)
+		for(int i=0; i<lPlanes; i++)
 		{
 			int lInCount=9;
 			bool bIsIn = true;

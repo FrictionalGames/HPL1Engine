@@ -554,7 +554,7 @@ namespace hpl {
 	//-----------------------------------------------------------------------
 	void iWidget::SetPositionUpdated()
 	{
-        mbPositionIsUpdated = true;
+		mbPositionIsUpdated = true;
 		mlPositionCount++;
 
 		OnChangePosition();

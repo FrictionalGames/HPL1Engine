@@ -129,7 +129,7 @@ namespace hpl {
 		cSystem* GetSystem(){ return mpSystem;}
 
 	private:
-        cGraphics *mpGraphics;
+		cGraphics *mpGraphics;
 		cResources *mpResources;
 		cSound *mpSound;
 		cPhysics *mpPhysics;
@@ -137,7 +137,7 @@ namespace hpl {
 		cAI *mpAI;
 		cHaptic *mpHaptic;
 
-        cCollider2D *mpCollider2D;
+		cCollider2D *mpCollider2D;
 
 		bool mbDrawScene;
 		bool mbUpdateMap;

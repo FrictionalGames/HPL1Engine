@@ -56,7 +56,7 @@ namespace hpl {
 		void ResetLastPosition(){ mvLastPosition = mvPosition;}
 
 		float GetVelocity();
-        float GetMaxVelocity(){ return mfMaxVel;}
+		float GetMaxVelocity(){ return mfMaxVel;}
 		float GetAcceleration(){ return mfAcc;}
 		float GetGravity(){ return mfGravity;}
 		float GetMaxGravityVel(){ return mfMaxGravityVel;}

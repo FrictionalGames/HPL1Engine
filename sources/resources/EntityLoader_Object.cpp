@@ -207,7 +207,7 @@ namespace hpl {
 
 		//////////////////////////////////
 		// Properties for entities with joints
-        if( (mpMesh->GetPhysicsJointNum()>0 || mpMesh->HasSeveralBodies()) &&
+		if( (mpMesh->GetPhysicsJointNum()>0 || mpMesh->HasSeveralBodies()) &&
 			(mpMesh->GetAnimationNum()<=0 || mpMesh->GetSkeleton()))
 		{
 			mpMesh->CreateJointsAndBodies(&mvBodies,mpEntity,&mvJoints,a_mtxTransform,apWorld->GetPhysicsWorld());
@@ -366,7 +366,7 @@ namespace hpl {
 			}
 
 			//Only allow for one joint
-           	if(mpMesh->GetPhysicsJointNum()==1 && mvBodies.size() == 1)
+			if(mpMesh->GetPhysicsJointNum()==1 && mvBodies.size() == 1)
 			{
 				iPhysicsJoint *pJoint = mpMesh->CreateJointInWorld(asName,mpMesh->GetPhysicsJoint(0),
 																NULL, mvBodies[0],a_mtxTransform,
@@ -485,7 +485,7 @@ namespace hpl {
 				iPhysicsBody* pBody = mvBodies[i];
 
 				//Not Mesh
-                if(pBody->GetShape()->GetType() != eCollideShapeType_Mesh)
+				if(pBody->GetShape()->GetType() != eCollideShapeType_Mesh)
 				{
 					iHapticShape *pHShape = pLowLevelHaptic->CreateShapeFromPhysicsBody(
 															pBody->GetName(),pBody);
@@ -723,7 +723,7 @@ namespace hpl {
 
 		//Log("Body %s contin: %d\n",apBody->GetName().c_str(), apBody->GetContinuousCollision()?1:0);
 
-        apBody->SetMaxAngularSpeed(fMaxAngluarSpeed);
+		apBody->SetMaxAngularSpeed(fMaxAngluarSpeed);
 		apBody->SetMaxLinearSpeed(fMaxLinearSpeed);
 	}
 
@@ -984,7 +984,7 @@ namespace hpl {
 	{
 		if(apString == NULL) return eAnimationEventType_LastEnum;
 
-        tString sName = apString;
+		tString sName = apString;
 		sName = cString::ToLowerCase(sName);
 
 		if(sName == "playsound")

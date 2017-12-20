@@ -52,7 +52,7 @@ namespace hpl {
 		iVideoStream(tString asName) : iResourceBase(asName,0){}
 		virtual ~iVideoStream(){}
 
-        virtual bool LoadFromFile(tString asFilePath)=0;
+		virtual bool LoadFromFile(tString asFilePath)=0;
 
 		virtual void Update(float afTimeStep)=0;
 

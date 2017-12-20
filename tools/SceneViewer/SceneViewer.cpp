@@ -465,7 +465,7 @@ public:
 			cVector3f vUp = mtxInv.GetUp();
 			cVector3f vRight = mtxInv.GetRight();
 
-            mpLowLevelGraphics->DrawLine(vPos,vPos + vForward,cColor(0,0,1,1));
+			mpLowLevelGraphics->DrawLine(vPos,vPos + vForward,cColor(0,0,1,1));
 			mpLowLevelGraphics->DrawLine(vPos,vPos + vUp,cColor(0,1,0,1));
 			mpLowLevelGraphics->DrawLine(vPos,vPos + vRight,cColor(1,0,0,1));
 		}*/
@@ -482,7 +482,7 @@ public:
 				mpLowLevelGraphics->SetMatrix(eMatrix_ModelView,
 									cMath::MatrixMul(pCam->GetViewMatrix(),pArea->m_mtxTransform));
 
-                mpLowLevelGraphics->DrawBoxMaxMin(pArea->mvSize*0.5f, pArea->mvSize* -0.5f, cColor(1,0.5f,1));
+				mpLowLevelGraphics->DrawBoxMaxMin(pArea->mvSize*0.5f, pArea->mvSize* -0.5f, cColor(1,0.5f,1));
 			}
 
 			mpLowLevelGraphics->SetMatrix(eMatrix_ModelView, pCam->GetViewMatrix());
@@ -585,7 +585,7 @@ public:
 					}
 				}
 
-                mpLowLevelGraphics->DrawSphere(vEnd,0.08f,TargCol);
+				mpLowLevelGraphics->DrawSphere(vEnd,0.08f,TargCol);
 			}
 		}
 	}
@@ -649,7 +649,7 @@ int hplMain(const tString &asCommandLine)
 
 
 	//Add updates
-    cSceneCamera cameraUpdate(gpGame,4,cVector3f(0,0.5f,0),true);
+	cSceneCamera cameraUpdate(gpGame,4,cVector3f(0,0.5f,0),true);
 	gpGame->GetUpdater()->AddUpdate("Default", &cameraUpdate);
 	cSimpleUpdate Update;
 	gpGame->GetUpdater()->AddUpdate("Default", &Update);

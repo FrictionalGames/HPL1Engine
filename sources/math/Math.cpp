@@ -356,7 +356,7 @@ namespace hpl {
 			}
 		}
 
-        return true;
+		return true;
 	}
 
 	//-----------------------------------------------------------------------
@@ -737,7 +737,7 @@ namespace hpl {
 	void cMath::PlaneIntersectionLine(const cPlanef& aPA, const cPlanef& aPB,
 									cVector3f &avDir, cVector3f &avPoint)
 	{
-        avDir = Vector3Cross(cVector3f(aPA.a,aPA.b,aPA.c), cVector3f(aPB.a,aPB.b,aPB.c));
+		avDir = Vector3Cross(cVector3f(aPA.a,aPA.b,aPA.c), cVector3f(aPB.a,aPB.b,aPB.c));
 
 		//Set x to 0 so the calculation can be solved
 		avPoint.x = 0;
@@ -1243,7 +1243,7 @@ namespace hpl {
 
 			//Log("1: '%d' 2: '%d'  3: '%d' ", idx1, idx2, idx3);
 
-            //Get the 3 points making up the triangle
+			//Get the 3 points making up the triangle
 			cVector3f vPos1 = GetVector3(apVertexArray,idx1,alVtxStride);
 			cVector3f vPos2 = GetVector3(apVertexArray,idx2,alVtxStride);
 			cVector3f vPos3 = GetVector3(apVertexArray,idx3,alVtxStride);
@@ -1254,7 +1254,7 @@ namespace hpl {
 			cVector3f vTex3 = GetVector3(apTexArray,idx3,3);
 
 			//Get the vectors between the positions.
-            cVector3f vPos1To2 = vPos2 - vPos1;
+			cVector3f vPos1To2 = vPos2 - vPos1;
 			cVector3f vPos1To3 = vPos3 - vPos1;
 
 			//Get the vectors between the tex coords
@@ -1332,7 +1332,7 @@ namespace hpl {
 			cVector3f &vTempTan1 = vTempTangents1[vtxIdx];
 			cVector3f &vTempTan2 = vTempTangents2[vtxIdx];
 
-            // Gram-Schmidt orthogonalize
+			// Gram-Schmidt orthogonalize
 			cVector3f vTan = vTempTan1 - (vNormal * cMath::Vector3Dot(vNormal, vTempTan1));
 			vTan.Normalise();
 
@@ -1568,7 +1568,7 @@ namespace hpl {
 			const cVector3f vVtx = VtxIt->first;
 			cVertexIndices &Data = VtxIt->second;
 
-            //Iterate the indices and create edges.
+			//Iterate the indices and create edges.
 			tUIntListIt it = Data.mlstIndices.begin();
 			for(; it != Data.mlstIndices.end(); ++it)
 			{
@@ -1816,7 +1816,7 @@ namespace hpl {
 
 		////////////////////////////////////////////////////////////////////////
 		//Clear the old list and add the new nice pairs.
-        avEdges.clear();
+		avEdges.clear();
 		avEdges.reserve(vTempEdges.size());
 
 		//Log("FINAL EDGES:\n");
@@ -1862,7 +1862,7 @@ namespace hpl {
 
 			//If next point is NOT point 2, then the edge
 			//must be switched.
-            if(Vector3Equal(apVertexArray,pTri1[ lNextInTri],apVertexArray,Edge.point2,alVtxStride))
+			if(Vector3Equal(apVertexArray,pTri1[ lNextInTri],apVertexArray,Edge.point2,alVtxStride))
 			{
 				unsigned int lTemp = Edge.point1;
 				Edge.point1 = Edge.point2;

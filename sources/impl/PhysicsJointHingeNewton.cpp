@@ -132,7 +132,7 @@ namespace hpl {
 
 		if(pHingeJoint->mfMaxAngle == 0 && pHingeJoint->mfMinAngle == 0) return 0;
 
-        float fAngle = NewtonHingeGetJointAngle (pHinge);
+		float fAngle = NewtonHingeGetJointAngle (pHinge);
 
 		//Avoid oscillation
 		CheckLimitAutoSleep(pHingeJoint, pHingeJoint->mfMinAngle,pHingeJoint->mfMaxAngle,fAngle);

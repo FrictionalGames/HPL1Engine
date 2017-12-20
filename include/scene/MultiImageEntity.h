@@ -60,7 +60,7 @@ namespace hpl {
 		void SetActive(bool abX);
 		bool GetActive(){ return mbActive;}
 
-        bool PlayAnim(const tString &asName,tFlag alParts, unsigned int alPrio, bool abLoop=true, bool abSyncFrame=false);
+		bool PlayAnim(const tString &asName,tFlag alParts, unsigned int alPrio, bool abLoop=true, bool abSyncFrame=false);
 		void UpdateAnim();
 
 		void SetAnimPaused(bool abX);

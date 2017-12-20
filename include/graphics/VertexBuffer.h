@@ -119,9 +119,9 @@ namespace hpl {
 		virtual void Bind()=0;
 		virtual void UnBind()=0;
 
-        virtual iVertexBuffer* CreateCopy(eVertexBufferUsageType aUsageType)=0;
+		virtual iVertexBuffer* CreateCopy(eVertexBufferUsageType aUsageType)=0;
 
-        virtual cBoundingVolume CreateBoundingVolume()=0;
+		virtual cBoundingVolume CreateBoundingVolume()=0;
 
 		virtual float* GetArray(tVertexFlag aType)=0;
 		virtual unsigned int* GetIndices()=0;

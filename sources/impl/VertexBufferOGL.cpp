@@ -109,14 +109,14 @@ namespace hpl {
 	{
 		if(aFlags & eVertexCompileFlag_CreateTangents)
 		{
-            mbTangents = true;
+			mbTangents = true;
 
 			mVertexFlags |= eVertexFlag_Texture1;
 
 			int idx = cMath::Log2ToInt((int)eVertexFlag_Texture1);
 
 			int lSize = GetVertexNum()*4;
-            mvVertexArray[idx].resize(lSize);
+			mvVertexArray[idx].resize(lSize);
 
 			cMath::CreateTriTangentVectors(&(mvVertexArray[cMath::Log2ToInt((int)eVertexFlag_Texture1)][0]),
 				&mvIndexArray[0], GetIndexNum(),

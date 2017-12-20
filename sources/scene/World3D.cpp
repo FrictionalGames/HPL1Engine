@@ -936,7 +936,7 @@ namespace hpl {
 			//Reserve space for the incoming nodes.
 			pContainer->ReserveSpace(pTempCont->mlstNodes.size());
 
-            //Add nodes to container
+			//Add nodes to container
 			tTempAiNodeListIt NodeIt = pTempCont->mlstNodes.begin();
 			for(; NodeIt != pTempCont->mlstNodes.end(); ++NodeIt)
 			{

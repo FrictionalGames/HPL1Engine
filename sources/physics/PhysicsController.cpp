@@ -131,7 +131,7 @@ namespace hpl {
 	{
 		if(abX == mbActive) return;
 
-        mPidController.Reset();
+		mPidController.Reset();
 
 		mbActive = abX;
 	}

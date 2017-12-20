@@ -147,7 +147,7 @@ namespace hpl {
 		{
 			cVertexBonePair &Pair = mvVtxBonePairs[i];
 
-            float *pWeight = &mpVertexWeights[Pair.vtxIdx*4];
+			float *pWeight = &mpVertexWeights[Pair.vtxIdx*4];
 			unsigned char *pBoneIdx = &mpVertexBones[Pair.vtxIdx*4];
 			int lPos=-1;
 			//Find out where to add the next weight.
@@ -189,7 +189,7 @@ namespace hpl {
 				fTotal += pWeight[lNum];
 				lNum++;
 			}
-            for(int i=0; i<lNum; ++i)
+			for(int i=0; i<lNum; ++i)
 			{
 				pWeight[lNum] = pWeight[lNum] / fTotal;
 			}

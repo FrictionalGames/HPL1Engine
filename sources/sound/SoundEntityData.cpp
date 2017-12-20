@@ -124,7 +124,7 @@ namespace hpl {
 
 		hplDelete(pDoc);
 
-        return true;
+		return true;
 	}
 
 

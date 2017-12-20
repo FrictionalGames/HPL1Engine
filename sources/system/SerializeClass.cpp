@@ -145,7 +145,7 @@ namespace hpl {
 	static int glTabs=0;
 	static tString gsTabString="";
 
-    const char*	GetTabs()
+	const char*	GetTabs()
 	{
 		gsTabString ="";
 		for(int i=0; i<glTabs;++i) gsTabString += "   ";
@@ -288,7 +288,7 @@ namespace hpl {
 			}
 
 		}
-  	}
+	}
 
 	//-----------------------------------------------------------------------
 
@@ -809,7 +809,7 @@ namespace hpl {
 			{
 				iSerializable *pData =  (iSerializable*)pContIt->NextPtr();
 
-                SaveToElement(pData,"",pArrayElem);
+				SaveToElement(pData,"",pArrayElem);
 			}
 		}
 		// CLASS POINTER /////////////////////////////////////
@@ -856,7 +856,7 @@ namespace hpl {
 		if(pField==NULL) return;
 
 		StringToValue(apData, pField->mlOffset,type,sVal);
-   	}
+	}
 
 	//-----------------------------------------------------------------------
 

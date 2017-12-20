@@ -323,7 +323,7 @@ namespace hpl {
 				bFound = false;
 			}
 
-            //Insert new string
+			//Insert new string
 			if(bFound)
 			{
 				sNewString += asNewString;
@@ -533,7 +533,7 @@ namespace hpl {
 	{
 		char buff[256];
 
-        sprintf(buff, "%d",alX);
+		sprintf(buff, "%d",alX);
 
 		return buff;
 	}

@@ -8,7 +8,7 @@
 #include "SceneCamera.h"
 
 cSceneCamera::cSceneCamera(cGame *apGame, float afSpeed,cVector3f avStartPos,bool abShowFPS)  : iUpdateable("SceneCamera")
-    : iUpdateable("SimpleCamera")
+	: iUpdateable("SimpleCamera")
 {
 	mpGame = apGame;
 	mfSpeed = afSpeed;

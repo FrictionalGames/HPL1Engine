@@ -61,7 +61,7 @@ namespace hpl {
 											const NewtonContact* apContact);
 		static void EndContactCallback(const NewtonMaterial* apMaterial);
 
-        static iPhysicsBody *mpContactBody1;
+		static iPhysicsBody *mpContactBody1;
 		static iPhysicsBody *mpContactBody2;
 		static cPhysicsContactData mContactData;
 		static int mlContactNum;

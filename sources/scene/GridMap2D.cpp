@@ -86,7 +86,7 @@ namespace hpl {
 
 	bool cGridMap2D::AddEntity(iEntity2D* apEntity)
 	{
-        cGrid2DObject *pObject = hplNew( cGrid2DObject, (apEntity,this,mlHandleCount) );
+		cGrid2DObject *pObject = hplNew( cGrid2DObject, (apEntity,this,mlHandleCount) );
 		apEntity->SetGrid2DObject(pObject);
 
 		//Insert into the all map.
@@ -213,7 +213,7 @@ namespace hpl {
 	/////////////////////////// PRIVATE //////////////////////////////////////
 	//-----------------------------------------------------------------------
 
-    void cGridMap2DRectIt::GetGridObject()
+	void cGridMap2DRectIt::GetGridObject()
 	{
 		bool bEnd=false;
 
