@@ -286,7 +286,7 @@ namespace hpl {
 		iSoundData* pData = mpResources->GetSoundManager()->CreateSoundData(asFileName,true,abLoop);
 		if(pData==NULL){
 			Error("Couldn't load stream '%s'\n",asFileName.c_str());
-			return false;
+			return NULL;
 		}
 
 		iSoundChannel *pSound = pData->CreateChannel(256);
