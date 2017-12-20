@@ -97,7 +97,7 @@ namespace hpl {
 		void FadeIn(float afSpeed);
 		void FadeOut(float afSpeed);
 
-        bool IsStopped();
+		bool IsStopped();
 		bool IsFadingOut();
 		bool GetRemoveWhenOver();
 
@@ -107,7 +107,7 @@ namespace hpl {
 		iSoundChannel* GetSound(eSoundEntityType aType){ return mvSounds[aType];}
 		cSoundEntry* GetSoundEntry(eSoundEntityType aType);
 
-        //Entity implementation
+		//Entity implementation
 		void UpdateLogic(float afTimeStep);
 
 		tString GetEntityType(){ return "SoundEntity";}

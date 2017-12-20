@@ -134,7 +134,7 @@ public:
 		mpPhysicsWorld->SetWorldSize(-300,300);
 		mpPhysicsWorld->SetMaxTimeStep(1.0f / 30.0f);
 
-        mpWorld->SetPhysicsWorld(mpPhysicsWorld);
+		mpWorld->SetPhysicsWorld(mpPhysicsWorld);
 
 
 		/////////////////////////////////////////////

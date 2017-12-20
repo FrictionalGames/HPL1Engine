@@ -181,7 +181,7 @@ namespace hpl {
 				apBody->SetHasSlide(true);
 
 				//Change frequency according to speed.
-                float fAbsSpeed = std::abs(afSpeed);
+				float fAbsSpeed = std::abs(afSpeed);
 				float fFreq = 1;
 
 				//Higher than middle
@@ -272,7 +272,7 @@ namespace hpl {
 		if(pSoundHandler->GetSilent()) return;
 
 		/////////////////////////////
-        //Get first surface
+		//Get first surface
 		for(size_t i=0; i< mvImpactData.size(); i++)
 		{
 			if(mvImpactData[i]->GetMinSpeed() <= afSpeed)
@@ -316,7 +316,7 @@ namespace hpl {
 
 		if(sPS != "")
 		{
-            cMatrixf mtxPos = cMath::MatrixTranslate(avPos);
+			cMatrixf mtxPos = cMath::MatrixTranslate(avPos);
 			pWorld->CreateParticleSystem("ImpactPS",sPS,1,mtxPos);
 
 			//Log("Mat1: '%s' Mat2: '%s' Speed %f particle system '%s' pos: %s\n",

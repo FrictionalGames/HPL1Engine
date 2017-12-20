@@ -233,7 +233,7 @@ namespace hpl {
 		{
 			x-=aVec.x;
 			y-=aVec.y;
-            return *this;
+			return *this;
 		}
 
 		inline cVector3<T>& operator+=(const cVector2<T> &aVec)

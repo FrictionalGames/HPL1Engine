@@ -55,7 +55,7 @@ namespace hpl {
 	private:
 		tString msName;
 		std::vector<int> mvFrames;
-        float mfFrameLength;
+		float mfFrameLength;
 		eGuiGfxAnimationType mType;
 	};
 

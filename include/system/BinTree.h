@@ -130,7 +130,7 @@ namespace hpl {
 				//else
 				//	c = eBinTreeNode_Right;
 
-                if(Node->GetChild(c)==NULL)
+				if(Node->GetChild(c)==NULL)
 				{
 					Node = Node->AddChild(c, aData);
 					break;
@@ -161,7 +161,7 @@ namespace hpl {
 				if(aNode->GetChild(aChild)!=NULL)return NULL;
 			}
 
-            return aNode->AddChild(aChild, aData);
+			return aNode->AddChild(aChild, aData);
 		}
 
 		/**

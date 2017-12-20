@@ -309,7 +309,7 @@ namespace hpl {
 		{
 			cNode3D* pNode = static_cast<cNode3D*>(*NIt);
 
-        	pNode->SetWorldTransformUpdated();
+			pNode->SetWorldTransformUpdated();
 		}
 	}
 

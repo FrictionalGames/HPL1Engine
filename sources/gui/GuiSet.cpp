@@ -485,7 +485,7 @@ namespace hpl {
 												const cVector3f &avLocalPos,
 												const cVector2f &avSize,
 												int alMaxValue,
-                                                iWidget *apParent,
+												iWidget *apParent,
 												const tString& asName)
 	{
 		cWidgetSlider *pSlider = hplNew( cWidgetSlider, (this,mpSkin,aOrientation) );
@@ -1193,7 +1193,7 @@ namespace hpl {
 
 		///////////////////////////
 		//Call widgets
-        bool bRet = false;
+		bool bRet = false;
 		tWidgetListIt it = mlstWidgets.begin();
 		for(; it != mlstWidgets.end(); ++it)
 		{

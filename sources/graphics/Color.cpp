@@ -146,7 +146,7 @@ namespace hpl {
 	{
 		if(r == aCol.r && g == aCol.g && b == aCol.b && a == aCol.a)
 			return true;
-        else
+		else
 			return false;
 	}
 

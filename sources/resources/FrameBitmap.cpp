@@ -110,7 +110,7 @@ namespace hpl {
 					if(DEBUG_BTREE)Log("The node fits!\n");
 					bFoundNode = true;
 
-                    //If the bitmap fits perfectly add the node without splitting
+					//If the bitmap fits perfectly add the node without splitting
 					if(MinimumFit(NewRect,pData->mRect))
 					{
 						if(DEBUG_BTREE)Log("Minimum fit!\n");

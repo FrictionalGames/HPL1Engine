@@ -568,10 +568,10 @@ namespace hpl {
 							};
 							break;
 					case 2: if(apLight->GetLightType() == eLight3DType_Spot)
-						    {
+							{
 							   return mpSpotNegativeRejectMap;
-						    }
-						    break;
+							}
+							break;
 				}
 			}
 		}

@@ -97,7 +97,7 @@ namespace hpl {
 		cVector3f mvPivot;
 		cVector3f mvPinDir;
 
-        float mfMax;
+		float mfMax;
 		float mfMin;
 
 		tString msChildBody;
@@ -236,7 +236,7 @@ namespace hpl {
 
 		cAnimation* GetAnimation(int alIndex);
 		cAnimation* GetAnimationFromName(const tString& asName);
-        int GetAnimationIndex(const tString& asName);
+		int GetAnimationIndex(const tString& asName);
 
 		void ClearAnimations(bool abDeleteAll);
 
@@ -336,7 +336,7 @@ namespace hpl {
 		tAnimationIndexMap m_mapAnimIndices;
 
 		cNode3D *mpRootNode;
-        tNode3DVec mvNodes;
+		tNode3DVec mvNodes;
 
 		tMeshJointVec mvPhysicJoints;
 		tMeshColliderVec mvColliders;

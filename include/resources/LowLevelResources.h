@@ -43,7 +43,7 @@ namespace hpl {
 		virtual void GetSupportedImageFormats(tStringList &alstFormats)=0;
 		virtual iBitmap2D* LoadBitmap2D(tString asFilePath, tString asType = "")=0;
 
-        virtual void AddMeshLoaders(cMeshLoaderHandler* apHandler)=0;
+		virtual void AddMeshLoaders(cMeshLoaderHandler* apHandler)=0;
 		virtual void AddVideoLoaders(cVideoManager* apManager)=0;
 	};
 };

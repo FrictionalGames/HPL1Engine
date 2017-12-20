@@ -147,14 +147,14 @@ namespace hpl {
 
 	void cGraphicsDrawer::DrawAll()
 	{
-        //Set all states
+		//Set all states
 		mpLowLevelGraphics->SetDepthTestActive(false);
 		mpLowLevelGraphics->SetIdentityMatrix(eMatrix_ModelView);
 
 		mpLowLevelGraphics->SetOrthoProjection(mpLowLevelGraphics->GetVirtualSize(),-1000,1000);
 
 		int lIdxAdd=0;
-        iMaterial *pPrevMat=NULL;
+		iMaterial *pPrevMat=NULL;
 		iMaterial *pMat =NULL;
 		const cGfxBufferObject* pObj=NULL;
 		tGfxBufferSetIt ObjectIt = m_setGfxBuffer.begin();
@@ -162,7 +162,7 @@ namespace hpl {
 		if(ObjectIt != m_setGfxBuffer.end())
 			pMat = ObjectIt->GetMaterial();
 
-       	while(ObjectIt != m_setGfxBuffer.end())
+		while(ObjectIt != m_setGfxBuffer.end())
 		{
 			if(pMat->StartRendering(eMaterialRenderType_Diffuse,NULL,NULL)==false)
 			{
@@ -186,7 +186,7 @@ namespace hpl {
 					vPos[2] = cVector3f(fW,fH,0);
 					vPos[3] = cVector3f(-fW,fH,0);
 
-                    if (pObj->mfAngle != 0)
+					if (pObj->mfAngle != 0)
 					{
 						cMatrixf mtxRot = cMath::MatrixRotateZ(pObj->mfAngle);
 						vPos[0] = cMath::MatrixMul(mtxRot,vPos[0]);
@@ -453,6 +453,6 @@ namespace hpl {
 		m_mapBackgroundImages.clear();
 	}
 
-    //-----------------------------------------------------------------------
+	//-----------------------------------------------------------------------
 
 }

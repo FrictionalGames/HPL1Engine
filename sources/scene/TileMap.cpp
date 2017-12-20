@@ -164,7 +164,7 @@ namespace hpl {
 			pTile = hplNew( cTile, (pData,(eTileRotation)lAngle,vTileWorldPos,mfTileSize,NULL) );
 
 		mvTileLayer[alLayer]->SetTile(vTilePos.x, vTilePos.y,pTile);
-    }
+	}
 
 	//-----------------------------------------------------------------------
 

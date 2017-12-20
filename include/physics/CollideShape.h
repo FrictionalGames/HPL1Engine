@@ -75,7 +75,7 @@ namespace hpl {
 
 		int mlUserCount;
 
-        iPhysicsWorld *mpWorld;
+		iPhysicsWorld *mpWorld;
 		float mfVolume;
 
 		cBoundingVolume mBoundingVolume;

@@ -379,7 +379,7 @@ namespace hpl {
 		switch (eType)
 		{
 		case eMsgBoxType_Info:
-            lType += MB_ICONINFORMATION;
+			lType += MB_ICONINFORMATION;
 			break;
 		case eMsgBoxType_Error:
 			lType += MB_ICONERROR;
@@ -410,7 +410,7 @@ namespace hpl {
 		tString sMess = "";
 		sMess += text;
 
-	    CreateMessageBox( eMsgBoxType_Default, asCaption, sMess.c_str() );*/
+		CreateMessageBox( eMsgBoxType_Default, asCaption, sMess.c_str() );*/
 	}
 
 
@@ -432,7 +432,7 @@ namespace hpl {
 		switch (eType)
 		{
 		case eMsgBoxType_Info:
-            lType += MB_ICONINFORMATION;
+			lType += MB_ICONINFORMATION;
 			break;
 		case eMsgBoxType_Error:
 			lType += MB_ICONERROR;
@@ -470,7 +470,7 @@ namespace hpl {
 		if (fmt == NULL)
 			return;
 		va_start(ap, fmt);
-	    CreateMessageBoxW( eMsgBoxType_Default, asCaption, fmt, ap );
+		CreateMessageBoxW( eMsgBoxType_Default, asCaption, fmt, ap );
 		va_end(ap);
 	}
 
@@ -494,7 +494,7 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-    void OpenBrowserWindow ( const tWString& asURL )
+	void OpenBrowserWindow ( const tWString& asURL )
 	{
 		#ifdef WIN32
 		ShellExecute ( NULL, _W("open"), asURL.c_str(), NULL, NULL, SW_SHOWNORMAL );

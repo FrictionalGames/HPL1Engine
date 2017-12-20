@@ -60,7 +60,7 @@ namespace hpl {
 		bool mbUpdated;
 
 		cTileMap* mpTileMap;
-        cTile* mpTile;
+		cTile* mpTile;
 
 		void GetTile();
 	};

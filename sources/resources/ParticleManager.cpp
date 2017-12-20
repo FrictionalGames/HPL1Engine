@@ -136,7 +136,7 @@ namespace hpl {
 
 
 		pData->IncUserCount();
-        cParticleSystem3D* pPS = pData->Create(asName,avSize,a_mtxTransform);
+		cParticleSystem3D* pPS = pData->Create(asName,avSize,a_mtxTransform);
 		pPS->SetDataName(asType);
 		pPS->SetDataSize(avSize);
 		pPS->SetParticleManager(this);

@@ -238,7 +238,7 @@ namespace hpl {
 		GLenum GetGLTextureTargetEnum(eTextureTarget aType);
 
 	private:
-        cVector2l mvScreenSize;
+		cVector2l mvScreenSize;
 		cVector2f mvVirtualSize;
 		int mlMultisampling;
 		int mlBpp;
@@ -315,7 +315,7 @@ namespace hpl {
 		GLenum GetGLStencilFuncEnum(eStencilFunc aType);
 		GLenum GetGLStencilOpEnum(eStencilOp aType);
 
-        //Matrix Helper
+		//Matrix Helper
 		void SetMatrixMode(eMatrix mType);
 
 		//Texture helper

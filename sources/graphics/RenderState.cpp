@@ -327,14 +327,14 @@ namespace hpl {
 				if(mpVtxProgramSetup)
 				{
 					if(apSettings->mbLog)Log("Custom setup %d ", mpVtxProgram);
-                    mpVtxProgramSetup->Setup(mpVtxProgram, apSettings);
+					mpVtxProgramSetup->Setup(mpVtxProgram, apSettings);
 				}
 				apSettings->mpVtxProgramSetup = mpVtxProgramSetup;
 
 				//reset this so all matrix setting are set to vertex program.
 				apSettings->mbMatrixWasNULL = false;
 
-                if(mbUsesLight)
+				if(mbUsesLight)
 				{
 					if(apSettings->mbLog)Log("Setting light properites ");
 
@@ -487,7 +487,7 @@ namespace hpl {
 					//Light position
 					cVector3f vLocalLight = cMath::MatrixMul(*mpInvModelMatrix,
 													apSettings->mpLight->GetLightPosition());
-                    apSettings->mpVertexProgram->SetVec3f("LightPos",vLocalLight);
+					apSettings->mpVertexProgram->SetVec3f("LightPos",vLocalLight);
 
 					//LightDir Div, use scale to make attenuation correct!
 					cVector3f vLightDirDiv = mvScale / apSettings->mpLight->GetFarAttenuation();

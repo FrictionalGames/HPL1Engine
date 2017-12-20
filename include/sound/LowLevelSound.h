@@ -74,7 +74,7 @@ namespace hpl {
 		virtual void Init ( bool abUseHardware, bool abForceGeneric, bool abUseEnvAudio, int alMaxChannels,
 							int alStreamUpdateFreq, bool abUseThreading, bool abUseVoiceManagement,
 							int alMaxMonoSourceHint, int alMaxStereoSourceHint,
-                            int alStreamingBufferSize, int alStreamingBufferCount, bool abEnableLowLevelLog, tString asDeviceName)=0;
+							int alStreamingBufferSize, int alStreamingBufferCount, bool abEnableLowLevelLog, tString asDeviceName)=0;
 
 		bool IsHardwareAccelerated ()	{ return mbHardwareAcc; }
 		bool IsEnvAudioAvailable ()		{ return mbEnvAudioEnabled; }

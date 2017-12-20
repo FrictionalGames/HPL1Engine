@@ -45,7 +45,7 @@ namespace hpl {
 		cVector3f mvMaxPos;
 
 		float mfGridSize;
-  	};
+	};
 
 	//-------------------------------
 

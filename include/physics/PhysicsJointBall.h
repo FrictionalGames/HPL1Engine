@@ -50,7 +50,7 @@ namespace hpl {
 			: iPhysicsJoint(asName,apParentBody,apChildBody, apWorld,avPivotPoint){}
 		virtual ~iPhysicsJointBall(){}
 
-        virtual void SetConeLimits(const cVector3f& avPin, float afMaxConeAngle, float afMaxTwistAngle)=0;
+		virtual void SetConeLimits(const cVector3f& avPin, float afMaxConeAngle, float afMaxTwistAngle)=0;
 		virtual cVector3f GetAngles()=0;
 
 		float GetMaxConeAngle(){ return mfMaxConeAngle;}

@@ -60,7 +60,7 @@ namespace hpl {
 
 	tVertexVec* cTileDataNormal::GetVertexVec(eTileRotation aRotation)
 	{
-	    return mvVtx[aRotation];
+		return mvVtx[aRotation];
 	}
 	//-----------------------------------------------------------------------
 

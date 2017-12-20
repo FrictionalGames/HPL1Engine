@@ -785,7 +785,7 @@ namespace hpl {
 			tCollideShapeVec vShapes;
 			vShapes.reserve(mvColliders.size());
 
-            for(size_t i=0; i<mvColliders.size(); ++i)
+			for(size_t i=0; i<mvColliders.size(); ++i)
 			{
 				vShapes.push_back(CreateCollideShapeFromCollider(mvColliders[i],apWorld));
 			}

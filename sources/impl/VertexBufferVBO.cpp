@@ -187,7 +187,7 @@ namespace hpl {
 			}
 		}
 
-	    //Create the VBO index array
+		//Create the VBO index array
 		glGenBuffersARB(1,(GLuint *)&mlElementHandle);
 		glBindBufferARB(GL_ELEMENT_ARRAY_BUFFER_ARB,mlElementHandle);
 		glBufferDataARB(GL_ELEMENT_ARRAY_BUFFER_ARB, GetIndexNum()*sizeof(unsigned int),
@@ -416,7 +416,7 @@ namespace hpl {
 															GetVertexNum(),GetIndexNum()));
 
 		//Copy the vertices to the new buffer.
-        for(int i=0; i < klNumOfVertexFlags; i++)
+		for(int i=0; i < klNumOfVertexFlags; i++)
 		{
 			if(kvVertexFlags[i] & mVertexFlags)
 			{
@@ -432,7 +432,7 @@ namespace hpl {
 		}
 
 		//Copy indices to the new buffer
-        pVtxBuff->ResizeIndices(GetIndexNum());
+		pVtxBuff->ResizeIndices(GetIndexNum());
 		memcpy(pVtxBuff->GetIndices(), GetIndices(), GetIndexNum() * sizeof(unsigned int) );
 
 		pVtxBuff->mbTangents = mbTangents;

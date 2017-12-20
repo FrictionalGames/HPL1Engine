@@ -497,7 +497,7 @@ namespace hpl {
 			mvMin = vCorners[0];
 
 			//Calculate the transformed min and max
-            for(int i=1; i<8;i++)
+			for(int i=1; i<8;i++)
 			{
 				//X
 				if(vCorners[i].x < mvMin.x) mvMin.x = vCorners[i].x;

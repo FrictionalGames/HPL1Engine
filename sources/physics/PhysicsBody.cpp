@@ -451,7 +451,7 @@ namespace hpl {
 		else
 		{
 			tCollideShapeVec vShapes;
-            while(it.HasNext())
+			while(it.HasNext())
 			{
 				vShapes.push_back(_CreateShape(&it.Next(),apWorld));
 			}
@@ -469,7 +469,7 @@ namespace hpl {
 		iCollideShape* pShape = CreateCollideShapeFromSave(&mlstShapes,pWorld);
 		if(pShape == NULL) return NULL;
 
-        iPhysicsBody* pBody = pWorld->CreateBody(msName, pShape);
+		iPhysicsBody* pBody = pWorld->CreateBody(msName, pShape);
 
 		return pBody;
 	}

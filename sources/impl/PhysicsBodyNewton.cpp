@@ -96,7 +96,7 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-    void cPhysicsBodyNewtonCallback::OnTransformUpdate(iEntity3D * apEntity)
+	void cPhysicsBodyNewtonCallback::OnTransformUpdate(iEntity3D * apEntity)
 	{
 		if(cPhysicsBodyNewton::mbUseCallback==false) return;
 
@@ -206,7 +206,7 @@ namespace hpl {
 
 		NewtonBodyGetMassMatrix(mpNewtonBody,&fMass, &fIxx, &fIyy, &fIzz);
 
-        cMatrixf mtxRot = GetLocalMatrix().GetRotation();
+		cMatrixf mtxRot = GetLocalMatrix().GetRotation();
 		cMatrixf mtxTransRot = mtxRot.GetTranspose();
 		cMatrixf mtxI(	fIxx,0,	  0,	0,
 						0,	 fIyy,0,	0,

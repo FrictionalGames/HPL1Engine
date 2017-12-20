@@ -121,7 +121,7 @@ namespace hpl {
 	class cColladaVtxIndex
 	{
 	public:
-        int mlVtx;
+		int mlVtx;
 		int mlNorm;
 		int mlTex;
 	};
@@ -375,7 +375,7 @@ namespace hpl {
 			return pNode;
 		}
 
-        cColladaTransform* GetTransform(const tString &asSid)
+		cColladaTransform* GetTransform(const tString &asSid)
 		{
 			tColladaTransformListIt it = mlstTransforms.begin();
 			for(; it != mlstTransforms.end(); it++)

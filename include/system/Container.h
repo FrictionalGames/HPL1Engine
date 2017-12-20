@@ -90,7 +90,7 @@ namespace hpl {
 		T& Next()
 		{
 			T &val = *mIt;
-            mIt++;
+			mIt++;
 			return val;
 		}
 

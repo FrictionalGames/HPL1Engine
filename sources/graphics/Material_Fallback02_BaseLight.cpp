@@ -36,7 +36,7 @@ namespace hpl {
 	// FRAGMENT PROGRAMS
 	//////////////////////////////////////////////////////////////////////////
 
-    //-----------------------------------------------------------------------
+	//-----------------------------------------------------------------------
 
 	cGLStateTwoUnits_Diffuse::cGLStateTwoUnits_Diffuse()
 		: iGLStateProgram("Internal_TwoUnit_Diffuse")

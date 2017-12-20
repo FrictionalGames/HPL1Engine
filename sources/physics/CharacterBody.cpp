@@ -341,7 +341,7 @@ namespace hpl {
 
 		mbActive = abX;
 
-        for(size_t i=0; i < mvExtraBodies.size(); ++i)
+		for(size_t i=0; i < mvExtraBodies.size(); ++i)
 		{
 			if(mvExtraBodies[i]){
 				mvExtraBodies[i]->SetActive(mbActive);
@@ -462,7 +462,7 @@ namespace hpl {
 	{
 		if(afFrameTime <=0) return 0;
 
-        return (mvPosition - mvLastPosition) / afFrameTime;
+		return (mvPosition - mvLastPosition) / afFrameTime;
 	}
 
 	//-----------------------------------------------------------------------
@@ -868,7 +868,7 @@ namespace hpl {
 
 			mvVelolcity =0; //This is a fix so the velocity is not screwed up later on. (still is though...)
 
-            return;
+			return;
 		}
 
 		/////////////////////////////////////
@@ -884,7 +884,7 @@ namespace hpl {
 			else
 				mvVelolcity += mpWorld->GetGravity() * afTimeStep;
 
-            float fLength = mvVelolcity.Length();
+			float fLength = mvVelolcity.Length();
 			if(fLength> mfMaxGravitySpeed)
 			{
 				mvVelolcity = (mvVelolcity /fLength) *mfMaxGravitySpeed;
@@ -1135,7 +1135,7 @@ namespace hpl {
 	{
 		m_mtxMove = cMath::MatrixRotateY(-mfYaw);
 		m_mtxMove = cMath::MatrixMul(cMath::MatrixRotateX(-mfPitch),m_mtxMove);
-        m_mtxMove.SetTranslation(mvPosition * -1);
+		m_mtxMove.SetTranslation(mvPosition * -1);
 	}
 
 	//-----------------------------------------------------------------------

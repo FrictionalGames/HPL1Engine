@@ -172,7 +172,7 @@ int hplMain(const tString& asCommandLine)
 	gpGame->GetResources()->AddResourceDir("textures");
 	gpGame->GetResources()->AddResourceDir("models");
 	gpGame->GetResources()->AddResourceDir("fonts");
-    gpGame->GetResources()->AddResourceDir("gui");
+	gpGame->GetResources()->AddResourceDir("gui");
 
 	//Add updates
 	cSimpleUpdate Update;
@@ -186,5 +186,5 @@ int hplMain(const tString& asCommandLine)
 
 	//Delete the engine
 	delete gpGame;
-    return 0;
+	return 0;
 }

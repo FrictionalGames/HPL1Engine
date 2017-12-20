@@ -37,7 +37,7 @@ namespace hpl {
 		unsigned int mlEndIndex;
 	};
 
-    typedef std::vector<cMesh2DEdge> tMesh2DEdgeVec;
+	typedef std::vector<cMesh2DEdge> tMesh2DEdgeVec;
 	typedef tMesh2DEdgeVec::iterator tMesh2DEdgeVecIt;
 
 
@@ -93,7 +93,7 @@ namespace hpl {
 		tVector2fVec mvPos;
 		tColorVec mvColor;
 		tMesh2DEdgeVec mvEdge[eTileRotation_LastEnum];
-        tVector2fVec mvTexCoord;
+		tVector2fVec mvTexCoord;
 		tUIntVec mvIndex;
 		tUIntVec mvEdgeIndex;
 		cRect2f mvBoundingBox[eTileRotation_LastEnum];

@@ -118,7 +118,7 @@ namespace hpl {
 		/**
 		  * The lower number the earlier it will be created.
 		  */
-        virtual int GetSaveCreatePrio()=0;
+		virtual int GetSaveCreatePrio()=0;
 	};
 
 

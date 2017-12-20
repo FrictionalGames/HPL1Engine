@@ -479,7 +479,7 @@ namespace hpl {
 			if(mpMaterial) mpMaterialManager->Destroy(mpMaterial);
 		}
 
-        mpMaterial = apMaterial;
+		mpMaterial = apMaterial;
 	}
 
 	//-----------------------------------------------------------------------

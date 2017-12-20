@@ -209,7 +209,7 @@ namespace hpl {
 							(mvMaxMousePos - mvMinMousePos);
 		vPos.y = 1 - vPos.y;
 		vPos = vPos * mvScreenSize;
-        return vPos;
+		return vPos;
 	}
 	void iLowLevelHaptic::SetVirtualMousePosBounds(const cVector2f &avMin,const cVector2f &avMax,
 														const cVector2f &avScreenSize)

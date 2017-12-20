@@ -426,7 +426,7 @@ namespace hpl {
 							iEntity2DLoader* pLoader = mpResources->GetEntity2DLoader(
 											pEntity->GetEntityData()->GetType());
 
-                            if(pLoader)
+							if(pLoader)
 							{
 								pLoader->Load(pEntity);
 							}

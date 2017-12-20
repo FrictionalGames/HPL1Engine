@@ -87,7 +87,7 @@ namespace hpl {
 
 		iTexture* GetLightMap(int alNum){
 			if(alNum<0 || alNum>1)return NULL;
-            return mpLightMap[alNum];
+			return mpLightMap[alNum];
 		}
 
 	private:
@@ -111,7 +111,7 @@ namespace hpl {
 
 		float mfShadowZ;
 
-        tLightList mlstLights;
+		tLightList mlstLights;
 		tLightList mlstFastLights;
 
 		//////// RENDERING ///////////////////////

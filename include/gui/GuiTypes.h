@@ -269,7 +269,7 @@ namespace hpl {
 		cGuiMessageData(){}
 		cGuiMessageData(const cVector2f& avPos, const cVector2f& avRel){
 			mvPos = avPos;
-            mvRel = avRel;
+			mvRel = avRel;
 		}
 		cGuiMessageData(const cVector2f& avPos,const cVector2f& avRel, int alVal){
 			mvPos = avPos;

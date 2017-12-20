@@ -157,7 +157,7 @@ namespace hpl {
 		cVector3f tex;
 		cVector3f tan;
 		cVector3f norm;
-        cColor col;
+		cColor col;
 	};
 
 	typedef std::list<cVertex> tVertexList;

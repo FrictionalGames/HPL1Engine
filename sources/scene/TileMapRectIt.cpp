@@ -95,7 +95,7 @@ namespace hpl {
 	{
 		GetTile();
 
-      	mbUpdated = false;
+		mbUpdated = false;
 		return mpTile;
 	}
 

@@ -236,7 +236,7 @@ int WINAPI WinMain(	HINSTANCE hInstance,  HINSTANCE hPrevInstance,LPSTR	lpCmdLin
 	gpGame->GetResources()->AddResourceDir("maps");
 
 	//Add updates
-   	cSimpleUpdate Update;
+	cSimpleUpdate Update;
 	gpGame->GetUpdater()->AddUpdate("Default", &Update);
 	gpCameraUpdate = new cSceneCamera(gpGame,4,cVector3f(0,1.5f,0.0f),true);
 	gpGame->GetUpdater()->AddUpdate("Default", gpCameraUpdate);

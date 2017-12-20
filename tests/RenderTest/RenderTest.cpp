@@ -75,7 +75,7 @@ public:
 		mpBackground->SetVisible(false);
 
 		//////////////////////////////////////
-        //Create a light and set it up
+		//Create a light and set it up
 		mpLight = mpWorld->CreateLightPoint("Light");
 		mpLight->SetFarAttenuation(44);
 		mpLight->SetDiffuseColor(cColor(1,1,1,1));
@@ -175,7 +175,7 @@ public:
 		//Copy the current context (screen) to buffer texture
 		mpLowLevelGraphics->CopyContextToTexure(mpScreenBuffer,0,cVector2l(800,600));
 
-        //Set up a vertex vec (not that the buffer has non normalized coordinates, since it is of the
+		//Set up a vertex vec (not that the buffer has non normalized coordinates, since it is of the
 		//type "RECT", notice also that the uv coords have y=800 at top
 		tVertexVec vVertexVec; vVertexVec.resize(4);
 		vVertexVec[0] = cVertex(cVector3f(0,0,0),		cVector3f(0,600,0),		cColor(1,1));

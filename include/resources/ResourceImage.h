@@ -49,7 +49,7 @@ namespace hpl {
 		int GetHeight()const{return mRect.h;}
 		int GetWidth()const{return mRect.w;}
 		cVector2l GetSize()const{return cVector2l(mRect.w,mRect.h);}
-        cVector2l GetPosition()const{return cVector2l(mRect.x,mRect.y);}
+		cVector2l GetPosition()const{return cVector2l(mRect.x,mRect.y);}
 
 		int GetSourceWidth()const{return mvSourceSize.x;}
 		int GetSourceHeight()const{return mvSourceSize.y;}
@@ -62,7 +62,7 @@ namespace hpl {
 		tVertexVec GetVertexVecCopy(const cVector2f &avPos, const cVector2f &avSize);
 		const tVertexVec& GetVertexVec(){return mvVtx;}
 
-    private:
+	private:
 		~cResourceImage();
 
 		cFrameTexture *mpFrameTexture;

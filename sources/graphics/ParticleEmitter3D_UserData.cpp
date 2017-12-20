@@ -91,7 +91,7 @@ namespace hpl {
 
 		tString sType = cString::ToLowerCase(apString);
 
-        if(sType == "box") return ePEStartPosType_Box;
+		if(sType == "box") return ePEStartPosType_Box;
 		else if(sType == "sphere") return ePEStartPosType_Sphere;
 
 		return ePEStartPosType_Box;
@@ -455,7 +455,7 @@ namespace hpl {
 		mfPauseWaitCount =0;
 		mbPaused = false;
 
-        mfCollideCount = 1.0f/(float)mpData->mlCollisionUpdateRate;
+		mfCollideCount = 1.0f/(float)mpData->mlCollisionUpdateRate;
 
 		mCoordSystem = apData->mCoordSystem;
 
@@ -491,9 +491,9 @@ namespace hpl {
 			case ePEType_Beam:
 				hplDelete(mpVtxBuffer);								// Destroy the current Vertex Buffer, as it's filled with quads we don't need now :)
 
-                if ( apData->mbUseBeamNoise )
+				if ( apData->mbUseBeamNoise )
 				{
-                    // Calculate the Frequency Points Lookup Table, this is needed to create the Vertex Buffer.It is also needed by every beam particle created,
+					// Calculate the Frequency Points Lookup Table, this is needed to create the Vertex Buffer.It is also needed by every beam particle created,
 					// as it needs to know the type and index of each when updating.
 					while ( (i < apData->mlLowFreqPoints)  && (j < apData->mlHighFreqPoints) )
 					{
@@ -541,7 +541,7 @@ namespace hpl {
 				}
 				else
 				{
-                    tBeamNoisePoint tempBNP;
+					tBeamNoisePoint tempBNP;
 
 					tempBNP.fRelToBeamPos = 0.0f;
 					tempBNP.fRelToBendPos = 0.0f;
@@ -589,7 +589,7 @@ namespace hpl {
 				{
 					for (int j = 0; j < (int) mpData->mvBeamNoisePoints.size()*2; ++j )
 					{
-                        mpVtxBuffer->AddVertex(eVertexFlag_Position, 0);
+						mpVtxBuffer->AddVertex(eVertexFlag_Position, 0);
 						mpVtxBuffer->AddColor(eVertexFlag_Color0, cColor(1,1));
 					}
 				}
@@ -721,7 +721,7 @@ namespace hpl {
 /*
 			cVector3f vTrans = mtxStart.GetTranslation();
 			posI = cMath::RandRectl(0,mpData->mVBMeshData->GetVertexNum()-1);
-            vTrans.x += mpData->mpfMeshVtxData[posI*4];
+			vTrans.x += mpData->mpfMeshVtxData[posI*4];
 			vTrans.y += mpData->mpfMeshVtxData[posI*4 + 1];
 			vTrans.z += mpData->mpfMeshVtxData[posI*4 + 2];
 
@@ -953,7 +953,7 @@ namespace hpl {
 			cParticle *pParticle = mvParticles[i];
 
 			////////////
-            //Position Update
+			//Position Update
 			pParticle->mvLastPos = pParticle->mvPos;
 
 			pParticle->mvPos += pParticle->mvVel * afTimeStep;
@@ -1010,7 +1010,7 @@ namespace hpl {
 			}
 
 			// NEW
-            ///////////
+			///////////
 			//Spin Update
 			if (mpData->mbUsePartSpin)
 			{
@@ -1115,7 +1115,7 @@ namespace hpl {
 			if(pParticle->mfLife > pParticle->mfLifeColor_MiddleStart)
 			{
 				float fT = (pParticle->mfLife - pParticle->mfLifeColor_MiddleStart) /
-					       (pParticle->mfStartLife - pParticle->mfLifeColor_MiddleStart);
+						   (pParticle->mfStartLife - pParticle->mfLifeColor_MiddleStart);
 
 				pParticle->mColor = (pParticle->mStartColor * mpData->mStartRelColor * fT) +
 									(pParticle->mStartColor * mpData->mMiddleRelColor * (1-fT));

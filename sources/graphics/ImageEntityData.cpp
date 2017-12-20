@@ -257,7 +257,7 @@ namespace hpl {
 				pMaterial->SetImage(pImage, it->mType);
 			}
 
-            pMaterial->Compile();
+			pMaterial->Compile();
 
 			cImageFrame ImageFrame;
 

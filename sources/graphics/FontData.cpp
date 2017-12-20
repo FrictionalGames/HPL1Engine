@@ -365,7 +365,7 @@ namespace hpl {
 		vOffset.x = ((float)avOffset.x)/((float)avFontSize.x);
 		vOffset.y = ((float)avOffset.y)/((float)avFontSize.y);
 
-        float fAdvance = ((float)alAdvance)/((float)avFontSize.x) * mvSizeRatio.x;
+		float fAdvance = ((float)alAdvance)/((float)avFontSize.x) * mvSizeRatio.x;
 
 		cGlyph* pGlyph = hplNew( cGlyph,(pObject,pGuiGfx,vOffset,vSize,fAdvance));
 

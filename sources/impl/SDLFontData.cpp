@@ -132,7 +132,7 @@ namespace hpl {
 			cVector2l vSize(lW, lH);
 			cSDLBitmap2D *pBmp = static_cast<cSDLBitmap2D*>(mpLowLevelGraphics->CreateBitmap2D(vSize,32));
 
-            //Copy from source to character bitmap
+			//Copy from source to character bitmap
 			SDL_Rect srcRect;
 			srcRect.x = lX; srcRect.y = lY;
 			srcRect.w = lW; srcRect.h = lH;
@@ -149,7 +149,7 @@ namespace hpl {
 				}
 
 			//Create glyph and place it correctly.
-            cGlyph *pGlyph = CreateGlyph(pBmp,cVector2l(lXOffset,lYOffset),cVector2l(lW,lH),
+			cGlyph *pGlyph = CreateGlyph(pBmp,cVector2l(lXOffset,lYOffset),cVector2l(lW,lH),
 										cVector2l(lBase,lLineHeight),lAdvance);
 
 			mvGlyphs[lId] = pGlyph;
@@ -162,7 +162,7 @@ namespace hpl {
 		//Destroy bitmaps
 		STLDeleteAll(vBitmaps);
 
-        //Destroy XML
+		//Destroy XML
 		hplDelete(pXmlDoc);
 		return true;
 	}
@@ -193,7 +193,7 @@ namespace hpl {
 			if(c == 'ö')lUniCode = 'o';
 			else if(c == 'Ö')lUniCode = 'O';*/
 
-            pGlyph = RenderGlyph(pFont, lUniCode, alSize);
+			pGlyph = RenderGlyph(pFont, lUniCode, alSize);
 			AddGlyph(pGlyph);
 		}
 
@@ -243,7 +243,7 @@ namespace hpl {
 		SDL_BlitSurface(pGlyphSurface, NULL, pBmp->GetSurface(),NULL);
 		SDL_SetAlpha(pBmp->GetSurface(),0,0);
 
-        //Set the alpha of the bitmap to the average color.
+		//Set the alpha of the bitmap to the average color.
 		//So we get some alpha bledning.
 		int lBmpSize = pBmp->GetSurface()->format->BytesPerPixel;
 		unsigned char* PixBuffer = (unsigned char*)pBmp->GetSurface()->pixels;

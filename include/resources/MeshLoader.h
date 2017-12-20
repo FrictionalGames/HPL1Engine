@@ -71,7 +71,7 @@ namespace hpl {
 		static void SetFastMaterialFile(const tString& asFile) { msFastMaterialFile = asFile;}
 		static void SetCacheDir(const tString& asDir) { msCacheDir = asDir;}
 	protected:
-        cMaterialManager *mpMaterialManager;
+		cMaterialManager *mpMaterialManager;
 		cMeshManager *mpMeshManager;
 		cAnimationManager *mpAnimationManager;
 		iLowLevelGraphics *mpLowLevelGraphics;

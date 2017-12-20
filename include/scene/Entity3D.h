@@ -109,7 +109,7 @@ namespace hpl {
 
 		virtual cBoundingVolume* GetBoundingVolume(){return &mBoundingVolume;}
 
-        /**
+		/**
 		 * The child hierarchy will only work if the child has no node parent.
 		 **/
 		void AddChild(iEntity3D *apEntity);

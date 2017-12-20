@@ -79,7 +79,7 @@ namespace hpl {
 			return NULL;
 		}
 
-        iVideoStream *pVideo = pLoader->Create(asName);
+		iVideoStream *pVideo = pLoader->Create(asName);
 
 		if(pVideo->LoadFromFile(sPath)==false)
 		{

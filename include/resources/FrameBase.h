@@ -36,7 +36,7 @@ namespace hpl {
 		bool IsEmpty() {return mlPicCount<=0;}
 
 	protected:
-        int mlPicCount;
+		int mlPicCount;
 	};
 
 };

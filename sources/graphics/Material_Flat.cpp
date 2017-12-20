@@ -119,7 +119,7 @@ namespace hpl {
 
 		if(alUnit == 0)
 		{
-            if(alPass ==0)	return mvTexture[eMaterialTexture_Diffuse];
+			if(alPass ==0)	return mvTexture[eMaterialTexture_Diffuse];
 			else			return mvTexture[eMaterialTexture_Illumination];
 		}
 

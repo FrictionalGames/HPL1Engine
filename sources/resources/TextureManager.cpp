@@ -191,7 +191,7 @@ namespace hpl {
 			//See if files for all faces exist
 			tStringVec vPaths;
 			tString sPath="";
-            for(int i=0;i <6 ;i++)
+			for(int i=0;i <6 ;i++)
 			{
 				for(tStringListIt it = mlstFileFormats.begin();it!=mlstFileFormats.end();++it)
 				{
@@ -234,7 +234,7 @@ namespace hpl {
 			if(pTexture->CreateCubeFromBitmapVec(&vBitmaps)==false)
 			{
 				Error("Couldn't create cubemap '%s'!\n", sName.c_str());
-                hplDelete(pTexture);
+				hplDelete(pTexture);
 				for(int j=0;j<(int)vBitmaps.size();j++) hplDelete(vBitmaps[j]);
 				EndLoad();
 				return NULL;
@@ -305,7 +305,7 @@ namespace hpl {
 		tTextureAttenuationMapIt it = m_mapAttenuationTextures.find(sName);
 		if(it !=  m_mapAttenuationTextures.end()) return it->second;
 
-        tString sPath="";
+		tString sPath="";
 
 		if(cString::GetFileExt(asFallOffName)!="")
 		{
@@ -316,7 +316,7 @@ namespace hpl {
 			for(tStringListIt it =mlstFileFormats.begin(); it != mlstFileFormats.end(); ++it)
 			{
 				tString sFileName = cString::SetFileExt(asFallOffName,*it);
-                sPath = mpFileSearcher->GetFilePath(sFileName);
+				sPath = mpFileSearcher->GetFilePath(sFileName);
 				if(sPath!="")break;
 			}
 		}
@@ -333,7 +333,7 @@ namespace hpl {
 			return NULL;
 		}
 
-        int lBmpChannels = pBmp->GetNumChannels();
+		int lBmpChannels = pBmp->GetNumChannels();
 		int lWidth = pBmp->GetWidth();
 		unsigned char* pPixels = (unsigned char*)pBmp->GetRawData();
 

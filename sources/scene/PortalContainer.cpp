@@ -43,7 +43,7 @@ namespace hpl {
 		mpBV = apBV;
 		mbGlobal = true;
 
-        mpSectorMap = &mpContainer->m_mapSectors;
+		mpSectorMap = &mpContainer->m_mapSectors;
 
 		mEntityIt = mpContainer->m_setGlobalEntities.begin();
 
@@ -454,7 +454,7 @@ namespace hpl {
 		//Set the sector as visited.
 		mlVisitCount = mpContainer->GetSectorVisitCount();
 
-        mpContainer->GetVisibleSectorsList()->push_back(msId);
+		mpContainer->GetVisibleSectorsList()->push_back(msId);
 
 		//////////////////////////////////////////////////////
 		//Add all visible objects in the room to the render list
@@ -515,7 +515,7 @@ namespace hpl {
 			{
 				pTargetSector->GetVisible(apFrustum,apRenderList,pPortal);
 			}
-       	}
+		}
 	}
 
 	//-----------------------------------------------------------------------
@@ -610,7 +610,7 @@ namespace hpl {
 
 		//Log("Removing %s from container\n",apRenderable->GetName().c_str());
 		// If empty then the object is in the global list.
-        if(pDataList->empty())
+		if(pDataList->empty())
 		{
 			mpContainer->m_setGlobalDynamicObjects.erase(apRenderable);
 		}

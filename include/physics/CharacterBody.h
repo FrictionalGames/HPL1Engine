@@ -53,7 +53,7 @@ namespace hpl {
 	public:
 		cCharacterBodyRay();
 
-        void Clear();
+		void Clear();
 		bool OnIntersect(iPhysicsBody *pBody,cPhysicsRayParams *apParams);
 
 		float mfMinDist;
@@ -250,7 +250,7 @@ namespace hpl {
 		///////////////////////////////////////
 		//Other
 		void SetCamera(cCamera3D *apCam);
-        cCamera3D* GetCamera();
+		cCamera3D* GetCamera();
 		void SetCameraPosAdd(const cVector3f &avAdd);
 		cVector3f GetCameraPosAdd();
 		void SetCameraSmoothPosNum(int alNum){ mlCameraSmoothPosNum = alNum;}

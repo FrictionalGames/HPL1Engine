@@ -220,7 +220,7 @@ namespace hpl {
 		if(apEntity==NULL)return;
 		if(apEntity->mpParent != NULL) return;
 
-	    mlstChildren.push_back(apEntity);
+		mlstChildren.push_back(apEntity);
 		apEntity->mpParent = this;
 
 		apEntity->SetTransformUpdated(true);

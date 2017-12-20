@@ -386,7 +386,7 @@ namespace hpl {
 		if((aData.mlVal & eGuiMouseButton_Left) == 0) return true;
 		if(mbCanEdit==false) return true;
 
-        SetMarkerPos(WorldToCharPos(aData.mvPos));
+		SetMarkerPos(WorldToCharPos(aData.mvPos));
 
 		if(msText[mlMarkerCharPos] == _W(' ')) return true;
 
@@ -548,7 +548,7 @@ namespace hpl {
 		//Delete and backspace
 		else if(key == eKey_DELETE || key == eKey_BACKSPACE)
 		{
-            if(mlSelectedTextEnd >=0)
+			if(mlSelectedTextEnd >=0)
 			{
 				int lStart = mlMarkerCharPos < mlSelectedTextEnd ? mlMarkerCharPos : mlSelectedTextEnd;
 				int lEnd = mlMarkerCharPos > mlSelectedTextEnd ? mlMarkerCharPos : mlSelectedTextEnd;

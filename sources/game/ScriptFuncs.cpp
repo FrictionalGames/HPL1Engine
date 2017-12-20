@@ -463,7 +463,7 @@ namespace hpl {
 		{
 			cParticleSystem3D *pPS = it.Next();
 
-            if(pPS->GetName() == asName)
+			if(pPS->GetName() == asName)
 			{
 				pPS->Kill();
 				bFound = true;
@@ -746,7 +746,7 @@ namespace hpl {
 		}
 
 		pSound->SetPosition(pArea->m_mtxTransform.GetTranslation());
- 	}
+	}
 	SCRIPT_DEFINE_FUNC_3(void, CreateSoundEntity, string, string, string)
 	//-----------------------------------------------------------------------
 
@@ -1311,7 +1311,7 @@ namespace hpl {
 			return;
 		}
 
-        if(lType==1)
+		if(lType==1)
 		{
 			pBody->AddForce(cVector3f(afX,afY,afZ));
 		}

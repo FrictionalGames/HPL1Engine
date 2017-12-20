@@ -62,7 +62,7 @@ namespace hpl {
 
 		cResourceImage* CreateFromBitmap(const tString &asName,iBitmap2D* apBmp, int alFrameHandle=-1);
 
-        int CreateFrame(cVector2l avSize);
+		int CreateFrame(cVector2l avSize);
 		void SetFrameLocked(int alHandle, bool abLocked);
 	private:
 		iLowLevelGraphics *mpLowLevelGraphics;
@@ -71,7 +71,7 @@ namespace hpl {
 		tFrameTextureMap m_mapTextureFrames;
 
 		tStringList mlstFileFormats;
-        cVector2l mvFrameSize;
+		cVector2l mvFrameSize;
 		int mlFrameHandle;
 
 		cResourceImage *FindImage(const tString &asName, tString &asFilePath);

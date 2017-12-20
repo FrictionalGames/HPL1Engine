@@ -120,7 +120,7 @@ namespace hpl {
 	{
 	public:
 		tString msName;
-        tTempAiNodeList mlstNodes;
+		tTempAiNodeList mlstNodes;
 	};
 
 	typedef std::map<tString,cTempNodeContainer*> tTempNodeContainerMap;

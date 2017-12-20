@@ -364,7 +364,7 @@ namespace hpl {
 
 			TiXmlElement *pImageElem = CreateXMLChild(pImageRootElem,"Image");
 
-            pImageElem->SetAttribute("Id",pImage->msId.c_str());
+			pImageElem->SetAttribute("Id",pImage->msId.c_str());
 			pImageElem->SetAttribute("Name",pImage->msName.c_str());
 			pImageElem->SetAttribute("Source",cString::GetFileName(pImage->msSource.c_str()).c_str());
 		}
@@ -453,7 +453,7 @@ namespace hpl {
 			pAnimationElem->SetAttribute("Id",pAnimation->msId.c_str());
 			pAnimationElem->SetAttribute("TargetNode",pAnimation->msTargetNode.c_str());
 
-            /////////////////////////////////////
+			/////////////////////////////////////
 			// Channels
 			{
 				TiXmlElement *pChannelVecElem =  CreateXMLChild(pAnimationElem,"ChannelVec");
@@ -580,7 +580,7 @@ namespace hpl {
 				////////////////////////////////
 				//The pair connections
 				int lCount =0;
-                TiXmlElement *pPairsElem = CreateXMLChild(pPairVecElem,"Pairs");
+				TiXmlElement *pPairsElem = CreateXMLChild(pPairVecElem,"Pairs");
 				tString sData=""; sData.reserve(pController->mvPairs.size()*4*2);
 				for(size_t idx =0; idx < pController->mvPairs.size(); ++idx)
 				{
@@ -627,7 +627,7 @@ namespace hpl {
 
 			/////////////////////////////////7
 			//Main properties
-            pGeometryElem->SetAttribute("Id",pGeometry->msId.c_str());
+			pGeometryElem->SetAttribute("Id",pGeometry->msId.c_str());
 			pGeometryElem->SetAttribute("Name",pGeometry->msName.c_str());
 
 			pGeometryElem->SetAttribute("Material",pGeometry->msMaterial.c_str());
@@ -658,7 +658,7 @@ namespace hpl {
 				sIndexVec += cString::ToString((int)pGeometry->mvIndexVec[j])+" ";
 			}
 			TiXmlText *pIndecVecText = CreateXMLTextChild(pIndicesDataElem,"Data");
-            pIndecVecText->SetValue(sIndexVec.c_str());
+			pIndecVecText->SetValue(sIndexVec.c_str());
 
 			/////////////////////////////////
 			// Vertex vec
@@ -986,7 +986,7 @@ namespace hpl {
 				TiXmlText *pJointsText = pJointsElem->FirstChild()->ToText();
 
 				tString sData = pJointsText->Value();
-                tString sSepp = " "; pController->mvJoints.reserve(lSize);
+				tString sSepp = " "; pController->mvJoints.reserve(lSize);
 				cString::GetStringVec(sData,pController->mvJoints,&sSepp);
 			}
 			////////////////////////////
@@ -1429,7 +1429,7 @@ namespace hpl {
 		apColladaScene->mfEndTime = cString::ToFloat(pSceneElem->Attribute("EndTime"),0);
 		apColladaScene->mfDeltaTime = cString::ToFloat(pSceneElem->Attribute("DeltaTime"),0);
 
-        TiXmlElement *pSceneRootElem = pSceneElem->FirstChildElement("Root");
+		TiXmlElement *pSceneRootElem = pSceneElem->FirstChildElement("Root");
 		TiXmlElement *pNodeElem = pSceneRootElem->FirstChildElement("Node");
 		for(; pNodeElem != NULL; pNodeElem = pNodeElem->NextSiblingElement("Node"))
 		{

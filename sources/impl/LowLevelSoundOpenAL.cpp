@@ -431,17 +431,17 @@ namespace hpl {
 		/*Log(" %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f\n",
 			mpEffect->GetDensity(),
 			mpEffect->GetDiffusion(),
-            mpEffect->GetEchoTime(),
+			mpEffect->GetEchoTime(),
 			mpEffect->GetEchoDepth(),
-            mpEffect->GetModulationTime(),
-            mpEffect->GetModulationDepth(),
-            mpEffect->GetGain(),
+			mpEffect->GetModulationTime(),
+			mpEffect->GetModulationDepth(),
+			mpEffect->GetGain(),
 			mpEffect->GetGainHF(),
-            mpEffect->GetGainLF(),
-            mpEffect->GetReflectionsDelay(),
-            mpEffect->GetReflectionsGain(),
-            mpEffect->GetLateReverbGain(),
-            mpEffect->GetLateReverbDelay(),
+			mpEffect->GetGainLF(),
+			mpEffect->GetReflectionsDelay(),
+			mpEffect->GetReflectionsGain(),
+			mpEffect->GetLateReverbGain(),
+			mpEffect->GetLateReverbDelay(),
 			mpEffect->GetHFReference(),
 			mpEffect->GetLFReference(),
 			mpEffect->GetAirAbsorptionGainHF(),
@@ -453,7 +453,7 @@ namespace hpl {
 //		if (mbNullEffectAttached)
 //			mbNullEffectAttached = false;
 
-        //OAL_UpdateEffectSlots();
+		//OAL_UpdateEffectSlots();
 		OAL_EffectSlot_AttachEffect(0, (cOAL_Effect*)mpEffect);
 
 	}

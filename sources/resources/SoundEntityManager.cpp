@@ -44,7 +44,7 @@ namespace hpl {
 
 	cSoundEntityManager::~cSoundEntityManager()
 	{
-        DestroyAll();
+		DestroyAll();
 
 		Log(" Done with sound entities\n");
 	}

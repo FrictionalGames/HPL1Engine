@@ -45,20 +45,20 @@ namespace hpl {
 	}
 
 	static inline int patiMatch (const wchar_t *pattern, const wchar_t *string) {
-      switch (pattern[0])
-      {
-      case _W('\0'):
-            return !string[0];
+	  switch (pattern[0])
+	  {
+	  case _W('\0'):
+			return !string[0];
 
-      case _W('*') :
-            return patiMatch(pattern+1, string) || string[0] && patiMatch(pattern, string+1);
+	  case _W('*') :
+			return patiMatch(pattern+1, string) || string[0] && patiMatch(pattern, string+1);
 
-      case _W('?') :
-            return string[0] && patiMatch(pattern+1, string+1);
+	  case _W('?') :
+			return string[0] && patiMatch(pattern+1, string+1);
 
-      default  :
-            return (towupper(pattern[0]) == towupper(string[0])) && patiMatch(pattern+1, string+1);
-      }
+	  default  :
+			return (towupper(pattern[0]) == towupper(string[0])) && patiMatch(pattern+1, string+1);
+	  }
 	}
 
 	void Platform::FindFileInDir(tWStringList &alstStrings,tWString asDir, tWString asMask)

@@ -99,7 +99,7 @@ namespace hpl {
 				vNum.y++;
 			}
 
-            for(int x=0; x<vNum.x; x++)
+			for(int x=0; x<vNum.x; x++)
 				for(int y=0; y<vNum.y; y++)
 				{
 					lstPositions.push_back(cVector3f(vStartPos.x + mvSize.x*x,

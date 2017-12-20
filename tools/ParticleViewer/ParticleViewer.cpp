@@ -72,7 +72,7 @@ public:
 		mpPhysicsWorld->SetWorldSize(-300,300);
 		mpPhysicsWorld->SetMaxTimeStep(1.0f / 30.0f);
 
-        mpWorld->SetPhysicsWorld(mpPhysicsWorld);
+		mpWorld->SetPhysicsWorld(mpPhysicsWorld);
 
 		mpPS = mpWorld->CreateParticleSystem("PS",gsModelFile,1,cMatrixf::Identity);
 

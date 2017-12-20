@@ -109,7 +109,7 @@ namespace hpl {
 		tString msType;
 		tString msSubType;
 
-        bool mbCastShadows;
+		bool mbCastShadows;
 		bool mbCollidable;
 		bool mbCollides;
 		bool mbLit;

@@ -105,13 +105,13 @@ namespace hpl {
 			cParticleEmitterData3D_UserData *pPE = hplNew( cParticleEmitterData3D_UserData,("",
 																	mpResources,mpGraphics) );
 
-            pPE->LoadFromElement(pEmitterElem);
+			pPE->LoadFromElement(pEmitterElem);
 
 			mvEmitterData.push_back(pPE);
 		}
 
 
-        hplDelete(pXmlDoc);
+		hplDelete(pXmlDoc);
 		return true;
 	}
 
@@ -179,7 +179,7 @@ namespace hpl {
 		{
 			iParticleEmitter3D *pPE = mvEmitters[i];
 
-            if(pPE->IsDead()) lCount++;
+			if(pPE->IsDead()) lCount++;
 		}
 
 		if(lCount == mvEmitters.size()) return true;

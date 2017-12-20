@@ -56,7 +56,7 @@ namespace hpl {
 		* In other words, distance increases as the distance between start pivot and current pivot
 		* increases in the opposite direction of the pin.
 		*/
-        virtual void SetMaxDistance(float afX)=0;
+		virtual void SetMaxDistance(float afX)=0;
 		virtual void SetMinDistance(float afX)=0;
 		virtual float GetMaxDistance()=0;
 		virtual float GetMinDistance()=0;

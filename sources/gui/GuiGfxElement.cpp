@@ -156,7 +156,7 @@ namespace hpl {
 		//////////////////////////////////////
 		//Update image animations
 		if(mvAnimations.empty() || mbAnimationPaused) return;
-        if(mlCurrentAnimation >= (int)mvAnimations.size()) return;
+		if(mlCurrentAnimation >= (int)mvAnimations.size()) return;
 
 		cGuiGfxAnimation* pAnim = mvAnimations[mlCurrentAnimation];
 
@@ -295,7 +295,7 @@ namespace hpl {
 
 	void cGuiGfxElement::SetAnimationTime(float afTime)
 	{
-        if(mlCurrentAnimation>=0)
+		if(mlCurrentAnimation>=0)
 			mfCurrentFrame = afTime / mvAnimations[mlCurrentAnimation]->mfFrameLength;
 		else
 			mfCurrentFrame = afTime;

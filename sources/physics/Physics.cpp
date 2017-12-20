@@ -323,7 +323,7 @@ namespace hpl {
 		if(sMode == "sticky")		return eHapticSurfaceType_Sticky;
 		Warning("Could not find haptic surface type '%s'\n",apName);
 
-        return eHapticSurfaceType_Simple;
+		return eHapticSurfaceType_Simple;
 	}
 
 	//-----------------------------------------------------------------------

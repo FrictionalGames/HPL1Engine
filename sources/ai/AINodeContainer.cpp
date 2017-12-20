@@ -196,7 +196,7 @@ namespace hpl {
 						mpNodeList = &mpContainer->GetGrid(mvGridPos)->mlstNodes;
 					}
 					else{
-                        mpNodeList = NULL;
+						mpNodeList = NULL;
 						break;
 					}
 				}
@@ -364,7 +364,7 @@ namespace hpl {
 			{
 				cAINode *pEndNode = nodeIt.Next();
 
-                if(pEndNode == pNode) continue;
+				if(pEndNode == pNode) continue;
 				float fDist = cMath::Vector3Dist(pNode->mvPosition, pEndNode->mvPosition);
 				if(fDist > mfMaxEndDistance*2) continue;
 				//Log("'%s'(%f) ",pEndNode->GetName().c_str(),fDist);
@@ -463,7 +463,7 @@ namespace hpl {
 			cVector2f vLocalPos(pNode->GetPosition().x, pNode->GetPosition().z);
 			vLocalPos -= mvMinGridPos;
 
-             cVector2l vGridPos(0);
+			 cVector2l vGridPos(0);
 			//Have checks so we are sure there is no division by zero.
 			if(mvGridSize.x >0)
 				vGridPos.x = (int)(vLocalPos.x / mvGridSize.x);

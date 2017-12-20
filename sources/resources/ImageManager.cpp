@@ -38,7 +38,7 @@ namespace hpl {
 								iLowLevelResources *apLowLevelResources,iLowLevelSystem *apLowLevelSystem)
 	: iResourceManager(apFileSearcher, apLowLevelResources,apLowLevelSystem)
 	{
-       mpLowLevelGraphics = apLowLevelGraphics;
+	   mpLowLevelGraphics = apLowLevelGraphics;
 
 	   mpLowLevelResources->GetSupportedImageFormats(mlstFileFormats);
 
@@ -97,7 +97,7 @@ namespace hpl {
 				}
 
 				if(pImage) AddResource(pImage);
- 			}
+			}
 		}
 		else
 		{
@@ -111,7 +111,7 @@ namespace hpl {
 		//Log(" frame has %d pics\n", pImage->GetFrameTexture()->GetPicCount());
 
 		EndLoad();
-        return pImage;
+		return pImage;
 	}
 
 	//-----------------------------------------------------------------------
@@ -386,7 +386,7 @@ namespace hpl {
 		}
 
 		mlFrameHandle++;
-        return pBFrame;
+		return pBFrame;
 	}
 
 

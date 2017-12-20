@@ -102,7 +102,7 @@ namespace hpl {
 			else
 			{
 				//Height of the cylinder part.
-                float fCylHeight = mvSize.y - (mvSize.x*2);
+				float fCylHeight = mvSize.y - (mvSize.x*2);
 				mfVolume =0;
 
 				//The volume of the cylinder part.
@@ -315,7 +315,7 @@ namespace hpl {
 				}
 			}
 
-            NewtonTreeCollisionAddFace(mpNewtonCollision,3,vTriVec,sizeof(float)*3,1);
+			NewtonTreeCollisionAddFace(mpNewtonCollision,3,vTriVec,sizeof(float)*3,1);
 		}
 
 		NewtonTreeCollisionEndBuild(mpNewtonCollision, bOptimize ? 1: 0);

@@ -66,7 +66,7 @@ namespace hpl {
 	//--------------------------------------------------------
 
 
-    typedef unsigned int tFlag;
+	typedef unsigned int tFlag;
 
 	typedef std::string tString;
 

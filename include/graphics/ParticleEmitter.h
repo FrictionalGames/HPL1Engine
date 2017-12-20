@@ -169,7 +169,7 @@ namespace hpl {
 
 		cMatrixf m_mtxTemp;
 
-        tMaterialVec* mvMaterials;
+		tMaterialVec* mvMaterials;
 
 		//Vars for easier updating.
 		float mfTime;

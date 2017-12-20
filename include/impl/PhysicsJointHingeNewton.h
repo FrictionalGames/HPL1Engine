@@ -31,7 +31,7 @@ namespace hpl {
 			iPhysicsWorld *apWorld,const cVector3f &avPivotPoint, const cVector3f avPinDir);
 		~cPhysicsJointHingeNewton();
 
-        void SetMaxAngle(float afAngle);
+		void SetMaxAngle(float afAngle);
 		void SetMinAngle(float afAngle);
 		float GetMaxAngle();
 		float GetMinAngle();

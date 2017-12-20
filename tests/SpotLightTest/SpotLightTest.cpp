@@ -163,7 +163,7 @@ public:
 
 	}
 
-    void OnPostSceneDraw()
+	void OnPostSceneDraw()
 	{
 		if(mpSpotLight==NULL)return;
 

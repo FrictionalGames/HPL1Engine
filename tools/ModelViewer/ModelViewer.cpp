@@ -141,7 +141,7 @@ public:
 		mpPhysicsWorld->SetWorldSize(-300,300);
 		mpPhysicsWorld->SetMaxTimeStep(1.0f / 30.0f);
 
-        mpWorld->SetPhysicsWorld(mpPhysicsWorld);
+		mpWorld->SetPhysicsWorld(mpPhysicsWorld);
 
 		/////////////////////////////////////////////77
 		// Create MEsh / Entity
@@ -152,7 +152,7 @@ public:
 		tString sFileName = cString::GetFileName(gsModelFile);
 		tString sExt = cString::ToLowerCase(cString::GetFileExt(sFileName));
 
-        if(sExt == "ent")
+		if(sExt == "ent")
 		{
 			float fY =0;
 			cMatrixf mtxTransform = cMatrixf::Identity;
@@ -396,7 +396,7 @@ public:
 
 		int lVtxTotal =0;
 		Log("------- Model specifications -----------\n");
-        for(int i=0; i<mpEntity->GetSubMeshEntityNum(); ++i)
+		for(int i=0; i<mpEntity->GetSubMeshEntityNum(); ++i)
 		{
 			cSubMesh * pSubMesh = mpEntity->GetSubMeshEntity(i)->GetSubMesh();
 			iVertexBuffer *pVtxBuff = pSubMesh->GetVertexBuffer();
@@ -407,7 +407,7 @@ public:
 			Log("\n");
 
 			/*Log("  Indices: ");
-            for(int j=0; j<pVtxBuff->GetIndexNum(); ++j)
+			for(int j=0; j<pVtxBuff->GetIndexNum(); ++j)
 			{
 				Log(" %d,", pVtxBuff->GetIndices()[j]);
 			}
@@ -473,7 +473,7 @@ public:
 				mfFlashAlpha =1;
 			}
 
-            if(mbFlashed && pState->IsBeforeSpecialEvent())
+			if(mbFlashed && pState->IsBeforeSpecialEvent())
 			{
 				mbFlashed = false;
 			}
@@ -583,7 +583,7 @@ public:
 			if(mBodyPicker.mpPickedBody)
 			{
 				//Get pos of start.
-                mBodyPicker.mvPos = cMath::MatrixMul(mBodyPicker.mpPickedBody->GetLocalMatrix(),
+				mBodyPicker.mvPos = cMath::MatrixMul(mBodyPicker.mpPickedBody->GetLocalMatrix(),
 															mBodyPicker.mvLocalPos);
 
 				//Get Drag pos
@@ -595,7 +595,7 @@ public:
 									(mBodyPicker.mpPickedBody->GetLinearVelocity()*0.4f);
 
 
-                mBodyPicker.mpPickedBody->AddForceAtPosition(vForce *  mBodyPicker.mpPickedBody->GetMass(),
+				mBodyPicker.mpPickedBody->AddForceAtPosition(vForce *  mBodyPicker.mpPickedBody->GetMass(),
 															mBodyPicker.mvPos);
 			}
 			else
@@ -818,7 +818,7 @@ public:
 
 		cMatrixf mtxInvBone = cMath::MatrixInverse(pBoneState->GetWorldMatrix());
 
-        mpLowLevelGraphics->DrawSphere(pBoneState->GetWorldPosition(),0.1f,cColor(0,1,1));
+		mpLowLevelGraphics->DrawSphere(pBoneState->GetWorldPosition(),0.1f,cColor(0,1,1));
 		//Up
 		//mpLowLevelGraphics->DrawLine(	pBoneState->GetWorldPosition(),
 		//								pBoneState->GetWorldPosition() + mtxInvBone.GetUp()*0.5f,
@@ -840,7 +840,7 @@ public:
 		for(; it != pLightList->end(); ++it)
 		{
 			iLight3D *pLight = *it;
-            mpLowLevelGraphics->DrawSphere(pLight->GetWorldPosition(),0.1f,pLight->GetDiffuseColor());
+			mpLowLevelGraphics->DrawSphere(pLight->GetWorldPosition(),0.1f,pLight->GetDiffuseColor());
 		}*/
 
 		mpLowLevelGraphics->SetDepthTestActive(true);
@@ -880,7 +880,7 @@ private:
 
 	int mlCurrentAnim;
 
-    bool mbColliders;
+	bool mbColliders;
 
 	bool mbLightMovement;
 
@@ -905,7 +905,7 @@ int hplMain(const tString &asCommandLine)
 
 	TCHAR buffer[MAX_PATH];
 	HMODULE module = GetModuleHandle(NULL);
-    GetModuleFileName(module, buffer,MAX_PATH);
+	GetModuleFileName(module, buffer,MAX_PATH);
 	tString sDir = cString::GetFilePath(buffer);
 	SetCurrentDirectory(sDir.c_str());
 #endif

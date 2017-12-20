@@ -68,13 +68,13 @@ namespace hpl {
 	{
 		float fDiv = 1;
 		if(mvPosition.z<0){
-            fDiv = 1 - std::abs(mvPosition.z/mfZMin);
+			fDiv = 1 - std::abs(mvPosition.z/mfZMin);
 			if(fDiv<=0)fDiv=0.0001f;
 		}
 		else
 			fDiv = 1 + std::abs(mvPosition.z/mfZMax);
 
-        //Transform these depending on z
+		//Transform these depending on z
 		float lW = ((float) mvClipArea.x)*fDiv;
 		float lH = ((float) mvClipArea.y)*fDiv;
 
@@ -106,7 +106,7 @@ namespace hpl {
 	void cCamera2D::SetProjectionMatrix(iLowLevelGraphics* apLowLevel)
 	{
 		apLowLevel->SetOrthoProjection(apLowLevel->GetVirtualSize(),-1000,1000);
-    }
+	}
 
 	//-----------------------------------------------------------------------
 

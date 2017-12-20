@@ -532,10 +532,10 @@ namespace hpl {
 		mpCollider2D->SetWorld(mpCurrentWorld2D);
 
 		if(pTempWorld){
-            hplDelete(pTempWorld);
+			hplDelete(pTempWorld);
 		}
 
-        return true;
+		return true;
 	}
 
 	//-----------------------------------------------------------------------

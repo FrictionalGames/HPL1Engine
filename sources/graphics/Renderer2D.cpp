@@ -940,12 +940,12 @@ namespace hpl {
 	//-----------------------------------------------------------------------
 
 	/**
-     *
-     * \param *avPoint
-     * \param aRect
-     * \return True if points should be discarded, else false.
-     */
-    bool cRenderer2D::ClipPoints(cVector3f *avPoint,cRect2f aRect,cVector2f avPos, float afSize)
+	 *
+	 * \param *avPoint
+	 * \param aRect
+	 * \return True if points should be discarded, else false.
+	 */
+	bool cRenderer2D::ClipPoints(cVector3f *avPoint,cRect2f aRect,cVector2f avPos, float afSize)
 	{
 		//Both points lie outside of the rect, discard them
 		if(cMath::PointBoxCollision(cVector2f(avPoint[0].x,avPoint[0].y),aRect)==false &&

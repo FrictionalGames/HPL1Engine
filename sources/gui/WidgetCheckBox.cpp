@@ -37,7 +37,7 @@ namespace hpl {
 
 	cWidgetCheckBox::cWidgetCheckBox(cGuiSet *apSet, cGuiSkin *apSkin) : iWidget(eWidgetType_CheckBox,apSet, apSkin)
 	{
-        mbChecked = false;
+		mbChecked = false;
 		mbPressed = false;
 
 		LoadGraphics();

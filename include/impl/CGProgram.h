@@ -89,6 +89,6 @@ namespace hpl {
 
 		static tString msForceFP;
 		static tString msForceVP;
-    };
+	};
 };
 #endif // HPL_CGPROGRAM_H

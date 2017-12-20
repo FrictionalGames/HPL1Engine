@@ -219,7 +219,7 @@ namespace hpl {
 		mpContactBody1 = (cPhysicsBodyNewton*) NewtonBodyGetUserData(apBody1);
 		mpContactBody2 = (cPhysicsBodyNewton*) NewtonBodyGetUserData(apBody2);
 
-        if(mpContactBody1->GetCollide()==false) return 0;
+		if(mpContactBody1->GetCollide()==false) return 0;
 		if(mpContactBody2->GetCollide()==false) return 0;
 
 		if(mpContactBody1->IsActive()==false) return 0;

@@ -113,7 +113,7 @@ namespace hpl {
 		{
 			LoadData(pTileElement);
 
-            pTileElement = pTileElement->NextSiblingElement();
+			pTileElement = pTileElement->NextSiblingElement();
 		}
 
 		hplDelete(pDoc);
@@ -176,7 +176,7 @@ namespace hpl {
 		pMaterial->Compile();
 
 		// Create the mesh
-        pMesh = mpGraphics->GetMeshCreator()->Create2D(sMesh, mfTileSize);
+		pMesh = mpGraphics->GetMeshCreator()->Create2D(sMesh, mfTileSize);
 		if(pMesh == NULL){
 			Error("Error creating mesh for '%s'!\n", sName.c_str());
 			return false;
@@ -207,7 +207,7 @@ namespace hpl {
 		Add(pTileData);
 
 		return true;
-     }
+	 }
 
 	//-----------------------------------------------------------------------
 

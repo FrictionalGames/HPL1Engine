@@ -252,7 +252,7 @@ namespace hpl {
 
 		iPhysicsMaterial *pMaterial =it->second;
 
-        if(pMaterial->IsPreloaded()==false && pMaterial->GetSurfaceData())
+		if(pMaterial->IsPreloaded()==false && pMaterial->GetSurfaceData())
 		{
 			pMaterial->SetPreloaded(true);
 			pMaterial->GetSurfaceData()->PreloadData();
@@ -412,7 +412,7 @@ namespace hpl {
 
 			}
 
-		   	collideData.SetMaxSize(32);
+			collideData.SetMaxSize(32);
 			bool bRet = CheckShapeCollision(apShape,a_mtxTransform, pBody->GetShape(),pBody->GetLocalMatrix(),
 											collideData, 32);
 

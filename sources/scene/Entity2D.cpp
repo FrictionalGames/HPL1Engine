@@ -44,7 +44,7 @@ namespace hpl {
 
 	cVector3f iEntity2D::GetWorldPosition()
 	{
-        if(mpParentNode)
+		if(mpParentNode)
 		{
 			cNode2D* pNode2D = static_cast<cNode2D*>(mpParentNode);
 

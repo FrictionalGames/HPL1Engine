@@ -89,7 +89,7 @@ namespace hpl {
 	{
 		UpdateMatrix();
 
-        return m_mtxWorldTransform;
+		return m_mtxWorldTransform;
 	}
 
 	const cMatrixf& cBone::GetInvWorldTransform()
@@ -105,7 +105,7 @@ namespace hpl {
 	{
 		if(mpParent == NULL) return;
 
-        tBoneListIt it = mpParent->mlstChildren.begin();
+		tBoneListIt it = mpParent->mlstChildren.begin();
 		for(;it != mpParent->mlstChildren.end(); it++)
 		{
 			if(*it == this)

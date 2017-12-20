@@ -62,14 +62,14 @@ namespace hpl {
 		 */
 		cKeyFrame GetInterpolatedKeyFrame(float afTime);
 
-        /**
-         * Gets key frames between for a specific time.
-         * \param afTime The time
-         * \param &apKeyFrameA The frame that is equal to or before time
-         * \param &apKeyFrameB The frame that is after time.
-         * \return Weight of the different frames. 0 = 100% A, 1 = 100% B 0.5 = 50% A and 50% B
-         */
-        float GetKeyFramesAtTime(float afTime, cKeyFrame** apKeyFrameA,cKeyFrame** apKeyFrameB);
+		/**
+		 * Gets key frames between for a specific time.
+		 * \param afTime The time
+		 * \param &apKeyFrameA The frame that is equal to or before time
+		 * \param &apKeyFrameB The frame that is after time.
+		 * \return Weight of the different frames. 0 = 100% A, 1 = 100% B 0.5 = 50% A and 50% B
+		 */
+		float GetKeyFramesAtTime(float afTime, cKeyFrame** apKeyFrameA,cKeyFrame** apKeyFrameB);
 
 		const char* GetName(){ return msName.c_str();}
 
@@ -86,7 +86,7 @@ namespace hpl {
 
 		float mfMaxFrameTime;
 
-        cAnimation* mpParent;
+		cAnimation* mpParent;
 	};
 
 };

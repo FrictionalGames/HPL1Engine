@@ -96,7 +96,7 @@ namespace hpl {
 			ImagePart.msNextAnim ="";
 			ImagePart.mbSyncFrame = false;
 
-            m_mapEntityParts.insert(tMultiImagePartMap::value_type(alPartId,ImagePart));
+			m_mapEntityParts.insert(tMultiImagePartMap::value_type(alPartId,ImagePart));
 			PartIt = m_mapEntityParts.find(alPartId);
 		}
 
@@ -112,7 +112,7 @@ namespace hpl {
 		if(PartIt == m_mapEntityParts.end()) return NULL;
 
 		return PartIt->second.mvEntity[PartIt->second.mlActiveEntity];
-    }
+	}
 
 	//-----------------------------------------------------------------------
 
@@ -140,7 +140,7 @@ namespace hpl {
 				if(PartIt->second.mlNextAnimPrio <= alPrio){
 					PartIt->second.msNextAnim = asName;
 				}
-                PartIt++;
+				PartIt++;
 				continue;
 			}
 

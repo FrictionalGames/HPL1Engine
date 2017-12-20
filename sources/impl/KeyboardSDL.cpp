@@ -55,7 +55,7 @@ namespace hpl {
 	{
 		mlstKeysPressed.clear();
 		std::list<SDL_Event>::iterator it = mpLowLevelInputSDL->mlstEvents.begin();
-        for(; it != mpLowLevelInputSDL->mlstEvents.end(); ++it)
+		for(; it != mpLowLevelInputSDL->mlstEvents.end(); ++it)
 		{
 			SDL_Event *pEvent = &(*it);
 
@@ -86,7 +86,7 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-    bool cKeyboardSDL::KeyIsDown(eKey aKey)
+	bool cKeyboardSDL::KeyIsDown(eKey aKey)
 	{
 		return mvKeyArray[aKey];
 	}
