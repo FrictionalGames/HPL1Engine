@@ -158,8 +158,13 @@ void RegisterStdString(asIScriptEngine *engine)
 	r = engine->RegisterObjectBehaviour("string", asBEHAVE_ASSIGNMENT, "string &f(string &in)", asMETHODPR(string, operator =, (const string&), string&), asCALL_THISCALL); assert( r >= 0 );
 	r = engine->RegisterObjectBehaviour("string", asBEHAVE_ADD_ASSIGN, "string &f(string &in)", asMETHODPR(string, operator+=, (const string&), string&), asCALL_THISCALL); assert( r >= 0 );
 
+	struct operators
+	{
+		static bool equals(const string& a, const string& b) { return a == b; }
+	};
+
 	// Register the global operator overloads
-	r = engine->RegisterGlobalBehaviour(asBEHAVE_EQUAL,       "bool f(string &in, string &in)", asFUNCTIONPR(operator==, (const string &, const string &), bool), asCALL_CDECL); assert( r >= 0 );
+	r = engine->RegisterGlobalBehaviour(asBEHAVE_EQUAL,       "bool f(string &in, string &in)", asFUNCTIONPR(operators::equals, (const string &, const string &), bool), asCALL_CDECL); assert( r >= 0 );
 	r = engine->RegisterGlobalBehaviour(asBEHAVE_NOTEQUAL,    "bool f(string &in, string &in)", asFUNCTIONPR(operator!=, (const string &, const string &), bool), asCALL_CDECL); assert( r >= 0 );
 	r = engine->RegisterGlobalBehaviour(asBEHAVE_LEQUAL,      "bool f(string &in, string &in)", asFUNCTIONPR(operator<=, (const string &, const string &), bool), asCALL_CDECL); assert( r >= 0 );
 	r = engine->RegisterGlobalBehaviour(asBEHAVE_GEQUAL,      "bool f(string &in, string &in)", asFUNCTIONPR(operator>=, (const string &, const string &), bool), asCALL_CDECL); assert( r >= 0 );
