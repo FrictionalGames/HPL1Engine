@@ -168,7 +168,7 @@ namespace hpl {
 				{
 					if(mbAttachToGround)
 					{
-						//If collided with a  body, make it the new reference frame.
+						// If collided with a body, make it the new reference frame.
 						if(CollideData.mlstBodies.size()>0)
 						{
 							tBody2DListIt it = CollideData.mlstBodies.begin();

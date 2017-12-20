@@ -58,7 +58,7 @@ namespace hpl {
 
 		/**
 		 * Get a KeyFrame that contains an interpolated value.
-		 * \param afTime The time from wihcih to create the keyframe.
+		 * \param afTime The time from wich to create the keyframe.
 		 */
 		cKeyFrame GetInterpolatedKeyFrame(float afTime);
 

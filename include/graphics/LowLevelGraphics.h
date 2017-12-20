@@ -218,7 +218,7 @@ namespace hpl {
 
 
 		/**
-		 * Get the capabilities of the graphics. Th return value depends on the capability
+		 * Get the capabilities of the graphics. The return value depends on the capability
 		 * \param aType
 		 * \return
 		 */
@@ -243,7 +243,7 @@ namespace hpl {
 		virtual void SetVirtualSize(cVector2f avSize)=0;
 
 		/**
-		 * Set if vsync should eb active
+		 * Set if vsync should be active
 		 * \param abX
 		 */
 		virtual void SetVsyncActive(bool abX)=0;
@@ -272,7 +272,7 @@ namespace hpl {
 
 		virtual iGpuProgram* CreateGpuProgram(const tString& asName, eGpuProgramType aType)=0;
 
-		//TODO: Kinda quick and diry, better to have a screen to Bitmap.
+		//TODO: Kinda quick and dirty, better to have a screen to Bitmap.
 		// and then a save as in the Bitmap.
 		virtual void SaveScreenToBMP(const tString& asFile)=0;
 
