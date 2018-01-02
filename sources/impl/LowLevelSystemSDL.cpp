@@ -62,6 +62,7 @@ int WINAPI WinMain(	HINSTANCE hInstance,  HINSTANCE hPrevInstance,LPSTR	lpCmdLin
 	return hplMain(lpCmdLine);
 }
 #else
+#include <unistd.h> // symlink
 int main(int argc, char *argv[])
 {
 	if(!std::setlocale(LC_CTYPE, "")) {
