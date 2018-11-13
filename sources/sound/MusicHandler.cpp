@@ -97,7 +97,7 @@ namespace hpl {
 				mlstFadingSongs.push_back(mpMainSong);
 			}
 
-			//If there the song to be played is in the fade que, stop it.
+			//If the song to be played is in the fading queue, stop it.
 			tMusicEntryListIt it = mlstFadingSongs.begin();
 			while(it != mlstFadingSongs.end())
 			{

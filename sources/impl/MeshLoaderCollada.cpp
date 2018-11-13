@@ -1485,7 +1485,7 @@ namespace hpl {
 			//tColladaExtraVtxListVec vExtraVtxVec;
 			pVtxBuffer = CreateVertexBuffer(*apGeom, eVertexBufferUsageType_Static); ///,&apNode->m_mtxWorldTransform);
 
-			//Check if If the mesh casts shadows:
+			//Check if the mesh casts shadows:
 			pVtxBuffer->CreateShadowDouble(true);
 
 			//Transform vertex buffer with world transform
@@ -2174,7 +2174,7 @@ namespace hpl {
 								pEntity->SetCastsShadows(true);
 						}
 					}
-					//If it is not static it is an entity. Load form entity file.
+					//If it is not static it is an entity. Load from entity file.
 					else
 					{
 						tString sEntityFile = cString::SetFileExt(sFile,"ent");
@@ -2213,9 +2213,9 @@ namespace hpl {
 							tString sSepp = "_";
 							cString::GetStringVec(apNode->msName,vParams,&sSepp);
 
-							//check if this is an dynamic light
+							//check if this is a dynamic light
 							bool bStatic = true;
-							int lParamAdd =0; //Too make it easier to support dynamic param
+							int lParamAdd =0; //To make it easier to support dynamic param
 							if(cString::ToLowerCase(vParams[0]) == "dynamic"){
 								bStatic =false;
 								lParamAdd =1;

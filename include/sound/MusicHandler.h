@@ -76,10 +76,10 @@ namespace hpl {
 		~cMusicHandler();
 
 		/**
-		 * Play a song. Playing a song that is already playing updates it's properties.
+		 * Play a song. Playing a song that is already playing updates its properties.
 		 * \param asFileName file to be played
 		 * \param afVolume volume to be played at
-		 * \param afFadeStepSize volume increse/decrease per app step when fading to new volume.
+		 * \param afFadeStepSize volume increase/decrease per app step when fading to new volume.
 		 * \param abLoop If the music should be looped or not.
 		 * \return
 		 */
@@ -94,7 +94,7 @@ namespace hpl {
 		void Resume();
 
 		/**
-		 * No more music can be played when locked. Latest song that has been tried to be palyed is saved in lock.
+		 * No more music can be played when locked. Latest song that has been tried to be played is saved in lock.
 		 * \param apLock
 		 */
 		void Lock(cMusicLock* apLock);

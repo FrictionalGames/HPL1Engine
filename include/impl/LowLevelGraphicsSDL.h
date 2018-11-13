@@ -26,7 +26,7 @@
 
 #include <SDL/SDL.h>
 #include <SDL/SDL_ttf.h>
-// Unix's X11 Defines DestoryAll which collides with methods
+// Unix's X11 Defines DestroyAll which collides with methods
 #undef DestroyAll
 
 #include "graphics/LowLevelGraphics.h"
