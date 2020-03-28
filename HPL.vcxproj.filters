@@ -1,0 +1,1582 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="System">
+      <UniqueIdentifier>{f05b9e7d-f962-4587-af43-71e8fe2afcdc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{5baa1915-bcc1-4840-bea5-08b95dc9b22b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{cad0d9bf-f052-4ce0-9d05-0989ed37e2f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics">
+      <UniqueIdentifier>{fb24f578-721b-4811-a0d8-ed0ee3e5652a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Materials">
+      <UniqueIdentifier>{8a256277-ebb0-497e-af7e-9f258ec183b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Materials\2d">
+      <UniqueIdentifier>{40ecb89a-f5e5-4059-8613-004b4c8dcf6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{7d1e1bc7-547a-44bf-9a51-03f362ecdc5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound">
+      <UniqueIdentifier>{50a83930-f595-45f4-8127-5b0e289d5381}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics">
+      <UniqueIdentifier>{a33aa06f-13de-4338-ad12-f5aa714388f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Impl">
+      <UniqueIdentifier>{9cb70680-0061-4dc0-800d-0e4d50eeaa5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Impl\TinyXml">
+      <UniqueIdentifier>{b29cbd3a-388c-4710-ad42-c50d5bda49e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Impl\Graphics">
+      <UniqueIdentifier>{097fab1e-cc39-4299-beb5-60fe16626574}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Impl\Resources">
+      <UniqueIdentifier>{2a9bb9d1-ec2f-44c7-9c55-2f6476814ac1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Impl\Input">
+      <UniqueIdentifier>{a4a46d98-b4d5-41c6-bbaa-9dc84b3078bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Impl\System">
+      <UniqueIdentifier>{24a35513-6036-44e6-85c7-f9cf6fc8960c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Impl\Game">
+      <UniqueIdentifier>{920c7ecd-bfba-43c7-8091-0fbd3800b1c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Impl\Physics">
+      <UniqueIdentifier>{5b5276bf-7aac-47c7-ac9e-76d202f45251}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Impl\Sound">
+      <UniqueIdentifier>{a597972c-1c9e-4036-b61b-981f94014726}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{f05bd880-7f44-4721-9f31-9dd1becc8d6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AI">
+      <UniqueIdentifier>{ca62d2f4-a4ae-4ce0-9e55-cc34f2a16d0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{de911df7-05ad-40bb-ba88-3e0186ca6c6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Haptic">
+      <UniqueIdentifier>{70ff0caf-0abf-4653-b1cd-00154c47d212}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Gui">
+      <UniqueIdentifier>{76f82ee3-4d3e-4ee8-8c1c-77d9008513a0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\system\BinTree.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="include\system\Container.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="include\system\LogicTimer.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="include\system\LowLevelSystem.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="include\system\MemoryManager.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="include\system\Script.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="include\system\SerializeClass.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="include\system\String.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="include\system\System.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="include\system\SystemTypes.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="include\game\Game.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="include\game\GameTypes.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="include\game\LowLevelGameSetup.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="include\game\SaveGame.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="include\game\ScriptFuncs.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="include\game\Updateable.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="include\game\Updater.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="include\input\Action.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="include\input\ActionHaptic.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="include\input\ActionKeyboard.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="include\input\ActionMouseButton.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="include\input\Input.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="include\input\InputDevice.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="include\input\InputTypes.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="include\input\Keyboard.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="include\input\LowLevelInput.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="include\input\Mouse.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\Animation.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\AnimationTrack.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\BackgroundImage.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\Beam.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\BillBoard.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\Bitmap2D.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\Bone.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\BoneState.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\Color.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\FontData.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\GfxObject.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\GPUProgram.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\Graphics.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\GraphicsDrawer.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\GraphicsTypes.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\ImageEntityData.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\LowLevelGraphics.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\LowLevelPicture.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\Material.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\MaterialHandler.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\Mesh.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\Mesh2d.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\MeshCreator.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\OcclusionQuery.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\ParticleEmitter.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\ParticleEmitter2D.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\ParticleEmitter3D.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\ParticleEmitter3D_UserData.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\ParticleSystem3D.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\PixelFormat.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\Renderable.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\Renderer2D.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\Renderer3D.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\RendererPostEffects.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\RenderList.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\RenderObject2D.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\RenderState.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\Skeleton.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\SubMesh.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\Texture.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\VertexBuffer.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\VideoStream.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\Material_Additive.h">
+      <Filter>Graphics\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\Material_Alpha.h">
+      <Filter>Graphics\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\Material_BaseLight.h">
+      <Filter>Graphics\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\Material_Bump.h">
+      <Filter>Graphics\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\Material_BumpColorSpec.h">
+      <Filter>Graphics\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\Material_BumpSpec.h">
+      <Filter>Graphics\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\Material_Diffuse.h">
+      <Filter>Graphics\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\Material_DiffuseSpec.h">
+      <Filter>Graphics\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\Material_EnvMap_Reflect.h">
+      <Filter>Graphics\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\Material_Fallback01_BaseLight.h">
+      <Filter>Graphics\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\Material_Fallback02_BaseLight.h">
+      <Filter>Graphics\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\Material_Flat.h">
+      <Filter>Graphics\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\Material_Modulative.h">
+      <Filter>Graphics\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\Material_ModulativeX2.h">
+      <Filter>Graphics\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\Material_Water.h">
+      <Filter>Graphics\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\Material_BumpSpec2D.h">
+      <Filter>Graphics\Materials\2d</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\Material_Diffuse2D.h">
+      <Filter>Graphics\Materials\2d</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\Material_DiffuseAdditive2D.h">
+      <Filter>Graphics\Materials\2d</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\Material_DiffuseAlpha2D.h">
+      <Filter>Graphics\Materials\2d</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\Material_FontNormal.h">
+      <Filter>Graphics\Materials\2d</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\Material_Smoke2D.h">
+      <Filter>Graphics\Materials\2d</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scene\AnimationState.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scene\Area2D.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scene\Camera.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scene\Camera2D.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scene\Camera3D.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scene\ColliderEntity.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scene\Entity.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scene\Entity2D.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scene\Entity3D.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scene\GridMap2D.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scene\ImageEntity.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scene\Light.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scene\Light2D.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scene\Light2DPoint.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scene\Light3D.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scene\Light3DPoint.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scene\Light3DSpot.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scene\MeshEntity.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scene\MultiImageEntity.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scene\Node.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scene\Node2D.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scene\Node3D.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scene\NodeState.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scene\PortalContainer.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scene\RenderableContainer.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scene\Scene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scene\SectorVisibility.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scene\SoundEntity.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scene\SoundSource.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scene\SubMeshEntity.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scene\Tile.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scene\TileData.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scene\TileLayer.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scene\TileMap.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scene\TileMapIt.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scene\TileMapLineIt.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scene\TileMapRectIt.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scene\TileSet.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scene\World2D.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="include\scene\World3D.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sound\LowLevelSound.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sound\MusicHandler.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sound\Sound.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sound\SoundChannel.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sound\SoundData.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sound\SoundEntityData.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sound\SoundEnvironment.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sound\SoundHandler.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="include\physics\Body2D.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\physics\CharacterBody.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\physics\CollideData.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\physics\CollideData2D.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\physics\Collider2D.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\physics\CollideShape.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\physics\LowLevelPhysics.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\physics\Physics.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\physics\PhysicsBody.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\physics\PhysicsController.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\physics\PhysicsJoint.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\physics\PhysicsJointBall.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\physics\PhysicsJointHinge.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\physics\PhysicsJointScrew.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\physics\PhysicsJointSlider.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\physics\PhysicsMaterial.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\physics\PhysicsWorld.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\physics\SurfaceData.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\impl\tinyXML\tinystr.h">
+      <Filter>Impl\TinyXml</Filter>
+    </ClInclude>
+    <ClInclude Include="include\impl\tinyXML\tinyxml.h">
+      <Filter>Impl\TinyXml</Filter>
+    </ClInclude>
+    <ClInclude Include="include\impl\CGProgram.h">
+      <Filter>Impl\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\impl\LowLevelGraphicsSDL.h">
+      <Filter>Impl\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\impl\OcclusionQueryOGL.h">
+      <Filter>Impl\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\impl\PBuffer.h">
+      <Filter>Impl\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\impl\SDLBitmap2D.h">
+      <Filter>Impl\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\impl\SDLFontData.h">
+      <Filter>Impl\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\impl\SDLPixelFormat.h">
+      <Filter>Impl\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\impl\SDLTexture.h">
+      <Filter>Impl\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\impl\VertexBufferOGL.h">
+      <Filter>Impl\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\impl\VertexBufferVBO.h">
+      <Filter>Impl\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\impl\VideoStreamTheora.h">
+      <Filter>Impl\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\impl\LowLevelResourcesSDL.h">
+      <Filter>Impl\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\impl\MeshLoaderCollada.h">
+      <Filter>Impl\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\impl\MeshLoaderMSH.h">
+      <Filter>Impl\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\impl\KeyboardSDL.h">
+      <Filter>Impl\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="include\impl\LowLevelInputSDL.h">
+      <Filter>Impl\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="include\impl\MouseSDL.h">
+      <Filter>Impl\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="include\impl\LowLevelSystemSDL.h">
+      <Filter>Impl\System</Filter>
+    </ClInclude>
+    <ClInclude Include="include\impl\Platform.h">
+      <Filter>Impl\System</Filter>
+    </ClInclude>
+    <ClInclude Include="include\impl\scriptstring.h">
+      <Filter>Impl\System</Filter>
+    </ClInclude>
+    <ClInclude Include="include\impl\SqScript.h">
+      <Filter>Impl\System</Filter>
+    </ClInclude>
+    <ClInclude Include="include\impl\stdstring.h">
+      <Filter>Impl\System</Filter>
+    </ClInclude>
+    <ClInclude Include="include\impl\SDLGameSetup.h">
+      <Filter>Impl\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="include\impl\CharacterBodyNewton.h">
+      <Filter>Impl\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\impl\CollideShapeNewton.h">
+      <Filter>Impl\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\impl\LowLevelPhysicsNewton.h">
+      <Filter>Impl\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\impl\PhysicsBodyNewton.h">
+      <Filter>Impl\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\impl\PhysicsControllerNewton.h">
+      <Filter>Impl\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\impl\PhysicsJointBallNewton.h">
+      <Filter>Impl\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\impl\PhysicsJointHingeNewton.h">
+      <Filter>Impl\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\impl\PhysicsJointNewton.h">
+      <Filter>Impl\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\impl\PhysicsJointScrewNewton.h">
+      <Filter>Impl\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\impl\PhysicsJointSliderNewton.h">
+      <Filter>Impl\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\impl\PhysicsMaterialNewton.h">
+      <Filter>Impl\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\impl\PhysicsWorldNewton.h">
+      <Filter>Impl\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\impl\LowLevelSoundOpenAL.h">
+      <Filter>Impl\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="include\impl\OpenALSoundChannel.h">
+      <Filter>Impl\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="include\impl\OpenALSoundData.h">
+      <Filter>Impl\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="include\impl\OpenALSoundEnvironment.h">
+      <Filter>Impl\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resources\AnimationManager.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resources\ConfigFile.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resources\EntityLoader_Object.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resources\FileSearcher.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resources\FontManager.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resources\FrameBase.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resources\FrameBitmap.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resources\FrameTexture.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resources\GpuProgramManager.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resources\ImageEntityManager.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resources\ImageManager.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resources\LanguageFile.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resources\LowLevelResources.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resources\MaterialManager.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resources\MeshLoader.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resources\MeshLoaderHandler.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resources\MeshManager.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resources\ParticleManager.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resources\ResourceBase.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resources\ResourceImage.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resources\ResourceManager.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resources\Resources.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resources\ResourcesTypes.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resources\ScriptManager.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resources\SoundEntityManager.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resources\SoundManager.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resources\TextureManager.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resources\TileSetManager.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resources\VideoManager.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ai\AI.h">
+      <Filter>AI</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ai\AINodeContainer.h">
+      <Filter>AI</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ai\AINodeGenerator.h">
+      <Filter>AI</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ai\AStar.h">
+      <Filter>AI</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ai\StateMachine.h">
+      <Filter>AI</Filter>
+    </ClInclude>
+    <ClInclude Include="include\math\BoundingVolume.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="include\math\CRC.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="include\math\Frustum.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="include\math\Math.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="include\math\MathTypes.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="include\math\Matrix.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="include\math\MeshTypes.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="include\math\PidController.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="include\math\Quaternion.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="include\math\Spring.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="include\math\Vector2.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="include\math\Vector3.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="include\haptic\Haptic.h">
+      <Filter>Haptic</Filter>
+    </ClInclude>
+    <ClInclude Include="include\haptic\HapticForce.h">
+      <Filter>Haptic</Filter>
+    </ClInclude>
+    <ClInclude Include="include\haptic\HapticShape.h">
+      <Filter>Haptic</Filter>
+    </ClInclude>
+    <ClInclude Include="include\haptic\HapticSurface.h">
+      <Filter>Haptic</Filter>
+    </ClInclude>
+    <ClInclude Include="include\haptic\HapticTypes.h">
+      <Filter>Haptic</Filter>
+    </ClInclude>
+    <ClInclude Include="include\haptic\LowLevelHaptic.h">
+      <Filter>Haptic</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gui\Gui.h">
+      <Filter>Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gui\GuiGfxElement.h">
+      <Filter>Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gui\GuiMaterial.h">
+      <Filter>Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gui\GuiMaterialBasicTypes.h">
+      <Filter>Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gui\GuiPopUp.h">
+      <Filter>Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gui\GuiPopUpMessageBox.h">
+      <Filter>Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gui\GuiSet.h">
+      <Filter>Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gui\GuiSkin.h">
+      <Filter>Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gui\GuiTypes.h">
+      <Filter>Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gui\Widget.h">
+      <Filter>Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gui\WidgetBaseClasses.h">
+      <Filter>Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gui\WidgetButton.h">
+      <Filter>Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gui\WidgetCheckBox.h">
+      <Filter>Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gui\WidgetComboBox.h">
+      <Filter>Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gui\WidgetFrame.h">
+      <Filter>Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gui\WidgetImage.h">
+      <Filter>Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gui\WidgetLabel.h">
+      <Filter>Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gui\WidgetListBox.h">
+      <Filter>Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gui\WidgetSlider.h">
+      <Filter>Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gui\WidgetTextBox.h">
+      <Filter>Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gui\WidgetWindow.h">
+      <Filter>Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="include\HPL.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="sources\system\Container.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\system\LogicTimer.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\system\MemoryManager.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\system\SerializeClass.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\system\String.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\system\System.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\game\Game.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\game\GameTypes.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\game\SaveGame.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\game\ScriptFuncs.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\game\Updater.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\input\Action.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\input\ActionHaptic.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\input\ActionKeyboard.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\input\ActionMouseButton.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\input\Input.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\input\InputDevice.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\input\Keyboard.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\input\Mouse.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\Animation.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\AnimationTrack.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\BackgroundImage.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\Beam.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\BillBoard.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\Bone.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\BoneState.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\Color.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\FontData.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\GfxObject.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\GPUProgram.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\Graphics.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\GraphicsDrawer.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\ImageEntityData.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\Material.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\MaterialHandler.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\Mesh.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\Mesh2d.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\MeshCreator.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\ParticleEmitter.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\ParticleEmitter2D.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\ParticleEmitter3D.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\ParticleEmitter3D_UserData.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\ParticleSystem3D.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\Renderable.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\Renderer2D.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\Renderer3D.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\RendererPostEffects.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\RenderList.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\RenderObject2D.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\RenderState.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\Skeleton.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\SubMesh.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\Material_Additive.cpp">
+      <Filter>Graphics\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\Material_Alpha.cpp">
+      <Filter>Graphics\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\Material_BaseLight.cpp">
+      <Filter>Graphics\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\Material_Bump.cpp">
+      <Filter>Graphics\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\Material_BumpColorSpec.cpp">
+      <Filter>Graphics\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\Material_BumpSpec.cpp">
+      <Filter>Graphics\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\Material_Diffuse.cpp">
+      <Filter>Graphics\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\Material_DiffuseSpec.cpp">
+      <Filter>Graphics\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\Material_EnvMap_Reflect.cpp">
+      <Filter>Graphics\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\Material_Fallback01_BaseLight.cpp">
+      <Filter>Graphics\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\Material_Fallback02_BaseLight.cpp">
+      <Filter>Graphics\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\Material_Flat.cpp">
+      <Filter>Graphics\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\Material_Modulative.cpp">
+      <Filter>Graphics\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\Material_ModulativeX2.cpp">
+      <Filter>Graphics\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\Material_Water.cpp">
+      <Filter>Graphics\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\Material_BumpSpec2D.cpp">
+      <Filter>Graphics\Materials\2d</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\Material_Diffuse2D.cpp">
+      <Filter>Graphics\Materials\2d</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\Material_DiffuseAdditive2D.cpp">
+      <Filter>Graphics\Materials\2d</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\Material_DiffuseAlpha2D.cpp">
+      <Filter>Graphics\Materials\2d</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\Material_FontNormal.cpp">
+      <Filter>Graphics\Materials\2d</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\graphics\Material_Smoke2D.cpp">
+      <Filter>Graphics\Materials\2d</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\scene\AnimationState.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\scene\Area2D.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\scene\Camera2D.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\scene\Camera3D.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\scene\ColliderEntity.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\scene\Entity.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\scene\Entity2D.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\scene\Entity3D.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\scene\GridMap2D.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\scene\ImageEntity.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\scene\Light.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\scene\Light2D.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\scene\Light2DPoint.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\scene\Light3D.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\scene\Light3DPoint.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\scene\Light3DSpot.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\scene\MeshEntity.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\scene\MultiImageEntity.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\scene\Node.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\scene\Node2D.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\scene\Node3D.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\scene\NodeState.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\scene\PortalContainer.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\scene\Scene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\scene\SectorVisibility.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\scene\SoundEntity.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\scene\SoundSource.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\scene\SubMeshEntity.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\scene\Tile.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\scene\TileData.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\scene\TileLayer.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\scene\TileMap.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\scene\TileMapLineIt.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\scene\TileMapRectIt.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\scene\TileSet.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\scene\World2D.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\scene\World3D.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\sound\LowLevelSound.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\sound\MusicHandler.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\sound\Sound.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\sound\SoundEntityData.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\sound\SoundHandler.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\physics\Body2D.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\physics\CharacterBody.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\physics\Collider2D.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\physics\Physics.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\physics\PhysicsBody.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\physics\PhysicsController.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\physics\PhysicsJoint.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\physics\PhysicsJointBall.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\physics\PhysicsJointHinge.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\physics\PhysicsJointScrew.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\physics\PhysicsJointSlider.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\physics\PhysicsWorld.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\physics\SurfaceData.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\impl\tinyXml\tinystr.cpp">
+      <Filter>Impl\TinyXml</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\impl\tinyXml\tinyxml.cpp">
+      <Filter>Impl\TinyXml</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\impl\tinyXml\tinyxmlerror.cpp">
+      <Filter>Impl\TinyXml</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\impl\tinyXml\tinyxmlparser.cpp">
+      <Filter>Impl\TinyXml</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\impl\CGProgram.cpp">
+      <Filter>Impl\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\impl\GLee.c">
+      <Filter>Impl\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\impl\LowLevelGraphicsSDL.cpp">
+      <Filter>Impl\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\impl\OcclusionQueryOGL.cpp">
+      <Filter>Impl\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\impl\PBuffer.cpp">
+      <Filter>Impl\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\impl\SDLBitmap2D.cpp">
+      <Filter>Impl\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\impl\SDLFontData.cpp">
+      <Filter>Impl\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\impl\SDLTexture.cpp">
+      <Filter>Impl\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\impl\VertexBufferOGL.cpp">
+      <Filter>Impl\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\impl\VertexBufferVBO.cpp">
+      <Filter>Impl\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\impl\VideoStreamTheora.cpp">
+      <Filter>Impl\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\impl\LowLevelResourcesSDL.cpp">
+      <Filter>Impl\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\impl\MeshLoaderCollada.cpp">
+      <Filter>Impl\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\impl\MeshLoaderColladaHelpers.cpp">
+      <Filter>Impl\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\impl\MeshLoaderColladaLoader.cpp">
+      <Filter>Impl\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\impl\MeshLoaderMSH.cpp">
+      <Filter>Impl\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\impl\KeyboardSDL.cpp">
+      <Filter>Impl\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\impl\LowLevelInputSDL.cpp">
+      <Filter>Impl\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\impl\MouseSDL.cpp">
+      <Filter>Impl\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\impl\LowLevelSystemSDL.cpp">
+      <Filter>Impl\System</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\impl\scriptstring.cpp">
+      <Filter>Impl\System</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\impl\SqScript.cpp">
+      <Filter>Impl\System</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\impl\stdstring.cpp">
+      <Filter>Impl\System</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\impl\platform\win32.cpp">
+      <Filter>Impl\System</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\impl\SDLGameSetup.cpp">
+      <Filter>Impl\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\impl\CharacterBodyNewton.cpp">
+      <Filter>Impl\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\impl\CollideShapeNewton.cpp">
+      <Filter>Impl\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\impl\LowLevelPhysicsNewton.cpp">
+      <Filter>Impl\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\impl\PhysicsBodyNewton.cpp">
+      <Filter>Impl\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\impl\PhysicsControllerNewton.cpp">
+      <Filter>Impl\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\impl\PhysicsJointBallNewton.cpp">
+      <Filter>Impl\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\impl\PhysicsJointHingeNewton.cpp">
+      <Filter>Impl\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\impl\PhysicsJointScrewNewton.cpp">
+      <Filter>Impl\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\impl\PhysicsJointSliderNewton.cpp">
+      <Filter>Impl\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\impl\PhysicsMaterialNewton.cpp">
+      <Filter>Impl\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\impl\PhysicsWorldNewton.cpp">
+      <Filter>Impl\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\impl\LowLevelSoundOpenAL.cpp">
+      <Filter>Impl\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\impl\OpenALSoundChannel.cpp">
+      <Filter>Impl\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\impl\OpenALSoundData.cpp">
+      <Filter>Impl\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\impl\OpenALSoundEnvironment.cpp">
+      <Filter>Impl\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\resources\AnimationManager.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\resources\ConfigFile.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\resources\EntityLoader_Object.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\resources\FileSearcher.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\resources\FontManager.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\resources\FrameBitmap.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\resources\FrameTexture.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\resources\GpuProgramManager.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\resources\ImageEntityManager.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\resources\ImageManager.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\resources\LanguageFile.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\resources\MaterialManager.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\resources\MeshLoaderHandler.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\resources\MeshManager.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\resources\ParticleManager.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\resources\ResourceBase.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\resources\ResourceImage.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\resources\ResourceManager.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\resources\Resources.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\resources\ScriptManager.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\resources\SoundEntityManager.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\resources\SoundManager.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\resources\TextureManager.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\resources\TileSetManager.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\resources\VideoManager.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\ai\AI.cpp">
+      <Filter>AI</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\ai\AINodeContainer.cpp">
+      <Filter>AI</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\ai\AINodeGenerator.cpp">
+      <Filter>AI</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\ai\AStar.cpp">
+      <Filter>AI</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\ai\StateMachine.cpp">
+      <Filter>AI</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\math\BoundingVolume.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\math\CRC.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\math\Frustum.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\math\Math.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\math\MathTypes.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\math\MeshTypes.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\math\Quaternion.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\math\Spring.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\haptic\Haptic.cpp">
+      <Filter>Haptic</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\haptic\LowLevelHaptic.cpp">
+      <Filter>Haptic</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\gui\Gui.cpp">
+      <Filter>Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\gui\GuiGfxElement.cpp">
+      <Filter>Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\gui\GuiMaterialBasicTypes.cpp">
+      <Filter>Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\gui\GuiPopUp.cpp">
+      <Filter>Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\gui\GuiPopUpMessageBox.cpp">
+      <Filter>Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\gui\GuiSet.cpp">
+      <Filter>Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\gui\GuiSkin.cpp">
+      <Filter>Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\gui\Widget.cpp">
+      <Filter>Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\gui\WidgetBaseClasses.cpp">
+      <Filter>Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\gui\WidgetButton.cpp">
+      <Filter>Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\gui\WidgetCheckBox.cpp">
+      <Filter>Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\gui\WidgetComboBox.cpp">
+      <Filter>Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\gui\WidgetFrame.cpp">
+      <Filter>Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\gui\WidgetImage.cpp">
+      <Filter>Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\gui\WidgetLabel.cpp">
+      <Filter>Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\gui\WidgetListBox.cpp">
+      <Filter>Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\gui\WidgetSlider.cpp">
+      <Filter>Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\gui\WidgetTextBox.cpp">
+      <Filter>Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\gui\WidgetWindow.cpp">
+      <Filter>Gui</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

@@ -5,3 +5,6 @@
 /*.xcodeproj/*.pbxuser
 /assets/*.log
 /assets/core/cache/*collcach
+/backup
+/lib
+/.vs
