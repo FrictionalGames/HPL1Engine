@@ -87,7 +87,7 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 	////////////////////// RENDER OBJECT COMPARE ////////////////////////////
-	bool cRenderObject2DCompare::operator()(const cRenderObject2D &aObjectA,const cRenderObject2D &aObjectB)
+	bool cRenderObject2DCompare::operator()(const cRenderObject2D &aObjectA,const cRenderObject2D &aObjectB) const
 	{
 		if(aObjectA.GetMaterial()->GetTexture(eMaterialTexture_Diffuse) !=
 			aObjectB.GetMaterial()->GetTexture(eMaterialTexture_Diffuse))
@@ -115,7 +115,7 @@ namespace hpl {
 
 	////////////////////// TRANS RENDER OBJECT COMPARE ////////////////////////////
 
-	bool cRenderTransObjectCompare::operator()(const cRenderObject2D &aObjectA,const cRenderObject2D &aObjectB)
+	bool cRenderTransObjectCompare::operator()(const cRenderObject2D &aObjectA,const cRenderObject2D &aObjectB) const
 	{
 		if(aObjectA.GetZ() != aObjectB.GetZ())
 		{
