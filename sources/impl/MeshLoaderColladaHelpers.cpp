@@ -37,6 +37,8 @@
 
 #include "math/Math.h"
 
+#define MAX_ROTATIONS 10
+
 namespace hpl {
 
 #define GetAdress(sStr) if(sStr.length()>0 && sStr[0]=='#') sStr = cString::Sub(sStr,1);
@@ -816,6 +818,8 @@ namespace hpl {
 		///////////////////////////////////////////////////////////
 		//Iterate through all of the transforms.
 		TiXmlElement *pTransformElem = apRootElem->FirstChildElement();
+		cQuaternion qRot[MAX_ROTATIONS];
+		int rotCount = 0;
 		while(pTransformElem)
 		{
 			tString sVal = pTransformElem->Value();
@@ -848,12 +852,12 @@ namespace hpl {
 			// Rotation
 			else if(sVal == "rotate")
 			{
-				cQuaternion qRot;
+				if (rotCount >= MAX_ROTATIONS)
+					FatalError("Too many rotations (more than %d)", MAX_ROTATIONS);
 				cVector3f vRotAxis = GetVectorPosFromPtr(&vValVec[0]);
 
-				qRot.FromAngleAxis(cMath::ToRad(vValVec[3]),vRotAxis);
-
-				mtxTransform = cMath::MatrixMul(mtxTransform, cMath::MatrixQuaternion(qRot));
+				qRot[rotCount].FromAngleAxis(cMath::ToRad(vValVec[3]),vRotAxis);
+				rotCount++;
 			}
 			// Scaling
 			else if(sVal == "scale")
@@ -897,6 +901,16 @@ namespace hpl {
 
 			vValVec.clear();
 			pTransformElem = pTransformElem->NextSiblingElement();
+		}
+
+		// Apply rotation last. This fixes COLLADA files exported by Blender.
+		// Unlike Maya (used by the original devs), Blender places the rotation before the translation.
+		// Before this workaround, the rotation would be applied around the world origin.
+		// There is probably a better of fixing this but I got a C in second year Linear Algebra
+		// so this is what you get.
+		for (int i = 0; i < rotCount; i++)
+		{
+			mtxTransform = cMath::MatrixMul(mtxTransform, cMath::MatrixQuaternion(qRot[i]));
 		}
 
 		pNode->m_mtxTransform = mtxTransform;
