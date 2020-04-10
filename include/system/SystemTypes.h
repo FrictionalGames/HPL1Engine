@@ -92,6 +92,8 @@ namespace hpl {
 	typedef std::set<tWString> tWStringSet;
 	typedef tWStringSet::iterator tWStringSetIt;
 
+	typedef std::multimap<tString, tString> tFilePathMap;
+	typedef tFilePathMap::iterator tFilePathMapIt;
 	//--------------------------------------------------------
 
 

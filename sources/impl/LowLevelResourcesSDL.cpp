@@ -154,6 +154,11 @@ namespace hpl {
 		Platform::FindFileInDir(alstStrings, asDir,asMask);
 	}
 
+	void cLowLevelResourcesSDL::FindFilesInDirRecursive(tFilePathMap& alstStrings, tWString asDir)
+	{
+		Platform::FindFilesInDirRecursive(alstStrings, asDir);
+	}
+
 	//-----------------------------------------------------------------------
 
 }

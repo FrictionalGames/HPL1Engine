@@ -30,6 +30,7 @@ namespace hpl {
 		static long FileLength(const tWString& asFileName);
 		static long FileLength(FILE *pFile);
 		static void FindFileInDir(tWStringList &alstStrings,tWString asDir, tWString asMask);
+        static void FindFilesInDirRecursive(tFilePathMap& alstStrings, tWString asDir);
 	};
 }
 

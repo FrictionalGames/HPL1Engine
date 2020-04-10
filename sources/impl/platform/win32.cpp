@@ -18,6 +18,7 @@
  */
 #include "impl/Platform.h"
 #include <io.h>
+#include <set>
 
 #include "system/LowLevelSystem.h"
 
@@ -77,6 +78,52 @@ namespace hpl {
 			{
 				alstStrings.push_back(FileInfo.name);
 			}
+		}
+	}
+
+	void Platform::FindFilesInDirRecursive(tFilePathMap& paths, tWString asDir)
+	{
+		asDir = cString::ReplaceCharToW(asDir, _W("/"), _W("\\"));
+		
+		//Get the search string
+		wchar_t sSpec[256];
+		wchar_t end = asDir[asDir.size() - 1];
+
+		swprintf_s(sSpec, 256, _W("%s\\*"), asDir.c_str());
+
+		//The needed structs
+		intptr_t lHandle;
+		struct _wfinddata_t FileInfo;
+
+		tWStringSet excludedDirs;
+		excludedDirs.insert(_W("."));
+		excludedDirs.insert(_W(".."));
+
+		//Find the first file:
+		tWStringList left_to_search;
+		lHandle = _wfindfirst(sSpec, &FileInfo);
+		if (lHandle == -1L)return;
+
+		//Get the other files.
+		do
+		{
+			tWString fileName = FileInfo.name;
+			if ((FileInfo.attrib & _A_SUBDIR) == 0)
+			{
+				tString sFile = cString::To8Char(FileInfo.name);
+				paths.insert(tFilePathMap::value_type(cString::ToLowerCase(sFile), cString::SetFilePath(sFile, cString::To8Char(asDir))));
+			}
+			else if (excludedDirs.count(fileName) == 0)
+			{
+				left_to_search.push_back(FileInfo.name);
+			}
+		} while (_wfindnext(lHandle, &FileInfo) == 0);
+
+		for (tWStringListIt it = left_to_search.begin(); it != left_to_search.end(); ++it)
+		{
+			wchar_t nextDir[256];
+			swprintf_s(nextDir, 256, _W("%s\\%s"), asDir.c_str(), it->c_str());
+			Platform::FindFilesInDirRecursive(paths, nextDir);
 		}
 	}
 }

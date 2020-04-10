@@ -32,6 +32,7 @@ namespace hpl {
 		~cLowLevelResourcesSDL();
 
 		void FindFilesInDir(tWStringList &alstStrings, tWString asDir, tWString asMask);
+        void FindFilesInDirRecursive(tFilePathMap& alstStrings, tWString asDir);
 
 		void GetSupportedImageFormats(tStringList &alstFormats);
 		iBitmap2D* LoadBitmap2D(tString asFilePath, tString asType = "");

@@ -39,6 +39,7 @@ namespace hpl {
 		 * \param asMask Mask to be used, for example "*.*" to search for all kinds of files.
 		 */
 		virtual void FindFilesInDir(tWStringList &alstStrings, tWString asDir, tWString asMask)=0;
+		virtual void FindFilesInDirRecursive(tFilePathMap& alstStrings, tWString asDir)=0;
 
 		virtual void GetSupportedImageFormats(tStringList &alstFormats)=0;
 		virtual iBitmap2D* LoadBitmap2D(tString asFilePath, tString asType = "")=0;
