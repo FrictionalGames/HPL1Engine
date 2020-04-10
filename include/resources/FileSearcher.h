@@ -32,7 +32,7 @@ namespace hpl {
 	class cFileSearcher
 	{
 	public:
-		cFileSearcher(iLowLevelResources *apLowLevelResources);
+		cFileSearcher(iLowLevelResources *apLowLevelResources, tWString);
 		~cFileSearcher();
 
 		/**

@@ -52,13 +52,13 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	cResources::cResources(iLowLevelResources *apLowLevelResources,iLowLevelGraphics *apLowLevelGraphics)
+	cResources::cResources(iLowLevelResources *apLowLevelResources,iLowLevelGraphics *apLowLevelGraphics, tWString assetsPath)
 		: iUpdateable("Resources")
 	{
 		mpLowLevelResources = apLowLevelResources;
 		mpLowLevelGraphics = apLowLevelGraphics;
 
-		mpFileSearcher = hplNew( cFileSearcher, (mpLowLevelResources) );
+		mpFileSearcher = hplNew( cFileSearcher, (mpLowLevelResources, assetsPath));
 
 		mpDefaultEntity3DLoader = NULL;
 		mpDefaultArea3DLoader = NULL;

@@ -30,11 +30,10 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	cFileSearcher::cFileSearcher(iLowLevelResources *apLowLevelResources)
+	cFileSearcher::cFileSearcher(iLowLevelResources *apLowLevelResources, tWString assetsPath)
 	{
 		mpLowLevelResources = apLowLevelResources;
-
-		mpLowLevelResources->FindFilesInDirRecursive(m_mapFiles, _W("D:\\eclipse\\assets"));
+		mpLowLevelResources->FindFilesInDirRecursive(m_mapFiles, assetsPath);
 	}
 
 	//-----------------------------------------------------------------------

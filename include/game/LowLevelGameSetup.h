@@ -39,7 +39,7 @@ namespace hpl {
 		virtual cInput* CreateInput(cGraphics* apGraphics)=0;
 		virtual cSystem* CreateSystem()=0;
 		virtual cGraphics* CreateGraphics()=0;
-		virtual cResources* CreateResources(cGraphics* apGraphics)=0;
+		virtual cResources* CreateResources(cGraphics* apGraphics, tWString assetsPath)=0;
 		virtual cScene* CreateScene(cGraphics* apGraphics, cResources* apResources, cSound* apSound,
 									cPhysics *apPhysics, cSystem *apSystem,cAI *apAI,cHaptic *apHaptic)=0;
 		virtual cSound* CreateSound()=0;

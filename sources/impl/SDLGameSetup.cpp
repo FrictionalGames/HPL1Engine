@@ -119,9 +119,9 @@ namespace hpl {
 	 * \param apGraphics
 	 * \return
 	 */
-	cResources* cSDLGameSetup::CreateResources(cGraphics* apGraphics)
+	cResources* cSDLGameSetup::CreateResources(cGraphics* apGraphics, tWString assetsPath)
 	{
-		cResources *pResources = hplNew( cResources, (mpLowLevelResources,mpLowLevelGraphics) );
+		cResources *pResources = hplNew( cResources, (mpLowLevelResources,mpLowLevelGraphics, assetsPath) );
 		return pResources;
 	}
 

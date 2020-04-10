@@ -39,7 +39,7 @@ namespace hpl {
 		cInput* CreateInput(cGraphics* apGraphics);
 		cSystem* CreateSystem();
 		cGraphics* CreateGraphics();
-		cResources* CreateResources(cGraphics* apGraphics);
+		cResources* CreateResources(cGraphics* apGraphics, tWString assetsPath);
 		cScene* CreateScene(cGraphics* apGraphics, cResources* apResources, cSound* apSound,
 							cPhysics *apPhysics, cSystem *apSystem,cAI *apAI,cHaptic *apHaptic);
 		cSound* CreateSound();

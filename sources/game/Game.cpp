@@ -147,9 +147,9 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	cGame::cGame(iLowLevelGameSetup *apGameSetup, cSetupVarContainer &aVars)
+	cGame::cGame(iLowLevelGameSetup *apGameSetup, cSetupVarContainer &aVars, tWString assetsPath)
 	{
-		GameInit(apGameSetup,aVars);
+		GameInit(apGameSetup,aVars,assetsPath);
 	}
 
 
@@ -165,12 +165,12 @@ namespace hpl {
 		Vars.AddBool("Fullscreen",abFullscreen);
 		Vars.AddInt("Multisampling",alMultisampling);
 		Vars.AddInt("LogicUpdateRate",alUpdateRate);
-		GameInit(apGameSetup,Vars);
+		GameInit(apGameSetup,Vars, _W("."));
 	}
 
 	//-----------------------------------------------------------------------
 
-	void cGame::GameInit(iLowLevelGameSetup *apGameSetup, cSetupVarContainer &aVars)
+	void cGame::GameInit(iLowLevelGameSetup *apGameSetup, cSetupVarContainer &aVars, tWString assetsPath)
 	{
 		mpGameSetup = apGameSetup;
 
@@ -185,7 +185,7 @@ namespace hpl {
 		mpSystem = mpGameSetup->CreateSystem();
 
 		Log(" Creating resource module\n");
-		mpResources = mpGameSetup->CreateResources(mpGraphics);
+		mpResources = mpGameSetup->CreateResources(mpGraphics, assetsPath);
 
 		Log(" Creating input module\n");
 		mpInput = mpGameSetup->CreateInput(mpGraphics);

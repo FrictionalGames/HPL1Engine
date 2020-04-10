@@ -83,12 +83,12 @@ namespace hpl {
 	class cGame
 	{
 	public:
-		cGame(iLowLevelGameSetup *apGameSetup, cSetupVarContainer &aVars);
+		cGame(iLowLevelGameSetup *apGameSetup, cSetupVarContainer &aVars, tWString assetsPath);
 		cGame(iLowLevelGameSetup *apGameSetup,int alWidth, int alHeight, int alBpp, bool abFullscreen,
 					unsigned int alUpdateRate=60,int alMultisampling=0);
 		~cGame();
 	private:
-		void GameInit(iLowLevelGameSetup *apGameSetup, cSetupVarContainer &aVars);
+		void GameInit(iLowLevelGameSetup *apGameSetup, cSetupVarContainer &aVars, tWString assetsPath);
 
 	public:
 

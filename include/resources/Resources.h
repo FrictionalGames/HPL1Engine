@@ -157,7 +157,7 @@ namespace hpl {
 	class cResources : public iUpdateable
 	{
 	public:
-		cResources(iLowLevelResources *apLowLevelResources,iLowLevelGraphics *apLowLevelGraphics);
+		cResources(iLowLevelResources *apLowLevelResources,iLowLevelGraphics *apLowLevelGraphics, tWString assetsPath);
 		~cResources();
 
 		void Init(cGraphics* apGraphics,cSystem *apSystem, cSound* apSound, cScene *apScene, cGui *apGui);
