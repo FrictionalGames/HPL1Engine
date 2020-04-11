@@ -136,15 +136,16 @@ namespace hpl {
 			SDL_Rect srcRect;
 			srcRect.x = lX; srcRect.y = lY;
 			srcRect.w = lW; srcRect.h = lH;
-			SDL_BlitSurface(pSourceBitmap->GetSurface(),&srcRect, pBmp->GetSurface(), NULL);
+			SDL_Surface* srcSurface = pSourceBitmap->GetSurface();
+			SDL_BlitSurface(srcSurface,&srcRect, pBmp->GetSurface(), NULL);
 
 			int lBmpSize = pBmp->GetSurface()->format->BytesPerPixel;
 			unsigned char* PixBuffer = (unsigned char*)pBmp->GetSurface()->pixels;
 
 			//Set proper alpha (dunno if this is needed)
-			for(unsigned int y=0;y<pBmp->GetHeight();y++)
-				for(unsigned int x=0;x<pBmp->GetWidth();x++) {
-					unsigned char* Pix = &PixBuffer[y*pBmp->GetWidth()*lBmpSize + x*lBmpSize];
+			for (unsigned int y = 0; y < pBmp->GetHeight(); y++)
+				for (unsigned int x = 0; x < pBmp->GetWidth(); x++) {
+					unsigned char* Pix = &PixBuffer[y * pBmp->GetWidth() * lBmpSize + x * lBmpSize];
 					Pix[3] = Pix[0];
 				}
 
@@ -238,10 +239,10 @@ namespace hpl {
 
 		//Blit the surface using blending. This way it should create a nice
 		//b&w image where the font is white.
-		SDL_SetAlpha(pBmp->GetSurface(),0,0);
-		SDL_SetAlpha(pGlyphSurface,SDL_SRCALPHA,0);
+		SDL_SetSurfaceAlphaMod(pBmp->GetSurface(),0);
+		SDL_SetSurfaceAlphaMod(pGlyphSurface,0);
 		SDL_BlitSurface(pGlyphSurface, NULL, pBmp->GetSurface(),NULL);
-		SDL_SetAlpha(pBmp->GetSurface(),0,0);
+		SDL_SetSurfaceAlphaMod(pBmp->GetSurface(),0);
 
 		//Set the alpha of the bitmap to the average color.
 		//So we get some alpha bledning.

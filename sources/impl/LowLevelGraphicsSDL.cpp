@@ -138,8 +138,6 @@ namespace hpl {
 		//#endif
 
 
-		SDL_SetGammaRamp(mvStartGammaArray[0],mvStartGammaArray[1],mvStartGammaArray[2]);
-
 		hplFree(mpVertexArray);
 		hplFree(mpIndexArray);
 		for(int i=0;i<MAX_TEXTUREUNITS;i++)	hplFree(mpTexCoordArray[i]);
@@ -195,31 +193,27 @@ namespace hpl {
 			}
 		}
 
-		unsigned int mlFlags = SDL_OPENGL;
-
-		if(abFullscreen) mlFlags |= SDL_FULLSCREEN;
-
 		Log(" Setting video mode: %d x %d - %d bpp\n",alWidth, alHeight, alBpp);
-		mpScreen = SDL_SetVideoMode( alWidth, alHeight, alBpp, mlFlags);
-		if(mpScreen==NULL){
+		window = SDL_CreateWindow("Eclipse", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, alWidth, alHeight, SDL_WINDOW_OPENGL);
+		SDL_GL_CreateContext(window);
+		if(window ==NULL){
 			Error("Could not set display mode setting a lower one!\n");
 			mvScreenSize = cVector2l(640,480);
-			mpScreen = SDL_SetVideoMode( mvScreenSize.x, mvScreenSize.y, alBpp, mlFlags);
-			if(mpScreen==NULL)
+			if(window ==NULL)
 			{
 				FatalError("Unable to initialize display!\n");
 				return false;
 			}
 			else
 			{
-				SetWindowCaption(asWindowCaption);
+				SDL_SetWindowTitle(window, asWindowCaption.c_str());
 				CreateMessageBoxW(_W("Warning!"),
 									_W("Could not set displaymode and 640x480 is used instead!\n"));
 			}
 		}
 		else
 		{
-			SetWindowCaption(asWindowCaption);
+			SDL_SetWindowTitle(window, asWindowCaption.c_str());
 		}
 
 		Log(" Init Glee...");
@@ -249,17 +243,16 @@ namespace hpl {
 		ShowCursor(false);
 
 		//Gamma
-		mfGammaCorrection = 1.0f;
-		SDL_GetGammaRamp(mvStartGammaArray[0],mvStartGammaArray[1],mvStartGammaArray[2]);
+		SDL_SetWindowGammaRamp(window, mvStartGammaArray[0], mvStartGammaArray[1], mvStartGammaArray[2]);
 
-		SDL_SetGamma(mfGammaCorrection,mfGammaCorrection,mfGammaCorrection);
+		SDL_SetWindowBrightness(window, mfGammaCorrection);
 
 		//GL
 		Log(" Setting up OpenGL\n");
 		SetupGL();
 
 		//Set the clear color
-		SDL_GL_SwapBuffers();
+		SDL_GL_SwapWindow(window);
 
 		return true;
 	}
@@ -505,7 +498,7 @@ namespace hpl {
 
 		mfGammaCorrection = afX;
 
-		SDL_SetGamma(mfGammaCorrection,mfGammaCorrection,mfGammaCorrection);
+		SDL_SetWindowBrightness(window, mfGammaCorrection);
 
 		/*Uint16 GammaArray[3][256];
 
@@ -600,7 +593,8 @@ namespace hpl {
 	iBitmap2D* cLowLevelGraphicsSDL::CreateBitmap2D(const cVector2l &avSize, unsigned int alBpp)
 	{
 		cSDLBitmap2D *pBmp = hplNew( cSDLBitmap2D, (mpPixelFormat) );
-		pBmp->Create(avSize,alBpp);
+		if (!pBmp->Create(avSize, alBpp))
+			FatalError("Failed to create bitmap.");
 
 		return pBmp;
 	}
@@ -917,7 +911,7 @@ namespace hpl {
 	void cLowLevelGraphicsSDL::SwapBuffers()
 	{
 		glFlush();
-		SDL_GL_SwapBuffers();
+		SDL_GL_SwapWindow(window);
 	}
 
 	//-----------------------------------------------------------------------

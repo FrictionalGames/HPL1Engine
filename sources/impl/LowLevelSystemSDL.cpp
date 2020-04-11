@@ -689,13 +689,6 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	void SetWindowCaption(const tString &asName)
-	{
-		SDL_WM_SetCaption(asName.c_str(),"");
-	}
-
-	//-----------------------------------------------------------------------
-
 	bool HasWindowFocus(const tWString &asWindowCaption)
 	{
 		#ifdef WIN32

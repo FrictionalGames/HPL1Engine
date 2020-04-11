@@ -17,7 +17,7 @@
  * along with HPL1 Engine.  If not, see <http://www.gnu.org/licenses/>.
  */
 #ifdef WIN32
-#pragma comment(lib, "SDL.lib")
+#pragma comment(lib, "SDL2.lib")
 #pragma comment(lib, "SDLmain.lib")
 #endif
 

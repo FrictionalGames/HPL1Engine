@@ -53,7 +53,7 @@ namespace hpl {
 
 	void cLowLevelInputSDL::LockInput(bool abX)
 	{
-		SDL_WM_GrabInput(abX ? SDL_GRAB_ON : SDL_GRAB_OFF);
+		SDL_SetRelativeMouseMode(SDL_TRUE);
 	}
 
 	//-----------------------------------------------------------------------

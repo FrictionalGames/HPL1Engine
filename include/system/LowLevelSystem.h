@@ -80,8 +80,6 @@ namespace hpl {
 	extern cDate FileModifiedDate(const tWString& asFilePath);
 	extern cDate FileCreationDate(const tWString& asFilePath);
 
-	extern void SetWindowCaption(const tString &asName);
-
 	extern bool HasWindowFocus(const tWString &asWindowCaption);
 
 	extern unsigned long GetApplicationTime();

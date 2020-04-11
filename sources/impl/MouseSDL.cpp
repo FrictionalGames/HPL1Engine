@@ -104,14 +104,6 @@ namespace hpl {
 					case SDL_BUTTON_LEFT: mvMButtonArray[eMButton_Left] = bButtonIsDown;break;
 					case SDL_BUTTON_MIDDLE: mvMButtonArray[eMButton_Middle] = bButtonIsDown;break;
 					case SDL_BUTTON_RIGHT: mvMButtonArray[eMButton_Right] = bButtonIsDown;break;
-					case SDL_BUTTON_WHEELUP:
-						mvMButtonArray[eMButton_WheelUp] = bButtonIsDown;
-						if(bButtonIsDown) mbWheelUpMoved = true;
-						break;
-					case SDL_BUTTON_WHEELDOWN:
-						mvMButtonArray[eMButton_WheelDown] = bButtonIsDown;
-						if(bButtonIsDown) mbWheelDownMoved = true;
-						break;
 				}
 			}
 		}

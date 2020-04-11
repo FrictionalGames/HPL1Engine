@@ -664,7 +664,8 @@ namespace hpl {
 			glTexImage2D(GLTarget, 0, lChannels, mlWidth, mlHeight,
 			0, format, GL_UNSIGNED_BYTE, pPixelSrc);
 
-		if(glGetError()!=GL_NO_ERROR) return false;
+		GLenum error = glGetError();
+		if(error != GL_NO_ERROR) return false;
 
 		if(mbUseMipMaps && mTarget != eTextureTarget_Rect)
 		{
@@ -729,9 +730,14 @@ namespace hpl {
 		SDL_Surface *pSurface =  apSrc->GetSurface();
 		alChannels = pSurface->format->BytesPerPixel;
 		aFormat = GL_RGBA;
+		int channels = 0;
 
 		tString sType = cString::ToLowerCase(apSrc->msType);
 
+		if (alChannels == 0)
+		{
+			channels = GL_RGBA;
+		}
 		if(alChannels==4)
 		{
 			if(sType == "tga")
@@ -742,7 +748,7 @@ namespace hpl {
 			{
 				aFormat = GL_RGBA;
 			}
-
+			channels = GL_RGBA;
 		}
 		if(alChannels==3)
 		{
@@ -754,11 +760,14 @@ namespace hpl {
 			{
 				aFormat = GL_RGB;
 			}
+			channels = GL_RGB;
 		}
 		if(alChannels==1)
 		{
 			aFormat = GL_ALPHA;
+			channels = GL_DEPTH_COMPONENT;
 		}
+		alChannels = channels;
 	}
 
 	//-----------------------------------------------------------------------

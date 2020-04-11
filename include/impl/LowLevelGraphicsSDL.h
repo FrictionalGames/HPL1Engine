@@ -25,7 +25,6 @@
 #include <Cg/cgGL.h>
 
 #include <SDL/SDL.h>
-#include <SDL/SDL_ttf.h>
 // Unix's X11 Defines DestoryAll which collides with methods
 #undef DestroyAll
 
@@ -256,13 +255,13 @@ namespace hpl {
 
 		//Gamma
 		Uint16 mvStartGammaArray[3][256];
-		float mfGammaCorrection;
+		Uint16 mfGammaCorrection = 255;
 
 		//Clipping
 		cPlanef mvClipPlanes[kMaxClipPlanes];
 
 		//SDL Variables
-		SDL_Surface *mpScreen;
+		SDL_Window* window;
 		cSDLPixelFormat *mpPixelFormat;
 
 		//Vertex Array variables
