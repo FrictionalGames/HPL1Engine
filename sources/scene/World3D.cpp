@@ -448,6 +448,8 @@ namespace hpl {
 				if(pLoader)
 				{
 					pEntity = pLoader->Load(asName, pRootElem,a_mtxTransform, this,sFileName, abLoadReferences);
+					if (pEntity == NULL)
+						FatalError("Failed to load entity %s", sFileName);
 					pEntity->SetSourceFile(sFileName);
 				}
 				else
