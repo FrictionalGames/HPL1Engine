@@ -5,12 +5,22 @@
 #include "graphics/VertexBuffer.h"
 
 class TiXmlElement;
+class TiXmlDocument;
 
 namespace hpl {
 
 	class cMesh;
 	class cNode3D;
 	class iVertexBuffer;
+
+	class IndexedFile
+	{
+	public:
+		tString msId;
+		tString msPath;
+	};
+
+	typedef std::vector<IndexedFile> tFileIndex;
 
 	class cMeshLoaderMap :
 		public iMeshLoader
@@ -30,6 +40,7 @@ namespace hpl {
 
 		void AddSupportedTypes(tStringVec* avFileTypes);
 	private:
+		void ReadFileIndicies(TiXmlDocument* xmlDoc, tFileIndex* fileIndicies, tString parentNodeName);
 	};
 }
 
