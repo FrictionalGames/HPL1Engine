@@ -19,8 +19,23 @@ namespace hpl {
 		tString msId;
 		tString msPath;
 	};
-
 	typedef std::vector<IndexedFile> tFileIndex;
+
+	class StaticObject
+	{
+	public:
+		bool castsShadow;
+		bool collides;
+		tString fileIndex;
+		tString group;
+		tString id;
+		tString name;
+		float rotation[3];
+		float scale[3];
+		tString tag;
+		float worldPosition[3];
+	};
+	typedef std::vector<StaticObject> tStaticObjects;
 
 	class cMeshLoaderMap :
 		public iMeshLoader
@@ -41,6 +56,7 @@ namespace hpl {
 		void AddSupportedTypes(tStringVec* avFileTypes);
 	private:
 		void ReadFileIndicies(TiXmlDocument* xmlDoc, tFileIndex* fileIndicies, tString parentNodeName);
+		void ReadStaticObjects(TiXmlDocument* xmlDoc, tStaticObjects* staticObjects);
 	};
 }
 
