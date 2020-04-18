@@ -883,6 +883,9 @@
       <Filter>Gui</Filter>
     </ClInclude>
     <ClInclude Include="include\HPL.h" />
+    <ClInclude Include="include\impl\MeshLoaderMap.h">
+      <Filter>Impl\Resources</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="sources\system\Container.cpp">
@@ -1577,6 +1580,9 @@
     </ClCompile>
     <ClCompile Include="sources\gui\WidgetWindow.cpp">
       <Filter>Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\impl\MeshLoaderMap.cpp">
+      <Filter>Impl\Resources</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

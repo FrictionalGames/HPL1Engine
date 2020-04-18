@@ -354,8 +354,10 @@
     <ClInclude Include="include\system\String.h" />
     <ClInclude Include="include\system\System.h" />
     <ClInclude Include="include\system\SystemTypes.h" />
+    <ClInclude Include="include\impl\MeshLoaderMap.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="sources\impl\MeshLoaderMap.cpp" />
     <ClCompile Include="sources\ai\AI.cpp" />
     <ClCompile Include="sources\ai\AINodeContainer.cpp" />
     <ClCompile Include="sources\ai\AINodeGenerator.cpp" />

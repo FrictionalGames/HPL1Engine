@@ -24,6 +24,7 @@
 #include "impl/SDLBitmap2D.h"
 #include "impl/MeshLoaderMSH.h"
 #include "impl/MeshLoaderCollada.h"
+#include "impl/MeshLoaderMap.h"
 #ifdef INCLUDE_THEORA
 #include "impl/VideoStreamTheora.h"
 #endif
@@ -135,6 +136,7 @@ namespace hpl {
 		//apHandler->AddLoader(hplNew( cMeshLoaderFBX,(mpLowLevelGraphics)));
 		apHandler->AddLoader(hplNew( cMeshLoaderMSH,(mpLowLevelGraphics)));
 		apHandler->AddLoader(hplNew( cMeshLoaderCollada,(mpLowLevelGraphics)));
+		apHandler->AddLoader(hplNew( cMeshLoaderMap, (mpLowLevelGraphics)));
 	}
 
 	//-----------------------------------------------------------------------
