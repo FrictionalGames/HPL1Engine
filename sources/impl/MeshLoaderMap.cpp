@@ -8,6 +8,7 @@
 
 #include "resources/MeshManager.h"
 
+#include "scene/Light3DPoint.h"
 #include "scene/MeshEntity.h"
 #include "scene/Scene.h"
 #include "scene/World3D.h"
@@ -46,6 +47,7 @@ namespace hpl {
 
 		tStaticObjects staticObjects;
 		tMapEntities mapEntities;
+		tMapLightEntities lightEntities;
 
 		cWorld3D* pWorld = apScene->CreateWorld3D(cString::SetFileExt(cString::GetFileName(asFile), ""));
 		pWorld->SetFileName(cString::GetFileName(asFile));
@@ -61,9 +63,10 @@ namespace hpl {
 		ReadFileIndicies(pXmlDoc, &decalFiles, "FileIndex_Decals");
 
 		ReadStaticObjects(pXmlDoc, &staticObjects);
-		ReadMapEntities(pXmlDoc, &mapEntities);
+		ReadMapEntities(pXmlDoc, &mapEntities, &lightEntities);
 
 		LoadWorldGeometry(pWorld, &staticObjects, staticObjectFiles);
+		LoadWorldSceneObjects(pWorld, &mapEntities, &lightEntities);
 
 		pWorld->SetUpData();
 
@@ -148,7 +151,7 @@ namespace hpl {
 		}
 	}
 
-	void cMeshLoaderMap::ReadMapEntities(TiXmlDocument* xmlDoc, tMapEntities* mapEntities)
+	void cMeshLoaderMap::ReadMapEntities(TiXmlDocument* xmlDoc, tMapEntities* mapEntities, tMapLightEntities* lightEntities)
 	{
 		TiXmlElement* pRootElem = xmlDoc->RootElement();
 		TiXmlElement* staticObjectsElem = pRootElem
@@ -162,14 +165,10 @@ namespace hpl {
 			{
 				MapEntity mapEntity;
 
+				PopulateEntityData(entityElem, mapEntity);
 				mapEntity.fileIndex = cString::ToString(entityElem->Attribute("FileIndex"), "");
 				mapEntity.id = cString::ToString(entityElem->Attribute("ID"), "");
 				mapEntity.group = cString::ToString(entityElem->Attribute("Group"), "");
-				mapEntity.name = cString::ToString(entityElem->Attribute("Name"), "");
-				cString::FloatStringToArray(mapEntity.rotation, entityElem->Attribute("Rotation"), 3);
-				cString::FloatStringToArray(mapEntity.scale, entityElem->Attribute("Scale"), 3);
-				mapEntity.tag = cString::ToString(entityElem->Attribute("Tag"), "");
-				cString::FloatStringToArray(mapEntity.worldPosition, entityElem->Attribute("WorldPos"), 3);
 
 				TiXmlElement* variablesElem = entityElem->FirstChildElement("UserVariables");
 				if (variablesElem)
@@ -191,11 +190,29 @@ namespace hpl {
 
 				entityElem = entityElem->NextSiblingElement("Entity");
 			}
+			TiXmlElement* lightElem = staticObjectsElem->FirstChildElement("PointLight");
+			while (lightElem)
+			{
+				MapLightEntity lightEntity;
+				PopulateEntityData(lightElem, lightEntity);
+				lightEntity.radius = cString::ToFloat(lightElem->Attribute("Radius"), 1);
+				lightEntities->push_back(lightEntity);
+				lightElem = lightElem->NextSiblingElement("PointLight");
+			}
 		}
 		else
 		{
 			Error("Couldn't find Entities element in map file!");
 		}
+	}
+
+	void cMeshLoaderMap::PopulateEntityData(TiXmlElement* entityElem, MapEntity& mapEntity)
+	{
+		mapEntity.name = cString::ToString(entityElem->Attribute("Name"), "");
+		cString::FloatStringToArray(mapEntity.rotation, entityElem->Attribute("Rotation"), 3);
+		cString::FloatStringToArray(mapEntity.scale, entityElem->Attribute("Scale"), 3);
+		mapEntity.tag = cString::ToString(entityElem->Attribute("Tag"), "");
+		cString::FloatStringToArray(mapEntity.worldPosition, entityElem->Attribute("WorldPos"), 3);
 	}
 
 	void cMeshLoaderMap::LoadWorldGeometry(cWorld3D* world, tStaticObjects* staticObjects, tFileIndex staticObjectFiles)
@@ -243,5 +260,17 @@ namespace hpl {
 			cVector3f(-vec3array[0], vec3array[2], vec3array[1]) :
 			cVector3f(vec3array[0], vec3array[1], vec3array[2]);
 		return result;
+	}
+
+	void cMeshLoaderMap::LoadWorldSceneObjects(cWorld3D* world, tMapEntities* mapEntities, tMapLightEntities* lightEntities)
+	{
+		for (int i = 0; i < lightEntities->size(); i++)
+		{
+			MapLightEntity lightEntity = lightEntities->at(i);
+			cLight3DPoint* pLight = world->CreateLightPoint(lightEntity.name, false);
+			cMatrixf lightTransform = CreateTransformMatrix(lightEntity.worldPosition, lightEntity.rotation, lightEntity.scale);
+			pLight->SetMatrix(lightTransform);
+			pLight->SetDiffuseColor(cColor(1, 1, 1));
+		}
 	}
 }

@@ -57,6 +57,13 @@ namespace hpl {
 	};
 	typedef std::vector<MapEntity> tMapEntities;
 
+	class MapLightEntity : public MapEntity
+	{
+	public:
+		float radius;
+	};
+	typedef std::vector<MapLightEntity> tMapLightEntities;
+
 	class cMeshLoaderMap :
 		public iMeshLoader
 	{
@@ -78,10 +85,12 @@ namespace hpl {
 		tString LookupFile(tFileIndex index, tString id);
 		void ReadFileIndicies(TiXmlDocument* xmlDoc, tFileIndex* fileIndicies, tString parentNodeName);
 		void ReadStaticObjects(TiXmlDocument* xmlDoc, tStaticObjects* staticObjects);
-		void ReadMapEntities(TiXmlDocument* xmlDoc, tMapEntities* mapEntities);
+		void ReadMapEntities(TiXmlDocument* xmlDoc, tMapEntities* mapEntities, tMapLightEntities* lightEntities);
+		static void PopulateEntityData(TiXmlElement* entityElem, MapEntity& mapEntity);
 		void LoadWorldGeometry(cWorld3D* world, tStaticObjects* staticObjects, tFileIndex staticObjectFiles);
 		static cMatrixf CreateTransformMatrix(float* vec3position, float* vec3rotation, float* vec3scale);
 		static cVector3f FloatArrayToVec3(float* vec3array, bool convertZToY);
+		void LoadWorldSceneObjects(cWorld3D* world, tMapEntities* mapEntities, tMapLightEntities* lightEntities);
 	};
 }
 
