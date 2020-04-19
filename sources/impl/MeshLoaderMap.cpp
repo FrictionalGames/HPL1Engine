@@ -246,11 +246,9 @@ namespace hpl {
 				Error("Error loading external mesh entity %s!", fileName);
 			else
 			{
-				cMeshEntity* pEntity = world->CreateMeshEntity(staticObject.name, pMesh, false);
+				
 				cMatrixf transform = CreateTransformMatrix(staticObject.worldPosition, staticObject.rotation, staticObject.scale);
-				pEntity->SetMatrix(transform);
-				world->GetPortalContainer()->Add(pEntity, false);
-				pEntity->SetCastsShadows(staticObject.castsShadow);
+				world->CreateEntity(staticObject.name, transform, fileName, false);
 			}
 		}
 	}
