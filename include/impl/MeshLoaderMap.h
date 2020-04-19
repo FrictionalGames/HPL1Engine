@@ -4,6 +4,8 @@
 #include "resources/MeshLoader.h"
 #include "graphics/VertexBuffer.h"
 
+#include "system/String.h"
+
 class TiXmlElement;
 class TiXmlDocument;
 
@@ -37,6 +39,24 @@ namespace hpl {
 	};
 	typedef std::vector<StaticObject> tStaticObjects;
 
+	typedef std::map<tString, tString> tUserVariables;
+
+	class MapEntity
+	{
+	public:
+		bool active;
+		tString fileIndex;
+		tString group;
+		tString id;
+		tString name;
+		float rotation[3];
+		float scale[3];
+		tString tag;
+		float worldPosition[3];
+		tUserVariables variables;
+	};
+	typedef std::vector<MapEntity> tMapEntities;
+
 	class cMeshLoaderMap :
 		public iMeshLoader
 	{
@@ -57,6 +77,7 @@ namespace hpl {
 	private:
 		void ReadFileIndicies(TiXmlDocument* xmlDoc, tFileIndex* fileIndicies, tString parentNodeName);
 		void ReadStaticObjects(TiXmlDocument* xmlDoc, tStaticObjects* staticObjects);
+		void ReadMapEntities(TiXmlDocument* xmlDoc, tMapEntities* mapEntities);
 	};
 }
 
