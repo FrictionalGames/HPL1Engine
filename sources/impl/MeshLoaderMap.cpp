@@ -1,14 +1,21 @@
 #include "impl/MeshLoaderMap.h"
+
+#include "resources/MeshManager.h"
+
+#include "scene/MeshEntity.h"
 #include "scene/Scene.h"
 #include "scene/World3D.h"
-#include "system\LowLevelSystem.h"
+
+#include "system/LowLevelSystem.h"
 #include "system/String.h"
 
 #include "impl/tinyXML/tinyxml.h"
 
+#include "math/Math.h"
+
 namespace hpl {
 	cMeshLoaderMap::cMeshLoaderMap(iLowLevelGraphics* apLowLevelGraphics) : iMeshLoader(apLowLevelGraphics)
-	{ 
+	{
 	}
 
 	cMeshLoaderMap::~cMeshLoaderMap()
@@ -47,6 +54,8 @@ namespace hpl {
 		ReadStaticObjects(pXmlDoc, &staticObjects);
 		ReadMapEntities(pXmlDoc, &mapEntities);
 
+		LoadWorldGeometry(pWorld, &staticObjects, staticObjectFiles);
+
 		return pWorld;
 	}
 
@@ -57,6 +66,14 @@ namespace hpl {
 
 	void cMeshLoaderMap::AddSupportedTypes(tStringVec* avFileTypes)
 	{
+	}
+
+	tString cMeshLoaderMap::LookupFile(tFileIndex index, tString id)
+	{
+		for (int i = 0; i < index.size(); i++)
+			if (index[i].msId == id)
+				return index[i].msPath;
+		return "";
 	}
 
 	void cMeshLoaderMap::ReadFileIndicies(TiXmlDocument* xmlDoc, tFileIndex* fileIndicies, tString parentNodeName)
@@ -168,5 +185,52 @@ namespace hpl {
 		{
 			Error("Couldn't find Entities element in map file!");
 		}
+	}
+
+	void cMeshLoaderMap::LoadWorldGeometry(cWorld3D* world, tStaticObjects* staticObjects, tFileIndex staticObjectFiles)
+	{
+		for(int i = 0; i < staticObjects->size(); i++)
+		{
+			StaticObject staticObject = staticObjects->at(i);
+			tString fileName = LookupFile(staticObjectFiles, staticObject.fileIndex);
+			cMesh* pMesh = mpMeshManager->CreateMesh(fileName);
+			if (!pMesh)
+				Error("Error loading external mesh entity %s!", fileName);
+			else
+			{
+				cMeshEntity* pEntity = world->CreateMeshEntity(staticObject.name, pMesh, false);
+				cMatrixf transform = CreateTransformMatrix(staticObject.worldPosition, staticObject.rotation, staticObject.scale);
+				pEntity->SetMatrix(transform);
+				pEntity->SetCastsShadows(staticObject.castsShadow);
+			}
+		}
+	}
+
+	cMatrixf cMeshLoaderMap::CreateTransformMatrix(float* vec3position, float* vec3rotation, float* vec3scale)
+	{
+		cMatrixf transform = cMatrixf::Identity;
+		cQuaternion rotation;
+
+		// Apply position
+		transform = cMath::MatrixMul(transform, cMath::MatrixTranslate(FloatArrayToVec3(vec3position, false)));
+		// Apply rotation
+		rotation.FromAngleAxis(vec3rotation[0], cVector3f(1, 0, 0)); // X
+		transform = cMath::MatrixMul(transform, cMath::MatrixQuaternion(rotation));
+		rotation.FromAngleAxis(vec3rotation[1], cVector3f(0, 1, 0)); // Y
+		transform = cMath::MatrixMul(transform, cMath::MatrixQuaternion(rotation));
+		rotation.FromAngleAxis(vec3rotation[2], cVector3f(0, 0, 1)); // Z
+		transform = cMath::MatrixMul(transform, cMath::MatrixQuaternion(rotation));
+		// Apply scale
+		transform = cMath::MatrixMul(transform, cMath::MatrixScale(FloatArrayToVec3(vec3scale, false)));
+
+		return transform;
+	}
+
+	cVector3f cMeshLoaderMap::FloatArrayToVec3(float* vec3array, bool convertZToY)
+	{
+		cVector3f result = convertZToY ?
+			cVector3f(-vec3array[0], vec3array[2], vec3array[1]) :
+			cVector3f(vec3array[0], vec3array[1], vec3array[2]);
+		return result;
 	}
 }

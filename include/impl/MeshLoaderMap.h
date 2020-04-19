@@ -75,9 +75,13 @@ namespace hpl {
 
 		void AddSupportedTypes(tStringVec* avFileTypes);
 	private:
+		tString LookupFile(tFileIndex index, tString id);
 		void ReadFileIndicies(TiXmlDocument* xmlDoc, tFileIndex* fileIndicies, tString parentNodeName);
 		void ReadStaticObjects(TiXmlDocument* xmlDoc, tStaticObjects* staticObjects);
 		void ReadMapEntities(TiXmlDocument* xmlDoc, tMapEntities* mapEntities);
+		void LoadWorldGeometry(cWorld3D* world, tStaticObjects* staticObjects, tFileIndex staticObjectFiles);
+		static cMatrixf CreateTransformMatrix(float* vec3position, float* vec3rotation, float* vec3scale);
+		static cVector3f FloatArrayToVec3(float* vec3array, bool convertZToY);
 	};
 }
 
