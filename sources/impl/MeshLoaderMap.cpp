@@ -10,6 +10,7 @@
 
 #include "scene/Light3DPoint.h"
 #include "scene/MeshEntity.h"
+#include "scene/PortalContainer.h"
 #include "scene/Scene.h"
 #include "scene/World3D.h"
 
@@ -229,6 +230,7 @@ namespace hpl {
 				cMeshEntity* pEntity = world->CreateMeshEntity(staticObject.name, pMesh, false);
 				cMatrixf transform = CreateTransformMatrix(staticObject.worldPosition, staticObject.rotation, staticObject.scale);
 				pEntity->SetMatrix(transform);
+				world->GetPortalContainer()->Add(pEntity, false);
 				pEntity->SetCastsShadows(staticObject.castsShadow);
 			}
 		}
@@ -271,6 +273,17 @@ namespace hpl {
 			cMatrixf lightTransform = CreateTransformMatrix(lightEntity.worldPosition, lightEntity.rotation, lightEntity.scale);
 			pLight->SetMatrix(lightTransform);
 			pLight->SetDiffuseColor(cColor(1, 1, 1));
+			pLight->SetFarAttenuation(lightEntity.radius);
+			pLight->SetStatic(true);
+			world->GetPortalContainer()->Add(pLight, true);
+		}
+
+		// TODO: Read an actual start position from map file
+		MapLightEntity lightEntity = lightEntities->at(0);
+		cMatrixf lightTransform = CreateTransformMatrix(lightEntity.worldPosition, lightEntity.rotation, lightEntity.scale);
+		cStartPosEntity* pStart = world->CreateStartPos("link01");
+		if (pStart) {
+			pStart->SetMatrix(lightTransform);
 		}
 	}
 }
