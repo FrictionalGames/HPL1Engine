@@ -1,5 +1,11 @@
 #include "impl/MeshLoaderMap.h"
 
+#include "physics/Physics.h"
+#include "physics/PhysicsWorld.h"
+#include "physics/PhysicsBody.h"
+#include "physics/PhysicsMaterial.h"
+#include "physics/SurfaceData.h"
+
 #include "resources/MeshManager.h"
 
 #include "scene/MeshEntity.h"
@@ -44,6 +50,9 @@ namespace hpl {
 		cWorld3D* pWorld = apScene->CreateWorld3D(cString::SetFileExt(cString::GetFileName(asFile), ""));
 		pWorld->SetFileName(cString::GetFileName(asFile));
 
+		iPhysicsWorld* pPhysiscsWorld = pWorld->GetPhysics()->CreateWorld(true);
+		pWorld->SetPhysicsWorld(pPhysiscsWorld, true);
+
 		TiXmlDocument* pXmlDoc = hplNew(TiXmlDocument, (asFile.c_str()));
 		if (pXmlDoc->LoadFile() == false) FatalError("Couldn't load map XML file '%s'!\n", asFile.c_str());
 
@@ -55,6 +64,8 @@ namespace hpl {
 		ReadMapEntities(pXmlDoc, &mapEntities);
 
 		LoadWorldGeometry(pWorld, &staticObjects, staticObjectFiles);
+
+		pWorld->SetUpData();
 
 		return pWorld;
 	}
