@@ -49,6 +49,7 @@ namespace hpl {
 		tStaticObjects staticObjects;
 		tMapEntities mapEntities;
 		tMapLightEntities lightEntities;
+		tAreas playerStartAreas;
 
 		cWorld3D* pWorld = apScene->CreateWorld3D(cString::SetFileExt(cString::GetFileName(asFile), ""));
 		pWorld->SetFileName(cString::GetFileName(asFile));
@@ -64,10 +65,10 @@ namespace hpl {
 		ReadFileIndicies(pXmlDoc, &decalFiles, "FileIndex_Decals");
 
 		ReadStaticObjects(pXmlDoc, &staticObjects);
-		ReadMapEntities(pXmlDoc, &mapEntities, &lightEntities);
+		ReadMapEntities(pXmlDoc, &mapEntities, &lightEntities, &playerStartAreas);
 
 		LoadWorldGeometry(pWorld, &staticObjects, staticObjectFiles);
-		LoadWorldSceneObjects(pWorld, &mapEntities, &lightEntities);
+		LoadWorldSceneObjects(pWorld, &mapEntities, &lightEntities, &playerStartAreas);
 
 		pWorld->SetUpData();
 
@@ -152,7 +153,7 @@ namespace hpl {
 		}
 	}
 
-	void cMeshLoaderMap::ReadMapEntities(TiXmlDocument* xmlDoc, tMapEntities* mapEntities, tMapLightEntities* lightEntities)
+	void cMeshLoaderMap::ReadMapEntities(TiXmlDocument* xmlDoc, tMapEntities* mapEntities, tMapLightEntities* lightEntities, tAreas* startAreas)
 	{
 		TiXmlElement* pRootElem = xmlDoc->RootElement();
 		TiXmlElement* staticObjectsElem = pRootElem
@@ -199,6 +200,24 @@ namespace hpl {
 				lightEntity.radius = cString::ToFloat(lightElem->Attribute("Radius"), 1);
 				lightEntities->push_back(lightEntity);
 				lightElem = lightElem->NextSiblingElement("PointLight");
+			}
+			TiXmlElement* areaElem = staticObjectsElem->FirstChildElement("Area");
+			while (areaElem)
+			{
+				if (cString::ToString(areaElem->Attribute("AreaType"), "") != "PlayerStart")
+					continue;
+
+				Area areaEntity;
+
+				areaEntity.active = cString::ToBool(areaElem->Attribute("Active"), true);
+				areaEntity.name = cString::ToString(areaElem->Attribute("Name"), "");
+				cString::FloatStringToArray(areaEntity.rotation, areaElem->Attribute("Rotation"), 3);
+				cString::FloatStringToArray(areaEntity.scale, areaElem->Attribute("Scale"), 3);
+				cString::FloatStringToArray(areaEntity.worldPosition, areaElem->Attribute("WorldPos"), 3);
+
+				startAreas->push_back(areaEntity);
+
+				areaElem = areaElem->NextSiblingElement("Area");
 			}
 		}
 		else
@@ -264,7 +283,7 @@ namespace hpl {
 		return result;
 	}
 
-	void cMeshLoaderMap::LoadWorldSceneObjects(cWorld3D* world, tMapEntities* mapEntities, tMapLightEntities* lightEntities)
+	void cMeshLoaderMap::LoadWorldSceneObjects(cWorld3D* world, tMapEntities* mapEntities, tMapLightEntities* lightEntities, tAreas* startAreas)
 	{
 		for (int i = 0; i < lightEntities->size(); i++)
 		{
@@ -278,12 +297,13 @@ namespace hpl {
 			world->GetPortalContainer()->Add(pLight, true);
 		}
 
-		// TODO: Read an actual start position from map file
-		MapLightEntity lightEntity = lightEntities->at(0);
-		cMatrixf lightTransform = CreateTransformMatrix(lightEntity.worldPosition, lightEntity.rotation, lightEntity.scale);
-		cStartPosEntity* pStart = world->CreateStartPos("link01");
-		if (pStart) {
-			pStart->SetMatrix(lightTransform);
+		for (int i = 0; i < startAreas->size(); i++)
+		{
+			Area start = startAreas->at(i);
+			cMatrixf areaTransform = CreateTransformMatrix(start.worldPosition, start.rotation, start.scale);
+			cStartPosEntity* pStart = world->CreateStartPos(start.name);
+			if (pStart)
+				pStart->SetMatrix(areaTransform);
 		}
 	}
 }

@@ -64,6 +64,17 @@ namespace hpl {
 	};
 	typedef std::vector<MapLightEntity> tMapLightEntities;
 
+	class Area
+	{
+	public:
+		bool active;
+		tString name;
+		float rotation[3];
+		float scale[3];
+		float worldPosition[3];
+	};
+	typedef std::vector<Area> tAreas;
+
 	class cMeshLoaderMap :
 		public iMeshLoader
 	{
@@ -85,12 +96,12 @@ namespace hpl {
 		tString LookupFile(tFileIndex index, tString id);
 		void ReadFileIndicies(TiXmlDocument* xmlDoc, tFileIndex* fileIndicies, tString parentNodeName);
 		void ReadStaticObjects(TiXmlDocument* xmlDoc, tStaticObjects* staticObjects);
-		void ReadMapEntities(TiXmlDocument* xmlDoc, tMapEntities* mapEntities, tMapLightEntities* lightEntities);
+		void ReadMapEntities(TiXmlDocument* xmlDoc, tMapEntities* mapEntities, tMapLightEntities* lightEntities, tAreas* startAreas);
 		static void PopulateEntityData(TiXmlElement* entityElem, MapEntity& mapEntity);
 		void LoadWorldGeometry(cWorld3D* world, tStaticObjects* staticObjects, tFileIndex staticObjectFiles);
 		static cMatrixf CreateTransformMatrix(float* vec3position, float* vec3rotation, float* vec3scale);
 		static cVector3f FloatArrayToVec3(float* vec3array, bool convertZToY);
-		void LoadWorldSceneObjects(cWorld3D* world, tMapEntities* mapEntities, tMapLightEntities* lightEntities);
+		void LoadWorldSceneObjects(cWorld3D* world, tMapEntities* mapEntities, tMapLightEntities* lightEntities, tAreas* startAreas);
 	};
 }
 
