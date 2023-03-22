@@ -27,6 +27,7 @@
 #endif
 
 #ifndef WIN32
+#include <unistd.h>
 // Include FLTK
 #include "FL/fl_ask.H"
 #endif

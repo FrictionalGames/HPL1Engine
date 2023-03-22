@@ -74,7 +74,7 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	bool cGfxBufferCompare::operator()(const cGfxBufferObject& aObjectA,const cGfxBufferObject& aObjectB)
+	bool cGfxBufferCompare::operator()(const cGfxBufferObject& aObjectA,const cGfxBufferObject& aObjectB) const
 	{
 		if(aObjectA.GetZ() != aObjectB.GetZ())
 		{

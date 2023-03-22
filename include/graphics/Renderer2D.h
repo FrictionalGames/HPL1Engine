@@ -48,14 +48,14 @@ namespace hpl {
 	class cRenderObject2DCompare
 	{
 	public:
-		bool operator()(const cRenderObject2D &aObjectA,const cRenderObject2D &aObjectB);
+		bool operator()(const cRenderObject2D &aObjectA,const cRenderObject2D &aObjectB) const;
 	};
 
 	//For transparent objects
 	class cRenderTransObjectCompare
 	{
 	public:
-		bool operator()(const cRenderObject2D &aObjectA,const cRenderObject2D &aObjectB);
+		bool operator()(const cRenderObject2D &aObjectA,const cRenderObject2D &aObjectB) const;
 	};
 
 	typedef std::multiset<cRenderObject2D,cRenderObject2DCompare> tRenderObjectSet;
