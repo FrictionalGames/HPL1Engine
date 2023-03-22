@@ -64,7 +64,7 @@ namespace hpl {
 	//-----------------------------------------------------------------------
 
 	bool cGuiRenderObjectCompare::operator()(	const cGuiRenderObject& aObjectA,
-												const cGuiRenderObject& aObjectB)
+												const cGuiRenderObject& aObjectB) const
 	{
 		//Z
 		float fZA = aObjectA.mvPos.z;
